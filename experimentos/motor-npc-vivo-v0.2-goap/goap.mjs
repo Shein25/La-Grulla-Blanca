@@ -81,6 +81,9 @@ export function planGOAP(initialState, goal, actions, options={}) {
     const node=queue.shift();
     const key=stateKey(node.state);
     if (node.cost !== best.get(key)) continue;
+    if (factsMatch(node.state,goal)) {
+      return { status:'PLAN_FOUND', plan:node.plan, cost:node.cost, expansions, finalState:node.state };
+    }
     if (++expansions > maxExpansions) {
       return { status:'SEARCH_LIMIT', plan:null, cost:null, expansions, finalState:null };
     }
@@ -90,11 +93,6 @@ export function planGOAP(initialState, goal, actions, options={}) {
       const next=applyEffects(node.state,action.effects);
       const cost=node.cost+action.cost;
       const plan=[...node.plan,action.id];
-
-      if (factsMatch(next,goal)) {
-        return { status:'PLAN_FOUND', plan, cost, expansions, finalState:next };
-      }
-
       const nextKey=stateKey(next);
       const old=best.get(nextKey);
       if (old === undefined || cost < old) {
