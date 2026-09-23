@@ -30,28 +30,124 @@ export function validateAction(action) {
   const errors=[];
   if (!isRecord(action)) return ['acción inválida'];
   if (typeof action.id !== 'string' || !action.id.trim()) errors.push('action.id inválido');
-  if (!Number.isFinite(action.cost) || action.cost <= 0) errors.push('action.cost debe ser > 0 y finito');
+  if (!Number.isSafeInteger(action.cost) || action.cost <= 0) errors.push('action.cost debe ser entero seguro > 0');
   errors.push(...validateFacts(action.preconditions,'preconditions'));
   errors.push(...validateFacts(action.effects,'effects'));
   return errors;
 }
 
-function stateKey(state) {
-  return JSON.stringify(Object.keys(state).sort().map(k => [k,state[k]]));
+function encodeFact(value) {
+  if (value === null) return ['null'];
+  if (typeof value === 'number') return ['number', Object.is(value,-0) ? '-0' : String(value)];
+  if (typeof value === 'boolean') return ['boolean', value ? 1 : 0];
+  return ['string', value];
+}
+
+function relevantFactKeys(goal, actions) {
+  const relevant=new Set(Object.keys(goal));
+  let changed=true;
+  while (changed) {
+    changed=false;
+    for (const action of actions) {
+      const effectKeys=Object.keys(action.effects);
+      if (!effectKeys.some(key=>relevant.has(key))) continue;
+      for (const key of Object.keys(action.preconditions)) {
+        if (!relevant.has(key)) { relevant.add(key); changed=true; }
+      }
+    }
+  }
+  return [...relevant].sort();
+}
+
+function actionTouchesRelevant(action,relevantSet) {
+  return Object.keys(action.effects).some(key=>relevantSet.has(key));
+}
+
+function stateKey(state, relevantKeys) {
+  return JSON.stringify(relevantKeys.map(key =>
+    Object.hasOwn(state,key) ? [key,encodeFact(state[key])] : [key,['missing']]
+  ));
 }
 
 function planKey(plan) {
-  return plan.join('>');
+  return JSON.stringify(plan);
+}
+
+function signature(node) {
+  return { cost:node.cost, steps:node.plan.length, planKey:planKey(node.plan) };
+}
+
+function compareSignature(a,b) {
+  if (a.cost !== b.cost) return a.cost-b.cost;
+  if (a.steps !== b.steps) return a.steps-b.steps;
+  return a.planKey.localeCompare(b.planKey);
+}
+
+function sameSignature(a,b) {
+  return a && b && a.cost===b.cost && a.steps===b.steps && a.planKey===b.planKey;
 }
 
 function compareNodes(a,b) {
-  if (a.cost !== b.cost) return a.cost-b.cost;
-  if (a.plan.length !== b.plan.length) return a.plan.length-b.plan.length;
-  return planKey(a.plan).localeCompare(planKey(b.plan));
+  return compareSignature(signature(a),signature(b));
+}
+
+class MinHeap {
+  constructor(compare) { this.data=[]; this.compare=compare; }
+  get size() { return this.data.length; }
+  push(value) {
+    const a=this.data; a.push(value);
+    let i=a.length-1;
+    while (i>0) {
+      const p=(i-1)>>1;
+      if (this.compare(a[p],a[i])<=0) break;
+      [a[p],a[i]]=[a[i],a[p]]; i=p;
+    }
+  }
+  pop() {
+    const a=this.data;
+    if (!a.length) return null;
+    const root=a[0], last=a.pop();
+    if (a.length) {
+      a[0]=last;
+      let i=0;
+      while (true) {
+        const l=i*2+1, r=l+1;
+        let best=i;
+        if (l<a.length && this.compare(a[l],a[best])<0) best=l;
+        if (r<a.length && this.compare(a[r],a[best])<0) best=r;
+        if (best===i) break;
+        [a[i],a[best]]=[a[best],a[i]]; i=best;
+      }
+    }
+    return root;
+  }
+}
+
+function result(status, extra={}) {
+  return {
+    status,
+    plan:null,
+    cost:null,
+    expansions:0,
+    generated:0,
+    maxFrontier:0,
+    relevantFacts:[],
+    finalState:null,
+    ...extra,
+  };
 }
 
 export function planGOAP(initialState, goal, actions, options={}) {
-  const maxExpansions=Number.isInteger(options.maxExpansions) ? options.maxExpansions : 5000;
+  const maxExpansions=options.maxExpansions ?? 5000;
+  const maxFrontier=options.maxFrontier ?? 10000;
+
+  if (!Number.isInteger(maxExpansions) || maxExpansions < 0) {
+    throw new TypeError('maxExpansions debe ser entero >= 0');
+  }
+  if (!Number.isInteger(maxFrontier) || maxFrontier < 1) {
+    throw new TypeError('maxFrontier debe ser entero >= 1');
+  }
+
   const stateErrors=validateFacts(initialState,'initialState');
   const goalErrors=validateFacts(goal,'goal');
   if (stateErrors.length || goalErrors.length) {
@@ -67,42 +163,76 @@ export function planGOAP(initialState, goal, actions, options={}) {
     ids.add(action.id);
   }
 
-  const ordered=[...actions].sort((a,b)=>a.id.localeCompare(b.id));
+  const relevantKeys=relevantFactKeys(goal,actions);
+  const relevantSet=new Set(relevantKeys);
+  const ordered=[...actions]
+    .filter(action=>actionTouchesRelevant(action,relevantSet))
+    .sort((a,b)=>a.id.localeCompare(b.id));
+
   if (factsMatch(initialState,goal)) {
-    return { status:'PLAN_FOUND', plan:[], cost:0, expansions:0, finalState:{...initialState} };
+    return result('PLAN_FOUND',{
+      plan:[],cost:0,finalState:{...initialState},relevantFacts:relevantKeys,maxFrontier:1,
+    });
   }
 
-  const queue=[{state:{...initialState},cost:0,plan:[]}];
-  const best=new Map([[stateKey(initialState),0]]);
-  let expansions=0;
+  const frontier=new MinHeap(compareNodes);
+  const root={state:{...initialState},cost:0,plan:[]};
+  frontier.push(root);
 
-  while (queue.length) {
-    queue.sort(compareNodes);
-    const node=queue.shift();
-    const key=stateKey(node.state);
-    if (node.cost !== best.get(key)) continue;
+  const rootKey=stateKey(root.state,relevantKeys);
+  const best=new Map([[rootKey,signature(root)]]);
+  let expansions=0, generated=0, maxFrontierSeen=1, overflowSeen=false;
+
+  while (frontier.size) {
+    const node=frontier.pop();
+    const key=stateKey(node.state,relevantKeys);
+    if (!sameSignature(signature(node),best.get(key))) continue;
+
     if (factsMatch(node.state,goal)) {
-      return { status:'PLAN_FOUND', plan:node.plan, cost:node.cost, expansions, finalState:node.state };
+      return result('PLAN_FOUND',{
+        plan:node.plan,cost:node.cost,expansions,generated,maxFrontier:maxFrontierSeen,
+        relevantFacts:relevantKeys,finalState:node.state,
+      });
     }
-    if (++expansions > maxExpansions) {
-      return { status:'SEARCH_LIMIT', plan:null, cost:null, expansions, finalState:null };
+
+    if (expansions >= maxExpansions) {
+      return result('SEARCH_LIMIT',{
+        expansions,generated,maxFrontier:maxFrontierSeen,relevantFacts:relevantKeys,
+      });
     }
+    expansions++;
 
     for (const action of ordered) {
       if (!factsMatch(node.state,action.preconditions)) continue;
       const next=applyEffects(node.state,action.effects);
       const cost=node.cost+action.cost;
-      const plan=[...node.plan,action.id];
-      const nextKey=stateKey(next);
-      const old=best.get(nextKey);
-      if (old === undefined || cost < old) {
-        best.set(nextKey,cost);
-        queue.push({state:next,cost,plan});
-      } else if (cost === old) {
-        queue.push({state:next,cost,plan});
+      generated++;
+
+      if (!Number.isSafeInteger(cost) || cost <= node.cost) {
+        overflowSeen=true;
+        continue;
       }
+
+      const plan=[...node.plan,action.id];
+      const nextNode={state:next,cost,plan};
+      const nextKey=stateKey(next,relevantKeys);
+      const nextSig=signature(nextNode);
+      const old=best.get(nextKey);
+
+      if (old !== undefined && compareSignature(nextSig,old) >= 0) continue;
+
+      best.set(nextKey,nextSig);
+      if (frontier.size >= maxFrontier) {
+        return result('FRONTIER_LIMIT',{
+          expansions,generated,maxFrontier:maxFrontierSeen,relevantFacts:relevantKeys,
+        });
+      }
+      frontier.push(nextNode);
+      if (frontier.size > maxFrontierSeen) maxFrontierSeen=frontier.size;
     }
   }
 
-  return { status:'NO_PLAN', plan:null, cost:null, expansions, finalState:null };
+  return result(overflowSeen?'COST_OVERFLOW':'NO_PLAN',{
+    expansions,generated,maxFrontier:maxFrontierSeen,relevantFacts:relevantKeys,
+  });
 }
