@@ -1,19 +1,18 @@
-# Encargo para agente externo — Retest 2 Motor NPC Vivo v0.1.1
+# Encargo para agente externo — Retest 3 Motor NPC Vivo v0.1.1
 
-Audita exclusivamente la **cabeza actual** de:
+Audita exclusivamente la **cabeza actual** de la rama:
 
 `experiment/motor-npc-v0.1.1`
 
-directorio:
+Directorio:
 
 `experimentos/motor-npc-vivo-v0.1.1/`
 
-No reutilices como resultado el informe del commit `946fd177fa443601233a1be767a4bbaed71bdfc0`: desde entonces se corrigió el hueco de propiedades heredadas.
-
+NO reutilices los resultados de los commits anteriores.
 NO modifiques el juego de producción.
-NO integres nada en `grulla-blanca_ver73.html`.
-NO conviertas fixtures ficticios en NPC canónicos.
+NO toques `grulla-blanca_ver73.html`.
 NO ajustes pesos.
+NO implementes GOAP.
 
 ## 1. Regresión completa
 
@@ -23,7 +22,7 @@ Ejecuta:
 node tests.mjs
 ```
 
-Reporta PASS/FAIL y exit code.
+Reporta PASS/FAIL exacto y exit code.
 
 ## 2. Stress reproducible
 
@@ -37,79 +36,95 @@ node stress.mjs 10000 999
 node stress.mjs 10000 20260923
 ```
 
-Confirma que el preflight adversarial también pasa.
+Confirma que el preflight de propiedades heredadas y getters mutables pasa antes de cada corrida.
 
-## 3. Reproducciones obligatorias del hallazgo anterior
+## 3. Reproducir obligatoriamente el hallazgo del Retest 2
 
-Prueba explícitamente como valores de conocimiento:
-
-```text
-toString
-constructor
-__proto__
-```
-
-en:
+Crea getters mutables en:
 
 - `npc.knowledge.R1`;
-- `context.relevantKnowledge`.
+- `context.relevantKnowledge`;
+- un trait numérico;
+- un campo numérico de contexto;
+- un campo estructural del NPC, por ejemplo `traits`;
+- un campo del contexto de diálogo.
 
-Todos deben ser rechazados antes de puntuar.
+Los getters pueden devolver primero un valor válido y después:
 
-Prueba como `topicId`:
+- `toString`;
+- `constructor`;
+- `NaN`.
 
-```text
-toString
-constructor
-__proto__
-R99
-```
+Requisitos:
 
-Todos deben lanzar rechazo de tema no definido y nunca producir `NaN`.
+1. el validador debe rechazarlos;
+2. la API pública debe lanzar antes de puntuar/revelar;
+3. el getter no debe ser ejecutado durante la validación;
+4. no debe aparecer `NaN` ni disclosure no finito.
 
-## 4. Propiedades heredadas
+## 4. Accessors adicionales
 
-Construye:
+Prueba también:
 
-```js
-Object.create(BASE_CONTEXT)
-```
+- setter-only;
+- getter+setter;
+- accessor no enumerable si reemplaza un campo obligatorio;
+- accessor en `behaviorState.lastAction`;
+- accessor en `relationPlayer.confianza`;
+- accessor en `topicSensitivity`.
 
-y un contexto de diálogo cuyos tres campos existan sólo en el prototipo.
+Todo campo consumido por el motor debe ser una **propiedad propia de datos**.
 
-Ambos deben ser rechazados.
+## 5. Propiedades heredadas — no regresión
 
-Intenta también un NPC o subobjeto construido con un prototipo ajeno. Debe rechazarse o quedar demostrado que no puede saltarse la validación de propiedades propias.
+Repite:
 
-## 5. Finitud
+- `toString`;
+- `constructor`;
+- `__proto__`;
 
-Busca activamente cualquier entrada que **pase los validadores** y luego genere:
+como estados de conocimiento y `relevantKnowledge`.
 
-- `NaN`;
-- `Infinity`;
-- `-Infinity` en una acción disponible;
-- disclosure no finito.
+Repite `topicId`:
+
+- `toString`;
+- `constructor`;
+- `__proto__`;
+- `R99`.
+
+Repite contextos creados con `Object.create(...)`.
+
+Todos deben seguir rechazados.
+
+## 6. Finitud
+
+Busca activamente una entrada que **pase todos los validadores** y después produzca:
+
+- score `NaN`;
+- raw `NaN`;
+- score/raw infinito en una acción disponible;
+- disclosure `NaN` o infinito.
 
 Si encontrás una, entrega reproducción mínima.
 
-## 6. No-regresión
+## 7. No regresión funcional
 
-Repite y confirma:
+Confirma:
 
-- B1 de campos faltantes;
-- B2 de independencia profunda;
+- campos faltantes rechazados;
+- `nextNpc` profundamente independiente;
 - score → raw → ACTION_ORDER;
 - inercia +6 → +4 → +2 → +0;
-- dutyMode exclusivo;
+- `dutyMode`;
 - `rutina_trabajo → trabajar`;
 - `espera_sin_tarea → esperar`;
-- las tres personalidades siguen diferenciadas;
+- Disciplinado / Leal / Curioso siguen diferenciándose;
 - DESCONOCIDO nunca revela;
 - SOSPECHA nunca COMPARTE.
 
-## 7. Preparación para GOAP
+## 8. Preparación para GOAP
 
-Evalúa si, una vez cerrada la validación, la arquitectura puede mantener esta separación:
+Evalúa si, con el contrato de entrada cerrado, es razonable pasar a:
 
 ```text
 Utility AI → selecciona OBJETIVO
@@ -117,13 +132,13 @@ GOAP       → construye PLAN
 Executor   → aplica acciones y verifica efectos
 ```
 
-No implementes GOAP.
+No implementes esas capas todavía.
 
 ## Entregable
 
 Devuelve únicamente:
 
-`Informe_Test_Motor_NPC_Vivo_v0.1.1_RETEST2.md`
+`Informe_Test_Motor_NPC_Vivo_v0.1.1_RETEST3.md`
 
 Termina con exactamente uno:
 
