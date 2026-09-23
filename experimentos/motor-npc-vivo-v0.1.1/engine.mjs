@@ -53,6 +53,19 @@ const isPlainObject = x => {
   return proto === Object.prototype || proto === null;
 };
 
+function readOwnData(obj, key, path, errors) {
+  const desc = Object.getOwnPropertyDescriptor(obj, key);
+  if (!desc) {
+    errors.push(`Falta ${path}`);
+    return undefined;
+  }
+  if (!Object.hasOwn(desc, 'value')) {
+    errors.push(`${path} debe ser una propiedad de datos; accessors no permitidos`);
+    return undefined;
+  }
+  return desc.value;
+}
+
 function exactKeys(obj, required, path, errors) {
   if (!isPlainObject(obj)) { errors.push(`Falta ${path}`); return; }
   const keys = Object.keys(obj).sort();
@@ -69,36 +82,48 @@ function validatePctFields(obj, required, path, errors) {
   exactKeys(obj, required, path, errors);
   if (!isPlainObject(obj)) return;
   for (const key of required) {
-    const value = obj[key];
-    if (!Number.isFinite(value) || value < 0 || value > 100) errors.push(`${path}.${key} fuera de 0..100`);
+    const value = readOwnData(obj, key, `${path}.${key}`, errors);
+    if (value !== undefined && (!Number.isFinite(value) || value < 0 || value > 100)) errors.push(`${path}.${key} fuera de 0..100`);
   }
 }
 
 export function validateNpc(npc) {
   const errors = [];
   if (!isPlainObject(npc)) return ['NPC inválido'];
-  if (typeof npc.id !== 'string' || !npc.id.trim()) errors.push('Falta id');
-  if (typeof npc.name !== 'string' || !npc.name.trim()) errors.push('Falta name');
-  if (typeof npc.role !== 'string' || !npc.role.trim()) errors.push('Falta role');
 
-  validatePctFields(npc.traits, REQUIRED_TRAITS, 'traits', errors);
-  validatePctFields(npc.relationPlayer, REQUIRED_RELATION, 'relationPlayer', errors);
+  const id = readOwnData(npc, 'id', 'id', errors);
+  const name = readOwnData(npc, 'name', 'name', errors);
+  const role = readOwnData(npc, 'role', 'role', errors);
+  const traits = readOwnData(npc, 'traits', 'traits', errors);
+  const relationPlayer = readOwnData(npc, 'relationPlayer', 'relationPlayer', errors);
+  const knowledge = readOwnData(npc, 'knowledge', 'knowledge', errors);
+  const behaviorState = readOwnData(npc, 'behaviorState', 'behaviorState', errors);
 
-  exactKeys(npc.knowledge, REQUIRED_KNOWLEDGE, 'knowledge', errors);
-  if (isPlainObject(npc.knowledge)) {
+  if (id !== undefined && (typeof id !== 'string' || !id.trim())) errors.push('id inválido');
+  if (name !== undefined && (typeof name !== 'string' || !name.trim())) errors.push('name inválido');
+  if (role !== undefined && (typeof role !== 'string' || !role.trim())) errors.push('role inválido');
+
+  validatePctFields(traits, REQUIRED_TRAITS, 'traits', errors);
+  validatePctFields(relationPlayer, REQUIRED_RELATION, 'relationPlayer', errors);
+
+  exactKeys(knowledge, REQUIRED_KNOWLEDGE, 'knowledge', errors);
+  if (isPlainObject(knowledge)) {
     for (const key of REQUIRED_KNOWLEDGE) {
-      if (!isKnowledgeState(npc.knowledge[key])) errors.push(`knowledge.${key} inválido: ${npc.knowledge[key]}`);
+      const value = readOwnData(knowledge, key, `knowledge.${key}`, errors);
+      if (value !== undefined && !isKnowledgeState(value)) errors.push(`knowledge.${key} inválido: ${value}`);
     }
   }
 
-  if (!isPlainObject(npc.behaviorState)) errors.push('Falta behaviorState');
-  else {
-    exactKeys(npc.behaviorState, ['lastAction', 'consecutiveTurns'], 'behaviorState', errors);
-    const { lastAction, consecutiveTurns } = npc.behaviorState;
-    if (!(lastAction === null || ACTION_ORDER.includes(lastAction))) errors.push('behaviorState.lastAction inválido');
-    if (!Number.isInteger(consecutiveTurns) || consecutiveTurns < 0) errors.push('behaviorState.consecutiveTurns inválido');
-    if (lastAction === null && consecutiveTurns !== 0) errors.push('behaviorState inconsistente: sin acción debe tener consecutiveTurns=0');
-    if (lastAction !== null && consecutiveTurns < 1) errors.push('behaviorState inconsistente: con acción debe tener consecutiveTurns>=1');
+  if (!isPlainObject(behaviorState)) {
+    if (behaviorState !== undefined) errors.push('behaviorState inválido');
+  } else {
+    exactKeys(behaviorState, ['lastAction', 'consecutiveTurns'], 'behaviorState', errors);
+    const lastAction = readOwnData(behaviorState, 'lastAction', 'behaviorState.lastAction', errors);
+    const consecutiveTurns = readOwnData(behaviorState, 'consecutiveTurns', 'behaviorState.consecutiveTurns', errors);
+    if (lastAction !== undefined && !(lastAction === null || ACTION_ORDER.includes(lastAction))) errors.push('behaviorState.lastAction inválido');
+    if (consecutiveTurns !== undefined && (!Number.isInteger(consecutiveTurns) || consecutiveTurns < 0)) errors.push('behaviorState.consecutiveTurns inválido');
+    if (lastAction === null && consecutiveTurns !== undefined && consecutiveTurns !== 0) errors.push('behaviorState inconsistente: sin acción debe tener consecutiveTurns=0');
+    if (lastAction !== undefined && lastAction !== null && consecutiveTurns !== undefined && consecutiveTurns < 1) errors.push('behaviorState inconsistente: con acción debe tener consecutiveTurns>=1');
   }
   return errors;
 }
@@ -106,30 +131,35 @@ export function validateNpc(npc) {
 export function validateActionContext(context) {
   const errors = [];
   if (!isPlainObject(context)) return ['Contexto inválido'];
-  for (const key of REQUIRED_ACTION_CONTEXT) if (!Object.hasOwn(context, key)) errors.push(`context: falta ${key}`);
+
+  const values = {};
+  for (const key of REQUIRED_ACTION_CONTEXT) values[key] = readOwnData(context, key, `context.${key}`, errors);
+
   for (const key of ['playerPresent', 'playerRequestsHelp', 'anomalyPresent', 'awayFromPost', 'superiorReachable']) {
-    if (Object.hasOwn(context, key) && typeof context[key] !== 'boolean') errors.push(`context.${key} debe ser boolean`);
+    const value = values[key];
+    if (value !== undefined && typeof value !== 'boolean') errors.push(`context.${key} debe ser boolean`);
   }
   for (const key of ['dutyImportance', 'danger', 'missionUrgency']) {
-    const value = context[key];
-    if (Object.hasOwn(context, key) && (!Number.isFinite(value) || value < 0 || value > 100)) errors.push(`context.${key} fuera de 0..100`);
+    const value = values[key];
+    if (value !== undefined && (!Number.isFinite(value) || value < 0 || value > 100)) errors.push(`context.${key} fuera de 0..100`);
   }
-  if (Object.hasOwn(context, 'playerRank') && (!Number.isInteger(context.playerRank) || context.playerRank < 0 || context.playerRank > 6)) errors.push('context.playerRank fuera de 0..6');
-  if (Object.hasOwn(context, 'relevantKnowledge') && !isKnowledgeState(context.relevantKnowledge)) errors.push('context.relevantKnowledge inválido');
-  if (Object.hasOwn(context, 'dutyMode') && !DUTY_MODES.includes(context.dutyMode)) errors.push('context.dutyMode inválido');
+  if (values.playerRank !== undefined && (!Number.isInteger(values.playerRank) || values.playerRank < 0 || values.playerRank > 6)) errors.push('context.playerRank fuera de 0..6');
+  if (values.relevantKnowledge !== undefined && !isKnowledgeState(values.relevantKnowledge)) errors.push('context.relevantKnowledge inválido');
+  if (values.dutyMode !== undefined && !DUTY_MODES.includes(values.dutyMode)) errors.push('context.dutyMode inválido');
   return errors;
 }
 
 export function validateDialogueContext(context) {
   const errors = [];
   if (!isPlainObject(context)) return ['Contexto de diálogo inválido'];
-  for (const key of ['playerRank', 'topicSensitivity', 'formalRestriction']) {
-    if (!Object.hasOwn(context, key)) errors.push(`dialogue: falta ${key}`);
-  }
-  if (Object.hasOwn(context, 'playerRank') && (!Number.isInteger(context.playerRank) || context.playerRank < 0 || context.playerRank > 6)) errors.push('dialogue.playerRank fuera de 0..6');
-  for (const key of ['topicSensitivity', 'formalRestriction']) {
-    const value = context[key];
-    if (Object.hasOwn(context, key) && (!Number.isFinite(value) || value < 0 || value > 100)) errors.push(`dialogue.${key} fuera de 0..100`);
+
+  const playerRank = readOwnData(context, 'playerRank', 'dialogue.playerRank', errors);
+  const topicSensitivity = readOwnData(context, 'topicSensitivity', 'dialogue.topicSensitivity', errors);
+  const formalRestriction = readOwnData(context, 'formalRestriction', 'dialogue.formalRestriction', errors);
+
+  if (playerRank !== undefined && (!Number.isInteger(playerRank) || playerRank < 0 || playerRank > 6)) errors.push('dialogue.playerRank fuera de 0..6');
+  for (const [key, value] of [['topicSensitivity', topicSensitivity], ['formalRestriction', formalRestriction]]) {
+    if (value !== undefined && (!Number.isFinite(value) || value < 0 || value > 100)) errors.push(`dialogue.${key} fuera de 0..100`);
   }
   return errors;
 }
