@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { GOAP_ACTIONS } from './actions.mjs';
 import { decideAndPlan } from './controller.mjs';
 import { executeNext } from './executor.mjs';
+import { factsMatch } from './goap.mjs';
 import { cloneNpc } from '../motor-npc-vivo-v0.1.1/npc-fixtures.mjs';
 
 const N=Math.max(1,Number(process.argv[2]||5000));
@@ -90,7 +91,8 @@ for(let episode=0;episode<N;episode++){
 
     if(chance(.28)) world=event(world);
 
-    const beforeAt=world.at;
+    const obsoleteBefore=Object.keys(decision.selectedGoal.relevance).length>0 &&
+      !factsMatch(world,decision.selectedGoal.relevance);
     const step=executeNext(
       decision.plan,
       world,
@@ -105,7 +107,7 @@ for(let episode=0;episode<N;episode++){
     }
 
     if(step.status==='STEP_APPLIED'){
-      if(step.executed?.startsWith('ir_') && step.goalObsolete) metrics.uselessMoveAfterObsoleteGoal++;
+      if(step.executed?.startsWith('ir_') && obsoleteBefore) metrics.uselessMoveAfterObsoleteGoal++;
       decision={...decision,plan:{...decision.plan,plan:step.remainingPlan}};
       continue;
     }
