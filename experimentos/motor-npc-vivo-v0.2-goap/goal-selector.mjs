@@ -7,6 +7,15 @@ export const GOALS = Object.freeze({
   WAIT_SAFE: Object.freeze({ waited:true }),
 });
 
+export const GOAL_RELEVANCE = Object.freeze({
+  HELP_PLAYER: Object.freeze({ playerPresent:true, playerNeedsHelp:true, playerHelped:false }),
+  INVESTIGATE_ANOMALY: Object.freeze({ anomalyPresent:true, anomalyInvestigated:false }),
+  REPORT_SUPERIOR: Object.freeze({ hasEvidence:true, superiorInformed:false }),
+  FULFILL_DUTY: Object.freeze({ dutyPending:true, dutySatisfied:false }),
+  RETURN_POST: Object.freeze({}),
+  WAIT_SAFE: Object.freeze({ waited:false }),
+});
+
 const ORDER=Object.freeze([
   'HELP_PLAYER',
   'INVESTIGATE_ANOMALY',
@@ -23,7 +32,11 @@ const w=(world,key)=>clamp(world[key]);
 
 function item(id,score,available,parts,reasonUnavailable='') {
   const raw=parts.reduce((sum,x)=>sum+x.value,score);
-  return { id, available, raw, score:clamp(raw), parts, reasonUnavailable, goal:{...GOALS[id]} };
+  return {
+    id, available, raw, score:clamp(raw), parts, reasonUnavailable,
+    goal:{...GOALS[id]},
+    relevance:{...GOAL_RELEVANCE[id]},
+  };
 }
 
 export function rankGoals(npc,world) {
