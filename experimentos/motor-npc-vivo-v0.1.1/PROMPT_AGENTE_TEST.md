@@ -1,17 +1,21 @@
-# Encargo para agente externo — Retest Motor NPC Vivo v0.1.1
+# Encargo para agente externo — Retest 2 Motor NPC Vivo v0.1.1
 
-Audita exclusivamente:
+Audita exclusivamente la **cabeza actual** de:
+
+`experiment/motor-npc-v0.1.1`
+
+directorio:
 
 `experimentos/motor-npc-vivo-v0.1.1/`
 
-La v0.1 original debe permanecer como referencia histórica.
+No reutilices como resultado el informe del commit `946fd177fa443601233a1be767a4bbaed71bdfc0`: desde entonces se corrigió el hueco de propiedades heredadas.
 
 NO modifiques el juego de producción.
 NO integres nada en `grulla-blanca_ver73.html`.
 NO conviertas fixtures ficticios en NPC canónicos.
-NO ajustes pesos durante la auditoría.
+NO ajustes pesos.
 
-## 1. Regresión
+## 1. Regresión completa
 
 Ejecuta:
 
@@ -19,9 +23,9 @@ Ejecuta:
 node tests.mjs
 ```
 
-Confirma el número exacto de PASS/FAIL.
+Reporta PASS/FAIL y exit code.
 
-## 2. Stress
+## 2. Stress reproducible
 
 Ejecuta:
 
@@ -33,103 +37,93 @@ node stress.mjs 10000 999
 node stress.mjs 10000 20260923
 ```
 
-Reporta distribución exacta de acciones para cada seed.
+Confirma que el preflight adversarial también pasa.
 
-## 3. Reproducir los bugs de v0.1
+## 3. Reproducciones obligatorias del hallazgo anterior
 
-### B1
-Intenta eliminar individualmente:
-
-- un trait obligatorio;
-- una dimensión de relationPlayer;
-- R1/R2/R3;
-- behaviorState;
-- un campo obligatorio de contexto.
-
-La entrada incompleta debe ser rechazada antes de puntuar.
-
-### B2
-Genera `nextNpc` con `simulateTurn()` y modifica después:
-
-- `nextNpc.traits`;
-- `nextNpc.relationPlayer`;
-- `nextNpc.knowledge`;
-- `nextNpc.behaviorState`.
-
-El NPC original debe quedar byte-equivalente a su snapshot anterior.
-
-## 4. Empates y clamp
-
-Busca contextos con varias acciones en score 100.
-
-Comprueba que:
-
-1. mayor `raw` gana;
-2. `ACTION_ORDER` sólo decide si score y raw son iguales;
-3. resultado sigue siendo determinista.
-
-## 5. Inercia
-
-Comprueba la secuencia:
+Prueba explícitamente como valores de conocimiento:
 
 ```text
-+6 → +4 → +2 → +0
+toString
+constructor
+__proto__
 ```
 
-y busca si existe algún mecanismo residual capaz de mantener artificialmente una acción sólo por inercia durante tiempo indefinido.
+en:
 
-Distingue entre:
+- `npc.knowledge.R1`;
+- `context.relevantKnowledge`.
 
-- seguir haciendo algo porque su utilidad real continúa siendo mayor;
-- seguir haciéndolo sólo por inercia.
+Todos deben ser rechazados antes de puntuar.
 
-## 6. dutyMode
+Prueba como `topicId`:
 
-Verifica:
+```text
+toString
+constructor
+__proto__
+R99
+```
 
-- `vigilar` sólo disponible con dutyMode=vigilar;
-- `trabajar` sólo disponible con dutyMode=trabajar;
-- `patrullar` sólo disponible con dutyMode=patrullar;
-- con dutyMode=ninguno las tres quedan bloqueadas;
-- dutyMode inválido se rechaza.
+Todos deben lanzar rechazo de tema no definido y nunca producir `NaN`.
 
-Evalúa también si esta decisión conceptual es razonable como futura precondición de planner.
+## 4. Propiedades heredadas
 
-## 7. Casos de aceptación
+Construye:
 
-Los escenarios:
+```js
+Object.create(BASE_CONTEXT)
+```
 
-- `rutina_trabajo` debe permitir que trabajar gane;
-- `espera_sin_tarea` debe permitir que esperar gane;
-- las tres personalidades deben seguir diferenciándose en la misma situación.
+y un contexto de diálogo cuyos tres campos existan sólo en el prototipo.
 
-No juzgues calidad por uniformidad estadística de las nueve acciones.
+Ambos deben ser rechazados.
 
-## 8. Conocimiento
+Intenta también un NPC o subobjeto construido con un prototipo ajeno. Debe rechazarse o quedar demostrado que no puede saltarse la validación de propiedades propias.
 
-Repite pruebas adversariales de:
+## 5. Finitud
 
-- DESCONOCIDO → nunca revela;
-- SOSPECHA → nunca COMPARTE;
-- SABE / CONFIRMADO condicionados por vínculo, rango y restricciones.
+Busca activamente cualquier entrada que **pase los validadores** y luego genere:
 
-## 9. Arquitectura
+- `NaN`;
+- `Infinity`;
+- `-Infinity` en una acción disponible;
+- disclosure no finito.
 
-Evalúa específicamente si v0.1.1 está lista para que v0.2 agregue:
+Si encontrás una, entrega reproducción mínima.
+
+## 6. No-regresión
+
+Repite y confirma:
+
+- B1 de campos faltantes;
+- B2 de independencia profunda;
+- score → raw → ACTION_ORDER;
+- inercia +6 → +4 → +2 → +0;
+- dutyMode exclusivo;
+- `rutina_trabajo → trabajar`;
+- `espera_sin_tarea → esperar`;
+- las tres personalidades siguen diferenciadas;
+- DESCONOCIDO nunca revela;
+- SOSPECHA nunca COMPARTE.
+
+## 7. Preparación para GOAP
+
+Evalúa si, una vez cerrada la validación, la arquitectura puede mantener esta separación:
 
 ```text
 Utility AI → selecciona OBJETIVO
 GOAP       → construye PLAN
-executor   → ejecuta acciones
+Executor   → aplica acciones y verifica efectos
 ```
 
-sin fusionar todavía esas tres responsabilidades.
+No implementes GOAP.
 
 ## Entregable
 
 Devuelve únicamente:
 
-`Informe_Test_Motor_NPC_Vivo_v0.1.1.md`
+`Informe_Test_Motor_NPC_Vivo_v0.1.1_RETEST2.md`
 
 Termina con exactamente uno:
 
