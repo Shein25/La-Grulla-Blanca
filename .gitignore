@@ -1,0 +1,24 @@
+# Dependencias futuras
+node_modules/
+
+# Builds futuros
+dist/
+build/
+
+# Entorno
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# Sistema / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Temporales
+*.tmp
+*.bak
