@@ -1,6 +1,6 @@
-# Encargo para agente externo — Auditoría Motor NPC Vivo v0.2 GOAP
+# Encargo para agente externo — Auditoría REV2 Motor NPC Vivo v0.2.1 GOAP
 
-Audita exclusivamente la cabeza actual de:
+Audita exclusivamente la **cabeza actual** de:
 
 `experiment/motor-npc-v0.2-goap`
 
@@ -8,13 +8,19 @@ Directorio:
 
 `experimentos/motor-npc-vivo-v0.2-goap/`
 
-La v0.1.1 ya está congelada y sólo se usa aquí para fixtures ficticios.
+La REV1 terminó en:
+
+`V02_GOAP_REQUIERE_CORRECCIONES`
+
+Esta revisión debe comprobar específicamente las correcciones v0.2.1.
 
 NO modifiques el juego principal.
 NO toques `grulla-blanca_ver73.html`.
-NO conviertas estos datos en canon.
-NO ajustes pesos o costes durante la auditoría.
+NO uses los 32 NPC canónicos.
+NO uses la topología canónica.
+NO ajustes pesos ni costes.
 NO hagas merge.
+NO implementes funciones durante la auditoría.
 
 ## 1. Regresión oficial
 
@@ -24,11 +30,13 @@ Ejecuta:
 node tests.mjs
 ```
 
-La candidata inicial espera **25 PASS**.
+La candidata actual contiene **40 tests declarados**.
 
-## 2. Stress
+Reporta número real PASS/FAIL y exit code. No asumas que 40 debe pasar: compruébalo.
 
-Ejecuta al menos:
+## 2. Stress estático
+
+Ejecuta:
 
 ```bash
 node stress.mjs 10000 1337
@@ -38,198 +46,308 @@ node stress.mjs 10000 999
 node stress.mjs 10000 20260923
 ```
 
-Reporta distribución de objetivos, NO_PLANNABLE_GOAL, errores y determinismo.
+Reporta:
 
-## 3. Separación arquitectónica
+- objetivos elegidos;
+- NO_PLANNABLE_GOAL;
+- PLANNING_DEFERRED;
+- errores;
+- determinismo.
 
-Verifica que:
+## 3. Stress dinámico incluido
 
-- Utility AI selecciona un OBJETIVO, no un plan;
-- GOAP no recalcula personalidad;
-- GOAP recibe hechos, objetivo y acciones;
-- Executor no selecciona objetivos;
-- Executor sólo ejecuta/verifica;
-- replanning se solicita cuando una precondición deja de cumplirse.
+Ejecuta al menos:
 
-Marca cualquier mezcla de responsabilidades.
+```bash
+node dynamic-stress.mjs 5000 1337
+node dynamic-stress.mjs 5000 42
+node dynamic-stress.mjs 5000 20260923
+```
 
-## 4. Optimalidad del planner
+Verifica:
 
-Construye grafos pequeños donde:
+- GOAL_REACHED;
+- REPLAN_REQUIRED;
+- replans exitosos;
+- cambios de objetivo;
+- PLANNING_DEFERRED;
+- NO_PLANNABLE_GOAL;
+- estados repetidos;
+- STEP_LIMIT;
+- movimientos inútiles después de objetivo obsoleto.
 
-- la primera acción que alcanza el objetivo sea más cara que una ruta posterior;
-- haya dos rutas con distinto número de pasos y distinto coste;
-- haya dos planes con mismo coste;
-- haya ciclos;
-- haya una acción que no cambie el estado;
-- haya acciones que vuelvan a estados ya visitados.
+Debe haber **0 movimientos ejecutados después de que la relevancia del objetivo ya sea falsa**.
 
-Comprueba que el plan devuelto tenga coste mínimo.
+## 4. Regresión exacta de -0 / 0
 
-Para grafos pequeños, compara contra una búsqueda exhaustiva/brute force independiente.
+Reproduce:
 
-## 5. Determinismo
+```js
+planGOAP(
+  { x: -0 },
+  { x: 0 },
+  [{ id:'set_zero', cost:1, preconditions:{}, effects:{x:0} }]
+)
+```
 
-Repite exactamente los mismos inputs muchas veces.
+Debe devolver:
 
-El mismo estado + goal + actions debe producir:
+- PLAN_FOUND;
+- plan `['set_zero']`;
+- coste 1.
 
-- mismo status;
-- mismo plan;
-- mismo coste;
-- mismo desempate.
+Prueba también que la identidad siga siendo determinista para:
 
-Prueba especialmente planes con coste idéntico.
+- null;
+- false/true;
+- strings;
+- números finitos normales;
+- facts ausentes vs presentes.
 
-## 6. Replanning
+La equivalencia de `factsMatch()` y la de la clave de estado no deben contradecirse.
 
-Prueba planes que queden obsoletos entre pasos:
+## 5. Costes
 
-- se cierra un paso;
-- desaparece el superior;
-- el jugador deja de necesitar ayuda;
-- cambia la posición;
-- desaparece una precondición cualquiera.
+Comprueba que `action.cost` sólo acepta **enteros seguros > 0**.
 
-El Executor debe:
+Deben rechazarse:
 
-- no ejecutar una acción cuyas precondiciones ya no se cumplen;
-- devolver REPLAN_REQUIRED cuando corresponda;
-- conservar el mundo sin aplicar los efectos de la acción fallida.
+- 0;
+- negativos;
+- fracciones;
+- Number.MIN_VALUE;
+- NaN;
+- Infinity;
+- -Infinity;
+- 1e308.
 
-Después llama de nuevo al controller y verifica que:
+Prueba acumulación con:
 
-- encuentre una alternativa si existe;
-- pruebe el siguiente objetivo si el objetivo prioritario ya no es planificable.
+```text
+stage1 cost = Number.MAX_SAFE_INTEGER
+stage2 cost = 1
+```
 
-## 7. Fallback de objetivos
+No debe salir `Infinity`.
 
-Construye situaciones donde el objetivo Utility #1 sea imposible.
+Resultado esperado si no existe otra ruta:
 
-El controller debe probar objetivos disponibles posteriores, sin alterar sus scores para forzar un resultado.
+`COST_OVERFLOW`
 
-Revisa si este comportamiento puede producir decisiones absurdas o starvation.
+Busca cualquier caso que consiga producir coste no finito o coste acumulado que no aumente.
 
-## 8. Executor
+## 6. Optimalidad contra oráculo independiente
 
-Audita:
+Vuelve a comparar contra búsqueda exhaustiva/brute force en grafos pequeños reproducibles.
+
+Incluye:
+
+- 2–6 nodos;
+- ciclos;
+- no-ops;
+- rutas de mismo coste;
+- distinto número de pasos;
+- reordenamiento de acciones;
+- retornos a estados anteriores.
+
+Comprueba:
+
+1. existencia de plan;
+2. coste mínimo;
+3. número de pasos usado como segundo desempate;
+4. plan lexicográfico como tercer desempate;
+5. determinismo.
+
+Reporta discrepancias exactas si existen.
+
+## 7. Poda de caminos equivalentes
+
+Reproduce un grafo de **12 etapas** con dos acciones equivalentes por etapa.
+
+La REV1 producía explosión exponencial.
+
+Ahora debe:
+
+- encontrar plan de coste 12;
+- no necesitar cientos/miles de expansiones;
+- no devolver SEARCH_LIMIT con presupuesto 100.
+
+Reporta:
+
+- expansions;
+- generated;
+- maxFrontier.
+
+Prueba además objetivo imposible con varias rutas equivalentes.
+
+## 8. Facts irrelevantes
+
+Construye estados con muchos flags que ninguna cadena causal hacia el goal utiliza.
+
+Confirma que:
+
+- no multiplican la identidad de búsqueda;
+- `relevantFacts` no los incluye;
+- el plan y coste no cambian al añadir/quitar esos flags;
+- el número de expansiones permanece esencialmente ligado a los facts relevantes.
+
+Intenta encontrar una poda incorrecta donde se elimine un fact que sí era necesario para una precondición futura.
+
+## 9. maxExpansions y maxFrontier
+
+Prueba:
+
+- maxExpansions = -1 → rechazo;
+- maxExpansions = 0 → SEARCH_LIMIT con expansions 0;
+- maxExpansions = 1 en plan directo de un paso → debe poder encontrarlo con 1 expansión;
+- maxFrontier = 0 → rechazo;
+- frontera insuficiente → FRONTIER_LIMIT;
+- nunca informar expansions > maxExpansions;
+- nunca informar maxFrontier observado > límite configurado.
+
+## 10. NO_PLAN vs búsqueda inconclusa
+
+Éste es un criterio crítico.
+
+Con Leal en `WORLDS.comun` y presupuesto insuficiente para HELP_PLAYER:
+
+- el controller NO debe saltar a FULFILL_DUTY;
+- debe conservar HELP_PLAYER como objetivo prioritario;
+- debe devolver `PLANNING_DEFERRED`.
+
+Comprueba lo mismo para:
+
+- SEARCH_LIMIT;
+- FRONTIER_LIMIT;
+- COST_OVERFLOW cuando pueda construirse un caso aplicable.
+
+En cambio, si HELP_PLAYER recibe un `NO_PLAN` demostrado, el fallback al siguiente objetivo debe seguir funcionando.
+
+## 11. Vigencia del objetivo
+
+Prueba específicamente:
+
+### HELP_PLAYER
+
+Plan inicial:
+
+`ir_jugador → ayudar_jugador`
+
+Antes del primer paso cambia:
+
+`playerNeedsHelp=false`
+
+Aunque `ir_jugador` siga siendo físicamente aplicable, Executor debe:
+
+- NO ejecutarlo;
+- devolver REPLAN_REQUIRED;
+- marcar el objetivo como obsoleto;
+- no modificar la posición.
+
+Prueba equivalentes para:
+
+- anomalyPresent=false;
+- dutyPending=false;
+- hasEvidence=false.
+
+Confirma que si el goal ya está cumplido se devuelve GOAL_REACHED antes de considerar obsolescencia.
+
+## 12. Replanning
+
+Repite los casos REV1:
+
+- paso cerrado;
+- superior desaparece;
+- cambio de posición;
+- jugador deja de necesitar ayuda;
+- deber retirado;
+- anomalía desaparece.
+
+Comprueba que ningún efecto se aplique cuando una acción o goal ya no sea válido.
+
+Después vuelve a llamar al controller y verifica alternativa, cambio de objetivo o PLANNING_DEFERRED según corresponda.
+
+## 13. Executor
+
+Revisa:
 
 - plan vacío;
-- objetivo ya satisfecho;
+- goal ya satisfecho;
+- goal obsoleto;
 - acción inexistente;
-- stale plan;
-- maxSteps;
-- no mutación del mundo de entrada;
-- efectos aplicados exactamente una vez;
-- goal alcanzado sólo si los hechos realmente lo satisfacen.
+- precondición obsoleta;
+- maxSteps 0;
+- maxSteps negativo;
+- efectos exactamente una vez;
+- no mutación del input;
+- STEP_LIMIT;
+- GOAL_REACHED sólo con hechos realmente satisfechos.
 
-## 9. Robustez del planner
+## 14. State explosion y rendimiento
 
-Prueba entradas inválidas:
+Construye casos adversariales con:
 
-- cost 0;
-- cost negativo;
-- NaN / Infinity;
-- action IDs duplicados;
-- facts no primitivos;
-- arrays donde se espera objeto;
-- acciones vacías;
-- maxExpansions pequeño.
+- caminos equivalentes;
+- flags irrelevantes;
+- objetivos imposibles;
+- 32 NPC ficticios planificando repetidamente.
 
-Busca estados que causen explosión de búsqueda o cola excesiva.
+Compara con REV1 si es posible.
 
-Reporta número de expansiones en escenarios relevantes.
+Reporta:
 
-## 10. Personalidades
+- expansions;
+- generated;
+- maxFrontier;
+- tiempo aproximado;
+- cualquier caso donde un grafo pequeño aún consuma presupuesto excesivo.
 
-En el mismo mundo base confirma:
+## 15. Personalidades — no regresión
+
+En `WORLDS.comun` debe mantenerse:
 
 - Disciplinado → FULFILL_DUTY
 - Leal → HELP_PLAYER
 - Curioso → INVESTIGATE_ANOMALY
 
-Después barre urgency, danger y dutyImportance 0..100 y comprueba si las transiciones de objetivos son razonables y deterministas.
+No ajustes pesos.
 
-No exijas distribución uniforme.
+Repite algún barrido de urgency/danger/dutyImportance para confirmar determinismo.
 
-## 11. Costes
+## 16. Arquitectura
 
-Verifica:
+Confirma que sigue separada:
 
-- paso abierto: REPORT_SUPERIOR debe preferir ir_superior + informar_superior (coste 2);
-- paso cerrado con mensajero: enviar_mensajero (coste 4);
-- cambios de coste alteran el plan por coste total, no por orden del array.
+```text
+Utility AI → objetivo
+GOAP       → plan lógico
+Executor   → ejecución/verificación
+```
 
-Busca dependencia accidental del orden original de GOAP_ACTIONS.
+GOAP no debe hacer pathfinding de rooms.
 
-## 12. Stress con cambios durante ejecución
+En producción futura una acción lógica como `ir_superior` deberá delegar movimiento a la capa física de las 329 salas y gates.
 
-El stress incluido genera mundos estáticos durante cada plan.
+## 17. Riesgos pendientes
 
-Crea un stress adicional que, entre pasos y con seed reproducible, cambie ocasionalmente una precondición.
+Distingue entre:
 
-Mide:
+- bugs que bloquean v0.2.1;
+- optimizaciones futuras;
+- funciones deliberadamente pospuestas a memoria/scheduler/NPC↔NPC.
 
-- GOAL_REACHED;
-- REPLAN_REQUIRED;
-- replans exitosos;
-- objetivos abandonados;
-- loops;
-- STEP_LIMIT.
-
-## 13. Escalabilidad conceptual
-
-Evalúa si el diseño puede crecer a 32 NPC sin compartir planner state accidentalmente.
-
-Revisa especialmente:
-
-- estados independientes por NPC;
-- planner sin mutaciones globales;
-- actions declarativas reutilizables;
-- riesgo de coste CPU si muchos NPC planifican en el mismo turno;
-- necesidad futura de presupuestos de planning / scheduling.
-
-## 14. Riesgos de diseño
-
-Busca específicamente:
-
-- state explosion;
-- objetivos imposibles que consuman demasiadas expansiones;
-- planes válidos pero semánticamente absurdos;
-- hechos irrelevantes que multipliquen estados;
-- efectos contradictorios;
-- acciones dominantes;
-- loops de replanning;
-- starvation de objetivos de baja utilidad;
-- planner usado como sustituto de pathfinding físico.
-
-GOAP no debe reemplazar el pathfinding de las 329 salas; en una integración futura una acción de movimiento debería delegar la ruta física al sistema de movilidad.
+No exijas implementar memoria, pathfinding canónico ni scheduling completo en esta revisión.
 
 ## Entregable
 
 Devuelve únicamente:
 
-`Informe_Test_Motor_NPC_Vivo_v0.2_GOAP_REV1.md`
-
-Incluye:
-
-- entorno;
-- commit auditado;
-- comandos;
-- resultados;
-- bugs reproducibles;
-- optimalidad;
-- determinismo;
-- replanning;
-- stress dinámico;
-- escalabilidad;
-- riesgos;
-- recomendaciones v0.2.1 si correspondiera.
+`Informe_Test_Motor_NPC_Vivo_v0.2.1_GOAP_REV2.md`
 
 Termina exactamente con uno:
 
-`V02_GOAP_APTO_PARA_ITERAR`
+`V021_GOAP_APTO_PARA_ITERAR`
 
-`V02_GOAP_REQUIERE_CORRECCIONES`
+`V021_GOAP_REQUIERE_CORRECCIONES`
 
-`V02_GOAP_FALLO_CONCEPTUAL`
+`V021_GOAP_FALLO_CONCEPTUAL`
