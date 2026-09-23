@@ -1,6 +1,6 @@
-# Encargo para agente externo — Retest 4 Motor NPC Vivo v0.1.1
+# Encargo para agente externo — Retest 5 Motor NPC Vivo v0.1.1
 
-Audita exclusivamente la **cabeza actual** de la rama:
+Audita exclusivamente la **cabeza actual** de:
 
 `experiment/motor-npc-v0.1.1`
 
@@ -23,9 +23,9 @@ Ejecuta:
 node tests.mjs
 ```
 
-La candidata actual declara 37 llamadas de test y el bloque de fixtures corre para tres NPC, por lo que se esperan **39 ejecuciones PASS** y exit code 0.
+La cabeza actual declara 42 llamadas a `test()`; el bloque de fixtures corre para tres NPC, por lo que se esperan **44 ejecuciones PASS** y exit code 0.
 
-Si el número difiere, informa el número real y explica por qué.
+Si el número real difiere, informa y explica.
 
 ## 2. Stress
 
@@ -39,109 +39,77 @@ node stress.mjs 10000 999
 node stress.mjs 10000 20260923
 ```
 
-Confirma que el preflight pasa antes del bucle y que las cinco corridas terminan con exit code 0.
+El preflight debe incluir propiedades heredadas, accessors, undefined y Proxy.
 
-## 3. Reproducción obligatoria del hallazgo de Retest 3
+## 3. Reproducir obligatoriamente el hallazgo de Retest 4
 
-Prueba propiedades propias de datos con valor `undefined` en todos estos grupos:
+Crea Proxies sobre objetos cuyos descriptores de datos sean válidos pero cuyo trap `get` devuelva valores distintos.
 
-### NPC top-level
-- id
-- name
-- role
-- traits
-- relationPlayer
-- knowledge
-- behaviorState
-
-### NPC internos
-- al menos un trait
-- al menos una relación
-- R1
-- behaviorState.lastAction
-- behaviorState.consecutiveTurns
+Prueba como mínimo:
 
 ### Contexto de acción
-Los 11 campos:
-- playerPresent
-- playerRequestsHelp
-- playerRank
-- dutyImportance
-- danger
-- missionUrgency
-- anomalyPresent
-- awayFromPost
-- superiorReachable
-- relevantKnowledge
-- dutyMode
+- `missionUrgency → NaN`
+- `danger → NaN`
+- un trap `get` que lance excepción
 
 ### Contexto de diálogo
-- playerRank
-- topicSensitivity
-- formalRestriction
+- `topicSensitivity → NaN`
 
-Requisito: todos deben ser rechazados por el validador y por la API pública **antes del cálculo**.
+### NPC
+- `traits.disciplina → NaN`
+- `traits.disciplina` con trap que lance
+- `behaviorState.consecutiveTurns → -Infinity`
 
-No debe existir ningún score, raw o disclosure `NaN`/infinito proveniente de una entrada aceptada.
+Requisitos:
 
-## 4. No regresión de accessors
+- la API nunca debe devolver score/raw/disclosure no finito;
+- si el descriptor capturado es válido, el cálculo debe usar ese valor capturado y no ejecutar el trap `get`;
+- si el descriptor entregado a la propia llamada de la API es inválido, la API debe rechazar antes del cálculo;
+- `simulateTurn()` debe construir `nextNpc` desde el snapshot validado y no fallar al clonar un Proxy.
 
-Repite al menos:
+## 4. Descriptor dinámico entre llamadas
 
-- getter mutable;
-- setter-only;
-- getter+setter;
-- accessor no enumerable;
+Construye un Proxy cuyo `getOwnPropertyDescriptor`:
 
-en knowledge, contexto y un campo numérico.
+1. entregue un valor válido a una llamada externa de `validateActionContext()`;
+2. entregue `NaN` cuando después se llame a `chooseAction()`.
 
-Los accessors deben seguir rechazados sin ejecutar getter/setter.
+Resultado esperado: la segunda llamada debe volver a capturar/validar y rechazar. Una validación externa previa no debe actuar como autorización permanente.
 
-## 5. No regresión de propiedades heredadas
+Prueba el mismo principio con NPC o diálogo si resulta útil.
 
-Repite:
+## 5. Confirmar frontera snapshot
 
-- `toString`;
-- `constructor`;
-- `__proto__`;
+Audita el código para verificar que, tras materializar el snapshot:
 
-como knowledge y relevantKnowledge.
+- Utility AI no vuelva a leer valores de negocio desde el input original;
+- diálogo no vuelva a leer el contexto/NPC original;
+- `simulateTurn()` no use `structuredClone(inputProxy)`;
+- `nextNpc` provenga del snapshot plano;
+- los snapshots no compartan referencias anidadas con el input.
 
-Repite topicId:
-- `toString`;
-- `constructor`;
-- `__proto__`;
-- `R99`.
+## 6. Barrera de finitud
 
-Repite `Object.create(...)`.
+Busca una entrada aceptada por la propia llamada de API que consiga producir:
 
-Todo debe seguir rechazado.
+- score `NaN`;
+- raw `NaN`;
+- score/raw infinito en una acción disponible;
+- disclosure/raw no finito;
+- excepción tardía por un trap `get`.
 
-## 6. Finitud adversarial
+Incluye Proxies, getters/setters, undefined, null, NaN, Infinity, prototipos ajenos y tipos incorrectos.
 
-Busca activamente cualquier entrada que:
+Si encontrás una reproducción, documentala.
 
-1. pase `validateNpc` / `validateActionContext` / `validateDialogueContext`;
-2. después produzca score/raw/disclosure no finito o una excepción tardía por datos obligatorios inválidos.
+## 7. No regresión completa
 
-Si existe, entrega reproducción mínima.
+Confirma además:
 
-Incluye explícitamente:
-
-- `undefined`;
-- `null`;
-- `NaN`;
-- `Infinity`;
-- `-Infinity`;
-- cadenas donde se esperan números/booleanos;
-- arrays donde se esperan objetos;
-- objetos con prototipo ajeno;
-- accessors.
-
-## 7. No regresión funcional
-
-Confirma:
-
+- undefined rechazado en los 26 campos ya auditados;
+- accessors rechazados sin ejecutarse;
+- `toString`, `constructor`, `__proto__` y `R99` rechazados;
+- campos heredados rechazados;
 - `nextNpc` profundamente independiente;
 - score → raw → ACTION_ORDER;
 - inercia +6 → +4 → +2 → +0;
@@ -156,7 +124,7 @@ Confirma:
 
 ## 8. Preparación para GOAP
 
-Evalúa si ya puede congelarse v0.1.1 como base experimental para:
+Evalúa si el contrato de frontera/snapshot ya permite congelar v0.1.1 como base experimental para:
 
 ```text
 Utility AI → selecciona OBJETIVO
@@ -164,15 +132,15 @@ GOAP       → construye PLAN
 Executor   → aplica acciones y verifica efectos
 ```
 
-No implementes GOAP todavía.
+No implementes GOAP.
 
 ## Entregable
 
 Devuelve únicamente:
 
-`Informe_Test_Motor_NPC_Vivo_v0.1.1_RETEST4.md`
+`Informe_Test_Motor_NPC_Vivo_v0.1.1_RETEST5.md`
 
-Termina con exactamente uno:
+Termina exactamente con uno:
 
 `V011_APTO_PARA_GOAP`
 
