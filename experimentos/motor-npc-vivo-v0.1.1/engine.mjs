@@ -63,6 +63,10 @@ function readOwnData(obj, key, path, errors) {
     errors.push(`${path} debe ser una propiedad de datos; accessors no permitidos`);
     return undefined;
   }
+  if (desc.value === undefined) {
+    errors.push(`${path} no puede ser undefined`);
+    return undefined;
+  }
   return desc.value;
 }
 
