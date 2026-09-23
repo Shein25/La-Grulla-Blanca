@@ -59,3 +59,23 @@ Corrección aplicada en la candidata posterior:
 6. preflight adversarial añadido a cada stress run.
 
 No se modificaron pesos, personalidad, dutyMode, inercia, raw tie-break ni comportamiento canónico del juego.
+
+
+## Tercer candidato — getters/setters
+
+El segundo retest demostró un caso TOCTOU: una propiedad propia implementada como getter podía devolver un valor válido durante la validación y otro inválido durante el cálculo.
+
+Política elegida: **rechazo**, no snapshot implícito.
+
+El contrato experimental define NPC y contextos como registros de datos. Los campos consumidos por el motor deben ser propiedades propias de datos.
+
+Cambios:
+
+1. helper `readOwnData()` basado en `Object.getOwnPropertyDescriptor()`;
+2. ningún getter se ejecuta para validar;
+3. accessors rechazados en estructura NPC, traits, vínculos, knowledge y behaviorState;
+4. accessors rechazados en contexto de acción y diálogo;
+5. pruebas negativas con getters que intentarían cambiar a `toString`, `constructor` o `NaN`;
+6. stress preflight verifica que esos getters se rechacen y que el contador de lecturas permanezca en 0.
+
+No se cambió el cálculo de utilidad.
