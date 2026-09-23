@@ -79,3 +79,25 @@ Cambios:
 6. stress preflight verifica que esos getters se rechacen y que el contador de lecturas permanezca en 0.
 
 No se cambió el cálculo de utilidad.
+
+
+## Cuarto candidato — undefined obligatorio
+
+El Retest 3 confirmó el cierre de accessors propios, pero demostró que una propiedad de datos obligatoria con `value: undefined` se confundía con la señal interna usada para “no seguir validando”.
+
+Consecuencias demostradas:
+
+- `context.relevantKnowledge = undefined` podía producir score/raw `NaN`;
+- `knowledge.R1 = undefined` podía producir disclosure/raw `NaN`;
+- `topicSensitivity = undefined` podía producir disclosure `NaN`;
+- otros campos obligatorios podían pasar el validador o fallar recién después durante el cálculo.
+
+Corrección:
+
+1. `readOwnData()` ahora registra error explícito `<path> no puede ser undefined`;
+2. campos ausentes, accessors y `undefined` quedan diferenciados por mensaje;
+3. pruebas negativas recorren top-level NPC, grupos internos, los 11 campos de contexto de acción y los 3 de diálogo;
+4. se corrigió la aserción textual vieja del test de campos de diálogo ausentes;
+5. el stress incluye preflight de `knowledge.R1`, `relevantKnowledge` y `topicSensitivity` con `undefined`.
+
+No se alteraron pesos ni semántica de decisiones válidas.
