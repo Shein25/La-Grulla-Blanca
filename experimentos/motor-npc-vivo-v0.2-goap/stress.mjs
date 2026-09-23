@@ -54,7 +54,7 @@ for(let i=0;i<N;i++){
   assert.ok(Number.isFinite(c.plan.cost));
   assert.ok(Array.isArray(c.plan.plan));
 
-  const run=executeWholePlan(c.plan,world,c.selectedGoal.goal,GOAP_ACTIONS,30);
+  const run=executeWholePlan(c.plan,world,c.selectedGoal.goal,GOAP_ACTIONS,30,c.selectedGoal.relevance);
   if(run.status==='REPLAN_REQUIRED') replans++;
   else assert.equal(run.status,'GOAL_REACHED');
 
