@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Motor NPC Vivo v0.1.1</title>
+<style>
+:root{font-family:system-ui,sans-serif;color:#e8e5dc;background:#111411}
+body{margin:0;padding:24px}main{max-width:1200px;margin:auto}h1,h2{color:#d5ad63}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.card{background:#181c18;border:1px solid #343a34;border-radius:8px;padding:16px}
+.row{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;margin:8px 0}
+input[type=range]{width:150px}select,button{background:#101310;color:#ded8ca;border:1px solid #4a5149;border-radius:4px;padding:7px}
+button{cursor:pointer;color:#d5ad63}.bar{height:10px;background:#090b0a;border:1px solid #343a34;border-radius:5px;overflow:hidden}
+.fill{height:100%;background:#8fc6a3}.score{display:grid;grid-template-columns:150px 1fr 64px;gap:8px;align-items:center;margin:6px 0}
+.muted{color:#949085}.good{color:#8fc6a3}.warn{color:#d5ad63}pre{white-space:pre-wrap;background:#0b0d0c;padding:12px;border-radius:6px;max-height:360px;overflow:auto}
+</style>
+</head>
+<body><main>
+<h1>Motor NPC Vivo v0.1.1</h1>
+<p>Laboratorio aislado. Incluye validación estricta, dutyMode, desempate por raw e inercia decreciente.</p>
+
+<div class="grid">
+<section class="card"><h2>NPC</h2>
+<label>Fixture <select id="npc"><option value="disciplinado">El Disciplinado</option><option value="leal">El Leal</option><option value="curioso">El Curioso</option></select></label>
+<div id="npcInfo" class="muted"></div></section>
+
+<section class="card"><h2>Contexto</h2>
+<div class="row"><label>Deber</label><select id="dutyMode"><option value="vigilar">vigilar</option><option value="trabajar">trabajar</option><option value="patrullar">patrullar</option><option value="ninguno">ninguno</option></select><span></span></div>
+<div id="controls"></div></section>
+
+<section class="card"><h2>Diálogo</h2>
+<label>Tema <select id="topic"><option>R1</option><option>R2</option><option>R3</option></select></label>
+<div class="row"><label>Sensibilidad</label><input id="topicSensitivity" type="range" min="0" max="100" value="55"><span id="topicSensitivityV">55</span></div>
+<div class="row"><label>Restricción formal</label><input id="formalRestriction" type="range" min="0" max="100" value="25"><span id="formalRestrictionV">25</span></div>
+</section>
+</div>
+
+<p><button id="simulate">SIMULAR</button></p>
+
+<div class="grid">
+<section class="card"><h2>Decisión</h2><div id="decision"></div></section>
+<section class="card"><h2>Acceso al tema</h2><div id="dialogue"></div></section>
+<section class="card"><h2>Debug</h2><pre id="debug"></pre></section>
+</div>
+
+<script type="module">
+import { chooseAction, evaluateDialogueTopic } from './engine.mjs';
+import { cloneNpc } from './npc-fixtures.mjs';
+import { BASE_CONTEXT } from './scenarios.mjs';
+
+const numeric=[['dutyImportance','Importancia del deber'],['danger','Peligro'],['missionUrgency','Urgencia']];
+const booleans=[['playerPresent','Jugador presente'],['playerRequestsHelp','Pide ayuda'],['anomalyPresent','Hay anomalía'],['awayFromPost','Fuera del puesto'],['superiorReachable','Superior alcanzable']];
+const box=document.getElementById('controls');
+
+for(const [id,label] of numeric){
+  box.insertAdjacentHTML('beforeend',`<div class="row"><label>${label}</label><input id="${id}" type="range" min="0" max="100" value="${BASE_CONTEXT[id]}"><span id="${id}V">${BASE_CONTEXT[id]}</span></div>`);
+}
+for(const [id,label] of booleans){
+  box.insertAdjacentHTML('beforeend',`<div class="row"><label>${label}</label><input id="${id}" type="checkbox" ${BASE_CONTEXT[id]?'checked':''}><span></span></div>`);
+}
+box.insertAdjacentHTML('beforeend',`<div class="row"><label>Rango</label><select id="playerRank">${['ASPIRANTE','EXTERNO','INTERNO','PRIMERA ALA','INSTRUCTOR','ANCIANO','CONSEJO'].map((x,i)=>`<option value="${i}" ${i===2?'selected':''}>${x}</option>`).join('')}</select><span></span></div>`);
+
+for(const id of [...numeric.map(x=>x[0]),'topicSensitivity','formalRestriction']){
+  document.getElementById(id).addEventListener('input',e=>document.getElementById(id+'V').textContent=e.target.value);
+}
+
+function context(){
+  return {
+    playerPresent:document.getElementById('playerPresent').checked,
+    playerRequestsHelp:document.getElementById('playerRequestsHelp').checked,
+    playerRank:+document.getElementById('playerRank').value,
+    dutyImportance:+document.getElementById('dutyImportance').value,
+    dutyMode:document.getElementById('dutyMode').value,
+    danger:+document.getElementById('danger').value,
+    missionUrgency:+document.getElementById('missionUrgency').value,
+    anomalyPresent:document.getElementById('anomalyPresent').checked,
+    awayFromPost:document.getElementById('awayFromPost').checked,
+    superiorReachable:document.getElementById('superiorReachable').checked,
+    relevantKnowledge:'SABE',
+    topicSensitivity:+document.getElementById('topicSensitivity').value,
+    formalRestriction:+document.getElementById('formalRestriction').value,
+  };
+}
+
+function render(){
+  const n=cloneNpc(document.getElementById('npc').value), c=context();
+  const d=chooseAction(n,c), q=evaluateDialogueTopic(n,document.getElementById('topic').value,c);
+  document.getElementById('npcInfo').innerHTML=`<p><b>${n.name}</b><br>${n.role}</p><pre>${JSON.stringify(n.traits,null,2)}</pre>`;
+  document.getElementById('decision').innerHTML=`<p class="good"><b>${d.action}</b> · score ${d.score.toFixed(1)} · raw ${d.raw.toFixed(1)}</p>`+
+    d.ranking.map(x=>`<div class="score"><span>${x.name}</span><div class="bar"><div class="fill" style="width:${x.available?x.score:0}%"></div></div><span>${x.available?x.score.toFixed(0):'X'} / ${x.available?x.raw.toFixed(0):'—'}</span></div>`).join('');
+  document.getElementById('dialogue').innerHTML=`<p><b>${q.topicId}</b>: ${q.state}</p><p class="warn">${q.mode} · apertura ${q.disclosure.toFixed(1)}</p>`;
+  document.getElementById('debug').textContent=JSON.stringify({decision:d,dialogue:q,context:c},null,2);
+}
+document.getElementById('simulate').onclick=render;
+document.getElementById('npc').onchange=render;
+document.getElementById('topic').onchange=render;
+render();
+</script>
+</main></body></html>
