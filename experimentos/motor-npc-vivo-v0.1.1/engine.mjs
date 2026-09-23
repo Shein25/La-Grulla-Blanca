@@ -36,149 +36,254 @@ const REQUIRED_RELATION = Object.freeze([
   'afinidad', 'confianza', 'respeto', 'deuda', 'temor', 'rivalidad',
 ]);
 const REQUIRED_KNOWLEDGE = Object.freeze(['R1', 'R2', 'R3']);
+const REQUIRED_BEHAVIOR = Object.freeze(['lastAction', 'consecutiveTurns']);
 const REQUIRED_ACTION_CONTEXT = Object.freeze([
   'playerPresent', 'playerRequestsHelp', 'playerRank', 'dutyImportance', 'danger', 'missionUrgency',
   'anomalyPresent', 'awayFromPost', 'superiorReachable', 'relevantKnowledge', 'dutyMode',
 ]);
+const REQUIRED_DIALOGUE_CONTEXT = Object.freeze(['playerRank', 'topicSensitivity', 'formalRestriction']);
+const KNOWLEDGE_STATES = Object.freeze(['DESCONOCIDO', 'SOSPECHA', 'SABE', 'CONFIRMADO']);
 
 const clamp = (n, min = 0, max = 100) => Math.max(min, Math.min(max, n));
 const pct = n => clamp(n);
 const rankNorm = rank => clamp(rank / 6 * 100);
-const KNOWLEDGE_STATES = Object.freeze(['DESCONOCIDO', 'SOSPECHA', 'SABE', 'CONFIRMADO']);
 const isKnowledgeState = state => typeof state === 'string' && KNOWLEDGE_STATES.includes(state);
 const knowledgeNorm = state => clamp(KNOWLEDGE[state] / 3 * 100);
-const isPlainObject = x => {
-  if (!x || typeof x !== 'object' || Array.isArray(x)) return false;
-  const proto = Object.getPrototypeOf(x);
-  return proto === Object.prototype || proto === null;
-};
 
-function readOwnData(obj, key, path, errors) {
-  const desc = Object.getOwnPropertyDescriptor(obj, key);
+function isRecordObject(value) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+  try {
+    const proto = Object.getPrototypeOf(value);
+    return proto === Object.prototype || proto === null;
+  } catch {
+    return false;
+  }
+}
+
+function ownData(obj, key, path, errors) {
+  let desc;
+  try {
+    desc = Object.getOwnPropertyDescriptor(obj, key);
+  } catch {
+    errors.push(`${path}: no se pudo inspeccionar el descriptor`);
+    return { ok: false };
+  }
   if (!desc) {
     errors.push(`Falta ${path}`);
-    return undefined;
+    return { ok: false };
   }
   if (!Object.hasOwn(desc, 'value')) {
     errors.push(`${path} debe ser una propiedad de datos; accessors no permitidos`);
-    return undefined;
+    return { ok: false };
   }
   if (desc.value === undefined) {
     errors.push(`${path} no puede ser undefined`);
-    return undefined;
+    return { ok: false };
   }
-  return desc.value;
+  return { ok: true, value: desc.value };
 }
 
 function exactKeys(obj, required, path, errors) {
-  if (!isPlainObject(obj)) { errors.push(`Falta ${path}`); return; }
-  const keys = Object.keys(obj).sort();
+  if (!isRecordObject(obj)) {
+    errors.push(`${path} inválido`);
+    return false;
+  }
+  let keys;
+  try {
+    keys = Object.keys(obj).sort();
+  } catch {
+    errors.push(`${path}: no se pudieron inspeccionar las claves`);
+    return false;
+  }
   const expected = [...required].sort();
   if (keys.join('|') !== expected.join('|')) {
     const missing = expected.filter(k => !keys.includes(k));
     const extra = keys.filter(k => !expected.includes(k));
     if (missing.length) errors.push(`${path}: faltan ${missing.join(', ')}`);
     if (extra.length) errors.push(`${path}: sobran ${extra.join(', ')}`);
+    return false;
   }
+  return true;
 }
 
-function validatePctFields(obj, required, path, errors) {
-  exactKeys(obj, required, path, errors);
-  if (!isPlainObject(obj)) return;
+function capturePctRecord(source, required, path, errors) {
+  if (!isRecordObject(source)) {
+    errors.push(`${path} inválido`);
+    return null;
+  }
+  exactKeys(source, required, path, errors);
+  const out = {};
   for (const key of required) {
-    const value = readOwnData(obj, key, `${path}.${key}`, errors);
-    if (value !== undefined && (!Number.isFinite(value) || value < 0 || value > 100)) errors.push(`${path}.${key} fuera de 0..100`);
+    const read = ownData(source, key, `${path}.${key}`, errors);
+    if (!read.ok) continue;
+    const value = read.value;
+    if (!Number.isFinite(value) || value < 0 || value > 100) {
+      errors.push(`${path}.${key} fuera de 0..100`);
+      continue;
+    }
+    out[key] = value;
   }
+  return out;
 }
 
-export function validateNpc(npc) {
+function captureKnowledge(source, errors) {
+  if (!isRecordObject(source)) {
+    errors.push('knowledge inválido');
+    return null;
+  }
+  exactKeys(source, REQUIRED_KNOWLEDGE, 'knowledge', errors);
+  const out = {};
+  for (const key of REQUIRED_KNOWLEDGE) {
+    const read = ownData(source, key, `knowledge.${key}`, errors);
+    if (!read.ok) continue;
+    if (!isKnowledgeState(read.value)) {
+      errors.push(`knowledge.${key} inválido: ${read.value}`);
+      continue;
+    }
+    out[key] = read.value;
+  }
+  return out;
+}
+
+function captureBehavior(source, errors) {
+  if (!isRecordObject(source)) {
+    errors.push('behaviorState inválido');
+    return null;
+  }
+  exactKeys(source, REQUIRED_BEHAVIOR, 'behaviorState', errors);
+  const last = ownData(source, 'lastAction', 'behaviorState.lastAction', errors);
+  const turns = ownData(source, 'consecutiveTurns', 'behaviorState.consecutiveTurns', errors);
+  const out = {};
+
+  if (last.ok) {
+    if (!(last.value === null || ACTION_ORDER.includes(last.value))) errors.push('behaviorState.lastAction inválido');
+    else out.lastAction = last.value;
+  }
+  if (turns.ok) {
+    if (!Number.isInteger(turns.value) || turns.value < 0) errors.push('behaviorState.consecutiveTurns inválido');
+    else out.consecutiveTurns = turns.value;
+  }
+  if (last.ok && turns.ok) {
+    if (last.value === null && turns.value !== 0) errors.push('behaviorState inconsistente: sin acción debe tener consecutiveTurns=0');
+    if (last.value !== null && turns.value < 1) errors.push('behaviorState inconsistente: con acción debe tener consecutiveTurns>=1');
+  }
+  return out;
+}
+
+function captureNpc(npc) {
   const errors = [];
-  if (!isPlainObject(npc)) return ['NPC inválido'];
+  if (!isRecordObject(npc)) return { errors: ['NPC inválido'], snapshot: null };
 
-  const id = readOwnData(npc, 'id', 'id', errors);
-  const name = readOwnData(npc, 'name', 'name', errors);
-  const role = readOwnData(npc, 'role', 'role', errors);
-  const traits = readOwnData(npc, 'traits', 'traits', errors);
-  const relationPlayer = readOwnData(npc, 'relationPlayer', 'relationPlayer', errors);
-  const knowledge = readOwnData(npc, 'knowledge', 'knowledge', errors);
-  const behaviorState = readOwnData(npc, 'behaviorState', 'behaviorState', errors);
+  const idR = ownData(npc, 'id', 'id', errors);
+  const nameR = ownData(npc, 'name', 'name', errors);
+  const roleR = ownData(npc, 'role', 'role', errors);
+  const traitsR = ownData(npc, 'traits', 'traits', errors);
+  const relationR = ownData(npc, 'relationPlayer', 'relationPlayer', errors);
+  const knowledgeR = ownData(npc, 'knowledge', 'knowledge', errors);
+  const behaviorR = ownData(npc, 'behaviorState', 'behaviorState', errors);
 
-  if (id !== undefined && (typeof id !== 'string' || !id.trim())) errors.push('id inválido');
-  if (name !== undefined && (typeof name !== 'string' || !name.trim())) errors.push('name inválido');
-  if (role !== undefined && (typeof role !== 'string' || !role.trim())) errors.push('role inválido');
+  if (idR.ok && (typeof idR.value !== 'string' || !idR.value.trim())) errors.push('id inválido');
+  if (nameR.ok && (typeof nameR.value !== 'string' || !nameR.value.trim())) errors.push('name inválido');
+  if (roleR.ok && (typeof roleR.value !== 'string' || !roleR.value.trim())) errors.push('role inválido');
 
-  validatePctFields(traits, REQUIRED_TRAITS, 'traits', errors);
-  validatePctFields(relationPlayer, REQUIRED_RELATION, 'relationPlayer', errors);
+  const traits = traitsR.ok ? capturePctRecord(traitsR.value, REQUIRED_TRAITS, 'traits', errors) : null;
+  const relationPlayer = relationR.ok ? capturePctRecord(relationR.value, REQUIRED_RELATION, 'relationPlayer', errors) : null;
+  const knowledge = knowledgeR.ok ? captureKnowledge(knowledgeR.value, errors) : null;
+  const behaviorState = behaviorR.ok ? captureBehavior(behaviorR.value, errors) : null;
 
-  exactKeys(knowledge, REQUIRED_KNOWLEDGE, 'knowledge', errors);
-  if (isPlainObject(knowledge)) {
-    for (const key of REQUIRED_KNOWLEDGE) {
-      const value = readOwnData(knowledge, key, `knowledge.${key}`, errors);
-      if (value !== undefined && !isKnowledgeState(value)) errors.push(`knowledge.${key} inválido: ${value}`);
+  const snapshot = errors.length ? null : {
+    id: idR.value,
+    name: nameR.value,
+    role: roleR.value,
+    traits,
+    relationPlayer,
+    knowledge,
+    behaviorState,
+  };
+  return { errors, snapshot };
+}
+
+function captureActionContext(context) {
+  const errors = [];
+  if (!isRecordObject(context)) return { errors: ['Contexto inválido'], snapshot: null };
+  const values = {};
+
+  for (const key of REQUIRED_ACTION_CONTEXT) {
+    const read = ownData(context, key, `context.${key}`, errors);
+    if (read.ok) values[key] = read.value;
+  }
+
+  for (const key of ['playerPresent', 'playerRequestsHelp', 'anomalyPresent', 'awayFromPost', 'superiorReachable']) {
+    if (Object.hasOwn(values, key) && typeof values[key] !== 'boolean') errors.push(`context.${key} debe ser boolean`);
+  }
+  for (const key of ['dutyImportance', 'danger', 'missionUrgency']) {
+    if (Object.hasOwn(values, key) && (!Number.isFinite(values[key]) || values[key] < 0 || values[key] > 100)) {
+      errors.push(`context.${key} fuera de 0..100`);
+    }
+  }
+  if (Object.hasOwn(values, 'playerRank') && (!Number.isInteger(values.playerRank) || values.playerRank < 0 || values.playerRank > 6)) {
+    errors.push('context.playerRank fuera de 0..6');
+  }
+  if (Object.hasOwn(values, 'relevantKnowledge') && !isKnowledgeState(values.relevantKnowledge)) {
+    errors.push('context.relevantKnowledge inválido');
+  }
+  if (Object.hasOwn(values, 'dutyMode') && !DUTY_MODES.includes(values.dutyMode)) {
+    errors.push('context.dutyMode inválido');
+  }
+
+  return { errors, snapshot: errors.length ? null : values };
+}
+
+function captureDialogueContext(context) {
+  const errors = [];
+  if (!isRecordObject(context)) return { errors: ['Contexto de diálogo inválido'], snapshot: null };
+  const values = {};
+
+  for (const key of REQUIRED_DIALOGUE_CONTEXT) {
+    const read = ownData(context, key, `dialogue.${key}`, errors);
+    if (read.ok) values[key] = read.value;
+  }
+
+  if (Object.hasOwn(values, 'playerRank') && (!Number.isInteger(values.playerRank) || values.playerRank < 0 || values.playerRank > 6)) {
+    errors.push('dialogue.playerRank fuera de 0..6');
+  }
+  for (const key of ['topicSensitivity', 'formalRestriction']) {
+    if (Object.hasOwn(values, key) && (!Number.isFinite(values[key]) || values[key] < 0 || values[key] > 100)) {
+      errors.push(`dialogue.${key} fuera de 0..100`);
     }
   }
 
-  if (!isPlainObject(behaviorState)) {
-    if (behaviorState !== undefined) errors.push('behaviorState inválido');
-  } else {
-    exactKeys(behaviorState, ['lastAction', 'consecutiveTurns'], 'behaviorState', errors);
-    const lastAction = readOwnData(behaviorState, 'lastAction', 'behaviorState.lastAction', errors);
-    const consecutiveTurns = readOwnData(behaviorState, 'consecutiveTurns', 'behaviorState.consecutiveTurns', errors);
-    if (lastAction !== undefined && !(lastAction === null || ACTION_ORDER.includes(lastAction))) errors.push('behaviorState.lastAction inválido');
-    if (consecutiveTurns !== undefined && (!Number.isInteger(consecutiveTurns) || consecutiveTurns < 0)) errors.push('behaviorState.consecutiveTurns inválido');
-    if (lastAction === null && consecutiveTurns !== undefined && consecutiveTurns !== 0) errors.push('behaviorState inconsistente: sin acción debe tener consecutiveTurns=0');
-    if (lastAction !== undefined && lastAction !== null && consecutiveTurns !== undefined && consecutiveTurns < 1) errors.push('behaviorState inconsistente: con acción debe tener consecutiveTurns>=1');
-  }
-  return errors;
+  return { errors, snapshot: errors.length ? null : values };
+}
+
+export function validateNpc(npc) {
+  return captureNpc(npc).errors;
 }
 
 export function validateActionContext(context) {
-  const errors = [];
-  if (!isPlainObject(context)) return ['Contexto inválido'];
-
-  const values = {};
-  for (const key of REQUIRED_ACTION_CONTEXT) values[key] = readOwnData(context, key, `context.${key}`, errors);
-
-  for (const key of ['playerPresent', 'playerRequestsHelp', 'anomalyPresent', 'awayFromPost', 'superiorReachable']) {
-    const value = values[key];
-    if (value !== undefined && typeof value !== 'boolean') errors.push(`context.${key} debe ser boolean`);
-  }
-  for (const key of ['dutyImportance', 'danger', 'missionUrgency']) {
-    const value = values[key];
-    if (value !== undefined && (!Number.isFinite(value) || value < 0 || value > 100)) errors.push(`context.${key} fuera de 0..100`);
-  }
-  if (values.playerRank !== undefined && (!Number.isInteger(values.playerRank) || values.playerRank < 0 || values.playerRank > 6)) errors.push('context.playerRank fuera de 0..6');
-  if (values.relevantKnowledge !== undefined && !isKnowledgeState(values.relevantKnowledge)) errors.push('context.relevantKnowledge inválido');
-  if (values.dutyMode !== undefined && !DUTY_MODES.includes(values.dutyMode)) errors.push('context.dutyMode inválido');
-  return errors;
+  return captureActionContext(context).errors;
 }
 
 export function validateDialogueContext(context) {
-  const errors = [];
-  if (!isPlainObject(context)) return ['Contexto de diálogo inválido'];
-
-  const playerRank = readOwnData(context, 'playerRank', 'dialogue.playerRank', errors);
-  const topicSensitivity = readOwnData(context, 'topicSensitivity', 'dialogue.topicSensitivity', errors);
-  const formalRestriction = readOwnData(context, 'formalRestriction', 'dialogue.formalRestriction', errors);
-
-  if (playerRank !== undefined && (!Number.isInteger(playerRank) || playerRank < 0 || playerRank > 6)) errors.push('dialogue.playerRank fuera de 0..6');
-  for (const [key, value] of [['topicSensitivity', topicSensitivity], ['formalRestriction', formalRestriction]]) {
-    if (value !== undefined && (!Number.isFinite(value) || value < 0 || value > 100)) errors.push(`dialogue.${key} fuera de 0..100`);
-  }
-  return errors;
+  return captureDialogueContext(context).errors;
 }
 
-function assertValidNpc(npc) {
-  const errors = validateNpc(npc);
-  if (errors.length) throw new TypeError(`NPC inválido: ${errors.join(' · ')}`);
+function requireNpcSnapshot(npc) {
+  const captured = captureNpc(npc);
+  if (captured.errors.length) throw new TypeError(`NPC inválido: ${captured.errors.join(' · ')}`);
+  return captured.snapshot;
 }
-function assertValidActionContext(context) {
-  const errors = validateActionContext(context);
-  if (errors.length) throw new TypeError(`Contexto inválido: ${errors.join(' · ')}`);
+
+function requireActionSnapshot(context) {
+  const captured = captureActionContext(context);
+  if (captured.errors.length) throw new TypeError(`Contexto inválido: ${captured.errors.join(' · ')}`);
+  return captured.snapshot;
 }
-function assertValidDialogueContext(context) {
-  const errors = validateDialogueContext(context);
-  if (errors.length) throw new TypeError(`Contexto de diálogo inválido: ${errors.join(' · ')}`);
+
+function requireDialogueSnapshot(context) {
+  const captured = captureDialogueContext(context);
+  if (captured.errors.length) throw new TypeError(`Contexto de diálogo inválido: ${captured.errors.join(' · ')}`);
+  return captured.snapshot;
 }
 
 function trait(npc, key) { return pct(npc.traits[key]); }
@@ -189,13 +294,16 @@ function score(name, base, parts = [], available = true, reasonUnavailable = '')
   if (!available) return { name, available: false, score: -Infinity, raw: -Infinity, contributions: [], reasonUnavailable };
   const contributions = parts.map(([label, value]) => ({ label, value }));
   const raw = base + contributions.reduce((sum, x) => sum + x.value, 0);
+  if (!Number.isFinite(raw) || contributions.some(x => !Number.isFinite(x.value))) {
+    throw new RangeError(`Utilidad no finita en acción ${name}`);
+  }
   return { name, available: true, raw, score: clamp(raw), contributions };
 }
 
 function inertiaBonus(npc, action) {
   const state = npc.behaviorState;
   if (state.lastAction !== action || state.consecutiveTurns < 1) return 0;
-  return Math.max(0, 8 - state.consecutiveTurns * 2); // 6, 4, 2, 0...
+  return Math.max(0, 8 - state.consecutiveTurns * 2);
 }
 
 function addInertia(npc, action, parts) {
@@ -212,10 +320,7 @@ function compareEvaluated(a, b) {
   return ACTION_ORDER.indexOf(a.name) - ACTION_ORDER.indexOf(b.name);
 }
 
-export function evaluateActions(npc, context) {
-  assertValidNpc(npc);
-  assertValidActionContext(context);
-
+function evaluateActionsFromSnapshot(npc, context) {
   const playerPresent = context.playerPresent;
   const playerRequestsHelp = context.playerRequestsHelp && playerPresent;
   const anomalyPresent = context.anomalyPresent;
@@ -293,8 +398,8 @@ export function evaluateActions(npc, context) {
   return scores;
 }
 
-export function chooseAction(npc, context) {
-  const scores = evaluateActions(npc, context);
+function chooseFromSnapshots(npc, context) {
+  const scores = evaluateActionsFromSnapshot(npc, context);
   const available = scores.filter(x => x.available).sort(compareEvaluated);
   if (!available.length) throw new Error('No hay acciones disponibles.');
   const selected = available[0];
@@ -308,26 +413,40 @@ export function chooseAction(npc, context) {
   };
 }
 
-export function evaluateDialogueTopic(npc, topicId, context) {
-  assertValidNpc(npc);
-  assertValidDialogueContext(context);
-  if (!Object.hasOwn(npc.knowledge, topicId)) throw new RangeError(`Tema no definido para el laboratorio: ${topicId}`);
+export function evaluateActions(npc, context) {
+  return evaluateActionsFromSnapshot(requireNpcSnapshot(npc), requireActionSnapshot(context));
+}
 
-  const state = npc.knowledge[topicId];
+export function chooseAction(npc, context) {
+  return chooseFromSnapshots(requireNpcSnapshot(npc), requireActionSnapshot(context));
+}
+
+export function evaluateDialogueTopic(npc, topicId, context) {
+  const npcSnapshot = requireNpcSnapshot(npc);
+  const dialogueSnapshot = requireDialogueSnapshot(context);
+
+  if (typeof topicId !== 'string' || !Object.hasOwn(npcSnapshot.knowledge, topicId)) {
+    throw new RangeError(`Tema no definido para el laboratorio: ${topicId}`);
+  }
+
+  const state = npcSnapshot.knowledge[topicId];
   const level = KNOWLEDGE[state];
-  const trust = rel(npc, 'confianza');
-  const affinity = rel(npc, 'afinidad');
-  const respect = rel(npc, 'respeto');
-  const debt = rel(npc, 'deuda');
-  const rivalry = rel(npc, 'rivalidad');
-  const prudence = trait(npc, 'prudencia');
-  const sociability = trait(npc, 'sociabilidad');
-  const rank = rankNorm(context.playerRank);
-  const sensitivity = pct(context.topicSensitivity);
-  const formalRestriction = pct(context.formalRestriction);
+  const trust = rel(npcSnapshot, 'confianza');
+  const affinity = rel(npcSnapshot, 'afinidad');
+  const respect = rel(npcSnapshot, 'respeto');
+  const debt = rel(npcSnapshot, 'deuda');
+  const rivalry = rel(npcSnapshot, 'rivalidad');
+  const prudence = trait(npcSnapshot, 'prudencia');
+  const sociability = trait(npcSnapshot, 'sociabilidad');
+  const rank = rankNorm(dialogueSnapshot.playerRank);
+  const sensitivity = pct(dialogueSnapshot.topicSensitivity);
+  const formalRestriction = pct(dialogueSnapshot.formalRestriction);
 
   if (level === KNOWLEDGE.DESCONOCIDO) {
-    return { topicId, state, mode: 'NO_SABE', disclosure: 0, explanation: ['El NPC no posee este conocimiento. Nunca puede revelarlo.'] };
+    return {
+      topicId, state, mode: 'NO_SABE', disclosure: 0, raw: 0,
+      explanation: ['El NPC no posee este conocimiento. Nunca puede revelarlo.'],
+    };
   }
 
   const contributions = [
@@ -337,6 +456,9 @@ export function evaluateDialogueTopic(npc, topicId, context) {
     ['restricción institucional', -formalRestriction * 0.25], ['certeza propia', level * 8],
   ];
   const raw = 30 + contributions.reduce((sum, [, value]) => sum + value, 0);
+  if (!Number.isFinite(raw) || contributions.some(([, value]) => !Number.isFinite(value))) {
+    throw new RangeError('Disclosure no finito');
+  }
   const disclosure = clamp(raw);
 
   let mode;
@@ -352,13 +474,20 @@ export function evaluateDialogueTopic(npc, topicId, context) {
 }
 
 export function simulateTurn(npc, context) {
-  const decision = chooseAction(npc, context);
-  const nextNpc = structuredClone(npc);
+  const npcSnapshot = requireNpcSnapshot(npc);
+  const contextSnapshot = requireActionSnapshot(context);
+  const decision = chooseFromSnapshots(npcSnapshot, contextSnapshot);
+  const nextNpc = structuredClone(npcSnapshot);
   const previous = nextNpc.behaviorState;
+
   if (previous.lastAction === decision.action) previous.consecutiveTurns += 1;
-  else { previous.lastAction = decision.action; previous.consecutiveTurns = 1; }
+  else {
+    previous.lastAction = decision.action;
+    previous.consecutiveTurns = 1;
+  }
+
   return {
-    npcId: npc.id,
+    npcId: npcSnapshot.id,
     action: decision.action,
     actionScore: decision.score,
     actionRaw: decision.raw,
