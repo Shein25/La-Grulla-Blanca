@@ -123,6 +123,24 @@ No se interpreta esa distribución como objetivo de balance.
 - no genera diálogo textual;
 - no usa datos canónicos de producción.
 
+## Retest 2 — hardening de propiedades propias
+
+El primer retest de v0.1.1 confirmó las correcciones de esquema incompleto, snapshots, clamp/raw, inercia y dutyMode, pero detectó que JavaScript permitía valores heredados como `toString` y `constructor` mediante el operador `in`.
+
+La candidata actual de esta rama corrige ese hueco:
+
+- estados de conocimiento se validan contra una lista cerrada;
+- los campos obligatorios del contexto deben ser propiedades propias;
+- los contextos con prototipo ajeno se rechazan;
+- `topicId` debe ser propiedad propia de `knowledge`;
+- el contexto de diálogo exige sus tres propiedades propias;
+- la suite incorpora casos negativos para `toString`, `constructor`, `__proto__`, temas inexistentes y objetos con campos sólo heredados;
+- el stress incorpora un preflight de estas condiciones.
+
+La suite contiene ahora **30 ejecuciones de prueba** (28 bloques declarados, con el bloque de fixtures ejecutándose para tres NPC). Este número describe la suite; el resultado definitivo debe obtenerlo el retest externo de la nueva cabeza de rama.
+
 ## Próximo paso
 
-Sólo si la auditoría externa aprueba v0.1.1, diseñar v0.2 como **GOAP experimental**, manteniendo Utility AI para elegir objetivos y un planner separado para decidir cómo alcanzarlos.
+**No mergear todavía.** Repetir la auditoría externa sobre la cabeza actual de `experiment/motor-npc-v0.1.1`.
+
+Sólo si el nuevo informe termina en `V011_APTO_PARA_GOAP`, considerar el merge y diseñar v0.2 como GOAP experimental, manteniendo Utility AI para elegir objetivos y un planner separado para decidir cómo alcanzarlos.
