@@ -158,8 +158,29 @@ Se añadió:
 
 No se modificaron pesos, reglas sociales, `dutyMode`, desempate, inercia ni las tres personalidades.
 
+## Retest 4 — rechazo explícito de undefined
+
+El Retest 3 confirmó que los accessors propios quedan cerrados: 32/32 casos adversariales fueron rechazados sin ejecutar getters ni setters. También mantuvo verdes los cinco stress de 10.000 casos.
+
+Detectó dos pendientes:
+
+1. una aserción de texto desactualizada en la suite;
+2. propiedades obligatorias presentes con valor `undefined` podían saltarse la validación y producir `NaN`.
+
+La cabeza actual corrige ambos:
+
+- `readOwnData()` distingue descriptor presente con `value: undefined` y lo rechaza explícitamente;
+- se sincronizó la aserción del mensaje de campo de diálogo ausente;
+- se añadieron negativos de `undefined` en los siete campos top-level del NPC;
+- se añadieron negativos en traits, vínculos, knowledge y behaviorState;
+- se recorren los once campos obligatorios del contexto de acción;
+- se recorren los tres campos obligatorios del contexto de diálogo;
+- el stress incorpora preflight de `undefined`.
+
+La suite declara ahora 37 llamadas de test; el bloque de fixtures se ejecuta para tres NPC, por lo que se esperan **39 ejecuciones**. El resultado efectivo debe verificarlo el Retest 4 externo.
+
 ## Próximo paso
 
-**No mergear todavía.** Ejecutar el Retest 3 indicado en `PROMPT_AGENTE_TEST.md`.
+**No mergear todavía.** Ejecutar el Retest 4 indicado en `PROMPT_AGENTE_TEST.md`.
 
 Sólo si el informe termina en `V011_APTO_PARA_GOAP`, considerar el merge y diseñar v0.2 como GOAP experimental.
