@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { chooseAction, evaluateDialogueTopic, validateActionContext, validateNpc } from './engine.mjs';
+import { chooseAction, evaluateDialogueTopic, validateActionContext, validateDialogueContext, validateNpc } from './engine.mjs';
 
 const N=Math.max(1,Number(process.argv[2]||10000));
 let seed=Number(process.argv[3]||1337)>>>0;
@@ -60,6 +60,32 @@ assert.notDeepEqual(validateActionContext(inheritedContext),[],'contexto heredad
   Object.defineProperty(getterContext,'relevantKnowledge',{enumerable:true,get(){reads++;return reads<3?'SABE':'constructor'}});
   assert.notDeepEqual(validateActionContext(getterContext),[],'getter de relevantKnowledge aceptado');
   assert.equal(reads,0,'el getter de relevantKnowledge fue ejecutado por el validador');
+}
+
+{
+  const npc={
+    id:'undefined',name:'Undefined',role:'Preflight',
+    traits:{disciplina:50,sociabilidad:50,curiosidad:50,prudencia:50,lealtad_institucional:50,empatia:50},
+    relationPlayer:{afinidad:50,confianza:50,respeto:50,deuda:0,temor:0,rivalidad:0},
+    knowledge:{R1:'SABE',R2:'SABE',R3:'SABE'},
+    behaviorState:{lastAction:null,consecutiveTurns:0},
+  };
+  npc.knowledge.R1=undefined;
+  assert.notDeepEqual(validateNpc(npc),[],'knowledge undefined aceptado');
+}
+
+{
+  const context={
+    playerPresent:true,playerRequestsHelp:false,playerRank:2,dutyImportance:0,dutyMode:'ninguno',
+    danger:0,missionUrgency:0,anomalyPresent:false,awayFromPost:false,superiorReachable:false,
+    relevantKnowledge:undefined,topicSensitivity:50,formalRestriction:0,
+  };
+  assert.notDeepEqual(validateActionContext(context),[],'relevantKnowledge undefined aceptado');
+}
+
+{
+  const dialogue={playerRank:2,topicSensitivity:undefined,formalRestriction:0};
+  assert.notDeepEqual(validateDialogueContext(dialogue),[],'topicSensitivity undefined aceptado');
 }
 
 for(let i=0;i<N;i++){
