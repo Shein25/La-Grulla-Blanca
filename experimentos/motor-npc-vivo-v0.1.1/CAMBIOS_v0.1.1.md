@@ -36,3 +36,26 @@ Ahora: el mundo declara el deber existente mediante `dutyMode`. Se añadieron es
 `dutyMode` funciona como una primera precondición explícita.
 
 No es GOAP, pero evita que acciones conceptualmente imposibles compitan sólo porque sus pesos existen.
+
+
+## Segundo retest — propiedades heredadas
+
+El retest externo sobre el commit `946fd177fa443601233a1be767a4bbaed71bdfc0` detectó que tres usos semánticos de pertenencia podían aceptar propiedades heredadas de JavaScript.
+
+Casos demostrados:
+
+- `knowledge.R1 = "toString"`;
+- `relevantKnowledge = "constructor"`;
+- `topicId = "toString"`;
+- contextos creados con `Object.create(BASE_CONTEXT)`.
+
+Corrección aplicada en la candidata posterior:
+
+1. lista cerrada `KNOWLEDGE_STATES`;
+2. `Object.hasOwn()` para campos obligatorios y topic IDs;
+3. `isPlainObject()` restringido a prototipo `Object.prototype` o `null`;
+4. validación de propiedades propias en contexto de diálogo;
+5. pruebas negativas de `toString`, `constructor`, `__proto__`, `R99` e inputs heredados;
+6. preflight adversarial añadido a cada stress run.
+
+No se modificaron pesos, personalidad, dutyMode, inercia, raw tie-break ni comportamiento canónico del juego.
