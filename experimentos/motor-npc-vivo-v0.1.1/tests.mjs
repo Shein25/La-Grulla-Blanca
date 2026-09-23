@@ -69,7 +69,60 @@ test('diálogo exige propiedades propias obligatorias', () => {
   for (const key of ['playerRank', 'topicSensitivity', 'formalRestriction']) {
     const ctx = { playerRank:2, topicSensitivity:50, formalRestriction:0 };
     delete ctx[key];
-    assert.ok(validateDialogueContext(ctx).some(x => x.includes(`dialogue: falta ${key}`)), key);
+    assert.ok(validateDialogueContext(ctx).some(x => x.includes(`Falta dialogue.${key}`)), key);
+    assert.throws(() => evaluateDialogueTopic(cloneNpc('leal'), 'R1', ctx), /Contexto de diálogo inválido/, key);
+  }
+});
+
+test('rechaza undefined en campos top-level obligatorios del NPC', () => {
+  for (const key of ['id','name','role','traits','relationPlayer','knowledge','behaviorState']) {
+    const n = cloneNpc('leal');
+    n[key] = undefined;
+    const errors = validateNpc(n);
+    assert.notDeepEqual(errors, [], key);
+    assert.ok(errors.some(x => x.includes(`${key} no puede ser undefined`)), `${key}: ${errors.join(' | ')}`);
+    assert.throws(() => chooseAction(n, BASE_CONTEXT), /NPC inválido/, key);
+  }
+});
+
+test('rechaza undefined en campos internos obligatorios del NPC', () => {
+  const cases = [
+    ['traits','disciplina'],
+    ['relationPlayer','confianza'],
+    ['knowledge','R1'],
+    ['behaviorState','lastAction'],
+    ['behaviorState','consecutiveTurns'],
+  ];
+  for (const [group,key] of cases) {
+    const n = cloneNpc('leal');
+    n[group][key] = undefined;
+    const errors = validateNpc(n);
+    assert.notDeepEqual(errors, [], `${group}.${key}`);
+    assert.ok(errors.some(x => x.includes(`${group}.${key} no puede ser undefined`)), errors.join(' | '));
+    assert.throws(() => chooseAction(n, BASE_CONTEXT), /NPC inválido/, `${group}.${key}`);
+  }
+});
+
+test('rechaza undefined en todos los campos obligatorios del contexto de acción', () => {
+  const keys = [
+    'playerPresent','playerRequestsHelp','playerRank','dutyImportance','danger','missionUrgency',
+    'anomalyPresent','awayFromPost','superiorReachable','relevantKnowledge','dutyMode',
+  ];
+  for (const key of keys) {
+    const ctx = { ...BASE_CONTEXT, [key]: undefined };
+    const errors = validateActionContext(ctx);
+    assert.notDeepEqual(errors, [], key);
+    assert.ok(errors.some(x => x.includes(`context.${key} no puede ser undefined`)), `${key}: ${errors.join(' | ')}`);
+    assert.throws(() => chooseAction(cloneNpc('leal'), ctx), /Contexto inválido/, key);
+  }
+});
+
+test('rechaza undefined en todos los campos obligatorios del contexto de diálogo', () => {
+  for (const key of ['playerRank','topicSensitivity','formalRestriction']) {
+    const ctx = { playerRank:2, topicSensitivity:50, formalRestriction:0, [key]: undefined };
+    const errors = validateDialogueContext(ctx);
+    assert.notDeepEqual(errors, [], key);
+    assert.ok(errors.some(x => x.includes(`dialogue.${key} no puede ser undefined`)), `${key}: ${errors.join(' | ')}`);
     assert.throws(() => evaluateDialogueTopic(cloneNpc('leal'), 'R1', ctx), /Contexto de diálogo inválido/, key);
   }
 });
