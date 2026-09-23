@@ -10,6 +10,32 @@ const actions=['vigilar','trabajar','patrullar','hablar_jugador','ayudar_jugador
 const dutyModes=['vigilar','trabajar','patrullar','ninguno'];
 const counts=new Map();
 
+for (const bad of ['toString','constructor','__proto__']) {
+  const baseNpc={
+    id:'preflight',name:'Preflight',role:'Test',
+    traits:{disciplina:50,sociabilidad:50,curiosidad:50,prudencia:50,lealtad_institucional:50,empatia:50},
+    relationPlayer:{afinidad:50,confianza:50,respeto:50,deuda:0,temor:0,rivalidad:0},
+    knowledge:{R1:'SABE',R2:'SABE',R3:'SABE'},
+    behaviorState:{lastAction:null,consecutiveTurns:0},
+  };
+  baseNpc.knowledge.R1=bad;
+  assert.notDeepEqual(validateNpc(baseNpc),[],`knowledge heredado aceptado: ${bad}`);
+
+  const baseContext={
+    playerPresent:true,playerRequestsHelp:false,playerRank:2,dutyImportance:0,dutyMode:'ninguno',
+    danger:0,missionUrgency:0,anomalyPresent:false,awayFromPost:false,superiorReachable:false,
+    relevantKnowledge:bad,topicSensitivity:50,formalRestriction:0,
+  };
+  assert.notDeepEqual(validateActionContext(baseContext),[],`relevantKnowledge heredado aceptado: ${bad}`);
+}
+
+const inheritedContext=Object.create({
+  playerPresent:true,playerRequestsHelp:false,playerRank:2,dutyImportance:0,dutyMode:'ninguno',
+  danger:0,missionUrgency:0,anomalyPresent:false,awayFromPost:false,superiorReachable:false,
+  relevantKnowledge:'SABE',topicSensitivity:50,formalRestriction:0,
+});
+assert.notDeepEqual(validateActionContext(inheritedContext),[],'contexto heredado aceptado');
+
 for(let i=0;i<N;i++){
   const last=rnd()<0.25?pick(actions):null;
   const npc={
