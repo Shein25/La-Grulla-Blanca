@@ -101,3 +101,30 @@ Corrección:
 5. el stress incluye preflight de `knowledge.R1`, `relevantKnowledge` y `topicSensitivity` con `undefined`.
 
 No se alteraron pesos ni semántica de decisiones válidas.
+
+
+## Quinto candidato — frontera snapshot contra Proxy
+
+El Retest 4 detectó que validar un objeto y luego volver a leerlo permitía un TOCTOU mediante `Proxy.get`.
+
+Casos reproducidos por la auditoría:
+
+- contexto con `missionUrgency` válido en descriptor y `NaN` por `get`;
+- diálogo con `topicSensitivity` dinámico;
+- trait proxificado con `NaN` o excepción tardía;
+- behaviorState capaz de inducir `raw: Infinity`.
+
+La corrección deja de intentar confiar en futuras lecturas del input.
+
+Nueva política:
+
+- `captureNpc()`, `captureActionContext()` y `captureDialogueContext()` construyen objetos planos internos;
+- los valores se toman una sola vez de descriptores propios y se validan al capturarlos;
+- las funciones de cálculo sólo reciben snapshots;
+- `chooseAction()`, `evaluateActions()`, `evaluateDialogueTopic()` y `simulateTurn()` no leen datos de negocio desde el objeto externo después de capturarlo;
+- `simulateTurn()` genera `nextNpc` desde el snapshot;
+- `score()` y el cálculo de disclosure incluyen una barrera final de finitud.
+
+Se añadieron pruebas de Proxy con traps `get`, traps que lanzan, proxies anidados y descriptores que cambian entre llamadas.
+
+No se modificaron los pesos del Utility AI.
