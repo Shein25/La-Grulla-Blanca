@@ -121,6 +121,30 @@ test('maxFrontier inválido se rechaza',()=>{
   assert.throws(()=>planGOAP({a:false},{a:true},[{id:'x',cost:1,preconditions:{a:false},effects:{a:true}}],{maxFrontier:0}),/maxFrontier/);
 });
 
+test('maxFrontier corta la búsqueda sin exceder el límite',()=>{
+  const actions=[
+    {id:'a',cost:1,preconditions:{stage:0},effects:{stage:1}},
+    {id:'b',cost:1,preconditions:{stage:0},effects:{stage:2}},
+    {id:'finish1',cost:1,preconditions:{stage:1},effects:{stage:3}},
+    {id:'finish2',cost:1,preconditions:{stage:2},effects:{stage:3}},
+  ];
+  const r=planGOAP({stage:0},{stage:3},actions,{maxExpansions:10,maxFrontier:1});
+  assert.equal(r.status,'FRONTIER_LIMIT');
+  assert.ok(r.maxFrontier<=1);
+});
+
+test('FRONTIER_LIMIT es inconcluso y no equivale a NO_PLAN',()=>{
+  const actions=[
+    ...GOAP_ACTIONS,
+    {id:'ruido_a',cost:1,preconditions:{at:'puesto'},effects:{playerHelped:false,at:'jugador'}},
+    {id:'ruido_b',cost:1,preconditions:{at:'puesto'},effects:{playerHelped:false,at:'superior'}},
+  ];
+  const r=decideAndPlan(cloneNpc('leal'),WORLDS.crisis_jugador,actions,{maxExpansions:100,maxFrontier:1});
+  assert.equal(r.status,'PLANNING_DEFERRED');
+  assert.equal(r.reason,'FRONTIER_LIMIT');
+  assert.equal(r.selectedGoal.id,'HELP_PLAYER');
+});
+
 test('personalidades eligen objetivos distintos en el mismo mundo',()=>{
   assert.equal(selectGoal(cloneNpc('disciplinado'),WORLDS.comun).id,'FULFILL_DUTY');
   assert.equal(selectGoal(cloneNpc('leal'),WORLDS.comun).id,'HELP_PLAYER');
