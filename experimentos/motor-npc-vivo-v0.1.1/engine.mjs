@@ -44,8 +44,14 @@ const REQUIRED_ACTION_CONTEXT = Object.freeze([
 const clamp = (n, min = 0, max = 100) => Math.max(min, Math.min(max, n));
 const pct = n => clamp(n);
 const rankNorm = rank => clamp(rank / 6 * 100);
-const knowledgeNorm = state => clamp((KNOWLEDGE[state] ?? 0) / 3 * 100);
-const isPlainObject = x => !!x && typeof x === 'object' && !Array.isArray(x);
+const KNOWLEDGE_STATES = Object.freeze(['DESCONOCIDO', 'SOSPECHA', 'SABE', 'CONFIRMADO']);
+const isKnowledgeState = state => typeof state === 'string' && KNOWLEDGE_STATES.includes(state);
+const knowledgeNorm = state => clamp(KNOWLEDGE[state] / 3 * 100);
+const isPlainObject = x => {
+  if (!x || typeof x !== 'object' || Array.isArray(x)) return false;
+  const proto = Object.getPrototypeOf(x);
+  return proto === Object.prototype || proto === null;
+};
 
 function exactKeys(obj, required, path, errors) {
   if (!isPlainObject(obj)) { errors.push(`Falta ${path}`); return; }
@@ -81,7 +87,7 @@ export function validateNpc(npc) {
   exactKeys(npc.knowledge, REQUIRED_KNOWLEDGE, 'knowledge', errors);
   if (isPlainObject(npc.knowledge)) {
     for (const key of REQUIRED_KNOWLEDGE) {
-      if (!(npc.knowledge[key] in KNOWLEDGE)) errors.push(`knowledge.${key} inválido: ${npc.knowledge[key]}`);
+      if (!isKnowledgeState(npc.knowledge[key])) errors.push(`knowledge.${key} inválido: ${npc.knowledge[key]}`);
     }
   }
 
@@ -100,27 +106,30 @@ export function validateNpc(npc) {
 export function validateActionContext(context) {
   const errors = [];
   if (!isPlainObject(context)) return ['Contexto inválido'];
-  for (const key of REQUIRED_ACTION_CONTEXT) if (!(key in context)) errors.push(`context: falta ${key}`);
+  for (const key of REQUIRED_ACTION_CONTEXT) if (!Object.hasOwn(context, key)) errors.push(`context: falta ${key}`);
   for (const key of ['playerPresent', 'playerRequestsHelp', 'anomalyPresent', 'awayFromPost', 'superiorReachable']) {
-    if (key in context && typeof context[key] !== 'boolean') errors.push(`context.${key} debe ser boolean`);
+    if (Object.hasOwn(context, key) && typeof context[key] !== 'boolean') errors.push(`context.${key} debe ser boolean`);
   }
   for (const key of ['dutyImportance', 'danger', 'missionUrgency']) {
     const value = context[key];
-    if (key in context && (!Number.isFinite(value) || value < 0 || value > 100)) errors.push(`context.${key} fuera de 0..100`);
+    if (Object.hasOwn(context, key) && (!Number.isFinite(value) || value < 0 || value > 100)) errors.push(`context.${key} fuera de 0..100`);
   }
-  if ('playerRank' in context && (!Number.isInteger(context.playerRank) || context.playerRank < 0 || context.playerRank > 6)) errors.push('context.playerRank fuera de 0..6');
-  if ('relevantKnowledge' in context && !(context.relevantKnowledge in KNOWLEDGE)) errors.push('context.relevantKnowledge inválido');
-  if ('dutyMode' in context && !DUTY_MODES.includes(context.dutyMode)) errors.push('context.dutyMode inválido');
+  if (Object.hasOwn(context, 'playerRank') && (!Number.isInteger(context.playerRank) || context.playerRank < 0 || context.playerRank > 6)) errors.push('context.playerRank fuera de 0..6');
+  if (Object.hasOwn(context, 'relevantKnowledge') && !isKnowledgeState(context.relevantKnowledge)) errors.push('context.relevantKnowledge inválido');
+  if (Object.hasOwn(context, 'dutyMode') && !DUTY_MODES.includes(context.dutyMode)) errors.push('context.dutyMode inválido');
   return errors;
 }
 
 export function validateDialogueContext(context) {
   const errors = [];
   if (!isPlainObject(context)) return ['Contexto de diálogo inválido'];
-  if (!Number.isInteger(context.playerRank) || context.playerRank < 0 || context.playerRank > 6) errors.push('dialogue.playerRank fuera de 0..6');
+  for (const key of ['playerRank', 'topicSensitivity', 'formalRestriction']) {
+    if (!Object.hasOwn(context, key)) errors.push(`dialogue: falta ${key}`);
+  }
+  if (Object.hasOwn(context, 'playerRank') && (!Number.isInteger(context.playerRank) || context.playerRank < 0 || context.playerRank > 6)) errors.push('dialogue.playerRank fuera de 0..6');
   for (const key of ['topicSensitivity', 'formalRestriction']) {
     const value = context[key];
-    if (!Number.isFinite(value) || value < 0 || value > 100) errors.push(`dialogue.${key} fuera de 0..100`);
+    if (Object.hasOwn(context, key) && (!Number.isFinite(value) || value < 0 || value > 100)) errors.push(`dialogue.${key} fuera de 0..100`);
   }
   return errors;
 }
@@ -268,7 +277,7 @@ export function chooseAction(npc, context) {
 export function evaluateDialogueTopic(npc, topicId, context) {
   assertValidNpc(npc);
   assertValidDialogueContext(context);
-  if (!(topicId in npc.knowledge)) throw new RangeError(`Tema no definido para el laboratorio: ${topicId}`);
+  if (!Object.hasOwn(npc.knowledge, topicId)) throw new RangeError(`Tema no definido para el laboratorio: ${topicId}`);
 
   const state = npc.knowledge[topicId];
   const level = KNOWLEDGE[state];
