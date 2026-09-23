@@ -1,4 +1,4 @@
-# Encargo para agente externo — Retest 3 Motor NPC Vivo v0.1.1
+# Encargo para agente externo — Retest 4 Motor NPC Vivo v0.1.1
 
 Audita exclusivamente la **cabeza actual** de la rama:
 
@@ -8,13 +8,14 @@ Directorio:
 
 `experimentos/motor-npc-vivo-v0.1.1/`
 
-NO reutilices los resultados de los commits anteriores.
-NO modifiques el juego de producción.
+NO reutilices resultados de commits anteriores.
+NO modifiques el juego principal.
 NO toques `grulla-blanca_ver73.html`.
 NO ajustes pesos.
 NO implementes GOAP.
+NO hagas merge.
 
-## 1. Regresión completa
+## 1. Regresión oficial
 
 Ejecuta:
 
@@ -22,9 +23,11 @@ Ejecuta:
 node tests.mjs
 ```
 
-Reporta PASS/FAIL exacto y exit code.
+La candidata actual declara 37 llamadas de test y el bloque de fixtures corre para tres NPC, por lo que se esperan **39 ejecuciones PASS** y exit code 0.
 
-## 2. Stress reproducible
+Si el número difiere, informa el número real y explica por qué.
+
+## 2. Stress
 
 Ejecuta:
 
@@ -36,46 +39,65 @@ node stress.mjs 10000 999
 node stress.mjs 10000 20260923
 ```
 
-Confirma que el preflight de propiedades heredadas y getters mutables pasa antes de cada corrida.
+Confirma que el preflight pasa antes del bucle y que las cinco corridas terminan con exit code 0.
 
-## 3. Reproducir obligatoriamente el hallazgo del Retest 2
+## 3. Reproducción obligatoria del hallazgo de Retest 3
 
-Crea getters mutables en:
+Prueba propiedades propias de datos con valor `undefined` en todos estos grupos:
 
-- `npc.knowledge.R1`;
-- `context.relevantKnowledge`;
-- un trait numérico;
-- un campo numérico de contexto;
-- un campo estructural del NPC, por ejemplo `traits`;
-- un campo del contexto de diálogo.
+### NPC top-level
+- id
+- name
+- role
+- traits
+- relationPlayer
+- knowledge
+- behaviorState
 
-Los getters pueden devolver primero un valor válido y después:
+### NPC internos
+- al menos un trait
+- al menos una relación
+- R1
+- behaviorState.lastAction
+- behaviorState.consecutiveTurns
 
-- `toString`;
-- `constructor`;
-- `NaN`.
+### Contexto de acción
+Los 11 campos:
+- playerPresent
+- playerRequestsHelp
+- playerRank
+- dutyImportance
+- danger
+- missionUrgency
+- anomalyPresent
+- awayFromPost
+- superiorReachable
+- relevantKnowledge
+- dutyMode
 
-Requisitos:
+### Contexto de diálogo
+- playerRank
+- topicSensitivity
+- formalRestriction
 
-1. el validador debe rechazarlos;
-2. la API pública debe lanzar antes de puntuar/revelar;
-3. el getter no debe ser ejecutado durante la validación;
-4. no debe aparecer `NaN` ni disclosure no finito.
+Requisito: todos deben ser rechazados por el validador y por la API pública **antes del cálculo**.
 
-## 4. Accessors adicionales
+No debe existir ningún score, raw o disclosure `NaN`/infinito proveniente de una entrada aceptada.
 
-Prueba también:
+## 4. No regresión de accessors
 
+Repite al menos:
+
+- getter mutable;
 - setter-only;
 - getter+setter;
-- accessor no enumerable si reemplaza un campo obligatorio;
-- accessor en `behaviorState.lastAction`;
-- accessor en `relationPlayer.confianza`;
-- accessor en `topicSensitivity`.
+- accessor no enumerable;
 
-Todo campo consumido por el motor debe ser una **propiedad propia de datos**.
+en knowledge, contexto y un campo numérico.
 
-## 5. Propiedades heredadas — no regresión
+Los accessors deben seguir rechazados sin ejecutar getter/setter.
+
+## 5. No regresión de propiedades heredadas
 
 Repite:
 
@@ -83,48 +105,58 @@ Repite:
 - `constructor`;
 - `__proto__`;
 
-como estados de conocimiento y `relevantKnowledge`.
+como knowledge y relevantKnowledge.
 
-Repite `topicId`:
-
+Repite topicId:
 - `toString`;
 - `constructor`;
 - `__proto__`;
 - `R99`.
 
-Repite contextos creados con `Object.create(...)`.
+Repite `Object.create(...)`.
 
-Todos deben seguir rechazados.
+Todo debe seguir rechazado.
 
-## 6. Finitud
+## 6. Finitud adversarial
 
-Busca activamente una entrada que **pase todos los validadores** y después produzca:
+Busca activamente cualquier entrada que:
 
-- score `NaN`;
-- raw `NaN`;
-- score/raw infinito en una acción disponible;
-- disclosure `NaN` o infinito.
+1. pase `validateNpc` / `validateActionContext` / `validateDialogueContext`;
+2. después produzca score/raw/disclosure no finito o una excepción tardía por datos obligatorios inválidos.
 
-Si encontrás una, entrega reproducción mínima.
+Si existe, entrega reproducción mínima.
+
+Incluye explícitamente:
+
+- `undefined`;
+- `null`;
+- `NaN`;
+- `Infinity`;
+- `-Infinity`;
+- cadenas donde se esperan números/booleanos;
+- arrays donde se esperan objetos;
+- objetos con prototipo ajeno;
+- accessors.
 
 ## 7. No regresión funcional
 
 Confirma:
 
-- campos faltantes rechazados;
 - `nextNpc` profundamente independiente;
 - score → raw → ACTION_ORDER;
 - inercia +6 → +4 → +2 → +0;
-- `dutyMode`;
+- dutyMode exclusivo;
 - `rutina_trabajo → trabajar`;
 - `espera_sin_tarea → esperar`;
-- Disciplinado / Leal / Curioso siguen diferenciándose;
+- Disciplinado → vigilar;
+- Leal → ayudar_jugador;
+- Curioso → investigar;
 - DESCONOCIDO nunca revela;
 - SOSPECHA nunca COMPARTE.
 
 ## 8. Preparación para GOAP
 
-Evalúa si, con el contrato de entrada cerrado, es razonable pasar a:
+Evalúa si ya puede congelarse v0.1.1 como base experimental para:
 
 ```text
 Utility AI → selecciona OBJETIVO
@@ -132,13 +164,13 @@ GOAP       → construye PLAN
 Executor   → aplica acciones y verifica efectos
 ```
 
-No implementes esas capas todavía.
+No implementes GOAP todavía.
 
 ## Entregable
 
 Devuelve únicamente:
 
-`Informe_Test_Motor_NPC_Vivo_v0.1.1_RETEST3.md`
+`Informe_Test_Motor_NPC_Vivo_v0.1.1_RETEST4.md`
 
 Termina con exactamente uno:
 
