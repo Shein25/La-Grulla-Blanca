@@ -1,182 +1,204 @@
-# Motor NPC Vivo v0.2 — Laboratorio GOAP
+# Motor NPC Vivo v0.2.1 — Laboratorio GOAP
 
-Primera iteración experimental posterior a v0.1.1.
+Iteración correctiva de la primera candidata v0.2, basada en la auditoría externa REV1.
 
-## Regla de seguridad
+## Estado
 
-Este directorio sigue aislado del juego de producción.
+**No mergear todavía.**
+
+La REV1 validó la arquitectura general:
+
+```text
+Utility AI → OBJETIVO
+GOAP       → PLAN
+Executor   → ejecución / verificación
+```
+
+pero encontró problemas en identidad de estados, dominio numérico de costes, poda de caminos equivalentes, presupuesto de búsqueda y vigencia de objetivos.
+
+v0.2.1 corrige esos puntos sin tocar producción.
+
+## Aislamiento
 
 - no se importa desde `grulla-blanca_ver73.html`;
 - no usa los 32 NPC canónicos;
 - no usa topología canónica;
 - no implementa misiones;
-- no modifica el baseline del Arco 1.
+- no modifica el baseline del Arco 1;
+- no convierte GOAP en pathfinding de las 329 salas.
 
-Los tres NPC continúan siendo fixtures ficticios heredados del laboratorio v0.1.1.
+Los tres NPC siguen siendo fixtures ficticios heredados de v0.1.1.
 
-## Arquitectura
+## Cambios principales de v0.2.1
+
+### 1. Identidad de estados coherente
+
+`factsMatch()` usa `Object.is()`.
+
+La clave interna del planner ahora conserva explícitamente la diferencia entre:
 
 ```text
-Utility AI
-   ↓
-selecciona OBJETIVO
-   ↓
-GOAP
-   ↓
-construye PLAN mínimo
-   ↓
-Executor
-   ↓
-ejecuta un paso
-   ↓
-verifica precondiciones
-   ├─ siguen válidas → continuar
-   └─ cambiaron      → REPLAN_REQUIRED
+-0
+0
 ```
 
-### Utility AI
+y distingue facts ausentes de facts presentes.
 
-`goal-selector.mjs` ya no selecciona directamente una acción.
+### 2. Costes discretos seguros
 
-Selecciona uno de estos objetivos experimentales:
+Los costes GOAP se restringen a:
 
-- HELP_PLAYER
-- INVESTIGATE_ANOMALY
-- REPORT_SUPERIOR
-- FULFILL_DUTY
-- RETURN_POST
-- WAIT_SAFE
+```text
+entero seguro > 0
+```
 
-Las personalidades siguen influyendo en la utilidad.
+Esto elimina costes diminutos que se redondean a cero y costes gigantes no representables con seguridad.
 
-En el mismo mundo base:
+El coste acumulado también se controla. Si desborda el rango de entero seguro, el planner no devuelve `Infinity`: produce `COST_OVERFLOW`.
 
-- Disciplinado → FULFILL_DUTY
-- Leal → HELP_PLAYER
-- Curioso → INVESTIGATE_ANOMALY
+### 3. Poda canónica por estado
 
-### GOAP
+Para cada estado relevante sólo se conserva el mejor representante según:
 
-`goap.mjs` recibe:
+```text
+coste
+  ↓ empate
+número de pasos
+  ↓ empate
+plan lexicográfico
+```
 
-- estado inicial;
-- condiciones objetivo;
-- acciones declarativas;
-- costes.
+Ya no se reencolan automáticamente todas las rutas de igual coste al mismo estado.
 
-Usa búsqueda de coste uniforme determinista.
+### 4. Sólo facts relevantes para la identidad de búsqueda
 
-El planner:
+El planner calcula hacia atrás qué facts pueden influir en el objetivo a través de:
 
-- respeta precondiciones;
-- aplica efectos sobre copias;
-- elige el menor coste total;
-- desempata de forma determinista;
-- evita mutar el mundo;
-- puede devolver PLAN_FOUND, NO_PLAN o SEARCH_LIMIT.
+```text
+goal
+  ← effects
+  ← preconditions
+  ← effects anteriores
+  ...
+```
 
-### Executor
+Flags que no pueden afectar ese objetivo no multiplican la identidad de estados.
 
-`executor.mjs` no asume que un plan viejo sigue siendo válido.
+El estado completo se conserva para aplicar efectos; la clave de búsqueda usa sólo facts relevantes.
 
-Antes de cada paso comprueba las precondiciones reales.
+### 5. Frontera con heap
 
-Si cambiaron:
+La frontera ya no ordena un array completo en cada expansión.
+
+Se usa una cola de prioridad binaria y se informan:
+
+- `expansions`;
+- `generated`;
+- `maxFrontier`;
+- `relevantFacts`.
+
+También existe `maxFrontier`.
+
+### 6. Presupuesto estricto
+
+`maxExpansions` debe ser entero >= 0.
+
+Un presupuesto 0 realiza exactamente 0 expansiones.
+
+El planner puede devolver:
+
+- `PLAN_FOUND`;
+- `NO_PLAN`;
+- `SEARCH_LIMIT`;
+- `FRONTIER_LIMIT`;
+- `COST_OVERFLOW`.
+
+### 7. Búsqueda inconclusa no significa objetivo imposible
+
+El controller sólo hace fallback a otro objetivo cuando recibe:
+
+`NO_PLAN`
+
+Si recibe:
+
+- `SEARCH_LIMIT`;
+- `FRONTIER_LIMIT`;
+- `COST_OVERFLOW`;
+
+devuelve:
+
+`PLANNING_DEFERRED`
+
+y conserva el objetivo prioritario.
+
+### 8. Vigencia del objetivo
+
+Cada objetivo experimental tiene ahora condiciones de relevancia.
+
+Ejemplo:
+
+```text
+HELP_PLAYER
+
+goal:
+playerHelped = true
+
+relevancia:
+playerPresent = true
+playerNeedsHelp = true
+playerHelped = false
+```
+
+Antes de cada paso, Executor comprueba:
+
+1. si el goal ya fue alcanzado;
+2. si el objetivo sigue siendo relevante;
+3. si la acción siguiente sigue cumpliendo precondiciones.
+
+Si la relevancia desapareció:
 
 `REPLAN_REQUIRED`
 
-Ejemplo experimental:
+sin ejecutar el movimiento anterior.
 
-```text
-Objetivo: informar al superior
+### 9. Stress dinámico incluido
 
-plan inicial:
-ir_superior → informar_superior
+Se añadió:
 
-el paso se cierra
-        ↓
-executor detecta fallo
-        ↓
-REPLAN_REQUIRED
-        ↓
-nuevo plan:
-enviar_mensajero
-```
+`dynamic-stress.mjs`
 
-## Acciones experimentales
+Introduce eventos entre pasos y mide:
 
-Las acciones actuales son deliberadamente pequeñas:
+- GOAL_REACHED;
+- REPLAN_REQUIRED;
+- replans;
+- cambios de objetivo;
+- búsquedas diferidas;
+- estados repetidos;
+- STEP_LIMIT;
+- movimientos inútiles después de objetivo obsoleto.
 
-- ayudar_jugador
-- cumplir_deber
-- enviar_mensajero
-- esperar
-- informar_superior
-- investigar_anomalia
-- ir_jugador
-- ir_superior
-- volver_puesto_desde_jugador
-- volver_puesto_desde_superior
+## Suite
 
-No representan todavía la movilidad real de La Grulla Blanca.
+La candidata actual contiene **40 tests declarados**.
 
-## Regresión local inicial
+El resultado efectivo de esta revisión debe obtenerlo la auditoría externa REV2; no se considera aprobada hasta entonces.
 
-Ejecutado antes de solicitar auditoría externa:
+## Límites que siguen siendo deliberados
 
-```bash
-node tests.mjs
-node stress.mjs 10000 1337
-```
-
-Resultado:
-
-- **25/25 PASS**
-- stress GOAP **10.000/10.000 PASS**
-- 0 NO_PLANNABLE_GOAL en ese seed
-- distribución del seed 1337:
-  - FULFILL_DUTY: 2882
-  - RETURN_POST: 2421
-  - INVESTIGATE_ANOMALY: 2183
-  - HELP_PLAYER: 1181
-  - REPORT_SUPERIOR: 865
-  - WAIT_SAFE: 468
-
-La distribución no es una meta de balance.
-
-## Qué valida la suite
-
-- coste mínimo real;
-- evita retornar el primer goal generado si existe un plan posterior más barato;
-- desempate determinista;
-- NO_PLAN;
-- tres personalidades → tres objetivos;
-- generación de planes;
-- ruta barata vs mensajero;
-- executor completo;
-- replanning por cambio del mundo;
-- fallback si el objetivo prioritario no tiene plan;
-- no mutación;
-- RETURN_POST;
-- WAIT_SAFE;
-- validación de costes/hechos no finitos.
-
-## Límites actuales
-
-- no hay rutas reales;
-- no hay puertas/gates canónicos;
-- costes fijos;
-- no hay duración temporal de acciones;
-- no hay concurrencia entre NPC;
-- no hay reservas de recursos;
-- no hay memoria episódica;
-- no hay conocimiento compartido;
-- no hay efectos fallidos probabilísticos;
-- el stress actual no introduce eventos dinámicos durante la ejecución;
-- todavía no hay integración con save/load.
+- sin topología real;
+- sin pathfinding físico;
+- sin gates canónicos;
+- sin memoria episódica;
+- sin relaciones NPC↔NPC;
+- sin comunicación de conocimiento;
+- sin reservas de recursos compartidos;
+- sin scheduling real de 32 NPC;
+- sin save/load de GOAP;
+- sin efectos probabilísticos.
 
 ## Próximo paso
 
-Auditoría externa de v0.2.
+Ejecutar la auditoría externa REV2 definida en `PROMPT_AGENTE_TEST.md`.
 
-No mergear esta rama hasta revisar el informe.
+No mergear PR #2 hasta revisar ese informe.
