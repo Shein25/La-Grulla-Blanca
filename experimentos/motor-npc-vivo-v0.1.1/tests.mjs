@@ -74,6 +74,84 @@ test('diálogo exige propiedades propias obligatorias', () => {
   }
 });
 
+test('rechaza getter mutable en knowledge sin ejecutarlo', () => {
+  const n = cloneNpc('leal');
+  let reads = 0;
+  Object.defineProperty(n.knowledge, 'R1', {
+    enumerable: true,
+    get() { reads++; return reads < 3 ? 'SABE' : 'toString'; },
+  });
+  const errors = validateNpc(n);
+  assert.ok(errors.some(x => x.includes('knowledge.R1 debe ser una propiedad de datos')));
+  assert.equal(reads, 0);
+  assert.throws(
+    () => evaluateDialogueTopic(n, 'R1', { playerRank:2, topicSensitivity:50, formalRestriction:0 }),
+    /NPC inválido/
+  );
+  assert.equal(reads, 0);
+});
+
+test('rechaza getter mutable en relevantKnowledge sin ejecutarlo', () => {
+  const ctx = { ...BASE_CONTEXT };
+  let reads = 0;
+  Object.defineProperty(ctx, 'relevantKnowledge', {
+    enumerable: true,
+    get() { reads++; return reads < 3 ? 'SABE' : 'constructor'; },
+  });
+  const errors = validateActionContext(ctx);
+  assert.ok(errors.some(x => x.includes('context.relevantKnowledge debe ser una propiedad de datos')));
+  assert.equal(reads, 0);
+  assert.throws(() => chooseAction(cloneNpc('leal'), ctx), /Contexto inválido/);
+  assert.equal(reads, 0);
+});
+
+test('rechaza getters numéricos en NPC y contexto', () => {
+  const n = cloneNpc('leal');
+  let traitReads = 0;
+  Object.defineProperty(n.traits, 'disciplina', {
+    enumerable: true,
+    get() { traitReads++; return traitReads === 1 ? 50 : NaN; },
+  });
+  assert.ok(validateNpc(n).some(x => x.includes('traits.disciplina debe ser una propiedad de datos')));
+  assert.equal(traitReads, 0);
+
+  const ctx = { ...BASE_CONTEXT };
+  let dangerReads = 0;
+  Object.defineProperty(ctx, 'danger', {
+    enumerable: true,
+    get() { dangerReads++; return dangerReads === 1 ? 50 : NaN; },
+  });
+  assert.ok(validateActionContext(ctx).some(x => x.includes('context.danger debe ser una propiedad de datos')));
+  assert.equal(dangerReads, 0);
+});
+
+test('rechaza getter en campo estructural del NPC', () => {
+  const n = cloneNpc('leal');
+  let reads = 0;
+  const traits = n.traits;
+  Object.defineProperty(n, 'traits', {
+    enumerable: true,
+    get() { reads++; return traits; },
+  });
+  assert.ok(validateNpc(n).some(x => x.includes('traits debe ser una propiedad de datos')));
+  assert.equal(reads, 0);
+  assert.throws(() => chooseAction(n, BASE_CONTEXT), /NPC inválido/);
+  assert.equal(reads, 0);
+});
+
+test('rechaza getter en contexto de diálogo sin ejecutarlo', () => {
+  const ctx = { playerRank:2, topicSensitivity:50, formalRestriction:0 };
+  let reads = 0;
+  Object.defineProperty(ctx, 'topicSensitivity', {
+    enumerable: true,
+    get() { reads++; return reads === 1 ? 50 : NaN; },
+  });
+  assert.ok(validateDialogueContext(ctx).some(x => x.includes('dialogue.topicSensitivity debe ser una propiedad de datos')));
+  assert.equal(reads, 0);
+  assert.throws(() => evaluateDialogueTopic(cloneNpc('leal'), 'R1', ctx), /Contexto de diálogo inválido/);
+  assert.equal(reads, 0);
+});
+
 test('misma entrada produce misma decisión', () => {
   const npc = cloneNpc('disciplinado');
   assert.deepEqual(chooseAction(npc, BASE_CONTEXT), chooseAction(npc, BASE_CONTEXT));
