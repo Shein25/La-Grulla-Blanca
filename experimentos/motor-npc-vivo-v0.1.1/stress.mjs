@@ -88,6 +88,81 @@ assert.notDeepEqual(validateActionContext(inheritedContext),[],'contexto heredad
   assert.notDeepEqual(validateDialogueContext(dialogue),[],'topicSensitivity undefined aceptado');
 }
 
+{
+  let gets=0;
+  const base={
+    playerPresent:false,playerRequestsHelp:false,playerRank:2,dutyImportance:0,dutyMode:'ninguno',
+    danger:0,missionUrgency:0,anomalyPresent:false,awayFromPost:false,superiorReachable:false,
+    relevantKnowledge:'SABE',topicSensitivity:50,formalRestriction:0,
+  };
+  const proxy=new Proxy(base,{
+    get(target,key,receiver){
+      gets++;
+      if(key==='missionUrgency') return NaN;
+      return Reflect.get(target,key,receiver);
+    },
+  });
+  assert.deepEqual(validateActionContext(proxy),[],'Proxy estable por descriptor no validó');
+  const decision=chooseAction({
+    id:'proxy',name:'Proxy',role:'Preflight',
+    traits:{disciplina:50,sociabilidad:50,curiosidad:50,prudencia:50,lealtad_institucional:50,empatia:50},
+    relationPlayer:{afinidad:50,confianza:50,respeto:50,deuda:0,temor:0,rivalidad:0},
+    knowledge:{R1:'SABE',R2:'SABE',R3:'SABE'},
+    behaviorState:{lastAction:null,consecutiveTurns:0},
+  },proxy);
+  assert.ok(Number.isFinite(decision.score)&&Number.isFinite(decision.raw),'Proxy produjo utilidad no finita');
+  assert.equal(gets,0,'se ejecutó get trap del contexto');
+}
+
+{
+  let gets=0;
+  const proxy=new Proxy({playerRank:2,topicSensitivity:50,formalRestriction:0},{
+    get(target,key,receiver){
+      gets++;
+      if(key==='topicSensitivity') return NaN;
+      return Reflect.get(target,key,receiver);
+    },
+  });
+  assert.deepEqual(validateDialogueContext(proxy),[],'Proxy de diálogo no validó por descriptor');
+  const npc={
+    id:'proxy-dialogue',name:'Proxy Dialogue',role:'Preflight',
+    traits:{disciplina:50,sociabilidad:50,curiosidad:50,prudencia:50,lealtad_institucional:50,empatia:50},
+    relationPlayer:{afinidad:50,confianza:50,respeto:50,deuda:0,temor:0,rivalidad:0},
+    knowledge:{R1:'SABE',R2:'SABE',R3:'SABE'},
+    behaviorState:{lastAction:null,consecutiveTurns:0},
+  };
+  const d=evaluateDialogueTopic(npc,'R1',proxy);
+  assert.ok(Number.isFinite(d.disclosure)&&Number.isFinite(d.raw),'Proxy produjo disclosure no finito');
+  assert.equal(gets,0,'se ejecutó get trap de diálogo');
+}
+
+{
+  const npc={
+    id:'proxy-npc',name:'Proxy NPC',role:'Preflight',
+    traits:{disciplina:50,sociabilidad:50,curiosidad:50,prudencia:50,lealtad_institucional:50,empatia:50},
+    relationPlayer:{afinidad:50,confianza:50,respeto:50,deuda:0,temor:0,rivalidad:0},
+    knowledge:{R1:'SABE',R2:'SABE',R3:'SABE'},
+    behaviorState:{lastAction:null,consecutiveTurns:0},
+  };
+  let gets=0;
+  npc.traits=new Proxy(npc.traits,{
+    get(target,key,receiver){
+      gets++;
+      if(key==='disciplina') throw new Error('late trap');
+      return Reflect.get(target,key,receiver);
+    },
+  });
+  assert.deepEqual(validateNpc(npc),[],'Proxy anidado no validó por descriptor');
+  const base={
+    playerPresent:true,playerRequestsHelp:false,playerRank:2,dutyImportance:50,dutyMode:'vigilar',
+    danger:0,missionUrgency:0,anomalyPresent:false,awayFromPost:false,superiorReachable:false,
+    relevantKnowledge:'SABE',topicSensitivity:50,formalRestriction:0,
+  };
+  const decision=chooseAction(npc,base);
+  assert.ok(Number.isFinite(decision.score)&&Number.isFinite(decision.raw),'Proxy NPC produjo utilidad no finita');
+  assert.equal(gets,0,'se ejecutó get trap anidado del NPC');
+}
+
 for(let i=0;i<N;i++){
   const last=rnd()<0.25?pick(actions):null;
   const npc={
