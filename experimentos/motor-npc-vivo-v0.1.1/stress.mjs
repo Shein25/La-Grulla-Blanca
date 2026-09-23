@@ -36,6 +36,32 @@ const inheritedContext=Object.create({
 });
 assert.notDeepEqual(validateActionContext(inheritedContext),[],'contexto heredado aceptado');
 
+{
+  const getterNpc={
+    id:'getter',name:'Getter',role:'Preflight',
+    traits:{disciplina:50,sociabilidad:50,curiosidad:50,prudencia:50,lealtad_institucional:50,empatia:50},
+    relationPlayer:{afinidad:50,confianza:50,respeto:50,deuda:0,temor:0,rivalidad:0},
+    knowledge:{R1:'SABE',R2:'SABE',R3:'SABE'},
+    behaviorState:{lastAction:null,consecutiveTurns:0},
+  };
+  let reads=0;
+  Object.defineProperty(getterNpc.knowledge,'R1',{enumerable:true,get(){reads++;return reads<3?'SABE':'toString'}});
+  assert.notDeepEqual(validateNpc(getterNpc),[],'getter de knowledge aceptado');
+  assert.equal(reads,0,'el getter de knowledge fue ejecutado por el validador');
+}
+
+{
+  const getterContext={
+    playerPresent:true,playerRequestsHelp:false,playerRank:2,dutyImportance:0,dutyMode:'ninguno',
+    danger:0,missionUrgency:0,anomalyPresent:false,awayFromPost:false,superiorReachable:false,
+    relevantKnowledge:'SABE',topicSensitivity:50,formalRestriction:0,
+  };
+  let reads=0;
+  Object.defineProperty(getterContext,'relevantKnowledge',{enumerable:true,get(){reads++;return reads<3?'SABE':'constructor'}});
+  assert.notDeepEqual(validateActionContext(getterContext),[],'getter de relevantKnowledge aceptado');
+  assert.equal(reads,0,'el getter de relevantKnowledge fue ejecutado por el validador');
+}
+
 for(let i=0;i<N;i++){
   const last=rnd()<0.25?pick(actions):null;
   const npc={
