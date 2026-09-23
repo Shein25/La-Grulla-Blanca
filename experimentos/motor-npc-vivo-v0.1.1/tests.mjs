@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { ACTION_ORDER, chooseAction, evaluateActions, evaluateDialogueTopic, KNOWLEDGE, simulateTurn, validateActionContext, validateNpc } from './engine.mjs';
+import { ACTION_ORDER, chooseAction, evaluateActions, evaluateDialogueTopic, KNOWLEDGE, simulateTurn, validateActionContext, validateDialogueContext, validateNpc } from './engine.mjs';
 import { NPCS, cloneNpc } from './npc-fixtures.mjs';
 import { BASE_CONTEXT, SCENARIOS } from './scenarios.mjs';
 
@@ -32,6 +32,46 @@ test('validateActionContext rechaza rango y dutyMode inválidos', () => {
   const c = { ...BASE_CONTEXT, playerRank: 7, dutyMode: 'inventado' };
   const e = validateActionContext(c);
   assert.ok(e.some(x => x.includes('playerRank')) && e.some(x => x.includes('dutyMode')));
+});
+
+test('rechaza estados de conocimiento heredados de Object.prototype', () => {
+  for (const bad of ['toString', 'constructor', '__proto__']) {
+    const n = cloneNpc('leal');
+    n.knowledge.R1 = bad;
+    assert.ok(validateNpc(n).some(x => x.includes('knowledge.R1 inválido')), bad);
+    assert.throws(() => evaluateDialogueTopic(n, 'R1', { playerRank:2, topicSensitivity:50, formalRestriction:0 }), /NPC inválido/, bad);
+
+    const ctx = { ...BASE_CONTEXT, relevantKnowledge: bad };
+    assert.ok(validateActionContext(ctx).some(x => x.includes('relevantKnowledge inválido')), bad);
+    assert.throws(() => chooseAction(cloneNpc('leal'), ctx), /Contexto inválido/, bad);
+  }
+});
+
+test('rechaza contextos con campos sólo heredados', () => {
+  const inheritedAction = Object.create(BASE_CONTEXT);
+  assert.notDeepEqual(validateActionContext(inheritedAction), []);
+  assert.throws(() => chooseAction(cloneNpc('leal'), inheritedAction), /Contexto inválido/);
+
+  const inheritedDialogue = Object.create({ playerRank:2, topicSensitivity:50, formalRestriction:0 });
+  assert.notDeepEqual(validateDialogueContext(inheritedDialogue), []);
+  assert.throws(() => evaluateDialogueTopic(cloneNpc('leal'), 'R1', inheritedDialogue), /Contexto de diálogo inválido/);
+});
+
+test('rechaza topicId heredado o no declarado', () => {
+  const n = cloneNpc('leal');
+  const ctx = { playerRank:2, topicSensitivity:50, formalRestriction:0 };
+  for (const bad of ['toString', 'constructor', '__proto__', 'R99']) {
+    assert.throws(() => evaluateDialogueTopic(n, bad, ctx), /Tema no definido/, bad);
+  }
+});
+
+test('diálogo exige propiedades propias obligatorias', () => {
+  for (const key of ['playerRank', 'topicSensitivity', 'formalRestriction']) {
+    const ctx = { playerRank:2, topicSensitivity:50, formalRestriction:0 };
+    delete ctx[key];
+    assert.ok(validateDialogueContext(ctx).some(x => x.includes(`dialogue: falta ${key}`)), key);
+    assert.throws(() => evaluateDialogueTopic(cloneNpc('leal'), 'R1', ctx), /Contexto de diálogo inválido/, key);
+  }
 });
 
 test('misma entrada produce misma decisión', () => {
