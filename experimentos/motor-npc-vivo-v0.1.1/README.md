@@ -179,8 +179,32 @@ La cabeza actual corrige ambos:
 
 La suite declara ahora 37 llamadas de test; el bloque de fixtures se ejecuta para tres NPC, por lo que se esperan **39 ejecuciones**. El resultado efectivo debe verificarlo el Retest 4 externo.
 
+## Retest 5 — snapshot validado contra Proxy/TOCTOU
+
+El Retest 4 confirmó:
+
+- **39/39 PASS**;
+- cinco stress de 10.000 casos PASS;
+- 26/26 campos obligatorios con `undefined` rechazados;
+- accessors, propiedades heredadas y entradas estáticas inválidas sin regresión.
+
+Detectó que un `Proxy` podía mostrar descriptores válidos al validador y devolver otros valores después mediante su trap `get`.
+
+La solución actual cambia la frontera del motor:
+
+1. cada API pública materializa un **snapshot interno plano** leyendo descriptores propios;
+2. valida exactamente ese snapshot;
+3. Utility AI y diálogo calculan exclusivamente sobre el snapshot;
+4. no vuelven a leer el objeto externo;
+5. `simulateTurn()` clona el snapshot validado, no el input original;
+6. se añadieron guardas defensivas que impiden retornar utilidad o disclosure no finitos;
+7. se añadieron pruebas con Proxy en contexto, diálogo, traits y behaviorState;
+8. se cubre un trap `get` que lanza y un descriptor que cambia entre una validación externa y la llamada de la API.
+
+La suite declara ahora 42 llamadas de test; el bloque de fixtures corre para tres NPC, así que se esperan **44 ejecuciones**.
+
 ## Próximo paso
 
-**No mergear todavía.** Ejecutar el Retest 4 indicado en `PROMPT_AGENTE_TEST.md`.
+**No mergear todavía.** Ejecutar el Retest 5 indicado en `PROMPT_AGENTE_TEST.md`.
 
-Sólo si el informe termina en `V011_APTO_PARA_GOAP`, considerar el merge y diseñar v0.2 como GOAP experimental.
+Sólo si el informe termina en `V011_APTO_PARA_GOAP`, considerar congelar v0.1.1 y mergear el PR #1.
