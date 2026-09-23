@@ -1,0 +1,30 @@
+export const BASE_WORLD = Object.freeze({
+  at:'puesto',
+  playerPresent:true,
+  playerReachable:true,
+  playerNeedsHelp:true,
+  playerHelped:false,
+  anomalyPresent:true,
+  anomalyInvestigated:false,
+  hasEvidence:false,
+  superiorAvailable:true,
+  superiorInformed:false,
+  passageOpen:true,
+  messengerAvailable:true,
+  dutyPending:true,
+  dutySatisfied:false,
+  waited:false,
+  urgency:60,
+  danger:45,
+  dutyImportance:65,
+});
+
+export const WORLDS = Object.freeze({
+  comun:{...BASE_WORLD},
+  crisis_jugador:{...BASE_WORLD,urgency:95,danger:80,dutyImportance:30,anomalyPresent:false},
+  anomalia:{...BASE_WORLD,playerNeedsHelp:false,dutyPending:false,urgency:55,danger:40},
+  deber:{...BASE_WORLD,playerPresent:false,playerNeedsHelp:false,anomalyPresent:false,urgency:10,danger:10,dutyImportance:95},
+  reporte:{...BASE_WORLD,playerPresent:false,playerNeedsHelp:false,anomalyPresent:false,hasEvidence:true,anomalyInvestigated:true,dutyPending:false,urgency:80,danger:80},
+  reporte_paso_cerrado:{...BASE_WORLD,playerPresent:false,playerNeedsHelp:false,anomalyPresent:false,hasEvidence:true,anomalyInvestigated:true,dutyPending:false,urgency:80,danger:80,passageOpen:false},
+  ayuda_inalcanzable:{...BASE_WORLD,playerReachable:false,urgency:95,dutyImportance:20},
+});
