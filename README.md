@@ -10,7 +10,8 @@ La prioridad actual es terminar y estabilizar el monolito antes de migrarlo a un
 
 ### Roadmap activo
 
-- 3C.3B — Integración de Atlas en producción
+- 3C.3 — Atlas: **CERRADO**
+- 3C.4 — Ecología / errantes / herbalismo: **CERRADO**
 - 3C.5 — NPC canónicos y movilidad
 - 3C.6 — Prólogo + M01–M07
 - 3C.7 — M08–M15
@@ -22,15 +23,17 @@ Después de aprobar 3C.10 se congelará una versión final del Arco 1 y comenzar
 
 ## Baseline técnico actual
 
-Baseline canónico previo a las integraciones en curso:
+Baseline canónico aprobado:
 
-`grulla-blanca_ver72a.html`
+`grulla-blanca_ver73.html`
 
 SHA-256:
 
-`5fa5306940dba5c9c829b67b4e59bd03d1a9e0153aa8bd7ec1dd707c56f70820`
+`a66310f06fbf8c76e054df89f9d8cdf6959ac64c79400694474351c0936bc6dc`
 
-Las versiones posteriores sólo se convierten en baseline después de una auditoría independiente.
+`SAVE_SCHEMA_VERSION = 2`
+
+La promoción a baseline se realizó después de la auditoría independiente de 3C.3B del 2026-09-23.
 
 ## Filosofía de desarrollo
 
@@ -44,20 +47,7 @@ Durante el cierre del Arco 1:
 
 ## Arquitectura futura
 
-Después de 3C.10, el proyecto migrará progresivamente hacia una estructura modular con separación de:
-
-- motor y estado;
-- mundo y topología;
-- Atlas;
-- NPC;
-- combate;
-- profesiones y recolección;
-- misiones;
-- persistencia;
-- UI;
-- datos;
-- tests;
-- assets.
+Después de 3C.10, el proyecto migrará progresivamente hacia una estructura modular con separación de motor/estado, mundo/topología, Atlas, NPC, combate, profesiones, misiones, persistencia, UI, datos, tests y assets.
 
 El objetivo es desarrollar y probar sobre módulos, y poder generar una versión web jugable y, si conviene, una distribución HTML autocontenida.
 
@@ -65,4 +55,4 @@ El objetivo es desarrollar y probar sobre módulos, y poder generar una versión
 
 Este repositorio podrá utilizarse más adelante para publicar una versión jugable mediante GitHub Pages.
 
-La publicación web se configurará una vez que exista un baseline estable apropiado para distribución.
+La publicación web se configurará una vez que exista un baseline apropiado para distribución pública.
