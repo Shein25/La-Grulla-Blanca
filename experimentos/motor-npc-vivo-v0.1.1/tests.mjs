@@ -205,6 +205,95 @@ test('rechaza getter en contexto de diálogo sin ejecutarlo', () => {
   assert.equal(reads, 0);
 });
 
+test('Proxy de contexto no puede cambiar valores entre validación y cálculo', () => {
+  let gets = 0;
+  const base = { ...BASE_CONTEXT, dutyMode:'ninguno', playerPresent:false, playerRequestsHelp:false, anomalyPresent:false, awayFromPost:false, superiorReachable:false };
+  const proxy = new Proxy(base, {
+    get(target, key, receiver) {
+      gets++;
+      if (key === 'missionUrgency') return NaN;
+      return Reflect.get(target, key, receiver);
+    },
+  });
+  assert.deepEqual(validateActionContext(proxy), []);
+  const d = chooseAction(cloneNpc('leal'), proxy);
+  assert.ok(Number.isFinite(d.score) && Number.isFinite(d.raw));
+  assert.equal(gets, 0);
+});
+
+test('Proxy de diálogo no puede inyectar NaN mediante get trap', () => {
+  let gets = 0;
+  const proxy = new Proxy({ playerRank:2, topicSensitivity:50, formalRestriction:0 }, {
+    get(target, key, receiver) {
+      gets++;
+      if (key === 'topicSensitivity') return NaN;
+      return Reflect.get(target, key, receiver);
+    },
+  });
+  assert.deepEqual(validateDialogueContext(proxy), []);
+  const d = evaluateDialogueTopic(cloneNpc('leal'), 'R1', proxy);
+  assert.ok(Number.isFinite(d.disclosure) && Number.isFinite(d.raw));
+  assert.equal(gets, 0);
+});
+
+test('Proxy anidado del NPC se materializa una sola vez y simulateTurn usa snapshot', () => {
+  const n = cloneNpc('disciplinado');
+  let traitGets = 0;
+  let behaviorGets = 0;
+  n.traits = new Proxy(n.traits, {
+    get(target, key, receiver) {
+      traitGets++;
+      if (key === 'disciplina') return NaN;
+      return Reflect.get(target, key, receiver);
+    },
+  });
+  n.behaviorState = new Proxy(n.behaviorState, {
+    get(target, key, receiver) {
+      behaviorGets++;
+      if (key === 'consecutiveTurns') return -Infinity;
+      return Reflect.get(target, key, receiver);
+    },
+  });
+  assert.deepEqual(validateNpc(n), []);
+  const r = simulateTurn(n, BASE_CONTEXT);
+  assert.ok(Number.isFinite(r.actionScore) && Number.isFinite(r.actionRaw));
+  assert.ok(Number.isInteger(r.nextNpc.behaviorState.consecutiveTurns));
+  assert.equal(traitGets, 0);
+  assert.equal(behaviorGets, 0);
+});
+
+test('get trap tardío que lanza no es ejecutado por el motor', () => {
+  const n = cloneNpc('leal');
+  let gets = 0;
+  n.traits = new Proxy(n.traits, {
+    get(target, key, receiver) {
+      gets++;
+      if (key === 'disciplina') throw new Error('late trap');
+      return Reflect.get(target, key, receiver);
+    },
+  });
+  const d = chooseAction(n, BASE_CONTEXT);
+  assert.ok(Number.isFinite(d.score) && Number.isFinite(d.raw));
+  assert.equal(gets, 0);
+});
+
+test('descriptor que cambia después de validar se revalida dentro de la API', () => {
+  const target = { ...BASE_CONTEXT, dutyMode:'ninguno' };
+  let urgencyReads = 0;
+  const proxy = new Proxy(target, {
+    getOwnPropertyDescriptor(obj, key) {
+      const desc = Reflect.getOwnPropertyDescriptor(obj, key);
+      if (key === 'missionUrgency' && desc) {
+        urgencyReads++;
+        return { ...desc, value: urgencyReads === 1 ? 50 : NaN };
+      }
+      return desc;
+    },
+  });
+  assert.deepEqual(validateActionContext(proxy), []);
+  assert.throws(() => chooseAction(cloneNpc('leal'), proxy), /Contexto inválido/);
+});
+
 test('misma entrada produce misma decisión', () => {
   const npc = cloneNpc('disciplinado');
   assert.deepEqual(chooseAction(npc, BASE_CONTEXT), chooseAction(npc, BASE_CONTEXT));
