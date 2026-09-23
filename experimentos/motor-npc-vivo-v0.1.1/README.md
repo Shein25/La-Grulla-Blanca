@@ -139,8 +139,27 @@ La candidata actual de esta rama corrige ese hueco:
 
 La suite contiene ahora **30 ejecuciones de prueba** (28 bloques declarados, con el bloque de fixtures ejecutándose para tres NPC). Este número describe la suite; el resultado definitivo debe obtenerlo el retest externo de la nueva cabeza de rama.
 
+## Retest 3 — registros de datos sin accessors
+
+El segundo retest confirmó el hardening contra propiedades heredadas, pero encontró que una propiedad **propia** implementada como getter podía cambiar entre validación y uso y producir `NaN`.
+
+La cabeza actual endurece el contrato: los NPC y contextos aceptados por el motor deben ser **registros de datos**, no objetos con accessors en los campos consumidos.
+
+Se añadió:
+
+- lectura de validación mediante `Object.getOwnPropertyDescriptor()`, sin ejecutar getters;
+- rechazo explícito de getters/setters en campos top-level del NPC;
+- rechazo de accessors en traits, vínculos, knowledge y behaviorState;
+- rechazo de accessors en todos los campos obligatorios del contexto de acción;
+- rechazo de accessors en contexto de diálogo;
+- pruebas negativas de getters mutables;
+- comprobación de que los getters rechazados ni siquiera sean ejecutados;
+- preflight de getters mutables en cada stress run.
+
+No se modificaron pesos, reglas sociales, `dutyMode`, desempate, inercia ni las tres personalidades.
+
 ## Próximo paso
 
-**No mergear todavía.** Repetir la auditoría externa sobre la cabeza actual de `experiment/motor-npc-v0.1.1`.
+**No mergear todavía.** Ejecutar el Retest 3 indicado en `PROMPT_AGENTE_TEST.md`.
 
-Sólo si el nuevo informe termina en `V011_APTO_PARA_GOAP`, considerar el merge y diseñar v0.2 como GOAP experimental, manteniendo Utility AI para elegir objetivos y un planner separado para decidir cómo alcanzarlos.
+Sólo si el informe termina en `V011_APTO_PARA_GOAP`, considerar el merge y diseñar v0.2 como GOAP experimental.
