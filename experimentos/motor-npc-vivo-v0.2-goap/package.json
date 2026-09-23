@@ -1,10 +1,11 @@
 {
   "name": "la-grulla-blanca-motor-npc-vivo-goap-lab",
   "private": true,
-  "version": "0.2.0",
+  "version": "0.2.1",
   "type": "module",
   "scripts": {
     "test": "node tests.mjs",
-    "stress": "node stress.mjs 10000 1337"
+    "stress": "node stress.mjs 10000 1337",
+    "stress:dynamic": "node dynamic-stress.mjs 5000 1337"
   }
 }
