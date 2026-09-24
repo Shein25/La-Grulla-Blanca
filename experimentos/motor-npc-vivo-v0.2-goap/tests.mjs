@@ -37,6 +37,27 @@ test('empate GOAP es determinista por id',()=>{
   assert.deepEqual(r.plan,['a']);
 });
 
+test('desempate lexicográfico usa secuencia de IDs y no JSON serializado',()=>{
+  const actions=[
+    {id:'a!',cost:1,preconditions:{x:0},effects:{x:1}},
+    {id:'a',cost:1,preconditions:{x:0},effects:{x:1}},
+  ];
+  const r=planGOAP({x:0},{x:1},actions);
+  assert.deepEqual(r.plan,['a']);
+});
+
+test('desempate lexicográfico por secuencia es estable con puntuación y longitudes distintas',()=>{
+  const actions=[
+    {id:'a!',cost:1,preconditions:{stage:0},effects:{stage:1,route:'bang'}},
+    {id:'a',cost:1,preconditions:{stage:0},effects:{stage:1,route:'plain'}},
+    {id:'z',cost:1,preconditions:{stage:1,route:'plain'},effects:{done:true}},
+    {id:'b',cost:1,preconditions:{stage:1,route:'bang'},effects:{done:true}},
+  ];
+  const r=planGOAP({stage:0,route:'',done:false},{done:true},actions);
+  assert.deepEqual(r.plan,['a','z']);
+  assert.equal(r.cost,2);
+});
+
 test('empate de coste prefiere menos pasos',()=>{
   const actions=[
     {id:'directo',cost:2,preconditions:{start:true},effects:{done:true}},
@@ -215,6 +236,50 @@ test('executor exige replanning si cambian precondiciones',()=>{
   assert.equal(x.status,'REPLAN_REQUIRED');
   assert.equal(x.executed,null);
   assert.equal(x.goalObsolete,false);
+});
+
+test('plan del controller lleva goal y relevancia vinculados',()=>{
+  const c=decideAndPlan(cloneNpc('leal'),WORLDS.crisis_jugador,GOAP_ACTIONS);
+  assert.deepEqual(c.plan.goal,c.selectedGoal.goal);
+  assert.deepEqual(c.plan.relevance,c.selectedGoal.relevance);
+  assert.equal(c.plan.goalId,'HELP_PLAYER');
+});
+
+test('relevancia vinculada protege aunque se omita el quinto argumento',()=>{
+  const c=decideAndPlan(cloneNpc('leal'),WORLDS.crisis_jugador,GOAP_ACTIONS);
+  const changed={...WORLDS.crisis_jugador,playerNeedsHelp:false};
+  const x=executeNext(c.plan,changed,c.selectedGoal.goal,GOAP_ACTIONS);
+  assert.equal(x.status,'REPLAN_REQUIRED');
+  assert.equal(x.goalObsolete,true);
+  assert.equal(x.executed,null);
+  assert.equal(x.world.at,'puesto');
+});
+
+test('executeWholePlan usa relevancia vinculada aunque se omita el sexto argumento',()=>{
+  const c=decideAndPlan(cloneNpc('leal'),WORLDS.crisis_jugador,GOAP_ACTIONS);
+  const changed={...WORLDS.crisis_jugador,playerNeedsHelp:false};
+  const x=executeWholePlan(c.plan,changed,c.selectedGoal.goal,GOAP_ACTIONS,30);
+  assert.equal(x.status,'REPLAN_REQUIRED');
+  assert.equal(x.trace.length,1);
+  assert.equal(x.trace[0].executed,null);
+  assert.equal(x.trace[0].goalObsolete,true);
+  assert.equal(x.world.at,'puesto');
+});
+
+test('plan no vinculado sin relevance se rechaza antes de efectos',()=>{
+  const plan={status:'PLAN_FOUND',plan:['ir_jugador']};
+  assert.throws(
+    ()=>executeNext(plan,WORLDS.crisis_jugador,GOALS.HELP_PLAYER,GOAP_ACTIONS),
+    /relevance es obligatoria/
+  );
+});
+
+test('contrato vinculado rechaza relevance explícita contradictoria',()=>{
+  const c=decideAndPlan(cloneNpc('leal'),WORLDS.crisis_jugador,GOAP_ACTIONS);
+  assert.throws(
+    ()=>executeNext(c.plan,WORLDS.crisis_jugador,c.selectedGoal.goal,GOAP_ACTIONS,{playerNeedsHelp:false}),
+    /relevance explícita no coincide/
+  );
 });
 
 test('objetivo obsoleto se detecta antes de movimiento aún legal',()=>{
