@@ -1,0 +1,9 @@
+{
+  "name": "area-activation-dormancy-v0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests.mjs",
+    "stress": "node stress.mjs 1337 20000"
+  }
+}
