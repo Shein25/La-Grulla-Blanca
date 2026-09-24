@@ -1,4 +1,4 @@
-# Encargo para agente externo — Auditoría REV2 Motor NPC Vivo v0.2.1 GOAP
+# Encargo para agente externo — Auditoría REV3 Motor NPC Vivo v0.2.2 GOAP
 
 Audita exclusivamente la **cabeza actual** de:
 
@@ -8,21 +8,40 @@ Directorio:
 
 `experimentos/motor-npc-vivo-v0.2-goap/`
 
-La REV1 terminó en:
+PR:
 
-`V02_GOAP_REQUIERE_CORRECCIONES`
+`#2`
 
-Esta revisión debe comprobar específicamente las correcciones v0.2.1.
+La REV2 terminó en:
 
-NO modifiques el juego principal.
-NO toques `grulla-blanca_ver73.html`.
-NO uses los 32 NPC canónicos.
-NO uses la topología canónica.
-NO ajustes pesos ni costes.
+`V021_GOAP_REQUIERE_CORRECCIONES`
+
+REV2 confirmó el núcleo de v0.2.1 y encontró dos defectos localizados:
+
+1. relevancia del objetivo opcional en Executor;
+2. desempate lexicográfico basado en JSON serializado.
+
+v0.2.2 sólo pretende corregir esos dos defectos y añadir regresiones.
+
+NO modifiques el repositorio.
+NO modifiques producción.
+NO uses NPC canónicos ni topología canónica.
+NO ajustes pesos.
+NO ajustes costes.
 NO hagas merge.
 NO implementes funciones durante la auditoría.
 
-## 1. Regresión oficial
+## 1. Verificación de revisión
+
+Antes de probar:
+
+- reporta HEAD local;
+- reporta HEAD remoto;
+- confirma que coinciden;
+- lee `CAMBIOS_v0.2.2.md`;
+- lee este prompt completo.
+
+## 2. Suite oficial
 
 Ejecuta:
 
@@ -30,11 +49,15 @@ Ejecuta:
 node tests.mjs
 ```
 
-La candidata actual contiene **40 tests declarados**.
+La candidata declara **47 tests**.
 
-Reporta número real PASS/FAIL y exit code. No asumas que 40 debe pasar: compruébalo.
+Reporta:
 
-## 2. Stress estático
+- PASS reales;
+- FAIL reales;
+- exit code.
+
+## 3. Stress estático
 
 Ejecuta:
 
@@ -46,17 +69,11 @@ node stress.mjs 10000 999
 node stress.mjs 10000 20260923
 ```
 
-Reporta:
+Confirma ausencia de regresiones respecto de REV2.
 
-- objetivos elegidos;
-- NO_PLANNABLE_GOAL;
-- PLANNING_DEFERRED;
-- errores;
-- determinismo.
+## 4. Stress dinámico
 
-## 3. Stress dinámico incluido
-
-Ejecuta al menos:
+Ejecuta:
 
 ```bash
 node dynamic-stress.mjs 5000 1337
@@ -64,257 +81,212 @@ node dynamic-stress.mjs 5000 42
 node dynamic-stress.mjs 5000 20260923
 ```
 
-Verifica:
+IMPORTANTE:
 
-- GOAL_REACHED;
-- REPLAN_REQUIRED;
-- replans exitosos;
-- cambios de objetivo;
-- PLANNING_DEFERRED;
-- NO_PLANNABLE_GOAL;
-- estados repetidos;
-- STEP_LIMIT;
-- movimientos inútiles después de objetivo obsoleto.
+`dynamic-stress.mjs` ya no debe pasar `selectedGoal.relevance` como argumento separado a `executeNext`.
 
-Debe haber **0 movimientos ejecutados después de que la relevancia del objetivo ya sea falsa**.
+Verifica que la protección contra objetivos obsoletos provenga del plan vinculado.
 
-## 4. Regresión exacta de -0 / 0
+Debe haber:
 
-Reproduce:
+```text
+movimientos inútiles tras obsolescencia = 0
+```
+
+## 5. Hallazgo REV2 #1 — relevancia inseparable
+
+Caso obligatorio:
+
+```text
+NPC: Leal
+mundo: WORLDS.crisis_jugador
+objetivo: HELP_PLAYER
+plan: ir_jugador → ayudar_jugador
+```
+
+Después de planificar:
 
 ```js
-planGOAP(
-  { x: -0 },
-  { x: 0 },
-  [{ id:'set_zero', cost:1, preconditions:{}, effects:{x:0} }]
+const changed={...WORLDS.crisis_jugador,playerNeedsHelp:false};
+```
+
+Llama exactamente:
+
+```js
+executeNext(
+  decision.plan,
+  changed,
+  decision.selectedGoal.goal,
+  GOAP_ACTIONS
 )
 ```
 
+NO pases un quinto argumento.
+
 Debe devolver:
 
-- PLAN_FOUND;
-- plan `['set_zero']`;
-- coste 1.
+- `REPLAN_REQUIRED`;
+- `goalObsolete === true`;
+- `executed === null`;
+- posición sin cambio.
 
-Prueba también que la identidad siga siendo determinista para:
+Repite con:
 
-- null;
-- false/true;
-- strings;
-- números finitos normales;
-- facts ausentes vs presentes.
-
-La equivalencia de `factsMatch()` y la de la clave de estado no deben contradecirse.
-
-## 5. Costes
-
-Comprueba que `action.cost` sólo acepta **enteros seguros > 0**.
-
-Deben rechazarse:
-
-- 0;
-- negativos;
-- fracciones;
-- Number.MIN_VALUE;
-- NaN;
-- Infinity;
-- -Infinity;
-- 1e308.
-
-Prueba acumulación con:
-
-```text
-stage1 cost = Number.MAX_SAFE_INTEGER
-stage2 cost = 1
+```js
+executeWholePlan(
+  decision.plan,
+  changed,
+  decision.selectedGoal.goal,
+  GOAP_ACTIONS,
+  30
+)
 ```
 
-No debe salir `Infinity`.
+sin sexto argumento.
 
-Resultado esperado si no existe otra ruta:
+El primer paso NO debe ejecutar `ir_jugador`.
 
-`COST_OVERFLOW`
+## 6. Contrato del plan ejecutable
 
-Busca cualquier caso que consiga producir coste no finito o coste acumulado que no aumente.
+Confirma que un `PLAN_READY` producido por controller contiene:
 
-## 6. Optimalidad contra oráculo independiente
+- `plan.goal`;
+- `plan.relevance`;
+- `plan.goalId`.
 
-Vuelve a comparar contra búsqueda exhaustiva/brute force en grafos pequeños reproducibles.
+Deben coincidir con `selectedGoal`.
 
-Incluye:
+Prueba también:
 
-- 2–6 nodos;
-- ciclos;
-- no-ops;
-- rutas de mismo coste;
-- distinto número de pasos;
-- reordenamiento de acciones;
-- retornos a estados anteriores.
+### Plan no vinculado
 
-Comprueba:
+Un objeto manual:
 
-1. existencia de plan;
-2. coste mínimo;
-3. número de pasos usado como segundo desempate;
-4. plan lexicográfico como tercer desempate;
-5. determinismo.
+```js
+{status:'PLAN_FOUND', plan:['ir_jugador']}
+```
 
-Reporta discrepancias exactas si existen.
+sin relevancia explícita debe rechazarse **antes de aplicar efectos**.
 
-## 7. Poda de caminos equivalentes
+### Contradicción explícita
 
-Reproduce un grafo de **12 etapas** con dos acciones equivalentes por etapa.
+Si el plan vinculado lleva una relevancia y el caller pasa otra distinta, debe rechazarse y no ejecutar efectos.
 
-La REV1 producía explosión exponencial.
+Haz lo mismo con un goal explícito contradictorio.
 
-Ahora debe:
+### Goal ya alcanzado
 
-- encontrar plan de coste 12;
-- no necesitar cientos/miles de expansiones;
-- no devolver SEARCH_LIMIT con presupuesto 100.
+Si el goal vinculado ya está satisfecho, debe seguir devolviendo `GOAL_REACHED` sin ejecutar nada.
 
-Reporta:
+## 7. Hallazgo REV2 #2 — desempate `a` / `a!`
 
-- expansions;
-- generated;
-- maxFrontier.
+Reproduce exactamente:
 
-Prueba además objetivo imposible con varias rutas equivalentes.
+```js
+planGOAP(
+  {x:0},
+  {x:1},
+  [
+    {id:'a!',cost:1,preconditions:{x:0},effects:{x:1}},
+    {id:'a', cost:1,preconditions:{x:0},effects:{x:1}},
+  ]
+)
+```
 
-## 8. Facts irrelevantes
+Debe elegir:
 
-Construye estados con muchos flags que ninguna cadena causal hacia el goal utiliza.
+```js
+['a']
+```
 
-Confirma que:
+Invierte el array de acciones y debe seguir eligiendo `['a']`.
 
-- no multiplican la identidad de búsqueda;
-- `relevantFacts` no los incluye;
-- el plan y coste no cambian al añadir/quitar esos flags;
-- el número de expansiones permanece esencialmente ligado a los facts relevantes.
+## 8. Desempate secuencial independiente
 
-Intenta encontrar una poda incorrecta donde se elimine un fact que sí era necesario para una precondición futura.
+Construye casos de igual:
 
-## 9. maxExpansions y maxFrontier
+- coste;
+- número de pasos;
 
-Prueba:
+con IDs de:
 
-- maxExpansions = -1 → rechazo;
-- maxExpansions = 0 → SEARCH_LIMIT con expansions 0;
-- maxExpansions = 1 en plan directo de un paso → debe poder encontrarlo con 1 expansión;
-- maxFrontier = 0 → rechazo;
-- frontera insuficiente → FRONTIER_LIMIT;
-- nunca informar expansions > maxExpansions;
-- nunca informar maxFrontier observado > límite configurado.
+- distinta longitud;
+- prefijos;
+- puntuación;
+- dígitos;
+- mayúsculas/minúsculas;
+- Unicode simple si lo consideras razonable dentro del dominio de strings aceptado.
 
-## 10. NO_PLAN vs búsqueda inconclusa
+Compara contra un oráculo independiente que ordene **secuencias de IDs**, no JSON serializado.
 
-Éste es un criterio crítico.
+Criterio esperado:
 
-Con Leal en `WORLDS.comun` y presupuesto insuficiente para HELP_PLAYER:
+```text
+coste
+→ pasos
+→ secuencia lexicográfica de IDs
+```
 
-- el controller NO debe saltar a FULFILL_DUTY;
-- debe conservar HELP_PLAYER como objetivo prioritario;
-- debe devolver `PLANNING_DEFERRED`.
+La comparación debe ser determinista al reordenar el array de acciones.
 
-Comprueba lo mismo para:
+Reporta cualquier discrepancia y el par mínimo que la reproduzca.
 
+## 9. Regresión del planner
+
+Repite al menos una muestra sustancial de las pruebas independientes de REV2:
+
+- `-0` vs `0`;
+- costes inválidos;
+- COST_OVERFLOW;
+- 12 etapas con caminos equivalentes;
+- facts irrelevantes;
+- maxExpansions;
+- maxFrontier;
 - SEARCH_LIMIT;
 - FRONTIER_LIMIT;
-- COST_OVERFLOW cuando pueda construirse un caso aplicable.
+- NO_PLAN vs PLANNING_DEFERRED;
+- brute force de grafos pequeños.
 
-En cambio, si HELP_PLAYER recibe un `NO_PLAN` demostrado, el fallback al siguiente objetivo debe seguir funcionando.
+No hace falta aumentar alcance si no hay regresión.
 
-## 11. Vigencia del objetivo
+## 10. Replanning
 
-Prueba específicamente:
+Con plan vinculado y sin pasar relevancia por separado, prueba:
 
-### HELP_PLAYER
-
-Plan inicial:
-
-`ir_jugador → ayudar_jugador`
-
-Antes del primer paso cambia:
-
-`playerNeedsHelp=false`
-
-Aunque `ir_jugador` siga siendo físicamente aplicable, Executor debe:
-
-- NO ejecutarlo;
-- devolver REPLAN_REQUIRED;
-- marcar el objetivo como obsoleto;
-- no modificar la posición.
-
-Prueba equivalentes para:
-
-- anomalyPresent=false;
-- dutyPending=false;
-- hasEvidence=false.
-
-Confirma que si el goal ya está cumplido se devuelve GOAL_REACHED antes de considerar obsolescencia.
-
-## 12. Replanning
-
-Repite los casos REV1:
-
-- paso cerrado;
-- superior desaparece;
-- cambio de posición;
 - jugador deja de necesitar ayuda;
-- deber retirado;
-- anomalía desaparece.
+- deber desaparece;
+- anomalía desaparece;
+- evidencia desaparece;
+- paso se cierra;
+- superior desaparece;
+- posición cambia.
 
-Comprueba que ningún efecto se aplique cuando una acción o goal ya no sea válido.
+Ningún objetivo obsoleto debe provocar un paso inútil antes del replan.
 
-Después vuelve a llamar al controller y verifica alternativa, cambio de objetivo o PLANNING_DEFERRED según corresponda.
+## 11. Executor
 
-## 13. Executor
+Confirma:
 
-Revisa:
-
+- no mutación del mundo de entrada;
+- efectos una sola vez;
 - plan vacío;
-- goal ya satisfecho;
-- goal obsoleto;
 - acción inexistente;
 - precondición obsoleta;
 - maxSteps 0;
 - maxSteps negativo;
-- efectos exactamente una vez;
-- no mutación del input;
 - STEP_LIMIT;
-- GOAL_REACHED sólo con hechos realmente satisfechos.
+- GOAL_REACHED sólo con goal satisfecho;
+- ausencia del contrato de relevancia no puede degradarse silenciosamente a `{}`.
 
-## 14. State explosion y rendimiento
+## 12. Personalidades y arquitectura
 
-Construye casos adversariales con:
+Sin cambios esperados:
 
-- caminos equivalentes;
-- flags irrelevantes;
-- objetivos imposibles;
-- 32 NPC ficticios planificando repetidamente.
-
-Compara con REV1 si es posible.
-
-Reporta:
-
-- expansions;
-- generated;
-- maxFrontier;
-- tiempo aproximado;
-- cualquier caso donde un grafo pequeño aún consuma presupuesto excesivo.
-
-## 15. Personalidades — no regresión
-
-En `WORLDS.comun` debe mantenerse:
-
-- Disciplinado → FULFILL_DUTY
-- Leal → HELP_PLAYER
-- Curioso → INVESTIGATE_ANOMALY
-
-No ajustes pesos.
-
-Repite algún barrido de urgency/danger/dutyImportance para confirmar determinismo.
-
-## 16. Arquitectura
+```text
+Disciplinado → FULFILL_DUTY
+Leal         → HELP_PLAYER
+Curioso      → INVESTIGATE_ANOMALY
+```
 
 Confirma que sigue separada:
 
@@ -324,30 +296,37 @@ GOAP       → plan lógico
 Executor   → ejecución/verificación
 ```
 
-GOAP no debe hacer pathfinding de rooms.
+GOAP no debe realizar pathfinding de rooms.
 
-En producción futura una acción lógica como `ir_superior` deberá delegar movimiento a la capa física de las 329 salas y gates.
+## 13. Rendimiento
 
-## 17. Riesgos pendientes
+Repite la prueba conceptual de 32 NPC ficticios y algunos casos adversariales.
 
-Distingue entre:
+No se busca optimización nueva; sólo detectar regresiones provocadas por v0.2.2.
 
-- bugs que bloquean v0.2.1;
-- optimizaciones futuras;
-- funciones deliberadamente pospuestas a memoria/scheduler/NPC↔NPC.
+## 14. Alcance
 
-No exijas implementar memoria, pathfinding canónico ni scheduling completo en esta revisión.
+No exijas todavía:
+
+- memoria episódica;
+- scheduler real;
+- NPC↔NPC;
+- topología canónica;
+- pathfinding real;
+- save/load definitivo del motor experimental.
+
+Distingue bugs bloqueantes de trabajo futuro.
 
 ## Entregable
 
 Devuelve únicamente:
 
-`Informe_Test_Motor_NPC_Vivo_v0.2.1_GOAP_REV2.md`
+`Informe_Test_Motor_NPC_Vivo_v0.2.2_GOAP_REV3.md`
 
 Termina exactamente con uno:
 
-`V021_GOAP_APTO_PARA_ITERAR`
+`V022_GOAP_APTO_PARA_ITERAR`
 
-`V021_GOAP_REQUIERE_CORRECCIONES`
+`V022_GOAP_REQUIERE_CORRECCIONES`
 
-`V021_GOAP_FALLO_CONCEPTUAL`
+`V022_GOAP_FALLO_CONCEPTUAL`
