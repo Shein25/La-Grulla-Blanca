@@ -8,20 +8,41 @@ const EVENT_REQUIRED = Object.freeze([
 ]);
 
 function isPlainObject(value) {
-  return !!value && typeof value === 'object' && !Array.isArray(value) &&
-    (Object.getPrototypeOf(value) === Object.prototype || Object.getPrototypeOf(value) === null);
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+  try {
+    const proto=Object.getPrototypeOf(value);
+    return proto === Object.prototype || proto === null;
+  } catch {
+    return false;
+  }
 }
 
-function ownData(value, key, label, {required=true}={}) {
-  const descriptor = Object.getOwnPropertyDescriptor(value, key);
-  if (!descriptor) {
-    if (required) throw new TypeError(`${label}.${key} es obligatorio`);
-    return undefined;
+function descriptor(value,key,label) {
+  try {
+    return Object.getOwnPropertyDescriptor(value,key);
+  } catch {
+    throw new TypeError(`${label}.${key}: no se pudo inspeccionar el descriptor`);
   }
-  if (!Object.hasOwn(descriptor,'value')) {
+}
+
+function ownData(value, key, label) {
+  const desc=descriptor(value,key,label);
+  if (!desc) throw new TypeError(`${label}.${key} es obligatorio`);
+  if (!Object.hasOwn(desc,'value')) {
     throw new TypeError(`${label}.${key} debe ser una propiedad de datos propia`);
   }
-  return descriptor.value;
+  if (desc.value === undefined) throw new TypeError(`${label}.${key} no puede ser undefined`);
+  return desc.value;
+}
+
+function optionalOwnData(value,key,label) {
+  const desc=descriptor(value,key,label);
+  if (!desc) return {present:false,value:undefined};
+  if (!Object.hasOwn(desc,'value')) {
+    throw new TypeError(`${label}.${key} debe ser una propiedad de datos propia`);
+  }
+  if (desc.value === undefined) throw new TypeError(`${label}.${key} no puede ser undefined`);
+  return {present:true,value:desc.value};
 }
 
 function stringField(value, label) {
@@ -79,27 +100,44 @@ function captureEntry(raw, label='memory entry') {
   return out;
 }
 
+function captureEntriesArray(entries) {
+  if (!Array.isArray(entries)) throw new TypeError('memory.entries debe ser array');
+  const length=ownData(entries,'length','memory.entries');
+  if (!Number.isSafeInteger(length) || length < 0) throw new TypeError('memory.entries.length inválido');
+  const out=[];
+  for(let i=0;i<length;i++) {
+    const raw=ownData(entries,String(i),'memory.entries');
+    out.push(captureEntry(raw,`memory.entries[${i}]`));
+  }
+  return out;
+}
+
 function captureMemory(memory) {
   if (!isPlainObject(memory)) throw new TypeError('memory debe ser objeto plano');
   const version = ownData(memory,'version','memory');
-  const entries = ownData(memory,'entries','memory');
+  const clockRaw = ownData(memory,'clock','memory');
+  const entriesRaw = ownData(memory,'entries','memory');
   if (version !== 1) throw new TypeError('memory.version debe ser 1');
-  if (!Array.isArray(entries)) throw new TypeError('memory.entries debe ser array');
-  const captured = entries.map((entry,index)=>captureEntry(entry,`memory.entries[${index}]`));
+  const clock = clockRaw === null ? null : nonNegativeInt(clockRaw,'memory.clock');
+  const captured = captureEntriesArray(entriesRaw);
+  if (clock === null && captured.length) throw new TypeError('memory.clock no puede ser null si existen entries');
   const keys = new Set();
   for (const entry of captured) {
     if (keys.has(entry.key)) throw new TypeError(`memory contiene key duplicada: ${entry.key}`);
     keys.add(entry.key);
+    if (clock !== null && entry.lastTurn > clock) {
+      throw new TypeError(`memory entry ${entry.key} está en el futuro respecto de memory.clock`);
+    }
   }
-  return {version:1, entries:captured};
+  return {version:1,clock,entries:captured};
 }
 
 function captureEvent(event) {
   if (!isPlainObject(event)) throw new TypeError('event debe ser objeto plano');
   const out = {};
   for (const field of EVENT_REQUIRED) out[field] = ownData(event,field,'event');
-  out.expiresTurn = ownData(event,'expiresTurn','event',{required:false});
-  if (out.expiresTurn === undefined) out.expiresTurn = null;
+  const expiry = optionalOwnData(event,'expiresTurn','event');
+  out.expiresTurn = expiry.present ? expiry.value : null;
   out.key = stringField(out.key,'event.key');
   out.kind = stringField(out.kind,'event.kind');
   out.subject = stringField(out.subject,'event.subject');
@@ -130,32 +168,47 @@ function canonical(entries) {
   return [...entries].sort((a,b)=>a.key===b.key?0:(a.key<b.key?-1:1));
 }
 
-function activeAt(entry, turn) {
+function notExpiredAt(entry, turn) {
   return entry.expiresTurn === null || entry.expiresTurn >= turn;
+}
+
+function assertCurrentTurn(state,currentTurn) {
+  const turn=nonNegativeInt(currentTurn,'currentTurn');
+  if (state.clock !== null && turn < state.clock) {
+    throw new TypeError('currentTurn no puede preceder memory.clock');
+  }
+  return turn;
 }
 
 function normalizedOptions(options={}) {
   if (!isPlainObject(options)) throw new TypeError('options debe ser objeto plano');
-  const maxEntriesRaw = Object.hasOwn(options,'maxEntries') ? ownData(options,'maxEntries','options') : 32;
-  const maxEntries = boundedInt(maxEntriesRaw,'options.maxEntries',1,1024);
+  const read=optionalOwnData(options,'maxEntries','options');
+  const maxEntries = boundedInt(read.present?read.value:32,'options.maxEntries',1,1024);
   return {maxEntries};
 }
 
 export function createMemoryState() {
-  return {version:1, entries:[]};
+  return {version:1,clock:null,entries:[]};
 }
 
 export function pruneMemory(memory, currentTurn) {
   const state = captureMemory(memory);
-  const turn = nonNegativeInt(currentTurn,'currentTurn');
-  return {version:1, entries:canonical(state.entries.filter(entry=>activeAt(entry,turn)).map(cloneEntry))};
+  const turn = assertCurrentTurn(state,currentTurn);
+  return {
+    version:1,
+    clock:turn,
+    entries:canonical(state.entries.filter(entry=>notExpiredAt(entry,turn)).map(cloneEntry)),
+  };
 }
 
 export function recordMemory(memory, event, options={}) {
   const state = captureMemory(memory);
   const incoming = captureEvent(event);
   const {maxEntries} = normalizedOptions(options);
-  const live = state.entries.filter(entry=>activeAt(entry,incoming.turn));
+  if (state.clock !== null && incoming.turn < state.clock) {
+    throw new TypeError('event.turn no puede preceder memory.clock');
+  }
+  const live = state.entries.filter(entry=>notExpiredAt(entry,incoming.turn));
   const index = live.findIndex(entry=>entry.key===incoming.key);
 
   if (index >= 0) {
@@ -163,8 +216,8 @@ export function recordMemory(memory, event, options={}) {
     if (previous.kind !== incoming.kind || previous.subject !== incoming.subject) {
       throw new TypeError(`event.key ${incoming.key} contradice la identidad semántica existente`);
     }
-    if (incoming.turn < previous.lastTurn) {
-      throw new TypeError(`event.turn no puede retroceder para ${incoming.key}`);
+    if (previous.count === Number.MAX_SAFE_INTEGER) {
+      throw new RangeError(`memory count overflow para ${incoming.key}`);
     }
     live[index] = {
       key:previous.key,
@@ -194,27 +247,30 @@ export function recordMemory(memory, event, options={}) {
   }
 
   const retained = [...live].sort(compareRetention).slice(0,maxEntries);
-  return {version:1, entries:canonical(retained).map(cloneEntry)};
+  return {version:1,clock:incoming.turn,entries:canonical(retained).map(cloneEntry)};
 }
 
 function captureQuery(query) {
   if (!isPlainObject(query)) throw new TypeError('query debe ser objeto plano');
   const out={};
   for (const field of ['key','kind','subject']) {
-    if (Object.hasOwn(query,field)) out[field]=stringField(ownData(query,field,'query'),`query.${field}`);
+    const read=optionalOwnData(query,field,'query');
+    if (read.present) out[field]=stringField(read.value,`query.${field}`);
   }
   for (const field of ['minImportance','minConfidence']) {
-    if (Object.hasOwn(query,field)) out[field]=boundedInt(ownData(query,field,'query'),`query.${field}`,0,100);
+    const read=optionalOwnData(query,field,'query');
+    if (read.present) out[field]=boundedInt(read.value,`query.${field}`,0,100);
   }
-  if (Object.hasOwn(query,'limit')) out.limit=boundedInt(ownData(query,'limit','query'),'query.limit',1,1024);
+  const limit=optionalOwnData(query,'limit','query');
+  if (limit.present) out.limit=boundedInt(limit.value,'query.limit',1,1024);
   return out;
 }
 
 export function recallMemory(memory, currentTurn, query={}) {
   const state = captureMemory(memory);
-  const turn = nonNegativeInt(currentTurn,'currentTurn');
+  const turn = assertCurrentTurn(state,currentTurn);
   const q = captureQuery(query);
-  let entries = state.entries.filter(entry=>activeAt(entry,turn));
+  let entries = state.entries.filter(entry=>notExpiredAt(entry,turn));
   if (q.key !== undefined) entries=entries.filter(entry=>entry.key===q.key);
   if (q.kind !== undefined) entries=entries.filter(entry=>entry.kind===q.kind);
   if (q.subject !== undefined) entries=entries.filter(entry=>entry.subject===q.subject);
@@ -228,13 +284,17 @@ export function recallMemory(memory, currentTurn, query={}) {
 export function forgetMemory(memory, key) {
   const state = captureMemory(memory);
   const target = stringField(key,'key');
-  return {version:1,entries:canonical(state.entries.filter(entry=>entry.key!==target)).map(cloneEntry)};
+  return {
+    version:1,
+    clock:state.clock,
+    entries:canonical(state.entries.filter(entry=>entry.key!==target)).map(cloneEntry),
+  };
 }
 
 export function memoryStats(memory, currentTurn) {
   const state = captureMemory(memory);
-  const turn = nonNegativeInt(currentTurn,'currentTurn');
+  const turn = assertCurrentTurn(state,currentTurn);
   let active=0, expired=0;
-  for (const entry of state.entries) activeAt(entry,turn)?active++:expired++;
+  for (const entry of state.entries) notExpiredAt(entry,turn)?active++:expired++;
   return {total:state.entries.length,active,expired};
 }
