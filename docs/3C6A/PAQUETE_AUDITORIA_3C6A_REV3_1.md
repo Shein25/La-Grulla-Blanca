@@ -11,7 +11,7 @@ REV3.1 corrige los hallazgos N-01…N-10 de la auditoría de cierre REV3. No imp
 Raw:
 https://raw.githubusercontent.com/Shein25/La-Grulla-Blanca/audit/3c6a-rev3-1/docs/3C6A/Reconciliacion_3C6A_Prologo_M01_M07_REV3_1.md
 
-SHA-256 del artefacto local generado:
+SHA-256 del artefacto canónico en el HEAD auditado:
 `6ddf3cff6db22960d78f568bf25cb60ea9fd1354071c230063654cd5457c7070`
 
 ### Matriz
@@ -20,7 +20,7 @@ Raw:
 https://raw.githubusercontent.com/Shein25/La-Grulla-Blanca/audit/3c6a-rev3-1/docs/3C6A/Matriz_Implementacion_3C6A_Prologo_M01_M07_REV3_1.json
 
 SHA-256 del artefacto local generado:
-`40022e3aae7ea8f5691b92ec367d8763584a60f15d2dd622a6398c5b5a433330`
+`96d6a73383fdd5636005460bd3483f3e6b7f8f358a5354fdaa1f76cab0e3d881`
 
 ## Auditoría previa que origina REV3.1
 
