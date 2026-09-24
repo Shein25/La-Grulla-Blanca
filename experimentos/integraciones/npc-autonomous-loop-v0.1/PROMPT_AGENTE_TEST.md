@@ -6,6 +6,8 @@ Verificá blobs exactos de los diez módulos runtime: Memory `9108779974baebc3ef
 
 Ejecutá 101+ tests y confirmá Golden A–R. Ejecutá stress con seeds `1337`, `1`, `42`, `999` y `20260924`, 3.000 turnos y 16 NPC por seed; repetí `1337` y compará digest exacto. Auditá Scheduler como única puerta cerebral, Decision/Execution mutuamente excluyentes, cero Utility durante session activa, cero acciones al crear plan, máximo una acción por dispatch, base relations nunca persistidas, behaviorState sólo en nuevas decisiones, cadena Memory → Relations → Utility, world changes, presupuesto Scheduler, entradas hostiles, determinismo e inmutabilidad. Revisá métricas críticas y limitaciones conocidas.
 
+En REV2 comprobá específicamente que `DECISION_GOAL_ALREADY_SATISFIED` existe, corresponde a un goal ya satisfecho, no crea session ni ejecuta acción y sí actualiza `behaviorState`. Toda nueva session debe tener `plan.length >= 1`; `emptyPlanSessionsCreated = 0` en cada seed. Exigí por seed `stepsApplied >= 250`, `replansReady >= 25`, `intentReevaluations >= 10`, `planSessionsCreated >= 100`, `decisionGoalsAlreadySatisfied >= 1`, `decisionPlanningDeferred > 0`, `executionPlanningDeferred > 0` y `pendingReplanRecoveries > 0`. Verificá `stalePlansForced === stalePlansPrevented`, `REPLAN_READY` sin acción en su dispatch y ejecución posterior del nuevo plan. Los diez blobs congelados deben seguir idénticos y el diff REV2 debe limitarse al laboratorio. Mantené el PR #12 abierto y en draft.
+
 Emití un único veredicto exacto, con evidencia:
 
 ```text

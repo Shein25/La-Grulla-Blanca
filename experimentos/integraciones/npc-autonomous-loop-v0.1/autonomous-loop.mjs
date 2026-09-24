@@ -3,6 +3,7 @@ import { decideFromMemory } from '../../memoria/motor-npc-vivo-v0.3.2-decision/d
 import { createSchedulerState, EVENT_KINDS, tickScheduler } from '../../scheduler/npc-lifecycle-v0.1/scheduler.mjs';
 import { createExecutionSession, advanceExecutionSession } from '../../execution/npc-executor-replanning-v0.1/execution-session.mjs';
 import { GOAP_ACTIONS } from '../../goap/motor-npc-vivo-v0.2-goap/actions.mjs';
+import { factsMatch } from '../../goap/motor-npc-vivo-v0.2-goap/goap.mjs';
 import { validateNpc, validateActionContext } from '../../utility-ai/motor-npc-vivo-v0.1.1/engine.mjs';
 
 const CONTEXT_FIELDS = ['playerPresent', 'playerRequestsHelp', 'playerRank', 'dutyImportance',
@@ -303,9 +304,16 @@ export function tickAutonomousLoop(state, currentTurn, input = {}, options = {})
       runtime.npc.behaviorState = { lastAction: utilityAction, consecutiveTurns };
       let status;
       if (decision.status === 'PLAN_READY') {
-        runtime.executionSession = createExecutionSession({ goalId: decision.goalId,
-          goal: decision.goal, relevance: decision.relevance, plan: decision.plan.plan });
-        status = 'PLAN_SESSION_CREATED';
+        if (decision.plan.plan.length === 0) {
+          if (!factsMatch(runtime.world, decision.goal)) {
+            throw new Error('Decision Pipeline devolvió un plan vacío para un goal no satisfecho');
+          }
+          status = 'DECISION_GOAL_ALREADY_SATISFIED';
+        } else {
+          runtime.executionSession = createExecutionSession({ goalId: decision.goalId,
+            goal: decision.goal, relevance: decision.relevance, plan: decision.plan.plan });
+          status = 'PLAN_SESSION_CREATED';
+        }
       } else if (decision.status === 'UTILITY_ACTION_UNMAPPED') status = 'UTILITY_ACTION_UNMAPPED';
       else if (decision.status === 'NO_PLAN') status = 'DECISION_NO_PLAN';
       else if (decision.status === 'PLANNING_DEFERRED') status = 'DECISION_PLANNING_DEFERRED';

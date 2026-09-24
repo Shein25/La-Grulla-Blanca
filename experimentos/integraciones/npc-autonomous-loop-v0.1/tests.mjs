@@ -301,6 +301,85 @@ test('same chosen action increments inertia on later decisions', () => {
   assert.equal(runtime(second.state).npc.behaviorState.consecutiveTurns, 2);
 });
 
+function alreadyWaitedState() {
+  return stateFixture([initialFixture('npc_helper',
+    { waited: true, playerPresent: false, playerNeedsHelp: false,
+      dutyImportance: 0, urgency: 0, danger: 0 },
+    { traits: { disciplina: 0, sociabilidad: 0, curiosidad: 0, prudencia: 0,
+      lealtad_institucional: 0, empatia: 0 } }, { superiorReachable: false })]);
+}
+
+test('REV2: empty PLAN_READY reports already satisfied and creates no session', () => {
+  const result = tick(alreadyWaitedState(), 1);
+  assert.equal(one(result).path, 'DECISION');
+  assert.equal(one(result).utilityAction, 'esperar');
+  assert.equal(one(result).status, 'DECISION_GOAL_ALREADY_SATISFIED');
+  assert.equal(one(result).executed, null);
+  assert.equal(runtime(result.state).executionSession, null);
+});
+
+test('REV2: empty plan needs no later EXECUTION cleanup', () => {
+  const first = tick(alreadyWaitedState(), 1);
+  const second = tick(first.state, 2);
+  assert.equal(one(second).path, 'DECISION');
+  assert.equal(one(second).status, 'DECISION_GOAL_ALREADY_SATISFIED');
+  assert.equal(runtime(second.state).executionSession, null);
+});
+
+test('REV2: every session created by decision has at least one step', () => {
+  const items = [initialFixture('npc_help'),
+    initialFixture('npc_wait', { playerPresent: false, playerNeedsHelp: false, waited: true,
+      urgency: 0, dutyImportance: 0 },
+    { traits: { disciplina: 0, sociabilidad: 0, curiosidad: 0, prudencia: 0,
+      lealtad_institucional: 0, empatia: 0 } }, { superiorReachable: false }),
+    initialFixture('npc_duty', { playerPresent: false, playerNeedsHelp: false,
+      dutyPending: true, dutyImportance: 90 }, { traits: { disciplina: 100, empatia: 0 } })];
+  let state = stateFixture(items);
+  for (let turn = 1; turn <= 12; turn++) {
+    const result = tick(state, turn);
+    for (const trace of result.dispatchResults.filter(x => x.status === 'PLAN_SESSION_CREATED')) {
+      assert.ok(runtime(result.state, trace.npcId).executionSession.plan.length >= 1);
+    }
+    state = result.state;
+  }
+});
+
+test('REV2: empty plan still updates Utility behavior and inertia', () => {
+  const first = tick(alreadyWaitedState(), 1);
+  assert.deepEqual(runtime(first.state).npc.behaviorState,
+    { lastAction: 'esperar', consecutiveTurns: 1 });
+  const second = tick(first.state, 2);
+  assert.deepEqual(runtime(second.state).npc.behaviorState,
+    { lastAction: 'esperar', consecutiveTurns: 2 });
+});
+
+test('REV2: external goal completion closes session without executing or deciding', () => {
+  const state = tick(stateFixture(), 1).state;
+  const result = tick(state, 2, { observations: [observationFixture(runtime(state),
+    { playerHelped: true })] });
+  assert.deepEqual(result.generatedEvents.worldChanged, ['npc_helper']);
+  assert.equal(one(result).path, 'EXECUTION');
+  assert.equal(one(result).status, 'GOAL_REACHED');
+  assert.equal(one(result).executed, null);
+  assert.equal(one(result).utilityAction, null);
+  assert.equal(runtime(result.state).executionSession, null);
+});
+
+test('REV2: stale plan defers, recovers, then executes on separate dispatches', () => {
+  const afterStep = advance(stateFixture(), 2).state;
+  const pending = tick(afterStep, 3, { observations: [observationFixture(runtime(afterStep),
+    { at: 'puesto' })] }, { planner: { maxExpansions: 0 } });
+  assert.equal(one(pending).status, 'PLANNING_DEFERRED');
+  assert.equal(one(pending).executed, null);
+  assert.equal(runtime(pending.state).executionSession.mode, 'REPLAN_PENDING');
+  const ready = tick(pending.state, 4);
+  assert.equal(one(ready).status, 'REPLAN_READY');
+  assert.equal(one(ready).executed, null);
+  const stepped = tick(ready.state, 5);
+  assert.equal(one(stepped).path, 'EXECUTION');
+  assert.equal(one(stepped).executed, 'ir_jugador');
+});
+
 const badCreate = [
   ['duplicate NPC IDs', () => createAutonomousLoopState({ schedulerConfigs: [{ id: 'npc_helper', interval: 1, minGap: 0, firstPeriodicTurn: 1 }], npcs: [initialFixture(), initialFixture()] })],
   ['missing scheduler ID', () => createAutonomousLoopState({ schedulerConfigs: [], npcs: [initialFixture()] })],
