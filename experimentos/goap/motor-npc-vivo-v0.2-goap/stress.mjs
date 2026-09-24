@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { GOAP_ACTIONS } from './actions.mjs';
 import { decideAndPlan } from './controller.mjs';
 import { executeWholePlan } from './executor.mjs';
-import { cloneNpc } from '../motor-npc-vivo-v0.1.1/npc-fixtures.mjs';
+import { cloneNpc } from '../../utility-ai/motor-npc-vivo-v0.1.1/npc-fixtures.mjs';
 
 const N=Math.max(1,Number(process.argv[2]||10000));
 let seed=Number(process.argv[3]||1337)>>>0;
