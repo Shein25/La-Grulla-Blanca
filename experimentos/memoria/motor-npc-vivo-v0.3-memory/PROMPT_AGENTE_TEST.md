@@ -29,7 +29,7 @@ Ejecuta:
 node tests.mjs
 ```
 
-La candidata declara 23 tests.
+La candidata declara 29 tests.
 
 Reporta PASS/FAIL reales y exit code.
 
@@ -59,7 +59,8 @@ Reproduce de forma independiente:
 - upsert de misma key sin duplicación;
 - `firstTurn` estable y `lastTurn` actualizado;
 - rechazo si una key cambia `kind` o `subject`;
-- rechazo de evento atrasado para la misma key;
+- rechazo de cualquier evento con `turn < memory.clock`, incluso en otra key;
+- avance de `memory.clock` mediante record/prune;
 - expiración inclusiva en `expiresTurn`;
 - purga después de `expiresTurn`;
 - expulsión determinista por importancia → confianza → recencia → key;
@@ -70,14 +71,16 @@ Reproduce de forma independiente:
 
 Prueba:
 
-- getter/accessor en campos requeridos;
+- getter/accessor en campos requeridos y opcionales;
+- accessor en índices de `memory.entries`;
 - objeto heredado;
 - `NaN`, `Infinity`, `-Infinity`;
 - turnos negativos;
 - scores fuera de 0..100;
 - valores objeto/array;
 - memory con keys duplicadas;
-- entry interna malformada.
+- entry interna malformada;
+- `count === Number.MAX_SAFE_INTEGER` seguido de update.
 
 Comprueba que ningún input inválido alcance operaciones de negocio.
 
@@ -94,6 +97,7 @@ Comprueba que:
 
 Busca contraejemplos mínimos en:
 
+- consulta o stats con `currentTurn < memory.clock`;
 - expiración + upsert en mismo turno;
 - entrada que expira y luego reaparece con la misma key;
 - empate total de retención;
