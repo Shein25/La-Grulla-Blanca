@@ -1,0 +1,543 @@
+{
+  "version": "3C7A_M08_M11_REV2",
+  "fecha": "2026-09-24",
+  "estado": "LISTA_PARA_REAUDITORIA_DOCUMENTAL",
+  "baseline": {
+    "documental_topologico": {
+      "archivo": "grulla-blanca_ver74.html",
+      "sha256": "8cd2d2f51e15a433d35397fbb31035b3067f5a26bd942d890f07a0f316359566",
+      "autoridad": "rooms/scenery/topologia/3C5"
+    },
+    "runtime_predecesor": {
+      "estado": "PENDIENTE_AUDITORIA_IMPLEMENTACION_3C6",
+      "regla": "usar el resultado aprobado de 3C.6; no congelar ver75 antes de su PASS"
+    },
+    "save_schema_version": 2
+  },
+  "frontera_entrada": {
+    "estado": "CERRADA_DOCUMENTALMENTE_3C6A_REV3_1_APTA_PARA_CONTRATO",
+    "esperado": [
+      "arc1.estado=LIII_INVESTIGACION",
+      "SECTA_INTERIOR=true",
+      "M12=false",
+      "ATAJO_ALA_*=false"
+    ],
+    "nota": "La frontera contractual está cerrada; el artefacto runtime predecesor sigue sujeto a la auditoría de implementación 3C.6."
+  },
+  "autoridad": [
+    "decisiones humanas posteriores explícitas",
+    "Auditoria_6_Misiones_M01_M18_CANONICA.md",
+    "Auditoria_6_Misiones_M01_M18_Estructurada.json",
+    "grulla-blanca_ver74.html + cierre 3C.5"
+  ],
+  "principios": [
+    "M08/M09/M10 paralelas y de orden libre",
+    "M11 exige M08+M09+M10",
+    "DISPONIBLE/BLOQUEADA son derivados",
+    "checkpoints M08-M11 viven en flags.arc1.hitos",
+    "revelaciones del jugador viven en flags.arc1.revelaciones",
+    "síntesis vive únicamente en flags.arc1.sintesis",
+    "no modificar ROOMS.exits ni topología 329",
+    "R3=PARCIAL nunca se escribe en conocimientoNPC",
+    "compañeros y NPC relevantes no son requisitos salvo fuente explícita",
+    "SAVE_SCHEMA_VERSION permanece 2 salvo incompatibilidad demostrada en auditoría"
+  ],
+  "resoluciones_tecnicas": [
+    {
+      "id": "RT-3C7-01",
+      "tema": "M08 Sala de Mapas de Flujo",
+      "clasificacion": "ELECCION_TECNICA_RESPALDADA_VER74",
+      "decision": "usar formaciones_sala_mapas; nombre visible exacto y scenery mesa_comparacion apropiado."
+    },
+    {
+      "id": "RT-3C7-02",
+      "tema": "M08 referencias exteriores",
+      "clasificacion": "ELECCION_TECNICA_3C7",
+      "decision": "usar bosque_refugio_patrulla.registro y sauces_casa_comunal.mapa_local; no se presentan como rooms congeladas por Auditoría 6."
+    },
+    {
+      "id": "RT-3C7-03",
+      "tema": "M09 orden libre vs activación histórica",
+      "clasificacion": "RECONCILIACION_DE_FUENTE",
+      "decision": "M09 no exige M08; el diálogo de Song Rui se adapta al orden sin alterar objetivos ni R3."
+    },
+    {
+      "id": "RT-3C7-04",
+      "tema": "LEER ESCRITURAS",
+      "clasificacion": "CAMBIO_NECESARIO_3C7",
+      "decision": "reusar leer→estudiar y extender cmd_estudiar a scenery documental; coste 0, sin objeto y sin Comprensión repetible."
+    },
+    {
+      "id": "RT-3C7-05",
+      "tema": "ARCHIVO_COMUN / ARCHIVO_RESTRINGIDO",
+      "clasificacion": "PENDIENTE_DECISION_HUMANA",
+      "decision": "permisos documentales confirmados; ARCHIVO_RESTRINGIDO habilita hallazgos sensibles y expira al cerrar M09. Falta decidir si también controla tránsito físico sin añadir un GATES_329."
+    },
+    {
+      "id": "RT-3C7-06",
+      "tema": "M10 mapping",
+      "clasificacion": "ELECCION_TECNICA_RESPALDADA_VER74",
+      "decision": "usar archivo_clinico y sala_anatomica."
+    },
+    {
+      "id": "RT-3C7-07",
+      "tema": "M11 sala de síntesis",
+      "clasificacion": "ELECCION_TECNICA_3C7",
+      "decision": "usar interior_sala_estudio."
+    },
+    {
+      "id": "RT-3C7-08",
+      "tema": "M08 confirmación independiente",
+      "clasificacion": "CORRECCION_CANONICA_REV2",
+      "decision": "no exigir ambos nodos. Tras la comparación central basta M08_NODO_ORIENTAL OR M08_NODO_OCCIDENTAL."
+    },
+    {
+      "id": "RT-3C7-09",
+      "tema": "NPC relevantes omitidos",
+      "clasificacion": "CORRECCION_DE_COBERTURA",
+      "decision": "recuperar Wen Tao en M08 y Yu Shun en M09 como relevantes no obligatorios."
+    },
+    {
+      "id": "RT-3C7-10",
+      "tema": "M10 orden",
+      "clasificacion": "CORRECCION_CANONICA_REV2",
+      "decision": "registros clínicos y diagramas anatómicos son obligatorios en orden libre; Chen Bo valida después de ambos."
+    },
+    {
+      "id": "RT-3C7-11",
+      "tema": "M11 disponibilidad/activación",
+      "clasificacion": "ELECCION_TECNICA_3C7",
+      "decision": "cerrar la tercera de M08-M10 deja M11 DISPONIBLE derivada; HABLAR he_zhen convoca y activa la reunión."
+    },
+    {
+      "id": "RT-3C7-12",
+      "tema": "Persistencia de síntesis",
+      "clasificacion": "CORRECCION_ESTRUCTURAL_REV2",
+      "decision": "usar sólo flags.arc1.sintesis.DOS_ALAS y flags.arc1.sintesis.SEGUNDA_RAMA."
+    },
+    {
+      "id": "RT-3C7-13",
+      "tema": "Baseline",
+      "clasificacion": "CORRECCION_DE_FRONTERA",
+      "decision": "ver74 sigue como baseline documental/topológico; runtime 3C.7 será el resultado aprobado de 3C.6."
+    }
+  ],
+  "estado_compartido": {
+    "flags_arc1": {
+      "hitos": "checkpoints booleanos M08-M11; se reutiliza el contenedor existente",
+      "permisos": {
+        "FORMACIONES_INVESTIGACION": [
+          false,
+          true
+        ],
+        "ARCHIVO_COMUN": [
+          false,
+          true
+        ],
+        "ARCHIVO_RESTRINGIDO": [
+          false,
+          true
+        ]
+      },
+      "revelaciones": {
+        "R1": [
+          "PARCIAL",
+          "CONFIRMADO",
+          null
+        ],
+        "R2": [
+          "CONFIRMADO",
+          null
+        ],
+        "R3": [
+          "PARCIAL",
+          "CONFIRMADO",
+          null
+        ],
+        "R4": [
+          "CONFIRMADO",
+          null
+        ]
+      },
+      "sintesis": {
+        "DOS_ALAS": [
+          "DESCONOCIDO",
+          "PRINCIPIO"
+        ],
+        "SEGUNDA_RAMA": [
+          "DESCONOCIDO",
+          "APLICACION_CORPORAL"
+        ]
+      },
+      "anclajePropietario": "extender validación de owners a M08-M11 antes de implementar"
+    },
+    "persistencia": "todo bajo flags.arc1 / this.quests; sin nueva clave top-level",
+    "migracion": "saves válidos de 3C.6 con flags.arc1 se enriquecen idempotentemente; ausencia de R2-R4/permisos/sintesis no implica corrupción"
+  },
+  "misiones": {
+    "M08": {
+      "nombre": "Una montaña que no coincide consigo misma",
+      "etapa": "LIII_INVESTIGACION",
+      "requiere": [
+        "arc1.estado=LIII_INVESTIGACION",
+        "SECTA_INTERIOR=true"
+      ],
+      "disponibilidad": "independiente de M09/M10",
+      "activacion": {
+        "evento": "HABLAR he_zhen",
+        "room": "formaciones_sala_control",
+        "produce": [
+          "FORMACIONES_INVESTIGACION=true",
+          "M08_INSTRUMENTACION_RECIBIDA=true"
+        ]
+      },
+      "objetivos": {
+        "referencias_exteriores": {
+          "regla": "ambas, orden libre",
+          "eventos": [
+            {
+              "id": "M08_REF_BOSQUE",
+              "accion": "EXAMINAR registro",
+              "room": "bosque_refugio_patrulla"
+            },
+            {
+              "id": "M08_REF_SAUCES",
+              "accion": "EXAMINAR mapa_local",
+              "room": "sauces_casa_comunal"
+            }
+          ]
+        },
+        "calibracion": {
+          "id": "M08_CALIBRACION",
+          "accion": "EXAMINAR placas_referencia o instrumentos",
+          "room": "formaciones_patio_medicion"
+        },
+        "comparacion": {
+          "id": "M08_COMPARACION_MAPAS",
+          "accion": "EXAMINAR mesa_comparacion",
+          "room": "formaciones_sala_mapas",
+          "requiere": [
+            "M08_REF_BOSQUE",
+            "M08_REF_SAUCES",
+            "M08_CALIBRACION"
+          ]
+        },
+        "confirmacion_independiente": {
+          "regla": "uno de los dos nodos, después de M08_COMPARACION_MAPAS",
+          "eventos": [
+            {
+              "id": "M08_NODO_ORIENTAL",
+              "accion": "EXAMINAR agujas",
+              "room": "formaciones_nodo_oriental"
+            },
+            {
+              "id": "M08_NODO_OCCIDENTAL",
+              "accion": "EXAMINAR lecturas",
+              "room": "formaciones_nodo_occidental"
+            }
+          ]
+        }
+      },
+      "cierre": "M08_COMPARACION_MAPAS && (M08_NODO_ORIENTAL || M08_NODO_OCCIDENTAL)",
+      "produce": [
+        "M08=HECHA",
+        "flags.arc1.revelaciones.R2=CONFIRMADO",
+        "FORMACIONES_INVESTIGACION permanece true"
+      ],
+      "recompensas": {
+        "comprension": 0,
+        "contribucion": "SI_CANONICO_NUMERO_PENDIENTE_BALANCE_3C7",
+        "merito": "MODERADO_CANONICO_NUMERO_PENDIENTE_BALANCE_3C7"
+      },
+      "anclajes": {
+        "he_zhen": {
+          "room": "formaciones_sala_control",
+          "owner": "M08_ACTIVACION",
+          "desde": "M08 disponible",
+          "hasta": "M08_INSTRUMENTACION_RECIBIDA",
+          "liberacion": "limpiar anclaje; sala_control es posición válida"
+        }
+      },
+      "companeros": "Zhao/Luo pueden tener escenas opcionales; nunca requisitos.",
+      "npcs_relevantes": [
+        "he_zhen",
+        "wen_tao"
+      ]
+    },
+    "M09": {
+      "nombre": "Los nombres que faltan",
+      "etapa": "LIII_INVESTIGACION",
+      "requiere": [
+        "arc1.estado=LIII_INVESTIGACION"
+      ],
+      "disponibilidad": "independiente de M08/M10; ver RT-3C7-03",
+      "activacion": {
+        "evento": "HABLAR song_rui",
+        "room": "archivos_sala_consulta",
+        "produce": [
+          "ARCHIVO_COMUN=true"
+        ]
+      },
+      "mecanica_lectura": {
+        "comando_visible": "LEER <objetivo>",
+        "normalizacion": "alias leer→estudiar",
+        "implementacion": "cmd_estudiar reconoce scenery documental de misión antes del fallback institucional",
+        "coste": "0",
+        "comprension_repetible": 0
+      },
+      "fase_comun": {
+        "requiere": "M09 activa + ARCHIVO_COMUN",
+        "hallazgos": [
+          {
+            "tipo": "REFERENCIA_AUSENTE",
+            "id": "M09_REFERENCIA_AUSENTE",
+            "accion": "LEER/ESTUDIAR huecos",
+            "room": "archivos_galeria_registros"
+          },
+          {
+            "tipo": "NOMBRES_PRESENTES_AUSENTES",
+            "id": "M09_NOMBRES_DIVERGENTES",
+            "accion": "LEER/ESTUDIAR terminos",
+            "room": "archivos_sala_estelas"
+          }
+        ],
+        "abre": "M09_SOLICITAR_RESTRINGIDO cuando ambos están registrados"
+      },
+      "autorizacion_restringida": {
+        "evento": "HABLAR qiao_ren",
+        "room": "pabellon_disciplina",
+        "requiere": [
+          "M09_REFERENCIA_AUSENTE",
+          "M09_NOMBRES_DIVERGENTES"
+        ],
+        "produce": [
+          "ARCHIVO_RESTRINGIDO=true",
+          "M09_ARCHIVO_RESTRINGIDO_AUTORIZADO=true"
+        ],
+        "semantica_transito": "PENDIENTE_DECISION_HUMANA"
+      },
+      "fase_restringida": {
+        "requiere": "ARCHIVO_RESTRINGIDO=true",
+        "hallazgos": [
+          {
+            "tipo": "COPIA_MODIFICADA",
+            "id": "M09_COPIA_MODIFICADA",
+            "accion": "LEER/ESTUDIAR variantes",
+            "room": "archivos_camara_copias"
+          },
+          {
+            "tipo": "TERMINO_DOS_ALAS",
+            "id": "M09_DOS_ALAS_MENCIONADO",
+            "accion": "LEER/ESTUDIAR referencias",
+            "room": "archivos_sala_indices",
+            "nota": "aparece el término Dos Alas sin definición completa"
+          }
+        ]
+      },
+      "cierre": {
+        "requiere": [
+          "M09_REFERENCIA_AUSENTE",
+          "M09_NOMBRES_DIVERGENTES",
+          "M09_COPIA_MODIFICADA",
+          "M09_DOS_ALAS_MENCIONADO"
+        ],
+        "produce": [
+          "M09=HECHA",
+          "flags.arc1.revelaciones.R3=PARCIAL",
+          "ARCHIVO_RESTRINGIDO=false",
+          "ARCHIVO_COMUN permanece true"
+        ]
+      },
+      "recompensas": {
+        "comprension": 0,
+        "contribucion": "POSIBLE_CANONICO_NUMERO_PENDIENTE_BALANCE_3C7",
+        "merito": "SI_SI_HALLAZGO_RECONOCIDO_NUMERO_PENDIENTE_BALANCE_3C7"
+      },
+      "anclajes": {
+        "song_rui": {
+          "room": "archivos_sala_consulta",
+          "owner": "M09_ACTIVACION",
+          "desde": "M09 disponible",
+          "hasta": "M09 activa",
+          "liberacion": "limpiar tras activar"
+        },
+        "qiao_ren": {
+          "room": "pabellon_disciplina",
+          "owner": "M09_AUTORIZACION",
+          "desde": "M09_SOLICITAR_RESTRINGIDO",
+          "hasta": "M09_ARCHIVO_RESTRINGIDO_AUTORIZADO",
+          "liberacion": "limpiar tras autorizar"
+        }
+      },
+      "companeros": "Zhao Wen y Luo Yan tienen hooks sociales documentados; opcionales, sin progreso estructural.",
+      "npcs_relevantes": [
+        "song_rui",
+        "zhao_wen",
+        "qiao_ren",
+        "luo_yan",
+        "yu_shun"
+      ]
+    },
+    "M10": {
+      "nombre": "El cuerpo recuerda",
+      "etapa": "LIII_INVESTIGACION",
+      "requiere": [
+        "arc1.estado=LIII_INVESTIGACION"
+      ],
+      "disponibilidad": "independiente de M08/M09",
+      "activacion": {
+        "evento": "HABLAR lan_meihua",
+        "room": "archivo_clinico",
+        "produce": [
+          "M10_CASOS_ABIERTOS=true"
+        ]
+      },
+      "objetivos": [
+        {
+          "id": "M10_REGISTROS_CLINICOS",
+          "accion": "LEER/ESTUDIAR formatos_antiguos",
+          "room": "archivo_clinico",
+          "nota": "identifica casos/metodologías agrupadas como Segunda Rama sin igualarla a Dos Alas",
+          "orden": "libre respecto a M10_DIAGRAMAS_ANATOMICOS"
+        },
+        {
+          "id": "M10_DIAGRAMAS_ANATOMICOS",
+          "accion": "EXAMINAR laminas",
+          "room": "sala_anatomica",
+          "orden": "libre respecto a M10_REGISTROS_CLINICOS"
+        },
+        {
+          "id": "M10_CHEN_BO_CONSULTADO",
+          "accion": "HABLAR chen_bo",
+          "room": "sala_anatomica",
+          "requiere": [
+            "M10_REGISTROS_CLINICOS",
+            "M10_DIAGRAMAS_ANATOMICOS"
+          ]
+        }
+      ],
+      "cierre": "M10_CHEN_BO_CONSULTADO",
+      "produce": [
+        "M10=HECHA",
+        "flags.arc1.revelaciones.R4=CONFIRMADO"
+      ],
+      "restricciones": [
+        "no habilitar injerto",
+        "no mostrar ESTUDIAR INJERTO",
+        "no afirmar que Segunda Rama == Dos Alas",
+        "LEER APENDICE futuro queda fuera de 3C.7A"
+      ],
+      "recompensas": {
+        "comprension": 0,
+        "contribucion": "POSIBLE_CANONICO_NUMERO_PENDIENTE_BALANCE_3C7",
+        "merito": "SI_INVESTIGACION_IMPORTANTE_NUMERO_PENDIENTE_BALANCE_3C7"
+      },
+      "anclajes": {
+        "lan_meihua": {
+          "room": "archivo_clinico",
+          "owner": "M10_ACTIVACION",
+          "desde": "M10 disponible",
+          "hasta": "M10_CASOS_ABIERTOS",
+          "liberacion": "limpiar tras activar"
+        },
+        "chen_bo": {
+          "room": "sala_anatomica",
+          "owner": "M10_VALIDACION",
+          "desde": "M10_REGISTROS_CLINICOS && M10_DIAGRAMAS_ANATOMICOS",
+          "hasta": "M10_CHEN_BO_CONSULTADO",
+          "liberacion": "limpiar al cerrar"
+        }
+      },
+      "companeros": "Mei Lian, Guo Chen y Luo Yan pueden disparar escenas opcionales; ninguna habilita injerto ni cierra M10."
+    },
+    "M11": {
+      "nombre": "Las Dos Alas",
+      "etapa": "LIII_INVESTIGACION",
+      "requiere": [
+        "M08=HECHA",
+        "M09=HECHA",
+        "M10=HECHA"
+      ],
+      "activacion": {
+        "disponibilidad": "derivada cuando M08=HECHA && M09=HECHA && M10=HECHA",
+        "modo": "HABLAR he_zhen; elección técnica REV2",
+        "produce": [
+          "M11=ACTIVA",
+          "flags.arc1.hitos.M11_REUNION_CONVOCADA=true"
+        ],
+        "destino": "interior_sala_estudio"
+      },
+      "reunion": {
+        "room": "interior_sala_estudio",
+        "participantes": [
+          "he_zhen",
+          "song_rui",
+          "lan_meihua"
+        ],
+        "evento_cierre": "HABLAR he_zhen",
+        "requiere": "los tres participantes físicamente anclados y M11 activa",
+        "contenido": "síntesis de mediciones M08 + textos M09 + casos M10; no nueva expedición"
+      },
+      "cierre": {
+        "evento": "M11_SINTESIS_DOS_ALAS",
+        "produce": [
+          "M11=HECHA",
+          "flags.arc1.revelaciones.R3=CONFIRMADO",
+          "flags.arc1.sintesis.DOS_ALAS=PRINCIPIO",
+          "flags.arc1.sintesis.SEGUNDA_RAMA=APLICACION_CORPORAL",
+          "flags.arc1.hitos.ARC1_M11_DOS_ALAS=true",
+          "Comprension +1 one-shot ARC1_M11_DOS_ALAS",
+          "flags.arc1.hitos.M11_SELLO_ANTIGUO_RECONOCIDO=true",
+          "M12 queda disponible de forma derivada"
+        ]
+      },
+      "anclajes": {
+        "he_zhen": {
+          "room": "interior_sala_estudio",
+          "owner": "M11",
+          "hasta": "M11_SINTESIS_DOS_ALAS"
+        },
+        "song_rui": {
+          "room": "interior_sala_estudio",
+          "owner": "M11",
+          "hasta": "M11_SINTESIS_DOS_ALAS"
+        },
+        "lan_meihua": {
+          "room": "interior_sala_estudio",
+          "owner": "M11",
+          "hasta": "M11_SINTESIS_DOS_ALAS"
+        }
+      },
+      "liberacion": "al cerrar M11, liberar los tres y reubicar fuera de vista a una posición válida de su territorio normal",
+      "recompensas": {
+        "comprension": 1,
+        "comprension_one_shot": "ARC1_M11_DOS_ALAS",
+        "contribucion": "SECUNDARIA_CANONICA_NUMERO_PENDIENTE_BALANCE_3C7",
+        "merito": "SI_CANONICO_NUMERO_PENDIENTE_BALANCE_3C7"
+      }
+    }
+  },
+  "idempotencia": {
+    "regla": "todo evento de misión comprueba flag one-shot antes de escribir estado/recompensa",
+    "sets": [
+      "M08 nodos y referencias no duplican",
+      "M09 tipos de inconsistencia no duplican",
+      "M10 observaciones no duplican",
+      "M11 Comprensión sólo una vez"
+    ],
+    "carga": "estado derivado de flags + quests; DISPONIBLE/BLOQUEADA no se persisten"
+  },
+  "compatibilidad_3C5": {
+    "anclajes": "reutilizar posicionNPC[id].anclaje + flags.arc1.anclajePropietario; extender owners válidos a M08-M11 antes de implementar",
+    "conocimientoNPC": "REV2 no fija todavía escrituras nuevas de conocimientoNPC; PARCIAL queda prohibido allí. Cualquier elevación futura debe auditarse por NPC/revelación.",
+    "companeros": "hooks opcionales, no requisitos ni fuente de progreso principal",
+    "saves_3C6": "crearArc1/validarArc1/normalizarArc1 deben ampliarse de forma compatible, sin invalidar saves 3C.6 por ausencia de campos nuevos"
+  },
+  "pendientes": [
+    "decisión humana sobre tránsito físico asociado a ARCHIVO_RESTRINGIDO",
+    "terminar auditoría de implementación 3C.6 y congelar el predecesor runtime",
+    "balance numérico contribución/mérito M08-M11",
+    "reauditar HABLAR he_zhen como activador técnico de M11",
+    "3C7B: M12 + gate LIII->LIV"
+  ]
+}
