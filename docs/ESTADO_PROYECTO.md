@@ -30,15 +30,17 @@ No se deben inventar conexiones, estados, NPC, room IDs, gates ni resultados aus
 
 Baseline canónico actual:
 
-`grulla-blanca_ver73.html`
+`grulla-blanca_ver74.html`
 
 SHA-256:
 
-`a66310f06fbf8c76e054df89f9d8cdf6959ac64c79400694474351c0936bc6dc`
+`8cd2d2f51e15a433d35397fbb31035b3067f5a26bd942d890f07a0f316359566`
 
 `SAVE_SCHEMA_VERSION = 2`
 
-Baseline anterior conservado como referencia histórica:
+Baselines anteriores conservados como referencia histórica:
+
+`grulla-blanca_ver73.html` — `a66310f06fbf8c76e054df89f9d8cdf6959ac64c79400694474351c0936bc6dc`
 
 `grulla-blanca_ver72a.html` — `5fa5306940dba5c9c829b67b4e59bd03d1a9e0153aa8bd7ec1dd707c56f70820`
 
@@ -53,10 +55,10 @@ Baseline anterior conservado como referencia histórica:
 - 3C.3B — Integración Atlas en producción
 - **3C.3 — CERRADO**
 - 3C.4 — Ecología / errantes / herbalismo
+- 3C.5 — NPC canónicos y movilidad técnica
 
 ## En curso o pendientes
 
-- 3C.5 — NPC canónicos
 - 3C.6 — Prólogo + M01–M07
 - 3C.7 — M08–M15
 - 3C.8 — M16
@@ -105,3 +107,38 @@ La modularización comienza después de:
 4. conservar ese HTML como referencia dorada.
 
 La migración deberá ser progresiva y cada extracción de módulo tendrá que conservar el comportamiento del baseline.
+
+
+## Auditoría 3C.5
+
+Fecha: 2026-09-23.
+
+Resultado independiente: **APROBADO**.
+
+Baseline promovido:
+
+`grulla-blanca_ver74.html`
+
+SHA-256:
+
+`8cd2d2f51e15a433d35397fbb31035b3067f5a26bd942d890f07a0f316359566`
+
+Comprobaciones principales:
+
+- 32/32 NPC;
+- categorías 7 autoridad / 7 intermedio / 12 funcional / 6 companero;
+- 14 CANÓNICO / 18 ELECCION_TECNICA_3C5 / 0 LIBRE;
+- R1–R10 exactos para los 32;
+- aliases sin colisiones y tokens ambiguos rechazados;
+- 85/85 tramos de rutas adyacentes;
+- tránsito técnico válido por NPC;
+- sólo Qiao Ren y Wei Jian cruzan SECTA_INTERIOR;
+- posición runtime separada del último avistamiento del Atlas;
+- save LEGACY y NPC v1 validados;
+- SAVE_SCHEMA_VERSION permanece en 2;
+- ROOMS.exits y GATES_329 sin cambios;
+- node --check PASS;
+- regresión completa en navegador: **398/398 PASS**;
+- sin scheduler NPC, Utility AI, GOAP, misiones ni diálogos narrativos nuevos.
+
+Informe: `docs/AUDITORIA_3C5_VER74_2026-09-23.md`.
