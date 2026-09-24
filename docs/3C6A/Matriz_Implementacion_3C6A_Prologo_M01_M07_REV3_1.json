@@ -1,0 +1,1324 @@
+{
+  "version": "3C6A_REV3.1",
+  "fecha": "2026-09-24",
+  "baseline": {
+    "archivo": "grulla-blanca_ver74.html",
+    "sha256": "8cd2d2f51e15a433d35397fbb31035b3067f5a26bd942d890f07a0f316359566",
+    "save_schema_version": 2,
+    "3C5": "CERRADO_AUDITADO",
+    "auditoria_rev2": "Auditoria_3C6A_REV2_Prologo_M01_M07_CLAUDE.md",
+    "auditoria_rev2_veredicto": "3C6A_REV2_REQUIERE_CORRECCIONES",
+    "auditoria_rev3": "Auditoria_Cierre_3C6A_REV3_CLAUDE.md",
+    "auditoria_rev3_veredicto": "3C6A_REV3_REQUIERE_CORRECCIONES"
+  },
+  "veredicto": "3C6A_REV3_1_LISTA_PARA_AUDITORIA_FINAL",
+  "alcance": {
+    "incluye": [
+      "PROLOGO",
+      "M01",
+      "M02",
+      "M03",
+      "M04",
+      "M05",
+      "M06",
+      "M07"
+    ],
+    "excluye": [
+      "M08-M18",
+      "epilogo",
+      "reescritura global 3C.4",
+      "cambios de ROOMS.exits",
+      "scheduler NPC",
+      "Utility AI",
+      "GOAP"
+    ],
+    "invariantes": [
+      "329 rooms",
+      "17 areas",
+      "787 directed exits",
+      "0 broken reciprocity",
+      "0 isolated rooms",
+      "1 physical component",
+      "SECTA_INTERIOR=false => M12=false => ATAJO_ALA_*=false",
+      "SAVE_SCHEMA_VERSION=2",
+      "sin tiempo diegetico"
+    ]
+  },
+  "resoluciones_post_auditoria_rev2": [
+    {
+      "id": "R3_01_RANGOS",
+      "resuelve": [
+        "CD-01"
+      ],
+      "decision": "Separar tres dominios. flags.arc1.estadoAfiliacion es narrativo (PENDIENTE_REGISTRO/ADMITIDO/MIEMBRO); flags.arc1.rangoInstitucional es institucional (SIN_RANGO/ASPIRANTE/DISCIPULO_EXTERNO); player.facciones.grulla_blanca y rangoFaccion() quedan como acceso economico/merito. Los gates usan rangoInstitucional, nunca rangoFaccion()."
+    },
+    {
+      "id": "R3_02_GATES",
+      "resuelve": [
+        "CD-02",
+        "CN-03",
+        "CN-11"
+      ],
+      "decision": "reconciliarProgresionArc1() es idempotente y fail-closed. Se invoca tras cierres P-M07, tras CONSAGRAR y tras cargar/migrar. One-shots: transicionLILIIHecha y transicionLIILIIIHecha."
+    },
+    {
+      "id": "R3_03_SAVES_VER74",
+      "resuelve": [
+        "CD-03"
+      ],
+      "decision": "Un save ver74 schema 2 sin flags.arc1 no repite Prologo-M03. Conserva raiz/origen/stats/items/tecnicas/NPC/gates. Migra P-M03 a HECHA, afiliacion MIEMBRO, rangoInstitucional DISCIPULO_EXTERNO, primerServicioFormal y evaluacionCirculacion satisfechos; desbloquea Examen y concede Piel de Cobre si faltan. M04-M07 se juegan. Etapa>=3 legacy satisface el componente de cultivo LIII sin consumo retroactivo de pildora, pero SECTA_INTERIOR permanece cerrada hasta cerrar M07."
+    },
+    {
+      "id": "R3_04_EVIDENCIA",
+      "resuelve": [
+        "CD-04",
+        "CN-10",
+        "EF-07"
+      ],
+      "decision": "Nivel unico: INSUFICIENTE/SUFICIENTE/CONCLUYENTE. Dos tipos siguen siendo INSUFICIENTE con sospechaFuerte=true. Se persiste el conjunto de tipos en flags.arc1.evidenciaTerritorial. Comparacion ordinal explicita. La evidencia puede registrarse desde PATRULLA_TERRITORIAL y seguir hasta cerrar M07; CONCLUYENTE mejora dialogo/contexto, no gates ni recompensas."
+    },
+    {
+      "id": "R3_05_ECONOMIA",
+      "resuelve": [
+        "CD-05",
+        "CN-01"
+      ],
+      "decision": "Contribucion y Merito quedan realmente desacoplados: otorgarContribucion aumenta solo saldo; otorgarMerito aumenta solo merito; normalizarFacciones deja de imponer merito>=saldo. Rangos economicos siguen derivando de merito. Totales P-M07: 12 contribucion, 4 merito sin incidente M04 y 5 con incidente."
+    },
+    {
+      "id": "R3_06_M02",
+      "resuelve": [
+        "CD-06",
+        "CN-07",
+        "EF-04"
+      ],
+      "decision": "Tao Ming asigna y valida M02 en oficina_servicios. Secuencia: aceptar -> resolver rata_despensa en deposito_comun -> fijar cadaver tutorial -> aprender Examen con Chen Bo -> volver y observar el cadaver -> informar a Tao Ming. Sin EXTRAER/Atlas/bestiario/familiaridad. Retiro permanente de rata_despensa solo si muere con M02 activa; recuperacion controlada del cadaver si falta."
+    },
+    {
+      "id": "R3_07_M03",
+      "resuelve": [
+        "CD-07",
+        "CN-08"
+      ],
+      "decision": "Shen Baojun inicia en sala_formas y enseña Piel de Cobre idempotentemente. Muneco_practica es encuentro de mision en patio_marcial. Practica se completa con una respuesta defensiva valida. Evaluacion: MEDITAR con exito en patio_respiracion, sin combate ni hostiles vivos. Qiao Ren formaliza la promocion en pabellon_disciplina y cierra M03."
+    },
+    {
+      "id": "R3_08_M04_M05",
+      "resuelve": [
+        "CD-08",
+        "EF-01"
+      ],
+      "decision": "M04 tiene incidente opcional determinista con evento/flag one-shot y +1 merito. M05 no usa checklist de 7 rooms: exige un punto logistico del Valle (mercado_valle o granero_valle), contacto Xu An, registro en sauces_casa_comunal y visita a sauces_casa_huespedes. La pildora M05 no puede perderse antes del cruce LIII; si falta con flag de otorgamiento y etapa<3 se reemite controladamente."
+    },
+    {
+      "id": "R3_09_QUESTS",
+      "resuelve": [
+        "CD-09",
+        "EF-03",
+        "EF-08"
+      ],
+      "decision": "BLOQUEADA/DISPONIBLE son derivados. this.quests persiste strings del motor; P-M07 usan activa/hecha, y rumor/fallida quedan permitidos por compatibilidad solo si una definicion futura los usa. normalizarArc1() sanea estructura conocida de flags.arc1 y estados de quests al cargar. El test historico QUESTS={} debe actualizarse."
+    },
+    {
+      "id": "R3_10_SALIDA_Y_COMPANEROS",
+      "resuelve": [
+        "CD-10",
+        "EF-02",
+        "EF-05"
+      ],
+      "decision": "MD y JSON comparten estado_salida, LIII_INVESTIGACION y reglas de compañeros. flags.arc1.anclajePropietario[npcId] arbitra anclajes sin cambiar posicionNPC.anclaje {room,hasta}. Liberar anclaje reubica atomicamente a una posicion valida fuera de vista."
+    },
+    {
+      "id": "R3_11_M07",
+      "resuelve": [
+        "CD-11"
+      ],
+      "decision": "M07 explicita participantes y anclajes. Formulacion CAUTA/FUERTE modifica dialogo; con evidencia SUFICIENTE una formulacion FUERTE puede ser corregida sin penalizacion, con CONCLUYENTE ambas son aceptables. Se persiste formulacion/corregida para continuidad, sin cambiar recompensa ni gate."
+    }
+  ],
+  "modelo_estado": {
+    "flags_arc1": {
+      "estado": [
+        "PROLOGO",
+        "LI_INTEGRACION",
+        "LII_TERRITORIO",
+        "LIII_INVESTIGACION"
+      ],
+      "estadoAfiliacion": [
+        "PENDIENTE_REGISTRO",
+        "ADMITIDO",
+        "MIEMBRO"
+      ],
+      "rangoInstitucional": [
+        "SIN_RANGO",
+        "ASPIRANTE",
+        "DISCIPULO_EXTERNO"
+      ],
+      "transiciones": {
+        "transicionLILIIHecha": "boolean",
+        "transicionLIILIIIHecha": "boolean"
+      },
+      "permisos": [
+        "SECTA_EXTERIOR_BASE",
+        "PATRULLA_TERRITORIAL"
+      ],
+      "evidenciaTerritorial": {
+        "tipos": [
+          "DESPLAZAMIENTO_FAUNA",
+          "ALTERACION_VEGETAL",
+          "ALTERACION_HIDRICA",
+          "PATRON_TERRITORIAL"
+        ],
+        "nivel": [
+          "INSUFICIENTE",
+          "SUFICIENTE",
+          "CONCLUYENTE"
+        ],
+        "sospechaFuerte": "boolean"
+      },
+      "revelaciones": {
+        "R1": [
+          "PARCIAL",
+          "CONFIRMADO"
+        ]
+      },
+      "anclajePropietario": "map npcId -> ownerId",
+      "informe": {
+        "formulacion": [
+          "CAUTA",
+          "FUERTE",
+          null
+        ],
+        "corregida": "boolean"
+      }
+    },
+    "faccion_economica": {
+      "fuente": "player.facciones.grulla_blanca",
+      "estado_servicios": [
+        "inactivo",
+        "miembro",
+        "huesped",
+        "aliado",
+        "expulsado"
+      ],
+      "rango_por_merito": [
+        "aspirante",
+        "servidor_externo",
+        "discipulo_acreditado",
+        "merito_interno"
+      ],
+      "nota": "No sustituye rangoInstitucional ni participa en gates narrativos. M03 sincroniza estadoAfiliacion=MIEMBRO con estado económico=miembro.",
+      "estado_inicial_nueva_partida": "inactivo"
+    },
+    "conocimientoNPC": {
+      "enum": [
+        "DESCONOCIDO",
+        "SOSPECHA",
+        "SABE",
+        "CONFIRMADO"
+      ],
+      "regla": "monotonico; PARCIAL nunca se escribe aqui"
+    }
+  },
+  "economia_rev3": {
+    "semantica": {
+      "otorgarContribucion": "aumenta solo saldo",
+      "otorgarMerito": "aumenta solo merito",
+      "normalizarFacciones": "no fuerza merito>=saldo",
+      "rangoFaccion": "se deriva solo de merito"
+    },
+    "recompensas": {
+      "M02": {
+        "contribucion": 1,
+        "merito": 0,
+        "comprension": 0
+      },
+      "M03": {
+        "contribucion": 0,
+        "merito": 0,
+        "comprension": 0
+      },
+      "M04": {
+        "contribucion": 2,
+        "merito": 0,
+        "comprension": 0,
+        "incidente_opcional": {
+          "evento": "M04_INCIDENTE_FAUNA_DOCUMENTADO",
+          "flag_one_shot": "M04_INCIDENTE_FAUNA_DOCUMENTADO",
+          "merito": 1,
+          "fuentes": [
+            "EXAMINAR tablillas en bosque_puesto_marcas durante M04",
+            "EXAMINAR registro en bosque_refugio_patrulla durante M04"
+          ]
+        }
+      },
+      "M05": {
+        "contribucion": 3,
+        "merito": 0,
+        "comprension": 0,
+        "item": "pildora_consolidacion"
+      },
+      "M06": {
+        "contribucion": 2,
+        "merito": 1,
+        "comprension": 0
+      },
+      "M07": {
+        "contribucion": 4,
+        "merito": 3,
+        "comprension": 1
+      }
+    },
+    "totales": {
+      "contribucion": 12,
+      "merito_sin_incidente_M04": 4,
+      "merito_con_incidente_M04": 5,
+      "comprension": 1,
+      "pildora_consolidacion": 1
+    },
+    "verificacion_ver74": {
+      "otorgarContribucion_estado_inactivo": "compatible: ver74 sólo rechaza estado=expulsado",
+      "normalizarFacciones": "debe cambiarse: hoy crea/default a miembro y fuerza merito>=saldo",
+      "callers_otorgarContribucion": [
+        "entregarRecompensa",
+        "test de persistencia",
+        "definición del propio método"
+      ],
+      "cambiarEstadoFaccion": "lista ya incluye inactivo y miembro",
+      "historial": "separar entradas de contribución y mérito para no presentar mérito implícito"
+    },
+    "balance_servicios": "Con máximo 5 mérito P-M07, servicios de mérito 8/20 no son objetivo alcanzable en LII; intencional. La píldora M05 no depende del servicio económico."
+  },
+  "gates": {
+    "PROLOGO_LI": {
+      "condicion": [
+        "REGISTRO_INICIAL_COMPLETADO"
+      ],
+      "efecto": [
+        "PROLOGO=HECHO",
+        "arc1.estado=LI_INTEGRACION"
+      ],
+      "evaluacion_en": [
+        "cierre de P",
+        "carga/reconciliacion"
+      ],
+      "idempotencia": "estado de quest + estado monotono"
+    },
+    "LI_LII": {
+      "condicion": [
+        "player.etapa>=2",
+        "flags.arc1.rangoInstitucional=DISCIPULO_EXTERNO",
+        "primerServicioFormal=true",
+        "evaluacionCirculacion=SUPERADA"
+      ],
+      "evaluacion_en": [
+        "cierre de M03",
+        "CONSAGRAR 1->2",
+        "carga/migracion",
+        "reconciliarProgresionArc1 despues de cualquier cierre P-M07"
+      ],
+      "flag_one_shot": "flags.arc1.transicionLILIIHecha",
+      "efecto": [
+        "arc1.estado=LII_TERRITORIO",
+        "presentacion visual ceremonial one-shot"
+      ],
+      "fail_closed": true
+    },
+    "LII_LIII": {
+      "condicion_nueva_partida": [
+        "player.etapa>=3 (resultado de CONSAGRAR 2->3)",
+        "CONSAGRAR se intento con qi>=45",
+        "pildora_consolidacion disponible y consumida por CONSAGRAR",
+        "M04=HECHA",
+        "M05=HECHA",
+        "evidenciaTerritorial>=SUFICIENTE por comparador ordinal",
+        "informeFronteraAceptado=true"
+      ],
+      "servicioTerritorial": "derivado: M04=HECHA && M05=HECHA",
+      "evaluacion_en": [
+        "cierres M04/M05/M06/M07",
+        "CONSAGRAR 2->3",
+        "carga/migracion",
+        "reconciliarProgresionArc1 despues de cualquier cierre P-M07"
+      ],
+      "flag_one_shot": "flags.arc1.transicionLIILIIIHecha",
+      "efecto": [
+        "arc1.estado=LIII_INVESTIGACION",
+        "SECTA_INTERIOR=true",
+        "M12 permanece false",
+        "ATAJO_ALA_* permanecen false",
+        "presentacion visual ceremonial one-shot"
+      ],
+      "fail_closed": true,
+      "legacy_etapa_ge_3": "Si el save ver74 migrado ya tiene etapa>=3, el componente de cultivo se considera satisfecho sin consumo retroactivo de pildora; la transicion LIII espera M04-M07 y los demas requisitos narrativos.",
+      "presentacion": "ceremonial visual one-shot",
+      "unknown_requirement_policy": "bloquear y reportar antes de consumir; nunca ignorar ni lanzar después de consumo"
+    }
+  },
+  "misiones": [
+    {
+      "id": "P",
+      "nombre": "La Piedra y la Puerta",
+      "etapa": "PROLOGO",
+      "requiere": [
+        "nueva_partida_valida"
+      ],
+      "activacion": "automatica durante el flujo de nueva partida",
+      "rooms": [
+        "patio_raices",
+        "descansillo",
+        "mirador_niebla",
+        "patio_practica",
+        "sendero_pinos",
+        "camino",
+        "puerta",
+        "registro"
+      ],
+      "objetivos": [
+        "resolver diagnostico de raiz antes de crearPersonaje: tres elecciones + reaccion de desempate; sin RNG",
+        "recibir uniforme y arma inicial en descansillo una sola vez",
+        "recorrer el acceso hasta registro",
+        "completar REGISTRO_INICIAL_COMPLETADO con Tao Ming"
+      ],
+      "equipo_inicial": {
+        "regla_general": [
+          "uniforme",
+          "espada_madera"
+        ],
+        "origen_callejero": "conserva cuchillo_hueso como beneficio de origen; no duplica espada si la regla de origen la sustituye",
+        "flag_one_shot": "equipoInicialEntregado"
+      },
+      "cierre": "REGISTRO_INICIAL_COMPLETADO",
+      "produce": [
+        "PROLOGO=HECHO",
+        "flags.arc1.estadoAfiliacion=ADMITIDO",
+        "flags.arc1.estado=LI_INTEGRACION",
+        "raiz persistente"
+      ],
+      "abre": [
+        "M01"
+      ],
+      "recompensas": {
+        "contribucion": 0,
+        "merito": 0,
+        "comprension": 0
+      },
+      "notas": [
+        "guardia y ayudante son roles genericos; no se agregan NPC_DEF",
+        "herboristeria permanece mecanicamente desbloqueada por compatibilidad en 3C.6; no se trata como recompensa narrativa del Prologo"
+      ],
+      "one_shots": [
+        "raizDiagnosticada",
+        "equipoInicialEntregado",
+        "REGISTRO_INICIAL_COMPLETADO"
+      ],
+      "anclajes": {
+        "tao_ming": {
+          "room": "registro",
+          "owner": "P",
+          "hasta": "REGISTRO_INICIAL_COMPLETADO",
+          "al_cerrar": "transferir owner a M01 sin mover; permanece en registro"
+        }
+      }
+    },
+    {
+      "id": "M01",
+      "nombre": "Un nombre entre miles",
+      "etapa": "LI_INTEGRACION",
+      "requiere": [
+        "P=HECHA",
+        "arc1.estado=LI_INTEGRACION"
+      ],
+      "activacion": "conversacion formal con Tao Ming anclado temporalmente en registro",
+      "rooms": [
+        "registro",
+        "sala_jade",
+        "patio",
+        "patio_cabanas",
+        "corredor_cabanas",
+        "dormitorio_externos"
+      ],
+      "objetivos": [
+        "NOMBRE_INSCRITO en sala_jade",
+        "recibir asignacion de alojamiento de Madre Wen en patio_cabanas",
+        "llegar fisicamente a dormitorio_externos"
+      ],
+      "cierre": "ALOJAMIENTO_CONFIRMADO",
+      "produce": [
+        "flags.arc1.rangoInstitucional=ASPIRANTE",
+        "SECTA_EXTERIOR_BASE=true",
+        "alojamiento dormitorio_externos conocido y visitado"
+      ],
+      "abre": [
+        "M02"
+      ],
+      "recompensas": {
+        "contribucion": 0,
+        "merito": 0,
+        "comprension": 0
+      },
+      "notas": [
+        "corredor_cabanas es transito narrativo, no gate"
+      ],
+      "one_shots": [
+        "NOMBRE_INSCRITO",
+        "ALOJAMIENTO_CONFIRMADO"
+      ],
+      "anclajes": {
+        "tao_ming": {
+          "room": "registro",
+          "owner": "M01",
+          "hasta": "NOMBRE_INSCRITO",
+          "liberacion": "al producir NOMBRE_INSCRITO, reubicar atómicamente y fuera de vista a oficina_servicios"
+        },
+        "madre_wen": {
+          "room": "patio_cabanas",
+          "owner": "M01",
+          "hasta": "ALOJAMIENTO_CONFIRMADO",
+          "liberacion": "limpiar anclaje; patio_cabanas es posición válida e inicial"
+        }
+      }
+    },
+    {
+      "id": "M02",
+      "nombre": "Trabajo que alguien debe hacer",
+      "etapa": "LI_INTEGRACION",
+      "requiere": [
+        "M01=HECHA"
+      ],
+      "activacion": "Tao Ming asigna el servicio en oficina_servicios",
+      "rooms": [
+        "oficina_servicios",
+        "deposito_comun",
+        "sala_anatomica"
+      ],
+      "npc": [
+        {
+          "id": "tao_ming",
+          "rol": "asigna y valida"
+        },
+        {
+          "id": "chen_bo",
+          "rol": "ensena Examen Espiritual"
+        }
+      ],
+      "objetivos_en_orden": [
+        "aceptar el servicio con Tao Ming",
+        "investigar deposito_comun y resolver rata_despensa durante M02",
+        "fijar el cadaver tutorial y evitar su desaparicion",
+        "aprender Examen Espiritual con Chen Bo en sala_anatomica",
+        "volver al cadaver y OBSERVAR/EXAMINAR el ejemplar; EXTRAER prohibido",
+        "informar a Tao Ming"
+      ],
+      "cierre": "SERVICIO_DESPENSA_VALIDADO",
+      "produce": [
+        "primerServicioFormal=true",
+        "EXAMEN_ESPIRITUAL_APRENDIDO=true",
+        "profesiones.examen.desbloqueada=true"
+      ],
+      "abre": [
+        "M03"
+      ],
+      "recompensas": {
+        "contribucion": 1,
+        "merito": 0,
+        "comprension": 0
+      },
+      "rata_tutorial": {
+        "errante_id": "rata_despensa",
+        "mob_id": "rata_qi",
+        "inicio_retiro_permanente": "solo si muere con M02 activa",
+        "respawn_despues": false,
+        "extraer": false,
+        "registrar_atlas_bestiario": false,
+        "familiaridad_profesional": false,
+        "cadaver": "persistente/controlado hasta obtener informacion o cerrar M02",
+        "recuperacion": "si el cadaver falta tras muerte tutorial y Examen sigue pendiente, recrear una vez el cadaver tutorial sin nuevo loot",
+        "3C4": "envoltorio local; no modifica semantica global ni cantidad de errantes"
+      },
+      "one_shots": [
+        "SERVICIO_DESPENSA_VALIDADO",
+        "EXAMEN_ESPIRITUAL_APRENDIDO"
+      ],
+      "anclajes": {
+        "tao_ming": {
+          "room": "oficina_servicios",
+          "owner": "M02",
+          "desde": "activación M02",
+          "hasta": "SERVICIO_DESPENSA_VALIDADO",
+          "liberacion": "limpiar al cerrar; oficina_servicios es posición válida"
+        },
+        "chen_bo": {
+          "room": "sala_anatomica",
+          "owner": "M02",
+          "desde": "tras muerte tutorial hasta EXAMEN_ESPIRITUAL_APRENDIDO",
+          "hasta": "EXAMEN_ESPIRITUAL_APRENDIDO",
+          "liberacion": "limpiar; sala_anatomica es posición válida/inicial"
+        }
+      },
+      "orden_robusto": "state-based: si Examen ya estaba aprendido, no obliga a repetir enseñanza; cadáver observado + servicio asignado + informe final bastan."
+    },
+    {
+      "id": "M03",
+      "nombre": "Aprender a permanecer",
+      "etapa": "LI_INTEGRACION",
+      "requiere": [
+        "M01=HECHA",
+        "M02=HECHA"
+      ],
+      "activacion": "Shen Baojun inicia instruccion en sala_formas",
+      "rooms": [
+        "sala_formas",
+        "patio_marcial",
+        "patio_respiracion",
+        "pabellon_disciplina"
+      ],
+      "npc": [
+        {
+          "id": "shen_baojun",
+          "rol": "instruccion"
+        },
+        {
+          "id": "qiao_ren",
+          "rol": "formaliza promocion/cierre"
+        }
+      ],
+      "pasos": [
+        {
+          "id": "M03_PIEL_COBRE_INSTRUIDA",
+          "room": "sala_formas",
+          "criterio": "Piel de Cobre queda conocida; idempotente si ya estaba aprendida"
+        },
+        {
+          "id": "M03_PRACTICA_MUNECO_COMPLETADA",
+          "room": "patio_marcial",
+          "criterio": "Completar cuando el jugador usa con éxito piel_cobre durante el encuentro contra muneco_practica. No exige derrotarlo ni recibir daño."
+        },
+        {
+          "id": "EVALUACION_CIRCULACION_SUPERADA",
+          "room": "patio_respiracion",
+          "criterio": "En patio_respiracion, cmd_meditar dispara evaluación después de checks de seguridad y antes de cualquier rama qi>=qi_max/CONSAGRAR. Cuenta aunque no gane qi o el vaso esté lleno."
+        },
+        {
+          "id": "M03_PROMOCION_FORMALIZADA",
+          "room": "pabellon_disciplina",
+          "criterio": "Qiao Ren confirma la evaluacion y cierra la mision"
+        }
+      ],
+      "cierre": "M03_PROMOCION_FORMALIZADA",
+      "produce": [
+        "flags.arc1.rangoInstitucional=DISCIPULO_EXTERNO",
+        "flags.arc1.estadoAfiliacion=MIEMBRO",
+        "player.facciones.grulla_blanca.estado=miembro",
+        "evaluacionCirculacion=SUPERADA",
+        "TECNICA_PIEL_COBRE_APRENDIDA=true"
+      ],
+      "abre": [
+        "gate LI->LII"
+      ],
+      "recompensas": {
+        "contribucion": 0,
+        "merito": 0,
+        "comprension": 0
+      },
+      "manual_piel": {
+        "antes_M03": "no puede ensenar piel_cobre",
+        "despues_M03": "si la tecnica ya es conocida, no se consume ni otorga maestria; no se agrega sistema de maestria en 3C.6"
+      },
+      "condiciones_runtime": [
+        "la evaluacion exige room sin hostiles vivos y sin combate activo",
+        "muneco_practica es instancia de mision y no queda permanente en ROOMS"
+      ],
+      "one_shots": [
+        "M03_PIEL_COBRE_INSTRUIDA",
+        "M03_PRACTICA_MUNECO_COMPLETADA",
+        "EVALUACION_CIRCULACION_SUPERADA",
+        "M03_PROMOCION_FORMALIZADA",
+        "TECNICA_PIEL_COBRE_APRENDIDA"
+      ],
+      "muneco_instancia": {
+        "spawn": "si M03_PRACTICA_MUNECO_COMPLETADA=false al entrar en patio_marcial",
+        "recrear": "si murió/desapareció o tras load mientras el paso siga pendiente",
+        "persistencia": "no se agrega a ROOMS; se deriva del estado de misión",
+        "loot": "ninguno",
+        "xp_recompensa_mision": "ninguna",
+        "ataque": "usa MOBS.muneco_practica existente"
+      },
+      "anclajes": {
+        "shen_baojun": {
+          "room": "sala_formas",
+          "owner": "M03",
+          "hasta": "M03_PIEL_COBRE_INSTRUIDA",
+          "liberacion": "limpiar; sala_formas es posición válida/inicial"
+        },
+        "qiao_ren": {
+          "room": "pabellon_disciplina",
+          "owner": "M03",
+          "desde": "EVALUACION_CIRCULACION_SUPERADA",
+          "hasta": "M03_PROMOCION_FORMALIZADA",
+          "liberacion": "limpiar; pabellon_disciplina es posición válida/inicial"
+        }
+      }
+    },
+    {
+      "id": "M04",
+      "nombre": "Más allá de la Puerta Roja",
+      "etapa": "LII_TERRITORIO",
+      "requiere": [
+        "arc1.estado=LII_TERRITORIO",
+        "rangoInstitucional=DISCIPULO_EXTERNO"
+      ],
+      "activacion": "Jiang Rui asigna en puesto_valle",
+      "checkpoints_obligatorios": [
+        "puesto_valle: asignacion",
+        "puerta: control con Gao Shun",
+        "bosque_refugio_patrulla: destino",
+        "puesto_valle: regreso e informe"
+      ],
+      "transito_contextual": [
+        "bosque_senda_patrulla"
+      ],
+      "npc": [
+        {
+          "id": "jiang_rui",
+          "rol": "asigna y valida"
+        },
+        {
+          "id": "gao_shun",
+          "rol": "checkpoint temporal en puerta"
+        }
+      ],
+      "incidente_opcional": {
+        "evento": "M04_INCIDENTE_FAUNA_DOCUMENTADO",
+        "flag_one_shot": "M04_INCIDENTE_FAUNA_DOCUMENTADO",
+        "activadores": [
+          "EXAMINAR tablillas en bosque_puesto_marcas durante M04",
+          "EXAMINAR registro en bosque_refugio_patrulla durante M04"
+        ],
+        "recompensa": {
+          "merito": 1
+        },
+        "nota": "No depende de RNG ni de encontrar un errante.",
+        "otorgamiento": "+1 mérito exactamente en el primer disparo del evento, después de fijar el flag; el cierre no lo recomputa.",
+        "scenery_verificado_ver74": [
+          "bosque_puesto_marcas.tablillas",
+          "bosque_refugio_patrulla.registro"
+        ]
+      },
+      "cierre": "PRIMERA_PATRULLA_VALIDADA",
+      "produce": [
+        "PATRULLA_TERRITORIAL=true",
+        "bosque_refugio_patrulla conocido"
+      ],
+      "abre": [
+        "M05"
+      ],
+      "recompensas": {
+        "contribucion": 2,
+        "merito": 0,
+        "comprension": 0
+      },
+      "checkpoints": [
+        {
+          "id": "M04_ASIGNADA",
+          "tipo": "evento",
+          "actuador": "HABLAR jiang_rui",
+          "room": "puesto_valle"
+        },
+        {
+          "id": "M04_CONTROL_PUERTA",
+          "tipo": "evento",
+          "actuador": "HABLAR gao_shun",
+          "room": "puerta",
+          "nota": "no usar visitadas; puerta ya fue visitada en P"
+        },
+        {
+          "id": "M04_REFUGIO_ALCANZADO",
+          "tipo": "entrada",
+          "actuador": "ENTER",
+          "room": "bosque_refugio_patrulla",
+          "solo_mision_activa": true
+        },
+        {
+          "id": "M04_RETORNO_INFORMADO",
+          "tipo": "evento",
+          "actuador": "HABLAR jiang_rui",
+          "room": "puesto_valle",
+          "requiere": [
+            "M04_CONTROL_PUERTA",
+            "M04_REFUGIO_ALCANZADO"
+          ]
+        }
+      ],
+      "anclajes": {
+        "jiang_rui": {
+          "room": "puesto_valle",
+          "owner": "M04",
+          "desde": "activación",
+          "hasta": "M04_RETORNO_INFORMADO",
+          "liberacion": "limpiar al cierre; puesto_valle es posición válida/inicial"
+        },
+        "gao_shun": {
+          "room": "puerta",
+          "owner": "M04",
+          "desde": "activación",
+          "hasta": "M04_CONTROL_PUERTA",
+          "liberacion": "después del control y al salir el jugador de puerta, reubicar fuera de vista a casa_guardia"
+        }
+      }
+    },
+    {
+      "id": "M05",
+      "nombre": "Los caminos de la Grulla",
+      "etapa": "LII_TERRITORIO",
+      "requiere": [
+        "M04=HECHA"
+      ],
+      "activacion": "Duan Shibo asigna desde oficina_logistica",
+      "objetivos": [
+        "revisar al menos uno: mercado_valle OR granero_valle",
+        "contactar a Xu An en sauces_casa_comunal o sauces_plaza",
+        "registrar la modificacion del circuito en sauces_casa_comunal despues del contacto con Xu An",
+        "visitar sauces_casa_huespedes"
+      ],
+      "contexto_transito": [
+        "puesto_valle",
+        "sauces_plaza"
+      ],
+      "orden": "sin ruta cardinal rigida; el registro comunal requiere contacto previo con Xu An",
+      "cierre": "RUTA_SAUCES_VALIDADA",
+      "produce": [
+        "reconocimientoSauces=HUESPED",
+        "sauces_casa_huespedes conocido",
+        "PILDORA_CONSOLIDACION_OTORGADA=true"
+      ],
+      "abre": [
+        "M06"
+      ],
+      "recompensas": {
+        "contribucion": 3,
+        "merito": 0,
+        "comprension": 0,
+        "item": "pildora_consolidacion"
+      },
+      "proteccion_pildora": {
+        "condicion": "PILDORA_CONSOLIDACION_OTORGADA && player.etapa<3 && !transicionLIILIIIHecha",
+        "regla_central": "cualquier remoción/transferencia se rechaza salvo consumidor autorizado CONSAGRAR_2_3",
+        "vias_cubiertas": [
+          "SOLTAR",
+          "VENDER si existe",
+          "DEPOSITAR si existe",
+          "ENTREGAR/TRANSFERIR si existe",
+          "limpieza por muerte si existe",
+          "cualquier removedor futuro"
+        ],
+        "reemitir": "sólo si flag de otorgamiento existe, falta la píldora y PILDORA_REEMITIDA=false; fijar PILDORA_REEMITIDA=true antes de agregarla",
+        "max_reemisiones": 1,
+        "no_acumular": true
+      },
+      "checkpoints": [
+        {
+          "id": "M05_VALLE_LOGISTICA_REVISADA",
+          "tipo": "entrada",
+          "actuador": "ENTER",
+          "rooms": [
+            "mercado_valle",
+            "granero_valle"
+          ],
+          "regla": "OR; sólo después de activar M05; visitadas históricas no cuentan"
+        },
+        {
+          "id": "M05_XU_AN_CONTACTADO",
+          "tipo": "evento",
+          "actuador": "HABLAR xu_an",
+          "rooms": [
+            "sauces_casa_comunal",
+            "sauces_plaza"
+          ],
+          "solo_mision_activa": true
+        },
+        {
+          "id": "M05_CIRCUITO_REGISTRADO",
+          "tipo": "evento",
+          "actuador": "EXAMINAR registros",
+          "room": "sauces_casa_comunal",
+          "requiere": [
+            "M05_XU_AN_CONTACTADO"
+          ],
+          "scenery_verificado_ver74": "registros"
+        },
+        {
+          "id": "M05_HOSPEDAJE_VISITADO",
+          "tipo": "entrada",
+          "actuador": "ENTER",
+          "room": "sauces_casa_huespedes",
+          "solo_mision_activa": true
+        }
+      ],
+      "cierre_requiere": [
+        "M05_VALLE_LOGISTICA_REVISADA",
+        "M05_XU_AN_CONTACTADO",
+        "M05_CIRCUITO_REGISTRADO",
+        "M05_HOSPEDAJE_VISITADO"
+      ]
+    },
+    {
+      "id": "M06",
+      "nombre": "Lo que no debería estar aquí",
+      "etapa": "LII_TERRITORIO",
+      "requiere": [
+        "M04=HECHA",
+        "M05=HECHA",
+        "al menos una evidencia territorial registrada"
+      ],
+      "activacion": "state-based en reconciliarProgresionArc1: M04=HECHA && M05=HECHA && evidenciaTerritorial.tipos.size>=1 y M06 no activa/hecha => activar M06",
+      "areas": [
+        "bosques",
+        "aguas_barrancos",
+        "cantera_vetas"
+      ],
+      "evidencia": {
+        "tipos": [
+          "DESPLAZAMIENTO_FAUNA",
+          "ALTERACION_VEGETAL",
+          "ALTERACION_HIDRICA",
+          "PATRON_TERRITORIAL"
+        ],
+        "persistencia": "flags.arc1.evidenciaTerritorial.tipos como conjunto sin duplicados",
+        "evaluador": {
+          "1": {
+            "nivel": "INSUFICIENTE",
+            "sospechaFuerte": false
+          },
+          "2": {
+            "nivel": "INSUFICIENTE",
+            "sospechaFuerte": true
+          },
+          "3": {
+            "nivel": "SUFICIENTE",
+            "sospechaFuerte": true
+          },
+          "4": {
+            "nivel": "CONCLUYENTE",
+            "sospechaFuerte": true
+          }
+        },
+        "comparador": {
+          "INSUFICIENTE": 0,
+          "SUFICIENTE": 1,
+          "CONCLUYENTE": 2
+        },
+        "fuentes": "tabla externa room+scenery -> tipo; solo scenery existente; no modificar ROOMS ni 3C.4",
+        "ventana": "desde PATRULLA_TERRITORIAL hasta cierre de M07",
+        "concluyente": "mejora dialogo/contexto de M07; no cambia gate ni recompensa",
+        "tabla_fuentes": [
+          {
+            "tipo": "DESPLAZAMIENTO_FAUNA",
+            "room": "bosque_collado_alto",
+            "scenery": "huellas"
+          },
+          {
+            "tipo": "DESPLAZAMIENTO_FAUNA",
+            "room": "aguas_poza_profunda",
+            "scenery": "marcas"
+          },
+          {
+            "tipo": "ALTERACION_VEGETAL",
+            "room": "aguas_senda_bosque",
+            "scenery": "vegetacion"
+          },
+          {
+            "tipo": "ALTERACION_VEGETAL",
+            "room": "terraza_cantera",
+            "scenery": "vegetacion"
+          },
+          {
+            "tipo": "ALTERACION_HIDRICA",
+            "room": "aguas_cauce_alto",
+            "scenery": "corriente"
+          },
+          {
+            "tipo": "ALTERACION_HIDRICA",
+            "room": "aguas_paso_piedras",
+            "scenery": "corriente"
+          },
+          {
+            "tipo": "PATRON_TERRITORIAL",
+            "room": "bosque_puesto_marcas",
+            "scenery": "tablillas"
+          },
+          {
+            "tipo": "PATRON_TERRITORIAL",
+            "room": "bosque_refugio_patrulla",
+            "scenery": "registro"
+          }
+        ],
+        "cobertura": "4 tipos; 2 fuentes independientes por tipo; hooks externos a ROOMS.",
+        "derivados": "nivel y sospechaFuerte se recalculan desde tipos al cargar/reconciliar; no se confía en valores persistidos."
+      },
+      "listo": "state-based: nivel>=SUFICIENTE aunque los 3 tipos se hubieran reunido antes de activar M06",
+      "cierre": "EVIDENCIA_TERRITORIAL_SUFICIENTE",
+      "produce": [
+        "flags.arc1.revelaciones.R1=PARCIAL"
+      ],
+      "abre": [
+        "M07"
+      ],
+      "recompensas": {
+        "contribucion": 2,
+        "merito": 1,
+        "comprension": 0
+      }
+    },
+    {
+      "id": "M07",
+      "nombre": "Informe de frontera",
+      "etapa": "LII_TERRITORIO",
+      "requiere": [
+        "M06=HECHA",
+        "evidenciaTerritorial>=SUFICIENTE por comparador ordinal"
+      ],
+      "activacion": "HABLAR qiao_ren en pabellon_disciplina con M06=HECHA y evidencia>=SUFICIENTE; al activar se ancla Jiang Rui.",
+      "rooms": [
+        "pabellon_disciplina"
+      ],
+      "participantes": [
+        {
+          "id": "qiao_ren",
+          "presencia": "fisica; sala base pabellon_disciplina"
+        },
+        {
+          "id": "jiang_rui",
+          "presencia": "fisica; anclaje temporal propietario M07"
+        },
+        {
+          "id": "he_zhen",
+          "presencia": "no requerida; recibe SABE por escritura directa"
+        },
+        {
+          "id": "ren_bo",
+          "presencia": "no requerida; recibe SABE por escritura directa"
+        },
+        {
+          "id": "su_lian",
+          "presencia": "no requerida; recibe SABE por escritura directa"
+        }
+      ],
+      "anclajes": {
+        "jiang_rui": {
+          "room": "pabellon_disciplina",
+          "owner": "M07",
+          "liberacion": "únicamente al cerrar M07; escena de salida diegética y reubicación atómica a puesto_valle",
+          "desde": "activación M07"
+        }
+      },
+      "formulacion": {
+        "valores": [
+          "CAUTA",
+          "FUERTE"
+        ],
+        "reglas": [
+          "CAUTA con SUFICIENTE o CONCLUYENTE: final=CAUTA, corregida=false, cerrar",
+          "FUERTE con CONCLUYENTE: final=FUERTE, corregida=false, cerrar",
+          "FUERTE con SUFICIENTE: corrección institucional automática; final=CAUTA, corregida=true, cerrar sin penalización"
+        ],
+        "sin_rama_rechazo": true,
+        "persistencia": [
+          "flags.arc1.informe.formulacionFinal",
+          "flags.arc1.informe.corregida"
+        ],
+        "efecto_mecanico": "ninguno sobre recompensas/gates"
+      },
+      "cierre": "INFORME_ACEPTADO",
+      "produce": [
+        "informeFronteraAceptado=true",
+        "flags.arc1.revelaciones.R1=CONFIRMADO",
+        "conocimientoNPC.jiang_rui.R1=CONFIRMADO",
+        "conocimientoNPC.qiao_ren.R1=CONFIRMADO",
+        "conocimientoNPC.he_zhen.R1=SABE",
+        "conocimientoNPC.ren_bo.R1=SABE",
+        "conocimientoNPC.su_lian.R1=SABE",
+        "Comprension +1 one-shot ARC1_M07_PATRON_TERRITORIAL"
+      ],
+      "conocimiento": "escritura directa monotona; no propagacion automatica",
+      "abre": [
+        "gate LII->LIII"
+      ],
+      "recompensas": {
+        "contribucion": 4,
+        "merito": 3,
+        "comprension": 1
+      }
+    }
+  ],
+  "persistencia": {
+    "QUESTS": "catalogo P-M07",
+    "this.quests": {
+      "persistidos": [
+        "activa",
+        "hecha"
+      ],
+      "compatibles_motor": [
+        "rumor",
+        "fallida"
+      ],
+      "derivados_no_persistidos": [
+        "BLOQUEADA",
+        "DISPONIBLE"
+      ]
+    },
+    "flags": "flags.arc1 contiene estado narrativo, rangoInstitucional, permisos, evidencia, informe, one-shots, propietario de anclajes",
+    "player": "qi, inventario, stats, faccion economica y recursos",
+    "conocimientoNPC": "R1-R10 individuales",
+    "save_schema_version": 2,
+    "normalizacion_carga": [
+      "flags.arc1 ausente en schema2 legacy válido => migrar",
+      "flags.arc1 presente pero inválido => rechazar/fallar cerrado; no migrar como legacy",
+      "estado quest desconocido => descartar a no-hecha/ausente; nunca promover",
+      "downstream HECHA con prerequisito no HECHO => degradar fail-closed",
+      "evidenciaTerritorial.nivel y sospechaFuerte => derivar de tipos",
+      "informeFronteraAceptado => derivar de M07=HECHA",
+      "arc1.estado => recalcular sin superar lo sostenido por etapa+quests+flags válidos",
+      "reconciliar owner/anclaje según tabla",
+      "reconciliarProgresionArc1 después de importar/migrar",
+      "sin clave top-level nueva"
+    ],
+    "invariante_afiliacion": "Antes de M03: facción económica=inactivo. Al cerrar M03: estadoAfiliacion=MIEMBRO y facción económica=miembro. Si facción=expulsado, preservar expulsado."
+  },
+  "migracion_saves_ver74": {
+    "disparador": "save schema 2 valido sin flags.arc1",
+    "preservar": [
+      "raiz",
+      "origen",
+      "stats",
+      "inventario",
+      "tecnicas",
+      "posicion",
+      "visitadas",
+      "gates",
+      "posicionNPC",
+      "conocimientoNPC",
+      "saldo/merito de faccion existentes"
+    ],
+    "quests": {
+      "P": "hecha",
+      "M01": "hecha",
+      "M02": "hecha",
+      "M03": "hecha"
+    },
+    "flags": [
+      "PROLOGO=HECHO",
+      "NOMBRE_INSCRITO=true",
+      "primerServicioFormal=true",
+      "evaluacionCirculacion=SUPERADA",
+      "EXAMEN_ESPIRITUAL_APRENDIDO=true",
+      "SECTA_EXTERIOR_BASE=true",
+      "estadoAfiliacion=MIEMBRO",
+      "rangoInstitucional=DISCIPULO_EXTERNO"
+    ],
+    "acciones_compatibilidad": [
+      "desbloquear profesiones.examen si estaba bloqueada",
+      "conceder piel_cobre si faltaba sin consumir manual",
+      "marcar dormitorio_externos conocido/visitado como parte de la omision deliberada de P-M03",
+      "no volver a ejecutar diagnostico de raiz",
+      "no recalcular ni reducir saldo/merito existentes"
+    ],
+    "arc1_estado": {
+      "etapa_1": "LI_INTEGRACION; transicionLILIIHecha=false",
+      "etapa_2": "LII_TERRITORIO; transicionLILIIHecha=true",
+      "etapa_ge_3": "LII_TERRITORIO; transicionLILIIHecha=true; cultivoLIIIPreexistente=true; SECTA_INTERIOR sigue false hasta cerrar M07"
+    },
+    "M04_M07": "no se migran como hechas; deben jugarse",
+    "discriminante": {
+      "flags.arc1_ausente": "legacy válido => migrar",
+      "flags.arc1_presente_valido": "no migrar; normalizar/reconciliar",
+      "flags.arc1_presente_invalido": "fallar cerrado: rechazar carga semántica 3C.6; nunca tratar como legacy ausente"
+    },
+    "one_shots_P_M03": [
+      "raizDiagnosticada=true",
+      "equipoInicialEntregado=true",
+      "REGISTRO_INICIAL_COMPLETADO=true",
+      "NOMBRE_INSCRITO=true",
+      "ALOJAMIENTO_CONFIRMADO=true",
+      "SERVICIO_DESPENSA_VALIDADO=true",
+      "EXAMEN_ESPIRITUAL_APRENDIDO=true",
+      "M03_PIEL_COBRE_INSTRUIDA=true",
+      "M03_PRACTICA_MUNECO_COMPLETADA=true",
+      "EVALUACION_CIRCULACION_SUPERADA=true",
+      "M03_PROMOCION_FORMALIZADA=true",
+      "TECNICA_PIEL_COBRE_APRENDIDA=true"
+    ],
+    "gates_legacy": {
+      "SECTA_INTERIOR_previa_true": "guardar legacySectaInteriorPrevia=true para diagnóstico; normalizar SECTA_INTERIOR=false, M12=false y ATAJO_ALA_*=false hasta cerrar M07 y reconciliar LIII",
+      "motivo": "M04-M07 no existían en ver74 y deben jugarse en 3C.6"
+    }
+  },
+  "companeros": {
+    "regla": "subsistema social opcional paralelo a misiones",
+    "prioridad": [
+      "CRISIS",
+      "MISION_PRINCIPAL",
+      "PERSONAL",
+      "AMBIENTAL"
+    ],
+    "max_escenas_importantes_por_entrada": 1,
+    "posicionNPC_fuente_de_verdad": true,
+    "afinidad_no_bloquea_progreso": true,
+    "anclaje_propietario": "flags.arc1.anclajePropietario[npcId]",
+    "alcance_3C6": "solo escenas LI/LII que intersecten P-M07",
+    "generos": {
+      "lin_yue": "F",
+      "han_qiao": "M",
+      "zhao_wen": "M",
+      "mei_lian": "F",
+      "guo_chen": "M",
+      "luo_yan": "M"
+    }
+  },
+  "estado_salida": {
+    "tras_M07_antes_de_LIII": [
+      "P y M01-M07 HECHAS",
+      "arc1.estado=LII_TERRITORIO",
+      "rangoInstitucional=DISCIPULO_EXTERNO",
+      "estadoAfiliacion=MIEMBRO",
+      "player.facciones.grulla_blanca.estado=miembro",
+      "primerServicioFormal=true",
+      "evaluacionCirculacion=SUPERADA",
+      "EXAMEN_ESPIRITUAL_APRENDIDO=true",
+      "PATRULLA_TERRITORIAL=true",
+      "reconocimientoSauces=HUESPED",
+      "evidenciaTerritorial>=SUFICIENTE",
+      "informeFronteraAceptado=true",
+      "arc1.revelaciones.R1=CONFIRMADO",
+      "SECTA_INTERIOR=false hasta ejecutar transicion LIII"
+    ],
+    "al_ejecutar_LIII": [
+      "arc1.estado=LIII_INVESTIGACION",
+      "transicionLIILIIIHecha=true",
+      "SECTA_INTERIOR=true",
+      "M12=false",
+      "ATAJO_ALA_*=false"
+    ]
+  },
+  "requisitos_tecnicos_para_contrato": [
+    "compruebaPuerta fail-closed: requisito desconocido bloquea y reporta antes de consumir recursos",
+    "CONSAGRAR no resta vasoAnterior al qi",
+    "otorgarContribucion sólo saldo; otorgarMerito sólo mérito; normalizarFacciones no fuerza merito>=saldo",
+    "nueva partida inicializa player.facciones.grulla_blanca.estado=inactivo; M03 la cambia a miembro",
+    "auditar todos los callers de otorgarContribucion y separar dependencia de mérito implícito",
+    "historial económico distingue contribución de mérito",
+    "API anclarNPC/liberarAnclaje con owner, hasta simbólico y reubicación atómica",
+    "anclaje de misión no preemptible por escenas sociales/crisis durante 3C.6",
+    "elevarConocimientoNPC monotónico",
+    "wrapper local rata_despensa M02",
+    "instancia derivada/recreable de muneco_practica M03",
+    "hook de MEDITAR para evaluación M03 antes de rama de vaso lleno",
+    "checkpoints M04/M05 por eventos definidos, no visitadas históricas",
+    "guardia central de ítem protegido pildora_consolidacion + máximo una reemisión",
+    "tabla externa de evidencia M06 con 8 fuentes verificadas, 2 por tipo, sin modificar ROOMS",
+    "M06 activación y cierre state-based",
+    "normalizarArc1 + migración discriminada + reconciliarProgresionArc1 al cargar",
+    "sustituir stub gestionarMisionesNpc por plumbing P-M07",
+    "actualizar tests que asumían QUESTS vacío o merito>=saldo",
+    "no modificar ROOMS.exits ni número/identidad global de errantes",
+    "SAVE_SCHEMA_VERSION permanece 2"
+  ],
+  "pendientes_editoriales_no_bloqueantes": [
+    "prosa final de la leyenda publica del Prologo",
+    "texto exacto de las tres preguntas del diagnostico de raiz",
+    "microprosa/dialogos de escenas sociales LI/LII"
+  ],
+  "correcciones_rev3_1": [
+    {
+      "id": "N-01",
+      "estado": "RESUELTA",
+      "decision": "Migración legacy completa todos los one-shots P–M03; flags.arc1 ausente migra, presente-pero-inválido falla cerrado; cualquier SECTA_INTERIOR legacy se normaliza a false y se registra legacySectaInteriorPrevia sin reabrirla."
+    },
+    {
+      "id": "N-02",
+      "estado": "RESUELTA",
+      "decision": "Tabla completa de anclajes P/M01/M02/M03/M04/M07; owner no puede ser preemptado por CRISIS mientras sea de misión; owner/anclaje se normalizan juntos; hasta es condición simbólica no temporal."
+    },
+    {
+      "id": "N-03",
+      "estado": "RESUELTA",
+      "decision": "M03 práctica se completa al usar piel_cobre durante el encuentro con muneco_practica; el muñeco se recrea mientras el paso esté pendiente. Evaluación se registra al aceptar MEDITAR tras checks de seguridad, antes de la rama de vaso lleno, con o sin ganancia de qi."
+    },
+    {
+      "id": "N-04",
+      "estado": "RESUELTA",
+      "decision": "M04/M05 distinguen checkpoints por evento y entrada. M05 usa ENTER mercado/granero, HABLAR xu_an, EXAMINAR registros de Casa Comunal y ENTER casa de huéspedes, todos sólo con M05 activa."
+    },
+    {
+      "id": "N-05",
+      "estado": "RESUELTA",
+      "decision": "M06 se activa por estado durante reconciliación cuando M04 y M05 están hechas y existe >=1 tipo de evidencia, aunque toda la evidencia fuera registrada antes."
+    },
+    {
+      "id": "N-06",
+      "estado": "RESUELTA",
+      "decision": "El +1 Mérito opcional de M04 se entrega en M04_INCIDENTE_FAUNA_DOCUMENTADO y jamás se recomputa al cerrar M04."
+    },
+    {
+      "id": "N-07",
+      "estado": "RESUELTA",
+      "decision": "La píldora de M05 queda protegida contra cualquier retiro/transferencia salvo CONSAGRAR 2→3. Sólo existe una reemisión de recuperación, controlada por PILDORA_REEMITIDA."
+    },
+    {
+      "id": "N-08",
+      "estado": "RESUELTA",
+      "decision": "M07 la activa Qiao Ren. Jiang Rui se ancla al activar. CAUTA cierra; FUERTE+SUFICIENTE se corrige a CAUTA y cierra sin penalización; FUERTE+CONCLUYENTE cierra como FUERTE. Liberación sólo al cierre."
+    },
+    {
+      "id": "N-09",
+      "estado": "RESUELTA",
+      "decision": "D1–D7 sincronizadas en MD y JSON."
+    },
+    {
+      "id": "N-10",
+      "estado": "RESUELTA_DOCUMENTALMENTE",
+      "decision": "Requisitos técnicos ampliados: normalización económica, caller audit, estado inactivo explícito, stub gestionarMisionesNpc, tabla concreta de evidencia y scenery M04 verificados."
+    }
+  ],
+  "anclajes_mision": {
+    "hasta_semantica": "identificador simbólico de evento/condición; nunca fecha, hora ni turno diegético",
+    "preempcion": "un anclaje con owner de misión no puede ser sobreescrito por CRISIS/PERSONAL/AMBIENTAL; esas escenas se difieren o usan otro NPC. CRISIS opera sólo entre escenas físicamente elegibles.",
+    "carga": [
+      "owner sin anclaje => descartar owner",
+      "anclaje sin owner de misión => no lo libera el subsistema social",
+      "owner de misión cuya quest no está activa => liberar/reconciliar según tabla"
+    ],
+    "mutacion": "anclar/liberar/reubicar es una mutación síncrona única"
+  },
+  "paridad_md_json": {
+    "estado_inicial_faccion": "inactivo",
+    "LII_LIII_evaluacion_en": [
+      "cierres M04/M05/M06/M07",
+      "CONSAGRAR 2->3",
+      "carga/migracion",
+      "reconciliarProgresionArc1 despues de cualquier cierre P-M07"
+    ],
+    "LII_LIII_presentacion": "ceremonial visual one-shot",
+    "M03_practica_id": "M03_PRACTICA_MUNECO_COMPLETADA",
+    "M06_areas": [
+      "bosques",
+      "aguas_barrancos",
+      "cantera_vetas"
+    ],
+    "M06_sospechaFuerte": "true para 2/3/4 tipos; false para 0/1",
+    "migracion_incluye": [
+      "NOMBRE_INSCRITO",
+      "dormitorio_externos conocido/visitado",
+      "transicionLILIIHecha según etapa"
+    ],
+    "invariantes_mundo": [
+      "329 rooms",
+      "17 areas",
+      "787 directed exits",
+      "0 broken reciprocity",
+      "0 isolated rooms",
+      "1 physical component",
+      "sin tiempo diegético"
+    ]
+  }
+}
