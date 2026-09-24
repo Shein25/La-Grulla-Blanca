@@ -21,11 +21,17 @@ export function decideAndPlan(npc,world,actions,options={}) {
     });
 
     if (plan.status==='PLAN_FOUND') {
+      const executablePlan={
+        ...plan,
+        goal:{...candidate.goal},
+        relevance:{...candidate.relevance},
+        goalId:candidate.id,
+      };
       return {
         status:'PLAN_READY',
         selectedGoal:candidate,
         goalRanking:ranking,
-        plan,
+        plan:executablePlan,
         attempts,
       };
     }
