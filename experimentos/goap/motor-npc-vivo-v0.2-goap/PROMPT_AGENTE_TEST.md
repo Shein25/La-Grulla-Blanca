@@ -6,7 +6,7 @@ Audita exclusivamente la **cabeza actual** de:
 
 Directorio:
 
-`experimentos/motor-npc-vivo-v0.2-goap/`
+`experimentos/goap/motor-npc-vivo-v0.2-goap/`
 
 PR:
 
@@ -317,11 +317,32 @@ No exijas todavía:
 
 Distingue bugs bloqueantes de trabajo futuro.
 
+## Identificación obligatoria del agente auditor
+
+El informe debe identificar claramente quién realizó la auditoría.
+
+La cabecera debe incluir:
+
+- **Agente auditor:** Claude / Gemini / ChatGPT / Codex / otro;
+- **Modelo o versión:** si se conoce;
+- **Fecha**;
+- **Rama auditada**;
+- **HEAD exacto auditado**;
+- **Tipo de revisión:** externa / independiente.
+
+El nombre del archivo debe incluir el agente auditor, por ejemplo:
+
+`Informe_Test_Motor_NPC_Vivo_v0.2.2_GOAP_REV3_CLAUDE.md`
+
+`Informe_Test_Motor_NPC_Vivo_v0.2.2_GOAP_REV3_GEMINI.md`
+
+Si se usa otro agente, reemplaza el sufijo por un identificador claro y estable.
+
 ## Entregable
 
 Devuelve únicamente:
 
-`Informe_Test_Motor_NPC_Vivo_v0.2.2_GOAP_REV3.md`
+`Informe_Test_Motor_NPC_Vivo_v0.2.2_GOAP_REV3_<AGENTE>.md`
 
 Termina exactamente con uno:
 
