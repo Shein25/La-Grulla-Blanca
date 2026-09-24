@@ -1,204 +1,130 @@
-# Motor NPC Vivo v0.2.1 — Laboratorio GOAP
+# Motor NPC Vivo v0.2.2 — Laboratorio GOAP
 
-Iteración correctiva de la primera candidata v0.2, basada en la auditoría externa REV1.
+Iteración correctiva posterior a la auditoría externa REV2.
 
 ## Estado
 
 **No mergear todavía.**
 
-La REV1 validó la arquitectura general:
+La arquitectura sigue separada:
 
 ```text
 Utility AI → OBJETIVO
-GOAP       → PLAN
+GOAP       → PLAN lógico
 Executor   → ejecución / verificación
 ```
 
-pero encontró problemas en identidad de estados, dominio numérico de costes, poda de caminos equivalentes, presupuesto de búsqueda y vigencia de objetivos.
+La REV2 confirmó que las correcciones principales de v0.2.1 funcionan, pero encontró dos defectos localizados:
 
-v0.2.1 corrige esos puntos sin tocar producción.
+1. la relevancia del objetivo podía omitirse al llamar al Executor;
+2. el tercer desempate usaba la serialización JSON del plan y no la secuencia real de IDs.
+
+v0.2.2 corrige ambos puntos sin tocar producción.
 
 ## Aislamiento
 
-- no se importa desde `grulla-blanca_ver73.html`;
+- laboratorio experimental independiente;
 - no usa los 32 NPC canónicos;
 - no usa topología canónica;
 - no implementa misiones;
-- no modifica el baseline del Arco 1;
-- no convierte GOAP en pathfinding de las 329 salas.
+- no modifica el baseline de producción;
+- GOAP no hace pathfinding de las 329 salas.
 
-Los tres NPC siguen siendo fixtures ficticios heredados de v0.1.1.
+## Correcciones v0.2.2
 
-## Cambios principales de v0.2.1
+### Relevancia vinculada al plan ejecutable
 
-### 1. Identidad de estados coherente
+Cuando `controller.mjs` obtiene `PLAN_FOUND`, el plan que expone incorpora:
 
-`factsMatch()` usa `Object.is()`.
-
-La clave interna del planner ahora conserva explícitamente la diferencia entre:
-
-```text
--0
-0
+```js
+{
+  ...plan,
+  goal,
+  relevance,
+  goalId
+}
 ```
 
-y distingue facts ausentes de facts presentes.
+El Executor usa primero ese contrato vinculado.
 
-### 2. Costes discretos seguros
+Por tanto, esta llamada es segura:
 
-Los costes GOAP se restringen a:
-
-```text
-entero seguro > 0
+```js
+executeNext(decision.plan, world, decision.selectedGoal.goal, GOAP_ACTIONS)
 ```
 
-Esto elimina costes diminutos que se redondean a cero y costes gigantes no representables con seguridad.
+aunque no se pase un quinto argumento de relevancia.
 
-El coste acumulado también se controla. Si desborda el rango de entero seguro, el planner no devuelve `Infinity`: produce `COST_OVERFLOW`.
+Si un plan construido fuera del controller no contiene relevancia vinculada, el Executor exige que se suministre explícitamente y rechaza la ejecución antes de aplicar efectos si falta.
 
-### 3. Poda canónica por estado
+Si se suministra un goal o una relevancia explícitos que contradicen el contrato vinculado, también se rechaza.
 
-Para cada estado relevante sólo se conserva el mejor representante según:
+### Desempate lexicográfico real
 
-```text
-coste
-  ↓ empate
-número de pasos
-  ↓ empate
-plan lexicográfico
-```
-
-Ya no se reencolan automáticamente todas las rutas de igual coste al mismo estado.
-
-### 4. Sólo facts relevantes para la identidad de búsqueda
-
-El planner calcula hacia atrás qué facts pueden influir en el objetivo a través de:
+El criterio del planner queda definido como:
 
 ```text
-goal
-  ← effects
-  ← preconditions
-  ← effects anteriores
-  ...
+1. menor coste total
+2. menor cantidad de pasos
+3. secuencia lexicográficamente menor de IDs
 ```
 
-Flags que no pueden afectar ese objetivo no multiplican la identidad de estados.
+La tercera comparación ya no usa `JSON.stringify(plan)`.
 
-El estado completo se conserva para aplicar efectos; la clave de búsqueda usa sólo facts relevantes.
+Ahora compara cada ID de la secuencia directamente, con orden de cadenas por unidades UTF-16 de JavaScript y prefijo corto antes que su extensión.
 
-### 5. Frontera con heap
+Caso de regresión obligatorio:
 
-La frontera ya no ordena un array completo en cada expansión.
+```text
+a
+a!
+```
 
-Se usa una cola de prioridad binaria y se informan:
+Con igual coste y un paso debe ganar:
 
-- `expansions`;
-- `generated`;
-- `maxFrontier`;
-- `relevantFacts`.
+```text
+a
+```
 
-También existe `maxFrontier`.
+## Lo que v0.2.1 ya había corregido y debe conservarse
 
-### 6. Presupuesto estricto
-
-`maxExpansions` debe ser entero >= 0.
-
-Un presupuesto 0 realiza exactamente 0 expansiones.
-
-El planner puede devolver:
-
-- `PLAN_FOUND`;
-- `NO_PLAN`;
-- `SEARCH_LIMIT`;
-- `FRONTIER_LIMIT`;
-- `COST_OVERFLOW`.
-
-### 7. Búsqueda inconclusa no significa objetivo imposible
-
-El controller sólo hace fallback a otro objetivo cuando recibe:
-
-`NO_PLAN`
-
-Si recibe:
-
-- `SEARCH_LIMIT`;
-- `FRONTIER_LIMIT`;
+- identidad coherente `-0` / `0`;
+- costes enteros seguros > 0;
 - `COST_OVERFLOW`;
-
-devuelve:
-
-`PLANNING_DEFERRED`
-
-y conserva el objetivo prioritario.
-
-### 8. Vigencia del objetivo
-
-Cada objetivo experimental tiene ahora condiciones de relevancia.
-
-Ejemplo:
-
-```text
-HELP_PLAYER
-
-goal:
-playerHelped = true
-
-relevancia:
-playerPresent = true
-playerNeedsHelp = true
-playerHelped = false
-```
-
-Antes de cada paso, Executor comprueba:
-
-1. si el goal ya fue alcanzado;
-2. si el objetivo sigue siendo relevante;
-3. si la acción siguiente sigue cumpliendo precondiciones.
-
-Si la relevancia desapareció:
-
-`REPLAN_REQUIRED`
-
-sin ejecutar el movimiento anterior.
-
-### 9. Stress dinámico incluido
-
-Se añadió:
-
-`dynamic-stress.mjs`
-
-Introduce eventos entre pasos y mide:
-
-- GOAL_REACHED;
-- REPLAN_REQUIRED;
-- replans;
-- cambios de objetivo;
-- búsquedas diferidas;
-- estados repetidos;
-- STEP_LIMIT;
-- movimientos inútiles después de objetivo obsoleto.
+- poda canónica por estado;
+- facts causalmente relevantes;
+- heap binaria;
+- `maxExpansions` estricto;
+- `maxFrontier`;
+- `SEARCH_LIMIT` / `FRONTIER_LIMIT` distintos de `NO_PLAN`;
+- `PLANNING_DEFERRED`;
+- vigencia de objetivos;
+- stress dinámico.
 
 ## Suite
 
-La candidata actual contiene **40 tests declarados**.
+La candidata v0.2.2 contiene **47 tests declarados**.
 
-El resultado efectivo de esta revisión debe obtenerlo la auditoría externa REV2; no se considera aprobada hasta entonces.
+El stress dinámico ahora llama al Executor **sin pasar relevancia por separado**, de modo que prueba realmente que la relevancia viaje vinculada al plan.
 
-## Límites que siguen siendo deliberados
+La aprobación efectiva corresponde a la auditoría externa REV3.
 
-- sin topología real;
-- sin pathfinding físico;
-- sin gates canónicos;
-- sin memoria episódica;
-- sin relaciones NPC↔NPC;
-- sin comunicación de conocimiento;
-- sin reservas de recursos compartidos;
-- sin scheduling real de 32 NPC;
-- sin save/load de GOAP;
-- sin efectos probabilísticos.
+## Límites deliberados
+
+Siguen fuera de esta etapa:
+
+- topología física real;
+- pathfinding de rooms;
+- gates canónicos;
+- memoria episódica;
+- relaciones NPC↔NPC;
+- propagación de conocimiento;
+- scheduler real de 32 NPC;
+- save/load de GOAP;
+- efectos probabilísticos.
 
 ## Próximo paso
 
-Ejecutar la auditoría externa REV2 definida en `PROMPT_AGENTE_TEST.md`.
+Ejecutar la auditoría externa REV3 definida en `PROMPT_AGENTE_TEST.md`.
 
 No mergear PR #2 hasta revisar ese informe.
