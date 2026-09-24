@@ -69,22 +69,32 @@ function stateKey(state, relevantKeys) {
   ));
 }
 
-function planKey(plan) {
-  return JSON.stringify(plan);
+function compareIds(a,b) {
+  if (a === b) return 0;
+  return a < b ? -1 : 1;
+}
+
+function comparePlans(a,b) {
+  const n=Math.min(a.length,b.length);
+  for (let i=0;i<n;i++) {
+    const cmp=compareIds(a[i],b[i]);
+    if (cmp) return cmp;
+  }
+  return a.length-b.length;
 }
 
 function signature(node) {
-  return { cost:node.cost, steps:node.plan.length, planKey:planKey(node.plan) };
+  return { cost:node.cost, steps:node.plan.length, plan:[...node.plan] };
 }
 
 function compareSignature(a,b) {
   if (a.cost !== b.cost) return a.cost-b.cost;
   if (a.steps !== b.steps) return a.steps-b.steps;
-  return a.planKey.localeCompare(b.planKey);
+  return comparePlans(a.plan,b.plan);
 }
 
 function sameSignature(a,b) {
-  return a && b && a.cost===b.cost && a.steps===b.steps && a.planKey===b.planKey;
+  return !!a && !!b && compareSignature(a,b)===0;
 }
 
 function compareNodes(a,b) {
@@ -167,7 +177,7 @@ export function planGOAP(initialState, goal, actions, options={}) {
   const relevantSet=new Set(relevantKeys);
   const ordered=[...actions]
     .filter(action=>actionTouchesRelevant(action,relevantSet))
-    .sort((a,b)=>a.id.localeCompare(b.id));
+    .sort((a,b)=>compareIds(a.id,b.id));
 
   if (factsMatch(initialState,goal)) {
     return result('PLAN_FOUND',{
