@@ -62,3 +62,16 @@ Para integrar un resultado experimental al juego se requiere:
 3. auditoría independiente;
 4. contrato de integración;
 5. revisión antes de merge.
+
+
+## Continuidad entre chats
+
+Backup maestro del estado experimental:
+
+`experimentos/backups/HANDOFF_MAESTRO_EXPERIMENTOS_2026-09-24.md`
+
+Prompt corto para abrir un chat nuevo dedicado al laboratorio:
+
+`experimentos/backups/PROMPT_NUEVO_CHAT_EXPERIMENTOS_2026-09-24.md`
+
+Usar esos archivos antes de retomar Utility AI, GOAP o nuevas familias experimentales.
