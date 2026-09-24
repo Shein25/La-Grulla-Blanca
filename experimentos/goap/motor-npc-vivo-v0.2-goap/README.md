@@ -4,7 +4,15 @@ Iteración correctiva posterior a la auditoría externa REV2.
 
 ## Estado
 
-**No mergear todavía.**
+**CERRADA Y MERGEADA COMO SNAPSHOT EXPERIMENTAL.**
+
+PR #2 fue mergeada el 2026-09-24.
+
+Merge commit:
+
+`5812deb59cd1c133383b9af973486a702a26daf4`
+
+Esto no implica integración de GOAP en producción.
 
 La arquitectura sigue separada:
 
@@ -123,8 +131,12 @@ Siguen fuera de esta etapa:
 - save/load de GOAP;
 - efectos probabilísticos.
 
-## Próximo paso
+## Cierre
 
-Ejecutar la auditoría externa REV3 definida en `PROMPT_AGENTE_TEST.md`.
+REV3 Agente A, REV3 Gemini y auditoría independiente concluyeron que v0.2.2 es apta para iterar.
 
-No mergear PR #2 hasta revisar ese informe.
+Resultado de cierre:
+
+`V022_GOAP_APTO_PARA_ITERAR`
+
+La línea GOAP v0.2.2 queda congelada. El siguiente laboratorio se desarrolla en una rama separada.

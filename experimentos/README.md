@@ -11,8 +11,10 @@ experimentos/
 ├── utility-ai/
 │   ├── motor-npc-vivo-v0.1/
 │   └── motor-npc-vivo-v0.1.1/
-└── goap/
-    └── motor-npc-vivo-v0.2-goap/
+├── goap/
+│   └── motor-npc-vivo-v0.2-goap/
+└── memoria/
+    └── motor-npc-vivo-v0.3-memory/
 ```
 
 ## Regla de organización
@@ -25,6 +27,7 @@ experimentos/
 ├── goap/
 ├── behavior-tree/
 ├── htn/
+├── memoria/
 ├── redes-neuronales/
 └── reinforcement-learning/
 ```
