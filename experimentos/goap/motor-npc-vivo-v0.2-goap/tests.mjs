@@ -5,7 +5,7 @@ import { executeNext, executeWholePlan } from './executor.mjs';
 import { GOALS, GOAL_RELEVANCE, selectGoal } from './goal-selector.mjs';
 import { factsMatch, planGOAP } from './goap.mjs';
 import { BASE_WORLD, WORLDS } from './world-fixtures.mjs';
-import { cloneNpc } from '../motor-npc-vivo-v0.1.1/npc-fixtures.mjs';
+import { cloneNpc } from '../../utility-ai/motor-npc-vivo-v0.1.1/npc-fixtures.mjs';
 
 let passed=0;
 const test=(name,fn)=>{
