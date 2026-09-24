@@ -1,0 +1,1000 @@
+{
+  "meta": {
+    "proyecto": "La Grulla Blanca — Arco 1",
+    "documento": "Auditoria_6_Misiones_M01_M18_Estructurada",
+    "version": "1.0",
+    "fecha_generacion": "2026-09-22",
+    "alcance": "PROLOGO + M01-M18, documental. No incluye las 329 rooms, migracion 40->329 (M2), NPC/movilidad (Auditoria 5), ni implementacion (3C). No modifica ver68.",
+    "jerarquia_fuentes": [
+      "1. Decisiones explicitas nuevas (Backup Maestro de Continuidad 2026-09-21)",
+      "2. Auditoria_3U_Mapa_329_Salas_CANONICA.md",
+      "3. Topologia_329_Estructurada_v2.json",
+      "4. Auditoria_3B_Validacion_Topologia_329.md (solo diagnostico historico; 3B2 no fue adjuntado, se usa 3B/3U como equivalentes disponibles)",
+      "5. La_Grulla_Blanca_Fuente_Maestra_Fusionada_ver55.md",
+      "6. Auditoria_C1_Maquinas_Narrativas_Companeros.md",
+      "7. Auditoria_M1_Dependencias_Rooms_ver67.md",
+      "8. Auditoria_4B_Movilidad_Postas_Carruajes_CORREGIDA.md",
+      "9. Informe_Etapa_2B_Atlas_Areas.md",
+      "10. grulla-blanca_ver68.html (solo comparacion tecnica)"
+    ],
+    "nota_metodologica": "Las fichas de mision (P + M01-M18) se reconstruyeron principalmente a partir de los turnos que el propio Backup Maestro (seccion 50) senala como fuentes principales de la Auditoria 6: T286 (Prologo+M01-M03), T287 (M04-M07), T288 (M08-M12), T289 (M13-M15), T290 (M17-M18), mas M16 (T260 -> version anterior; T281 -> revision posterior y version canonica vigente, segun el propio indice de ver55; no existe una revision M16 posterior a T281 dentro de ver55, que termina en T293), T254 (matriz maestra con columnas REQUIERE/PRODUCE/ABRE/NPC/gates/companeros) y T257 (contrato de idempotencia). T168/T169/T197/T222 son versiones mas tempranas de la misma columna vertebral narrativa; se revisaron sus encabezados para confirmar que T254/T286-290 no las contradicen en ningun punto detectado, por lo que no se citan como fuente independiente en cada ficha. El Backup Maestro de Continuidad no contiene fichas narrativas propias de M01-M18 (su seccion 51 es solo una matriz resumida REQUIERE/PRODUCE que coincide con T254); su autoridad maxima aplica a topologia, IDs de area y estado de proyecto, no aporta contenido narrativo adicional o distinto sobre las misiones.",
+    "verificacion_tecnica_ver68": {
+      "metodo": "grep directo sobre 'QUESTS =', 'MISIONES_ACTO_1' y nombres propios (Fan Ji, ratas, etc.) en grulla-blanca_ver68.html.",
+      "resultado": "ver68 implementa unicamente la campana narrativa antigua (Acto I-IV): ratas, duelo (Fan Ji), hierbas, origen_personal, huerto_jade (opcional), jade (Shen Liang), veta_y_horno (opcional), peces_lunares, devoradores, memorias_verticales, reliquias_verticales, cazadores_verticales (opcional), guardianes_ocultos (opcional). No existe ninguna estructura P/M01-M18, ni arc1.estado, ni los permisos del nuevo diseno (PATRULLA_TERRITORIAL, SECTA_INTERIOR, FORMACIONES_INVESTIGACION, NUCLEO_PROFUNDO, etc.). Por tanto TODAS las misiones P-M18 son NO_IMPLEMENTADO en ver68 salvo donde se identifica explicitamente contenido legacy que las fuentes narrativas declaran reemplazado (LEGACY_A_REEMPLAZAR): M02<-ratas, M03<-duelo/Fan Ji, M12/M17<-reliquias_verticales (Sombra/Centinela como llaves), M18<-tramo final eco_grulla/altar/reliquias. El resto de contenido legacy (jade/Shen Liang, huerto_jade, veta_y_horno, peces_lunares, devoradores, memorias_verticales, cazadores_verticales, guardianes_ocultos, origen_personal) no tiene una correspondencia declarada en las fuentes leidas con ninguna mision P-M18 especifica; su destino (eliminar / convertir en contenido lateral opcional / Arc2) queda NO CERRADO EN FUENTE para efectos de esta auditoria."
+    },
+    "salas_329_verificadas_en_topologia_v2": [
+      "patio_raices",
+      "descansillo",
+      "mirador_niebla",
+      "patio_practica",
+      "sendero_pinos",
+      "camino",
+      "puerta",
+      "registro",
+      "sala_jade",
+      "dormitorio_externos",
+      "bosque_refugio_patrulla",
+      "sauces_casa_huespedes",
+      "formaciones_sello_antiguo",
+      "formaciones_descenso_tecnico",
+      "ala_vestibulo",
+      "ala_nudo_seis_corrientes",
+      "ala_camara_dos_alas",
+      "ala_umbral_mantenimiento",
+      "mantenimiento_acceso",
+      "mantenimiento_dormitorio_turnos",
+      "mantenimiento_compuerta_nucleo",
+      "nucleo_pozo_voto",
+      "nucleo_camara_voto",
+      "nucleo_galeria_primer_pacto",
+      "nucleo_primer_pacto",
+      "nucleo_archivo_promesa",
+      "nucleo_descenso_pulso",
+      "nucleo_galeria_pulso",
+      "nucleo_camara_regulacion",
+      "nucleo_sala_relevo",
+      "nucleo_exterior_ancla",
+      "nucleo_camara_memoria",
+      "nucleo_umbral_santuario",
+      "nucleo_santuario_vinculo",
+      "mojon_regional"
+    ],
+    "convencion_etiquetas": [
+      "CONFIRMADO_329 / ID_HISTORICO / DESTINO_329_PENDIENTE / EXTERNO_ARC1_DOCUMENTADO (anclajes espaciales)",
+      "NO CERRADO EN FUENTE / NO RECUPERADO / NO FORMALIZADO / PROPUESTA_NO_CANONICA / OBSOLETO / DECISION_HUMANA_PENDIENTE (huecos)"
+    ]
+  },
+  "missions": [
+    {
+      "npc_anclados": [],
+      "npc_relevantes": [
+        "Tao Ming",
+        "guardia de la Puerta Roja",
+        "ayudante de ingreso"
+      ],
+      "dependencias_auditoria_5": [],
+      "salas_329_confirmadas": [
+        "patio_raices",
+        "descansillo",
+        "mirador_niebla",
+        "patio_practica",
+        "sendero_pinos",
+        "camino",
+        "puerta",
+        "registro"
+      ],
+      "ids_historicos": [],
+      "destinos_329_pendientes": [],
+      "gates": [
+        "entrada a LI"
+      ],
+      "autorizaciones_concedidas": [],
+      "objetivos_obligatorios": [],
+      "objetivos_opcionales": [],
+      "evidencias": [],
+      "revelaciones": [],
+      "flags_creados": [
+        "estadoAfiliacion=ADMITIDO",
+        "raiz elegida (persistente, no se vuelve a sortear)"
+      ],
+      "flags_consumidos": [],
+      "estados_mundo_modificados": [],
+      "recompensas": {
+        "comprension": 0,
+        "merito": 0,
+        "contribucion": 0,
+        "notas": "Recompensa puramente institucional: acceso a Registro. Equipo inicial (uniforme gris de ingreso + espada de madera) en descansillo."
+      },
+      "consecuencias": [],
+      "dependencias_posteriores": [],
+      "idempotencia": "Volver a `registro` tras cerrar el Prologo no repite tutorial ni reasigna raiz (T257).",
+      "eventos_one_shot": [
+        "REGISTRO_INICIAL_COMPLETADO",
+        "sorteo/eleccion de raiz"
+      ],
+      "eventos_repetibles": [
+        "MEDITAR en mirador_niebla",
+        "practica opcional en patio_practica"
+      ],
+      "riesgos_duplicacion": "NO CERRADO EN FUENTE",
+      "relacion_companeros": [],
+      "estado_ver68": "NO_IMPLEMENTADO",
+      "conflictos_historicos": [
+        {
+          "tema": "Presentacion publica de la fundacion",
+          "obsoleto": "Version antigua de ver55 presenta la leyenda de la Grulla como hecho llano.",
+          "canonico": "Se reescribe como 'version publica que se cuenta' (leyenda), reservando la verdad (R1-R10) para mucho despues.",
+          "fuente": "T286"
+        }
+      ],
+      "version_obsoleta": null,
+      "version_canonica": null,
+      "fuentes": [
+        "T254",
+        "T286",
+        "T287",
+        "T288",
+        "T289",
+        "T290",
+        "T281",
+        "T257"
+      ],
+      "pendientes": [
+        "Texto final exacto de la leyenda pendiente de integrarse a ver68/implementacion (M2/3C)."
+      ],
+      "id": "P",
+      "nombre": "La Piedra y la Puerta",
+      "etapa_arc1": "PROLOGO",
+      "requiere": [
+        "Nueva Partida valida"
+      ],
+      "produce": [
+        "estadoAfiliacion=ADMITIDO",
+        "PROLOGO=HECHO",
+        "arc1.estado=LI_INTEGRACION"
+      ],
+      "abre": [
+        "M01"
+      ],
+      "areas": [
+        "acceso"
+      ],
+      "condicion_disponibilidad": "Nueva Partida (personaje recien creado).",
+      "condicion_activacion": "Automatica al crear personaje; recorrido patio_raices->registro.",
+      "condicion_finalizacion": "Evento REGISTRO_INICIAL_COMPLETADO en `registro` (Tao Ming)."
+    },
+    {
+      "npc_anclados": [],
+      "npc_relevantes": [
+        "Tao Ming",
+        "Madre Wen",
+        "Gao Shun (opcional)"
+      ],
+      "dependencias_auditoria_5": [],
+      "salas_329_confirmadas": [
+        "registro",
+        "sala_jade",
+        "dormitorio_externos"
+      ],
+      "ids_historicos": [],
+      "destinos_329_pendientes": [
+        "'patio exterior' / 'Cabañas' citados en T286 sin room_id 329 literal confirmado en las fuentes leidas; requiere M2."
+      ],
+      "gates": [
+        "necesaria para continuar LI"
+      ],
+      "autorizaciones_concedidas": [],
+      "objetivos_obligatorios": [
+        "Presentarse/inscribirse en Sala de Jade (NOMBRE_INSCRITO, una sola vez)",
+        "Recibir alojamiento de Madre Wen"
+      ],
+      "objetivos_opcionales": [],
+      "evidencias": [],
+      "revelaciones": [],
+      "flags_creados": [
+        "NOMBRE_INSCRITO",
+        "rango=ASPIRANTE",
+        "SECTA_EXTERIOR_BASE",
+        "alojamiento_conocido.dormitorio_externos=true"
+      ],
+      "flags_consumidos": [],
+      "estados_mundo_modificados": [],
+      "recompensas": {
+        "comprension": 0,
+        "merito": 0,
+        "contribucion": 0,
+        "notas": "Recompensa institucional pura: pertenencia + primer alojamiento conocido garantizado (destino de rescate para el futuro sistema de muerte/recuperacion)."
+      },
+      "consecuencias": [],
+      "dependencias_posteriores": [],
+      "idempotencia": "Repetir EXAMINAR TAJO/MURO tras NOMBRE_INSCRITO produce texto de repeticion, no reprocesa el evento (T286, T257).",
+      "eventos_one_shot": [
+        "NOMBRE_INSCRITO",
+        "ALOJAMIENTO_CONFIRMADO"
+      ],
+      "eventos_repetibles": [],
+      "riesgos_duplicacion": "NO CERRADO EN FUENTE",
+      "relacion_companeros": [
+        "Aparicion incidental de varios companeros durante la promocion (T254)."
+      ],
+      "estado_ver68": "NO_IMPLEMENTADO",
+      "conflictos_historicos": [],
+      "version_obsoleta": null,
+      "version_canonica": null,
+      "fuentes": [
+        "T254",
+        "T286",
+        "T287",
+        "T288",
+        "T289",
+        "T290",
+        "T281",
+        "T257"
+      ],
+      "pendientes": [
+        "Room_id 329 exacto para 'patio exterior'/'Cabañas Externas' citado en fase 3 (DESTINO_329_PENDIENTE)."
+      ],
+      "id": "M01",
+      "nombre": "Un nombre entre miles",
+      "etapa_arc1": "LI_INTEGRACION",
+      "requiere": [
+        "PROLOGO=HECHO",
+        "arc1.estado=LI_INTEGRACION"
+      ],
+      "produce": [
+        "rango=ASPIRANTE",
+        "SECTA_EXTERIOR_BASE",
+        "alojamiento conocido: dormitorio_externos"
+      ],
+      "abre": [
+        "M02 (junto con otras condiciones)"
+      ],
+      "areas": [
+        "secta_exterior"
+      ],
+      "condicion_disponibilidad": "PROLOGO=HECHO.",
+      "condicion_activacion": "Conversacion formal con Tao Ming en Registro (no basta con entrar a la sala).",
+      "condicion_finalizacion": "Evento ALOJAMIENTO_CONFIRMADO (Madre Wen asigna cama en dormitorio_externos)."
+    },
+    {
+      "npc_anclados": [],
+      "npc_relevantes": [
+        "Tao Ming / Ma Qiren o Madre Wen (informan)",
+        "Chen Bo (ensena Examen)"
+      ],
+      "dependencias_auditoria_5": [],
+      "salas_329_confirmadas": [],
+      "ids_historicos": [],
+      "destinos_329_pendientes": [
+        "Almacen/despensa exterior concreto de M02: sin room_id 329 literal en las fuentes leidas (DESTINO_329_PENDIENTE)."
+      ],
+      "gates": [
+        "'primer servicio formal' es componente del gate LI->LII"
+      ],
+      "autorizaciones_concedidas": [],
+      "objetivos_obligatorios": [
+        "Investigar el almacen/despensa",
+        "Combatir/resolver una Rata de qi de mision",
+        "Aprender Examen Espiritual con Chen Bo"
+      ],
+      "objetivos_opcionales": [
+        "Extraer material del cadaver (no obligatorio para cerrar la mision)"
+      ],
+      "evidencias": [],
+      "revelaciones": [],
+      "flags_creados": [
+        "primerServicioFormal=true",
+        "EXAMEN_ESPIRITUAL_APRENDIDO"
+      ],
+      "flags_consumidos": [],
+      "estados_mundo_modificados": [],
+      "recompensas": {
+        "comprension": 0,
+        "merito": 0,
+        "contribucion": "pequeña",
+        "notas": "Primera vez que el jugador recibe Contribucion; sin Merito (trabajo rutinario)."
+      },
+      "consecuencias": [],
+      "dependencias_posteriores": [],
+      "idempotencia": "El cadaver/material de mision no puede duplicarse indefinidamente; si desaparece o el jugador abandona la zona debe existir recuperacion narrativa controlada, no reaparicion infinita (T257).",
+      "eventos_one_shot": [
+        "EXAMEN_ESPIRITUAL_APRENDIDO"
+      ],
+      "eventos_repetibles": [],
+      "riesgos_duplicacion": "Explicitamente sinalado en fuente: evitar duplicacion de recursos si el tutorial de Examen se repite (T257).",
+      "relacion_companeros": [
+        "Guo y Han pueden aparecer en actividad laboral (T254)."
+      ],
+      "estado_ver68": "LEGACY_A_REEMPLAZAR",
+      "conflictos_historicos": [
+        {
+          "tema": "M02 reemplaza la mision de las ratas",
+          "obsoleto": "ver68: quest 'ratas' ('La plaga de la despensa') exige matar exactamente 3 Ratas de qi y entrega recompensa generica de Contribucion+piedras+experiencia.",
+          "canonico": "M02: un solo encuentro con una Rata de qi, enfoque en aprender Examen Espiritual real; la mision NO depende de una extraccion exitosa; recompensa es servicio+Examen+Contribucion pequeña, sin piedras/experiencia genericas.",
+          "fuente": "T286 vs grulla-blanca_ver68.html (const QUESTS.ratas)"
+        }
+      ],
+      "version_obsoleta": null,
+      "version_canonica": null,
+      "fuentes": [
+        "T254",
+        "T286",
+        "T287",
+        "T288",
+        "T289",
+        "T290",
+        "T281",
+        "T257"
+      ],
+      "pendientes": [
+        "Room_id 329 exacto del almacen/despensa de M02: DESTINO_329_PENDIENTE."
+      ],
+      "id": "M02",
+      "nombre": "Trabajo que alguien debe hacer",
+      "etapa_arc1": "LI_INTEGRACION",
+      "requiere": [
+        "M01=HECHA"
+      ],
+      "produce": [
+        "primerServicioFormal=true",
+        "Examen Espiritual desbloqueado",
+        "Contribucion pequeña"
+      ],
+      "abre": [
+        "M03 (junto con otras condiciones)"
+      ],
+      "areas": [
+        "secta_exterior"
+      ],
+      "condicion_disponibilidad": "M01=HECHA.",
+      "condicion_activacion": "Aceptar el servicio (revisar almacen/despensa) con Tao Ming/Ma Qiren/Madre Wen.",
+      "condicion_finalizacion": "Entrega/validacion del servicio: Examen realizado correctamente + informacion sobre el ejemplar obtenida (NO depende de una extraccion exitosa de material)."
+    },
+    {
+      "npc_anclados": [],
+      "npc_relevantes": [
+        "Shen Baojun",
+        "Qiao Ren (supervision institucional, no obligatoria en escena)"
+      ],
+      "dependencias_auditoria_5": [],
+      "salas_329_confirmadas": [],
+      "ids_historicos": [],
+      "destinos_329_pendientes": [
+        "'sector marcial / Respiracion / Disciplina' sin room_id 329 literal citado en las fuentes leidas."
+      ],
+      "gates": [
+        "gate LI->LII: qi>=25 + rango==DISCIPULO_EXTERNO + primerServicioFormal + evaluacionCirculacion==SUPERADA"
+      ],
+      "autorizaciones_concedidas": [],
+      "objetivos_obligatorios": [
+        "Instruccion con Shen Baojun (incluye ensenanza de Piel de Cobre)",
+        "Practica contra el muneco de entrenamiento (respuesta valida: Piel de Cobre u otra legitima: DEFENDER/evasion/control)",
+        "Evaluacion de circulacion (MEDITAR o equivalente contextual)"
+      ],
+      "objetivos_opcionales": [],
+      "evidencias": [],
+      "revelaciones": [],
+      "flags_creados": [
+        "evaluacionCirculacion=SUPERADA",
+        "rango=DISCIPULO_EXTERNO",
+        "estadoAfiliacion=MIEMBRO"
+      ],
+      "flags_consumidos": [],
+      "estados_mundo_modificados": [],
+      "recompensas": {
+        "comprension": 0,
+        "merito": 0,
+        "contribucion": "posible pequeña",
+        "notas": "La recompensa central es el cambio de rango, no economica."
+      },
+      "consecuencias": [],
+      "dependencias_posteriores": [],
+      "idempotencia": "La evaluacion puede practicarse de nuevo despues, pero la promocion de rango ocurre una sola vez (T257).",
+      "eventos_one_shot": [
+        "EVALUACION_CIRCULACION_SUPERADA",
+        "promocion Aspirante->Discipulo Externo"
+      ],
+      "eventos_repetibles": [],
+      "riesgos_duplicacion": "NO CERRADO EN FUENTE",
+      "relacion_companeros": [
+        "Lin, Han y Luo tienen mayor presencia potencial (T254). Posible escena breve de evaluacion paralela de un companero."
+      ],
+      "estado_ver68": "LEGACY_A_REEMPLAZAR",
+      "conflictos_historicos": [
+        {
+          "tema": "M03 reemplaza el duelo con Fan Ji",
+          "obsoleto": "ver68: quest 'duelo' ('El arrogante') exige derrotar a Fan Ji en la arena, con eleccion ejecutar/perdonar y recompensa de Contribucion+piedras+experiencia+decision de Dao.",
+          "canonico": "M03: evaluacion de circulacion e intencion bajo presion con el muneco de entrenamiento, sin duelo con un NPC humano; unica promocion real de Arc1 (Aspirante->Discipulo Externo); sin piedras/experiencia generica.",
+          "fuente": "T286 vs grulla-blanca_ver68.html (const QUESTS.duelo, fan_ji)"
+        }
+      ],
+      "version_obsoleta": null,
+      "version_canonica": null,
+      "fuentes": [
+        "T254",
+        "T286",
+        "T287",
+        "T288",
+        "T289",
+        "T290",
+        "T281",
+        "T257"
+      ],
+      "pendientes": [
+        "Room_id 329 exacto del sector marcial: DESTINO_329_PENDIENTE.",
+        "'Si CONSAGRAR exige literalmente 25/25' queda explicitamente abierto en T286 (a revisar al adaptar progresion de ver55): NO CERRADO EN FUENTE."
+      ],
+      "id": "M03",
+      "nombre": "Aprender a permanecer",
+      "etapa_arc1": "LI_INTEGRACION",
+      "requiere": [
+        "M01=HECHA",
+        "M02=HECHA",
+        "condiciones basicas de cultivo apropiadas"
+      ],
+      "produce": [
+        "rango: ASPIRANTE->DISCIPULO_EXTERNO",
+        "estadoAfiliacion=MIEMBRO",
+        "evaluacionCirculacion=SUPERADA",
+        "acceso a Piel de Cobre como formacion basica"
+      ],
+      "abre": [
+        "M04 (tras gate LI->LII)"
+      ],
+      "areas": [
+        "secta_exterior"
+      ],
+      "condicion_disponibilidad": "M01 y M02 HECHAS.",
+      "condicion_activacion": "Shen Baojun inicia la formacion (instruccion + practica).",
+      "condicion_finalizacion": "Evento EVALUACION_CIRCULACION_SUPERADA (no exige llenar el vaso a 25/25; comprueba estabilizacion, finalizacion del ejercicio y ausencia de estado critico)."
+    },
+    {
+      "npc_anclados": [
+        {
+          "npc": "Gao Shun",
+          "sala": "Puerta Roja (region secta_exterior)",
+          "condicion": "ANCLADO durante el objetivo obligatorio de M04; vuelve a movilidad normal despues (Backup Maestro §40)."
+        }
+      ],
+      "npc_relevantes": [
+        "Jiang Rui"
+      ],
+      "dependencias_auditoria_5": [],
+      "salas_329_confirmadas": [
+        "bosque_refugio_patrulla"
+      ],
+      "ids_historicos": [],
+      "destinos_329_pendientes": [],
+      "gates": [
+        "componente del servicio territorial LII"
+      ],
+      "autorizaciones_concedidas": [],
+      "objetivos_obligatorios": [
+        "Revisar tramo de camino / puesto / refugio",
+        "Regresar con informe breve"
+      ],
+      "objetivos_opcionales": [
+        "Inspeccionar senal caida/huellas del 'incidente de servicio'"
+      ],
+      "evidencias": [
+        "observacion FAUNA_FUERA_DE_RANGO, estado NO_INTERPRETADA (no genera evidencia R1 todavia)"
+      ],
+      "revelaciones": [],
+      "flags_creados": [
+        "PATRULLA_TERRITORIAL=activa_permanente",
+        "refugio bosque_refugio_patrulla conocido (seguro=true, purifica=false)"
+      ],
+      "flags_consumidos": [],
+      "estados_mundo_modificados": [],
+      "recompensas": {
+        "comprension": 0,
+        "merito": "posible pequeño si hay incidente real (no por caminar la ruta normal)",
+        "contribucion": "pequeña"
+      },
+      "consecuencias": [],
+      "dependencias_posteriores": [],
+      "idempotencia": "Si el jugador ya visito alguna zona antes, la mision reconoce ese conocimiento espacial; no obliga a 'redescubrir' (T257).",
+      "eventos_one_shot": [],
+      "eventos_repetibles": [],
+      "riesgos_duplicacion": "NO CERRADO EN FUENTE",
+      "relacion_companeros": [
+        "Lin especialmente adecuada (T254); Luo tambien con presencia potencial."
+      ],
+      "estado_ver68": "NO_IMPLEMENTADO",
+      "conflictos_historicos": [],
+      "version_obsoleta": null,
+      "version_canonica": null,
+      "fuentes": [
+        "T254",
+        "T286",
+        "T287",
+        "T288",
+        "T289",
+        "T290",
+        "T281",
+        "T257"
+      ],
+      "pendientes": [
+        "No hay evidencia de que M04 reemplace contenido especifico de ver68 (region no cubierta por el Acto I-IV legacy)."
+      ],
+      "id": "M04",
+      "nombre": "Más allá de la Puerta Roja",
+      "etapa_arc1": "LII_TERRITORIO",
+      "requiere": [
+        "arc1.estado=LII_TERRITORIO (tras gate LI->LII)",
+        "rango=DISCIPULO_EXTERNO"
+      ],
+      "produce": [
+        "PATRULLA_TERRITORIAL (permiso, fuente=MISION, origen=M04)",
+        "refugio bosque_refugio_patrulla conocido"
+      ],
+      "abre": [
+        "M05"
+      ],
+      "areas": [
+        "secta_exterior",
+        "bosques"
+      ],
+      "condicion_disponibilidad": "arc1.estado=LII_TERRITORIO + Discipulo Externo.",
+      "condicion_activacion": "Asignacion de Jiang Rui (primera salida de servicio).",
+      "condicion_finalizacion": "Regreso/validacion de la primera salida ante Jiang Rui (informe breve)."
+    },
+    {
+      "npc_anclados": [],
+      "npc_relevantes": [
+        "Duan Shibo o Jiang Rui",
+        "Han Qiao (opcional, HAN_02_PROCEDIMIENTO)",
+        "Xu An",
+        "Mei Shufen"
+      ],
+      "dependencias_auditoria_5": [],
+      "salas_329_confirmadas": [
+        "sauces_casa_huespedes"
+      ],
+      "ids_historicos": [],
+      "destinos_329_pendientes": [
+        "Rooms especificas del Valle/Produccion recorridas en M05 (graneros, puestos de intercambio): sin room_id 329 literal citado."
+      ],
+      "gates": [
+        "contribuye al conocimiento territorial (no es gate duro por si sola)"
+      ],
+      "autorizaciones_concedidas": [],
+      "objetivos_obligatorios": [
+        "Paso por el Valle",
+        "Llegada a Sauces y conversacion con Xu An",
+        "Registrar la modificacion del circuito"
+      ],
+      "objetivos_opcionales": [],
+      "evidencias": [],
+      "revelaciones": [],
+      "flags_creados": [
+        "reconocimientoSauces=HUESPED",
+        "sauces_casa_huespedes conocido (seguro=true, purifica=true)"
+      ],
+      "flags_consumidos": [],
+      "estados_mundo_modificados": [],
+      "recompensas": {
+        "comprension": 0,
+        "merito": "normalmente pequeño o ninguno, salvo incidente extraordinario",
+        "contribucion": "pequeña/moderada"
+      },
+      "consecuencias": [],
+      "dependencias_posteriores": [],
+      "idempotencia": "reconocimientoSauces=HUESPED es relacion local, no autorizacion institucional; no se crea flag redundante 'SaucesExiste' (Sauces ya existia) (T257).",
+      "eventos_one_shot": [],
+      "eventos_repetibles": [],
+      "riesgos_duplicacion": "NO CERRADO EN FUENTE",
+      "relacion_companeros": [
+        "MEI_03_REGRESO_SAUCES puede ocurrir aqui si Mei acompaña; HAN_02_PROCEDIMIENTO en el Valle."
+      ],
+      "estado_ver68": "NO_IMPLEMENTADO",
+      "conflictos_historicos": [],
+      "version_obsoleta": null,
+      "version_canonica": null,
+      "fuentes": [
+        "T254",
+        "T286",
+        "T287",
+        "T288",
+        "T289",
+        "T290",
+        "T281",
+        "T257"
+      ],
+      "pendientes": [
+        "Primera ruta 'occidental Cantera/Bosque' vs 'oriental Agua/Jardines' (Backup Maestro §40): declarado explicitamente NO exclusion permanente, sin decision final de cual se usa por defecto."
+      ],
+      "id": "M05",
+      "nombre": "Los caminos de la Grulla",
+      "etapa_arc1": "LII_TERRITORIO",
+      "requiere": [
+        "M04=HECHA o servicio territorial suficientemente iniciado"
+      ],
+      "produce": [
+        "reconocimientoSauces=HUESPED",
+        "sauces_casa_huespedes conocido (alojamiento)"
+      ],
+      "abre": [
+        "M06 (como parte de la combinacion de condiciones)"
+      ],
+      "areas": [
+        "valle",
+        "produccion",
+        "sauces"
+      ],
+      "condicion_disponibilidad": "M04 HECHA o servicio territorial suficientemente iniciado.",
+      "condicion_activacion": "Encargo que conecta secta con Valle/Sauces (revision de ruta de intercambio).",
+      "condicion_finalizacion": "Confirmacion de que el jugador comprendio/ejecuto la ruta institucional (registro de la modificacion en Sauces)."
+    },
+    {
+      "npc_anclados": [],
+      "npc_relevantes": [
+        "Jiang Rui",
+        "Ma Gu",
+        "patrullas",
+        "Zhao Wen/Mei Lian/Lin Yue (segun lugar)"
+      ],
+      "dependencias_auditoria_5": [],
+      "salas_329_confirmadas": [],
+      "ids_historicos": [],
+      "destinos_329_pendientes": [
+        "Rooms especificas de avistamiento no citadas literalmente."
+      ],
+      "gates": [],
+      "autorizaciones_concedidas": [],
+      "objetivos_obligatorios": [
+        "Reunir evidencia semantica suficiente (DESPLAZAMIENTO_FAUNA / ALTERACION_VEGETAL / ALTERACION_HIDRICA / PATRON_TERRITORIAL); diversidad > cantidad"
+      ],
+      "objetivos_opcionales": [],
+      "evidencias": [
+        "DESPLAZAMIENTO_FAUNA",
+        "ALTERACION_VEGETAL",
+        "ALTERACION_HIDRICA",
+        "PATRON_TERRITORIAL"
+      ],
+      "revelaciones": [
+        {
+          "id": "R1",
+          "nivel": "PARCIAL",
+          "mision": "M06"
+        }
+      ],
+      "flags_creados": [
+        "evidenciaTerritorial>=SUFICIENTE"
+      ],
+      "flags_consumidos": [],
+      "estados_mundo_modificados": [],
+      "recompensas": {
+        "comprension": 0,
+        "merito": "limitado, no se ha formalizado conclusion",
+        "contribucion": "sí"
+      },
+      "consecuencias": [],
+      "dependencias_posteriores": [],
+      "idempotencia": "No existe objetivo tipo 'ANOMALÍAS 0/4'; el evaluador es semantico, no un contador estricto (T257).",
+      "eventos_one_shot": [],
+      "eventos_repetibles": [],
+      "riesgos_duplicacion": "NO CERRADO EN FUENTE",
+      "relacion_companeros": [
+        "Zhao insiste en 'patron posible, todavia no causa'; Jiang Rui aporta experiencia; Mei y Lin pueden aportar avistamientos."
+      ],
+      "estado_ver68": "NO_IMPLEMENTADO",
+      "conflictos_historicos": [],
+      "version_obsoleta": null,
+      "version_canonica": null,
+      "fuentes": [
+        "T254",
+        "T286",
+        "T287",
+        "T288",
+        "T289",
+        "T290",
+        "T281",
+        "T257"
+      ],
+      "pendientes": [],
+      "id": "M06",
+      "nombre": "Lo que no debería estar aquí",
+      "etapa_arc1": "LII_TERRITORIO",
+      "requiere": [
+        "M04 y M05 suficientes para conocer el territorio (no exige combinacion unica)"
+      ],
+      "produce": [
+        "conocimiento.anomaliasTerritoriales -> SOSPECHA/PARCIAL fuerte",
+        "R1=PARCIAL"
+      ],
+      "abre": [
+        "M07"
+      ],
+      "areas": [
+        "bosques",
+        "aguas_barrancos",
+        "cantera_vetas"
+      ],
+      "condicion_disponibilidad": "Combinacion razonable de M04/M05 HECHAS + alguna observacion territorial sospechosa (no hay combinacion unica).",
+      "condicion_activacion": "Primer incidente reconocido como anomalo (mision formal o reinterpretacion de una observacion previa NO_INTERPRETADA).",
+      "condicion_finalizacion": "evaluarEvidenciaTerritorial() alcanza SUFICIENTE (CONCLUYENTE mejora dialogo/preparacion pero no es obligatorio)."
+    },
+    {
+      "npc_anclados": [],
+      "npc_relevantes": [
+        "Jiang Rui",
+        "Qiao Ren",
+        "He Zhen (consulta breve, no revela R2)",
+        "Ren Bo",
+        "Su Lian"
+      ],
+      "dependencias_auditoria_5": [],
+      "salas_329_confirmadas": [],
+      "ids_historicos": [],
+      "destinos_329_pendientes": [
+        "Sala donde se prepara/entrega el informe: sin room_id 329 literal."
+      ],
+      "gates": [
+        "requisito narrativo principal para gate LII->LIII"
+      ],
+      "autorizaciones_concedidas": [],
+      "objetivos_obligatorios": [
+        "Preparar el informe (interfaz contextual con arc1.evidencia.territorial)",
+        "Elegir grado de certeza en la formulacion (afirmacion fuerte vs cauta; se puede corregir sin penalizacion si Qiao Ren/Jiang Rui la cuestionan)"
+      ],
+      "objetivos_opcionales": [],
+      "evidencias": [],
+      "revelaciones": [
+        {
+          "id": "R1",
+          "nivel": "CONFIRMADO",
+          "mision": "M07"
+        }
+      ],
+      "flags_creados": [
+        "informeFronteraAceptado=true",
+        "conocimiento.anomaliasTerritoriales=CONFIRMADO",
+        "difusion institucional (Jiang Rui, Qiao Ren, He Zhen, Ren Bo, Su Lian y autoridades)"
+      ],
+      "flags_consumidos": [],
+      "estados_mundo_modificados": [
+        "HISTORY candidato: PRESENTAR_EVIDENCIA_INCIERTA."
+      ],
+      "recompensas": {
+        "comprension": "+1 (ARC1_M07_PATRON_TERRITORIAL)",
+        "merito": "significativo",
+        "contribucion": "moderada",
+        "notas": "Prestigio puede modificarse ligeramente segun conducta conocida durante el proceso."
+      },
+      "consecuencias": [
+        "No concede SECTA_INTERIOR todavia (se concede al entrar oficialmente en LIII, tras el avance de cultivo, evento separado)."
+      ],
+      "dependencias_posteriores": [],
+      "idempotencia": "Equivocar el grado de certeza no falla la mision ni reduce Merito/Prestigio ni obliga a repetir M06 (T287).",
+      "eventos_one_shot": [],
+      "eventos_repetibles": [],
+      "riesgos_duplicacion": "NO CERRADO EN FUENTE",
+      "relacion_companeros": [
+        "Zhao y Luo con mayor presencia potencial en la formulacion del informe."
+      ],
+      "estado_ver68": "NO_IMPLEMENTADO",
+      "conflictos_historicos": [],
+      "version_obsoleta": null,
+      "version_canonica": null,
+      "fuentes": [
+        "T254",
+        "T286",
+        "T287",
+        "T288",
+        "T289",
+        "T290",
+        "T281",
+        "T257"
+      ],
+      "pendientes": [],
+      "id": "M07",
+      "nombre": "Informe de frontera",
+      "etapa_arc1": "LII_TERRITORIO",
+      "requiere": [
+        "M06=HECHA",
+        "evidenciaTerritorial>=SUFICIENTE"
+      ],
+      "produce": [
+        "informeFronteraAceptado=true",
+        "R1=CONFIRMADO",
+        "Comprension +1 (ARC1_M07_PATRON_TERRITORIAL)"
+      ],
+      "abre": [
+        "M08, M09, M10 (tras gate LII->LIII y avance de cultivo)"
+      ],
+      "areas": [
+        "secta_exterior"
+      ],
+      "condicion_disponibilidad": "M06 HECHA y evidencia suficiente.",
+      "condicion_activacion": "Decision explicita del jugador de presentar el informe.",
+      "condicion_finalizacion": "Evento INFORME_ACEPTADO (revision de Jiang Rui/Qiao Ren; He Zhen puede recibir copia)."
+    },
+    {
+      "npc_anclados": [],
+      "npc_relevantes": [
+        "He Zhen",
+        "Wen Tao"
+      ],
+      "dependencias_auditoria_5": [],
+      "salas_329_confirmadas": [],
+      "ids_historicos": [],
+      "destinos_329_pendientes": [
+        "Puntos de medicion exteriores revisitados de M04-M07 y 'Sala de Mapas de Flujo': sin room_id 329 literal confirmado (aunque el area Formaciones si esta confirmada en topologia v2)."
+      ],
+      "gates": [
+        "componente de M11"
+      ],
+      "autorizaciones_concedidas": [],
+      "objetivos_obligatorios": [
+        "Lectura inicial (visitar puntos ya conocidos de M04-M07)",
+        "Trabajo de campo",
+        "Comparacion en el centro de Formaciones",
+        "Confirmacion en sector/nodo independiente"
+      ],
+      "objetivos_opcionales": [],
+      "evidencias": [],
+      "revelaciones": [
+        {
+          "id": "R2",
+          "nivel": "CONFIRMADO",
+          "mision": "M08"
+        }
+      ],
+      "flags_creados": [],
+      "flags_consumidos": [],
+      "estados_mundo_modificados": [],
+      "recompensas": {
+        "comprension": 0,
+        "merito": "moderado",
+        "contribucion": "sí",
+        "notas": "No concede Comprension aqui: es observacion tecnica, no sintesis (llegara en M11)."
+      },
+      "consecuencias": [
+        "FORMACIONES_INVESTIGACION permanece activo para los sectores correspondientes tras cerrar M08."
+      ],
+      "dependencias_posteriores": [],
+      "idempotencia": "NO CERRADO EN FUENTE (no se detalla explicitamente en T257 mas alla del contrato general BLOQUEADA/DISPONIBLE/ACTIVA/HECHA)",
+      "eventos_one_shot": [],
+      "eventos_repetibles": [],
+      "riesgos_duplicacion": "NO CERRADO EN FUENTE",
+      "relacion_companeros": [
+        "Zhao/Luo posibles."
+      ],
+      "estado_ver68": "NO_IMPLEMENTADO",
+      "conflictos_historicos": [],
+      "version_obsoleta": null,
+      "version_canonica": null,
+      "fuentes": [
+        "T254",
+        "T286",
+        "T287",
+        "T288",
+        "T289",
+        "T290",
+        "T281",
+        "T257"
+      ],
+      "pendientes": [],
+      "id": "M08",
+      "nombre": "Una montaña que no coincide consigo misma",
+      "etapa_arc1": "LIII_INVESTIGACION",
+      "requiere": [
+        "arc1.estado=LIII_INVESTIGACION",
+        "SECTA_INTERIOR concedido"
+      ],
+      "produce": [
+        "FORMACIONES_INVESTIGACION (permiso)",
+        "R2=CONFIRMADO"
+      ],
+      "abre": [
+        "M11 (junto con M09/M10)"
+      ],
+      "areas": [
+        "formaciones"
+      ],
+      "condicion_disponibilidad": "LIII + acceso interior (SECTA_INTERIOR).",
+      "condicion_activacion": "He Zhen concede FORMACIONES_INVESTIGACION y proporciona marco/instrumentacion.",
+      "condicion_finalizacion": "Repeticion de medicion en otro sector/nodo independiente confirma la discrepancia (no es fallo de instrumento).",
+      "orden_relativo": "M08/M09/M10 son paralelas: el orden es libre; ninguna misión cambia su revelacion esencial segun el orden (T288)."
+    },
+    {
+      "npc_anclados": [],
+      "npc_relevantes": [
+        "Song Rui",
+        "Zhao Wen",
+        "Qiao Ren (autoriza ARCHIVO_RESTRINGIDO)",
+        "Luo Yan (discusion)",
+        "Yu Shun"
+      ],
+      "dependencias_auditoria_5": [],
+      "salas_329_confirmadas": [],
+      "ids_historicos": [],
+      "destinos_329_pendientes": [],
+      "gates": [
+        "componente de M11"
+      ],
+      "autorizaciones_concedidas": [
+        "ARCHIVO_COMUN",
+        "ARCHIVO_RESTRINGIDO"
+      ],
+      "objetivos_obligatorios": [
+        "Examinar 3 tipos de inconsistencia: referencia ausente, copia modificada, nombres presentes/ausentes entre versiones",
+        "Usar LEER ESCRITURAS (sin Hoja de Claridad, sin coste, sin +2 Comprension repetible)"
+      ],
+      "objetivos_opcionales": [],
+      "evidencias": [],
+      "revelaciones": [
+        {
+          "id": "R3",
+          "nivel": "PARCIAL",
+          "mision": "M09"
+        }
+      ],
+      "flags_creados": [],
+      "flags_consumidos": [],
+      "estados_mundo_modificados": [],
+      "recompensas": {
+        "comprension": 0,
+        "merito": "sí si produce hallazgo reconocido",
+        "contribucion": "posible",
+        "notas": "Candidata fuerte para HISTORY: como maneja el jugador un documento sensible antes de tener certeza completa."
+      },
+      "consecuencias": [
+        "M09 NO revela Primera Ala como red completa; el termino puede aparecer en un encabezado antiguo sin significado cerrado todavia (preserva M12)."
+      ],
+      "dependencias_posteriores": [],
+      "idempotencia": "NO CERRADO EN FUENTE (detalle tecnico no cubierto explicitamente mas alla del contrato general).",
+      "eventos_one_shot": [],
+      "eventos_repetibles": [],
+      "riesgos_duplicacion": "NO CERRADO EN FUENTE",
+      "relacion_companeros": [
+        "Zhao y Luo especialmente."
+      ],
+      "estado_ver68": "NO_IMPLEMENTADO",
+      "conflictos_historicos": [],
+      "version_obsoleta": null,
+      "version_canonica": null,
+      "fuentes": [
+        "T254",
+        "T286",
+        "T287",
+        "T288",
+        "T289",
+        "T290",
+        "T281",
+        "T257"
+      ],
+      "pendientes": [],
+      "id": "M09",
+      "nombre": "Los nombres que faltan",
+      "etapa_arc1": "LIII_INVESTIGACION",
+      "requiere": [
+        "arc1.estado=LIII_INVESTIGACION"
+      ],
+      "produce": [
+        "ARCHIVO_COMUN (inicio)",
+        "ARCHIVO_RESTRINGIDO (progreso, autorizado por Qiao Ren)",
+        "R3=PARCIAL"
+      ],
+      "abre": [
+        "M11 (junto con M08/M10)"
+      ],
+      "areas": [
+        "archivos",
+        "secta_interior"
+      ],
+      "condicion_disponibilidad": "arc1.estado=LIII_INVESTIGACION.",
+      "condicion_activacion": "Song Rui identifica inconsistencias en referencias cruzadas usadas durante M08.",
+      "condicion_finalizacion": "Investigacion alcanza base suficiente para que Qiao Ren autorice temporalmente ARCHIVO_RESTRINGIDO y aparece el termino 'Dos Alas' (sin definicion completa).",
+      "orden_relativo": "Paralela a M08/M10; el orden es libre (T288)."
+    },
+    {
+      "npc_anclados": [],
+      "npc_relevantes": [
+        "Lan Meihua",
+        "Chen Bo",
+        "Guo Chen (relacion tematica)",
+        "Luo Yan (oposicion por riesgo)"
+      ],
+      "dependencias_auditoria_5": [],
