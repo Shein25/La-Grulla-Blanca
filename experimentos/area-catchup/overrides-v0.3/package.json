@@ -1,0 +1,9 @@
+{
+  "name": "area-catchup-overrides-v0.3",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test --test-isolation=none tests.mjs",
+    "stress": "node stress.mjs"
+  }
+}
