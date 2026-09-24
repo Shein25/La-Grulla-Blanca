@@ -1,0 +1,9 @@
+{
+  "name": "area-catchup-agenda-v0.2",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test --test-isolation=none tests.mjs",
+    "stress": "node stress.mjs"
+  }
+}
