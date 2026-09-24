@@ -19,12 +19,15 @@ Se incorpora `memory.mjs` con:
 
 - memoria semántica por `key`, no log cronológico infinito;
 - upsert en lugar de duplicación;
+- reloj monotónico global por estado de memoria;
 - capacidad por defecto 32;
 - expiración explícita, sin decay automático;
 - orden de expulsión determinista;
 - valores recordados limitados a primitivos finitos;
 - inputs no mutados;
-- eventos con accessors o herencia no plana rechazados.
+- eventos con accessors o herencia no plana rechazados;
+- índices accessor en `memory.entries` rechazados;
+- overflow de `count` rechazado antes de incrementar.
 
 ## No integración todavía
 
