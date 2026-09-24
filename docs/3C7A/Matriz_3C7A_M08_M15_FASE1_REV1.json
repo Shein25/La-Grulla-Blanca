@@ -1,0 +1,502 @@
+{
+  "version": "3C7A_FASE1_REV1",
+  "fecha": "2026-09-24",
+  "estado": "BORRADOR_DOCUMENTAL_EN_AUDITORIA",
+  "baseline_produccion": {
+    "archivo": "grulla-blanca_ver74.html",
+    "sha256": "8cd2d2f51e15a433d35397fbb31035b3067f5a26bd942d890f07a0f316359566",
+    "save_schema_version": 2,
+    "3C5": "CERRADO_AUDITADO"
+  },
+  "frontera_entrada": {
+    "estado": "PENDIENTE_CIERRE_3C6A_REV3_1",
+    "esperado": [
+      "arc1.estado=LIII_INVESTIGACION",
+      "SECTA_INTERIOR=true",
+      "M12=false",
+      "ATAJO_ALA_*=false"
+    ],
+    "nota": "No congelar la interfaz M07->M08 hasta PASS final de 3C.6A REV3.1."
+  },
+  "fuentes_autoridad": [
+    "decisiones humanas posteriores explícitas",
+    "Auditoria_6_Misiones_M01_M18_CANONICA.md",
+    "Auditoria_6_Misiones_M01_M18_Estructurada.json",
+    "grulla-blanca_ver74.html + Informe_Implementacion_3C5_ver74.md",
+    "topología 329 congelada / Atlas ver74",
+    "Auditoria_4B_Movilidad_Postas_Carruajes_CORREGIDA.md sólo como contexto cuando aplique"
+  ],
+  "columna_vertebral": [
+    "M08/M09/M10 paralelas, orden libre, requieren LIII",
+    "M11 requiere M08+M09+M10",
+    "M12 requiere M11",
+    "gate LIII->LIV después de M12",
+    "M13 requiere LIV_REVELACION",
+    "M14 requiere M13",
+    "M15 requiere M14",
+    "M16 fuera de alcance de 3C.7"
+  ],
+  "misiones": {
+    "M08": {
+      "nombre": "Una montaña que no coincide consigo misma",
+      "etapa": "LIII_INVESTIGACION",
+      "requiere": [
+        "arc1.estado=LIII_INVESTIGACION",
+        "SECTA_INTERIOR concedido"
+      ],
+      "produce": [
+        "FORMACIONES_INVESTIGACION (permiso)",
+        "R2=CONFIRMADO"
+      ],
+      "abre": [
+        "M11 (junto con M09/M10)"
+      ],
+      "areas": [
+        "formaciones"
+      ],
+      "npcs_relevantes": [
+        "He Zhen",
+        "Wen Tao"
+      ],
+      "salas_confirmadas_fuente": [],
+      "destinos_pendientes_fuente": [
+        "Puntos de medicion exteriores revisitados de M04-M07 y 'Sala de Mapas de Flujo': sin room_id 329 literal confirmado (aunque el area Formaciones si esta confirmada en topologia v2)."
+      ],
+      "activacion_fuente": "He Zhen concede FORMACIONES_INVESTIGACION y proporciona marco/instrumentacion.",
+      "finalizacion_fuente": "Repeticion de medicion en otro sector/nodo independiente confirma la discrepancia (no es fallo de instrumento).",
+      "objetivos_obligatorios_fuente": [
+        "Lectura inicial (visitar puntos ya conocidos de M04-M07)",
+        "Trabajo de campo",
+        "Comparacion en el centro de Formaciones",
+        "Confirmacion en sector/nodo independiente"
+      ],
+      "recompensas_fuente": {
+        "comprension": 0,
+        "merito": "moderado",
+        "contribucion": "sí",
+        "notas": "No concede Comprension aqui: es observacion tecnica, no sintesis (llegara en M11)."
+      },
+      "revelaciones": [
+        {
+          "id": "R2",
+          "nivel": "CONFIRMADO",
+          "mision": "M08"
+        }
+      ],
+      "estado_3c7a_fase1": "RECUPERADO_CANON_NO_RECONCILIADO"
+    },
+    "M09": {
+      "nombre": "Los nombres que faltan",
+      "etapa": "LIII_INVESTIGACION",
+      "requiere": [
+        "arc1.estado=LIII_INVESTIGACION"
+      ],
+      "produce": [
+        "ARCHIVO_COMUN (inicio)",
+        "ARCHIVO_RESTRINGIDO (progreso, autorizado por Qiao Ren)",
+        "R3=PARCIAL"
+      ],
+      "abre": [
+        "M11 (junto con M08/M10)"
+      ],
+      "areas": [
+        "archivos",
+        "secta_interior"
+      ],
+      "npcs_relevantes": [
+        "Song Rui",
+        "Zhao Wen",
+        "Qiao Ren (autoriza ARCHIVO_RESTRINGIDO)",
+        "Luo Yan (discusion)",
+        "Yu Shun"
+      ],
+      "salas_confirmadas_fuente": [],
+      "destinos_pendientes_fuente": [],
+      "activacion_fuente": "Song Rui identifica inconsistencias en referencias cruzadas usadas durante M08.",
+      "finalizacion_fuente": "Investigacion alcanza base suficiente para que Qiao Ren autorice temporalmente ARCHIVO_RESTRINGIDO y aparece el termino 'Dos Alas' (sin definicion completa).",
+      "objetivos_obligatorios_fuente": [
+        "Examinar 3 tipos de inconsistencia: referencia ausente, copia modificada, nombres presentes/ausentes entre versiones",
+        "Usar LEER ESCRITURAS (sin Hoja de Claridad, sin coste, sin +2 Comprension repetible)"
+      ],
+      "recompensas_fuente": {
+        "comprension": 0,
+        "merito": "sí si produce hallazgo reconocido",
+        "contribucion": "posible",
+        "notas": "Candidata fuerte para HISTORY: como maneja el jugador un documento sensible antes de tener certeza completa."
+      },
+      "revelaciones": [
+        {
+          "id": "R3",
+          "nivel": "PARCIAL",
+          "mision": "M09"
+        }
+      ],
+      "estado_3c7a_fase1": "RECUPERADO_CANON_NO_RECONCILIADO"
+    },
+    "M10": {
+      "nombre": "El cuerpo recuerda",
+      "etapa": "LIII_INVESTIGACION",
+      "requiere": [
+        "arc1.estado=LIII_INVESTIGACION"
+      ],
+      "produce": [
+        "R4=CONFIRMADO"
+      ],
+      "abre": [
+        "M11 (junto con M08/M09)"
+      ],
+      "areas": [
+        "medicina"
+      ],
+      "npcs_relevantes": [
+        "Lan Meihua",
+        "Chen Bo",
+        "Guo Chen (relacion tematica)",
+        "Luo Yan (oposicion por riesgo)"
+      ],
+      "salas_confirmadas_fuente": [],
+      "destinos_pendientes_fuente": [
+        "'Sala Anatomica'/'Archivo Clinico' de Medicina: sin room_id 329 literal citado en las fuentes leidas."
+      ],
+      "activacion_fuente": "Casos clinicos con registros de pacientes/metodos antiguos agrupados bajo 'Segunda Rama'.",
+      "finalizacion_fuente": "Se confirma que los cuerpos fueron modificados para tolerar/conducir dos corrientes incompatibles (R4).",
+      "objetivos_obligatorios_fuente": [
+        "Leer registros/examinar diagramas",
+        "Conversar con Chen Bo sobre lesiones sin sentido bajo anatomia meridiana estandar"
+      ],
+      "recompensas_fuente": {
+        "comprension": 0,
+        "merito": "sí por investigacion importante",
+        "contribucion": "posible",
+        "notas": "Candidata fuerte para HISTORY, especialmente por manejo de conocimiento corporal peligroso."
+      },
+      "revelaciones": [
+        {
+          "id": "R4",
+          "nivel": "CONFIRMADO",
+          "mision": "M10"
+        }
+      ],
+      "estado_3c7a_fase1": "RECUPERADO_CANON_NO_RECONCILIADO"
+    },
+    "M11": {
+      "nombre": "Las Dos Alas",
+      "etapa": "LIII_INVESTIGACION",
+      "requiere": [
+        "M08=HECHA",
+        "M09=HECHA",
+        "M10=HECHA"
+      ],
+      "produce": [
+        "R3=CONFIRMADO",
+        "DOS_ALAS=PRINCIPIO",
+        "SEGUNDA_RAMA=APLICACION_CORPORAL",
+        "Comprension +1 (ARC1_M11_DOS_ALAS)"
+      ],
+      "abre": [
+        "M12"
+      ],
+      "areas": [
+        "formaciones",
+        "archivos",
+        "medicina"
+      ],
+      "npcs_relevantes": [
+        "He Zhen",
+        "Song Rui",
+        "Lan Meihua"
+      ],
+      "salas_confirmadas_fuente": [],
+      "destinos_pendientes_fuente": [
+        "'Manantial Partido' citado en T254 como posible region cruzada de M11: sin confirmacion literal de que M11 visite esa sala; el Manantial Partido corresponde al unico ecologico Anguila Manantial Partido, no necesariamente a un room_id de M11."
+      ],
+      "activacion_fuente": "Reunion pequeña (He Zhen aporta mediciones, Song Rui textos, Lan Meihua casos corporales).",
+      "finalizacion_fuente": "Se reconstruye el principio: Dos Alas = principio general de coexistencia/concordancia (contencion + presion/circulacion); Segunda Rama = aplicacion corporal concreta y peligrosa.",
+      "objetivos_obligatorios_fuente": [
+        "Participar en la sintesis conjunta (no es una nueva expedicion, es integracion de lo ya investigado)"
+      ],
+      "recompensas_fuente": {
+        "comprension": "+1 (ARC1_M11_DOS_ALAS)",
+        "merito": "sí",
+        "contribucion": "secundaria"
+      },
+      "revelaciones": [
+        {
+          "id": "R3",
+          "nivel": "CONFIRMADO",
+          "mision": "M11"
+        }
+      ],
+      "estado_3c7a_fase1": "RECUPERADO_CANON_NO_RECONCILIADO"
+    },
+    "M12": {
+      "nombre": "La red que nadie dibuja",
+      "etapa": "LIII_INVESTIGACION",
+      "requiere": [
+        "M11=HECHA"
+      ],
+      "produce": [
+        "PRIMERA_ALA_INVESTIGACION (permiso)",
+        "R5=CONFIRMADO",
+        "Comprension +1 (ARC1_M12_RED_PRIMERA_ALA)",
+        "ala_umbral_mantenimiento conocido"
+      ],
+      "abre": [
+        "M13 (tras gate LIII->LIV)"
+      ],
+      "areas": [
+        "formaciones",
+        "primera_ala"
+      ],
+      "npcs_relevantes": [
+        "He Zhen",
+        "posiblemente Song Rui/Wen Tao"
+      ],
+      "salas_confirmadas_fuente": [
+        "formaciones_sello_antiguo",
+        "formaciones_descenso_tecnico",
+        "ala_vestibulo",
+        "ala_nudo_seis_corrientes",
+        "ala_camara_dos_alas",
+        "ala_umbral_mantenimiento"
+      ],
+      "destinos_pendientes_fuente": [],
+      "activacion_fuente": "Apertura del sello antiguo mediante procedimiento institucional (formaciones_sello_antiguo -> formaciones_descenso_tecnico -> ala_vestibulo). Esta entrada NO es uno de los seis atajos.",
+      "finalizacion_fuente": "Evidencia suficiente de arquitectura compartida (evaluarEvidenciaPrimeraAla(): INSUFICIENTE/SUFICIENTE/CONCLUYENTE) + resolucion del Custodio (COMBATE o PROTOCOLO, sin ruta superior).",
+      "objetivos_obligatorios_fuente": [
+        "Recorrido principal: nudo central, Camara de Dos Alas, al menos una rama funcional, senales de diseno compartido en las demas",
+        "Resolver al Custodio de Dos Alas (COMBATE o PROTOCOLO; el protocolo requiere M11 completada + evidencia principal suficiente de M12, sin exigir 6 atajos/14 secretos/unico ecologico/Afinidad alta)"
+      ],
+      "recompensas_fuente": {
+        "comprension": "+1 (ARC1_M12_RED_PRIMERA_ALA)",
+        "merito": "importante",
+        "contribucion": "sí",
+        "prestigio": "institucional significativo"
+      },
+      "revelaciones": [
+        {
+          "id": "R5",
+          "nivel": "CONFIRMADO",
+          "mision": "M12"
+        }
+      ],
+      "estado_3c7a_fase1": "RECUPERADO_CANON_NO_RECONCILIADO"
+    },
+    "M13": {
+      "nombre": "Todo consume algo",
+      "etapa": "LIV_REVELACION",
+      "requiere": [
+        "arc1.estado=LIV_REVELACION (tras gate LIII->LIV)"
+      ],
+      "produce": [
+        "acceso a Mantenimiento Antiguo (concepto: MANTENIMIENTO_INVESTIGACION, fuente institucional, limitado a corredores necesarios; no concede Nucleo)",
+        "R6=CONFIRMADO",
+        "Comprension +1 (ARC1_M13_CONSUMO_ACTUAL)"
+      ],
+      "abre": [
+        "M14"
+      ],
+      "areas": [
+        "mantenimiento",
+        "produccion",
+        "archivos"
+      ],
+      "npcs_relevantes": [
+        "Duan Shibo",
+        "He Zhen",
+        "Ma Qiren",
+        "Lu Cheng",
+        "Song Rui"
+      ],
+      "salas_confirmadas_fuente": [
+        "ala_umbral_mantenimiento",
+        "mantenimiento_acceso",
+        "mantenimiento_dormitorio_turnos"
+      ],
+      "destinos_pendientes_fuente": [],
+      "activacion_fuente": "Duan Shibo y He Zhen reciben el informe de Primera Ala; consumos de Produccion sin asignar a instalacion moderna.",
+      "finalizacion_fuente": "Cruce de evidencia antigua con registros presentes confirma que la red antigua continua consumiendo recursos (no se cierra solo con leer el Registro de Consumo; debe cruzarse con Produccion).",
+      "objetivos_obligatorios_fuente": [
+        "Descenso ala_umbral_mantenimiento -> mantenimiento_acceso",
+        "Reunir evidencia material (conducciones templadas, sedimento reciente, contador avanzado)",
+        "Comparacion moderna con Duan Shibo/Ma Qiren/Lu Cheng/Song Rui"
+      ],
+      "recompensas_fuente": {
+        "comprension": "+1 (ARC1_M13_CONSUMO_ACTUAL)",
+        "merito": "importante",
+        "contribucion": "sí",
+        "prestigio": "Recursos/Formaciones"
+      },
+      "revelaciones": [
+        {
+          "id": "R6",
+          "nivel": "CONFIRMADO",
+          "mision": "M13"
+        }
+      ],
+      "estado_3c7a_fase1": "RECUPERADO_CANON_NO_RECONCILIADO"
+    },
+    "M14": {
+      "nombre": "La promesa aplazada",
+      "etapa": "LIV_REVELACION",
+      "requiere": [
+        "M13=HECHA"
+      ],
+      "produce": [
+        "NUCLEO_SUPERIOR (permiso)",
+        "R8=CONFIRMADO",
+        "Comprension +1 (ARC1_M14_CONSENTIMIENTO)"
+      ],
+      "abre": [
+        "M15"
+      ],
+      "areas": [
+        "mantenimiento",
+        "nucleo"
+      ],
+      "npcs_relevantes": [
+        "pocos NPC en escena; investigacion principalmente material/documental (Consejo autoriza el acceso)"
+      ],
+      "salas_confirmadas_fuente": [
+        "mantenimiento_compuerta_nucleo",
+        "nucleo_pozo_voto",
+        "nucleo_camara_voto",
+        "nucleo_galeria_primer_pacto",
+        "nucleo_primer_pacto"
+      ],
+      "destinos_pendientes_fuente": [],
+      "activacion_fuente": "Apertura autorizada de la compuerta (Consejo concede acceso muy limitado al nivel superior del Nucleo).",
+      "finalizacion_fuente": "Evidencia inequivoca (inscripciones, posiciones de formacion, registro de testigos, memoria de qi del lugar) de que la Grulla acepto participar voluntariamente en el pacto original.",
+      "objetivos_obligatorios_fuente": [
+        "Descenso mantenimiento_compuerta_nucleo -> nucleo_pozo_voto",
+        "Reconstruir el acto formal del Pozo del Voto"
+      ],
+      "recompensas_fuente": {
+        "comprension": "+1 (ARC1_M14_CONSENTIMIENTO)",
+        "merito": "importante, reconocimiento puede llegar despues",
+        "contribucion": "no necesariamente"
+      },
+      "revelaciones": [
+        {
+          "id": "R8",
+          "nivel": "CONFIRMADO",
+          "mision": "M14"
+        }
+      ],
+      "estado_3c7a_fase1": "RECUPERADO_CANON_NO_RECONCILIADO"
+    },
+    "M15": {
+      "nombre": "Lo que debía terminar",
+      "etapa": "LIV_REVELACION",
+      "requiere": [
+        "M14=HECHA"
+      ],
+      "produce": [
+        "R9=CONFIRMADO",
+        "Comprension +1 (ARC1_M15_RELEVO_APLAZADO)",
+        "condiciones para el inicio de M16 (crisis narrativa)"
+      ],
+      "abre": [
+        "M16 (arc1.estado->LIV_CRISIS tras avisos simultaneos posteriores)"
+      ],
+      "areas": [
+        "nucleo"
+      ],
+      "npcs_relevantes": [
+        "contraste documental; sin NPC de escena central citados explicitamente"
+      ],
+      "salas_confirmadas_fuente": [
+        "nucleo_archivo_promesa"
+      ],
+      "destinos_pendientes_fuente": [],
+      "activacion_fuente": "Acceso/interpretacion del Archivo de la Promesa (nucleo_archivo_promesa, accesible con NUCLEO_SUPERIOR).",
+      "finalizacion_fuente": "Se confirma que el vinculo vivo debia ser sustituido/relevado y que el relevo fue aplazado por al menos tres hitos historicos razonables por separado (prototipo insuficiente -> ruptura de Primera Ala -> normalizacion del mantenimiento).",
+      "objetivos_obligatorios_fuente": [
+        "Contrastar registros del pacto con documentacion posterior",
+        "Reconstruir la cadena de tres aplazamientos"
+      ],
+      "recompensas_fuente": {
+        "comprension": "+1 (ARC1_M15_RELEVO_APLAZADO)",
+        "merito": "importante",
+        "contribucion": "minima o ninguna"
+      },
+      "revelaciones": [
+        {
+          "id": "R9",
+          "nivel": "CONFIRMADO",
+          "mision": "M15"
+        }
+      ],
+      "estado_3c7a_fase1": "RECUPERADO_CANON_NO_RECONCILIADO"
+    }
+  },
+  "hallazgos_fase1": [
+    {
+      "id": "F1-01",
+      "tema": "Dependencias",
+      "estado": "CANON_RECUPERADO",
+      "detalle": "M08/M09/M10 son paralelas; M11 converge las tres; M12 es secuencial; M13-M15 son secuenciales."
+    },
+    {
+      "id": "F1-02",
+      "tema": "Revelaciones",
+      "estado": "CANON_RECUPERADO",
+      "detalle": "M08=R2 CONFIRMADO; M09=R3 PARCIAL; M10=R4 CONFIRMADO; M11=R3 CONFIRMADO; M12=R5; M13=R6; M14=R8; M15=R9."
+    },
+    {
+      "id": "F1-03",
+      "tema": "M10 room IDs",
+      "estado": "RESOLUBLE_CON_VER74",
+      "detalle": "El hueco histórico 'Sala Anatómica/Archivo Clínico' ya tiene IDs literales en ver74: sala_anatomica y archivo_clinico. Chen Bo usa ambas en su territorio."
+    },
+    {
+      "id": "F1-04",
+      "tema": "M08 room IDs",
+      "estado": "A_RECONCILIAR",
+      "detalle": "Existe formaciones_sala_mapas en ver74, pero la fuente canónica no cierra que sea exactamente la 'Sala de Mapas de Flujo'. Los puntos exteriores de medición siguen sin IDs congelados."
+    },
+    {
+      "id": "F1-05",
+      "tema": "M09 room IDs",
+      "estado": "A_RECONCILIAR",
+      "detalle": "La fuente no fija room IDs para ARCHIVO_COMUN/ARCHIVO_RESTRINGIDO. ver74 posee infraestructura de Archivos suficiente, pero el mapping aún no se eleva a canon."
+    },
+    {
+      "id": "F1-06",
+      "tema": "M11 room central",
+      "estado": "A_RECONCILIAR",
+      "detalle": "La reunión de síntesis tiene participantes canónicos, pero no room ID congelado."
+    },
+    {
+      "id": "F1-07",
+      "tema": "M12",
+      "estado": "CANON_FUERTE_CON_DEUDA_TECNICA",
+      "detalle": "Ruta y rooms principales están cerradas; faltan evaluador concreto de evidencia, anclajes NPC, idempotencia y contrato COMBATE/PROTOCOLO del Custodio."
+    },
+    {
+      "id": "F1-08",
+      "tema": "Gate LIII->LIV",
+      "estado": "REQUIERE_RECONCILIACION_CON_MOTOR",
+      "detalle": "Fuente: qi>=75 + DosAlas comprendidas + redPrimeraAla concluyente + autorización institucional. ver74 legacy PUERTAS[4] todavía usa 2 píldoras + comprensión:6 y deberá reconciliarse en 3C.7."
+    },
+    {
+      "id": "F1-09",
+      "tema": "M13-M15",
+      "estado": "CANON_NARRATIVO_RECUPERADO",
+      "detalle": "Rooms profundas principales están cerradas; faltan convertir evidencias narrativas en eventos/flags concretos e idempotentes."
+    }
+  ],
+  "pendientes_para_reconciliacion": [
+    "mapear M08 a rooms exactas sin inventar",
+    "mapear M09 a archivo común/restringido exactos",
+    "cerrar room de reunión M11",
+    "definir evidencia M12 y criterio SUFICIENTE/CONCLUYENTE",
+    "cerrar gate LIII->LIV y sustituir legado PUERTAS[4]",
+    "definir permiso/autorización institucional exacta de LIII->LIV",
+    "cerrar anclajes NPC M08-M15 contra NPC_DEF ver74",
+    "convertir recompensas cualitativas de Audit6 a valores implementables sin alterar balance",
+    "definir idempotencia/one-shots M08-M15",
+    "definir evidencia concreta M13, M14, M15 sobre scenery existente",
+    "mantener M16 fuera de alcance"
+  ]
+}
