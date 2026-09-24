@@ -97,8 +97,7 @@ for(let episode=0;episode<N;episode++){
       decision.plan,
       world,
       decision.selectedGoal.goal,
-      GOAP_ACTIONS,
-      decision.selectedGoal.relevance
+      GOAP_ACTIONS
     );
     world=step.world;
 
