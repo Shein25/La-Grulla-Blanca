@@ -1,0 +1,489 @@
+{
+  "version": "3C6A_REV2",
+  "fecha": "2026-09-24",
+  "baseline": {
+    "archivo": "grulla-blanca_ver74.html",
+    "sha256": "8cd2d2f51e15a433d35397fbb31035b3067f5a26bd942d890f07a0f316359566",
+    "save_schema_version": 2,
+    "3C5": "CERRADO_AUDITADO"
+  },
+  "veredicto": "3C6A_REV2_LISTA_PARA_CONTRATO_IMPLEMENTACION",
+  "decisiones_humanas": [
+    {
+      "id": "DHP_3C6_01",
+      "estado": "CERRADA",
+      "decision": "CONSAGRAR deja de reducir el qi acumulado. LI→LII usa etapa>=2 como evidencia mecánica de haber alcanzado el umbral de 25."
+    },
+    {
+      "id": "DHP_3C6_02",
+      "estado": "CERRADA",
+      "decision": "servicioTerritorial=COMPLETADO cuando M04 y M05 están HECHAS; M05 se habilita al cerrar M04."
+    },
+    {
+      "id": "DHP_3C6_03",
+      "estado": "CERRADA",
+      "decision": "evidenciaTerritorial es monotónica: INSUFICIENTE < SUFICIENTE < CONCLUYENTE; gates usan >=SUFICIENTE; campo único informeFronteraAceptado."
+    },
+    {
+      "id": "DHP_3C6_04",
+      "estado": "CERRADA",
+      "decision": "LI→LII y LII→LIII son transiciones one-shot con presentación visual ceremonial. M07 no abre SECTA_INTERIOR."
+    },
+    {
+      "id": "DHP_3C6_05",
+      "estado": "CERRADA",
+      "decision": "2→3 requiere qi=45, Píldora de Consolidación, M04+M05, evidencia>=SUFICIENTE e informe aceptado. Se elimina el logro genérico de combate como hard-gate."
+    },
+    {
+      "id": "DHP_3C6_06",
+      "estado": "CERRADA",
+      "decision": "La raíz se asigna determinísticamente por tres elecciones de diagnóstico; la reacción final ante la Piedra desempata. Sin RNG. Guardia y ayudante quedan como roles genéricos."
+    },
+    {
+      "id": "DHP_3C6_07",
+      "estado": "CERRADA",
+      "decision": "Madre Wen es la encargada de externos, no la madre biológica. M01 usa registro→sala_jade→patio→patio_cabanas→corredor_cabanas→dormitorio_externos; corredor sólo tránsito."
+    },
+    {
+      "id": "DHP_3C6_08",
+      "estado": "CERRADA",
+      "decision": "M02 usa la rata de despensa como encuentro tutorial. Tras morir/cerrar M02 no reaparece; no EXTRAER; no bestiario/Atlas/registro; cadáver controlado hasta completar Examen."
+    },
+    {
+      "id": "DHP_3C6_09",
+      "estado": "CERRADA",
+      "decision": "Condiciones básicas: room sin hostiles vivos y sin combate activo. Piel de Cobre se aprende por primera vez en M03 con Shen Baojun."
+    },
+    {
+      "id": "DHP_3C6_10",
+      "estado": "CERRADA",
+      "decision": "M04 se asigna/entrega con Jiang Rui en puesto_valle; Gao Shun es checkpoint en puerta; M05 la asigna Duan Shibo desde oficina_logistica y termina con Xu An en Sauces."
+    },
+    {
+      "id": "DHP_3C6_11",
+      "estado": "CERRADA",
+      "decision": "Evidencia por diversidad: 1 tipo=INSUFICIENTE; 2=INSUFICIENTE/sospecha fuerte; 3=SUFICIENTE; 4=CONCLUYENTE; repetir tipo no suma."
+    },
+    {
+      "id": "DHP_3C6_12",
+      "estado": "CERRADA",
+      "decision": "M07 se presenta en pabellon_disciplina con Qiao Ren + Jiang Rui; He Zhen recibe copia. Jiang/Qiao R1=CONFIRMADO; He Zhen/Ren Bo/Su Lian R1=SABE."
+    },
+    {
+      "id": "DHP_3C6_13",
+      "estado": "CERRADA",
+      "decision": "Balance: M02 +1 contrib.; M03 0; M04 +2 contrib. (+1 mérito opcional); M05 +3 contrib. + píldora; M06 +2 contrib. +1 mérito; M07 +4 contrib. +3 mérito +1 Comprensión."
+    },
+    {
+      "id": "DHP_3C6_14",
+      "estado": "CERRADA",
+      "decision": "QUESTS define P–M07; this.quests persiste activa/hecha; BLOQUEADA/DISPONIBLE derivadas; flags guarda arc1/permisos/evidencia; SAVE_SCHEMA_VERSION sigue en 2."
+    },
+    {
+      "id": "DHP_3C6_15",
+      "estado": "CERRADA",
+      "decision": "Inicio: título Aspirante, afiliación PENDIENTE_REGISTRO y sin rango. Fin P: ADMITIDO. M01: ASPIRANTE. M03: DISCIPULO_EXTERNO + MIEMBRO. Uniforme/espada se reciben en descansillo."
+    },
+    {
+      "id": "DHP_3C6_16",
+      "estado": "CERRADA",
+      "decision": "dormitorio_externos se asigna en M01 y queda conocido+visitado. SECTA_EXTERIOR_BASE y PATRULLA_TERRITORIAL son permisos institucionales, no gates físicos."
+    },
+    {
+      "id": "DHP_3C6_17",
+      "estado": "CERRADA",
+      "decision": "Subsistema social opcional paralelo. Afinidad no bloquea progreso. Prioridad CRISIS > misión principal > personal > ambiental. Máximo una escena social importante por entrada. Géneros: Lin F, Han M, Zhao M, Mei F, Guo M, Luo M."
+    }
+  ],
+  "gates": {
+    "PROLOGO_LI": {
+      "condicion": [
+        "REGISTRO_INICIAL_COMPLETADO"
+      ],
+      "efecto": [
+        "PROLOGO=HECHO",
+        "arc1.estado=LI_INTEGRACION"
+      ]
+    },
+    "LI_LII": {
+      "condicion": [
+        "player.etapa>=2",
+        "rango=DISCIPULO_EXTERNO",
+        "primerServicioFormal=true",
+        "evaluacionCirculacion=SUPERADA"
+      ],
+      "efecto": [
+        "arc1.estado=LII_TERRITORIO",
+        "TRANSICION_LI_LII visual one-shot"
+      ]
+    },
+    "LII_LIII": {
+      "condicion": [
+        "player.qi>=45",
+        "pildora_consolidacion disponible",
+        "M04=HECHA",
+        "M05=HECHA",
+        "evidenciaTerritorial>=SUFICIENTE",
+        "informeFronteraAceptado=true"
+      ],
+      "servicioTerritorial": "M04=HECHA && M05=HECHA",
+      "consumo": [
+        "pildora_consolidacion al CONSAGRAR 2→3"
+      ],
+      "efecto": [
+        "arc1.estado=LIII_INVESTIGACION",
+        "SECTA_INTERIOR=true",
+        "TRANSICION_LII_LIII visual one-shot"
+      ],
+      "nota": "M07 por sí sola NO concede SECTA_INTERIOR."
+    }
+  },
+  "misiones": [
+    {
+      "id": "P",
+      "nombre": "La Piedra y la Puerta",
+      "etapa": "PROLOGO",
+      "requiere": [
+        "nueva_partida_valida"
+      ],
+      "activacion": "automática al crear personaje",
+      "rooms": [
+        "patio_raices",
+        "descansillo",
+        "mirador_niebla",
+        "patio_practica",
+        "sendero_pinos",
+        "camino",
+        "puerta",
+        "registro"
+      ],
+      "objetivos": [
+        "diagnóstico de raíz sin RNG",
+        "recibir uniforme y espada de madera en descansillo",
+        "recorrer acceso hasta registro",
+        "REGISTRO_INICIAL_COMPLETADO con Tao Ming"
+      ],
+      "cierre": "REGISTRO_INICIAL_COMPLETADO",
+      "produce": [
+        "estadoAfiliacion=ADMITIDO",
+        "PROLOGO=HECHO",
+        "arc1.estado=LI_INTEGRACION",
+        "raiz persistente"
+      ],
+      "abre": [
+        "M01"
+      ],
+      "recompensas": {
+        "contribucion": 0,
+        "merito": 0,
+        "comprension": 0
+      }
+    },
+    {
+      "id": "M01",
+      "nombre": "Un nombre entre miles",
+      "etapa": "LI_INTEGRACION",
+      "requiere": [
+        "PROLOGO=HECHO",
+        "arc1.estado=LI_INTEGRACION"
+      ],
+      "activacion": "Tao Ming en registro",
+      "rooms": [
+        "registro",
+        "sala_jade",
+        "patio",
+        "patio_cabanas",
+        "corredor_cabanas",
+        "dormitorio_externos"
+      ],
+      "objetivos": [
+        "NOMBRE_INSCRITO",
+        "recibir alojamiento de Madre Wen",
+        "llegar a dormitorio_externos"
+      ],
+      "cierre": "ALOJAMIENTO_CONFIRMADO",
+      "produce": [
+        "rango=ASPIRANTE",
+        "SECTA_EXTERIOR_BASE",
+        "alojamiento dormitorio_externos conocido+visitado"
+      ],
+      "abre": [
+        "M02"
+      ],
+      "recompensas": {
+        "contribucion": 0,
+        "merito": 0,
+        "comprension": 0
+      }
+    },
+    {
+      "id": "M02",
+      "nombre": "Trabajo que alguien debe hacer",
+      "etapa": "LI_INTEGRACION",
+      "requiere": [
+        "M01=HECHA"
+      ],
+      "activacion": "aceptar servicio de despensa/depósito",
+      "rooms": [
+        "oficina_servicios",
+        "deposito_comun",
+        "sala_anatomica"
+      ],
+      "objetivos": [
+        "resolver rata tutorial de la despensa",
+        "obtener información del cadáver tutorial",
+        "aprender Examen Espiritual con Chen Bo"
+      ],
+      "cierre": "SERVICIO_DESPENSA_VALIDADO",
+      "produce": [
+        "primerServicioFormal=true",
+        "EXAMEN_ESPIRITUAL_APRENDIDO",
+        "profesiones.examen.desbloqueada=true"
+      ],
+      "abre": [
+        "M03"
+      ],
+      "recompensas": {
+        "contribucion": 1,
+        "merito": 0,
+        "comprension": 0
+      },
+      "reglas": [
+        "no respawn tras cierre",
+        "no EXTRAER",
+        "no bestiario/Atlas/registro",
+        "no familiaridad profesional",
+        "recuperación controlada del cadáver"
+      ]
+    },
+    {
+      "id": "M03",
+      "nombre": "Aprender a permanecer",
+      "etapa": "LI_INTEGRACION",
+      "requiere": [
+        "M01=HECHA",
+        "M02=HECHA",
+        "room_sin_hostiles_vivos",
+        "sin_combate_activo"
+      ],
+      "activacion": "Shen Baojun inicia formación",
+      "rooms": [
+        "patio_marcial",
+        "sala_formas",
+        "patio_respiracion",
+        "pabellon_disciplina"
+      ],
+      "objetivos": [
+        "aprender Piel de Cobre",
+        "practicar contra muñeco",
+        "superar evaluación de circulación"
+      ],
+      "cierre": "EVALUACION_CIRCULACION_SUPERADA",
+      "produce": [
+        "rango=DISCIPULO_EXTERNO",
+        "estadoAfiliacion=MIEMBRO",
+        "evaluacionCirculacion=SUPERADA",
+        "TECNICA_PIEL_COBRE_APRENDIDA"
+      ],
+      "abre": [
+        "gate LI→LII"
+      ],
+      "recompensas": {
+        "contribucion": 0,
+        "merito": 0,
+        "comprension": 0
+      }
+    },
+    {
+      "id": "M04",
+      "nombre": "Más allá de la Puerta Roja",
+      "etapa": "LII_TERRITORIO",
+      "requiere": [
+        "arc1.estado=LII_TERRITORIO",
+        "rango=DISCIPULO_EXTERNO"
+      ],
+      "activacion": "Jiang Rui en puesto_valle",
+      "checkpoints": [
+        "puesto_valle",
+        "puerta",
+        "bosque_senda_patrulla",
+        "bosque_refugio_patrulla"
+      ],
+      "objetivos": [
+        "revisar tramo de patrulla",
+        "alcanzar refugio",
+        "volver a puesto_valle",
+        "dar informe breve"
+      ],
+      "cierre": "PRIMERA_PATRULLA_VALIDADA",
+      "produce": [
+        "PATRULLA_TERRITORIAL",
+        "bosque_refugio_patrulla conocido"
+      ],
+      "abre": [
+        "M05"
+      ],
+      "recompensas": {
+        "contribucion": 2,
+        "merito_base": 0,
+        "merito_incidente_opcional": 1,
+        "comprension": 0
+      }
+    },
+    {
+      "id": "M05",
+      "nombre": "Los caminos de la Grulla",
+      "etapa": "LII_TERRITORIO",
+      "requiere": [
+        "M04=HECHA"
+      ],
+      "activacion": "Duan Shibo en oficina_logistica",
+      "checkpoints": [
+        "oficina_logistica",
+        "puesto_valle",
+        "mercado_valle",
+        "granero_valle",
+        "sauces_plaza",
+        "sauces_casa_comunal",
+        "sauces_casa_huespedes"
+      ],
+      "objetivos": [
+        "paso por Valle/intercambio",
+        "llegar a Sauces",
+        "hablar con Xu An",
+        "registrar modificación del circuito"
+      ],
+      "cierre": "RUTA_SAUCES_VALIDADA",
+      "produce": [
+        "reconocimientoSauces=HUESPED",
+        "sauces_casa_huespedes conocido",
+        "PILDORA_CONSOLIDACION_OTORGADA"
+      ],
+      "abre": [
+        "M06"
+      ],
+      "recompensas": {
+        "contribucion": 3,
+        "merito": 0,
+        "comprension": 0,
+        "item": "pildora_consolidacion"
+      }
+    },
+    {
+      "id": "M06",
+      "nombre": "Lo que no debería estar aquí",
+      "etapa": "LII_TERRITORIO",
+      "requiere": [
+        "M04=HECHA",
+        "M05=HECHA",
+        "alguna_observacion_anomala"
+      ],
+      "activacion": "primer incidente reconocido como anómalo",
+      "areas": [
+        "bosques",
+        "aguas_barrancos",
+        "cantera_vetas"
+      ],
+      "evidencias": [
+        "DESPLAZAMIENTO_FAUNA",
+        "ALTERACION_VEGETAL",
+        "ALTERACION_HIDRICA",
+        "PATRON_TERRITORIAL"
+      ],
+      "evaluador": {
+        "1": "INSUFICIENTE",
+        "2": "INSUFICIENTE_SOSPECHA_FUERTE",
+        "3": "SUFICIENTE",
+        "4": "CONCLUYENTE",
+        "regla": "repetir tipo no aumenta nivel"
+      },
+      "objetivos": [
+        "obtener al menos 3 tipos distintos de evidencia"
+      ],
+      "cierre": "EVIDENCIA_TERRITORIAL_SUFICIENTE",
+      "produce": [
+        "evidenciaTerritorial>=SUFICIENTE",
+        "arc1.revelaciones.R1=PARCIAL",
+        "conocimiento.anomaliasTerritoriales=SOSPECHA_FUERTE"
+      ],
+      "abre": [
+        "M07"
+      ],
+      "recompensas": {
+        "contribucion": 2,
+        "merito": 1,
+        "comprension": 0
+      }
+    },
+    {
+      "id": "M07",
+      "nombre": "Informe de frontera",
+      "etapa": "LII_TERRITORIO",
+      "requiere": [
+        "M06=HECHA",
+        "evidenciaTerritorial>=SUFICIENTE"
+      ],
+      "activacion": "decisión explícita de presentar informe",
+      "rooms": [
+        "pabellon_disciplina"
+      ],
+      "objetivos": [
+        "preparar informe",
+        "elegir grado de certeza",
+        "aceptar corrección sin penalización"
+      ],
+      "cierre": "INFORME_ACEPTADO",
+      "produce": [
+        "informeFronteraAceptado=true",
+        "arc1.revelaciones.R1=CONFIRMADO",
+        "jiang_rui.R1=CONFIRMADO",
+        "qiao_ren.R1=CONFIRMADO",
+        "he_zhen.R1=SABE",
+        "ren_bo.R1=SABE",
+        "su_lian.R1=SABE",
+        "Comprension +1 one-shot"
+      ],
+      "abre": [
+        "gate LII→LIII"
+      ],
+      "recompensas": {
+        "contribucion": 4,
+        "merito": 3,
+        "comprension": 1
+      }
+    }
+  ],
+  "persistencia": {
+    "QUESTS": "catálogo P–M07",
+    "this.quests": "activa/hecha; rumor/fallida sólo si se usan",
+    "flags": "arc1/afiliación/rango/permisos/evidencia/one-shots",
+    "player": "qi/inventario/stats/recursos",
+    "conocimientoNPC": "R1–R10 individuales",
+    "save_schema_version": 2
+  },
+  "companeros": {
+    "regla": "subsistema social opcional paralelo",
+    "prioridad": [
+      "CRISIS",
+      "MISION_PRINCIPAL",
+      "PERSONAL",
+      "AMBIENTAL"
+    ],
+    "max_escenas_importantes_por_entrada": 1,
+    "afinidad_no_bloquea_progreso": true,
+    "generos": {
+      "lin_yue": "F",
+      "han_qiao": "M",
+      "zhao_wen": "M",
+      "mei_lian": "F",
+      "guo_chen": "M",
+      "luo_yan": "M"
+    }
+  },
+  "pendientes_no_bloqueantes": [
+    "prosa final de la leyenda pública",
+    "texto exacto de las tres preguntas del diagnóstico de raíz",
+    "microprosa/diálogos LI/LII",
+    "limpieza legacy no-quest de M2"
+  ]
+}
