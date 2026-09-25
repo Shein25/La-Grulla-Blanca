@@ -16,9 +16,10 @@ Reacciones que todavía estamos probando: patrullar, observar, advertir, bloquea
 
 Una política experimental **no se convierte en canon** por estar en este laboratorio.
 
-## Primer sujeto
+## Sujetos actuales
 
-`gao_shun` — Guardia de la Puerta Roja.
+1. `gao_shun` — Guardia de la Puerta Roja.
+2. `pei_luo` — Responsable de Cocina/Comedor.
 
 Motivo: es funcional, tiene movilidad `RUTA`, territorio y ruta documentados, y permite comparar limpiamente FSM contra Behavior Tree.
 
@@ -61,3 +62,20 @@ node run-gao-shun.mjs
 ## Estado
 
 `LAB_STATUS: GAO_SHUN_BASELINE_CREATED`
+
+
+## Escenarios Pei Luo
+
+1. rutina experimental cocina → comedor → cocina;
+2. crisis M16 durante servicio;
+3. crisis M16 durante preparación.
+
+Resultado baseline: `21 PASS / 0 FAIL`.
+
+Hallazgo provisional:
+
+- en rutina normal FSM y Behavior Tree producen la misma secuencia observable;
+- en crisis la FSM representa un estado `CRISIS` explícito;
+- el Behavior Tree preempta inmediatamente la acción normal activa.
+
+No se ha elegido todavía arquitectura definitiva para Pei Luo.
