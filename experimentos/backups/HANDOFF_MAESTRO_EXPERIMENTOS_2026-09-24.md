@@ -1113,4 +1113,405 @@ GOAP v0.2.2
 → NO MERGED
 ```
 
+---
+
+# 22. ACTUALIZACIÓN 2026-09-25 — REGLA DE BACKUP
+
+A partir de esta fecha queda fijada como regla operativa permanente:
+
+> Toda decisión arquitectónica importante, frente experimental nuevo, versión candidata, corrección relevante, auditoría que cambie el estado de un módulo o implementación próxima debe quedar reflejada en este backup maestro o en un documento enlazado desde `experimentos/backups/`.
+
+Objetivo: que ningún avance importante dependa exclusivamente del contexto de un chat.
+
+Esta actualización se realizó en rama de documentación aislada:
+
+`docs/experimentos-backup-2026-09-25`
+
+Base exacta usada para crearla:
+
+`5812deb59cd1c133383b9af973486a702a26daf4`
+
+No modifica producción ni autoriza merge.
+
+---
+
+# 23. MONSTER COMBAT AI v0.1 — ESTADO
+
+Frente experimental nuevo.
+
+Nombre de la primera versión:
+
+`Monster Combat AI v0.1 — Deterministic Decision Kernel`
+
+Rama futura prevista:
+
+`experiment/monster-combat-ai-v0.1`
+
+Al verificar GitHub el 2026-09-25, esa rama todavía NO existía.
+
+Baseline de diseño:
+
+`5812deb59cd1c133383b9af973486a702a26daf4`
+
+Responsabilidad congelada:
+
+```text
+snapshot observable
++ effectiveKit
++ perfil cognitivo
++ preferencias
++ memoria semántica ya resuelta
++ contexto social
++ RNG determinista
+        ↓
+chooseMonsterIntent()
+        ↓
+INTENT_SELECTED
+o
+NO_ELIGIBLE_INTENT
+```
+
+Regla superior:
+
+> La IA decide. El motor resuelve.
+
+Fuera de alcance de v0.1:
+
+- ejecutar combate;
+- daño;
+- HP;
+- aplicar estados;
+- consumir cooldowns;
+- integrar con ver74;
+- Adaptive Ecology;
+- planes tácticos;
+- Grulla;
+- integración con `Combate`;
+- modificar Utility AI NPC;
+- GOAP;
+- merge.
+
+Perfiles del laboratorio:
+
+```text
+INSTINTIVO
+REACTIVO_1
+CAZADOR_2
+TACTICO_3
+MASTER_4
+```
+
+Fixtures sintéticos:
+
+```text
+Rata
+Serpiente
+Lobo
+Devorador
+Mantis
+```
+
+No son datos canónicos productivos.
+
+## 23.1 Candidata local Claude — auditoría independiente
+
+Claude construyó una candidata local porque su entorno no tenía egress/GitHub.
+
+Resultados reportados y reproducidos independientemente:
+
+```text
+tests: 35/35 PASS
+stress: 50.000 decisiones
+invalidSelections = 0
+inputMutations = 0
+executionSideEffects = 0
+nondeterministicMismatches = 0
+```
+
+Seed 1337 repetida:
+
+`89c8a34cd1517e3b0a5a32c5fe82613895df63bef590c525cc6b57af9b31f1c8`
+
+La candidata NO se considera todavía materializada en Git porque:
+
+- la rama real no existe;
+- no hay HEAD real;
+- no hay parent/tree auditables;
+- no hay PR draft.
+
+## 23.2 Hallazgo bloqueante independiente
+
+Se detectó un bug real de `reorder invariance` con jitter.
+
+Causa:
+
+- `effectiveKit` se recorría en el orden recibido;
+- cada habilidad consumía RNG para jitter durante ese recorrido;
+- al reordenar el array, los mismos valores RNG podían asignarse a habilidades distintas.
+
+Prueba adversarial independiente:
+
+```text
+casos: 5000
+mismatches por reorder: 354
+≈ 7,08 %
+```
+
+Esto viola el Golden de invariancia al reordenamiento.
+
+Corrección requerida:
+
+> Canonicalizar el conjunto/orden de habilidades antes de consumir RNG, de modo que misma seed + mismo estado produzcan los mismos scores por ability independientemente del orden de entrada.
+
+## 23.3 Segundo hardening requerido
+
+El contrato de cooldowns era booleano, pero valores truthy como:
+
+```text
+"false"
+1
+-1
+[]
+{}
+```
+
+podían interpretarse como cooldown activo.
+
+Corrección requerida:
+
+> `cooldowns[cooldownKey]` debe aceptar sólo booleanos estrictos `true` / `false`; otros tipos deben producir `ContractError`.
+
+## 23.4 Métricas de stress a corregir
+
+- `memoryInfluencedCases` no debe contar solamente memoria activa; debe medir influencia real o renombrarse.
+- `executionSideEffects` no debe ser un contador decorativo permanentemente en cero; debe medirse si se conserva.
+
+Estado:
+
+`MONSTER_COMBAT_AI_V01_REQUIERE_CORRECCIONES`
+
+REV2 pendiente.
+
+No rehacer arquitectura; corrección localizada.
+
+---
+
+# 24. ADAPTIVE ECOLOGY v0.1 — ESTADO
+
+Frente de diseño abierto en paralelo.
+
+Nombre:
+
+`Adaptive Ecology v0.1 — Population Pressure & Adaptation Resolver`
+
+Rama futura propuesta:
+
+`experiment/monster-ecology-adaptation-v0.1`
+
+Al verificar GitHub el 2026-09-25 esa rama NO existía.
+
+Estado actual:
+
+```text
+ESPECIFICACIÓN EN REVISIÓN
+NO IMPLEMENTAR TODAVÍA
+```
+
+Arquitectura:
+
+```text
+Population State
+→ Pressure Resolver
+→ Adaptation Resolver
+→ activeAdaptations
+→ effectiveKit
+→ FIN v0.1
+```
+
+Relación futura:
+
+```text
+Adaptive Ecology
+→ effectiveKit
+→ Monster Decision Kernel
+```
+
+Adaptive Ecology NO decide qué acción usar.
+
+Monster Combat AI NO conoce:
+
+```text
+kills
+pressure
+adaptationTier
+decay
+population history
+```
+
+## 24.1 Principio
+
+No level scaling.
+
+No:
+
+```text
+jugador fuerte
+→ +HP
+→ +daño
+→ +defensa
+```
+
+Sí:
+
+```text
+caza repetida de población local
+→ pressure
+→ adaptation tier
+→ respuestas conductuales disponibles
+```
+
+La adaptación debe sentirse como:
+
+> el ecosistema aprendió a sobrevivirme
+
+y no:
+
+> el juego hizo scaling porque estoy jugando demasiado.
+
+## 24.2 Unidad de adaptación
+
+La adaptación es local por población.
+
+Ejemplo:
+
+```text
+bosque_norte:lobo_tres_colas
+valle_oeste:lobo_tres_colas
+```
+
+son poblaciones independientes.
+
+No hay telepatía global de especie.
+
+## 24.3 Modelo preliminar
+
+Preferencia actual para una futura v0.1:
+
+```text
+pressure 0..100
+4 tiers
+adaptaciones reversibles
+sin RNG
+sin stat scaling
+sin loot
+populationId explícita
+eventos declarativos
+observations agregadas
+decay por elapsedTime
+effectiveKit determinista
+```
+
+Los thresholds y pesos todavía NO son canon.
+
+## 24.4 Observations semánticas
+
+Vocabulario preliminar:
+
+```text
+OFENSIVA_DIRECTA
+OFENSIVA_MULTIIMPACTO
+DEFENSA_ABSORCION
+DEFENSA_PORCENTUAL
+EVASION
+CONTROL
+RECUPERACION
+PREPARACION
+```
+
+Pueden ayudar a escoger una respuesta conductual permitida.
+
+Nunca deben crear:
+
+- HP extra;
+- daño extra;
+- defensa oculta;
+- inmunidad;
+- resistencia secreta.
+
+## 24.5 Riesgos que la revisión debe cerrar
+
+- doble conteo entre eventos;
+- observation poisoning;
+- adaptación global accidental;
+- oscilación alrededor de thresholds;
+- source of truth de tier/adaptations;
+- decay;
+- reversibilidad;
+- frontera territorial explotable;
+- dependence de orden;
+- effectiveKit con duplicados;
+- crecimiento histórico infinito;
+- O(elapsedTime);
+- acoplamiento indebido con Monster AI.
+
+## 24.6 Preguntas abiertas clave
+
+- pressure 0..100 o interno no acotado;
+- hysteresis desde v0.1;
+- decay de observations;
+- recent vs lifetime observations;
+- cómo evitar poisoning;
+- necesidad real de SPECIES_DEFEATED;
+- deduplicación de eventos;
+- tier persistido vs derivado;
+- activeAdaptations persistidas vs derivadas;
+- adaptación por pattern en v0.1 o v0.2;
+- decay lineal/escalonado/exponencial;
+- unidad de tiempo;
+- reversibilidad total;
+- futuro multiplayer;
+- eventId desde v0.1.
+
+Documento local de especificación preparado:
+
+`ESPECIFICACION_ADAPTIVE_ECOLOGY_v0.1_REVISION.md`
+
+SHA-256 del documento local:
+
+`862ca8b27e58482c648b3e80b33265305eef4295bc13c65c2dde45c094efae87`
+
+Prompt local de revisión Claude:
+
+`PROMPT_CLAUDE_REVISION_ADAPTIVE_ECOLOGY_v0.1.md`
+
+SHA-256:
+
+`b8801ded7731e2d1a3d186135ab1c8f2ce473dab387af2f84577d36ce9d1a189`
+
+Claude debe REVISAR, no implementar.
+
+Veredictos conceptuales permitidos:
+
+```text
+ADAPTIVE_ECOLOGY_V01_SPEC_APTA_PARA_IMPLEMENTAR
+ADAPTIVE_ECOLOGY_V01_SPEC_REQUIERE_CAMBIOS
+ADAPTIVE_ECOLOGY_V01_SPEC_FALLO_CONCEPTUAL
+```
+
+---
+
+# 25. REGLA DE AISLAMIENTO MONSTER/ADAPTIVE
+
+A partir de estos frentes:
+
+1. todo nace en `experimentos/`;
+2. producción no se toca;
+3. `ver74` no se toca;
+4. fixtures no son canon;
+5. cada módulo se audita separado;
+6. no merge automático;
+7. integración futura requiere adapter explícito;
+8. decisiones importantes se vuelcan al backup maestro antes de avanzar demasiado.
+
+
 Fin del handoff.
