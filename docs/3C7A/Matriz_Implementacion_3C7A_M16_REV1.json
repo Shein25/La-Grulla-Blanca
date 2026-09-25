@@ -1,0 +1,306 @@
+{
+  "version": "3C7A_M16_REV1",
+  "fecha": "2026-09-25",
+  "estado": {
+    "ruta": "flags.arc1.crisisM16.frentes",
+    "ids": [
+      "MEDICINA",
+      "RUTAS",
+      "FORMACIONES",
+      "RECURSOS",
+      "SAUCES",
+      "JARDINES"
+    ],
+    "valores": [
+      "PENDIENTE",
+      "ESTABLE",
+      "COSTOSO",
+      "DAÑADO"
+    ],
+    "no_fallido": true,
+    "booleans_resuelta": "DERIVADOS_NO_PERSISTIDOS",
+    "clasificacion": "RECONCILIACION_ESTRUCTURAL_3C7_AUDITAR"
+  },
+  "autoridad": {
+    "principal": {
+      "fuente": "Fuente Maestra ver55",
+      "turno": "T281",
+      "fecha_utc": "2026-09-20T07:31:21.863Z"
+    },
+    "historica": {
+      "turno": "T260",
+      "uso": "contexto previo; T281 prevalece si difiere"
+    },
+    "tecnica": [
+      "T257 idempotencia",
+      "Auditoria 6",
+      "ver74/3C5 infraestructura"
+    ]
+  },
+  "frontera_entrada": {
+    "requiere": [
+      "M15=HECHA",
+      "R9=CONFIRMADO",
+      "arc1.estado=LIV_REVELACION"
+    ],
+    "mantiene": [
+      "PASO_PULSO=false",
+      "NUCLEO_PROFUNDO=false"
+    ],
+    "dependencia": "M16_EVENTO_INICIO_PENDIENTE_RECONCILIACION"
+  },
+  "activacion": {
+    "evento": "señales casi simultáneas + certeza de fallo del centro",
+    "disparador_exactamente": "DECISION_TECNICA_PRECONTRATO",
+    "requisitos_disparador": [
+      "posterior y separado de M15",
+      "explícito/perceptible",
+      "alcanzable",
+      "sin RNG",
+      "sin tiempo diegético",
+      "one-shot",
+      "no entrarSala generico"
+    ],
+    "produce": [
+      "M16=ACTIVA",
+      "arc1.estado=LIV_CRISIS",
+      "seis frentes=PENDIENTE",
+      "EMERGENCIA_SECTA=ACTIVA"
+    ]
+  },
+  "evaluacion": {
+    "factores": [
+      "RESPONSABLE",
+      "PREPARACION",
+      "APOYO",
+      "INTERVENCION"
+    ],
+    "macro_rng": false,
+    "resolverFrente": "one-shot; segunda llamada devuelve mismo resultado",
+    "interdependencia": "maximo 1-2 modificadores externos importantes por frente",
+    "prohibido_dominio": "un frente DAÑADO no fuerza otro a DAÑADO"
+  },
+  "intervencion_jugador": {
+    "persistencia": "Set de IDs de frentes con intervención principal completada",
+    "entrar_region_no_cuenta": true,
+    "esperado": "aproximadamente dos",
+    "cardinalidad_rigida": false,
+    "contador_visible": false,
+    "clasificacion": "ELECCION_TECNICA_3C7_AUDITAR",
+    "secuencia": "2-4 objetivos por intervención, no quest separada"
+  },
+  "companeros": {
+    "asignables_por_jugador": false,
+    "asignacion_one_shot": true,
+    "no_teleport_silencioso": true,
+    "afinidad_gate": false,
+    "naturales": {
+      "lin_yue": [
+        "RUTAS"
+      ],
+      "han_qiao": [
+        "RECURSOS"
+      ],
+      "zhao_wen": [
+        "FORMACIONES"
+      ],
+      "mei_lian": [
+        "SAUCES",
+        "MEDICINA"
+      ],
+      "guo_chen": [
+        "RECURSOS",
+        "RUTAS"
+      ],
+      "luo_yan": [
+        "FORMACIONES",
+        "COORDINACION"
+      ]
+    }
+  },
+  "frentes": {
+    "MEDICINA": {
+      "responsable": [
+        "Lan Meihua",
+        "Chen Bo",
+        "Yao Fen"
+      ],
+      "problema": "circulación irregular, pacientes vulnerables, saturación/suministros; no epidemia",
+      "rooms_candidatas": [
+        "sala_recuperacion",
+        "sala_tratamientos",
+        "consultorio_meridianos",
+        "botica"
+      ],
+      "opcionales": [
+        "Examen",
+        "Alquimia"
+      ],
+      "opcionales_requisito": false
+    },
+    "RUTAS": {
+      "responsable": [
+        "Jiang Rui",
+        "Ren Bo"
+      ],
+      "problema": "desprendimientos, fauna desplazada, comunicaciones/corredores",
+      "rooms_candidatas": [
+        "puesto_valle",
+        "patio_puesto_valle",
+        "bosque_refugio_patrulla"
+      ],
+      "combate": "contextual no objetivo principal",
+      "m17_softlock": false
+    },
+    "FORMACIONES": {
+      "responsable": [
+        "He Zhen",
+        "Wen Tao"
+      ],
+      "problema": "cascada de sobrecompensación entre matrices/nodos",
+      "rooms_candidatas": [
+        "formaciones_sala_control",
+        "formaciones_camara_central",
+        "formaciones_sala_regulacion"
+      ],
+      "usa_conocimiento": [
+        "M08",
+        "M11",
+        "M12",
+        "Dos Alas",
+        "Primera Ala"
+      ],
+      "nucleo_inaccesible_por_danado": false
+    },
+    "RECURSOS": {
+      "responsable": [
+        "Duan Shibo",
+        "Ma Qiren",
+        "Lu Cheng"
+      ],
+      "problema": "priorización y distribución de materiales/energía entre demandas incompatibles",
+      "rooms_candidatas": [
+        "oficina_logistica",
+        "almacen_materiales",
+        "taller_lu_cheng"
+      ],
+      "no_fetchquest_fija": true
+    },
+    "SAUCES": {
+      "responsable": [
+        "Xu An",
+        "apoyo local"
+      ],
+      "problema": "caudal alterado, viviendas/huertos/reservas/caminos bajos",
+      "rooms_candidatas": [
+        "sauces_casa_comunal",
+        "sauces_plaza",
+        "sauces_canal_bajo",
+        "sauces_huertos"
+      ],
+      "no_desaparece": true,
+      "combate_aleatorio_central": false
+    },
+    "JARDINES": {
+      "responsable": [
+        "Su Lian"
+      ],
+      "problema": "riego y qi ambiental inestable, cultivos/nodos/semillas",
+      "rooms_candidatas": [
+        "patio_jardineros",
+        "bancal_central",
+        "canal_principal",
+        "estanque_riego",
+        "conducto_antiguo_jardines"
+      ],
+      "herboristeria_requisito": false,
+      "atajo_requisito": false,
+      "progresion_ingredientes_protegida": true
+    }
+  },
+  "resultados": {
+    "ESTABLE": "función esencial + daños menores",
+    "COSTOSO": "función esencial + pérdida real",
+    "DANADO": "consecuencias serias sin bloquear Arc1",
+    "perfecto_global": false,
+    "nunca_bloquea": [
+      "M17",
+      "Fundacion/ZhuJi",
+      "receta obligatoria",
+      "llave de progreso"
+    ]
+  },
+  "atajos": {
+    "utilidad": "resiliencia/movilidad",
+    "requisitos": false,
+    "seis_de_seis_no_perfecto": true
+  },
+  "emergencia_secta": {
+    "estados": [
+      "ACTIVA",
+      "EXPIRADA"
+    ],
+    "origen": "M16",
+    "conexiones": "sólo las que declaren aceptar EMERGENCIA",
+    "no_sustituye": [
+      "ARCHIVO_RESTRINGIDO",
+      "PRIMERA_ALA_INVESTIGACION",
+      "NUCLEO_PROFUNDO",
+      "barrera física"
+    ],
+    "modelo_persistente": "PENDIENTE_MODELO_GLOBAL_PERMISOS"
+  },
+  "prioridad_eventos": [
+    "CRISIS",
+    "MISION_PRINCIPAL",
+    "PERSONAL_NO_URGENTE",
+    "AMBIENTAL"
+  ],
+  "recompensas": {
+    "comprension": 0,
+    "merito": "EXTRAORDINARIO_NUMERO_PENDIENTE",
+    "contribucion": "POSIBLE_SECUNDARIA_NUMERO_PENDIENTE",
+    "prestigio": "sectorial según intervención; no penalizar automáticamente frentes no atendidos"
+  },
+  "history": {
+    "minimo": "primera prioridad personal",
+    "clave_candidata": "M16_PRIORIDAD_PRIMERA",
+    "no_puntuacion_oculta": true
+  },
+  "cierre": {
+    "condicion": "todos los frentes != PENDIENTE",
+    "produce": [
+      "M16=HECHA",
+      "EMERGENCIA_SECTA=EXPIRADA",
+      "estabilizacion provisional",
+      "M17 DISPONIBLE derivada"
+    ],
+    "mantiene": [
+      "arc1.estado=LIV_CRISIS",
+      "PASO_PULSO=false",
+      "NUCLEO_PROFUNDO=false",
+      "R7 no confirmado",
+      "R10 no confirmado"
+    ],
+    "invariante": "M16=HECHA => ningun frente=PENDIENTE"
+  },
+  "idempotencia": [
+    "save/load no dispara inicio",
+    "asignación compañero no cambia tras fijarse",
+    "frente terminal no se recalcula",
+    "EMERGENCIA no revive tras cierre",
+    "recompensas one-shot",
+    "M17 sólo disponibilidad derivada"
+  ],
+  "pendientes": [
+    "disparador concreto M16",
+    "cardinalidad/fases de intervención",
+    "evaluadores concretos por frente",
+    "conexiones que aceptan EMERGENCIA_SECTA",
+    "modelo global permisos",
+    "movilidad/anclajes de emergencia",
+    "balance",
+    "runtime predecesor PASS 3C.6"
+  ],
+  "prohibicion": "NO_IMPLEMENTAR_TODAVIA_NO_AVANZAR_M17"
+}
