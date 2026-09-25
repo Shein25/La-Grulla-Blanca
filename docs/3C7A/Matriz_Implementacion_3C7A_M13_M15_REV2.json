@@ -1,0 +1,156 @@
+{
+  "version": "3C7A_M13_M15_REV2",
+  "fecha": "2026-09-25",
+  "estado": "LISTA_PARA_REAUDITORIA_DE_CIERRE",
+  "corrige": [
+    "H-B1",
+    "H-B2",
+    "H-B3"
+  ],
+  "hB1": {
+    "premisa": "RELEVO_PREVISTO",
+    "premisa_no_es_aplazamiento": true,
+    "aplazamientos": [
+      "APLAZAMIENTO_TECNICO",
+      "APLAZAMIENTO_RUPTURA",
+      "NORMALIZACION_MANTENIMIENTO"
+    ],
+    "cantidad_aplazamientos": 3
+  },
+  "hB2": {
+    "evaluador_m13": [
+      "CONSUMO_ANTIGUO_IDENTIFICADO",
+      "OPERACION_PRESENTE",
+      "CORRELACION_PRODUCCION"
+    ],
+    "clasificacion": "ELECCION_TECNICA_3C7_AUDITAR",
+    "regla": "son funciones semánticas; no un checklist fijo de rooms"
+  },
+  "hB3": {
+    "dependencia": "M16_EVENTO_INICIO_PENDIENTE_RECONCILIACION",
+    "formal": true,
+    "requisitos": [
+      "evento separado de M15",
+      "alcanzable",
+      "idempotente",
+      "LIV_REVELACION->LIV_CRISIS una vez",
+      "sin temporizador",
+      "sin entrarSala generico como parche"
+    ],
+    "bloquea": "cierre documental tramo M12-M16",
+    "no_invalida": "M13-M15"
+  },
+  "gates": {
+    "PASO_MANTENIMIENTO": [
+      "ala_umbral_mantenimiento",
+      "mantenimiento_acceso"
+    ],
+    "PASO_NUCLEO": [
+      "mantenimiento_compuerta_nucleo",
+      "nucleo_pozo_voto"
+    ],
+    "PASO_PULSO": [
+      "nucleo_archivo_promesa",
+      "nucleo_descenso_pulso"
+    ]
+  },
+  "M13": {
+    "requiere": [
+      "arc1.estado=LIV_REVELACION",
+      "M12=HECHA"
+    ],
+    "activacion": [
+      "M13=ACTIVA",
+      "MANTENIMIENTO_INVESTIGACION=true",
+      "PASO_MANTENIMIENTO=true"
+    ],
+    "disparador": "HABLAR duan_shibo @ oficina_logistica",
+    "disparador_clasificacion": "ELECCION_TECNICA_3C7_AUDITAR",
+    "evidencia": [
+      "CONSUMO_ANTIGUO_IDENTIFICADO",
+      "OPERACION_PRESENTE",
+      "CORRELACION_PRODUCCION"
+    ],
+    "evidencia_clasificacion": "ELECCION_TECNICA_3C7_AUDITAR",
+    "cierre": [
+      "M13=HECHA",
+      "R6=CONFIRMADO",
+      "Comprension +1 ARC1_M13_CONSUMO_ACTUAL"
+    ],
+    "no_revela": [
+      "R7",
+      "entidad viva",
+      "NUCLEO"
+    ]
+  },
+  "M14": {
+    "requiere": [
+      "M13=HECHA"
+    ],
+    "activacion": [
+      "NUCLEO_SUPERIOR=true",
+      "PASO_NUCLEO=true"
+    ],
+    "evidencia": [
+      "ACTO_FORMAL",
+      "PARTICIPACION_MUTUA",
+      "CONSENTIMIENTO_DOCUMENTADO"
+    ],
+    "evidencia_clasificacion": "ELECCION_TECNICA_3C7_AUDITAR",
+    "cierre": [
+      "M14=HECHA",
+      "R8=CONFIRMADO",
+      "Comprension +1 ARC1_M14_CONSENTIMIENTO"
+    ],
+    "no_revela": [
+      "R9",
+      "R7",
+      "R10",
+      "temporalidad",
+      "identidad actual Grulla",
+      "cambio vinculo",
+      "NUCLEO_PROFUNDO"
+    ]
+  },
+  "M15": {
+    "requiere": [
+      "M14=HECHA",
+      "NUCLEO_SUPERIOR=true"
+    ],
+    "room": "nucleo_archivo_promesa",
+    "premisa": "RELEVO_PREVISTO",
+    "aplazamientos": [
+      "APLAZAMIENTO_TECNICO",
+      "APLAZAMIENTO_RUPTURA",
+      "NORMALIZACION_MANTENIMIENTO"
+    ],
+    "cierre": [
+      "M15=HECHA",
+      "R9=CONFIRMADO",
+      "Comprension +1 ARC1_M15_RELEVO_APLAZADO",
+      "precondiciones M16 satisfechas"
+    ],
+    "mantiene": [
+      "PASO_PULSO=false",
+      "NUCLEO_PROFUNDO=false",
+      "R7 cerrado",
+      "R10 cerrado"
+    ],
+    "history_no_decide": [
+      "LIBERAR",
+      "CUSTODIAR",
+      "R9"
+    ]
+  },
+  "persistencia": "flags.arc1 + this.quests; una fuente persistente por hecho",
+  "pendientes": [
+    "reauditar evaluador M13",
+    "reauditar grupos M14",
+    "validar M15 premisa+3 aplazamientos",
+    "modelo permisos",
+    "balance",
+    "reconciliar M16",
+    "PASS runtime 3C.6"
+  ],
+  "prohibicion": "NO_IMPLEMENTAR_TODAVIA"
+}
