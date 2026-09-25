@@ -1,0 +1,250 @@
+{
+  "version": "3C9_M17_REV1",
+  "fecha": "2026-09-25",
+  "estado": "LISTA_PARA_AUDITORIA_DOCUMENTAL",
+  "autoridad": {
+    "principal": "T290 bloque recuperado M17",
+    "tecnica": [
+      "T257",
+      "T240",
+      "T254",
+      "T222",
+      "Auditoria 6",
+      "ver74/3C5"
+    ],
+    "nota": "T290 es parcial a nivel de turno completo; no se completa por inferencia el material posterior de M18"
+  },
+  "precondicion": {
+    "requiere": [
+      "M16=HECHA"
+    ],
+    "arc1_estado": "LIV_CRISIS",
+    "nuevo_macro_estado": false,
+    "emergencia_secta": "EXPIRADA"
+  },
+  "estructura": [
+    "CONSEJO",
+    "AUTORIZACION",
+    "DESCENSO",
+    "R7",
+    "CENTINELA",
+    "SALA_RELEVO",
+    "R10",
+    "UMBRAL",
+    "HECHA"
+  ],
+  "consejo": {
+    "room": "interior_sala_consejo",
+    "activacion_exacta": "DECISION_TECNICA_3C9_AUDITAR",
+    "reglas": [
+      "no juicio",
+      "no persuasión",
+      "no afinidad gate",
+      "one-shot",
+      "no entrarSala durante load"
+    ],
+    "npc": {
+      "preside": "ji_xueying",
+      "autoriza": "qiao_ren",
+      "relevantes": [
+        "he_zhen",
+        "lan_meihua",
+        "song_rui"
+      ],
+      "movilidad_relevantes": "DEPENDENCIA_MOVILIDAD_3C9_AUDITAR"
+    }
+  },
+  "autorizacion": {
+    "evento": "NUCLEO_PROFUNDO_AUTORIZADO",
+    "permiso": {
+      "id": "NUCLEO_PROFUNDO",
+      "fuente": "ORDEN",
+      "origen": "M17",
+      "activa": true
+    },
+    "gate": {
+      "id": "PASO_PULSO",
+      "extremos": [
+        "nucleo_archivo_promesa",
+        "nucleo_descenso_pulso"
+      ],
+      "valor": true
+    },
+    "one_shot": true,
+    "no_concede": [
+      "autoridad general Núcleo",
+      "todos los sellos",
+      "EMERGENCIA_SECTA",
+      "M18"
+    ]
+  },
+  "ruta": [
+    "nucleo_archivo_promesa",
+    "nucleo_descenso_pulso",
+    "nucleo_galeria_pulso",
+    "nucleo_camara_regulacion",
+    "nucleo_sala_relevo",
+    "nucleo_exterior_ancla",
+    "nucleo_umbral_santuario"
+  ],
+  "opcional": [
+    "nucleo_camara_memoria"
+  ],
+  "m18_room": "nucleo_santuario_vinculo",
+  "r7": {
+    "orden": "ANTES_R10",
+    "conocimiento": "conocimiento.nucleo.dependenciaViva=CONFIRMADO",
+    "auditoria": "R7=CONFIRMADO",
+    "rooms": [
+      "nucleo_galeria_pulso",
+      "nucleo_camara_regulacion"
+    ],
+    "trigger": "ELECCION_TECNICA_3C9_AUDITAR",
+    "obligatorio": true,
+    "no_depende": [
+      "Cámara Memoria",
+      "secretos",
+      "atajos",
+      "únicos opcionales",
+      "skills opcionales"
+    ]
+  },
+  "centinela": {
+    "id_legacy": "centinela_pluma",
+    "momento": "después R7 y antes Sala Relevo",
+    "resoluciones": [
+      "COMBATE",
+      "PROTOCOLO"
+    ],
+    "protocolo_fuente": "conocimiento principal M14-M15",
+    "estado_propuesto": [
+      "NO_RESUELTO",
+      "DERROTADO",
+      "RESUELTO_POR_PROTOCOLO"
+    ],
+    "estado_clasificacion": "ELECCION_TECNICA_3C9_AUDITAR",
+    "room_candidata": "nucleo_camara_regulacion",
+    "room_clasificacion": "ELECCION_TECNICA_RESPALDADA_POR_TOPOLOGIA_A_AUDITAR",
+    "no_requiere": [
+      "secretos",
+      "6 atajos",
+      "afinidad",
+      "loot previo"
+    ],
+    "no_produce": [
+      "reliquia",
+      "Pluma Celeste",
+      "cadáver",
+      "restos examinables"
+    ],
+    "legacy_ver74": {
+      "ubicacion_actual": "alturas_mirador_grulla",
+      "loot_normal": true,
+      "restos_examinables": true,
+      "reliquia_pluma_historica": true,
+      "clasificacion": "LEGACY_A_REEMPLAZAR_3C9"
+    }
+  },
+  "sala_relevo": {
+    "id": "nucleo_sala_relevo",
+    "obligatoria": true,
+    "antes_m18": true,
+    "seguro": true,
+    "purifica": false,
+    "alojamiento_ver74": true,
+    "conocimiento": "por movimiento real, no load artificial"
+  },
+  "r10": {
+    "orden": "DESPUES_R7",
+    "room": "nucleo_exterior_ancla",
+    "conocimiento": "conocimiento.nucleo.grullaViva=CONFIRMADO",
+    "auditoria": "R10=CONFIRMADO",
+    "identidad": "misma Grulla del pacto original",
+    "niega": [
+      "descendiente",
+      "sucesora",
+      "copia",
+      "eco",
+      "representación"
+    ],
+    "camara_memoria_requisito": false
+  },
+  "comprension": {
+    "delta": 1,
+    "fuente": "ARC1_M17_DEPENDENCIA_VIVA",
+    "cuando": "R7 y R10 integrados",
+    "one_shot": true
+  },
+  "cierre": {
+    "requiere": [
+      "M16=HECHA",
+      "NUCLEO_PROFUNDO_AUTORIZADO",
+      "R7=CONFIRMADO",
+      "Centinela terminal",
+      "nucleo_sala_relevo conocida",
+      "R10=CONFIRMADO",
+      "nucleo_umbral_santuario alcanzado"
+    ],
+    "produce": [
+      "M17=HECHA",
+      "M18 DISPONIBLE derivada"
+    ],
+    "mantiene": [
+      "arc1.estado=LIV_CRISIS"
+    ],
+    "no_hace": [
+      "entrar Santuario",
+      "iniciar combate",
+      "VINCULO_CEDIDO",
+      "LIBERAR/CUSTODIAR",
+      "EPILOGO",
+      "Gran Perfección",
+      "volver al Consejo"
+    ]
+  },
+  "companeros": {
+    "party_descenso": false,
+    "roles": [
+      "preparación",
+      "Consejo",
+      "superficie",
+      "soporte"
+    ],
+    "afinidad_gate": false
+  },
+  "idempotencia": [
+    "autorización one-shot",
+    "R7 primera confirmación",
+    "Centinela terminal one-shot",
+    "Sala Relevo conocida por movimiento real",
+    "R10 primera confirmación",
+    "Comprensión M17 one-shot",
+    "M17 HECHA irreversible"
+  ],
+  "tests": [
+    "M16 no HECHA => M17 indisponible",
+    "EMERGENCIA no abre PASO_PULSO",
+    "R7 antes R10",
+    "Centinela combate/protocolo equivalentes",
+    "sin loot/restos/reliquia Centinela",
+    "sin doble Centinela",
+    "Memoria opcional",
+    "Umbral no inicia M18",
+    "save/load no progresa",
+    "329/17/787 intacto"
+  ],
+  "pendientes": [
+    "trigger Consejo",
+    "movilidad asistentes Consejo",
+    "trigger R7",
+    "estado Centinela",
+    "room Centinela",
+    "interfaz protocolo",
+    "bloqueo paso sin ROOMS.exits",
+    "modelo permisos",
+    "balance",
+    "legacy Centinela Alturas",
+    "runtime 3C.6"
+  ],
+  "prohibicion": "NO_IMPLEMENTAR_NO_AVANZAR_M18"
+}
