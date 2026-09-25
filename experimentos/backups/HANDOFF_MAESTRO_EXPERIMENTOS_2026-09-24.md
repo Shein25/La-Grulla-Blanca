@@ -2316,5 +2316,62 @@ No borrar ni reescribir este estado sin una decisión explícita.
 
 Siguiente trabajo de Monster Combat AI, si se retoma, debe partir de una nueva fase/versionado y NO modificar silenciosamente v0.1 cerrada.
 
+---
+
+# 31. DECISIÓN ARQUITECTÓNICA — REPERTORIO DE COMBATE MULTIFUNCIÓN
+
+Fecha: 2026-09-25.
+
+Decisión:
+
+Monster Combat AI y Adaptive Ecology NO deben asumir que `effectiveKit` contiene sólo habilidades ofensivas.
+
+El repertorio futuro puede incluir, según lo que ya soporte el motor de combate:
+
+- ataques directos;
+- multiimpacto;
+- defensa;
+- aumento temporal de defensa;
+- absorción;
+- evasión;
+- control;
+- recuperación;
+- preparación/buffs;
+- aumento temporal de ataque;
+- aumento temporal de probabilidad de crítico;
+- aumento temporal de daño crítico;
+- habilidades híbridas que combinen efectos ofensivos y defensivos.
+
+Principio de integración:
+
+> Adaptive Ecology habilita repertorio.
+> Monster Combat AI decide qué habilidad/intención intentar.
+> El motor de combate existente resuelve sus efectos reales.
+
+Por lo tanto:
+
+- Adaptive Ecology NO modifica stats directamente;
+- Monster Combat AI NO calcula daño, defensa, evasión, absorción ni crítico;
+- una adaptación puede añadir al `effectiveKit` una habilidad que, cuando el motor la resuelva, aplique un buff/debuff/efecto ya soportado;
+- los modificadores de ataque, defensa, crítico, daño crítico, evasión o absorción deben pertenecer a la definición/resolución de la habilidad, no a un scaling oculto por tier o pressure;
+- las habilidades híbridas deben seguir el mismo pipeline normal del motor;
+- ninguna habilidad adaptativa puede saltarse telegraph, defensa, evasión, absorción, estados o demás resolución existente salvo que su propia definición canónica lo autorice explícitamente.
+
+Consecuencia para Adaptive Ecology v0.1:
+
+La v0.1 sigue sin `stat scaling`. `effectiveKit` sólo contiene IDs de habilidades. Que una habilidad produzca luego un buff temporal es responsabilidad del motor de combate y de la definición de esa habilidad.
+
+Consecuencia para futura integración:
+
+El laboratorio `Adaptive Ecology × Monster Combat AI` debe incluir fixtures sintéticos de al menos:
+
+1. habilidad ofensiva;
+2. habilidad defensiva;
+3. habilidad de evasión/absorción;
+4. habilidad de preparación/buff;
+5. habilidad híbrida.
+
+No modificar silenciosamente Monster Combat AI v0.1 ya cerrada; esta decisión se aplica en la capa de integración y/o en una versión posterior del catálogo de habilidades.
+
 
 Fin del handoff.
