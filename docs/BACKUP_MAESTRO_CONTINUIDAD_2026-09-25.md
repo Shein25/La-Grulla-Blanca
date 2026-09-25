@@ -270,7 +270,7 @@ Nombre:
 `M16 · Cuando falla el centro`.
 
 Estado actual:
-`3C7A_M16_REV1_LISTA_PARA_AUDITORIA_DOCUMENTAL`.
+`3C7A_M16_REV1_CERRADA_DOCUMENTALMENTE_APTA_CON_DECISION_TECNICA_PENDIENTE`.
 
 Autoridad principal:
 Fuente Maestra ver55 T281 (posterior a T260).
@@ -334,7 +334,26 @@ Cierre:
 
 M16 NO abre PASO_PULSO/NUCLEO_PROFUNDO, NO confirma R7/R10 y NO decide LIBERAR/CUSTODIAR.
 
-**Próximo paso de M16:** recibir auditoría Claude. Según veredicto: corregir REV2 o cerrar documentalmente. No avanzar M17 antes de analizar esa auditoría.
+Auditoría Claude registrada en:
+`docs/3C7A/Auditoria_3C7A_M16_REV1_CLAUDE.md`.
+
+Documento de cierre:
+`docs/3C7A/CIERRE_3C7A_M16_REV1.md`.
+
+Veredicto:
+`3C7A_M16_REV1_APTA_CON_DECISION_TECNICA_PENDIENTE`.
+
+No hubo bloqueantes ni soft-locks nuevos.
+
+Decisiones técnicas pendientes:
+- DT-M16-01: el tope “uno o dos apoyos externos importantes” no es literal de T281 y queda `DECISION_TECNICA_3C7_AUDITAR`;
+- DT-M16-02: decidir si se conserva atribución “resuelto por quién” como metadato separado del estado terminal o se descarta explícitamente;
+- DHP-1 trazado: T281 es la única versión M16 localizada y se adopta como autoridad única.
+
+Test futuro obligatorio:
+`0 requisiciones opcionales + 0 únicos + pocos atajos => M16 sigue completable`.
+
+**M16 no requiere REV2 salvo que una decisión técnica futura contradiga T281 o cree soft-lock.**
 
 ---
 
@@ -342,7 +361,7 @@ M16 NO abre PASO_PULSO/NUCLEO_PROFUNDO, NO confirma R7/R10 y NO decide LIBERAR/C
 
 **Estado:** NO INICIADO.
 
-No redactar ni implementar M17 hasta cerrar/analizar M16, salvo autorización humana explícita.
+M16 ya fue auditada y cerrada documentalmente. M17 puede abrirse como siguiente frente documental sólo cuando el usuario autorice continuar. No implementar M17 todavía.
 
 3C.9 prevista para M17 + M18 + epílogo.
 
@@ -428,14 +447,12 @@ Si un chat nuevo retoma el proyecto, proceder así:
 
 1. Leer este backup.
 2. NO tocar `main` ni mergear.
-3. Ver si ya llegó la auditoría externa de Claude sobre M16 REV1.
-4. Si llegó: comparar hallazgos con T281/T260/Auditoría 6/ver74.
-5. Si M16 requiere correcciones: crear REV2 y reauditar.
-6. Si M16 queda apta: crear auditoría/cierre documental y congelar matriz.
-7. En paralelo, recuperar resultado pendiente de M08–M11 y cierre de implementación 3C.6.
-8. No iniciar implementación global de 3C.7 hasta que 3C.6 runtime pase y los contratos correspondientes estén cerrados.
-9. Después de cerrar M16, avanzar documentalmente M17/M18/epílogo.
-10. Cuando todo Arc1 esté cerrado y auditado, preparar paquete global para Codex e implementar por bloques.
+3. M16 ya está auditada y cerrada documentalmente; no crear REV2 salvo contradicción futura real.
+4. Si el usuario autoriza continuar, abrir M17 como siguiente frente documental independiente.
+5. En paralelo, recuperar resultado pendiente de M08–M11 y cierre de implementación 3C.6.
+6. No iniciar implementación global de 3C.7 hasta que 3C.6 runtime pase y los contratos correspondientes estén cerrados.
+7. Reconciliar M17/M18/epílogo antes de preparar implementación global.
+8. Cuando todo Arc1 esté cerrado y auditado, preparar paquete global para Codex e implementar por bloques.
 
 ---
 
@@ -477,7 +494,7 @@ M13–M15 REV2
 → CERRADA / APTA PARA CONTRATO
 
 M16 REV1
-→ EN AUDITORÍA CLAUDE
+→ CERRADA / APTA CON DECISIONES TÉCNICAS PENDIENTES
 
 M17+
 → NO INICIADO
@@ -493,9 +510,9 @@ Producción global Arc1
 
 # 15. SIGUIENTE ACCIÓN EXACTA
 
-**Esperar/recibir la auditoría de Claude de M16 REV1 y procesarla.**
+**Siguiente frente documental posible: M17, sólo cuando el usuario autorice continuar.**
 
-Si todavía no está disponible, se puede trabajar únicamente en frentes auxiliares/documentales que no adelanten M17 ni implementación, o continuar el laboratorio NPC en sus ramas experimentales separadas.
+En paralelo siguen pendientes el cierre independiente de M08–M11 y la corrección/re-auditoría runtime de 3C.6. No iniciar implementación global de 3C.7 mientras esos bloqueos sigan abiertos.
 
 ---
 
