@@ -1878,3 +1878,101 @@ Reporte:
 `experimentos/backups/AUDITORIA_ADAPTIVE_ECOLOGY_v0.1_CANDIDATA_LOCAL_REV1.md`
 
 No crear ni mergear rama experimental hasta que REV2 local pase reauditoría.
+
+
+---
+
+# 26. MONSTER COMBAT AI v0.1 — REV2 FUNCIONALMENTE APROBADA
+
+Fecha de auditoría independiente: 2026-09-25.
+
+Candidata local REV2 recibida desde Claude.
+
+Verificación reproducida:
+
+```text
+tests = 38/38 PASS
+stress = 50.000 decisiones
+seeds = 1337, 1, 42, 999, 20260924
+critical metrics = 0
+seed 1337 repetida = digest idéntico
+```
+
+Digests:
+
+```text
+1337     4cee9933469e7d8545741b067f57ef023e49eb9a2ac4a3a104650cd84abe5c18
+1        e3a18ca49992edee61121fed9a45968a6f7e2251ae324abbff436156e08d95e9
+42       76e657fda8b01747557841bb631a99f9888d5a52d5b004a4791a702a2faacd43
+999      a6180e5c24102d9ad5ae38c6e73d80196321ec6c14570d7a2ffe129ac6a5da3e
+20260924 39ffa25968f9aafbf7169c970abd13e23fa905b57a531610cfcbe53f70aae1d7
+```
+
+Auditoría independiente adicional:
+
+```text
+9.215 comprobaciones
+0 fallos
+```
+
+Cobertura adicional:
+
+- 500 seeds × 3 perfiles;
+- `effectiveKit` invertido;
+- catálogo de abilities invertido;
+- comparación de ganador y scores por ability;
+- cooldowns inválidos amplios;
+- 200 rondas de no-mutación.
+
+Los tres fixes de REV1 quedan confirmados:
+
+1. reorder invariance con jitter;
+2. cooldowns estrictamente booleanos;
+3. métricas de stress medibles en vez de decorativas.
+
+Deudas no bloqueantes aceptadas:
+
+- D-MON-15: `debug.considered` conserva orden de input, sólo diagnóstico;
+- D-MON-16: límite conceptual de la métrica `executionSideEffects`.
+
+Veredicto funcional:
+
+`MONSTER_COMBAT_AI_V01_APTO_PARA_ITERAR`
+
+## 26.1 Estado Git real
+
+Se verificó que:
+
+```text
+main = 5812deb59cd1c133383b9af973486a702a26daf4
+```
+
+Se creó la rama:
+
+`experiment/monster-combat-ai-v0.1`
+
+desde ese SHA exacto.
+
+Estado actual de la rama al registrar este backup:
+
+```text
+HEAD = 5812deb59cd1c133383b9af973486a702a26daf4
+```
+
+La rama todavía NO contiene los archivos de la candidata REV2.
+
+No existe commit de materialización ni PR draft todavía.
+
+Por tanto:
+
+- funcionalmente la candidata está aprobada;
+- formalmente Git todavía está incompleto;
+- NO abrir PR hasta materializar los bytes exactos auditados;
+- NO mergear.
+
+Regla para el siguiente paso:
+
+> materializar exactamente la candidata REV2 auditada, verificar diff aislado, volver a ejecutar tests/stress sobre el HEAD real y recién entonces abrir PR draft.
+
+
+Fin del handoff.
