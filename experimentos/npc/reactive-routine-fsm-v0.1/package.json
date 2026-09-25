@@ -2,5 +2,8 @@
   "name":"la-grulla-blanca-reactive-routine-fsm-v0.1",
   "private":true,
   "type":"module",
-  "scripts":{"test":"node tests.mjs","stress":"node stress.mjs 100000 1337"}
+  "scripts":{
+    "test":"node tests.mjs && node tests-rev2.mjs",
+    "stress":"node stress.mjs 100000 1337"
+  }
 }
