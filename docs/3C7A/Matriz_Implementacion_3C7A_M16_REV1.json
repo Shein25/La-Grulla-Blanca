@@ -1,26 +1,7 @@
 {
   "version": "3C7A_M16_REV1",
   "fecha": "2026-09-25",
-  "estado": {
-    "ruta": "flags.arc1.crisisM16.frentes",
-    "ids": [
-      "MEDICINA",
-      "RUTAS",
-      "FORMACIONES",
-      "RECURSOS",
-      "SAUCES",
-      "JARDINES"
-    ],
-    "valores": [
-      "PENDIENTE",
-      "ESTABLE",
-      "COSTOSO",
-      "DAÑADO"
-    ],
-    "no_fallido": true,
-    "booleans_resuelta": "DERIVADOS_NO_PERSISTIDOS",
-    "clasificacion": "RECONCILIACION_ESTRUCTURAL_3C7_AUDITAR"
-  },
+  "estado": "LISTA_PARA_AUDITORIA_DOCUMENTAL",
   "autoridad": {
     "principal": {
       "fuente": "Fuente Maestra ver55",
@@ -302,5 +283,25 @@
     "balance",
     "runtime predecesor PASS 3C.6"
   ],
-  "prohibicion": "NO_IMPLEMENTAR_TODAVIA_NO_AVANZAR_M17"
+  "prohibicion": "NO_IMPLEMENTAR_TODAVIA_NO_AVANZAR_M17",
+  "modelo_frentes": {
+    "ruta": "flags.arc1.crisisM16.frentes",
+    "ids": [
+      "MEDICINA",
+      "RUTAS",
+      "FORMACIONES",
+      "RECURSOS",
+      "SAUCES",
+      "JARDINES"
+    ],
+    "valores": [
+      "PENDIENTE",
+      "ESTABLE",
+      "COSTOSO",
+      "DAÑADO"
+    ],
+    "no_fallido": true,
+    "booleans_resuelta": "DERIVADOS_NO_PERSISTIDOS",
+    "clasificacion": "RECONCILIACION_ESTRUCTURAL_3C7_AUDITAR"
+  }
 }
