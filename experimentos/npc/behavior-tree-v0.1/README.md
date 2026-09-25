@@ -64,7 +64,10 @@ tickBehaviorTree(tree, runtime, tick)
 - Proxies/estructuras hostiles deben cerrar con `ContractError`;
 - `runtime.tick` satura en `Number.MAX_SAFE_INTEGER`;
 - un `actionResult` sólo puede corresponder a la acción que estaba `RUNNING`;
-- cada tick reevalúa el árbol desde la raíz y puede preemptar la acción anterior;\n- `preemptedAction` sólo identifica una interrupción real: si la acción anterior recibió `SUCCESS` o `FAILURE` en ese tick, su finalización es normal y no se marca como preemptada;\n- un runtime pertenece a una definición estructuralmente estable del árbol: cambiar topología, IDs o `intent` durante su vida está fuera de contrato y exige crear un runtime nuevo;\n- `EQ/NEQ/IN` usan `Object.is` y por tanto distinguen `-0` de `0`; los comparadores ordenados usan semántica numérica normal.
+- cada tick reevalúa el árbol desde la raíz y puede preemptar la acción anterior;
+- `preemptedAction` sólo identifica una interrupción real: si la acción anterior recibió `SUCCESS` o `FAILURE` en ese tick, su finalización es normal y no se marca como preemptada;
+- un runtime pertenece a una definición estructuralmente estable del árbol: cambiar topología, IDs o `intent` durante su vida está fuera de contrato y exige crear un runtime nuevo;
+- `EQ/NEQ/IN` usan `Object.is` y por tanto distinguen `-0` de `0`; los comparadores ordenados usan semántica numérica normal.
 
 ## Fixtures
 
@@ -76,6 +79,7 @@ tickBehaviorTree(tree, runtime, tick)
 
 ```bash
 node tests.mjs
+node tests-rev2.mjs
 node stress.mjs 100000 1337
 ```
 
