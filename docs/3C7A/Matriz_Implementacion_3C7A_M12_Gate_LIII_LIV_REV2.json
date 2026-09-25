@@ -1,0 +1,131 @@
+{
+  "version": "3C7A_M12_GATE_LIII_LIV_REV2",
+  "fecha": "2026-09-25",
+  "estado": "LISTA_PARA_REAUDITORIA_DE_CIERRE",
+  "corrige": [
+    "H-A1",
+    "H-A2",
+    "H-A3"
+  ],
+  "hA1": {
+    "eliminado": "Custodio terminal eleva por sí mismo a CONCLUYENTE",
+    "regla": "CONCLUYENTE = SUFICIENTE + CORROBORACION_FUERTE_INDEPENDIENTE",
+    "custodio": "requisito separado de cierre",
+    "clasificacion_corrob": "ELECCION_TECNICA_3C7_AUDITAR",
+    "anti_softlock": "debe existir al menos una fuente concreta alcanzable antes y después de resolver al Custodio"
+  },
+  "hA2": {
+    "ruta_investigacion": [
+      "formaciones_sello_antiguo",
+      "formaciones_descenso_tecnico",
+      "ala_vestibulo",
+      "ala_nudo_seis_corrientes",
+      "ala_camara_dos_alas"
+    ],
+    "ruta_hacia_umbral": [
+      "ala_camara_dos_alas",
+      "ala_nudo_seis_corrientes",
+      "ala_vestibulo",
+      "ala_galeria_distribucion",
+      "ala_umbral_mantenimiento"
+    ]
+  },
+  "hA3": {
+    "verificado_con": "M08_M11_REV2",
+    "m11_produce": [
+      "M11=HECHA",
+      "R3=CONFIRMADO",
+      "DOS_ALAS=PRINCIPIO"
+    ],
+    "no_crear": "DOS_ALAS=COMPRENDIDAS"
+  },
+  "m12": {
+    "requiere": [
+      "M11=HECHA",
+      "arc1.estado=LIII_INVESTIGACION"
+    ],
+    "activacion": [
+      "M12=ACTIVA",
+      "PRIMERA_ALA_INVESTIGACION=true",
+      "gates.M12=true"
+    ],
+    "cierre": [
+      "evidenciaPrimeraAla=CONCLUYENTE",
+      "custodioDosAlas terminal"
+    ],
+    "produce": [
+      "M12=HECHA",
+      "R5=CONFIRMADO",
+      "Comprension +1 ARC1_M12_RED_PRIMERA_ALA",
+      "AUTORIZACION_INVESTIGACION_PROFUNDA=true",
+      "ala_umbral_mantenimiento conocido"
+    ]
+  },
+  "evidencia": {
+    "niveles": [
+      "INSUFICIENTE",
+      "SUFICIENTE",
+      "CONCLUYENTE"
+    ],
+    "suficiente": [
+      "NUDO_INTERPRETADO",
+      "DOS_ALAS_ARQUITECTURA",
+      "PATRON_RAMA"
+    ],
+    "concluyente": [
+      "SUFICIENTE",
+      "CORROBORACION_FUERTE_INDEPENDIENTE"
+    ],
+    "no_exige": [
+      "6/6 atajos",
+      "todas las ramas",
+      "todas las rooms"
+    ],
+    "registro_inmediato": true
+  },
+  "custodio": {
+    "estados": [
+      "NO_RESUELTO",
+      "DERROTADO",
+      "RESUELTO_POR_PROTOCOLO"
+    ],
+    "protocolo_requiere": [
+      "M11=HECHA",
+      "evidenciaPrimeraAla>=SUFICIENTE"
+    ],
+    "localizacion_candidata": "ala_camara_dos_alas"
+  },
+  "permisos": {
+    "PRIMERA_ALA_INVESTIGACION": {
+      "origen": "M12_INICIO",
+      "vigencia": "PERSISTE_TRAS_M12"
+    },
+    "AUTORIZACION_INVESTIGACION_PROFUNDA": {
+      "origen": "M12_CIERRE_FORMAL",
+      "fuente": "INSTITUCIONAL",
+      "npc_emisor": "NO_CONGELADO_EN_FUENTE"
+    },
+    "modelo_global": "DECISION_TECNICA_GLOBAL_PENDIENTE"
+  },
+  "gate_LIII_LIV": {
+    "condiciones": [
+      "qi>=75",
+      "M11=HECHA",
+      "M12=HECHA",
+      "R3=CONFIRMADO",
+      "R5=CONFIRMADO",
+      "AUTORIZACION_INVESTIGACION_PROFUNDA=true"
+    ],
+    "legacy": "RETIRAR/NEUTRALIZAR PUERTAS[4] 2 pildoras + comprension:6",
+    "doble_gate": false
+  },
+  "pendientes": [
+    "corroboracion fuerte concreta",
+    "protocolo Custodio",
+    "localizacion Custodio",
+    "modelo uniforme permisos",
+    "balance M12",
+    "PASS runtime 3C.6"
+  ],
+  "prohibicion": "NO_IMPLEMENTAR_TODAVIA"
+}
