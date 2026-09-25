@@ -1513,5 +1513,106 @@ A partir de estos frentes:
 7. integración futura requiere adapter explícito;
 8. decisiones importantes se vuelcan al backup maestro antes de avanzar demasiado.
 
+---
+
+# 26. ADAPTIVE ECOLOGY v0.1 — RESULTADO PRIMERA REVISIÓN Y REV2
+
+Primera revisión conceptual externa recibida.
+
+Veredicto:
+
+`ADAPTIVE_ECOLOGY_V01_SPEC_REQUIERE_CAMBIOS`
+
+Hallazgos bloqueantes de la revisión:
+- doble conteo de eventos no cerrado;
+- deduplicación sin responsabilidad/estado definido;
+- hysteresis con impacto contractual;
+- tier/activeAdaptations persistidos vs derivados sin cerrar;
+- decay/unidad temporal sin cerrar.
+
+La revisión recomendó simplificar v0.1 y sacar observations, SPECIES_DEFEATED y REPEATED_HUNT. También recomendó tier/activeAdaptations derivados, pressure 0..100 y decay lineal.
+
+Decisión independiente adoptada para REV2:
+
+```text
+v0.1
+- sólo SPECIES_KILLED
+- observations fuera
+- pressure entero 0..100
+- decay lineal O(1)
+- tiempo lógico
+- tier derivado
+- activeAdaptations derivadas
+- adaptaciones acumulativas/reversibles
+- recentEventIds acotado para dedup defensiva
+- sin RNG
+- sin stat scaling
+- sin Monster Utility
+```
+
+Diferencia deliberada respecto de la revisión externa:
+
+> NO se adopta cooldown/hysteresis de tier en v0.1.
+
+Razón: un cooldown obligaría a agregar estado temporal y haría que `tier` dejara de ser una función pura de `pressure + config`. Para este laboratorio se acepta la posible oscilación alrededor de thresholds como limitación conocida y se difiere hysteresis a v0.2.
+
+Source of truth REV2:
+
+Persistido:
+```text
+populationId
+speciesId
+territoryId
+pressure
+lastUpdate
+recentEventIds
+```
+
+Derivado:
+```text
+tier
+activeAdaptations
+effectiveKit
+```
+
+Config:
+```text
+baseKit
+thresholds
+adaptationCatalog
+pressurePerKill
+decayPerTimeUnit
+dedupWindowSize
+```
+
+Orden transaccional REV2:
+
+```text
+validate
+→ decay hasta now
+→ update lastUpdate
+→ dedup
+→ check populationId
+→ apply kill pressure
+→ clamp
+→ update recentEventIds
+→ derive tier
+→ derive adaptations
+→ derive effectiveKit
+```
+
+Documentos preservados en esta rama de backup:
+
+`experimentos/backups/ESPECIFICACION_ADAPTIVE_ECOLOGY_v0.1_REV2.md`
+
+`experimentos/backups/PROMPT_CLAUDE_REVIEW_ADAPTIVE_ECOLOGY_v0.1_REV2.md`
+
+Estado actual:
+
+```text
+REV2 LISTA PARA SEGUNDA REVISIÓN CONCEPTUAL
+NO IMPLEMENTAR TODAVÍA
+```
+
 
 Fin del handoff.
