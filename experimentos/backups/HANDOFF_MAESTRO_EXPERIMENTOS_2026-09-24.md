@@ -2606,5 +2606,82 @@ La rama experimental conserva:
 
 No modificar silenciosamente v0.1 cerrada. Cualquier continuación debe abrir una nueva fase/versionado o un laboratorio de integración explícito.
 
+---
+
+# 34. AUDITORÍA INICIAL DEL MOTOR DE COMBATE ACTUAL
+
+Fecha: 2026-09-25.
+
+Fuente productiva verificada:
+
+```text
+branch = implement/3c6-prologo-m01-m07
+HEAD   = 748bd4480e37fd2523fa833081b20522b9724dab
+file   = grulla-blanca_ver75.html
+blob   = 1c897be6ddf3d18436a043fab0c848ef7f3fb18c
+```
+
+Los bloques centrales de combate son semánticamente iguales a ver74.
+
+Hallazgo principal:
+
+El motor ya soporta muchas capacidades necesarias para Monster Combat AI, pero existe asimetría entre jugador y enemigos.
+
+Soporte real actual del jugador:
+
+- ofensiva;
+- AOE;
+- ataque/precisión;
+- critMin;
+- critMult;
+- quemadura;
+- debilitar ataque;
+- control;
+- evasión temporal;
+- defensa plana temporal;
+- absorción por reserva;
+- DEFENDER porcentual;
+- concordancia/elementos.
+
+Estados declarados:
+
+`esquiva, defensa, guardia, dano, ataque, tenacidad, quemadura, veneno, debil, atadura`.
+
+Pero `dano` y `ataque` son hoy metadatos/UI preparados y no participan como buffs temporales reales en la resolución.
+
+Contrato actual de técnica enemiga:
+
+`name, cada, ataque?, daño?, veneno?, quemadura?, drenaQi?`
+
+Enemigos hoy NO pueden por esta ruta:
+
+- elegir entre múltiples habilidades;
+- aplicar defensa propia;
+- aplicar evasión propia;
+- aplicar absorción propia;
+- buffs persistentes de ataque/daño;
+- modificar probabilidad de crítico;
+- modificar multiplicador crítico;
+- ejecutar habilidades híbridas genéricas.
+
+Asimetría crítica:
+
+`aplicarAMob()` puede almacenar estados genéricos, pero la resolución de ataques contra mobs NO consulta actualmente estados mob de defensa/esquiva/guardia/ataque/dano.
+
+Por tanto guardar esos estados no basta para que tengan efecto.
+
+Documento:
+
+`experimentos/backups/AUDITORIA_INICIAL_MOTOR_COMBATE_2026-09-25.md`
+
+Siguiente fase recomendada:
+
+`Combat Ability Contract v0.1`
+
+Debe definir catálogo declarativo y adapter experimental para habilidades ofensivas, defensivas, buffs, debuffs, control e híbridas sin tocar producción y respetando:
+
+> Monster Combat AI decide.
+> El motor de combate resuelve.
+
 
 Fin del handoff.
