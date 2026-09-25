@@ -1759,3 +1759,76 @@ el siguiente paso será preparar el prompt de implementación experimental, mant
 
 
 Fin del handoff.
+
+
+---
+
+# 26. ADAPTIVE ECOLOGY v0.1 — DISEÑO CONGELADO
+
+La tercera revisión conceptual externa concluyó:
+
+`ADAPTIVE_ECOLOGY_V01_REV3_APTA_PARA_IMPLEMENTAR`
+
+No quedaron bloqueantes contractuales.
+
+La REV3 confirmó:
+
+- locality antes de dedup;
+- `occurredAt` como metadata opaca;
+- límite explícito de `recentEventIds`;
+- FIFO por orden de aplicación;
+- effectiveKit canónico/reorder-invariant;
+- source of truth limpio;
+- ausencia de contradicciones estructurales.
+
+Se incorporaron además cuatro aclaraciones no bloqueantes antes de congelar la versión FINAL:
+
+1. thresholds con límite inferior inclusivo;
+2. validación explícita `now >= lastUpdate`;
+3. errores contractuales mediante `ContractError`;
+4. corrección de referencia REV2 → FINAL.
+
+Estado:
+
+```text
+ADAPTIVE ECOLOGY v0.1
+DESIGN_STATUS: FROZEN_FOR_EXPERIMENTAL_IMPLEMENTATION
+```
+
+Archivos de respaldo:
+
+`experimentos/backups/ESPECIFICACION_ADAPTIVE_ECOLOGY_v0.1_FINAL.md`
+
+`experimentos/backups/PROMPT_IMPLEMENTACION_ADAPTIVE_ECOLOGY_v0.1.md`
+
+Rama de implementación prevista:
+
+`experiment/monster-ecology-adaptation-v0.1`
+
+Base obligatoria:
+
+`5812deb59cd1c133383b9af973486a702a26daf4`
+
+Cadena v0.1 congelada:
+
+```text
+SPECIES_KILLED
+→ pressure
+→ decay
+→ tier derivado
+→ activeAdaptations derivadas
+→ effectiveKit
+```
+
+Fuera de v0.1:
+
+- observations;
+- adaptación por patrón;
+- hysteresis;
+- otros event types;
+- stat scaling;
+- Monster Utility;
+- combate real;
+- producción.
+
+No merge automático.
