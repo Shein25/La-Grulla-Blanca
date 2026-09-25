@@ -10,6 +10,7 @@ Esta carpeta agrupa los experimentos cuyo dominio principal son los NPCs.
 - `scheduler/` — lifecycle y planificación temporal.
 - `execution/` — ejecución, verificación y replanning.
 - `integraciones/` — integración experimental entre módulos, incluido Autonomous NPC Loop.
+- `reactive-routine-fsm-v0.1/` — candidata experimental para NPC sencillos con rutina + reacción, sin planificación profunda.
 
 ## Regla
 
