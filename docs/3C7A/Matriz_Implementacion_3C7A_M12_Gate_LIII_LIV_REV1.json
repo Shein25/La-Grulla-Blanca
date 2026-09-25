@@ -1,7 +1,7 @@
 {
   "version": "3C7A_M12_GATE_LIII_LIV_REV1",
   "fecha": "2026-09-25",
-  "estado": "LISTA_PARA_AUDITORIA_DOCUMENTAL_CON_DECISION_HUMANA_PENDIENTE",
+  "estado": "LISTA_PARA_AUDITORIA_DOCUMENTAL",
   "alcance": [
     "M12",
     "evidenciaPrimeraAla",
@@ -15,24 +15,22 @@
     "M16+",
     "balance numerico final"
   ],
-  "baseline": {
-    "documental_topologico": "grulla-blanca_ver74.html",
-    "runtime_predecesor": "resultado aprobado de 3C.6; pendiente reauditoria",
-    "save_schema_version": 2
+  "autoridad": {
+    "principal_m08_m12": {
+      "fuente": "La_Grulla_Blanca_Fuente_Maestra_Fusionada_ver55",
+      "turno": "T288",
+      "fecha_utc": "2026-09-20T07:49:52.893Z",
+      "regla": "autoridad explícita posterior a T254 y T257 para M08-M12"
+    },
+    "tecnica_idempotencia": {
+      "turno": "T257",
+      "uso": "apoyo técnico sólo donde T288 no contradice"
+    }
   },
-  "gate_fuente_recuperado": {
-    "formula": [
-      "qi>=75",
-      "DOS_ALAS=COMPRENDIDAS",
-      "evidenciaPrimeraAla=CONCLUYENTE",
-      "autorizacionInstitucional=true"
-    ],
-    "no_exige": [
-      "6/6 atajos",
-      "todos los unicos ecologicos",
-      "todas las rooms de Primera Ala"
-    ],
-    "estado_verificacion": "RECUPERADO_FASE1_REV2_REQUIERE_REVALIDACION_EXTERNA_DE_FUENTE_PRIMARIA"
+  "correccion_H08": {
+    "lectura_derivada_previa": "M12 podía cerrar con SUFICIENTE mientras el gate pedía CONCLUYENTE",
+    "reconciliacion": "SUFICIENTE habilita progreso/protocolo; M12 cierra sólo con red CONCLUYENTE + Custodio terminal",
+    "requiere_fase_post_m12_para_concluyente": false
   },
   "gates_topologicos": {
     "M12": {
@@ -41,21 +39,22 @@
         "formaciones_descenso_tecnico"
       ],
       "funcion": "entrada oficial a Primera Ala",
-      "abre_con": "PRIMERA_ALA_INVESTIGACION",
-      "estado_durante_m12": true
+      "abre_con": "PRIMERA_ALA_INVESTIGACION"
     },
     "PASO_MANTENIMIENTO": {
       "extremos": [
         "ala_umbral_mantenimiento",
         "mantenimiento_acceso"
       ],
-      "funcion": "entrada a Mantenimiento/M13",
-      "estado_durante_m12": false
+      "estado_durante_m12": false,
+      "abre_en": "M13"
     },
     "ATAJO_ALA": {
       "cantidad": 6,
+      "apertura": "individual desde Primera Ala al descubrir",
       "requisito_m12": false,
-      "requisito_gate_LIII_LIV": false
+      "requisito_gate_LIII_LIV": false,
+      "automaticos_al_cerrar_m12": false
     }
   },
   "m12": {
@@ -65,40 +64,38 @@
       "arc1.estado=LIII_INVESTIGACION"
     ],
     "activacion": {
-      "propuesta": "HABLAR he_zhen @ formaciones_sello_antiguo",
-      "clasificacion": "ELECCION_TECNICA_3C7_AUDITAR",
-      "produce": [
-        "M12=ACTIVA",
+      "canon": [
         "PRIMERA_ALA_INVESTIGACION=true",
-        "gates.M12=true"
-      ]
+        "gates.M12=true",
+        "apertura institucional del sello"
+      ],
+      "disparador_propuesto": "HABLAR he_zhen @ formaciones_sello_antiguo",
+      "clasificacion": "ELECCION_TECNICA_3C7_AUDITAR"
     },
-    "ruta_oficial": [
+    "ruta_principal": [
       "formaciones_sello_antiguo",
       "formaciones_descenso_tecnico",
       "ala_vestibulo",
       "ala_nudo_seis_corrientes",
       "ala_camara_dos_alas"
     ],
-    "room_conocida_no_accesible_mantenimiento": "ala_umbral_mantenimiento",
-    "permiso": {
-      "id": "PRIMERA_ALA_INVESTIGACION",
-      "vigencia": "PERSISTE_DESPUES_DE_M12",
-      "motivo": "permite SUFICIENTE->CONCLUYENTE sin soft-lock",
-      "no_equivaler_automaticamente_a": "autorizacionInstitucionalLIV"
-    },
+    "umbral_mantenimiento": "ala_umbral_mantenimiento",
     "cierre": {
       "requiere": [
-        "evidenciaPrimeraAla>=SUFICIENTE",
-        "custodioPrimeraAla in {COMBATE,PROTOCOLO}"
+        "evidenciaPrimeraAla=CONCLUYENTE",
+        "custodioDosAlas in {DERROTADO,RESUELTO_POR_PROTOCOLO}"
       ],
       "produce": [
         "M12=HECHA",
         "R5=CONFIRMADO",
-        "Comprension +1 one-shot ARC1_M12_RED_PRIMERA_ALA",
+        "Comprension +1 ARC1_M12_RED_PRIMERA_ALA",
+        "conocimiento Primera Ala=CONFIRMADO",
         "ala_umbral_mantenimiento conocido",
-        "PRIMERA_ALA_INVESTIGACION permanece true",
-        "PASO_MANTENIMIENTO permanece false"
+        "AUTORIZACION_INVESTIGACION_PROFUNDA=true"
+      ],
+      "mantiene": [
+        "PRIMERA_ALA_INVESTIGACION=true",
+        "PASO_MANTENIMIENTO=false"
       ]
     },
     "recompensas": {
@@ -109,33 +106,27 @@
     }
   },
   "evidenciaPrimeraAla": {
-    "persistencia": {
-      "ruta": "flags.arc1.evidenciaPrimeraAla",
-      "campos": [
-        "nivel",
-        "tipos",
-        "ramasFuncionales",
-        "fuentes"
-      ]
-    },
-    "tipos": {
-      "ARQUITECTURA_RED": {
-        "fuentes_principales": [
-          "ala_nudo_seis_corrientes.seis_rutas",
-          "ala_nudo_seis_corrientes.anillo",
-          "ala_nudo_seis_corrientes.marcas",
-          "ala_nudo_seis_corrientes.centro"
-        ]
+    "ruta": "flags.arc1.evidenciaPrimeraAla",
+    "campos": [
+      "nivel",
+      "hitos",
+      "fuentes"
+    ],
+    "niveles": [
+      "INSUFICIENTE",
+      "SUFICIENTE",
+      "CONCLUYENTE"
+    ],
+    "hitos_semanticos": {
+      "NUDO_INTERPRETADO": {
+        "room": "ala_nudo_seis_corrientes",
+        "significado": "centro distribuidor deliberado"
       },
-      "PRINCIPIO_DOS_ALAS": {
-        "fuentes_principales": [
-          "ala_camara_dos_alas.trazado_izquierdo",
-          "ala_camara_dos_alas.trazado_derecho",
-          "ala_camara_dos_alas.centro",
-          "ala_camara_dos_alas.inscripciones"
-        ]
+      "DOS_ALAS_ARQUITECTURA": {
+        "room": "ala_camara_dos_alas",
+        "significado": "confirmación física del principio M11"
       },
-      "RAMA_FUNCIONAL": {
+      "PATRON_RAMA": {
         "familias": [
           "MEDICINA",
           "JARDINES",
@@ -144,14 +135,12 @@
           "ARCHIVOS",
           "FORMACIONES"
         ],
-        "regla": "una familia cuenta por evidencia funcional significativa, no por entrar a una room"
-      },
-      "PATRON_COMPARTIDO": {
-        "regla": "evidencia significativa de al menos dos familias distintas",
+        "regla": "al menos una rama funcional + señales de diseño compartido; cantidad exacta no congelada",
         "clasificacion": "ELECCION_TECNICA_3C7_AUDITAR"
       },
-      "CONTINUIDAD_MODERNA": {
-        "fuentes_principales": [
+      "CONEXION_SUPERFICIE": {
+        "opcional": true,
+        "terminales": [
           "ala_med_06",
           "ala_jardines_06",
           "ala_cantera_06",
@@ -159,113 +148,144 @@
           "ala_archivos_06",
           "ala_formaciones_06"
         ],
-        "regla": "una continuidad física independiente basta; no abre el atajo",
-        "clasificacion": "ELECCION_TECNICA_3C7_AUDITAR"
+        "nota": "reconocer continuidad no exige abrir el atajo"
       }
     },
-    "niveles": {
-      "INSUFICIENTE": "falta ARQUITECTURA_RED o PRINCIPIO_DOS_ALAS o RAMA_FUNCIONAL o PATRON_COMPARTIDO",
-      "SUFICIENTE": "ARQUITECTURA_RED + PRINCIPIO_DOS_ALAS + >=1 RAMA_FUNCIONAL + PATRON_COMPARTIDO",
-      "CONCLUYENTE": "SUFICIENTE + CONTINUIDAD_MODERNA"
+    "evaluador": {
+      "INSUFICIENTE": "faltan hitos centrales",
+      "SUFICIENTE": "NUDO_INTERPRETADO + DOS_ALAS_ARQUITECTURA + PATRON_RAMA",
+      "CONCLUYENTE": [
+        "SUFICIENTE + corroboracion fuerte exploratoria, por ejemplo CONEXION_SUPERFICIE",
+        "SUFICIENTE + Custodio terminal + confirmacion central"
+      ]
     },
-    "regla_general": "semantico, no contador de rooms/atajos/secretos"
+    "registro_inmediato": "cada primera evidencia nueva ejecuta registrarEvidenciaPrimeraAla -> evaluarEvidenciaPrimeraAla -> reconciliarProgresionArc1 en la misma acción",
+    "no_contador_visible_6_de_6": true
   },
-  "sintesis": {
-    "ruta": "flags.arc1.sintesis.DOS_ALAS",
-    "entrada_m12": "PRINCIPIO",
-    "propuesta_salida_m12": "COMPRENDIDAS",
-    "momento": "cierre M12",
-    "clasificacion": "ELECCION_TECNICA_3C7_AUDITAR"
-  },
-  "custodio": {
-    "existencia_ver74_literal": false,
-    "reutilizar_legacy_reliquias": false,
-    "ubicacion_propuesta": "ala_camara_dos_alas",
-    "ubicacion_clasificacion": "ELECCION_TECNICA_RESPALDADA_VER74_AUDITAR",
-    "estado_ruta": "flags.arc1.custodioPrimeraAla.estado",
+  "custodioDosAlas": {
+    "ruta": "flags.arc1.custodioDosAlas",
     "estados": [
       "NO_RESUELTO",
-      "COMBATE",
-      "PROTOCOLO"
+      "DERROTADO",
+      "RESUELTO_POR_PROTOCOLO"
     ],
+    "localizacion_propuesta": "ala_camara_dos_alas",
+    "localizacion_clasificacion": "ELECCION_TECNICA_RESPALDADA_POR_FUENTE_A_AUDITAR",
     "combate": {
-      "cierre": "derrotar Custodio",
+      "resultado": "DERROTADO",
       "reintento": true,
-      "huida_muerte": "no resuelve",
-      "loot_repetible": false
+      "huida_muerte": "NO_RESUELVE",
+      "llave_reliquia": false,
+      "recompensa_superior_exclusiva": false
     },
     "protocolo": {
       "requiere": [
         "M11=HECHA",
         "evidenciaPrimeraAla>=SUFICIENTE"
       ],
+      "resultado": "RESUELTO_POR_PROTOCOLO",
       "no_exige": [
         "6 atajos",
-        "secretos opcionales",
+        "14 secretos",
         "unico ecologico",
-        "afinidad alta",
-        "todas las rooms"
+        "afinidad alta"
       ],
-      "interaccion_exacta": "PENDIENTE_AUDITORIA_TECNICA"
+      "interfaz_exacta": "PENDIENTE_RECONCILIACION_TECNICA",
+      "no_crear_rooms": [
+        "ala_control_este",
+        "ala_control_oeste"
+      ]
     },
-    "rutas_equivalentes_para_cierre": true
+    "rutas_superiores": false
+  },
+  "autorizaciones": {
+    "PRIMERA_ALA_INVESTIGACION": {
+      "origen": "M12_INICIO",
+      "funcion": "explorar Primera Ala",
+      "vigencia": "PERSISTE_TRAS_M12"
+    },
+    "AUTORIZACION_INVESTIGACION_PROFUNDA": {
+      "origen": "M12_CIERRE_FORMAL",
+      "fuente": "INSTITUCIONAL",
+      "funcion": "componente del gate LIII->LIV",
+      "vigencia": "AL_MENOS_HASTA_SUPERAR_LIII_LIV",
+      "npc_emisor": "NO_CONGELADO"
+    },
+    "modelo_representacion": "PENDIENTE_UNIFICACION_BOOLEAN_VS_OBJETO"
+  },
+  "dosAlas": {
+    "persistencia_previa": "flags.arc1.sintesis.DOS_ALAS=PRINCIPIO",
+    "no_crear_estado_redundante": "COMPRENDIDAS",
+    "predicado_derivado": "M11=HECHA && R3=CONFIRMADO && sintesis.DOS_ALAS=PRINCIPIO",
+    "motivo": "T288 expresa el gate mediante M11 HECHA + R3 CONFIRMADO"
   },
   "gate_LIII_LIV": {
+    "autoridad_mas_reciente": "T288",
     "tipo": "CULTIVO_NO_TOPOLOGICO",
-    "reemplaza_legacy": "PUERTAS[4]={pildoras:2,logros:['comprension:6']}",
     "condiciones": [
       "qi>=75",
-      "flags.arc1.sintesis.DOS_ALAS=COMPRENDIDAS",
-      "flags.arc1.evidenciaPrimeraAla.nivel=CONCLUYENTE",
-      "autorizacionInstitucionalLIV=true"
+      "M11=HECHA",
+      "M12=HECHA",
+      "R3=CONFIRMADO",
+      "R5=CONFIRMADO",
+      "AUTORIZACION_INVESTIGACION_PROFUNDA=true"
+    ],
+    "al_superar": [
+      "player.etapa=4",
+      "arc1.estado=LIV_REVELACION",
+      "M13 DISPONIBLE derivada"
+    ],
+    "rango_institucional": "sin cambio",
+    "invariantes_derivados": [
+      "M11 HECHA => R3 CONFIRMADO",
+      "M12 HECHA => R5 CONFIRMADO",
+      "M12 HECHA => evidenciaPrimeraAla=CONCLUYENTE",
+      "M12 HECHA => custodioDosAlas terminal",
+      "M12 HECHA => AUTORIZACION_INVESTIGACION_PROFUNDA=true"
+    ],
+    "legacy_a_reemplazar": "PUERTAS[4]={pildoras:2,logros:['comprension:6']}",
+    "no_exige": [
+      "2 pildoras_consolidacion",
+      "comprension:6"
     ],
     "no_consumir": [
       "2 pildoras_consolidacion"
     ],
-    "no_exigir": [
-      "comprension:6"
-    ],
-    "al_superar": [
-      "arc1.estado=LIV_REVELACION",
-      "player.etapa=4",
-      "qi_max=110"
-    ],
-    "requisito_implementacion": "evaluar antes de mutaciones/consumos; no dejar doble gate legacy"
+    "evitar_doble_gate": true,
+    "preservar_semantica_consagracion": "la que resulte aprobada tras reauditoria 3C.6"
   },
-  "autorizacionInstitucionalLIV": {
-    "estado": "DECISION_HUMANA_PENDIENTE_O_FUENTE_POR_RECUPERAR",
+  "permisos_modelo": {
+    "estado": "PENDIENTE_UNIFICACION_ANTES_DE_CONTRATO",
     "opciones": [
-      "A: PRIMERA_ALA_INVESTIGACION satisface el gate",
-      "B: permiso separado tras revision institucional de M12/CONCLUYENTE",
-      "C: derivar de otro estado institucional si fuente de autoridad lo demuestra"
+      "boolean + metadatos separados",
+      "objeto {activo,fuente,origen,vigencia}"
     ],
-    "prohibicion": "no congelar NPC/fuente/origen sin respaldo"
+    "prohibicion": "no mezclar modelos dentro del mismo save"
   },
   "anclajes": {
     "he_zhen": {
       "propuesta": "formaciones_sello_antiguo hasta activar M12",
       "clasificacion": "ELECCION_TECNICA_3C7_AUDITAR"
     },
-    "song_rui": "sin anclaje inventado",
-    "wen_tao": "sin anclaje inventado",
-    "custodio": "entidad de mision, no NPC social 3C.5"
+    "wen_tao": "sin anclaje obligatorio inventado",
+    "song_rui": "sin anclaje obligatorio inventado",
+    "custodio": "entidad de misión, no NPC social 3C.5"
   },
-  "legacy_no_canon_m12": [
+  "legacy_no_canon": [
     "reliquias_verticales",
     "Sombra/Centinela como llaves",
-    "6 atajos obligatorios",
+    "6/6 atajos obligatorios",
     "unicos ecologicos obligatorios",
-    "afinidad alta obligatoria",
+    "Afinidad alta obligatoria",
     "todos los secretos",
     "todas las rooms"
   ],
   "pendientes": [
-    "revalidar formula literal gate LIII->LIV",
-    "auditar evaluador semantico y umbrales",
-    "auditar DOS_ALAS PRINCIPIO->COMPRENDIDAS al cierre M12",
-    "auditar localizacion/contrato Custodio",
-    "decidir o recuperar fuente exacta de autorizacion institucional",
-    "balance numerico M12",
+    "auditar mapping técnico concreto PATRON_RAMA",
+    "auditar protocolo Custodio sin crear rooms nuevas",
+    "auditar localizacion Custodio en ala_camara_dos_alas",
+    "fijar modelo uniforme de permisos",
+    "fijar balance numerico M12",
     "congelar runtime predecesor tras PASS 3C.6"
   ],
   "prohibicion": "NO_IMPLEMENTAR_TODAVIA"
