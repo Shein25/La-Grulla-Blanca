@@ -46,7 +46,7 @@ createRuntime(tree)
 tickBehaviorTree(tree, runtime, tick)
 ```
 
-## Contrato v0.1
+## Contrato v0.1 REV2
 
 - determinista;
 - sin callbacks del dominio;
@@ -64,7 +64,7 @@ tickBehaviorTree(tree, runtime, tick)
 - Proxies/estructuras hostiles deben cerrar con `ContractError`;
 - `runtime.tick` satura en `Number.MAX_SAFE_INTEGER`;
 - un `actionResult` sólo puede corresponder a la acción que estaba `RUNNING`;
-- cada tick reevalúa el árbol desde la raíz y puede preemptar la acción anterior.
+- cada tick reevalúa el árbol desde la raíz y puede preemptar la acción anterior;\n- `preemptedAction` sólo identifica una interrupción real: si la acción anterior recibió `SUCCESS` o `FAILURE` en ese tick, su finalización es normal y no se marca como preemptada;\n- un runtime pertenece a una definición estructuralmente estable del árbol: cambiar topología, IDs o `intent` durante su vida está fuera de contrato y exige crear un runtime nuevo;\n- `EQ/NEQ/IN` usan `Object.is` y por tanto distinguen `-0` de `0`; los comparadores ordenados usan semántica numérica normal.
 
 ## Fixtures
 
@@ -79,7 +79,7 @@ node tests.mjs
 node stress.mjs 100000 1337
 ```
 
-Suite local actual: 34 pruebas contractuales.
+Suite histórica: 34 pruebas contractuales. REV2 añade 6 regresiones específicas de semántica de preempción.
 
 Stress local verificado con seeds 1337, 1, 42, 999 y 20260925, 100.000 ticks por seed.
 
@@ -97,4 +97,4 @@ Stress local verificado con seeds 1337, 1, 42, 999 y 20260925, 100.000 ticks por
 
 ## Estado
 
-`CANDIDATE_STATUS: LOCAL_CANDIDATE_PENDING_EXTERNAL_AUDIT`
+`CANDIDATE_STATUS: REV2_PENDING_EXTERNAL_RETEST`
