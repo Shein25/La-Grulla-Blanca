@@ -215,7 +215,13 @@ export function tickBehaviorTree(treeInput,runtimeInput,tickInput){
   const status=evalNode(tree.root);
   if(emitted.length>1) fail('invariante interno: más de un intent emitido en un tick');
   const previousRunningAction=runtime.runningAction;
-  const preemptedAction=previousRunningAction!==null && previousRunningAction!==runningAction ? previousRunningAction : null;
+  const previousResult=previousRunningAction!==null && hasOwnSafe(tick.actionResults,previousRunningAction,'tick.actionResults')
+    ? tick.actionResults[previousRunningAction]
+    : null;
+  const previousFinished=previousResult==='SUCCESS' || previousResult==='FAILURE';
+  const preemptedAction=previousRunningAction!==null && previousRunningAction!==runningAction && !previousFinished
+    ? previousRunningAction
+    : null;
   const nextRuntime={treeId:runtime.treeId,tick:incrementSaturated(runtime.tick),runningAction};
   return {status,emitted:[...emitted],runningAction,previousRunningAction,preemptedAction,nextRuntime};
 }
