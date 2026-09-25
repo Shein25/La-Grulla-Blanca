@@ -1974,5 +1974,135 @@ Regla para el siguiente paso:
 
 > materializar exactamente la candidata REV2 auditada, verificar diff aislado, volver a ejecutar tests/stress sobre el HEAD real y recién entonces abrir PR draft.
 
+---
+
+# 26. MONSTER COMBAT AI v0.1 REV2 — MATERIALIZACIÓN GIT 2026-09-25
+
+La candidata local REV2 fue auditada independientemente y luego materializada **byte-exacta** en GitHub.
+
+Veredicto independiente:
+
+`MONSTER_COMBAT_AI_V01_APTO_PARA_ITERAR`
+
+Evidencia:
+
+```text
+tests oficiales: 38/38 PASS
+stress: 50.000 decisiones PASS
+invalidSelections = 0
+inputMutations = 0
+executionSideEffects = 0
+nondeterministicMismatches = 0
+
+auditoría adicional:
+9.215 comprobaciones independientes
+0 fallos
+```
+
+Digest seed 1337:
+
+`4cee9933469e7d8545741b067f57ef023e49eb9a2ac4a3a104650cd84abe5c18`
+
+## 26.1 Rama real
+
+`experiment/monster-combat-ai-v0.1`
+
+Base / parent exacto:
+
+`5812deb59cd1c133383b9af973486a702a26daf4`
+
+HEAD real:
+
+`aecbbcac1f2243dad16e2f881fdc6b683debe616`
+
+TREE real:
+
+`d1e4bb82c90032c8bae37361867ab6c1190a0a8c`
+
+Diff real:
+
+```text
+ahead_by = 1
+behind_by = 0
+total_commits = 1
+9 archivos añadidos
+0 archivos modificados existentes
+0 archivos eliminados
+```
+
+Todos los cambios viven únicamente en:
+
+`experimentos/monster-ai/monster-combat-ai-v0.1/`
+
+## 26.2 Blobs congelados
+
+```text
+engine.mjs
+f5b2cd5f6a1a4bff42f1fc74c04f09539adeb192
+
+profiles.mjs
+7c5687ab1bdbd3870f768cf49e8c66f873713cbc
+
+fixtures.mjs
+4064741250180c883307ca2197d9e4f8405b330d
+
+tests.mjs
+da3f20eb5d14bc890e47b4cc2b6095aa93826220
+
+stress.mjs
+dc42386f43e06c6a50a4c5a3acf8dfb1b0305afc
+
+README.md
+7f9fc48a3515723d21889e0d6d852e728322aa1c
+
+CAMBIOS_v0.1.md
+a4d402854d411923a1cc3d2d0a82126e2d49a27c
+
+PROMPT_AGENTE_TEST.md
+fbbbd1e4b2c4c138a163466df2b9b358be890215
+
+package.json
+1f07c4af5e165a16efadc86d41f56327ac934d70
+```
+
+Los nueve blobs coinciden exactamente con la candidata REV2 auditada localmente.
+
+## 26.3 Pull Request
+
+PR Draft:
+
+`#13 — experiment: Monster Combat AI v0.1 — Decision Kernel REV2`
+
+`https://github.com/Shein25/La-Grulla-Blanca/pull/13`
+
+Estado al registrar este backup:
+
+```text
+OPEN
+DRAFT = true
+MERGED = false
+BASE = main
+BASE SHA = 5812deb59cd1c133383b9af973486a702a26daf4
+HEAD = experiment/monster-combat-ai-v0.1
+HEAD SHA = aecbbcac1f2243dad16e2f881fdc6b683debe616
+CHANGED FILES = 9
+COMMITS = 1
+```
+
+NO mergear automáticamente.
+
+## 26.4 REV2 cerró
+
+- reorder invariance con jitter;
+- cooldowns estrictamente booleanos;
+- métricas stress realmente medidas.
+
+Deudas no bloqueantes:
+
+- D-MON-15: orden diagnóstico de `debug.considered`;
+- D-MON-16: límite conceptual del detector de side effects por replay.
+
+Siguiente hito posible: auditor externo sobre el HEAD real del PR #13 usando `PROMPT_AGENTE_TEST.md`.
+
 
 Fin del handoff.
