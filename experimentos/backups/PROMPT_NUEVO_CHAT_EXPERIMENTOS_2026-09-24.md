@@ -56,7 +56,7 @@ No integrar Adaptive Ecology dentro de esta REV2.
 Estado:
 
 ```text
-ESPECIFICACIÓN EN REVISIÓN
+REV3 EN TERCERA REVISIÓN CONCEPTUAL
 NO IMPLEMENTAR TODAVÍA
 ```
 
@@ -64,18 +64,22 @@ Rama futura:
 
 `experiment/monster-ecology-adaptation-v0.1`
 
-Responsabilidad:
+REV2 recibió:
 
-```text
-Population State
-→ Pressure Resolver
-→ Adaptation Resolver
-→ activeAdaptations
-→ effectiveKit
-→ FIN v0.1
-```
+`ADAPTIVE_ECOLOGY_V01_REV2_REQUIERE_CAMBIOS`
 
-Claude debe revisar conceptualmente la especificación antes de implementación.
+REV3 ya incorpora:
+- locality antes de dedup;
+- eliminación de occurredAt;
+- FIFO explícito;
+- límite de recentEventIds documentado;
+- effectiveKit canónico;
+- separation INVALID_POPULATION / DUPLICATE_EVENT;
+- nueva justificación de ausencia de hysteresis.
+
+Documentos:
+`experimentos/backups/ESPECIFICACION_ADAPTIVE_ECOLOGY_v0.1_REV3.md`
+`experimentos/backups/PROMPT_CLAUDE_REVIEW_ADAPTIVE_ECOLOGY_v0.1_REV3.md`
 
 ## Separación
 
