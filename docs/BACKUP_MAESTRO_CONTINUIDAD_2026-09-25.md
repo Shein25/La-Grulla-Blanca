@@ -19,7 +19,7 @@ Reglas:
 5. No implementar ni hacer merge sin contrato y auditoría correspondiente.
 6. `ROOMS.exits` y la topología 329 están congelados salvo autorización explícita.
 7. No modularizar el HTML durante etapas 3C activas.
-8. M16 es el último frente documental abierto; M17 todavía no fue iniciado.
+8. M16 está cerrada documentalmente; M17 es el frente documental activo en REV1. M18 todavía no fue iniciado.
 
 ---
 
@@ -357,13 +357,68 @@ Test futuro obligatorio:
 
 ---
 
-# 8. M17+
+# 8. M17 — FRENTE DOCUMENTAL ACTIVO
+
+**Rama:** `audit/3c9-m17-rev1`.
+
+**Estado:** `3C9_M17_REV1_LISTA_PARA_AUDITORIA_DOCUMENTAL`.
+
+Archivos creados:
+- `docs/3C9/Reconciliacion_3C9_M17_REV1.md`;
+- `docs/3C9/Matriz_Implementacion_3C9_M17_REV1.json`;
+- `docs/3C9/fuentes/Fuente_Maestra_T290_M17_EXTRACTO.md`;
+- `docs/3C9/fuentes/Fuente_Maestra_T257_M17_Tecnica_EXTRACTO.md`;
+- `docs/3C9/fuentes/Fuente_Maestra_T240_Nucleo_M17_EXTRACTO.md`;
+- `docs/3C9/PROMPT_AUDITORIA_3C9_M17_REV1_CLAUDE.md`.
+
+Autoridad:
+T290 principal; T257 técnico; T240 topología; T254/T222 + Auditoría 6; ver74 infraestructura.
+
+Estructura REV1:
+`CONSEJO → AUTORIZACIÓN → DESCENSO → R7 → CENTINELA → SALA_RELEVO → R10 → UMBRAL → M17 HECHA`.
+
+Reglas congeladas/propuestas:
+- requiere M16 HECHA;
+- `arc1.estado` permanece `LIV_CRISIS`; NO crear `LIV_DESCENSO`;
+- Consejo en `interior_sala_consejo`;
+- Ji Xueying preside; Qiao Ren autoriza;
+- permiso `NUCLEO_PROFUNDO` fuente=ORDEN origen=M17;
+- abre exclusivamente `GATES_329.PASO_PULSO`: `nucleo_archivo_promesa ↔ nucleo_descenso_pulso`;
+- R7 antes de R10;
+- R7 principal: `conocimiento.nucleo.dependenciaViva=CONFIRMADO`;
+- Centinela: combate/protocolo equivalentes, sin reliquia/cadáver/restos;
+- Sala de Relevo obligatoria y conocida por movimiento real;
+- R10 en `nucleo_exterior_ancla`: misma Grulla original;
+- Cámara de Memoria opcional;
+- Comprensión +1 one-shot `ARC1_M17_DEPENDENCIA_VIVA`;
+- cierre propuesto al alcanzar `nucleo_umbral_santuario` con R10 confirmado;
+- M18 queda disponible, pero no empieza;
+- no volver al Consejo;
+- no entrar automáticamente al Santuario;
+- no avanzar M18.
+
+Legacy ver74 detectado:
+`centinela_pluma` sigue en `alturas_mirador_grulla`, tiene loot, restos examinables y lógica histórica de `reliquia_pluma`. Todo eso queda `LEGACY_A_REEMPLAZAR_3C9`; no permitir dos Centinelas únicos simultáneos.
+
+Decisiones a auditar:
+- trigger exacto del Consejo;
+- movilidad de He Zhen/Lan Meihua/Song Rui en Consejo;
+- trigger exacto de R7;
+- enum/estado persistente del Centinela;
+- room exacta del Centinela (candidata REV1: `nucleo_camara_regulacion`);
+- interfaz de protocolo;
+- forma de bloquear paso sin tocar `ROOMS.exits`;
+- modelo uniforme de permisos;
+- balance;
+- si exigir el Umbral para cerrar M17 es respaldo literal de T290 o sobreespecificación.
+
+**Siguiente paso:** preparar paquete autocontenido y enviar M17 REV1 a Claude. No implementar ni avanzar M18.
+
+# 8B. M18+
 
 **Estado:** NO INICIADO.
 
-M16 ya fue auditada y cerrada documentalmente. M17 puede abrirse como siguiente frente documental sólo cuando el usuario autorice continuar. No implementar M17 todavía.
-
-3C.9 prevista para M17 + M18 + epílogo.
+No redactar ni implementar M18 hasta procesar la auditoría de M17 REV1.
 
 ---
 
@@ -448,11 +503,12 @@ Si un chat nuevo retoma el proyecto, proceder así:
 1. Leer este backup.
 2. NO tocar `main` ni mergear.
 3. M16 ya está auditada y cerrada documentalmente; no crear REV2 salvo contradicción futura real.
-4. Si el usuario autoriza continuar, abrir M17 como siguiente frente documental independiente.
-5. En paralelo, recuperar resultado pendiente de M08–M11 y cierre de implementación 3C.6.
-6. No iniciar implementación global de 3C.7 hasta que 3C.6 runtime pase y los contratos correspondientes estén cerrados.
-7. Reconciliar M17/M18/epílogo antes de preparar implementación global.
-8. Cuando todo Arc1 esté cerrado y auditado, preparar paquete global para Codex e implementar por bloques.
+4. M17 REV1 ya está preparada en `audit/3c9-m17-rev1`; enviar a Claude y procesar auditoría.
+5. No avanzar M18 antes de procesar M17.
+6. En paralelo, recuperar resultado pendiente de M08–M11 y cierre de implementación 3C.6.
+7. No iniciar implementación global de 3C.7/3C.9 hasta que 3C.6 runtime pase y los contratos correspondientes estén cerrados.
+8. Reconciliar M18/epílogo antes de preparar implementación global.
+9. Cuando todo Arc1 esté cerrado y auditado, preparar paquete global para Codex e implementar por bloques.
 
 ---
 
@@ -496,7 +552,10 @@ M13–M15 REV2
 M16 REV1
 → CERRADA / APTA CON DECISIONES TÉCNICAS PENDIENTES
 
-M17+
+M17 REV1
+→ LISTA PARA AUDITORÍA CLAUDE
+
+M18+
 → NO INICIADO
 
 Experimentos NPC
@@ -510,9 +569,9 @@ Producción global Arc1
 
 # 15. SIGUIENTE ACCIÓN EXACTA
 
-**Siguiente frente documental posible: M17, sólo cuando el usuario autorice continuar.**
+**Siguiente acción exacta: preparar/enviar el paquete autocontenido de M17 REV1 a Claude y procesar su auditoría.**
 
-En paralelo siguen pendientes el cierre independiente de M08–M11 y la corrección/re-auditoría runtime de 3C.6. No iniciar implementación global de 3C.7 mientras esos bloqueos sigan abiertos.
+No avanzar M18. En paralelo siguen pendientes el cierre independiente de M08–M11 y la corrección/re-auditoría runtime de 3C.6.
 
 ---
 
