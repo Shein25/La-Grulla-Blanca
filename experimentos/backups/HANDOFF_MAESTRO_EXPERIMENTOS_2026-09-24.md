@@ -2484,5 +2484,127 @@ Siguiente decisión formal posible:
 
 **No mergear PR #12 sin orden explícita del usuario.**
 
+---
+
+# 33. AUTONOMOUS NPC LOOP v0.1 — CIERRE FORMAL Y MERGE
+
+Fecha: 2026-09-25.
+
+Tras:
+
+- implementación REV2;
+- 107/107 tests PASS;
+- stress oficial PASS;
+- auditoría externa independiente;
+- 14.400 ticks / ~44.000 dispatches de fuzz propio;
+- mutation testing;
+- 0 bugs bloqueantes;
+- verificación de HEAD/TREE reales;
+- verificación 5/5 de los motores congelados añadidos como dependencia del loop;
+
+el usuario autorizó explícitamente el cierre mediante merge de PR #12.
+
+## 33.1 Merge realizado
+
+PR:
+
+`#12 — experiment: Autonomous NPC Loop v0.1`
+
+Estado final:
+
+```text
+PR STATE = CLOSED
+DRAFT = false
+MERGED = true
+```
+
+HEAD auditado:
+
+`ddff6e7b386b401ae1e471cbfe05f0bd113bb866`
+
+Main previo al merge:
+
+`df439ad789e668c526666fa3955deb5b2fe3e8d4`
+
+Merge commit real:
+
+`de3a7593dc59120f5940b3589bc42ed6e500ba9b`
+
+Parents del merge:
+
+```text
+df439ad789e668c526666fa3955deb5b2fe3e8d4
+ddff6e7b386b401ae1e471cbfe05f0bd113bb866
+```
+
+Tree del merge:
+
+`626a1914cc9d83fbcca68918b139b1f7d84686d7`
+
+Nuevo HEAD de `main`:
+
+`de3a7593dc59120f5940b3589bc42ed6e500ba9b`
+
+## 33.2 Archivos incorporados
+
+PR #12 añadió 13 archivos, todos bajo `experimentos/`.
+
+Ocho pertenecen al laboratorio Autonomous Loop:
+
+- `experimentos/integraciones/npc-autonomous-loop-v0.1/CAMBIOS_v0.1.md`
+- `experimentos/integraciones/npc-autonomous-loop-v0.1/PROMPT_AGENTE_TEST.md`
+- `experimentos/integraciones/npc-autonomous-loop-v0.1/README.md`
+- `experimentos/integraciones/npc-autonomous-loop-v0.1/autonomous-loop.mjs`
+- `experimentos/integraciones/npc-autonomous-loop-v0.1/fixtures.mjs`
+- `experimentos/integraciones/npc-autonomous-loop-v0.1/package.json`
+- `experimentos/integraciones/npc-autonomous-loop-v0.1/stress.mjs`
+- `experimentos/integraciones/npc-autonomous-loop-v0.1/tests.mjs`
+
+Cinco son motores experimentales congelados requeridos por el loop:
+
+- Execution Session
+- Memory
+- Relations
+- Decision Pipeline
+- Scheduler
+
+Los cinco blobs fueron verificados antes del merge y coincidieron exactamente con los hashes recalculados por el auditor externo.
+
+No se tocó ningún archivo productivo.
+
+## 33.3 Deudas preservadas
+
+No bloqueantes para cerrar v0.1:
+
+1. churn `PERIODIC + DECISION_GOAL_ALREADY_SATISFIED`;
+2. riesgo de starvation semántica con `dutyMode` fijo y goal satisfecho;
+3. falta test oficial con Decision Pipeline stub para el guard de plan vacío;
+4. higiene de Memory con claves extra / `__proto__`.
+
+Regla:
+
+> La deuda de starvation semántica debe revisarse antes de integrar Utility+dutyMode en producción o convertir dutyMode en comportamiento dinámico.
+
+## 33.4 Estado de fase
+
+```text
+Autonomous NPC Loop v0.1
+IMPLEMENTACIÓN REV2   ✓
+TESTS/STRESS          ✓
+FUZZ EXTERNO          ✓
+AUDITORÍA EXTERNA     ✓
+HEAD/TREE VERIFICADOS ✓
+PR                     ✓
+MERGE                  ✓
+SNAPSHOT EN MAIN       ✓
+INTEGRACIÓN PRODUCCIÓN NO
+```
+
+La rama experimental conserva:
+
+`ddff6e7b386b401ae1e471cbfe05f0bd113bb866`
+
+No modificar silenciosamente v0.1 cerrada. Cualquier continuación debe abrir una nueva fase/versionado o un laboratorio de integración explícito.
+
 
 Fin del handoff.
