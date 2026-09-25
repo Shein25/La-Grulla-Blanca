@@ -1,36 +1,78 @@
 const OPS = new Set(['EQ','NEQ','GT','GTE','LT','LTE','IN']);
+const NUMERIC_OPS = new Set(['GT','GTE','LT','LTE']);
 const SOURCES = new Set(['event','runtime']);
+const RUNTIME_GUARD_KEYS = new Set(['machineId','state','stateAge','step']);
+const RUNTIME_NUMERIC_KEYS = new Set(['stateAge','step']);
+export const MAX_GUARD_DEPTH = 32;
 
 export class ContractError extends TypeError {
   constructor(message){ super(`ReactiveRoutineFSM: ${message}`); this.name='ContractError'; }
 }
 
-function isPlainObject(value){
-  if(value===null || typeof value!=='object' || Array.isArray(value)) return false;
-  const p=Object.getPrototypeOf(value);
+function fail(message){ throw new ContractError(message); }
+
+function isPlainObject(value,label='valor'){
+  if(value===null || typeof value!=='object') return false;
+  let array;
+  try { array=Array.isArray(value); }
+  catch { fail(`${label} no se pudo inspeccionar`); }
+  if(array) return false;
+  let p;
+  try { p=Object.getPrototypeOf(value); }
+  catch { fail(`${label} no se pudo inspeccionar`); }
   return p===Object.prototype || p===null;
 }
 
-function fail(message){ throw new ContractError(message); }
+function ownKeysSafe(obj,label){
+  try { return Reflect.ownKeys(obj); }
+  catch { fail(`${label} no se pudo inspeccionar`); }
+}
+
+function hasOwnSafe(obj,key,label){
+  try { return Object.hasOwn(obj,key); }
+  catch { fail(`${label}.${String(key)} no se pudo inspeccionar`); }
+}
 
 function ownData(obj,key,label){
   let d;
   try { d=Object.getOwnPropertyDescriptor(obj,key); }
-  catch { fail(`${label}.${key} no se pudo inspeccionar`); }
-  if(!d) fail(`${label}.${key} es obligatorio`);
-  if(!('value' in d)) fail(`${label}.${key} no admite accessors`);
-  if(d.value===undefined) fail(`${label}.${key} no puede ser undefined`);
+  catch { fail(`${label}.${String(key)} no se pudo inspeccionar`); }
+  if(!d) fail(`${label}.${String(key)} es obligatorio`);
+  if(!('value' in d)) fail(`${label}.${String(key)} no admite accessors`);
+  if(d.value===undefined) fail(`${label}.${String(key)} no puede ser undefined`);
   return d.value;
 }
 
 function exactKeys(obj, allowed, label){
-  if(!isPlainObject(obj)) fail(`${label} debe ser objeto plano`);
-  let keys;
-  try { keys=Reflect.ownKeys(obj); }
-  catch { fail(`${label} no se pudo inspeccionar`); }
+  if(!isPlainObject(obj,label)) fail(`${label} debe ser objeto plano`);
+  const keys=ownKeysSafe(obj,label);
   if(keys.some(k=>typeof k!=='string')) fail(`${label} no admite Symbols`);
-  for(const k of keys) if(!allowed.includes(k)) fail(`${label}.${k} no está permitido`);
+  for(const k of keys) if(!allowed.includes(k)) fail(`${label}.${k} no est? permitido`);
   return keys;
+}
+
+function captureArray(input,label,{nonEmpty=false}={}){
+  let isArray;
+  try { isArray=Array.isArray(input); }
+  catch { fail(`${label} no se pudo inspeccionar`); }
+  if(!isArray) fail(`${label} debe ser array`);
+
+  const keys=ownKeysSafe(input,label);
+  if(keys.some(k=>typeof k!=='string')) fail(`${label} no admite Symbols`);
+  const length=ownData(input,'length',label);
+  if(!Number.isSafeInteger(length) || length<0) fail(`${label}.length inv?lido`);
+  if(nonEmpty && length===0) fail(`${label} debe ser array no vac?o`);
+
+  for(const key of keys){
+    if(key==='length') continue;
+    if(!/^(0|[1-9]\d*)$/.test(key)) fail(`${label}.${key} no est? permitido`);
+    const index=Number(key);
+    if(!Number.isSafeInteger(index) || index<0 || index>=length) fail(`${label}.${key} no est? permitido`);
+  }
+
+  const out=[];
+  for(let i=0;i<length;i++) out.push(ownData(input,String(i),label));
+  return out;
 }
 
 function capturePrimitive(value,label){
@@ -43,10 +85,11 @@ function capturePrimitive(value,label){
 }
 
 function captureFacts(input,label='event.facts'){
-  if(!isPlainObject(input)) fail(`${label} debe ser objeto plano`);
+  if(!isPlainObject(input,label)) fail(`${label} debe ser objeto plano`);
   const out=Object.create(null);
-  for(const key of Reflect.ownKeys(input)){
-    if(typeof key!=='string') fail(`${label} no admite Symbols`);
+  const keys=ownKeysSafe(input,label);
+  if(keys.some(k=>typeof k!=='string')) fail(`${label} no admite Symbols`);
+  for(const key of keys){
     const value=ownData(input,key,label);
     out[key]=capturePrimitive(value,`${label}.${key}`);
   }
@@ -57,44 +100,51 @@ function captureEvent(input){
   exactKeys(input,['type','facts'],'event');
   const type=ownData(input,'type','event');
   const facts=ownData(input,'facts','event');
-  if(typeof type!=='string' || !type.trim()) fail('event.type debe ser string no vacío');
+  if(typeof type!=='string' || !type.trim()) fail('event.type debe ser string no vac?o');
   return {type, facts:captureFacts(facts)};
 }
 
-function captureGuard(g,label='guard'){
+function captureGuard(g,label='guard',depth=0){
+  if(depth>MAX_GUARD_DEPTH) fail(`${label} excede MAX_GUARD_DEPTH=${MAX_GUARD_DEPTH}`);
   if(g===null) return null;
-  if(!isPlainObject(g)) fail(`${label} debe ser objeto plano`);
-  const keys=Reflect.ownKeys(g);
+  if(!isPlainObject(g,label)) fail(`${label} debe ser objeto plano`);
+  const keys=ownKeysSafe(g,label);
   if(keys.some(k=>typeof k!=='string')) fail(`${label} no admite Symbols`);
-  const hasAll=Object.hasOwn(g,'all'), hasAny=Object.hasOwn(g,'any'), hasNot=Object.hasOwn(g,'not');
+  const hasAll=hasOwnSafe(g,'all',label), hasAny=hasOwnSafe(g,'any',label), hasNot=hasOwnSafe(g,'not',label);
   const compoundCount=[hasAll,hasAny,hasNot].filter(Boolean).length;
   if(compoundCount){
     if(compoundCount!==1 || keys.length!==1) fail(`${label} compuesto debe tener exactamente all, any o not`);
-    if(hasNot) return {not:captureGuard(ownData(g,'not',label),`${label}.not`)};
+    if(hasNot) return {not:captureGuard(ownData(g,'not',label),`${label}.not`,depth+1)};
     const field=hasAll?'all':'any';
-    const arr=ownData(g,field,label);
-    if(!Array.isArray(arr) || arr.length===0) fail(`${label}.${field} debe ser array no vacío`);
-    return {[field]:arr.map((x,i)=>captureGuard(x,`${label}.${field}[${i}]`))};
+    const items=captureArray(ownData(g,field,label),`${label}.${field}`,{nonEmpty:true});
+    return {[field]:items.map((x,i)=>captureGuard(x,`${label}.${field}[${i}]`,depth+1))};
   }
+
   exactKeys(g,['source','key','op','value'],label);
-  const source=ownData(g,'source',label), key=ownData(g,'key',label), op=ownData(g,'op',label), value=ownData(g,'value',label);
-  if(!SOURCES.has(source)) fail(`${label}.source inválido`);
-  if(typeof key!=='string' || !key) fail(`${label}.key debe ser string no vacío`);
-  if(!OPS.has(op)) fail(`${label}.op inválido`);
+  const source=ownData(g,'source',label), key=ownData(g,'key',label), op=ownData(g,'op',label), rawValue=ownData(g,'value',label);
+  if(!SOURCES.has(source)) fail(`${label}.source inv?lido`);
+  if(typeof key!=='string' || !key) fail(`${label}.key debe ser string no vac?o`);
+  if(source==='runtime' && !RUNTIME_GUARD_KEYS.has(key)) fail(`${label}.key no permitido para source runtime`);
+  if(!OPS.has(op)) fail(`${label}.op inv?lido`);
+
   if(op==='IN'){
-    if(!Array.isArray(value) || value.length===0) fail(`${label}.value para IN debe ser array no vacío`);
-    return {source,key,op,value:value.map((v,i)=>capturePrimitive(v,`${label}.value[${i}]`))};
+    const items=captureArray(rawValue,`${label}.value`,{nonEmpty:true});
+    return {source,key,op,value:items.map((v,i)=>capturePrimitive(v,`${label}.value[${i}]`))};
   }
-  return {source,key,op,value:capturePrimitive(value,`${label}.value`)};
+
+  const value=capturePrimitive(rawValue,`${label}.value`);
+  if(NUMERIC_OPS.has(op) && typeof value!=='number') fail(`${label}.value debe ser n?mero para ${op}`);
+  if(NUMERIC_OPS.has(op) && source==='runtime' && !RUNTIME_NUMERIC_KEYS.has(key)) fail(`${label}.key no es num?rica para ${op}`);
+  return {source,key,op,value};
 }
 
 function captureEmit(value,label){
   if(value===undefined) return [];
-  if(!Array.isArray(value)) fail(`${label} debe ser array`);
+  const items=captureArray(value,label);
   const out=[]; const seen=new Set();
-  for(let i=0;i<value.length;i++){
-    const x=value[i];
-    if(typeof x!=='string' || !x.trim()) fail(`${label}[${i}] debe ser string no vacío`);
+  for(let i=0;i<items.length;i++){
+    const x=items[i];
+    if(typeof x!=='string' || !x.trim()) fail(`${label}[${i}] debe ser string no vac?o`);
     if(seen.has(x)) fail(`${label} no admite intents duplicados`);
     seen.add(x); out.push(x);
   }
@@ -104,10 +154,10 @@ function captureEmit(value,label){
 export function validateMachine(input){
   exactKeys(input,['id','initialState','states'],'machine');
   const id=ownData(input,'id','machine'), initialState=ownData(input,'initialState','machine'), statesIn=ownData(input,'states','machine');
-  if(typeof id!=='string' || !id.trim()) fail('machine.id debe ser string no vacío');
-  if(typeof initialState!=='string' || !initialState.trim()) fail('machine.initialState debe ser string no vacío');
-  if(!isPlainObject(statesIn)) fail('machine.states debe ser objeto plano');
-  const stateNames=Reflect.ownKeys(statesIn);
+  if(typeof id!=='string' || !id.trim()) fail('machine.id debe ser string no vac?o');
+  if(typeof initialState!=='string' || !initialState.trim()) fail('machine.initialState debe ser string no vac?o');
+  if(!isPlainObject(statesIn,'machine.states')) fail('machine.states debe ser objeto plano');
+  const stateNames=ownKeysSafe(statesIn,'machine.states');
   if(stateNames.length===0 || stateNames.some(k=>typeof k!=='string' || !k)) fail('machine.states debe tener estados con IDs string');
   if(!stateNames.includes(initialState)) fail('machine.initialState no existe en states');
 
@@ -116,14 +166,15 @@ export function validateMachine(input){
     const state=ownData(statesIn,stateName,'machine.states');
     exactKeys(state,['on'],`machine.states.${stateName}`);
     const onIn=ownData(state,'on',`machine.states.${stateName}`);
-    if(!isPlainObject(onIn)) fail(`machine.states.${stateName}.on debe ser objeto plano`);
+    if(!isPlainObject(onIn,`machine.states.${stateName}.on`)) fail(`machine.states.${stateName}.on debe ser objeto plano`);
     const on=Object.create(null);
-    for(const eventType of Reflect.ownKeys(onIn)){
-      if(typeof eventType!=='string' || !eventType) fail('event type inválido');
-      const arr=ownData(onIn,eventType,`machine.states.${stateName}.on`);
-      if(!Array.isArray(arr) || arr.length===0) fail(`transiciones ${stateName}/${eventType} deben ser array no vacío`);
+    const eventTypes=ownKeysSafe(onIn,`machine.states.${stateName}.on`);
+    if(eventTypes.some(k=>typeof k!=='string' || !k)) fail(`machine.states.${stateName}.on tiene event type inv?lido`);
+    for(const eventType of eventTypes){
+      const rawTransitions=ownData(onIn,eventType,`machine.states.${stateName}.on`);
+      const transitionItems=captureArray(rawTransitions,`machine.states.${stateName}.on.${eventType}`,{nonEmpty:true});
       const priorities=new Set();
-      const transitions=arr.map((t,i)=>{
+      const transitions=transitionItems.map((t,i)=>{
         const label=`machine.states.${stateName}.on.${eventType}[${i}]`;
         exactKeys(t,['priority','target','guard','emit'],label);
         const priority=ownData(t,'priority',label), target=ownData(t,'target',label);
@@ -131,8 +182,8 @@ export function validateMachine(input){
         if(priorities.has(priority)) fail(`${stateName}/${eventType} tiene priority duplicada ${priority}`);
         priorities.add(priority);
         if(typeof target!=='string' || !stateNames.includes(target)) fail(`${label}.target desconocido`);
-        const guard=Object.hasOwn(t,'guard') ? captureGuard(ownData(t,'guard',label),`${label}.guard`) : null;
-        const emit=Object.hasOwn(t,'emit') ? captureEmit(ownData(t,'emit',label),`${label}.emit`) : [];
+        const guard=hasOwnSafe(t,'guard',label) ? captureGuard(ownData(t,'guard',label),`${label}.guard`,0) : null;
+        const emit=hasOwnSafe(t,'emit',label) ? captureEmit(ownData(t,'emit',label),`${label}.emit`) : [];
         return {priority,target,guard,emit};
       });
       transitions.sort((a,b)=>b.priority-a.priority);
@@ -178,6 +229,10 @@ function guardMatches(g,event,runtime){
   return cmp(getSourceValue(g,event,runtime),g.op,g.value);
 }
 
+function incrementSaturated(value){
+  return value===Number.MAX_SAFE_INTEGER ? value : value+1;
+}
+
 export function createRuntime(machineInput){
   const machine=validateMachine(machineInput);
   return {machineId:machine.id,state:machine.initialState,stateAge:0,step:0};
@@ -192,8 +247,8 @@ export function stepFSM(machineInput,runtimeInput,eventInput){
   const next={
     machineId:runtime.machineId,
     state:chosen ? chosen.target : runtime.state,
-    stateAge:chosen ? 0 : runtime.stateAge+1,
-    step:runtime.step+1,
+    stateAge:chosen ? 0 : incrementSaturated(runtime.stateAge),
+    step:incrementSaturated(runtime.step),
   };
   return {
     transitioned:Boolean(chosen),
