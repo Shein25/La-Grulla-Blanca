@@ -101,4 +101,28 @@ Stress local verificado con seeds 1337, 1, 42, 999 y 20260925, 100.000 ticks por
 
 ## Estado
 
-`CANDIDATE_STATUS: REV2_PENDING_EXTERNAL_RETEST`
+`CANDIDATE_STATUS: REV2_EXTERNALLY_AUDITED_APTO_PARA_ITERAR`
+
+
+## Auditoría externa REV2
+
+HEAD exacto auditado:
+
+`0d44c5289f189e21c85584706da37af4ffafd103`
+
+Resultado:
+
+- 34/34 suite histórica;
+- 6/6 regresiones REV2;
+- 27/27 casos independientes de preempción;
+- 52/52 re-ataques adversariales generales;
+- 500.000 ticks de verificación por propiedades;
+- 0 regresiones nuevas.
+
+Veredicto:
+
+`BEHAVIOR_TREE_V01_REV2_APTO_PARA_ITERAR`
+
+Snapshot inmutable:
+
+`snapshot/npc-behavior-tree-v0.1-rev2-audited`
