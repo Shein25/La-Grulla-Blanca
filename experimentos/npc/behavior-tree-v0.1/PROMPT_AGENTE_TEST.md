@@ -1,21 +1,59 @@
-# Auditoría externa — Behavior Tree v0.1
+# Auditoría externa REV2 — Behavior Tree v0.1
 
-Audita exclusivamente este laboratorio como experimento independiente.
+Audita exclusivamente la cabeza actual de `experiment/npc-behavior-tree-v0.1`.
+
+La auditoría REV1 terminó en:
+
+`BEHAVIOR_TREE_V01_REQUIERE_CORRECCIONES`
+
+por un bug sistemático en `preemptedAction`. REV2 corrige ese bug sin cambiar arquitectura.
 
 NO modifiques producción.
 NO integres NPC canónicos.
 NO añadas Utility AI, GOAP, HTN o pathfinding.
 NO hagas merge.
 
-## 1. Suite oficial
+## 1. Suite histórica
 
 ```bash
 node tests.mjs
 ```
 
-Reporta PASS, FAIL y exit code reales.
+Debe conservar 34 PASS / 0 FAIL.
 
-## 2. Stress determinista
+## 2. Regresiones REV2
+
+```bash
+node tests-rev2.mjs
+```
+
+Debe producir 6 PASS / 0 FAIL.
+
+No aceptes esa suite como prueba suficiente: reproduce independientemente los casos.
+
+## 3. Retest obligatorio del bug principal
+
+Partiendo de una acción `RUNNING`:
+
+1. si recibe `SUCCESS`, `preemptedAction` debe ser `null`;
+2. si recibe `FAILURE`, `preemptedAction` debe ser `null`;
+3. si no recibe resultado y una prioridad superior desplaza la acción, debe aparecer en `preemptedAction`;
+4. si recibe `RUNNING` pero una prioridad superior la desplaza, debe aparecer en `preemptedAction`;
+5. si recibe un resultado terminal y simultáneamente empieza una prioridad superior, la acción anterior terminó normalmente y NO debe marcarse preemptada.
+
+Busca variantes en los tres fixtures y en árboles sintéticos propios.
+
+## 4. Estabilidad tree/runtime
+
+REV2 fija explícitamente este contrato:
+
+> Un runtime pertenece a una definición estructuralmente estable del árbol. Cambiar topología, IDs o intents durante la vida de ese runtime está fuera de contrato y exige crear un runtime nuevo.
+
+Comprueba que la documentación sea inequívoca. No trates hot-reload de topología sobre un runtime vivo como uso soportado de v0.1.
+
+## 5. Stress
+
+Repite:
 
 ```bash
 node stress.mjs 100000 1337
@@ -25,46 +63,40 @@ node stress.mjs 100000 999
 node stress.mjs 100000 20260925
 ```
 
-Digests esperados:
-
-- 1337: `a1a4e7d1e67815751f86e7743e471eb4c31311d67a8de15ca0a664700541d50d`
-- 1: `0e6d9ebc1adf385fc50924b62dbc0a74cbb5c3b41b697aa619835f693c12607a`
-- 42: `f4f317efdae05ea016a4e4e37b3f6735ec89b63a45b39c0d869ee3014cc7afb1`
-- 999: `e3374685a39252364258c598f9a5e40b94eaf772213a29fbc6bddd7793eefbbe`
-- 20260925: `9c69171c22e18e8baaee55bc2206de7de9d3a9f6c3ba83ae6d81c414ca4a969f`
+No presupongas que los digests REV1 deben permanecer iguales: `preemptedAction` era parte del trace y su semántica fue corregida.
 
 Exige:
 
+- digest repetible por seed;
 - `nondeterministicMismatches = 0`;
 - `inputMutations = 0`;
 - `invalidRuntime = 0`;
 - `multiEmit = 0`.
 
-## 3. Ataques adversariales obligatorios
+## 6. Regresión adversarial general
 
-Busca contraejemplos para:
+Vuelve a atacar:
 
-- más de un intent por tick;
-- acción RUNNING reemitida incorrectamente;
-- resultado de acción aplicado a una acción distinta;
-- preempción incorrecta o no determinista;
-- selector/sequence con semántica rota;
-- prioridades alteradas por orden mutable o aliasing;
-- IDs duplicados;
-- ciclos de referencias;
-- profundidad/número de nodos/hijos fuera de límites;
-- arrays sparse, propiedades extra, accessors y Symbols;
-- facts con objetos, NaN o Infinity;
-- Proxy revocado y traps reflectivos hostiles;
-- overflow de `runtime.tick`;
-- mutación de tree/runtime/tick;
+- selector/sequence;
+- RUNNING;
+- preempción;
+- actionResults;
+- multi-intent;
+- límites de profundidad/nodos/hijos;
+- ciclos;
+- arrays hostiles;
+- Proxies;
+- overflow de tick;
+- pureza;
+- determinismo;
+- aliasing;
 - contaminación de prototipo;
-- `-0` frente a `0`;
-- comportamiento de fact ausente con `EQ/NEQ/IN`.
+- facts ausentes;
+- `-0` vs `0`.
 
-## 4. Propiedad arquitectónica principal
+## 7. Frontera arquitectónica
 
-Confirma que el árbol:
+Debe seguir cumpliéndose:
 
 ```text
 reevalúa prioridades
@@ -73,24 +105,14 @@ reevalúa prioridades
 → executor externo resuelve
 ```
 
-y que no ejecuta movimiento, combate ni efectos del mundo.
+No debe ejecutar movimiento, combate ni efectos del mundo.
 
-## 5. Fixtures
+## 8. Entregable
 
-Son patrones sintéticos, no NPC canónicos:
-
-- guardia reactivo;
-- trabajador interrumpible;
-- supervisor con prioridades.
-
-No evalúes fidelidad narrativa.
-
-## 6. Entregable
-
-Informe Markdown con entorno, HEAD exacto, integridad, resultados, pruebas independientes, bugs reproducibles y veredicto único:
+Informe Markdown con HEAD exacto, integridad, resultados, reproducciones independientes, cualquier hallazgo nuevo y un único veredicto:
 
 ```text
-BEHAVIOR_TREE_V01_APTO_PARA_ITERAR
-BEHAVIOR_TREE_V01_REQUIERE_CORRECCIONES
-BEHAVIOR_TREE_V01_FALLO_CONCEPTUAL
+BEHAVIOR_TREE_V01_REV2_APTO_PARA_ITERAR
+BEHAVIOR_TREE_V01_REV2_REQUIERE_CORRECCIONES
+BEHAVIOR_TREE_V01_REV2_FALLO_CONCEPTUAL
 ```
