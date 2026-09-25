@@ -1,0 +1,16 @@
+{
+  "name": "monster-combat-ai-v0.1",
+  "version": "0.1.0",
+  "private": true,
+  "description": "La Grulla Blanca — Monster Combat AI v0.1 — Deterministic Decision Kernel (laboratorio aislado, no productivo).",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node tests.mjs",
+    "stress": "node stress.mjs"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
