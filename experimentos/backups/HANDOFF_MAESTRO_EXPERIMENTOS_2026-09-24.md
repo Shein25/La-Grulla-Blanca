@@ -2104,5 +2104,121 @@ Deudas no bloqueantes:
 
 Siguiente hito posible: auditor externo sobre el HEAD real del PR #13 usando `PROMPT_AGENTE_TEST.md`.
 
+---
+
+# 29. MONSTER COMBAT AI v0.1 — AUDITORÍA EXTERNA HEAD REAL
+
+Fecha: 2026-09-25.
+
+Auditor externo offline:
+
+`Claude Sonnet 5`
+
+Snapshot auditado:
+
+```text
+branch = experiment/monster-combat-ai-v0.1
+HEAD   = aecbbcac1f2243dad16e2f881fdc6b683debe616
+PARENT = 5812deb59cd1c133383b9af973486a702a26daf4
+TREE   = d1e4bb82c90032c8bae37361867ab6c1190a0a8c
+PR     = #13 DRAFT
+```
+
+Veredicto externo:
+
+`MONSTER_COMBAT_AI_V01_APTO_PARA_ITERAR`
+
+Evidencia reproducida por el auditor:
+
+```text
+tests = 38/38 PASS
+stress = 50.000 decisiones
+invalidSelections = 0
+inputMutations = 0
+executionSideEffects = 0
+nondeterministicMismatches = 0
+seed 1337 digest =
+4cee9933469e7d8545741b067f57ef023e49eb9a2ac4a3a104650cd84abe5c18
+```
+
+Auditoría propia adicional del agente:
+
+```text
+17 verificaciones dirigidas
+5.200 casos de fuzz coherente
+0 hallazgos bloqueantes
+```
+
+Confirmó:
+
+- reorder invariance con jitter;
+- cooldowns estrictamente booleanos;
+- memoryDepth correcto por perfil;
+- no future-read;
+- inmutabilidad;
+- no ejecución;
+- tie-break reproducible;
+- límites RNG;
+- no hardcode por especie;
+- métricas REV2 con semántica real.
+
+Deudas no bloqueantes confirmadas:
+
+- D-MON-15;
+- D-MON-16.
+
+El auditor no tuvo acceso a GitHub y por eso sólo verificó localmente checksums y Git blob hashes del paquete.
+
+Después de recibir su PASS se volvió a verificar GitHub desde un entorno con acceso:
+
+```text
+main =
+5812deb59cd1c133383b9af973486a702a26daf4
+
+PR #13 =
+OPEN
+DRAFT = true
+MERGED = false
+
+BASE SHA =
+5812deb59cd1c133383b9af973486a702a26daf4
+
+HEAD SHA =
+aecbbcac1f2243dad16e2f881fdc6b683debe616
+
+ahead_by = 1
+behind_by = 0
+changed files = 9
+```
+
+Todos los cambios siguen aislados en:
+
+`experimentos/monster-ai/monster-combat-ai-v0.1/`
+
+Reporte preservado en:
+
+`experimentos/backups/AUDITORIA_EXTERNA_MONSTER_COMBAT_AI_v0.1_REV2_CLAUDE_SONNET5.md`
+
+Estado de fase:
+
+```text
+Monster Combat AI v0.1
+DISEÑO                ✓
+IMPLEMENTACIÓN REV2   ✓
+TESTS/STRESS          ✓
+AUDITORÍA INDEPEND.   ✓
+MATERIALIZACIÓN GIT   ✓
+AUDITORÍA EXTERNA     ✓
+PR DRAFT              ✓
+MERGE                 NO
+```
+
+Siguiente decisión posible:
+
+- congelar/cerrar v0.1 como experimento aprobado;
+- decidir explícitamente si PR #13 debe mergearse para preservar el snapshot experimental en `main`;
+- o mantenerlo abierto mientras se prepara contrato de integración futura.
+
+**No mergear sin orden explícita del usuario.**
 
 Fin del handoff.
