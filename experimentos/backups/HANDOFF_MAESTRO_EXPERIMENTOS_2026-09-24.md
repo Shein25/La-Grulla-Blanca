@@ -1714,4 +1714,48 @@ REV3 LISTA PARA TERCERA REVISIÓN CONCEPTUAL
 NO IMPLEMENTAR TODAVÍA
 ```
 
+---
+
+# 26. ADAPTIVE ECOLOGY v0.1 — REV3
+
+Segunda revisión conceptual recibida:
+
+`ADAPTIVE_ECOLOGY_V01_REV2_REQUIERE_CAMBIOS`
+
+La revisión confirmó que REV2 resolvió la arquitectura principal y dejó tres correcciones puntuales de especificación:
+
+1. validar `locality` antes de `dedup`;
+2. definir `occurredAt` como metadata opaca sin efecto lógico en v0.1;
+3. documentar que `recentEventIds` sólo protege reintentos cercanos y que un ID expulsado por la ventana puede volver a aplicarse.
+
+También se aceptaron estas precisiones:
+
+- poda FIFO por orden de aplicación;
+- effectiveKit con orden canónico por abilityId;
+- ability desconocida filtrada del kit y reportada sólo en debug;
+- estados distinguibles `OK | DUPLICATE_EVENT | INVALID_POPULATION`;
+- hysteresis sigue fuera de v0.1, pero la justificación correcta es que todavía no existe un consumidor real de transiciones de tier;
+- cuando Monster AI consuma effectiveKit en combate, habrá que impedir cambios inesperados de kit a mitad de encuentro.
+
+Documentos preservados en esta rama:
+
+`experimentos/backups/ESPECIFICACION_ADAPTIVE_ECOLOGY_v0.1_REV3.md`
+
+`experimentos/backups/PROMPT_CLAUDE_REVIEW_ADAPTIVE_ECOLOGY_v0.1_REV3.md`
+
+Estado:
+
+```text
+REV3 CANDIDATA FINAL DE DISEÑO
+PENDIENTE REVISIÓN CONCEPTUAL FINAL
+NO IMPLEMENTAR TODAVÍA
+```
+
+Si la revisión final devuelve:
+
+`ADAPTIVE_ECOLOGY_V01_REV3_APTA_PARA_IMPLEMENTAR`
+
+el siguiente paso será preparar el prompt de implementación experimental, manteniendo producción intacta y sin merge automático.
+
+
 Fin del handoff.
