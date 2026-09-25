@@ -2,45 +2,71 @@
 
 Esta carpeta contiene prototipos y bancos de pruebas **aislados de producción**.
 
-Cada familia experimental debe vivir en su propia subcarpeta.
+Los experimentos se agrupan primero por dominio funcional para evitar mezclar IA de NPCs con IA de monstruos.
 
 ## Estructura actual
 
 ```text
 experimentos/
-├── utility-ai/
-│   ├── motor-npc-vivo-v0.1/
-│   └── motor-npc-vivo-v0.1.1/
-└── goap/
-    └── motor-npc-vivo-v0.2-goap/
+├── npc/
+│   ├── utility-ai/
+│   ├── goap/
+│   ├── memoria/
+│   ├── scheduler/
+│   ├── execution/
+│   └── integraciones/
+├── monstruos/
+│   └── monster-ai/
+├── backups/
+└── README.md
 ```
 
-## Regla de organización
+## NPC
 
-Cuando se abra una familia nueva de experimentos, crear una carpeta propia, por ejemplo:
+`experimentos/npc/` contiene los experimentos destinados al comportamiento de NPCs fuera del sistema específico de combate de monstruos:
 
-```text
-experimentos/
-├── utility-ai/
-├── goap/
-├── behavior-tree/
-├── htn/
-├── redes-neuronales/
-└── reinforcement-learning/
-```
+- Utility AI;
+- GOAP;
+- memoria, relaciones y decisión;
+- lifecycle / scheduler;
+- executor y replanning;
+- Autonomous NPC Loop e integraciones relacionadas.
 
-No crear carpetas vacías por adelantado. Sólo se incorporan cuando exista una prueba real.
+Cada motor conserva su propia subcarpeta y versión. Agruparlos bajo `npc/` **no implica que todos los NPC deban usar todos los motores**.
+
+## Monstruos
+
+`experimentos/monstruos/` contiene los experimentos específicos de monstruos.
+
+Actualmente incluye:
+
+- `monster-ai/monster-combat-ai-v0.1`.
+
+Las futuras familias específicas de monstruos, como Adaptive Ecology cuando exista como snapshot Git real, deberán incorporarse aquí en su propia subcarpeta. No crear carpetas vacías por adelantado.
+
+## Backups
+
+`experimentos/backups/` permanece en la raíz porque documenta la continuidad del laboratorio completo y no pertenece exclusivamente a NPCs ni a monstruos.
+
+## Migración de rutas
+
+La reorganización sólo cambia ubicación. Los snapshots internos no se modifican.
+
+| Ruta anterior | Ruta nueva |
+| --- | --- |
+| `experimentos/utility-ai/` | `experimentos/npc/utility-ai/` |
+| `experimentos/goap/` | `experimentos/npc/goap/` |
+| `experimentos/memoria/` | `experimentos/npc/memoria/` |
+| `experimentos/scheduler/` | `experimentos/npc/scheduler/` |
+| `experimentos/execution/` | `experimentos/npc/execution/` |
+| `experimentos/integraciones/` | `experimentos/npc/integraciones/` |
+| `experimentos/monster-ai/` | `experimentos/monstruos/monster-ai/` |
+
+Los documentos históricos en `backups/` pueden mencionar las rutas anteriores; deben interpretarse según esta tabla y no reescribirse retroactivamente.
 
 ## Auditorías externas
 
 Los informes de prueba deben identificar al agente auditor tanto en el nombre del archivo como en la cabecera.
-
-Ejemplos:
-
-```text
-Informe_Test_Motor_NPC_Vivo_v0.2.2_GOAP_REV3_CLAUDE.md
-Informe_Test_Motor_NPC_Vivo_v0.2.2_GOAP_REV3_GEMINI.md
-```
 
 La cabecera debe incluir como mínimo:
 
@@ -63,7 +89,6 @@ Para integrar un resultado experimental al juego se requiere:
 4. contrato de integración;
 5. revisión antes de merge.
 
-
 ## Continuidad entre chats
 
 Backup maestro del estado experimental:
@@ -73,5 +98,3 @@ Backup maestro del estado experimental:
 Prompt corto para abrir un chat nuevo dedicado al laboratorio:
 
 `experimentos/backups/PROMPT_NUEVO_CHAT_EXPERIMENTOS_2026-09-24.md`
-
-Usar esos archivos antes de retomar Utility AI, GOAP o nuevas familias experimentales.
