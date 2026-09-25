@@ -1,517 +1,183 @@
 # Reconciliación 3C.7A — M12 + gate LIII→LIV — REV1
 
 **Fecha:** 2026-09-25  
-**Estado:** `LISTA_PARA_AUDITORIA_DOCUMENTAL_CON_DECISION_HUMANA_PENDIENTE`  
+**Estado:** `LISTA_PARA_AUDITORIA_DOCUMENTAL`  
 **Alcance:** M12, evidencia de Primera Ala, Custodio de Dos Alas y gate de cultivo LIII→LIV.  
 **No incluye:** implementación, M13 completo, M14+, M16+, balance numérico final.
 
-## 1. Autoridad y frontera
+> Esta REV1 fue corregida tras recuperar directamente la Fuente Maestra ver55. Para M08–M12, la autoridad principal es T288 (2026-09-20 07:49:52 UTC), posterior a T254 y T257. T257 se conserva como apoyo técnico de idempotencia/estados sólo donde T288 no lo contradice.
 
-Jerarquía aplicada:
+## 1. Corrección de la deuda H-08
 
-1. decisiones humanas posteriores explícitas;
-2. Auditoría 6 canónica;
-3. Auditoría 6 estructurada cuando sea legible;
-4. Fase1 REV2 como recuperación derivada;
-5. ver74/3C.5 sólo para infraestructura real;
-6. topología 329 congelada.
+La lectura derivada de Fase1 REV2 trataba como deuda que M12 podía cerrar con evidencia `SUFICIENTE` mientras el gate exigía `CONCLUYENTE`. T288 permite reconciliarlo sin fase post-M12:
 
-La fórmula de gate recuperada por Fase1 REV2 es:
+- un recorrido principal puede alcanzar `SUFICIENTE`;
+- `SUFICIENTE` permite progreso y habilita la vía de protocolo del Custodio;
+- exploración adicional puede elevar la evidencia a `CONCLUYENTE`;
+- si el jugador llega al Custodio con evidencia sólo suficiente, la resolución central puede aportar la corroboración final;
+- **M12 sólo cierra cuando la red queda `CONCLUYENTE` y el Custodio está resuelto**.
 
-```text
-qi >= 75
-+ DosAlas == COMPRENDIDAS
-+ redPrimeraAla == CONCLUYENTE
-+ autorización institucional
-```
-
-Fase1 REV2 además congela que el gate **NO exige**:
-
-- 6/6 atajos;
-- todos los únicos ecológicos;
-- todas las rooms de Primera Ala.
-
-La fuente primaria completa del párrafo exacto del gate no está íntegramente disponible en el recorte de Auditoría 6 almacenado en esta rama; por eso esta fórmula debe ser revalidada por auditoría externa antes del contrato.
+Por lo tanto, no se diseña una misión cerrada que luego deba reabrirse o continuar para alcanzar el gate.
 
 ## 2. Tres gates distintos
 
-No mezclar:
+### 2.1 `GATES_329.M12`
 
-### A. `GATES_329.M12`
+Extremos existentes en ver74: `formaciones_sello_antiguo ↔ formaciones_descenso_tecnico`. Es la entrada oficial de M12 a Primera Ala.
 
-Extremos existentes en ver74:
+### 2.2 Gate de cultivo LIII→LIV
 
-```text
-formaciones_sello_antiguo
-↕
-formaciones_descenso_tecnico
-```
+No es topológico. Controla el paso `LianQi III / Consolidación → LianQi IV / Refinamiento`.
 
-Función: acceso oficial a Primera Ala durante M12.
+### 2.3 `GATES_329.PASO_MANTENIMIENTO`
 
-### B. Gate de cultivo LIII→LIV
+Extremos: `ala_umbral_mantenimiento ↔ mantenimiento_acceso`. Permanece cerrado durante M12. El umbral queda visible/conocido, pero el descenso corresponde a M13.
 
-No es gate topológico. Es la condición para pasar:
+## 3. Acceso y ruta principal de M12
 
-```text
-LianQi etapa 3 (Consolidación)
-→
-LianQi etapa 4 (Refinamiento)
-```
+Requiere `M11=HECHA` y `arc1.estado=LIII_INVESTIGACION`.
 
-Debe sustituir el legacy:
+La entrada oficial está congelada conceptualmente como `formaciones_sello_antiguo → formaciones_descenso_tecnico → ala_vestibulo`. El recorrido principal continúa mediante `ala_nudo_seis_corrientes` y `ala_camara_dos_alas`, y permite terminar conociendo `ala_umbral_mantenimiento`.
 
-```text
-PUERTAS[4] = { pildoras: 2, logros: ["comprension:6"] }
-```
+La entrada oficial **no es uno de los seis `ATAJO_ALA_*`**.
 
-### C. `GATES_329.PASO_MANTENIMIENTO`
+## 4. Activación y permiso
 
-Extremos:
+Al iniciar M12 deben quedar coherentemente activos `M12=ACTIVA`, `flags.arc1.permisos.PRIMERA_ALA_INVESTIGACION=true` y `gates.M12=true`. El sello se abre mediante procedimiento institucional, no mediante reliquia o llave.
 
-```text
-ala_umbral_mantenimiento
-↕
-mantenimiento_acceso
-```
+Como disparador técnico se propone `HABLAR he_zhen @ formaciones_sello_antiguo`. Clasificación: `ELECCION_TECNICA_3C7_AUDITAR`; no se eleva a canon de fuente.
 
-Debe permanecer `false` durante M12. M12 permite conocer/ver `ala_umbral_mantenimiento`, pero no descender. Su apertura pertenece a M13.
+`PRIMERA_ALA_INVESTIGACION` permanece después de cerrar M12 para que Primera Ala siga siendo explorable. No abre por sí mismo `PASO_MANTENIMIENTO`.
 
-## 3. Ruta oficial M12
+## 5. Evidencia de Primera Ala
 
-Rooms literales confirmadas por Auditoría 6/Fase1 y existentes en ver74:
+Se propone persistir una sola estructura bajo `flags.arc1.evidenciaPrimeraAla`, con `nivel`, hitos semánticos y fuentes únicas ya registradas.
 
-```text
-formaciones_sello_antiguo
-→ formaciones_descenso_tecnico
-→ ala_vestibulo
-→ ala_nudo_seis_corrientes
-→ ala_camara_dos_alas
-```
+Niveles internos: `INSUFICIENTE → SUFICIENTE → CONCLUYENTE`.
 
-También pertenece al recorrido de M12:
+No existe objetivo visible `6/6`, ni contador obligatorio de rooms, atajos o secretos.
 
-```text
-ala_umbral_mantenimiento
-```
+### 5.1 Hitos semánticos
 
-La entrada oficial **no es ninguno de los seis `ATAJO_ALA_*`**.
+T257 aporta como lenguaje técnico compatible con T288: `NUDO_INTERPRETADO`, `DOS_ALAS_ARQUITECTURA`, `PATRON_RAMA`, `CONEXION_SUPERFICIE` y posibles corroboraciones equivalentes.
 
-Los atajos pueden permanecer cerrados durante toda M12 y no son requisito de cierre ni del gate LIII→LIV.
+- `NUDO_INTERPRETADO`: fuente natural `ala_nudo_seis_corrientes`; demuestra un centro distribuidor deliberado.
+- `DOS_ALAS_ARQUITECTURA`: fuente natural `ala_camara_dos_alas`; demuestra físicamente el principio aprendido en M11.
+- `PATRON_RAMA`: exige estudiar al menos una rama funcional y reconocer señales de diseño compartido. Las familias son Medicina, Jardines, Cantera, Aguas, Archivos y Formaciones. REV1 **no congela un número interno exacto de rooms o ramas**.
+- `CONEXION_SUPERFICIE`: corroboración fuerte opcional. Los terminales existentes son `ala_med_06`, `ala_jardines_06`, `ala_cantera_06`, `ala_aguas_06`, `ala_archivos_06` y `ala_formaciones_06`. Reconocer continuidad física no obliga a abrir el atajo.
 
-## 4. Activación y permiso de M12
+### 5.2 Evaluador semántico propuesto
 
-Requiere:
+`INSUFICIENTE`: faltan hitos centrales.
 
-```text
-M11=HECHA
-arc1.estado=LIII_INVESTIGACION
-```
+`SUFICIENTE`: `NUDO_INTERPRETADO + DOS_ALAS_ARQUITECTURA + PATRON_RAMA`.
 
-Propuesta técnica:
+`CONCLUYENTE`: `SUFICIENTE` más una corroboración fuerte adicional. Esa corroboración puede ser exploratoria, como `CONEXION_SUPERFICIE`, o provenir de la confirmación central asociada a la resolución terminal del Custodio.
 
-```text
-HABLAR he_zhen
-@ formaciones_sello_antiguo
-```
+Esta regla debe auditarse. Su objetivo es permitir rutas distintas sin transformar la exploración completa en obligación.
 
-produce:
+### 5.3 Reconciliación inmediata
 
-```text
-M12=ACTIVA
-flags.arc1.permisos.PRIMERA_ALA_INVESTIGACION=true
-gates.M12=true
-```
+Cada primera evidencia nueva debe ejecutar en la misma acción: `registrarEvidenciaPrimeraAla(...) → evaluarEvidenciaPrimeraAla() → reconciliarProgresionArc1()`. No debe requerirse cambiar de sala, guardar/cargar ni ejecutar otro comando.
 
-Clasificación de la room y el gate: `CANON_FUERTE_RESPALDADO_TOPOLOGIA`.
+## 6. Los seis atajos
 
-Clasificación de `HABLAR he_zhen` como disparador exacto: `ELECCION_TECNICA_3C7_AUDITAR`.
+Durante M12 pueden abrirse individualmente **desde Primera Ala** si el jugador los descubre. Cada `gates.ATAJO_ALA_*` es su única fuente de verdad.
 
-### Vigencia del permiso
+Reglas: no son requisito de M12; no son requisito del gate LIII→LIV; no se abren automáticamente al cerrar M12; un atajo abierto permanece abierto; uno no descubierto permanece sellado.
 
-`PRIMERA_ALA_INVESTIGACION` **no expira al cerrar M12**.
+## 7. Custodio de las Dos Alas
 
-Motivo de reconciliación: M12 puede cerrar con evidencia SUFICIENTE, mientras el gate LIII→LIV exige CONCLUYENTE. El jugador necesita poder continuar investigando sin soft-lock.
+T288 congela dos rutas válidas: `COMBATE` y `PROTOCOLO`. Ninguna es superior.
 
-No confundir este permiso con la autorización institucional del gate LIII→LIV; esa equivalencia no está demostrada.
+Persistencia única propuesta: `flags.arc1.custodioDosAlas = NO_RESUELTO | DERROTADO | RESUELTO_POR_PROTOCOLO`. No duplicar esta decisión con booleans paralelos.
 
-## 5. Estado persistente propuesto
+### 7.1 Combate
 
-Extender `flags.arc1`:
+Derrotarlo produce `DERROTADO`. Huir, morir o abandonar no resuelve la misión; puede reintentarse mientras siga `NO_RESUELTO`. No entrega llave/reliquia y no debe haber recompensa narrativa exclusiva superior por escoger combate.
 
-```text
-evidenciaPrimeraAla:
-  nivel: INSUFICIENTE | SUFICIENTE | CONCLUYENTE
-  tipos: Set lógico / array normalizado de tipos únicos
-  ramasFuncionales: conjunto de familias de rama
-  fuentes: claves room.scenery ya registradas
+### 7.2 Protocolo
 
-custodioPrimeraAla:
-  estado: NO_RESUELTO | COMBATE | PROTOCOLO
+Se puede reconstruir con `M11=HECHA + evidenciaPrimeraAla>=SUFICIENTE`. No exige 6 atajos, 14 secretos, único ecológico ni Afinidad alta. Resultado: `RESUELTO_POR_PROTOCOLO`.
 
-sintesis:
-  DOS_ALAS: DESCONOCIDO | PRINCIPIO | COMPRENDIDAS
-  SEGUNDA_RAMA: DESCONOCIDO | APLICACION_CORPORAL
+Fuentes históricas hablan de controles laterales, pero la topología 329 congelada no contiene rooms `ala_control_este/oeste`; **no crear rooms nuevas**. El mecanismo exacto debe resolverse usando scenery/interacciones dentro de la topología actual.
 
-permisos:
-  PRIMERA_ALA_INVESTIGACION: boolean
-```
+### 7.3 Localización
 
-No crear claves top-level.
+`ala_camara_dos_alas` es el candidato técnico fuerte para el encuentro. Clasificación: `ELECCION_TECNICA_RESPALDADA_POR_FUENTE_A_AUDITAR`.
 
-## 6. Evaluador semántico de evidencia
+No reutilizar Sombra/Centinela/reliquias verticales como llaves de M12.
 
-### 6.1 Principio
+## 8. Cómo llega la red a CONCLUYENTE
 
-M12 no será:
+Hay dos recorridos compatibles:
 
-```text
-"visita X/41 rooms"
-"abre 6/6 atajos"
-"encuentra 14 secretos"
-```
+- **Exploratorio:** evidencia `SUFICIENTE` + corroboración fuerte adicional → `CONCLUYENTE`.
+- **Central:** evidencia `SUFICIENTE` + Custodio terminal + confirmación central de mecanismos/información → `CONCLUYENTE`.
 
-La evidencia se registra por significado y por fuente única `room.scenery`.
+Así el protocolo puede estar disponible desde `SUFICIENTE`, pero M12 no cierra hasta que la conclusión de red quede confirmada.
 
-### 6.2 Tipos de evidencia
+## 9. Cierre de M12
 
-#### A. `ARQUITECTURA_RED`
+Condición reconciliada: `evidenciaPrimeraAla.nivel == CONCLUYENTE` y `custodioDosAlas` en `{DERROTADO, RESUELTO_POR_PROTOCOLO}`.
 
-Fuente principal:
+Produce one-shot: `M12=HECHA`, `R5=CONFIRMADO`, Comprensión `+1` con fuente `ARC1_M12_RED_PRIMERA_ALA`, conocimiento de Primera Ala confirmado, `ala_umbral_mantenimiento` conocido y autorización institucional profunda válida.
 
-```text
-ala_nudo_seis_corrientes
-```
+`PRIMERA_ALA_INVESTIGACION` permanece activa. `PASO_MANTENIMIENTO` permanece cerrado.
 
-Scenery candidato: `seis_rutas`, `anillo`, `marcas` o `centro`.
+Recompensas cualitativas: Comprensión +1; Mérito importante; Contribución sí; prestigio institucional significativo. Los valores numéricos quedan `PENDIENTE_BALANCE_3C7`.
 
-Significado: existe una red deliberada que distribuye funciones.
+## 10. Autorización institucional
 
-#### B. `PRINCIPIO_DOS_ALAS`
+T257 registra como efecto del cierre `autorizacionInvestigacionProfunda`; T288 mantiene una autorización institucional como parte del gate. REV1 reconcilia ambos conceptos mediante `flags.arc1.permisos.AUTORIZACION_INVESTIGACION_PROFUNDA=true` al formalizar el cierre de M12.
 
-Fuente principal:
+Metadatos conceptuales: fuente `INSTITUCIONAL`, origen `M12_CIERRE_FORMAL`, vigencia al menos hasta superar LIII→LIV. No se inventa un NPC concreto como emisor mientras una fuente de autoridad no lo congele.
 
-```text
-ala_camara_dos_alas
-```
+## 11. Dos Alas: no crear un estado redundante
 
-Scenery candidato: `trazado_izquierdo`, `trazado_derecho`, `centro` o `inscripciones`.
+M11 REV2 ya persiste `flags.arc1.sintesis.DOS_ALAS=PRINCIPIO` y R3 confirmado al cierre. T288, más tardío, expresa el gate mediante `M11 HECHA + R3 CONFIRMADO`, no exige persistir un segundo estado `COMPRENDIDAS`.
 
-Significado: dos sistemas diferentes coexisten y se relacionan sin fusionarse.
+Por lo tanto REV1 **no crea** `DOS_ALAS=COMPRENDIDAS`. Si UI/diagnóstico necesita la frase «Dos Alas comprendidas», se deriva de `M11=HECHA && R3=CONFIRMADO && sintesis.DOS_ALAS=PRINCIPIO`.
 
-#### C. `RAMA_FUNCIONAL`
+## 12. Gate LIII→LIV — fórmula de autoridad más reciente
 
-Se registra por familia, no por cantidad de rooms.
+T288 congela la transición como: `qi>=75 + M11 HECHA + M12 HECHA + R3 CONFIRMADO + R5 CONFIRMADO + autorización institucional correspondiente`.
 
-Familias:
+Al superarla: `player.etapa=4`, `arc1.estado=LIV_REVELACION` y M13 queda `DISPONIBLE` de forma derivada. No cambia el rango institucional.
 
-```text
-MEDICINA
-JARDINES
-CANTERA
-AGUAS
-ARCHIVOS
-FORMACIONES
-```
+En un estado válido se esperan los invariantes: `M11 HECHA ⇒ R3 CONFIRMADO`; `M12 HECHA ⇒ R5 CONFIRMADO`; `M12 HECHA ⇒ evidenciaPrimeraAla=CONCLUYENTE`; `M12 HECHA ⇒ Custodio terminal`; `M12 HECHA ⇒ AUTORIZACION_INVESTIGACION_PROFUNDA=true`.
 
-Una familia cuenta cuando se examina evidencia que revele su función dentro de la red, no sólo por entrar a una room.
+## 13. Sustitución del legacy de cultivo
 
-#### D. `PATRON_COMPARTIDO`
+ver74 y el candidato ver75 todavía conservan `PUERTAS[4] = { pildoras: 2, logros: ["comprension:6"] }`. 3C.7 debe retirar/neutralizar esa condición para la etapa 3→4.
 
-Se obtiene al contar con evidencia significativa de **al menos dos familias distintas** y reconocer elementos estructurales repetidos/compatibles.
+La transición LIII→LIV no exige ni consume dos píldoras de consolidación y no exige `comprension:6`. El contrato narrativo anterior debe ser la única puerta. Debe evaluarse antes de cualquier mutación irreversible y no debe quedar una doble validación legacy + Arc1.
 
-Esto es una `ELECCION_TECNICA_3C7_AUDITAR`, no un número canónico heredado.
+La implementación futura debe preservar la semántica de consagración que resulte aprobada al cerrar la reauditoría de 3C.6.
 
-#### E. `CONTINUIDAD_MODERNA`
+## 14. Modelo uniforme de permisos
 
-Evidencia fuerte opcional para elevar el nivel a CONCLUYENTE.
+M08–M11 REV2 usa permisos booleanos, mientras Fase1 exige cerrar fuente/origen/vigencia. Para M12 son semánticamente distintos `PRIMERA_ALA_INVESTIGACION` y `AUTORIZACION_INVESTIGACION_PROFUNDA`.
 
-Fuentes técnicas idóneas: terminales de rama que muestran continuidad física hacia infraestructura moderna, sin cruzar el atajo:
+Antes del contrato debe elegirse un modelo uniforme: boolean + metadatos separados, o objeto estructurado `{activo, fuente, origen, vigencia}`. No mezclar ambos modelos en el mismo save.
 
-```text
-ala_med_06
-ala_jardines_06
-ala_cantera_06
-ala_aguas_06
-ala_archivos_06
-ala_formaciones_06
-```
+## 15. Anclajes
 
-Sólo se necesita **una** continuidad moderna independiente; no 6/6.
+Propuesta mínima: He Zhen puede anclarse temporalmente en `formaciones_sello_antiguo` hasta activar M12. Wen Tao y Song Rui no reciben anclajes obligatorios inventados. El Custodio es entidad de misión, no NPC social de 3C.5.
 
-Clasificación: `ELECCION_TECNICA_3C7_AUDITAR`.
+## 16. Legacy que no debe regresar
 
-### 6.3 Niveles propuestos
+No usar como requisito de M12: `reliquias_verticales`, Sombra/Centinela como llaves, 6/6 atajos, únicos ecológicos, Afinidad alta, todos los secretos ni todas las rooms.
 
-```text
-INSUFICIENTE
-si falta cualquiera de:
-- ARQUITECTURA_RED
-- PRINCIPIO_DOS_ALAS
-- al menos una RAMA_FUNCIONAL
-- PATRON_COMPARTIDO
-```
+## 17. Pendientes antes de contrato
 
-```text
-SUFICIENTE
-si existen:
-ARQUITECTURA_RED
-+ PRINCIPIO_DOS_ALAS
-+ >=1 RAMA_FUNCIONAL
-+ PATRON_COMPARTIDO
-```
-
-```text
-CONCLUYENTE
-si:
-SUFICIENTE
-+ CONTINUIDAD_MODERNA
-```
-
-Esta regla permite cerrar M12 sin exigir recorrer todo el área y permite continuar hasta CONCLUYENTE sin soft-lock.
-
-## 7. Cierre de M12
-
-Fuente recuperada:
-
-```text
-evidencia suficiente
-+ Custodio resuelto por COMBATE o PROTOCOLO
-```
-
-Cierre propuesto:
-
-```text
-evidenciaPrimeraAla.nivel >= SUFICIENTE
-AND
-custodioPrimeraAla.estado in {COMBATE, PROTOCOLO}
-```
-
-Produce one-shot:
-
-```text
-M12=HECHA
-flags.arc1.revelaciones.R5=CONFIRMADO
-Comprensión +1
-clave one-shot = ARC1_M12_RED_PRIMERA_ALA
-ala_umbral_mantenimiento = conocido
-PRIMERA_ALA_INVESTIGACION permanece true
-PASO_MANTENIMIENTO permanece false
-```
-
-Recompensas cualitativas preservadas:
-
-- Comprensión: +1;
-- Mérito: importante;
-- Contribución: sí;
-- prestigio institucional: significativo;
-- números: `PENDIENTE_BALANCE_3C7`.
-
-## 8. DOS_ALAS: PRINCIPIO → COMPRENDIDAS
-
-M11 deja:
-
-```text
-flags.arc1.sintesis.DOS_ALAS=PRINCIPIO
-```
-
-Propuesta técnica de reconciliación:
-
-```text
-al cerrar M12
-→ flags.arc1.sintesis.DOS_ALAS=COMPRENDIDAS
-```
-
-Razonamiento: M11 reconstruye intelectualmente el principio; M12 lo valida físicamente en la arquitectura.
-
-No crear otro flag `DosAlasComprendidas`.
-
-Clasificación: `ELECCION_TECNICA_3C7_AUDITAR`.
-
-## 9. Custodio de Dos Alas
-
-ver74 no contiene un NPC/mob literal llamado Custodio de Dos Alas. No reutilizar como canon Sombra/Centinela/reliquias verticales.
-
-### Localización propuesta
-
-```text
-ala_camara_dos_alas
-```
-
-Clasificación: `ELECCION_TECNICA_RESPALDADA_VER74_AUDITAR`.
-
-### Estado
-
-```text
-NO_RESUELTO
-COMBATE
-PROTOCOLO
-```
-
-COMBATE y PROTOCOLO son equivalentes para el cierre. Ninguno concede una recompensa narrativa superior.
-
-### Rama COMBATE
-
-- atacar y derrotar al Custodio → `COMBATE`;
-- huir, morir o abandonar no cierra la misión;
-- debe poder reintentarse;
-- no debe producir loot/recompensa repetible explotable;
-- resuelto una vez, no reaparece.
-
-### Rama PROTOCOLO
-
-Disponible sólo cuando:
-
-```text
-M11=HECHA
-evidenciaPrimeraAla.nivel >= SUFICIENTE
-```
-
-No exige:
-
-- 6 atajos;
-- secretos opcionales;
-- único ecológico;
-- afinidad alta;
-- todos los rooms.
-
-Interacción exacta propuesta: acción contextual/HABLAR con el Custodio. El verbo exacto queda `ELECCION_TECNICA_3C7_AUDITAR`.
-
-### Aparición
-
-Propuesta mínima: materializar al Custodio en `ala_camara_dos_alas` mientras M12 esté ACTIVA y `custodioPrimeraAla.estado=NO_RESUELTO`.
-
-No convertirlo en un errante global ni alterar territorios NPC de 3C.5.
-
-## 10. Continuación SUFICIENTE → CONCLUYENTE
-
-Cerrar M12 **no congela** `evidenciaPrimeraAla`.
-
-Si el jugador cerró M12 en SUFICIENTE:
-
-```text
-M12=HECHA
-PRIMERA_ALA_INVESTIGACION=true
-gates.M12=true
-```
-
-puede regresar a Primera Ala y obtener `CONTINUIDAD_MODERNA`.
-
-En el mismo evento que registra la nueva evidencia:
-
-```text
-evaluarEvidenciaPrimeraAla()
-→ nivel=CONCLUYENTE
-```
-
-No requiere reabrir M12 ni repetir Custodio/recompensas.
-
-## 11. Gate LIII→LIV
-
-### 11.1 Condiciones
-
-Contrato a auditar:
-
-```text
-player.qi >= 75
-flags.arc1.sintesis.DOS_ALAS == COMPRENDIDAS
-flags.arc1.evidenciaPrimeraAla.nivel == CONCLUYENTE
-autorización institucional == válida
-```
-
-No exige M12=ACTIVA; en flujo normal M12 ya estará HECHA por las dos condiciones narrativas anteriores.
-
-### 11.2 Sustitución del legacy
-
-En 3C.7, la etapa 3→4 no debe exigir ni consumir:
-
-```text
-2 píldoras de consolidación
-comprensión:6
-```
-
-La implementación futura deberá sustituir la lógica legacy de `PUERTAS[4]` por el contrato anterior o neutralizar sus campos legacy (`pildoras=0`, sin `comprension:6`) y evaluar las condiciones Arc1 explícitamente.
-
-No debe quedar una doble puerta accidental.
-
-### 11.3 Consagración
-
-El gate se evalúa antes de cualquier consumo/mutación irreversible.
-
-Al superar la etapa:
-
-```text
-arc1.estado = LIV_REVELACION
-player.etapa = 4
-qi_max = 110
-```
-
-Debe conservarse la semántica de 3C.6 aprobada para la consagración, incluida la preservación del qi existente antes de ampliar el vaso, si esa semántica supera la auditoría actual de 3C.6.
-
-## 12. Autorización institucional — PENDIENTE
-
-No se congela una fuente inventada.
-
-Opciones compatibles a auditar:
-
-### Opción A
-
-`PRIMERA_ALA_INVESTIGACION` satisface también la autorización institucional del gate.
-
-Ventaja: estado mínimo.
-
-Riesgo: confundir permiso para investigar con permiso para avanzar institucionalmente.
-
-### Opción B
-
-Después de M12/CONCLUYENTE, una revisión institucional crea un permiso separado, por ejemplo:
-
-```text
-AUTORIZACION_LIV=true
-```
-
-La fuente/NPC exactos deben estar respaldados antes de congelarse.
-
-### Opción C
-
-La autorización se deriva de otro estado institucional ya existente, si una fuente de autoridad lo demuestra.
-
-**Estado REV1:** `DECISION_HUMANA_PENDIENTE_O_FUENTE_POR_RECUPERAR`.
-
-## 13. Anclajes M12
-
-No se inventan anclajes nuevos para Song Rui/Wen Tao.
-
-Propuesta técnica mínima:
-
-- He Zhen puede anclarse temporalmente en `formaciones_sello_antiguo` sólo hasta activar/abrir M12;
-- después se libera a territorio válido;
-- el Custodio es entidad de misión, no NPC social de 3C.5.
-
-Todo anclaje debe ser one-shot/idempotente.
-
-## 14. Legacy que no debe regresar
-
-No usar como requisito M12:
-
-- `reliquias_verticales`;
-- Sombra/Centinela como llaves;
-- seis atajos abiertos;
-- únicos ecológicos;
-- afinidad alta;
-- todos los secretos;
-- todas las rooms.
-
-## 15. Pendientes antes de contrato
-
-1. revalidar externamente la fórmula literal del gate LIII→LIV;
-2. auditar el evaluador semántico propuesto y sus umbrales;
-3. auditar `DOS_ALAS PRINCIPIO→COMPRENDIDAS` al cierre M12;
-4. auditar localización/contrato del Custodio;
-5. decidir/recuperar fuente exacta de autorización institucional;
-6. fijar balance numérico M12;
-7. congelar runtime predecesor sólo cuando 3C.6 supere su reauditoría;
-8. no implementar M13 todavía.
+1. Auditar el mapping técnico concreto de `PATRON_RAMA`.
+2. Auditar cómo materializar el protocolo del Custodio sin crear rooms nuevas.
+3. Auditar la localización del Custodio en `ala_camara_dos_alas`.
+4. Fijar el modelo uniforme de permisos.
+5. Fijar balance numérico de M12.
+6. Congelar el runtime predecesor sólo cuando 3C.6 supere su reauditoría.
+7. No implementar M13 todavía.
 
 ## Estado final
 
