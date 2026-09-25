@@ -1,0 +1,9 @@
+{
+  "name": "npc-autonomous-loop-v0.1-lab",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests.mjs",
+    "stress": "node stress.mjs"
+  }
+}
