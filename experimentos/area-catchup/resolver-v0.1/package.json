@@ -1,0 +1,9 @@
+{
+  "name": "area-catchup-resolver-v0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test --test-isolation=none tests.mjs",
+    "stress": "node stress.mjs"
+  }
+}
