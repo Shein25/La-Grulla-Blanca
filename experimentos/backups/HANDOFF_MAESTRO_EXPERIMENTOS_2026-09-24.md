@@ -1614,5 +1614,104 @@ REV2 LISTA PARA SEGUNDA REVISIÓN CONCEPTUAL
 NO IMPLEMENTAR TODAVÍA
 ```
 
+---
+
+# 27. ADAPTIVE ECOLOGY v0.1 — SEGUNDA REVISIÓN Y REV3
+
+Segunda revisión conceptual externa recibida sobre REV2.
+
+Veredicto:
+
+`ADAPTIVE_ECOLOGY_V01_REV2_REQUIERE_CAMBIOS`
+
+La revisión confirmó que REV2 resolvió casi todos los bloqueantes de la primera pasada y encontró tres defectos puntuales de especificación:
+
+1. locality debía validarse antes que dedup;
+2. `occurredAt` estaba presente sin semántica funcional;
+3. la garantía limitada de `recentEventIds` no estaba documentada con suficiente precisión.
+
+También señaló como no bloqueantes:
+- orden canónico de `effectiveKit` subespecificado;
+- poda FIFO de dedup no descrita de forma operativa;
+- política de ability desconocida ambigua;
+- justificación de “sin hysteresis” mal formulada aunque la decisión fuera correcta.
+
+## 27.1 Decisiones adoptadas en REV3
+
+REV3 corrige:
+
+```text
+locality antes de dedup
+occurredAt eliminado
+dedup FIFO por orden de aplicación
+replay después de poda documentado como limitación conocida
+effectiveKit con orden canónico por ID ASCII
+INVALID_POPULATION distinto de DUPLICATE_EVENT
+duplicate + elapsedTime aplica decay pero no kill
+```
+
+No se adopta filtrado silencioso de abilities desconocidas.
+
+Razón:
+
+> Adaptive Ecology v0.1 no recibe el catálogo autoritativo de habilidades de combate. Sólo valida el shape del ID; la existencia semántica se validará en el futuro adapter contra HABILIDADES_MOB.
+
+La ausencia de hysteresis se mantiene, pero cambia la justificación:
+
+> se difiere porque v0.1 todavía no tiene un consumidor real de tier/effectiveKit. La oscilación es hoy un fenómeno sólo de laboratorio. Cuando exista integración real, v0.2 deberá decidir hysteresis y/o congelación de effectiveKit durante cada encuentro.
+
+## 27.2 Contrato REV3
+
+Fuente persistente:
+
+```text
+populationId
+speciesId
+territoryId
+pressure
+lastUpdate
+recentEventIds
+```
+
+Derivado:
+
+```text
+tier
+activeAdaptations
+effectiveKit
+```
+
+Evento positivo único:
+
+`SPECIES_KILLED`
+
+Orden transaccional:
+
+```text
+validate
+→ locality
+→ decay hasta now
+→ update lastUpdate
+→ dedup
+→ apply kill si no duplicado
+→ clamp
+→ update/prune recentEventIds FIFO
+→ derive tier
+→ derive adaptations
+→ derive effectiveKit
+```
+
+Documentos preservados:
+
+`experimentos/backups/ESPECIFICACION_ADAPTIVE_ECOLOGY_v0.1_REV3.md`
+
+`experimentos/backups/PROMPT_CLAUDE_REVIEW_ADAPTIVE_ECOLOGY_v0.1_REV3.md`
+
+Estado:
+
+```text
+REV3 LISTA PARA TERCERA REVISIÓN CONCEPTUAL
+NO IMPLEMENTAR TODAVÍA
+```
 
 Fin del handoff.
