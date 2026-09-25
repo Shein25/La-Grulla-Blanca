@@ -1,0 +1,9 @@
+{
+  "name": "npc-lifecycle-scheduler-v0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests.mjs",
+    "stress": "node stress.mjs 1337 5000"
+  }
+}
