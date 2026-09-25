@@ -2373,5 +2373,116 @@ El laboratorio `Adaptive Ecology × Monster Combat AI` debe incluir fixtures sin
 
 No modificar silenciosamente Monster Combat AI v0.1 ya cerrada; esta decisión se aplica en la capa de integración y/o en una versión posterior del catálogo de habilidades.
 
+---
+
+# 32. AUTONOMOUS NPC LOOP v0.1 REV2 — AUDITORÍA EXTERNA APROBADA
+
+Fecha: 2026-09-25.
+
+Rama:
+
+`experiment/npc-autonomous-loop-v0.1`
+
+HEAD auditado:
+
+`ddff6e7b386b401ae1e471cbfe05f0bd113bb866`
+
+TREE:
+
+`a6f78d4a162650fc755e5fbe599084a5fef38237`
+
+PR:
+
+`#12 — experiment: Autonomous NPC Loop v0.1`
+
+Estado real verificado después de recibir auditoría:
+
+```text
+OPEN
+DRAFT = true
+MERGED = false
+MERGEABLE = true
+MERGEABLE_STATE = clean
+```
+
+Base original:
+
+`5812deb59cd1c133383b9af973486a702a26daf4`
+
+Main actual al verificar:
+
+`df439ad789e668c526666fa3955deb5b2fe3e8d4`
+
+La rama ahora diverge del main actual porque otros snapshots experimentales fueron mergeados después:
+
+```text
+vs current main:
+ahead_by = 2
+behind_by = 2
+```
+
+GitHub sigue reportando PR #12 como mergeable y clean.
+
+## 32.1 Resultado externo
+
+Veredicto:
+
+`NPC_AUTONOMOUS_LOOP_V01_APTO_PARA_ITERAR`
+
+Evidencia:
+
+```text
+tests = 107/107 PASS
+stress = 5 seeds + repeat(1337) PASS
+fuzz propio = 14.400 ticks / ~44.000 dispatches
+bloqueantes = 0
+```
+
+El auditor reconstruyó el tree localmente y obtuvo exactamente:
+
+`a6f78d4a162650fc755e5fbe599084a5fef38237`
+
+También confirmó blobs de los 10 motores congelados.
+
+## 32.2 Deudas preservadas
+
+No bloqueantes para v0.1:
+
+1. churn `DECISION_GOAL_ALREADY_SATISFIED` en dispatches PERIODIC;
+2. riesgo significativo de starvation semántica si `dutyMode` fijo sigue puntuando más alto aunque su goal ya esté satisfecho;
+3. falta test oficial con Decision Pipeline stub para el guard defensivo de plan vacío;
+4. higiene de Memory respecto de claves extra / `__proto__`.
+
+Regla importante:
+
+> El riesgo de starvation semántica NO bloquea el cierre experimental del Autonomous Loop v0.1, pero debe tratarse antes de conectar la composición Utility+dutyMode a producción o convertir dutyMode en comportamiento dinámico.
+
+Reporte preservado en:
+
+`experimentos/backups/AUDITORIA_EXTERNA_AUTONOMOUS_NPC_LOOP_v0.1_REV2_AGENTENOIDENTIFICADO.md`
+
+## 32.3 Estado de fase
+
+```text
+Autonomous NPC Loop v0.1
+IMPLEMENTACIÓN REV2   ✓
+TESTS/STRESS          ✓
+FUZZ EXTERNO          ✓
+AUDITORÍA EXTERNA     ✓
+HEAD/TREE VERIFICADOS ✓
+PR DRAFT              ✓
+MERGE                 NO
+```
+
+No hacer REV3 por inercia: no hay bloqueante técnico que la justifique.
+
+Siguiente decisión formal posible:
+
+- cerrar el snapshot experimental mediante merge de PR #12;
+- mantener explícitamente las deudas anteriores fuera de v0.1;
+- después avanzar a Area Runtime Integration / Active-Dormant runtime u otra fase definida.
+
+**No mergear PR #12 sin orden explícita del usuario.**
+
 
 Fin del handoff.
