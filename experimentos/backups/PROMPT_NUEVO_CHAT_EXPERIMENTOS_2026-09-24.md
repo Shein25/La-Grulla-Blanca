@@ -1,49 +1,97 @@
 # Continuar laboratorio de experimentos — La Grulla Blanca
 
-Quiero continuar exclusivamente el trabajo del laboratorio experimental de La Grulla Blanca en este chat.
+Quiero continuar exclusivamente el trabajo del laboratorio experimental de La Grulla Blanca.
 
 Repositorio:
 
 `https://github.com/Shein25/La-Grulla-Blanca`
 
-Antes de responder o modificar nada, leé íntegramente:
+Antes de responder o modificar nada:
 
-`experimentos/backups/HANDOFF_MAESTRO_EXPERIMENTOS_2026-09-24.md`
+1. leé íntegramente:
+   `experimentos/backups/HANDOFF_MAESTRO_EXPERIMENTOS_2026-09-24.md`;
+2. prestá especial atención a las secciones de actualización 2026-09-25;
+3. verificá el HEAD real de cualquier rama implicada;
+4. no asumas que una candidata local existe en GitHub;
+5. no mergees nada sin orden explícita.
 
-Rama experimental activa:
-
-`experiment/motor-npc-v0.2-goap`
-
-HEAD que tenía al crear el handoff:
-
-`d88fe4e2ddbba517412c3e943ad5241ffe15d78c`
-
-Verificá el HEAD actual; si cambió, explicá por qué antes de trabajar.
-
-Ruta GOAP actual:
-
-`experimentos/goap/motor-npc-vivo-v0.2-goap/`
-
-PR:
-
-`https://github.com/Shein25/La-Grulla-Blanca/pull/2`
-
-Reglas:
+## Reglas permanentes
 
 - no trabajar sobre producción;
-- no tocar main salvo que yo lo pida expresamente;
-- no mergear PR #2 automáticamente;
+- no tocar `main` salvo pedido explícito;
 - no convertir fixtures experimentales en canon;
-- no mezclar este chat con 3C.6 ni con misiones de producción;
-- toda auditoría externa debe identificar agente/modelo/HEAD;
-- un PASS externo no sustituye auditoría independiente.
+- no mezclar ramas experimentales entre sí;
+- toda auditoría externa debe identificar agente/modelo/HEAD cuando exista HEAD;
+- un PASS externo no sustituye auditoría independiente;
+- toda decisión arquitectónica importante, nueva versión, corrección relevante o implementación próxima debe registrarse en el backup maestro.
 
-Estado inmediato:
+## Frentes actuales
 
-- v0.2.2 tiene 47 tests;
-- REV3 Agente A ya fue recibida y terminó `V022_GOAP_APTO_PARA_ITERAR`;
-- Agente A auditó `c5b1c0bf4c6e84cc7268c62daf8a31f633704501`, previo sólo a la reorganización de carpetas;
-- falta REV3 del segundo agente sobre el HEAD reorganizado;
-- después hay que comparar ambos informes y emitir veredicto independiente final.
+### Monster Combat AI v0.1
 
-Cuando te pase la segunda REV3, no hagas promedio de opiniones: compara cobertura, reproduce contradicciones y decide por evidencia.
+Objetivo:
+
+`Deterministic Decision Kernel`
+
+Rama futura:
+
+`experiment/monster-combat-ai-v0.1`
+
+La candidata recibida fue LOCAL; todavía no existe rama real ni PR.
+
+Estado independiente actual:
+
+`MONSTER_COMBAT_AI_V01_REQUIERE_CORRECCIONES`
+
+REV2 pendiente por:
+
+1. reorder invariance con jitter;
+2. cooldowns estrictamente booleanos;
+3. métricas de stress que midan realmente lo que nombran.
+
+No integrar Adaptive Ecology dentro de esta REV2.
+
+### Adaptive Ecology v0.1
+
+Estado:
+
+```text
+ESPECIFICACIÓN EN REVISIÓN
+NO IMPLEMENTAR TODAVÍA
+```
+
+Rama futura:
+
+`experiment/monster-ecology-adaptation-v0.1`
+
+Responsabilidad:
+
+```text
+Population State
+→ Pressure Resolver
+→ Adaptation Resolver
+→ activeAdaptations
+→ effectiveKit
+→ FIN v0.1
+```
+
+Claude debe revisar conceptualmente la especificación antes de implementación.
+
+## Separación
+
+```text
+Adaptive Ecology
+→ effectiveKit
+→ Monster Decision Kernel
+```
+
+Adaptive Ecology no decide acciones.
+Monster AI no conoce pressure/kills/tier/decay.
+
+## Continuidad
+
+Si aparece nueva evidencia, una nueva REV, un veredicto o una decisión arquitectónica importante:
+
+1. verificarla;
+2. actualizar el backup maestro;
+3. recién después avanzar al siguiente hito cuando corresponda.
