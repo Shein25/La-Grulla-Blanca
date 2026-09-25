@@ -1832,3 +1832,49 @@ Fuera de v0.1:
 - producción.
 
 No merge automático.
+
+
+---
+
+# 28. ADAPTIVE ECOLOGY v0.1 — CANDIDATA LOCAL REV1
+
+Entrega local recibida y auditada independientemente.
+
+Resultados reproducidos:
+
+```text
+62/62 tests PASS
+100000 stress
+digest repetido idéntico:
+632f61b2468b89e4b280a48b62ea2d31c44e01ba4c02b1bdcb2722a41a3ae821
+20.000 casos contra oráculo independiente
+0 discrepancias
+```
+
+Git sigue:
+
+```text
+main = 5812deb59cd1c133383b9af973486a702a26daf4
+rama experiment/monster-ecology-adaptation-v0.1 = NO EXISTE
+```
+
+Veredicto independiente:
+
+`ADAPTIVE_ECOLOGY_V01_REQUIERE_CORRECCIONES`
+
+No hay fallo conceptual. Se exige REV2 local antes de materializar Git.
+
+Correcciones:
+
+1. `knownAbilityIds` obligatorio; no permitir modo sin filtering.
+2. validar `recentEventIds.length <= dedupWindowSize`.
+3. snapshot interno para cerrar Proxy/TOCTOU.
+4. no aceptar campos requeridos heredados vía prototype.
+5. coherencia del test de recentEventIds duplicados.
+6. medir realmente `nondeterministicMismatches`.
+
+Reporte:
+
+`experimentos/backups/AUDITORIA_ADAPTIVE_ECOLOGY_v0.1_CANDIDATA_LOCAL_REV1.md`
+
+No crear ni mergear rama experimental hasta que REV2 local pase reauditoría.
