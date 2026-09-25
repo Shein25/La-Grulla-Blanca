@@ -2683,5 +2683,35 @@ Debe definir catálogo declarativo y adapter experimental para habilidades ofens
 > Monster Combat AI decide.
 > El motor de combate resuelve.
 
+---
+
+# 35. CORTE DE CHAT — CONTINUIDAD MOTOR DE COMBATE
+
+Fecha: 2026-09-25.
+
+Se alcanzó el límite práctico de la conversación durante la auditoría inicial del motor de combate.
+
+Backup específico creado:
+
+`experimentos/backups/BACKUP_MAESTRO_CONTINUIDAD_2026-09-25_CORTE_MOTOR_COMBATE.md`
+
+Prompt de reanudación creado:
+
+`experimentos/backups/PROMPT_REANUDACION_2026-09-25_MOTOR_COMBATE.md`
+
+Estado exacto de continuidad:
+
+- Monster Combat AI v0.1 cerrado y mergeado;
+- Autonomous NPC Loop v0.1 cerrado y mergeado;
+- Adaptive Ecology v0.1 pendiente de implementación REV2 de Claude;
+- auditoría del motor de combate iniciada;
+- ver75 productivo verificado;
+- lógica de `class Combate` de ver74/ver75 equivalente salvo whitespace;
+- asimetría jugador/mob identificada;
+- próxima tarea: completar auditoría y diseñar `Combat Ability Contract v0.1`.
+
+No tocar producción durante esa auditoría.
+No hacer merge automático.
+
 
 Fin del handoff.
