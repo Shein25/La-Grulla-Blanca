@@ -1,0 +1,9 @@
+{
+  "name":"la-grulla-blanca-canonical-behavior-lab-v0.1",
+  "private":true,
+  "type":"module",
+  "scripts":{
+    "test:gao":"node tests/gao-shun.test.mjs",
+    "run:gao":"node run-gao-shun.mjs"
+  }
+}
