@@ -99,3 +99,28 @@ Si aparece nueva evidencia, una nueva REV, un veredicto o una decisión arquitec
 1. verificarla;
 2. actualizar el backup maestro;
 3. recién después avanzar al siguiente hito cuando corresponda.
+
+
+## Adaptive Ecology v0.1 — actualización final 2026-09-25
+
+Veredicto conceptual final:
+
+`ADAPTIVE_ECOLOGY_V01_REV3_APTA_PARA_IMPLEMENTAR`
+
+Usar como contrato:
+
+`experimentos/backups/ESPECIFICACION_ADAPTIVE_ECOLOGY_v0.1_FINAL.md`
+
+Usar para implementación:
+
+`experimentos/backups/PROMPT_IMPLEMENTACION_ADAPTIVE_ECOLOGY_v0.1.md`
+
+Rama prevista:
+
+`experiment/monster-ecology-adaptation-v0.1`
+
+Base:
+
+`5812deb59cd1c133383b9af973486a702a26daf4`
+
+No mergear automáticamente.
