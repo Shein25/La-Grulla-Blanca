@@ -1,0 +1,9 @@
+{
+  "name": "motor-npc-vivo-v0.3.2-decision",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests.mjs",
+    "stress": "node stress.mjs 500 1337"
+  }
+}
