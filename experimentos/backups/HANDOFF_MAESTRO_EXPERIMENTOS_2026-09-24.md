@@ -2221,4 +2221,100 @@ Siguiente decisión posible:
 
 **No mergear sin orden explícita del usuario.**
 
+---
+
+# 30. MONSTER COMBAT AI v0.1 — CIERRE FORMAL Y MERGE
+
+Fecha: 2026-09-25.
+
+Tras:
+
+- diseño aprobado;
+- implementación REV2;
+- 38/38 tests PASS;
+- stress de 50.000 decisiones PASS;
+- auditoría independiente adicional con 9.215 comprobaciones y 0 fallos;
+- auditoría externa Claude Sonnet 5 con veredicto
+  `MONSTER_COMBAT_AI_V01_APTO_PARA_ITERAR`;
+- 5.200 casos propios de fuzz externo;
+- verificación del HEAD real y blobs congelados;
+
+el usuario autorizó explícitamente el merge de PR #13.
+
+## 30.1 Merge realizado
+
+PR:
+
+`#13 — experiment: Monster Combat AI v0.1 — Decision Kernel REV2`
+
+Estado final:
+
+```text
+PR STATE = CLOSED
+DRAFT = false
+MERGED = true
+```
+
+HEAD auditado:
+
+`aecbbcac1f2243dad16e2f881fdc6b683debe616`
+
+Base previa:
+
+`5812deb59cd1c133383b9af973486a702a26daf4`
+
+Merge commit real:
+
+`df439ad789e668c526666fa3955deb5b2fe3e8d4`
+
+Parents del merge:
+
+```text
+5812deb59cd1c133383b9af973486a702a26daf4
+aecbbcac1f2243dad16e2f881fdc6b683debe616
+```
+
+Tree del merge:
+
+`d1e4bb82c90032c8bae37361867ab6c1190a0a8c`
+
+Nuevo HEAD de `main`:
+
+`df439ad789e668c526666fa3955deb5b2fe3e8d4`
+
+Mensaje de merge:
+
+`Merge PR #13: Monster Combat AI v0.1 — Decision Kernel REV2`
+
+El merge preserva el snapshot experimental bajo:
+
+`experimentos/monster-ai/monster-combat-ai-v0.1/`
+
+No implica integración del kernel con el combate productivo.
+
+## 30.2 Estado de fase
+
+```text
+Monster Combat AI v0.1
+DISEÑO                ✓
+IMPLEMENTACIÓN REV2   ✓
+TESTS/STRESS          ✓
+AUDITORÍA INDEPEND.   ✓
+AUDITORÍA EXTERNA     ✓
+MATERIALIZACIÓN GIT   ✓
+PR DRAFT              ✓
+MERGE                 ✓
+SNAPSHOT EN MAIN      ✓
+INTEGRACIÓN COMBATE   NO
+```
+
+La rama experimental sigue apuntando a:
+
+`aecbbcac1f2243dad16e2f881fdc6b683debe616`
+
+No borrar ni reescribir este estado sin una decisión explícita.
+
+Siguiente trabajo de Monster Combat AI, si se retoma, debe partir de una nueva fase/versionado y NO modificar silenciosamente v0.1 cerrada.
+
+
 Fin del handoff.
