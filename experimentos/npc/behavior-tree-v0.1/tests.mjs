@@ -1,0 +1,47 @@
+import assert from 'node:assert/strict';
+import {ContractError,MAX_TREE_DEPTH,validateTree,createRuntime,tickBehaviorTree} from './engine.mjs';
+import {GUARD_TREE,WORKER_TREE,SUPERVISOR_TREE} from './fixtures.mjs';
+
+let pass=0,fail=0;
+const T=(name,fn)=>{try{fn();pass++;console.log('PASS',name)}catch(e){fail++;console.error('FAIL',name);console.error(e.stack||e)}};
+const throws=fn=>assert.throws(fn,ContractError);
+const tick=(tree,rt,facts={},actionResults={})=>tickBehaviorTree(tree,rt,{facts,actionResults});
+
+T('valid fixtures',()=>{validateTree(GUARD_TREE);validateTree(WORKER_TREE);validateTree(SUPERVISOR_TREE)});
+T('initial runtime',()=>assert.deepEqual(createRuntime(GUARD_TREE),{treeId:'fixture_bt_guard',tick:0,runningAction:null}));
+T('guard defaults patrol',()=>assert.deepEqual(tick(GUARD_TREE,createRuntime(GUARD_TREE),{}).emitted,['PATROL']));
+T('guard suspicious warns',()=>assert.deepEqual(tick(GUARD_TREE,createRuntime(GUARD_TREE),{suspicious:true}).emitted,['WARN_TARGET']));
+T('guard hostile outranks suspicious',()=>assert.deepEqual(tick(GUARD_TREE,createRuntime(GUARD_TREE),{hostile:true,suspicious:true}).emitted,['ENGAGE']));
+T('worker defaults prepare',()=>assert.deepEqual(tick(WORKER_TREE,createRuntime(WORKER_TREE),{}).emitted,['PREPARE']));
+T('worker service',()=>assert.deepEqual(tick(WORKER_TREE,createRuntime(WORKER_TREE),{phase:'SERVICE'}).emitted,['SERVE']));
+T('worker alarm outranks service',()=>assert.deepEqual(tick(WORKER_TREE,createRuntime(WORKER_TREE),{phase:'SERVICE',alarm:true}).emitted,['SECURE_SUPPLIES']));
+T('RUNNING result does not reemit',()=>{let rt=createRuntime(GUARD_TREE);let r=tick(GUARD_TREE,rt,{});r=tick(GUARD_TREE,r.nextRuntime,{}, {patrol:'RUNNING'});assert.equal(r.runningAction,'patrol');assert.deepEqual(r.emitted,[])});
+T('hostile preempts patrol',()=>{let r=tick(GUARD_TREE,createRuntime(GUARD_TREE),{});r=tick(GUARD_TREE,r.nextRuntime,{hostile:true},{});assert.deepEqual(r.emitted,['ENGAGE']);assert.equal(r.preemptedAction,'patrol')});
+T('crisis preempts assist',()=>{let r=tick(SUPERVISOR_TREE,createRuntime(SUPERVISOR_TREE),{playerRequest:true});r=tick(SUPERVISOR_TREE,r.nextRuntime,{playerRequest:true,crisis:true},{});assert.deepEqual(r.emitted,['COORDINATE_RESPONSE']);assert.equal(r.preemptedAction,'assist')});
+T('result must match current running action',()=>throws(()=>tick(GUARD_TREE,createRuntime(GUARD_TREE),{}, {patrol:'SUCCESS'})));
+T('unknown result rejected',()=>throws(()=>tickBehaviorTree(GUARD_TREE,{treeId:'fixture_bt_guard',tick:0,runningAction:'patrol'},{facts:{},actionResults:{nope:'SUCCESS'}})));
+T('multiple action results rejected',()=>throws(()=>tickBehaviorTree(GUARD_TREE,{treeId:'fixture_bt_guard',tick:0,runningAction:'patrol'},{facts:{},actionResults:{patrol:'RUNNING',warn:'SUCCESS'}})));
+T('tick saturates',()=>{const r=tickBehaviorTree(GUARD_TREE,{treeId:'fixture_bt_guard',tick:Number.MAX_SAFE_INTEGER,runningAction:null},{facts:{},actionResults:{}});assert.equal(r.nextRuntime.tick,Number.MAX_SAFE_INTEGER)});
+T('duplicate node ids rejected',()=>{const x=structuredClone(GUARD_TREE);x.root.children[1].id=x.root.children[0].id;throws(()=>validateTree(x))});
+T('unknown node type rejected',()=>{const x=structuredClone(GUARD_TREE);x.root.children[0].type='parallel';throws(()=>validateTree(x))});
+T('empty composite rejected',()=>throws(()=>validateTree({id:'x',root:{id:'r',type:'selector',children:[]}})));
+T('extra tree field rejected',()=>{const x=structuredClone(GUARD_TREE);x.extra=true;throws(()=>validateTree(x))});
+T('extra node field rejected',()=>{const x=structuredClone(GUARD_TREE);x.root.extra=true;throws(()=>validateTree(x))});
+T('numeric comparator requires number',()=>throws(()=>validateTree({id:'x',root:{id:'c',type:'condition',test:{key:'hp',op:'GT',value:'10'}}})));
+T('IN works',()=>{const tr={id:'x',root:{id:'s',type:'sequence',children:[{id:'c',type:'condition',test:{key:'phase',op:'IN',value:['A','B']}},{id:'a',type:'action',intent:'OK'}]}};assert.deepEqual(tick(tr,createRuntime(tr),{phase:'B'}).emitted,['OK'])});
+T('missing EQ fails',()=>{const tr={id:'x',root:{id:'c',type:'condition',test:{key:'missing',op:'EQ',value:true}}};assert.equal(tick(tr,createRuntime(tr),{}).status,'FAILURE')});
+T('missing NEQ succeeds',()=>{const tr={id:'x',root:{id:'c',type:'condition',test:{key:'missing',op:'NEQ',value:true}}};assert.equal(tick(tr,createRuntime(tr),{}).status,'SUCCESS')});
+T('invalid facts rejected',()=>{throws(()=>tick(GUARD_TREE,createRuntime(GUARD_TREE),{x:{}},{}));throws(()=>tick(GUARD_TREE,createRuntime(GUARD_TREE),{x:Infinity},{}))});
+T('fact accessor rejected without execution',()=>{let reads=0;const f={};Object.defineProperty(f,'x',{enumerable:true,get(){reads++;return true}});throws(()=>tick(GUARD_TREE,createRuntime(GUARD_TREE),f,{}));assert.equal(reads,0)});
+T('sparse children rejected',()=>{const c=[];c[1]={id:'a',type:'action',intent:'A'};throws(()=>validateTree({id:'x',root:{id:'r',type:'selector',children:c}}))});
+T('extra array property rejected',()=>{const c=[{id:'a',type:'action',intent:'A'}];c.extra=true;throws(()=>validateTree({id:'x',root:{id:'r',type:'selector',children:c}}))});
+T('cycle rejected',()=>{const r={id:'r',type:'selector',children:[]};r.children.push(r);throws(()=>validateTree({id:'x',root:r}))});
+T('depth overflow rejected',()=>{let n={id:'a',type:'action',intent:'A'};for(let i=0;i<MAX_TREE_DEPTH+1;i++)n={id:'s'+i,type:'sequence',children:[n]};throws(()=>validateTree({id:'x',root:n}))});
+T('deterministic identical input',()=>{const rt=createRuntime(GUARD_TREE),input={facts:{hostile:true},actionResults:{}};assert.deepEqual(tickBehaviorTree(GUARD_TREE,rt,input),tickBehaviorTree(GUARD_TREE,rt,input))});
+T('no input mutation',()=>{const tr=structuredClone(GUARD_TREE),rt=createRuntime(tr),input={facts:{suspicious:true},actionResults:{}};const before=structuredClone([tr,rt,input]);tickBehaviorTree(tr,rt,input);assert.deepEqual([tr,rt,input],before)});
+T('emitted independent',()=>{const rt=createRuntime(GUARD_TREE);const r=tick(GUARD_TREE,rt,{});r.emitted.push('X');assert.deepEqual(tick(GUARD_TREE,rt,{}).emitted,['PATROL'])});
+T('hostile proxies close with ContractError',()=>{const {proxy,revoke}=Proxy.revocable({...GUARD_TREE},{});revoke();throws(()=>validateTree(proxy));const p=new Proxy({...GUARD_TREE},{getPrototypeOf(){throw Error('boom')}});throws(()=>validateTree(p))});
+
+console.log(`\nPASS: ${pass}`);
+console.log(`FAIL: ${fail}`);
+if(fail)process.exitCode=1;
