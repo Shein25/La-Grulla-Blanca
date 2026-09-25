@@ -9,7 +9,7 @@ Esta carpeta agrupa los experimentos cuyo dominio principal son los NPCs.
 - `memoria/` — memoria, relaciones y capas de decisión.
 - `scheduler/` — lifecycle y planificación temporal.
 - `execution/` — ejecución, verificación y replanning.
-- `integraciones/` — integración experimental entre módulos, incluido Autonomous NPC Loop.
+- `integraciones/` — integración experimental entre módulos, incluido Autonomous NPC Loop.\n- `behavior-tree-v0.1/` — candidata experimental para NPC reactivos que reevaluan prioridades y pueden preemptar acciones en curso.
 
 ## Regla
 

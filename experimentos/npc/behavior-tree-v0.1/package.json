@@ -1,0 +1,9 @@
+{
+  "name":"la-grulla-blanca-behavior-tree-v0.1",
+  "private":true,
+  "type":"module",
+  "scripts":{
+    "test":"node tests.mjs && node tests-rev2.mjs",
+    "stress":"node stress.mjs 100000 1337"
+  }
+}
