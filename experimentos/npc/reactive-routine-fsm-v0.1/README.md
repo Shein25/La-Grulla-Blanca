@@ -89,4 +89,28 @@ La suite histórica v0.1 conserva sus 30 pruebas. REV2 añade 17 regresiones esp
 
 ## Estado
 
-`CANDIDATE_STATUS: REV2_PENDING_EXTERNAL_RETEST`
+`CANDIDATE_STATUS: REV2_EXTERNALLY_AUDITED_APTO_PARA_ITERAR`
+
+
+## Auditoría externa REV2
+
+Claude Sonnet 5 auditó adversarialmente el HEAD exacto:
+
+`e001730675fdd0a780c273cbfad2e46c045d64a9`
+
+Resultado:
+
+- 30/30 suite histórica;
+- 17/17 regresiones REV2;
+- 77/77 pruebas adversariales independientes;
+- cinco stress de 100.000 eventos con digests idénticos a REV1;
+- H1–H6 resueltos;
+- 0 hallazgos nuevos.
+
+Veredicto:
+
+`REACTIVE_ROUTINE_FSM_V01_REV2_APTO_PARA_ITERAR`
+
+Snapshot inmutable del código auditado:
+
+`snapshot/npc-reactive-routine-fsm-v0.1-rev2-audited`
