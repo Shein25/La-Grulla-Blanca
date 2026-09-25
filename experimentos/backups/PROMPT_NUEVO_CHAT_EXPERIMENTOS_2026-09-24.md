@@ -124,3 +124,32 @@ Base:
 `5812deb59cd1c133383b9af973486a702a26daf4`
 
 No mergear automáticamente.
+
+
+## Monster Combat AI v0.1 — estado materializado
+
+Rama real:
+
+`experiment/monster-combat-ai-v0.1`
+
+HEAD auditado:
+
+`aecbbcac1f2243dad16e2f881fdc6b683debe616`
+
+Parent:
+
+`5812deb59cd1c133383b9af973486a702a26daf4`
+
+Tree:
+
+`d1e4bb82c90032c8bae37361867ab6c1190a0a8c`
+
+PR Draft:
+
+`#13 — https://github.com/Shein25/La-Grulla-Blanca/pull/13`
+
+Veredicto independiente:
+
+`MONSTER_COMBAT_AI_V01_APTO_PARA_ITERAR`
+
+No mergear. El siguiente paso, si se retoma este frente, es auditoría externa del HEAD real usando su `PROMPT_AGENTE_TEST.md`.
