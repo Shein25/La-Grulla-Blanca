@@ -36,18 +36,26 @@ stepFSM(machine, runtime, event)
 
 `stepFSM()` es determinista, no muta inputs y procesa como máximo una transición por evento.
 
-## Contrato v0.1
+## Contrato v0.1 REV2
 
 - máquinas, estados y transiciones son datos declarativos;
 - no se admiten callbacks dentro de la definición;
 - prioridades de transiciones deben ser únicas por estado/evento;
 - sólo una transición puede ganar por evento;
 - el target debe existir;
-- un evento no manejado conserva el estado y aumenta `stateAge`;
+- un evento no manejado conserva el estado;
 - una transición resetea `stateAge` a 0;
-- los intents emitidos son strings declarativos;
+- `stateAge` y `step` aumentan de a 1 hasta `Number.MAX_SAFE_INTEGER`; al alcanzar ese valor quedan saturados para preservar la validez del runtime;
+- los intents emitidos son strings declarativos sin duplicados;
 - facts aceptan únicamente primitivos JSON finitos;
+- arrays contractuales no admiten huecos, accessors, Symbols ni propiedades extra;
 - se rechazan accessors, Symbols, herencia y campos extra en estructuras contractuales;
+- guards con `source:'runtime'` sólo pueden leer `machineId`, `state`, `stateAge` o `step`;
+- `GT/GTE/LT/LTE` exigen un `value` numérico; sobre runtime sólo pueden aplicarse a `stateAge` o `step`;
+- la profundidad máxima de guardas compuestas es `MAX_GUARD_DEPTH = 32`;
+- entradas hostiles que no puedan inspeccionarse deben cerrar con `ContractError`;
+- `EQ/NEQ` usan `Object.is`, por lo que distinguen `-0` de `0`;
+- un fact ausente produce `undefined`: `EQ/IN` no coinciden y `NEQ` se considera verdadero frente a cualquier valor declarable distinto de `undefined`;
 - el motor no conoce rooms, gates, pathfinding, misiones, combate ni save/load de producción.
 
 ## Fixtures
@@ -60,8 +68,11 @@ stepFSM(machine, runtime, event)
 
 ```bash
 node tests.mjs
+node tests-rev2.mjs
 node stress.mjs 100000 1337
 ```
+
+La suite histórica v0.1 conserva sus 30 pruebas. REV2 añade 17 regresiones específicas para H1–H6 de la auditoría externa de Claude.
 
 ## Fuera de alcance
 
@@ -78,4 +89,4 @@ node stress.mjs 100000 1337
 
 ## Estado
 
-`CANDIDATE_STATUS: LOCAL_CANDIDATE_PENDING_EXTERNAL_AUDIT`
+`CANDIDATE_STATUS: REV2_PENDING_EXTERNAL_RETEST`
