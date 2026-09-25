@@ -1,0 +1,337 @@
+{
+  "version": "3C7A_M13_M15_REV1",
+  "fecha": "2026-09-25",
+  "estado": "LISTA_PARA_AUDITORIA_DOCUMENTAL",
+  "autoridad": {
+    "principal": {
+      "fuente": "Fuente Maestra ver55",
+      "turno": "T289",
+      "fecha_utc": "2026-09-20T07:53:01.000Z"
+    },
+    "tecnica": {
+      "turno": "T257",
+      "uso": "idempotencia/estructura sólo donde no contradice T289"
+    }
+  },
+  "alcance": [
+    "M13",
+    "M14",
+    "M15",
+    "R6",
+    "R8",
+    "R9",
+    "MANTENIMIENTO_INVESTIGACION",
+    "NUCLEO_SUPERIOR",
+    "PASO_MANTENIMIENTO",
+    "PASO_NUCLEO",
+    "PASO_PULSO cerrado"
+  ],
+  "fuera_alcance": [
+    "implementacion",
+    "M16+",
+    "NUCLEO_PROFUNDO",
+    "R7",
+    "R10",
+    "LIBERAR",
+    "CUSTODIAR"
+  ],
+  "columna": [
+    "M12+gate LIII->LIV",
+    "M13",
+    "M14",
+    "M15"
+  ],
+  "gates": {
+    "PASO_MANTENIMIENTO": {
+      "extremos": [
+        "ala_umbral_mantenimiento",
+        "mantenimiento_acceso"
+      ],
+      "abre": "M13 activación con MANTENIMIENTO_INVESTIGACION"
+    },
+    "PASO_NUCLEO": {
+      "extremos": [
+        "mantenimiento_compuerta_nucleo",
+        "nucleo_pozo_voto"
+      ],
+      "abre": "M14 activación con NUCLEO_SUPERIOR"
+    },
+    "PASO_PULSO": {
+      "extremos": [
+        "nucleo_archivo_promesa",
+        "nucleo_descenso_pulso"
+      ],
+      "estado_hasta_fin_M15": false,
+      "abre": "fuera de alcance; NUCLEO_PROFUNDO/M17"
+    }
+  },
+  "M13": {
+    "nombre": "Todo consume algo",
+    "requiere": [
+      "arc1.estado=LIV_REVELACION",
+      "M12=HECHA"
+    ],
+    "activacion": {
+      "fuente": "Duan Shibo y He Zhen reciben informe Primera Ala; consumos de Producción sin destino moderno",
+      "propuesta": "HABLAR duan_shibo @ oficina_logistica",
+      "clasificacion": "ELECCION_TECNICA_3C7_AUDITAR",
+      "produce": [
+        "M13=ACTIVA",
+        "MANTENIMIENTO_INVESTIGACION=true",
+        "PASO_MANTENIMIENTO=true"
+      ]
+    },
+    "evidencia": {
+      "CONSUMO_ANTIGUO_IDENTIFICADO": {
+        "fuentes": [
+          "mantenimiento_registro_consumo.categorias",
+          "mantenimiento_registro_consumo.comparaciones"
+        ]
+      },
+      "OPERACION_PRESENTE": {
+        "fuentes_candidatas": [
+          "mantenimiento_almacen.lotes",
+          "mantenimiento_taller.piezas",
+          "mantenimiento_galeria_conductos.empalmes",
+          "mantenimiento_camara_presion.indicadores"
+        ],
+        "regla": "evidencia material de que la infraestructura sigue siendo intervenida/estabilizada"
+      },
+      "CORRELACION_PRODUCCION": {
+        "fuentes_candidatas": [
+          "oficina_logistica.manifiestos",
+          "almacen_materiales.tablillas",
+          "taller_lu_cheng"
+        ],
+        "regla": "cruce moderno con Producción o información equivalente"
+      }
+    },
+    "cierre": {
+      "regla": "CONSUMO_ANTIGUO_IDENTIFICADO + OPERACION_PRESENTE + CORRELACION_PRODUCCION",
+      "produce": [
+        "M13=HECHA",
+        "R6=CONFIRMADO",
+        "Comprension +1 ARC1_M13_CONSUMO_ACTUAL",
+        "M14 DISPONIBLE derivada"
+      ]
+    },
+    "alojamiento": {
+      "room": "mantenimiento_dormitorio_turnos",
+      "requisito": false
+    },
+    "recompensas": {
+      "comprension": 1,
+      "merito": "IMPORTANTE_NUMERO_PENDIENTE",
+      "contribucion": "MODERADA_O_SI_NUMERO_PENDIENTE"
+    },
+    "no_revelar": [
+      "R7",
+      "entidad viva sostiene la red",
+      "NUCLEO_PROFUNDO"
+    ],
+    "sombra_marea_residual": {
+      "opcional": true,
+      "requisito_R6": false,
+      "reliquia_llave": false
+    }
+  },
+  "M14": {
+    "nombre": "La promesa aplazada",
+    "requiere": [
+      "M13=HECHA"
+    ],
+    "activacion": {
+      "fuente": "Consejo autoriza acceso muy limitado al Núcleo Superior",
+      "exacto_npc_room": "NO_CERRADO_EN_FUENTE",
+      "produce": [
+        "M14=ACTIVA",
+        "NUCLEO_SUPERIOR=true",
+        "PASO_NUCLEO=true"
+      ]
+    },
+    "ruta": [
+      "mantenimiento_compuerta_nucleo",
+      "nucleo_pozo_voto",
+      "nucleo_camara_voto",
+      "nucleo_galeria_primer_pacto",
+      "nucleo_primer_pacto"
+    ],
+    "evidencia": {
+      "ACTO_FORMAL": {
+        "fuentes_candidatas": [
+          "nucleo_camara_voto.inscripciones",
+          "nucleo_camara_voto.sellos",
+          "nucleo_camara_voto.centro"
+        ]
+      },
+      "PARTICIPACION_MUTUA": {
+        "fuentes_candidatas": [
+          "nucleo_galeria_primer_pacto.cultivadores",
+          "nucleo_galeria_primer_pacto.grulla",
+          "nucleo_primer_pacto.sellos_dobles",
+          "nucleo_primer_pacto.suelo"
+        ]
+      },
+      "CONSENTIMIENTO_DOCUMENTADO": {
+        "fuentes_candidatas": [
+          "nucleo_primer_pacto.inscripciones"
+        ],
+        "regla": "evidencia inequívoca contextual, no una imagen aislada"
+      }
+    },
+    "cierre": {
+      "regla": "diversidad suficiente para confirmar consentimiento original",
+      "produce": [
+        "M14=HECHA",
+        "R8=CONFIRMADO",
+        "Comprension +1 ARC1_M14_CONSENTIMIENTO",
+        "M15 DISPONIBLE derivada"
+      ]
+    },
+    "recompensas": {
+      "comprension": 1,
+      "merito": "IMPORTANTE_NUMERO_PENDIENTE",
+      "contribucion": "PEQUENA_MODERADA_O_NO_NECESARIA_PENDIENTE_BALANCE"
+    },
+    "no_revelar": [
+      "R9",
+      "R7",
+      "R10",
+      "temporalidad del pacto",
+      "identidad actual de la Grulla",
+      "modificación del vínculo",
+      "NUCLEO_PROFUNDO"
+    ]
+  },
+  "M15": {
+    "nombre": "Lo que debía terminar",
+    "requiere": [
+      "M14=HECHA",
+      "NUCLEO_SUPERIOR=true"
+    ],
+    "room_central": "nucleo_archivo_promesa",
+    "gates": [
+      "PASO_PULSO=false",
+      "NUCLEO_PROFUNDO=false"
+    ],
+    "evidencia": {
+      "RELEVO_PREVISTO": {
+        "fuentes": [
+          "nucleo_archivo_promesa.relevo"
+        ]
+      },
+      "APLAZAMIENTO_TECNICO": {
+        "concepto": "relevo/prototipo aún no seguro",
+        "fuentes_candidatas": [
+          "nucleo_archivo_promesa.aplazamientos",
+          "nucleo_archivo_promesa.placas"
+        ]
+      },
+      "APLAZAMIENTO_RUPTURA": {
+        "concepto": "pérdida de capacidad tras ruptura de Primera Ala",
+        "fuentes_candidatas": [
+          "nucleo_archivo_promesa.aplazamientos",
+          "nucleo_archivo_promesa.placas"
+        ]
+      },
+      "NORMALIZACION_MANTENIMIENTO": {
+        "concepto": "la excepción termina convertida en procedimiento/mantenimiento",
+        "fuentes_candidatas": [
+          "nucleo_archivo_promesa.placas",
+          "nucleo_archivo_promesa.aplazamientos"
+        ]
+      }
+    },
+    "cierre": {
+      "regla": "relevo previsto + cadena de aplazamientos suficientemente reconstruida",
+      "produce": [
+        "M15=HECHA",
+        "R9=CONFIRMADO",
+        "Comprension +1 ARC1_M15_RELEVO_APLAZADO",
+        "condiciones previas para futuro evento M16 satisfechas"
+      ]
+    },
+    "history": {
+      "posible": true,
+      "efecto": "postura sobre responsabilidad heredada",
+      "no_decide": [
+        "LIBERAR",
+        "CUSTODIAR",
+        "R9"
+      ]
+    },
+    "recompensas": {
+      "comprension": 1,
+      "merito": "IMPORTANTE_NUMERO_PENDIENTE",
+      "contribucion": "MINIMA_O_NINGUNA_PENDIENTE_BALANCE"
+    },
+    "no_revelar": [
+      "R7",
+      "R10",
+      "dependencia viva actual",
+      "identidad actual de la Grulla",
+      "LIBERAR/CUSTODIAR"
+    ],
+    "no_abrir": [
+      "PASO_PULSO",
+      "NUCLEO_PROFUNDO"
+    ]
+  },
+  "transicion_M15_M16": {
+    "regla": "M15 no dispara crisis en el mismo cierre",
+    "tiempo_diegetico": false,
+    "estado": "evento narrativo separado a reconciliar en M16",
+    "prohibicion": "no usar temporizador ni entrarSala genérico como sustituto"
+  },
+  "persistencia": {
+    "raiz": "flags.arc1",
+    "estructuras": [
+      "evidenciaMantenimiento",
+      "evidenciaPacto",
+      "evidenciaPromesa",
+      "revelaciones.R6/R8/R9",
+      "permisos.MANTENIMIENTO_INVESTIGACION",
+      "permisos.NUCLEO_SUPERIOR"
+    ],
+    "hitos": "reutilizar flags.arc1.hitos si el contrato global 3C.7 lo conserva",
+    "regla": "una sola fuente persistente por hecho"
+  },
+  "idempotencia": [
+    "cada evidencia nueva registra una vez y reconcilia en la misma acción",
+    "repeticiones no repagan Comprensión/Mérito/Contribución",
+    "save/load no reactiva eventos",
+    "gates/permisos persisten coherentemente"
+  ],
+  "npcs": {
+    "M13": [
+      "Duan Shibo",
+      "He Zhen",
+      "Ma Qiren",
+      "Lu Cheng",
+      "Song Rui"
+    ],
+    "anclaje_duan": {
+      "documentado": true,
+      "propuesta_room": "oficina_logistica"
+    },
+    "otros": "usar territorios válidos; no inventar reunión conjunta",
+    "M14_M15": "investigación principalmente material/documental"
+  },
+  "legacy_no_canon": [
+    "Perla de la Marea como llave",
+    "Pluma Celeste como llave",
+    "Sombra derrotada abre historia",
+    "Centinela derrotado abre historia",
+    "dos reliquias como cerradura narrativa"
+  ],
+  "pendientes": [
+    "auditar mapeo M13 a scenery",
+    "auditar grupos semánticos M14",
+    "auditar número/nombre de hitos M15 para no endurecer T289",
+    "modelo uniforme permisos",
+    "balance numérico M13-M15",
+    "reconciliar evento separado M16",
+    "runtime predecesor tras PASS 3C.6"
+  ],
+  "prohibicion": "NO_IMPLEMENTAR_TODAVIA"
+}
