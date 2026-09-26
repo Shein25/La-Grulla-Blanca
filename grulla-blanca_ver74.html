@@ -14861,6 +14861,16 @@ class Combate {
     this.round = 0;
   }
 
+  // Hook de integración experimental: observa únicamente el resultado ya
+  // resuelto por absorberGolpe(). Si no hay consumidor, el combate queda
+  // exactamente como antes. El payload coincide con el contrato del
+  // Resolved Combat Signal Adapter y no contiene HP, logs ni estado derivado.
+  emitirAbsorcionResuelta(absorbido) {
+    const hook = this.j?.onPlayerAbsorptionResolved;
+    if (typeof hook !== "function") return;
+    hook(Object.freeze({ round: this.round, absorbido }));
+  }
+
   ef() {
     const e = this.j.efectivo();
     return this.buff ? { ...e, ataque: e.ataque + this.buff } : e;
@@ -15411,6 +15421,7 @@ class Combate {
         const gu = this.estadoDe("jugador", "guardia");
         if (gu) {
           const r = this.absorberGolpe(gu, dmg);
+          this.emitirAbsorcionResuelta(r.absorbido);
           dmgFinal = dmg - r.absorbido;
           extra = r.extra;
           if (r.rota) avisoGuardia = gu.expira || "Tu protección se disipa.";
@@ -26654,6 +26665,43 @@ PRUEBAS.registrar("turno: los cadáveres no envejecen con órdenes inválidas", 
 });
 
 // ---------- combate aislado ----------
+
+PRUEBAS.registrar("integración monstruos: absorción expone señal estructurada", () => {
+  const j = PRUEBAS.banco();
+  const senales = [];
+  j.onPlayerAbsorptionResolved = senal => senales.push(senal);
+  j.player.hp = j.player.max_hp = 200;
+  j.player.defensa = -50;
+
+  const mob = crearMob("rata_qi", MOBS.rata_qi);
+  mob.ataque = 100;
+  mob.daño = "4";
+  mob.tecnica = null;
+
+  const c = new Combate(j, mob, "rata_qi");
+  c.round = 3;
+  c.aplicar("jugador", {
+    tipo: "guardia", nombre: "Hook test", duracion: 1,
+    params: { reduccion: 2, capacidad: 2, capacidadMax: 2 }
+  });
+
+  Azar.sembrar(2);
+  c.respuestaEnemigos([]);
+  Azar.libre();
+
+  const malas = [];
+  if (senales.length !== 1) {
+    malas.push(`esperaba 1 señal de absorción; recibió ${senales.length}`);
+    return malas;
+  }
+  const senal = senales[0];
+  if (senal.round !== 3 || senal.absorbido !== 2)
+    malas.push(`payload inesperado: ${JSON.stringify(senal)}`);
+  if (Object.keys(senal).sort().join(",") !== "absorbido,round")
+    malas.push(`shape inesperado: ${Object.keys(senal).join(",")}`);
+  if (!Object.isFrozen(senal)) malas.push("la señal no está congelada");
+  return malas;
+});
 
 PRUEBAS.registrar("combate: una pelea entera contra cada criatura", () => {
   const malas = [];
