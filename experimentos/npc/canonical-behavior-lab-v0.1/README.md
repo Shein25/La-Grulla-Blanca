@@ -24,6 +24,7 @@ Una política experimental **no se convierte en canon** por estar en este labora
 4. `qiao_ren` — Disciplina y Administración.
 5. `lin_yue` — Aspirante, enlace territorial/rutas.
 6. `han_qiao` — Aspirante, recursos/contactos y logística.
+7. `zhao_wen` — Aspirante, piezas documentales / análisis.
 
 Motivo: es funcional, tiene movilidad `RUTA`, territorio y ruta documentados, y permite comparar limpiamente FSM contra Behavior Tree.
 
@@ -185,3 +186,24 @@ Gap detectado:
 - el GOAP actual sólo representa `dutySatisfied`;
 - no hay cantidades, inventario, carros, destinos ni reparto de recursos;
 - `RESOURCE_ALLOCATION_AND_LOGISTICS` queda como capacidad de dominio pendiente.
+
+
+## Zhao Wen — baseline de conocimiento
+
+Resultado: `15 PASS / 0 FAIL`.
+
+Invariante confirmado:
+
+```text
+conocimiento = DESCONOCIDO
+→ NO_SABE
+→ disclosure = 0
+```
+
+Ni confianza, afinidad, deuda, respeto ni rango alto del jugador pueden revelar conocimiento inexistente.
+
+Gap detectado:
+
+- M09 requiere `ARCHIVO_RESTRINGIDO` concedido por Qiao Ren;
+- el stack GOAP actual no representa ese permiso;
+- queda como capacidad institucional pendiente.
