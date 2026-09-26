@@ -29,6 +29,7 @@
     "benchmark:grulla-three-phase": "node benchmark/grulla-three-phase-benchmark-v0.1.mjs",
     "test:learning-ceiling": "node tests/adaptive-learning-ceiling.test.mjs",
     "test:grulla-counterplay": "node tests/grulla-counterplay-matrix.test.mjs",
-    "benchmark:grulla-phase1-root-grid": "python benchmark/colab/grulla-phase1-root-grid-v0.1.py"
+    "benchmark:grulla-phase1-root-grid": "python benchmark/colab/grulla-phase1-root-grid-v0.1.py",
+    "benchmark:grulla-phase1-paso": "python benchmark/colab/grulla-phase1-paso-v0.1.py"
   }
 }
