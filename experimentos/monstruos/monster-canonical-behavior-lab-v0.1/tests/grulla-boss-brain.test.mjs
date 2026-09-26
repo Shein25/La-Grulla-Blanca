@@ -257,6 +257,30 @@ T('counter announcement is available immediately when a skill becomes learned',(
   assert.ok(a.telegraph.length>20);
 });
 
+
+T('minimal legal LianQi toolkit can avoid hard lock with root technique plus basic attack',()=>{
+  for(const [tid,element] of [['palma','fuego'],['filo','metal'],['latigo','agua']]){
+    let s=initialGrullaBrainState({phase:1});
+    const seq=[
+      tech(tid,element),
+      {type:'BASIC',damageBand:'LOW'},
+      {type:'DEFEND'},
+      tech(tid,element),
+      {type:'BASIC',damageBand:'LOW'},
+      tech(tid,element)
+    ];
+    for(const a of seq)s=observeResolvedPlayerAction(s,a).state;
+    s=enterGrullaPhase(s,2);
+    assert.equal(s.techniqueCounter,null,tid+' should not enter Fase II pre-locked');
+
+    for(let i=0;i<8;i++){
+      const a=i%2===0?tech(tid,element):{type:'BASIC',damageBand:'LOW'};
+      s=observeResolvedPlayerAction(s,a).state;
+      assert.equal(s.techniqueCounter,null,tid+' should stay unlocked when alternating with BASIC');
+    }
+  }
+});
+
 console.log('');
 console.log('PASS: '+pass);
 console.log('FAIL: '+fail);
