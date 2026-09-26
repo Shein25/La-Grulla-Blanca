@@ -56,4 +56,21 @@ Hace falta un overlay táctico experimental que:
 
 ## Estado
 
-`ALL_COMBATANTS_ASSIGNMENT_BASELINE: PENDING_CONFIRMATION`
+`ALL_COMBATANTS_ASSIGNMENT_BASELINE: 15_PASS_0_FAIL_CONFIRMED`
+
+
+## Confirmación
+
+```text
+PASS: 15
+FAIL: 0
+```
+
+Cobertura:
+
+- 18/18 criaturas combatientes tienen asignación candidata;
+- `muneco_practica` queda excluido;
+- todos los perfiles cognitivos/sociales existen;
+- ventanas de memoria respetan el perfil;
+- determinismo por seed preservado;
+- memoria y social todavía no cambian scores bajo catálogo canónico sin overlay.
