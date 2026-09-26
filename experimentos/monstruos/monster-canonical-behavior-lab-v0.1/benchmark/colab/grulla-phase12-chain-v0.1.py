@@ -94,7 +94,7 @@ def apply_player_attack(act,locked,root,patt,tcost,nd,fd,tflat,tab,tcrit,add,rbu
                         bdef,def_next,evade_next,reserve,reserve_per,qi,bhp,burn_turns,deb,debturn):
     qspent=0; techid=-1; elem=-1; band=0
     if act==0: # BASIC
-        hit,crit=hit_roll(patt,bdef,20,evade_next)
+        hit,crit=hit_roll(patt,bdef+def_next,20,evade_next)
         dmg=0
         if hit:
             dmg=dice(1,8)
@@ -106,7 +106,7 @@ def apply_player_attack(act,locked,root,patt,tcost,nd,fd,tflat,tab,tcrit,add,rbu
     else: # TECH
         qspent=tcost; techid=0; elem=root; qi-=tcost
         if not locked:
-            hit,crit=hit_roll(patt+tab,bdef,tcrit,evade_next)
+            hit,crit=hit_roll(patt+tab,bdef+def_next,tcrit,evade_next)
             dmg=0
             if hit:
                 dmg=dice(nd,fd)+tflat+(dice(1,4) if add else 0)
