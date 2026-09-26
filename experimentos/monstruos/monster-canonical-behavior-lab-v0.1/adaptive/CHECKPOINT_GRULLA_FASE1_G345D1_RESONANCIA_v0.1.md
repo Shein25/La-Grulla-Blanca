@@ -446,3 +446,155 @@ Siguiente bloque recomendado:
 2. decidir si x1,75 se congela;
 3. después reevaluar DEF13/14 y Pata +2/+3/+4;
 4. recién entonces cerrar Fase I.
+
+
+## 16. Validación directa final — Resonancia x1,75
+
+Como aumentar Resonancia de x1,50 a x1,75 sólo puede empeorar o dejar igual una configuración que mantenga Piel activa durante el Golpe resonante, no se repitieron completos los grids ya cerrados. Se confirmaron a 20.000 duelos por escenario los máximos peligrosos identificados en cada familia con Piel.
+
+Volumen:
+
+```text
+3 configuraciones
+× 27 formas raíz
+× 2 DEF
+× 20.000
+=
+3.240.000 duelos
+```
+
+Resultado:
+
+| Familia | Configuración | DEF13 | DEF14 |
+|---|---|---:|---:|
+| Piel + Filamento | **C22_F00** | **49,08%** | **38,00%** |
+| Paso + Piel | **P00_C22** | **55,40%** | **45,85%** |
+| Triple | **P00_C02_F03** | **22,00%** | **14,45%** |
+
+Referencia de esos mismos máximos bajo x1,50:
+
+```text
+Piel + Filamento C22_F00
+58,44 / 46,44
+
+Paso + Piel P00_C22
+62,34 / 52,53
+
+Triple P00_C02_F03
+28,01 / 18,79
+```
+
+No aparece ninguna sinergia nueva. El endurecimiento de Resonancia reduce todas las rutas problemáticas.
+
+`Paso + Filamento` no usa Piel y, por contrato, no interactúa con Resonancia; conserva el cierre previo.
+
+## 17. Sensibilidad final — DEF13/14 × Pata +2/+3/+4
+
+Se compararon las cuatro rutas representativas finales:
+
+```text
+READER universal
+Paso óptimo
+Filamento óptimo
+Piel G345_D1 óptima + Resonancia x1,75
+```
+
+Volumen:
+
+```text
+3 valores de Pata
+× 4 estrategias
+× 27 formas raíz
+× 2 DEF
+× 20.000
+=
+12.960.000 duelos
+```
+
+### DEF13
+
+| Pata | READER | Paso | Filamento | Piel G345 + Res x1,75 |
+|---:|---:|---:|---:|---:|
+| +2 | 63,08% | 68,50% | 77,60% | 76,79% |
+| **+3** | **60,87%** | **66,29%** | **75,60%** | **75,29%** |
+| +4 | 58,51% | 63,66% | 73,59% | 73,62% |
+
+### DEF14
+
+| Pata | READER | Paso | Filamento | Piel G345 + Res x1,75 |
+|---:|---:|---:|---:|---:|
+| +2 | 57,25% | 62,24% | 70,08% | 71,80% |
+| **+3** | **54,56%** | **59,46%** | **67,30%** | **69,90%** |
+| +4 | 51,92% | 56,43% | 64,11% | 67,75% |
+
+Con Pata +3, extremos por forma raíz:
+
+```text
+DEF13
+READER      38,99% .. 80,90%
+Paso        45,96% .. 86,03%
+Filamento   57,39% .. 88,68%
+Piel        58,52% .. 87,97%
+
+DEF14
+READER      32,80% .. 76,41%
+Paso        38,34% .. 81,94%
+Filamento   44,53% .. 86,46%
+Piel        49,23% .. 85,24%
+```
+
+### Decisión
+
+```text
+PATA INMÓVIL = +3 DEF
+DEF GRULLA   = 13
+```
+
+Motivos:
+
+1. Pata +3 reproduce el baseline histórico del READER (~60,9%) y queda entre +2 y +4 sin necesidad de recalibrar el resto.
+2. Con DEF13, Piel y Filamento quedan prácticamente empatados (~75%), eliminando el antiguo outlier.
+3. Paso sigue aportando una ventaja moderada (~66%) sin ser obligatorio.
+4. DEF14 endurece demasiado la cola de builds para ser sólo Fase I de un jefe de tres fases.
+5. La dificultad adicional puede reservarse para la adaptación real de Fase II/III en vez de inflar la defensa base.
+
+## 18. Resultado final del modelo de Fase I
+
+```text
+HP                         150
+ATQ                        4
+DEF                        13
+Golpe                      1d6+2
+Campanada                  2d6+2
+Pata Inmóvil               +3 DEF siguiente ofensiva
+
+Piel                       G345_D1
+Resonancia                 x1,75 daño bruto vs Piel activa
+Resonancia se aplica       al Golpe inmediatamente posterior a Pata
+Absorción                  después del multiplicador
+Si el Golpe falla          Resonancia se consume
+```
+
+La mecánica consigue el objetivo bilateral:
+
+> La Grulla castiga una defensa usada rígidamente, pero el jugador conserva varias respuestas y debe decidir cuándo vale la pena cambiar de herramienta.
+
+No se exige Paso, Filamento ni Piel para superar Fase I.
+
+## 19. Estado
+
+```text
+G234_D1                         FALLBACK HISTÓRICO
+G345_D1                         SELECCIONADO PARA FASE I
+
+RESONANCIA x1,75                SELECCIONADA
+DEF13                           SELECCIONADA
+PATA +3                         SELECCIONADA
+
+VALIDACIÓN COMBINACIONES        PASADA
+SENSIBILIDAD FINAL              PASADA
+
+VER74 PRODUCTIVO                SIN CAMBIOS
+FASE II                         NO TOCAR EN ESTE BLOQUE
+FASE III                        NO TOCAR EN ESTE BLOQUE
+```
