@@ -1,0 +1,29 @@
+GAO SHUN — CANONICAL BEHAVIOR LAB v0.1
+Branch: experiment/npc-canonical-behavior-lab-v0.1
+
+Exact branch-content verification:
+PASS: 17
+FAIL: 0
+
+Audited engine sources:
+FSM blob: 91bb6a67188fd9613d9519658f283ff036d491f4
+BT blob: 94f452866dc566af15dde0dac66f12f13c0cf5fe
+
+Checks:
+PASS canonical id
+PASS policy explicitly EXPERIMENTAL_NON_CANONICAL
+PASS full canonical route contained in posicion_valida
+PASS sala_inicial contained in posicion_valida
+PASS FSM validates
+PASS Behavior Tree validates
+PASS routine FSM intents whitelist
+PASS routine BT intents whitelist
+PASS escalation FSM intents whitelist
+PASS escalation BT intents whitelist
+PASS interruption FSM intents whitelist
+PASS interruption BT intents whitelist
+PASS FSM escalation trace
+PASS BT escalation trace
+PASS BT hostile interruption preempts patrol
+PASS BT terminal patrol completion is not false preemption
+PASS FSM hostile event moves PATROL -> BLOCK immediately

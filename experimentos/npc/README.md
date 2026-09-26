@@ -16,3 +16,5 @@ Esta carpeta agrupa los experimentos cuyo dominio principal son los NPCs.
 Esta agrupación es organizativa. No significa que todos los NPC deban utilizar la misma IA ni que deban cargar todas estas capas.
 
 Cada NPC deberá asignarse posteriormente al motor más simple que cubra correctamente su comportamiento.
+
+- `canonical-behavior-lab-v0.1/` — laboratorio comparativo sobre NPC canónicos; mantiene separados datos canónicos y políticas experimentales. Primer baseline: Gao Shun, FSM vs Behavior Tree.

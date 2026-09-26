@@ -1,0 +1,24 @@
+PEI LUO — CANONICAL BEHAVIOR LAB v0.1
+Branch: experiment/npc-canonical-behavior-lab-v0.1
+
+Exact branch-content verification:
+PASS: 21
+FAIL: 0
+
+Canonical checks:
+PASS id pei_luo
+PASS normal routine explicitly experimental
+PASS crisis-rations hypothesis tied to M16 canon
+PASS full route contained in posicion_valida
+PASS sala_inicial contained in posicion_valida
+PASS transito_tecnico empty
+PASS FSM validates
+PASS Behavior Tree validates
+PASS all scenario intents within whitelist
+PASS FSM normal work cycle
+PASS BT same observable normal work cycle
+PASS FSM crisis interrupts SERVE -> CRISIS
+PASS BT crisis preempts serve
+PASS BT crisis preempts prepare
+PASS FSM crisis recovery uses explicit RETURN state
+PASS canonical profile immutability

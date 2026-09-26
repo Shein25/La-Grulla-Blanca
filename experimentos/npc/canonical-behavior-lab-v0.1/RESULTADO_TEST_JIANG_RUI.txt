@@ -1,0 +1,34 @@
+JIANG RUI — CANONICAL BEHAVIOR LAB v0.1
+Branch: experiment/npc-canonical-behavior-lab-v0.1
+
+Exact branch-content verification:
+PASS: 44
+FAIL: 0
+
+Utility source:
+merge commit: 404411f09c0e110f02c92689ffeb1a3c69a213ab
+engine blob: 8d567625be09a4272c33b939b9b1bd94b68f18e7
+
+Canonical checks:
+PASS id jiang_rui
+PASS Utility traits explicitly non-canonical
+PASS investigation policy linked to LIII
+PASS route-crisis policy linked to M16
+PASS both canonical routes contained in posicion_valida
+PASS sala_inicial contained in posicion_valida
+PASS transito_tecnico empty
+PASS FSM validates
+PASS Behavior Tree validates
+PASS Utility profile validates
+PASS all six Utility contexts validate
+PASS every motor emits/maps only whitelist intents
+PASS routine patrol convergence
+PASS low anomaly/no superior exposes Utility patrol-vs-investigate weighting
+PASS high anomaly/no superior converges on investigation
+PASS low anomaly/with superior exposes Utility reporting choice
+PASS away-from-post convergence
+PASS M16 route-crisis convergence
+PASS Utility low-risk ranking reproducible
+PASS Utility high-risk ranking reproducible
+PASS canonical profile immutability
+PASS Utility calibration profile immutability
