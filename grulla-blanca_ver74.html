@@ -14871,6 +14871,18 @@ class Combate {
     hook(Object.freeze({ round: this.round, absorbido }));
   }
 
+  // Mismo principio para recuperación: beber() resuelve los deltas en el
+  // punto de mutación y Combate sólo les añade la ronda ya consumida.
+  emitirRecuperacionResuelta(delta) {
+    const hook = this.j?.onPlayerRecoveryResolved;
+    if (typeof hook !== "function" || !delta) return;
+    hook(Object.freeze({
+      round: this.round,
+      vidaRecuperada: delta.vidaRecuperada,
+      qiRecuperado: delta.qiRecuperado
+    }));
+  }
+
   ef() {
     const e = this.j.efectivo();
     return this.buff ? { ...e, ataque: e.ataque + this.buff } : e;
@@ -15005,6 +15017,7 @@ class Combate {
     const out = [];
     let consume = true;
     let tecnicaUsadaCooldown = null;
+    let recuperacionResuelta = null;
 
     if (verbo === "atacar") {
       let objetivoElegido = this.e;
@@ -15225,9 +15238,10 @@ class Combate {
       out.push(`   Afirmas los pies: absorbes ${absorcion} qi del enemigo y tu guardia cubrirá los próximos dos golpes que te alcancen.`);
 
     } else if (verbo === "beber") {
-      const [msgs, bebido] = j.beber(args);
+      const [msgs, bebido, recuperacion] = j.beber(args);
       out.push(...msgs);
       consume = bebido;
+      recuperacionResuelta = bebido ? (recuperacion || null) : null;
 
     } else if (verbo === "huir") {
       if (this.permitirHuir) {
@@ -15266,6 +15280,7 @@ class Combate {
 
     if (consume) {
       this.round++;
+      if (recuperacionResuelta) this.emitirRecuperacionResuelta(recuperacionResuelta);
       j.registrarActividadReposo();
       j.avanzarEcologia(1);
       this.avanzarTemporizadores(tecnicaUsadaCooldown);
@@ -20034,12 +20049,14 @@ return ["Injerto pendiente de implementación canónica 3C"];
       p.inventario.splice(p.inventario.indexOf(mid), 1);
       const antes = p.qi;
       p.qi = Math.min(p.qi_max, p.qi + it.recupera_qi);
+      const qiRecuperado = p.qi - antes;
       const impureza = it.impureza || 0;
       p.impurezas = (p.impurezas || 0) + impureza;
       const nota = impureza
         ? `   (La energía apresurada deja impureza +${impureza}.)`
         : "   (La esencia circula limpia: no deja impurezas.)";
-      return [[`Bebes ${it.name}: +${p.qi - antes} qi.`, nota], true];
+      return [[`Bebes ${it.name}: +${qiRecuperado} qi.`, nota], true,
+        Object.freeze({ vidaRecuperada: 0, qiRecuperado })];
     }
     if (it.remienda) {
       if ((p.heridas_meridianos || 0) <= 0) return [["Tus meridianos no necesitan remiendo. Guardas la píldora."], false];
@@ -20054,12 +20071,15 @@ return ["Injerto pendiente de implementación canónica 3C"];
     }
     if (it.tipo === "consumible" && it.cura) {
       p.inventario.splice(p.inventario.indexOf(mid), 1);
+      const antes = p.hp;
       const cura = tirar(it.cura);
       p.hp = Math.min(p.max_hp, p.hp + cura);
+      const vidaRecuperada = p.hp - antes;
       const impureza = it.impureza ?? 1;
       p.impurezas = (p.impurezas || 0) + impureza;
       const nota = impureza ? `   (El qi barato deja sedimento: impureza +${impureza}.)` : "   (El refinado fue limpio: no deja impurezas.)";
-      return [[`Bebes ${it.name}: +${cura} de vida.`, nota], true];
+      return [[`Bebes ${it.name}: +${cura} de vida.`, nota], true,
+        Object.freeze({ vidaRecuperada, qiRecuperado: 0 })];
     }
     if (mid === "pildora_fundacion") {
       return [["La Píldora de Fundación no se bebe: se consume meditando con el qi al tope del tope."], false];
@@ -26700,6 +26720,53 @@ PRUEBAS.registrar("integración monstruos: absorción expone señal estructurada
   if (Object.keys(senal).sort().join(",") !== "absorbido,round")
     malas.push(`shape inesperado: ${Object.keys(senal).join(",")}`);
   if (!Object.isFrozen(senal)) malas.push("la señal no está congelada");
+  return malas;
+});
+
+PRUEBAS.registrar("integración monstruos: recuperación expone deltas y hook estructurado", () => {
+  const malas = [];
+
+  {
+    const j = PRUEBAS.banco();
+    const senales = [];
+    j.onPlayerRecoveryResolved = senal => senales.push(senal);
+    j.player.qi = 1;
+    j.player.qi_max = 20;
+    j.player.inventario.push("destilado_lunar");
+
+    const mob = crearMob("rata_qi", MOBS.rata_qi);
+    mob.ataque = -100;
+    mob.tecnica = null;
+    const c = new Combate(j, mob, "rata_qi");
+    j.combate = c;
+
+    Azar.sembrar(1);
+    c.turno("beber", ["destilado", "lunar"]);
+    Azar.libre();
+
+    if (senales.length !== 1) malas.push(`esperaba 1 señal de recuperación; recibió ${senales.length}`);
+    else {
+      const senal = senales[0];
+      if (senal.round !== 1 || senal.vidaRecuperada !== 0 || senal.qiRecuperado !== 18)
+        malas.push(`señal de qi inesperada: ${JSON.stringify(senal)}`);
+      if (Object.keys(senal).sort().join(",") !== "qiRecuperado,round,vidaRecuperada")
+        malas.push(`shape recuperación inesperado: ${Object.keys(senal).join(",")}`);
+      if (!Object.isFrozen(senal)) malas.push("la señal de recuperación no está congelada");
+    }
+  }
+
+  {
+    const j = PRUEBAS.banco();
+    j.player.hp = j.player.max_hp - 2;
+    j.player.inventario.push("pocion_refinada");
+    Azar.sembrar(2);
+    const [, bebido, delta] = j.beber(["pocion", "refinada"]);
+    Azar.libre();
+    if (!bebido || !delta) malas.push("poción de vida no devolvió delta estructurado");
+    else if (delta.vidaRecuperada !== 2 || delta.qiRecuperado !== 0)
+      malas.push(`delta de vida no respetó el tope real: ${JSON.stringify(delta)}`);
+  }
+
   return malas;
 });
 
