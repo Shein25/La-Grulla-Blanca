@@ -21,6 +21,7 @@ Una política experimental **no se convierte en canon** por estar en este labora
 1. `gao_shun` — Guardia de la Puerta Roja.
 2. `pei_luo` — Responsable de Cocina/Comedor.
 3. `jiang_rui` — Capitán de patrulla.
+4. `qiao_ren` — Disciplina y Administración.
 
 Motivo: es funcional, tiene movilidad `RUTA`, territorio y ruta documentados, y permite comparar limpiamente FSM contra Behavior Tree.
 
@@ -104,3 +105,23 @@ Hallazgo provisional:
 - una anomalía grave sin superior induce `investigar`.
 
 Los traits de Utility son de calibración y NO son canon de Jiang Rui.
+
+
+## Qiao Ren — baseline avanzado
+
+Stack probado:
+
+```text
+Scheduler → Memory/Relations → Utility → GOAP → Execution Session
+```
+
+Resultado: `13 PASS / 0 FAIL`.
+
+Confirmado:
+
+- deber institucional → `FULFILL_DUTY` → `cumplir_deber`;
+- coordinación M16 con evidencia → `REPORT_SUPERIOR` → `ir_superior → informar_superior`;
+- fuera del puesto → `RETURN_POST`;
+- M17 exige autorización de `NUCLEO_PROFUNDO`, capacidad que GOAP actual no representa.
+
+El gap M17 se registra como límite del motor, no se rellena con conducta inventada.
