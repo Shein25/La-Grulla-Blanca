@@ -56,7 +56,7 @@ Estas asignaciones **no son canon**.
 
 ## Estado
 
-`MONSTER_LAB_STATUS: INTENT_BRIDGE_CONFIRMED`
+`MONSTER_LAB_STATUS: INTENT_BRIDGE_AND_SEMANTIC_MEMORY_CONFIRMED`
 
 
 ## Baseline representativo confirmado
@@ -121,4 +121,29 @@ TECHNIQUE
 
 preservando íntegramente el payload canónico y bloqueando técnicas fuera de cadencia.
 
-Siguiente hueco: registrar memoria semántica desde resultados reales del combate.
+## Semantic Memory Recorder v0.1
+
+Resultado: `12 PASS / 0 FAIL`.
+
+Cadena confirmada:
+
+```text
+resolved outcome normalizado
+→ Semantic Memory Recorder
+→ memoria semántica
+→ Monster Combat AI
+```
+
+Total de suites funcionales cerradas del laboratorio:
+
+```text
+canon transversal         13/13
+baseline representativo   18/18
+18 combatientes           15/15
+tactical overlay          14/14
+intent bridge             11/11
+semantic memory           12/12
+TOTAL                     83/83 PASS
+```
+
+Siguiente hueco: adaptar señales reales ya resueltas por el combate productivo al contrato de outcomes normalizados.
