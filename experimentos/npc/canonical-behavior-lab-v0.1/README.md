@@ -22,6 +22,7 @@ Una política experimental **no se convierte en canon** por estar en este labora
 2. `pei_luo` — Responsable de Cocina/Comedor.
 3. `jiang_rui` — Capitán de patrulla.
 4. `qiao_ren` — Disciplina y Administración.
+5. `lin_yue` — Aspirante, enlace territorial/rutas.
 
 Motivo: es funcional, tiene movilidad `RUTA`, territorio y ruta documentados, y permite comparar limpiamente FSM contra Behavior Tree.
 
@@ -125,3 +126,38 @@ Confirmado:
 - M17 exige autorización de `NUCLEO_PROFUNDO`, capacidad que GOAP actual no representa.
 
 El gap M17 se registra como límite del motor, no se rellena con conducta inventada.
+
+
+## Lin Yue — baseline de compañero
+
+Stack probado:
+
+```text
+Memory → Relations → Utility → GOAP → Execution Session
+```
+
+Resultado: `15 PASS / 0 FAIL`.
+
+Caso central:
+
+```text
+sin memoria
+→ hablar_jugador
+→ sin plan GOAP
+
+PLAYER_HELPED_ME
+→ afinidad/confianza/deuda derivadas aumentan
+→ ayudar_jugador
+→ HELP_PLAYER
+→ ir_jugador
+→ ayudar_jugador
+→ GOAL_REACHED
+```
+
+Las relaciones base permanecen inmutables.
+
+Gap detectado:
+
+- M16 exige que Lin Yue vaya a RUTAS por iniciativa propia;
+- el stack avanzado actual no implementa navegación física por rooms;
+- se registra como gap de capacidad, no se simula falsamente.
