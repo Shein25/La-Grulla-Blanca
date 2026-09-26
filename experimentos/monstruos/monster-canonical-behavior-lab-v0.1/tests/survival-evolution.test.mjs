@@ -137,6 +137,28 @@ T('CADENCE_COMPAT keeps canonical technique authoritative on due round',()=>{
   }
 });
 
+T('smarter evolved profiles take more finishing risks when both sides are low',()=>{
+  const ids=['rata_qi','serpiente_qi','lobo_espiritual','guardian_coral'];
+  const rates=ids.map(id=>defenseRate(id,{signals:{SELF_LOW_HP:1,PLAYER_LOW_HP:1},runs:4000}));
+  assert.ok(rates[0]>rates[1] && rates[1]>rates[2] && rates[2]>rates[3],JSON.stringify({ids,rates}));
+});
+
+T('defensive effects stay inside conservative stage-one caps',()=>{
+  for(const [id,policy] of Object.entries(SURVIVAL_POLICIES)){
+    const effect=policy.effect;
+    assert.equal(effect.cooldownRounds,2,id);
+    if(effect.kind==='EVADE_NEXT'){
+      assert.equal(effect.durationActions,1,id);
+      assert.ok(effect.evasionBonus>=20&&effect.evasionBonus<=25,id);
+    }else if(effect.kind==='MITIGATE_NEXT'){
+      assert.equal(effect.durationHits,1,id);
+      assert.ok(effect.damageReductionPct>=30&&effect.damageReductionPct<=40,id);
+    }else{
+      assert.fail(`${id}: effect kind desconocido ${effect.kind}`);
+    }
+  }
+});
+
 T('attack-only monsters gain defense rather than invented offense',()=>{
   for(const id of ['rata_qi','eco_caido']){
     const def=M[id],stage=1;
