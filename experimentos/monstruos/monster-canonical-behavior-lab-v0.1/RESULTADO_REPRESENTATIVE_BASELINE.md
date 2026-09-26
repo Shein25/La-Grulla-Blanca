@@ -49,4 +49,23 @@ La siguiente capa deberá ser una política experimental separada para pesos tá
 
 ## Estado
 
-`REPRESENTATIVE_MONSTER_BASELINE: PENDING_RUNTIME_CONFIRMATION`
+`REPRESENTATIVE_MONSTER_BASELINE: 18_PASS_0_FAIL_CONFIRMED`
+
+
+## Ejecución confirmada
+
+```text
+Representative baseline: 18 PASS / 0 FAIL
+Canon transversal:       13 PASS / 0 FAIL
+Acumulado actual:         31 PASS / 0 FAIL
+```
+
+Se verificó sobre los archivos exactos de la rama:
+
+- 19/19 MOBS producen un único intent compatible con la cadencia oficial;
+- 16/16 técnicas aparecen exactamente en su ronda `cada`;
+- 3 criaturas sin técnica permanecen en ataque básico;
+- efectos canónicos se etiquetan sin ejecutarse;
+- perfiles representativos limitan memoria a 0/1/2/3/4;
+- criaturas sin asignación explícita no entran silenciosamente en `DECISION_EXPERIMENTAL`;
+- el resultado del kernel permanece congelado y el snapshot canónico no se muta.
