@@ -170,12 +170,58 @@ T('defensive effects stay inside conservative stage-one caps',()=>{
       assert.equal(effect.durationHits,1,id);
       assert.ok(effect.damageReductionPct>=30&&effect.damageReductionPct<=35,id);
     }else if(effect.kind==='ABSORB_RESERVE'){
-      assert.ok(effect.absorbPerHit>=4&&effect.absorbPerHit<=7,id);
+      assert.ok(effect.absorbPerHit>=3&&effect.absorbPerHit<=5,id);
       assert.equal(effect.reserve,effect.absorbPerHit*2,id);
     }else{
       assert.fail(`${id}: effect kind desconocido ${effect.kind}`);
     }
   }
+});
+
+T('four defense families have distinct mechanical niches under ver74 hit math',()=>{
+  const hitChance=(attack,defense,evasion=5)=>{
+    let hits=0;
+    for(let roll=1;roll<=20;roll++){
+      if(roll===1)continue;
+      if(roll===20||roll+attack>=defense+Math.max(0,Math.round((evasion-5)/5)))hits++;
+    }
+    return hits/20;
+  };
+  const prevented=(effect,{attack,defense,damage})=>{
+    const base=hitChance(attack,defense,5);
+    if(effect.kind==='EVADE_NEXT'){
+      return (base-hitChance(attack,defense,5+effect.evasionBonus))*damage;
+    }
+    if(effect.kind==='DEFENSE_UP'){
+      return (base-hitChance(attack,defense+effect.defenseBonus,5))*damage;
+    }
+    if(effect.kind==='MITIGATE_NEXT'){
+      return base*Math.floor(damage*effect.damageReductionPct/100);
+    }
+    if(effect.kind==='ABSORB_RESERVE'){
+      return base*Math.min(damage,effect.absorbPerHit,effect.reserve);
+    }
+    throw new Error(effect.kind);
+  };
+
+  const evasive=SURVIVAL_POLICIES.rata_qi.effect;
+  const flat=SURVIVAL_POLICIES.centinela_pluma.effect;
+  const mitigate=SURVIVAL_POLICIES.eco_caido.effect;
+  const absorb=SURVIVAL_POLICIES.guardian_coral.effect;
+
+  const inaccurateHeavy={attack:4,defense:12,damage:20};
+  const accurateSmall={attack:10,defense:12,damage:4};
+  const accurateHeavy={attack:10,defense:12,damage:20};
+
+  assert.ok(prevented(evasive,inaccurateHeavy)>prevented(absorb,inaccurateHeavy));
+  assert.ok(prevented(absorb,accurateSmall)>prevented(mitigate,accurateSmall));
+  assert.ok(prevented(mitigate,accurateHeavy)>prevented(absorb,accurateHeavy));
+
+  const evade20=SURVIVAL_POLICIES.serpiente_qi.effect;
+  assert.equal(
+    prevented(evade20,{attack:6,defense:12,damage:10}),
+    prevented(flat,{attack:6,defense:12,damage:10})
+  );
 });
 
 T('attack-only monsters gain defense rather than invented offense',()=>{
