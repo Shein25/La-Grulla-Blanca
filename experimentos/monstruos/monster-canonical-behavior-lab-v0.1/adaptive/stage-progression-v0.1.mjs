@@ -58,6 +58,12 @@ export const NATIVE_STAGE_BY_MOB=Object.freeze({
 
 // La etapa del jugador limita QUÉ puede aprender una población, pero no concede
 // estadísticas automáticamente. adaptiveXp/encuentros seguirá decidiendo SI lo aprende.
+export const ADAPTIVE_BASE_ONLY=Object.freeze({
+  tier:0,
+  label:'BASE_NATURAL',
+  capabilities:[]
+});
+
 export const ADAPTIVE_CAPABILITY_BY_STAGE_DELTA=Object.freeze({
   0:Object.freeze({
     tier:1,
@@ -104,9 +110,15 @@ export function stageRelation(mobId,playerStage){
 
 export function adaptiveCapabilityCeiling(mobId,playerStage){
   const relation=stageRelation(mobId,playerStage);
-  // Un monstruo encontrado antes de su etapa nativa no recibe una bonificación:
-  // ya es una amenaza adelantada. La capa adaptativa empieza al alcanzar su banda.
-  const delta=Math.max(0,Math.min(3,relation.delta));
+  // Un monstruo encontrado antes de su etapa nativa no recibe adaptación:
+  // ya es una amenaza adelantada por su ficha natural.
+  if(relation.delta<0){
+    return Object.freeze({
+      ...relation,
+      ...ADAPTIVE_BASE_ONLY
+    });
+  }
+  const delta=Math.min(3,relation.delta);
   return Object.freeze({
     ...relation,
     ...ADAPTIVE_CAPABILITY_BY_STAGE_DELTA[delta]
