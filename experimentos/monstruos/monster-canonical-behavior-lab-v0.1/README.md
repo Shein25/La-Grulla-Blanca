@@ -56,4 +56,17 @@ Estas asignaciones **no son canon**.
 
 ## Estado
 
-`MONSTER_LAB_STATUS: CANON_AND_ADAPTER_CREATED`
+`MONSTER_LAB_STATUS: REPRESENTATIVE_BASELINE_CONFIRMED`
+
+
+## Baseline representativo confirmado
+
+```text
+all-mobs canon          13/13 PASS
+representative baseline 18/18 PASS
+TOTAL                    31/31 PASS
+```
+
+La cadencia productiva queda preservada para los 19 MOBS.
+
+Los cinco representantes prueban el cableado de perfiles cognitivos, pero el adaptador canónico mantiene deliberadamente vacíos `signalWeights`, `memoryWeights` y `socialWeights`. Por tanto, la siguiente fase es definir asignaciones candidatas para las criaturas combatientes y una capa táctica experimental separada del canon.
