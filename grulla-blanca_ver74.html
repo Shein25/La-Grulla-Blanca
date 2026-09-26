@@ -26732,7 +26732,7 @@ PRUEBAS.registrar("integración monstruos: recuperación expone deltas y hook es
     j.onPlayerRecoveryResolved = senal => senales.push(senal);
     j.player.qi = 1;
     j.player.qi_max = 20;
-    j.player.inventario.push("destilado_lunar");
+    j.player.inventario.push("elixir_qi");
 
     const mob = crearMob("rata_qi", MOBS.rata_qi);
     mob.ataque = -100;
@@ -26741,13 +26741,13 @@ PRUEBAS.registrar("integración monstruos: recuperación expone deltas y hook es
     j.combate = c;
 
     Azar.sembrar(1);
-    c.turno("beber", ["destilado", "lunar"]);
+    c.turno("beber", ["elixir", "qi"]);
     Azar.libre();
 
     if (senales.length !== 1) malas.push(`esperaba 1 señal de recuperación; recibió ${senales.length}`);
     else {
       const senal = senales[0];
-      if (senal.round !== 1 || senal.vidaRecuperada !== 0 || senal.qiRecuperado !== 18)
+      if (senal.round !== 1 || senal.vidaRecuperada !== 0 || senal.qiRecuperado !== 19)
         malas.push(`señal de qi inesperada: ${JSON.stringify(senal)}`);
       if (Object.keys(senal).sort().join(",") !== "qiRecuperado,round,vidaRecuperada")
         malas.push(`shape recuperación inesperado: ${Object.keys(senal).join(",")}`);
