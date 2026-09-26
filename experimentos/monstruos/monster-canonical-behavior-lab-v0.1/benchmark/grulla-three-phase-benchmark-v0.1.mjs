@@ -83,10 +83,11 @@ function guardDamage(g,d){if(!g?.length||d<=0)return [d,g];const a=Math.floor(d*
 
 function duel(base,strategy,seed){
  const r=rng32(seed),p={...base,hp:base.maxHp,qi:base.maxQi,potions:1};
- let brain=initialGrullaBrainState({phase:1}),guard=null,burn=null,debil=0,debilTurns=0,total=0;
+ let brain=initialGrullaBrainState({phase:1}),guard=null,total=0;
  for(let phase=1;phase<=3;phase++){
    if(phase>1)brain=enterGrullaPhase(brain,phase);
-   const st=PHASE[phase];let bossHp=st.hp,defNext=0,evaNext=0,reserve=0;
+   // La transición limpia estados aplicados a la manifestación anterior.
+   const st=PHASE[phase];let bossHp=st.hp,defNext=0,evaNext=0,reserve=0,burn=null,debil=0,debilTurns=0;
    while(bossHp>0&&p.hp>0&&total<90){
      total++;
      const sel=chooseGrullaIntent({state:brain,context:{playerHpRatio:Math.max(0,p.hp/p.maxHp),playerQiRatio:Math.max(0,p.qi/p.maxQi),selfHpRatio:Math.max(0,bossHp/st.hp)},rng:r});
