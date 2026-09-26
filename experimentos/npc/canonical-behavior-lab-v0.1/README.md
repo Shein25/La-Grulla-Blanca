@@ -330,3 +330,23 @@ Hallazgos transversales:
 - Behavior Tree encaja bien como hipótesis reactiva para Wei Jian;
 - dominios Archivo, Medicina, Recursos y Formaciones requieren estado de mundo específico antes de que `FULFILL_DUTY` deje de ser una abstracción booleana;
 - el esquema de conocimiento R1-R3 es insuficiente para varios NPC de autoridad.
+
+
+## Intermedios — bloque completo
+
+Jiang Rui ya tenía baseline individual y los seis restantes quedaron cubiertos por la batería agrupada.
+
+```text
+Jiang Rui                  44/44
+Batería 6 intermedios      30/30
+TOTAL                      74/74 PASS
+```
+
+Comportamientos destacados:
+
+- Shen Baojun: entrenamiento M03; no inventa M16;
+- Madre Wen: continuidad cotidiana; no inventa frente M16;
+- Tao Ming: registro rutinario ↔ emergencias;
+- Su Lian: Jardines preempta tutorial;
+- Chen Bo: pacientes preemptan examen;
+- Yao Fen: Medicina preempta lección de alquimia.
