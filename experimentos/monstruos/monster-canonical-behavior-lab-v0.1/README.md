@@ -56,7 +56,7 @@ Estas asignaciones **no son canon**.
 
 ## Estado
 
-`MONSTER_LAB_STATUS: TACTICAL_OVERLAY_CONFIRMED`
+`MONSTER_LAB_STATUS: INTENT_BRIDGE_CONFIRMED`
 
 
 ## Baseline representativo confirmado
@@ -97,3 +97,28 @@ baseline representativo   18/18
 tactical overlay          14/14
 TOTAL                     60/60 PASS
 ```
+
+
+## Benchmark reproducido
+
+- 18 combatientes × 1.000 escenarios: 18.000 decisiones primarias;
+- 0 violaciones de cadencia;
+- 0 selecciones inválidas;
+- guardian_coral: memoria cambia ~11,29% en 10.000;
+- lobo_espiritual: social cambia ~11,50% en 10.000;
+- mono_pildoras: combinado cambia ~20,47% en 10.000.
+
+## Canonical Intent Bridge v0.1
+
+Resultado: `11 PASS / 0 FAIL`.
+
+La salida del kernel ya puede traducirse de forma pura a:
+
+```text
+BASIC_ATTACK
+TECHNIQUE
+```
+
+preservando íntegramente el payload canónico y bloqueando técnicas fuera de cadencia.
+
+Siguiente hueco: registrar memoria semántica desde resultados reales del combate.
