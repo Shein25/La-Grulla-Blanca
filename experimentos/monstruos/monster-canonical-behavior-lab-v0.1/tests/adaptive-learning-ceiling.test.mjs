@@ -5,6 +5,7 @@ import {
   clampPressureToAdaptiveCeiling,
   reconcileLearningWithCeiling
 } from '../adaptive/adaptive-learning-ceiling-v0.2.mjs';
+import {adaptiveCapabilityCeiling} from '../adaptive/stage-progression-v0.1.mjs';
 
 let pass=0,fail=0;
 const T=(name,fn)=>{try{fn();pass++;console.log('PASS',name)}catch(e){fail++;console.error('FAIL',name);console.error(e.stack||e)}};
@@ -106,6 +107,38 @@ T('T4 learning still decays only to consolidated T3',()=>{
   });
   assert.equal(decayed.floorTier,3);
   assert.equal(decayed.effectiveAdaptiveTier,3);
+});
+
+
+T('real stage capability ceiling and population ratchet work together',()=>{
+  const c1=adaptiveCapabilityCeiling('rata_qi',1);
+  assert.equal(c1.tier,1);
+
+  const farmedAtStage1=reconcileLearningWithCeiling({
+    pressure:100,
+    maxTierReached:0,
+    ceilingTier:c1.tier
+  });
+  assert.equal(farmedAtStage1.pressure,44);
+  assert.equal(farmedAtStage1.maxTierReached,1);
+
+  const c2=adaptiveCapabilityCeiling('rata_qi',2);
+  assert.equal(c2.tier,2);
+
+  const immediatelyAfterAdvance=reconcileLearningWithCeiling({
+    pressure:farmedAtStage1.pressure,
+    maxTierReached:farmedAtStage1.maxTierReached,
+    ceilingTier:c2.tier
+  });
+  assert.equal(immediatelyAfterAdvance.effectiveAdaptiveTier,1);
+
+  const afterNewHunting=reconcileLearningWithCeiling({
+    pressure:69,
+    maxTierReached:immediatelyAfterAdvance.maxTierReached,
+    ceilingTier:c2.tier
+  });
+  assert.equal(afterNewHunting.effectiveAdaptiveTier,2);
+  assert.equal(afterNewHunting.maxTierReached,2);
 });
 
 console.log('');
