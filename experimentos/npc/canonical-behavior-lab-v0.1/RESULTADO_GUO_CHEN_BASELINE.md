@@ -55,4 +55,32 @@ La integración deberá impedir que un `FULFILL_DUTY` genérico represente decis
 
 ## Estado
 
-`GUO_CHEN_IRREVERSIBLE_CHOICE_BASELINE: PENDING_RUNTIME_CONFIRMATION`
+`GUO_CHEN_IRREVERSIBLE_CHOICE_BASELINE: 14_PASS_0_FAIL_CONFIRMED`
+
+
+## Confirmación
+
+```text
+PASS: 14
+FAIL: 0
+```
+
+Resultado real:
+
+```text
+M16 material válido:
+trabajar
+→ FULFILL_DUTY
+→ [cumplir_deber]
+→ GOAL_REACHED
+
+Segunda Rama mal codificada como duty genérico:
+trabajar
+→ FULFILL_DUTY
+→ [cumplir_deber]
+→ GOAL_REACHED
+```
+
+Los planes son byte-equivalentes a nivel semántico del stack.
+
+Por tanto, la integración de Guo Chen debe bloquear que decisiones irreversibles de personaje entren por el canal genérico `FULFILL_DUTY`.
