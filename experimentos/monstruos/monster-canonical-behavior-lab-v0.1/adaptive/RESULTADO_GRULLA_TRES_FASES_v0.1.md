@@ -1,5 +1,7 @@
 # Resultado — Grulla · benchmark integral de tres fases v0.1
 
+> **SUPERSEDED POR RESTAURACIÓN DEL BASELINE 150/100/50.** Los cálculos 45/35/25 de este documento se conservan sólo como sensibilidad histórica. La recalibración vigente comienza en `CHECKPOINT_GRULLA_FASE1_150HP_v0.1.md` y `RESULTADO_GRULLA_FASE1_150HP_ROOT_GRID_v0.1.md`.
+
 > **RESULTADO INVALIDADO COMO BALANCE DE REFERENCIA.** Este barrido usó por error el candidato reducido 45/35/25 HP (105 totales). La Grulla de referencia previa usa 150/100/50 HP (300 totales). Se conserva este documento sólo como evidencia del comportamiento relativo del cerebro; no debe usarse para fijar win rates ni stats. El benchmark fue corregido posteriormente.
 
 **Fecha:** 2026-09-26  
