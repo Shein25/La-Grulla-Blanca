@@ -102,6 +102,54 @@ si se elige esa rama y el golpe final sigue causando daño.
 
 Con `qi_max = 110` en LianQi IV, el qi no impide usar repetidamente estas artes en un duelo normal de Arco I.
 
+## Arsenal completo ya declarado en ver74 — stress test
+
+Aunque no sea la referencia de balance del Arco I, se auditó también el techo ofensivo ya declarado.
+
+Las cifras siguientes son **daño directo de la expresión de dados**, antes de aplicar ventaja elemental, concordancia o crítico final:
+
+| Arte | Reino/rol | Base media | Mejor media con 3 ramas | Máximo de dados con 3 ramas |
+|---|---|---:|---:|---:|
+| Palma Ardiente | Mortal | 9,0 | 15,0 | 24 |
+| Filo de Qi Metálico | Mortal | 8,5 | 14,5 | 23 |
+| Látigo de Agua | Mortal | 7,0 | 13,0 | 22 |
+| Sello de la Montaña | ZhuJi | 18,0 | 28,5 | 46 |
+| Lanza que Parte Nubes | ZhuJi | 16,5 | 27,0 | 45 |
+| Círculo de las Cien Ascuas | ZhuJi AOE | 10,0 | 17,0 | 27 |
+| Lluvia de los Mil Filos | ZhuJi AOE | 9,0 | 15,0 | 24 |
+| Marea de las Ocho Orillas | ZhuJi AOE | 8,0 | 14,0 | 23 |
+| Tijera del Vendaval | ZhuJi AOE | 9,0 | 15,0 | 24 |
+| Brasa del Vendaval | Definitiva | 25,5 | 31,5 | 48 |
+| Aguja del Río de Plata | Definitiva | 22,5 | 28,5 | 45 |
+| Loto de Vapor Concordante | Definitiva | 26,5 | 33,5 | 51 |
+
+Además, las ramas completas pueden aportar hasta:
+
+```text
++7 a +11 ataque según el arte
+crítico desde 18–20 según build
+multiplicador crítico hasta ×1,75 en las ramas actuales
+```
+
+y el daño final puede recibir:
+
+```text
+ventaja elemental: +20%
+concordancia de daño: +12%
+```
+
+cuando corresponda.
+
+Por eso el stress test futuro debe comprobar que:
+
+```text
+Evolución I sigue siendo útil
+≠
+Evolución I neutraliza técnicas de ZhuJi
+```
+
+Las defensas planas deben perder peso relativo frente a la progresión del jugador. Esa pérdida es deseable.
+
 ## Precisión: hallazgo importante
 
 La fórmula real:
