@@ -134,7 +134,8 @@ def phase1(strategy,root,o1,o2,seed):
         cyc=(rnd-1)%4
 
         if strategy==SPAM:
-            act=1 if qi>=tcost else 0
+            # PURE_SINGLE_SKILL: si no alcanza el qi, defiende; nunca usa BASIC.
+            act=1 if qi>=tcost else 2
         elif strategy==SPAM_DEF:
             act=2 if cyc==2 else (1 if qi>=tcost else 0)
         elif strategy==ALTERNATE:
