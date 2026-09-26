@@ -26,4 +26,14 @@ Gap:
 
 ## Estado
 
-`LAN_MEIHUA_MEDICAL_BASELINE: PENDING_CONFIRMATION`
+`LAN_MEIHUA_MEDICAL_BASELINE: 11_PASS_0_FAIL_CONFIRMED`
+
+
+## Confirmación
+
+```text
+PASS: 11
+FAIL: 0
+```
+
+M16 confirmó `trabajar → FULFILL_DUTY → cumplir_deber`; R4=SABE no cabe en R1-R3 y GOAP no contiene pacientes/triage/tratamientos.
