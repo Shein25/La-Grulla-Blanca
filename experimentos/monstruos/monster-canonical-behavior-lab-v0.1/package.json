@@ -32,6 +32,9 @@
     "benchmark:grulla-phase1-root-grid": "python benchmark/colab/grulla-phase1-root-grid-v0.1.py",
     "benchmark:grulla-phase1-paso": "python benchmark/colab/grulla-phase1-paso-v0.1.py",
     "test:grulla-runtime": "node tests/grulla-encounter-runtime-contract.test.mjs",
-    "test:grulla-player-adapter": "node tests/grulla-player-action-adapter.test.mjs"
+    "test:grulla-player-adapter": "node tests/grulla-player-action-adapter.test.mjs",
+    "test:grulla-gate": "node tests/grulla-technique-gate.test.mjs",
+    "test:grulla-session": "node tests/grulla-encounter-session.test.mjs",
+    "test:grulla-integration-ready": "node tests/grulla-encounter-runtime-contract.test.mjs && node tests/grulla-player-action-adapter.test.mjs && node tests/grulla-technique-gate.test.mjs && node tests/grulla-encounter-session.test.mjs"
   }
 }
