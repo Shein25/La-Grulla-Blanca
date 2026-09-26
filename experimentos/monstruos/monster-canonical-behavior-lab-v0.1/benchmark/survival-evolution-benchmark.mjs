@@ -36,6 +36,58 @@ function rate(id,signals,runs=2000){
   return n/runs;
 }
 
+function hitChance(attack,defense,evasion=5){
+  let hits=0;
+  for(let roll=1;roll<=20;roll++){
+    if(roll===1)continue;
+    const evasionExtra=Math.max(0,Math.round((evasion-5)/5));
+    if(roll===20||roll+attack>=defense+evasionExtra)hits++;
+  }
+  return hits/20;
+}
+
+function expectedPrevented(effect,{attack,defense,damage}){
+  const baseHit=hitChance(attack,defense,5);
+  let protectedHit=baseHit;
+  let preventedOnHit=0;
+
+  if(effect.kind==='EVADE_NEXT'){
+    protectedHit=hitChance(attack,defense,5+effect.evasionBonus);
+    return {
+      baseHit,
+      protectedHit,
+      expectedPrevented:(baseHit-protectedHit)*damage
+    };
+  }
+  if(effect.kind==='DEFENSE_UP'){
+    protectedHit=hitChance(attack,defense+effect.defenseBonus,5);
+    return {
+      baseHit,
+      protectedHit,
+      expectedPrevented:(baseHit-protectedHit)*damage
+    };
+  }
+  if(effect.kind==='MITIGATE_NEXT'){
+    preventedOnHit=Math.floor(damage*effect.damageReductionPct/100);
+  }else if(effect.kind==='ABSORB_RESERVE'){
+    preventedOnHit=Math.min(damage,effect.absorbPerHit,effect.reserve);
+  }else{
+    throw new RangeError(`defense kind desconocido: ${effect.kind}`);
+  }
+  return {
+    baseHit,
+    protectedHit,
+    expectedPrevented:baseHit*preventedOnHit
+  };
+}
+
+const MECHANIC_SCENARIOS=Object.freeze({
+  inaccurateHeavy:Object.freeze({attack:4,defense:12,damage:20}),
+  balancedMedium:Object.freeze({attack:6,defense:12,damage:10}),
+  accurateSmall:Object.freeze({attack:10,defense:12,damage:4}),
+  accurateHeavy:Object.freeze({attack:10,defense:12,damage:20})
+});
+
 const rows=[];
 let cadenceViolations=0;
 for(const id of ids){
@@ -48,7 +100,13 @@ for(const id of ids){
     low:rate(id,{SELF_LOW_HP:1},2000),
     heavy:rate(id,{TOOK_HEAVY_HIT:1},1000),
     critical:rate(id,{SELF_LOW_HP:1,TOOK_HEAVY_HIT:1},1000),
-    bothLow:rate(id,{SELF_LOW_HP:1,PLAYER_LOW_HP:1},2000)
+    bothLow:rate(id,{SELF_LOW_HP:1,PLAYER_LOW_HP:1},2000),
+    mechanics:Object.fromEntries(
+      Object.entries(MECHANIC_SCENARIOS).map(([name,scenario])=>[
+        name,
+        expectedPrevented(policy.effect,scenario)
+      ])
+    )
   };
   if(def.tecnica){
     const r=decide(id,{
