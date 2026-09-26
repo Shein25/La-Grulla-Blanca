@@ -281,6 +281,17 @@ T('minimal legal LianQi toolkit can avoid hard lock with root technique plus bas
   }
 });
 
+
+T('two exclusive Fase I uses are enough to remember a pure single-skill strategy at Fase II',()=>{
+  let s=initialGrullaBrainState({phase:1});
+  s=observeResolvedPlayerAction(s,tech('palma','fuego')).state;
+  s=observeResolvedPlayerAction(s,{type:'DEFEND'}).state;
+  s=observeResolvedPlayerAction(s,tech('palma','fuego')).state;
+  s=enterGrullaPhase(s,2);
+  assert.equal(s.techniqueCounter.techniqueId,'palma');
+  assert.equal(s.techniqueCounter.source,'PHASE1_SINGLE_SKILL_RELIANCE');
+});
+
 console.log('');
 console.log('PASS: '+pass);
 console.log('FAIL: '+fail);
