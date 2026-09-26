@@ -25,6 +25,7 @@
     "test:grulla-brain": "node tests/grulla-boss-brain.test.mjs",
     "benchmark:grulla-brain": "node benchmark/grulla-brain-capability-benchmark-v0.1.mjs",
     "test:ecology-floor": "node tests/adaptive-ecology-milestone-floor.test.mjs",
-    "test:grulla-contract": "node tests/grulla-boss-ability-contract.test.mjs"
+    "test:grulla-contract": "node tests/grulla-boss-ability-contract.test.mjs",
+    "benchmark:grulla-three-phase": "node benchmark/grulla-three-phase-benchmark-v0.1.mjs"
   }
 }
