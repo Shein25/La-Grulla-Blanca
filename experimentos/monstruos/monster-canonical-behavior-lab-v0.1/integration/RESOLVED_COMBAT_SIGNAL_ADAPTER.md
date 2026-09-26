@@ -73,4 +73,16 @@ El adapter:
 
 ## Estado
 
-`RESOLVED_COMBAT_SIGNAL_ADAPTER_V01: CANDIDATE_PENDING_TEST`
+`RESOLVED_COMBAT_SIGNAL_ADAPTER_V01: 13_PASS_0_FAIL_CONFIRMED`
+
+
+## Verificación
+
+```text
+PASS: 13
+FAIL: 0
+```
+
+Absorción queda lista para un hook productivo mínimo en el call-site de `absorberGolpe()`.
+
+Recuperación queda **contract-ready**, pero no product-ready hasta que `beber()` exponga deltas estructurados de vida/qi recuperados.
