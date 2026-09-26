@@ -40,11 +40,11 @@ export const SURVIVAL_POLICIES=Object.freeze({
   sapo_ceniza:p('Piel de Brasa Muerta',{kind:'MITIGATE_NEXT',damageReductionPct:30,durationHits:1,cooldownRounds:2}),
 
   // Absorción: reserva finita con tope por golpe, igual al modelo de guardia ya existente.
-  devorador_niebla:p('Cuerpo de Bruma Replegada',{kind:'ABSORB_RESERVE',absorbPerHit:4,reserve:8,cooldownRounds:2}),
-  sapo_caldera:p('Cierre de las Tres Gargantas',{kind:'ABSORB_RESERVE',absorbPerHit:5,reserve:10,cooldownRounds:2}),
-  escarabajo_hierro:p('Cierre de Caparazón',{kind:'ABSORB_RESERVE',absorbPerHit:5,reserve:10,cooldownRounds:2}),
-  rey_escarabajo:p('Diagrama de Placas',{kind:'ABSORB_RESERVE',absorbPerHit:7,reserve:14,cooldownRounds:2}),
-  guardian_coral:p('Arrecife Replegado',{kind:'ABSORB_RESERVE',absorbPerHit:6,reserve:12,cooldownRounds:2})
+  devorador_niebla:p('Cuerpo de Bruma Replegada',{kind:'ABSORB_RESERVE',absorbPerHit:3,reserve:6,cooldownRounds:2}),
+  sapo_caldera:p('Cierre de las Tres Gargantas',{kind:'ABSORB_RESERVE',absorbPerHit:4,reserve:8,cooldownRounds:2}),
+  escarabajo_hierro:p('Cierre de Caparazón',{kind:'ABSORB_RESERVE',absorbPerHit:4,reserve:8,cooldownRounds:2}),
+  rey_escarabajo:p('Diagrama de Placas',{kind:'ABSORB_RESERVE',absorbPerHit:5,reserve:10,cooldownRounds:2}),
+  guardian_coral:p('Arrecife Replegado',{kind:'ABSORB_RESERVE',absorbPerHit:5,reserve:10,cooldownRounds:2})
 })
 
 export function survivalAbilityId(mobId){
