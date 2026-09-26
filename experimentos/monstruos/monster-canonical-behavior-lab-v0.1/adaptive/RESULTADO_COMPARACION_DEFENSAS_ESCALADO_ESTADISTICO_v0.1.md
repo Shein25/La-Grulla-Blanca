@@ -1,5 +1,7 @@
 # Resultado — Defensas E1 definitivas vs escalado estadístico por etapa v0.1
 
+> **DOCUMENTO HISTÓRICO / SUPERSEDED.** La dirección adaptativa vigente está definida en `DECISION_MODELO_C_ADAPTACION_POBLACIONAL_v0.2.md` (`C_STAGGERED`). Este archivo se conserva como evidencia de los experimentos que llevaron a esa decisión.
+
 **Estado:** EXPERIMENTAL / NO CANÓNICO.
 
 ## Objetivo
