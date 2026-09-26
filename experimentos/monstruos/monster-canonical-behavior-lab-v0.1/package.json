@@ -1,10 +1,11 @@
 {
-  "name":"la-grulla-blanca-monster-canonical-behavior-lab-v0.1",
-  "private":true,
-  "type":"module",
-  "scripts":{
-    "test:canon":"node tests/all-mobs-canon.test.mjs",
-    "test:representative":"node tests/representative-baseline.test.mjs",
-    "test":"node tests/all-mobs-canon.test.mjs && node tests/representative-baseline.test.mjs"
+  "name": "la-grulla-blanca-monster-canonical-behavior-lab-v0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:canon": "node tests/all-mobs-canon.test.mjs",
+    "test:representative": "node tests/representative-baseline.test.mjs",
+    "test": "node tests/all-mobs-canon.test.mjs && node tests/representative-baseline.test.mjs && node tests/all-combatants-assignment.test.mjs",
+    "test:assignments": "node tests/all-combatants-assignment.test.mjs"
   }
 }
