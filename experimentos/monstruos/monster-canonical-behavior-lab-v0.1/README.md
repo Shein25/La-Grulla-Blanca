@@ -56,7 +56,7 @@ Estas asignaciones **no son canon**.
 
 ## Estado
 
-`MONSTER_LAB_STATUS: INTENT_BRIDGE_AND_SEMANTIC_MEMORY_CONFIRMED`
+`MONSTER_LAB_STATUS: RESOLVED_SIGNAL_ADAPTER_CONFIRMED`
 
 
 ## Baseline representativo confirmado
@@ -147,3 +147,34 @@ TOTAL                     83/83 PASS
 ```
 
 Siguiente hueco: adaptar señales reales ya resueltas por el combate productivo al contrato de outcomes normalizados.
+
+
+## Resolved Combat Signal Adapter v0.1
+
+Resultado: `13 PASS / 0 FAIL`.
+
+Compatibilidad confirmada:
+
+```text
+ver74 absorberGolpe()
+→ r.absorbido
+→ PLAYER_ABSORPTION_RESOLVED
+→ Semantic Memory Recorder
+```
+
+La recuperación tiene contrato preparado, pero `beber()` todavía no expone deltas estructurados; no se parsean mensajes ni se infiere desde HP.
+
+Acumulado de suites funcionales:
+
+```text
+canon transversal         13/13
+baseline representativo   18/18
+18 combatientes           15/15
+tactical overlay          14/14
+intent bridge             11/11
+semantic memory           12/12
+resolved signal adapter   13/13
+TOTAL                     96/96 PASS
+```
+
+Siguiente integración útil: probar el ciclo completo decisión → orden canónica → resultado resuelto → memoria → decisión siguiente, todavía dentro del laboratorio.
