@@ -26,6 +26,7 @@ Una política experimental **no se convierte en canon** por estar en este labora
 6. `han_qiao` — Aspirante, recursos/contactos y logística.
 7. `zhao_wen` — Aspirante, piezas documentales / análisis.
 8. `mei_lian` — Aspirante, saber médico/local y puente Secta-Sauces.
+9. `guo_chen` — Aspirante, trabajo material/persistencia.
 
 Motivo: es funcional, tiene movilidad `RUTA`, territorio y ruta documentados, y permite comparar limpiamente FSM contra Behavior Tree.
 
@@ -232,3 +233,26 @@ Gap confirmado:
 `M16_FRONT_ASSIGNMENT_SAUCES_OR_MEDICINA`
 
 Hace falta una capa de dominio para frente, estado, responsables, asignación y navegación.
+
+
+## Guo Chen — baseline de decisión irreversible
+
+Resultado: `14 PASS / 0 FAIL`.
+
+Hallazgo:
+
+```text
+trabajo material M16
+→ FULFILL_DUTY
+
+Segunda Rama mal codificada como duty
+→ FULFILL_DUTY
+```
+
+El stack genérico no puede distinguir ambas semánticas.
+
+Guardia obligatoria:
+
+`EXECUTE_SECOND_BRANCH_GRAFT`
+
+no debe poder entrar por `FULFILL_DUTY`.
