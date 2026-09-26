@@ -23,6 +23,7 @@ Una política experimental **no se convierte en canon** por estar en este labora
 3. `jiang_rui` — Capitán de patrulla.
 4. `qiao_ren` — Disciplina y Administración.
 5. `lin_yue` — Aspirante, enlace territorial/rutas.
+6. `han_qiao` — Aspirante, recursos/contactos y logística.
 
 Motivo: es funcional, tiene movilidad `RUTA`, territorio y ruta documentados, y permite comparar limpiamente FSM contra Behavior Tree.
 
@@ -161,3 +162,26 @@ Gap detectado:
 - M16 exige que Lin Yue vaya a RUTAS por iniciativa propia;
 - el stack avanzado actual no implementa navegación física por rooms;
 - se registra como gap de capacidad, no se simula falsamente.
+
+
+## Han Qiao — baseline de logística
+
+Resultado: `14 PASS / 0 FAIL`.
+
+Contraste confirmado:
+
+```text
+deber bajo + jugador pide ayuda
+→ ayudar_jugador
+
+M16 Recursos + deber alto
+→ trabajar
+→ FULFILL_DUTY
+→ cumplir_deber
+```
+
+Gap detectado:
+
+- el GOAP actual sólo representa `dutySatisfied`;
+- no hay cantidades, inventario, carros, destinos ni reparto de recursos;
+- `RESOURCE_ALLOCATION_AND_LOGISTICS` queda como capacidad de dominio pendiente.
