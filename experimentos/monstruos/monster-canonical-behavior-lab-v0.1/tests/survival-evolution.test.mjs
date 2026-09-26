@@ -42,7 +42,7 @@ function defenseRate(id,{signals={},social,round=1,cooldown=false,mode='DECISION
   return defense/runs;
 }
 
-T('status explicitly non-canonical',()=>assert.equal(SURVIVAL_EVOLUTION_STATUS,'EXPERIMENTAL_NON_CANONICAL_SURVIVAL_V01_FOUR_DEFENSE_FAMILIES'));
+T('status explicitly non-canonical',()=>assert.equal(SURVIVAL_EVOLUTION_STATUS,'EXPERIMENTAL_NON_CANONICAL_SURVIVAL_V01_FINAL_CANDIDATE'));
 
 T('all 18 combatants have exactly one survival policy',()=>{
   assert.deepEqual(Object.keys(SURVIVAL_POLICIES).sort(),combatants);
@@ -162,13 +162,13 @@ T('defensive effects stay inside conservative stage-one caps',()=>{
     assert.equal(effect.cooldownRounds,2,id);
     if(effect.kind==='EVADE_NEXT'){
       assert.equal(effect.durationActions,1,id);
-      assert.ok(effect.evasionBonus>=20&&effect.evasionBonus<=25,id);
+      assert.ok(effect.evasionBonus>=20&&effect.evasionBonus<=30,id);
     }else if(effect.kind==='DEFENSE_UP'){
       assert.equal(effect.durationActions,1,id);
-      assert.ok(effect.defenseBonus>=3&&effect.defenseBonus<=4,id);
+      assert.ok(effect.defenseBonus>=3&&effect.defenseBonus<=5,id);
     }else if(effect.kind==='MITIGATE_NEXT'){
       assert.equal(effect.durationHits,1,id);
-      assert.ok(effect.damageReductionPct>=30&&effect.damageReductionPct<=35,id);
+      assert.ok(effect.damageReductionPct>=35&&effect.damageReductionPct<=40,id);
     }else if(effect.kind==='ABSORB_RESERVE'){
       assert.ok(effect.absorbPerHit>=3&&effect.absorbPerHit<=5,id);
       assert.equal(effect.reserve,effect.absorbPerHit*2,id);
