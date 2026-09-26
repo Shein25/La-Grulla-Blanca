@@ -86,6 +86,19 @@ BOSS
 
 Por eso un jefe puede conservar una tasa de victoria mucho más baja que los normales de su misma banda sin obligarnos a moverlo de etapa.
 
+## Regla para encuentros adelantados
+
+Si el jugador entra en contacto con una criatura **antes** de su etapa nativa:
+
+```text
+playerStage < nativeStage
+→ Tier adaptativo 0
+→ BASE_NATURAL
+→ sin bonificaciones de aprendizaje extra
+```
+
+La criatura ya es peligrosa por su ficha natural; no necesita además ventajas adaptativas anticipadas.
+
 ## Progresión adaptativa según etapa del jugador
 
 La etapa nativa determina cuándo empieza a ser razonable que esa población desarrolle aprendizaje contra el jugador.
