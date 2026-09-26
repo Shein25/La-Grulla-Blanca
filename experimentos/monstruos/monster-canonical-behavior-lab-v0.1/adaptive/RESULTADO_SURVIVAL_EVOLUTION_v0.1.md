@@ -1,181 +1,152 @@
-# Resultado — Monster Adaptive Survival v0.1
+# Resultado — Monster Adaptive Survival v0.1 · cuatro familias defensivas
 
 ## Estado
 
-`EXPERIMENTAL_NON_CANONICAL_SURVIVAL_V01`
+`EXPERIMENTAL_NON_CANONICAL_SURVIVAL_V01_FOUR_DEFENSE_FAMILIES`
 
 Rama:
 
 `experiment/monster-adaptive-survival-lab-v0.1`
 
-Base:
-
-`e97add771e0f9ee8d00de21b6c8dc3ca2b7fa237`
-
 No toca `main`, PR #17 ni PR #18.
 
-## Hipótesis
+## Cambio respecto al primer balance
 
-La primera evolución debe enseñar **supervivencia**, no añadir HP, daño ni otra técnica ofensiva.
+La Evolución I ya no reduce “defensa” a dos efectos.
+
+Ahora existen cuatro contratos experimentales:
 
 ```text
-más encuentros
-→ experiencia adaptativa
-→ Evolución I
-→ +1 paso cognitivo máximo
-→ +1 acción defensiva propia de la especie
+EVADE_NEXT
+DEFENSE_UP
+ABSORB_RESERVE
+MITIGATE_NEXT
 ```
 
-## Balance elegido
+La asignación depende de anatomía, elemento, descripción y comportamiento de cada monstruo.
 
-Umbral experimental:
+## Cobertura
 
-- comunes: 6 XP;
-- únicos: 4 XP;
-- encuentro real: +1 XP;
-- encuentro con HP bajo o golpe fuerte observado: +1 XP adicional;
-- máximo 2 XP por encuentro.
+Los 18 combatientes tienen una y sólo una política de supervivencia:
 
-Esto produce:
+```text
+ESQUIVA       7
+DEFENSA       3
+MITIGACIÓN    3
+ABSORCIÓN     5
+```
 
-- común: 3 encuentros duros o 6 ordinarios;
-- único: 2 encuentros duros o 4 ordinarios.
+El muñeco de práctica queda fuera.
 
-## Política de supervivencia
+## Resultado conductual
 
-La defensa se calibra contra la preferencia ofensiva ya existente del monstruo.
+Validación dirigida sobre el HEAD del laboratorio:
 
-Barrido dirigido sobre 18 combatientes:
+```text
+17/17 PASS
+```
+
+Se preservó el balance de decisión:
 
 ```text
 sano                              0.0 % defensa
 HP bajo                          49.5 % defensa
-golpe fuerte, pero HP sano        0.0 % defensa
+golpe fuerte, HP sano             0.0 % defensa
 HP bajo + golpe fuerte          100.0 % defensa
 defensa en cooldown               0.0 % defensa
-violaciones CADENCE_COMPAT           0
+violaciones CADENCE_COMPAT            0
 ```
 
-El 100% del caso crítico no implica spam: la acción defensiva consume turno y propone 2 rondas de cooldown.
+El 100% crítico no produce spam porque la defensa consume acción y entra en cooldown.
 
-## Inteligencia y riesgo
+## Resultado mecánico
 
-Cuando ambos lados están bajos de vida, sin golpe fuerte reciente, el perfil evolucionado decide progresivamente asumir más riesgo:
+Se compararon las cuatro familias usando la fórmula de impacto actual de ver74, sin inventar otra resolución.
+
+Representantes:
+
+- Rata: `EVADE_NEXT +25`;
+- Centinela: `DEFENSE_UP +4`;
+- Eco: `MITIGATE_NEXT 35%`;
+- Guardián: `ABSORB_RESERVE 5 / reserva 10`.
+
+Daño esperado evitado en el siguiente ataque:
 
 ```text
-REACTIVO_1  — rata_qi          22.125 % defensa
-CAZADOR_2   — serpiente_qi     12.725 % defensa
-TACTICO_3   — lobo_espiritual   5.475 % defensa
-MASTER_4    — guardian_coral    0.000 % defensa
+                         EVADE   DEFENSE   MITIGATE   ABSORB
+grande/impreciso          5.00      4.00       4.55      3.25
+medio/equilibrado         2.50      2.00       2.25      3.75
+pequeño/preciso           1.00      0.80       0.95      3.80
+grande/preciso            5.00      4.00       6.65      4.75
 ```
 
-Interpretación experimental:
+Por tanto las cuatro familias tienen nichos diferentes:
 
-- perfiles simples aún dudan entre sobrevivir y rematar;
-- perfiles más inteligentes reconocen mejor la ventana de ejecución;
-- si reciben además un golpe fuerte estando bajos, todos vuelven a supervivencia prioritaria.
+- esquiva castiga ataques grandes con posibilidad real de fallar;
+- defensa plana crea postura/armadura sin consumir daño después del impacto;
+- absorción protege especialmente de golpes pequeños/medios y repetidos;
+- mitigación porcentual escala con golpes grandes que probablemente conectarán.
 
-Así, “más inteligencia” no equivale a “más defensa”.
+## Ajuste de absorción
 
-## Fuerza de las acciones defensivas
+El primer borrador usaba reservas demasiado altas.
 
-Stage I queda limitada deliberadamente:
+Se redujo Evolución I a:
 
-### EVADE_NEXT
+```text
+Devorador       3 / reserva 6
+Sapo Caldera    4 / reserva 8
+Escarabajo      4 / reserva 8
+Rey Escarabajo  5 / reserva 10
+Guardián Coral  5 / reserva 10
+```
 
-- +20 a +25 esquiva;
-- una acción;
-- cooldown propuesto: 2 rondas.
-
-En el cálculo actual de ver74, cada +5 de esquiva añade aproximadamente un escalón de d20 al requisito de impacto, por lo que +20/+25 representa una defensa perceptible pero temporal.
-
-### MITIGATE_NEXT
-
-- reduce 30–40% del próximo golpe;
-- un golpe;
-- cooldown propuesto: 2 rondas.
-
-No se permiten en v0.1:
-
-- curación gratuita;
-- aumento permanente de defensa;
-- contraataque automático;
-- daño añadido a la defensa;
-- invulnerabilidad;
-- defensa y ataque en la misma acción.
+Así la absorción conserva su identidad sin dominar también los golpes grandes.
 
 ## Ataque-only
 
-Los dos combatientes que actualmente no poseen técnica canónica evolucionan así:
+Los dos monstruos sin técnica canónica continúan evolucionando hacia supervivencia:
 
 ```text
 rata_qi
 BASIC_ATTACK
-→ Reflejo de Madriguera
-→ EVADE_NEXT (+25 esquiva)
++ Reflejo de Madriguera / EVADE_NEXT
 
 eco_caido
 BASIC_ATTACK
-→ Guardia del Último Ensayo
-→ MITIGATE_NEXT (-35% próximo golpe)
++ Guardia del Último Ensayo / MITIGATE_NEXT
 ```
 
-No se inventó una técnica ofensiva para hacerlos “más fuertes”.
+No reciben ofensiva inventada.
 
-## Cobertura
+## Gradiente de inteligencia preservado
 
-Suite dirigida:
+Cuando ambos lados están bajos de HP y no hubo un golpe fuerte reciente:
 
 ```text
-15/15 PASS
+REACTIVO_1  — rata_qi          ~22%
+CAZADOR_2   — serpiente_qi     ~13%
+TACTICO_3   — lobo_espiritual   ~5%
+MASTER_4    — guardian_coral     0%
 ```
 
-Comprueba:
+Los perfiles más avanzados asumen más riesgo de rematar al jugador. Si además acaban de sufrir un golpe fuerte, vuelven a priorizar supervivencia.
 
-- 18/18 políticas presentes;
-- muñeco de práctica fuera;
-- XP sólo por encuentro real;
-- umbrales 6/4;
-- stage 0 conserva kit;
-- stage 1 suma defensa;
-- cognición avanza máximo un escalón;
-- 0 defensa estando sano;
-- decisión ~50/50 con HP bajo;
-- supervivencia fuerte en estado crítico;
-- cooldown impide spam;
-- CADENCE_COMPAT sigue autoritativo;
-- Rata/Eco no reciben ofensiva inventada;
-- gradiente de riesgo por inteligencia;
-- efectos defensivos dentro de caps conservadores.
+## Gaps reales
 
-## Gaps reales antes de producción
+### Persistencia adaptativa
+Aún no existe almacenamiento productivo de `survivalXp/evolutionStage`.
 
-### 1. Persistencia adaptativa
+### Executor defensivo
+ver74 todavía no ejecuta los cuatro intents nuevos.
 
-Todavía no existe un store productivo de:
+El siguiente paso mínimo debe definir un bridge/executor capaz de aplicar:
 
-`survivalXp / evolutionStage`
+```text
+EVADE_NEXT
+DEFENSE_UP
+ABSORB_RESERVE
+MITIGATE_NEXT
+```
 
-Debe decidirse la identidad:
-
-- comunes: probablemente aprendizaje por especie;
-- únicos: aprendizaje por individuo.
-
-No se ha añadido esto al save.
-
-### 2. Executor de intents defensivos
-
-Monster Combat AI puede **decidir**:
-
-- `EVADE_NEXT`;
-- `MITIGATE_NEXT`.
-
-ver74 todavía no tiene un bridge/executor de monstruos que aplique esos efectos.
-
-Esto es un gap de capacidad, no debe resolverse fingiendo un ataque canónico.
-
-## Resultado
-
-La hipótesis “primero aprender a sobrevivir” queda balanceada como base de Evolución I.
-
-El siguiente trabajo no requiere otra arquitectura de IA: requiere persistencia adaptativa + executor defensivo, reutilizando el Monster Combat AI auditado.
+sin cambiar el canon, sin romper `CADENCE_COMPAT` y reutilizando las mecánicas existentes siempre que ya haya una equivalente.
