@@ -4,9 +4,14 @@
 **Estado:** EXPERIMENTAL / NO CANÓNICO  
 **Rama:** `experiment/monster-adaptive-survival-lab-v0.1`
 
-## 1. Modelo preferido para Arco I
+## 1. Estado de esta decisión
 
-Se fija como **preferencia experimental de trabajo**:
+> **SUPERSEDIDA PARCIALMENTE el 2026-09-26 por la selección del Modelo C.**
+>
+> La preferencia A documentada originalmente en este archivo se conserva sólo como historial de decisión y control comparativo.
+> El modelo adaptativo seleccionado para continuar el proyecto es `C_STAGGERED`.
+
+La preferencia histórica de este cierre había sido:
 
 ```text
 A — FINAL_E1_FIXED_STATS
@@ -50,7 +55,7 @@ permanece conservado como **modelo de sensibilidad / comparación**, no se elimi
 6. Es coherente con el principio de Adaptive Ecology:
    la población cambia su repertorio por presión, no sus estadísticas porque el jugador sea más fuerte.
 
-Esta preferencia sigue siendo experimental hasta una decisión canónica explícita.
+Esta preferencia quedó **reemplazada** por la decisión posterior de adoptar `C — FINAL_E1_ADAPTIVE_LEARNING_STATS / C_STAGGERED` como modelo de adaptación. A permanece únicamente como baseline/control.
 
 ## 2. Hallazgo de arquitectura: no persistir dos sistemas adaptativos
 
