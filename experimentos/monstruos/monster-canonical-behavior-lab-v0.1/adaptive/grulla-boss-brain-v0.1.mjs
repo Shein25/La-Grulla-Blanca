@@ -258,6 +258,21 @@ function counterResponseFor(role){
   return GRULLA_COUNTER_RESPONSES[role]||GRULLA_COUNTER_RESPONSES.desconocida;
 }
 
+export function grullaCounterAnnouncement(state){
+  plain(state,'state');
+  const counter=state.techniqueCounter;
+  if(!counter?.locked)return null;
+  const response=counterResponseFor(counter.techniqueRole);
+  return Object.freeze({
+    techniqueId:counter.techniqueId,
+    techniqueRole:counter.techniqueRole??null,
+    counterMode:response.id,
+    counterLabel:response.label,
+    telegraph:response.telegraph,
+    source:counter.source
+  });
+}
+
 export function grullaTechniqueEffectiveness(state,playerAction){
   plain(state,'state');
   const action=actionCopy(playerAction);
