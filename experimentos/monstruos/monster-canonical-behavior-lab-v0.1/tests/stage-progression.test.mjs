@@ -40,12 +40,13 @@ T('nativeStageOf returns declared stage',()=>{
   for(const [id,x] of Object.entries(NATIVE_STAGE_BY_MOB))assert.equal(nativeStageOf(id),x.stage,id);
 });
 
-T('player below native stage never grants extra adaptive tier',()=>{
+T('player below native stage receives base-only behavior, no adaptive tier',()=>{
   for(const [id,x] of Object.entries(NATIVE_STAGE_BY_MOB)){
     if(x.stage===1)continue;
     const c=adaptiveCapabilityCeiling(id,x.stage-1);
-    assert.equal(c.tier,1,id);
+    assert.equal(c.tier,0,id);
     assert.equal(c.relation,'AHEAD_OF_PLAYER',id);
+    assert.deepEqual(c.capabilities,[],id);
   }
 });
 
