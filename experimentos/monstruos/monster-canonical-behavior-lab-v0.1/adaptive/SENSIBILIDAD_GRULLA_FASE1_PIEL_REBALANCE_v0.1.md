@@ -1,7 +1,7 @@
 # Sensibilidad — rebalance de Piel de Cobre v0.1
 
 **Fecha:** 2026-09-26  
-**Estado:** EXPERIMENTAL / G234_D1 CONFIRMADO EN AISLAMIENTO / RETEST MULTI EN PROGRESO  
+**Estado:** EXPERIMENTAL / G234_D1 CONFIRMADO EN AISLAMIENTO Y PIEL+FILAMENTO / RETEST MULTI RESTANTE PENDIENTE  
 **Rama:** `experiment/monster-adaptive-survival-lab-v0.1`
 
 ## 1. Objetivo
@@ -261,7 +261,21 @@ C13_F00
 C03_F03
 ```
 
-Confirmación a 20.000 pendiente.
+Confirmación a 20.000:
+
+```text
+3 × 27 × 2 × 20.000
+=
+3.240.000 duelos
+```
+
+| Configuración | DEF13 | DEF14 |
+|---|---:|---:|
+| **C22_F00** | **76,90%** | **67,14%** |
+| C13_F00 | 65,66% | 54,60% |
+| C03_F03 | 64,40% | 53,01% |
+
+La confirmación mantiene el orden del grid y deja la mejor combinación múltiple muy lejos del antiguo 93,09% / 86,68%.
 
 ## 8. Volumen acumulado del rebalance
 
@@ -271,7 +285,7 @@ grid G234_D1              4.320.000
 confirmación aislamiento  3.240.000
 retest Piel+Filamento    11.340.000
 -----------------------------------
-subtotal                  29.268.000 duelos
+confirmación Piel+Filamento 3.240.000\n-----------------------------------\ntotal                     32.508.000 duelos
 ```
 
 ## 9. Estado
@@ -282,7 +296,7 @@ PIEL / SENSIBILIDAD              CERRADA
 PIEL / G234_D1 GRID              CERRADO
 PIEL / G234_D1 CONFIRMACIÓN      CERRADA
 PIEL + FILAMENTO RETEST GRID     CERRADO
-PIEL + FILAMENTO CONFIRMACIÓN    PENDIENTE
+PIEL + FILAMENTO CONFIRMACIÓN    CERRADA\nPASO + PIEL RETEST                PENDIENTE\nTRIPLE RETEST                     PENDIENTE
 DEF13 / DEF14                    NO SELECCIONAR AÚN
 VER74 PRODUCTIVO                 SIN CAMBIOS
 FASE II                          NO TOCAR
