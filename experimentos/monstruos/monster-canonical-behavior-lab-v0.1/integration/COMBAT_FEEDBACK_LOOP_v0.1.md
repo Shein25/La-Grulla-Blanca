@@ -89,4 +89,28 @@ Por tanto:
 
 ## Estado
 
-`COMBAT_FEEDBACK_LOOP_V01: CANDIDATE_PENDING_TEST`
+`COMBAT_FEEDBACK_LOOP_V01: 11_PASS_0_FAIL_CONFIRMED`
+
+
+## Verificación
+
+```text
+PASS: 11
+FAIL: 0
+```
+
+Scores reproducidos con seed 1:
+
+```text
+sin memoria
+basic      38.3812
+technique  60.5082
+→ technique
+
+3 × DEFENSA_ABSORCION / EFECTIVA
+basic      38.3812
+technique  36.5082
+→ basic
+```
+
+Bajo `CADENCE_COMPAT`, la selección permanece en `technique`.
