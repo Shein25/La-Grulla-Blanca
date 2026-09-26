@@ -1,17 +1,18 @@
 {
-  "name":"la-grulla-blanca-canonical-behavior-lab-v0.1",
-  "private":true,
-  "type":"module",
-  "scripts":{
-    "test:gao":"node tests/gao-shun.test.mjs",
-    "run:gao":"node run-gao-shun.mjs",
-    "test:pei":"node tests/pei-luo.test.mjs",
-    "run:pei":"node run-pei-luo.mjs",
-    "test:jiang":"node tests/jiang-rui.test.mjs",
-    "run:jiang":"node run-jiang-rui.mjs",
-    "test:benchmark":"node benchmark/test-benchmark.mjs",
-    "benchmark:smoke":"node benchmark/run-benchmark.mjs --tier smoke --seed 1337",
-    "benchmark:standard":"node benchmark/run-benchmark.mjs --tier standard --seed 1337",
-    "test":"node tests/gao-shun.test.mjs && node tests/pei-luo.test.mjs && node tests/jiang-rui.test.mjs && node benchmark/test-benchmark.mjs"
+  "name": "la-grulla-blanca-canonical-behavior-lab-v0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:gao": "node tests/gao-shun.test.mjs",
+    "run:gao": "node run-gao-shun.mjs",
+    "test:pei": "node tests/pei-luo.test.mjs",
+    "run:pei": "node run-pei-luo.mjs",
+    "test:jiang": "node tests/jiang-rui.test.mjs",
+    "run:jiang": "node run-jiang-rui.mjs",
+    "test:benchmark": "node benchmark/test-benchmark.mjs",
+    "benchmark:smoke": "node benchmark/run-benchmark.mjs --tier smoke --seed 1337",
+    "benchmark:standard": "node benchmark/run-benchmark.mjs --tier standard --seed 1337",
+    "test": "node tests/gao-shun.test.mjs && node tests/pei-luo.test.mjs && node tests/jiang-rui.test.mjs && node tests/qiao-ren.test.mjs && node benchmark/test-benchmark.mjs",
+    "test:qiao": "node tests/qiao-ren.test.mjs"
   }
 }
