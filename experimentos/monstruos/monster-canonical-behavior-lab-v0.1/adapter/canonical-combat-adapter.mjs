@@ -1,5 +1,7 @@
 export const ADAPTER_STATUS='EXPERIMENTAL_NON_CANONICAL';
 
+export const HARNESS_DEFAULT_ASSIGNMENT=Object.freeze({profileId:'INSTINTIVO',socialProfileId:'SOLITARIO',preferences:Object.freeze({OFENSIVA:1.0,CONTROL:1.0})});
+
 export const PROFILE_ASSIGNMENTS=Object.freeze({
   rata_qi:Object.freeze({profileId:'INSTINTIVO',socialProfileId:'COLONIA',preferences:Object.freeze({OFENSIVA:1.0,CONTROL:1.0})}),
   serpiente_qi:Object.freeze({profileId:'REACTIVO_1',socialProfileId:'SOLITARIO',preferences:Object.freeze({OFENSIVA:0.9,CONTROL:1.1})}),
@@ -64,7 +66,7 @@ export function buildCanonicalAbilityCatalog(mobId,def){
 
 export function buildMonsterInput({mobId,def,round,mode='CADENCE_COMPAT',recentAbilityIds=[]}){
   assertMob(mobId,def);
-  const assignment=PROFILE_ASSIGNMENTS[mobId];
+  const assignment=PROFILE_ASSIGNMENTS[mobId] || (mode==='CADENCE_COMPAT' ? HARNESS_DEFAULT_ASSIGNMENT : null);
   if(!assignment)throw new RangeError(`sin perfil experimental para ${mobId}`);
   const ids=canonicalAbilityIds(mobId);
   const due=techniqueDue(def,round);
