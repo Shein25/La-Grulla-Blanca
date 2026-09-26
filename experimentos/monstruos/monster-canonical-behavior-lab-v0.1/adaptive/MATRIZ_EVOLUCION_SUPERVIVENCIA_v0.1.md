@@ -100,34 +100,38 @@ defensa en cooldown          → atacar
 ronda técnica canónica       → CADENCE_COMPAT manda
 ```
 
-## Nichos mecánicos comprobados
+## Balance contra arsenal real
 
-Se usó la matemática de impacto actual de ver74.
+Los escenarios sintéticos usados durante el primer smoke test ya **no son evidencia de balance**.
 
-Daño esperado evitado en el siguiente ataque, usando representantes:
+La referencia vigente es:
 
-| Escenario | Esquiva Rata +25 | Defensa Centinela +4 | Mitigación Eco 35% | Absorción Guardián 5 |
-|---|---:|---:|---:|---:|
-| golpe grande e impreciso | **5.00** | 4.00 | 4.55 | 3.25 |
-| golpe medio equilibrado | 2.50 | 2.00 | 2.25 | **3.75** |
-| golpe pequeño y preciso | 1.00 | 0.80 | 0.95 | **3.80** |
-| golpe grande y preciso | 5.00 | 4.00 | **6.65** | 4.75 |
+`adaptive/ANALISIS_ARSENAL_JUGADOR_DEFENSAS_E1_v0.1.md`
 
-Lectura:
+y su benchmark:
 
-- **Esquiva:** mejor contra un impacto grande que todavía puede fallar.
-- **Defensa plana:** función parecida a una esquiva moderada, pero representa postura/armadura/parada.
-- **Absorción:** excelente contra impactos pequeños/medios que conectan con frecuencia.
-- **Mitigación:** escala mejor frente a golpes grandes y precisos.
+`benchmark/player-arsenal-vs-survival-v0.1.mjs`
 
-Además, en la fórmula actual:
+El benchmark usa directamente ver74 y cruza:
 
 ```text
-+20 esquiva ≈ +4 al umbral efectivo de impacto
-+4 defensa  = +4 al umbral efectivo de impacto
+LianQi IV
+× Palma / Filo / Látigo
+× ramas 1–2
+× equipo actual
+× afinidad
+× crítico
+× relación elemental
+× los 18 monstruos
 ```
 
-Eso permite balance similar sin borrar la diferencia conceptual.
+Conclusión provisional:
+
+- esquiva y defensa conservan counters de precisión reales;
+- mitigación 30–35% queda dentro de la escala de DEFENDER del jugador;
+- absorción debe compararse por reserva total / HP del monstruo;
+- el Escarabajo de Hierro (reserva 8 sobre 21 HP) es el caso que requiere más vigilancia;
+- ningún valor queda congelado hasta medir combate completo y coste de oportunidad de defender.
 
 ## Frontera pendiente
 
