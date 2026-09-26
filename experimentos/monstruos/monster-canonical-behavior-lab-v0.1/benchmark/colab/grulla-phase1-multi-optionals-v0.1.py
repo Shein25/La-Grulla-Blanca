@@ -30,6 +30,7 @@ import itertools
 import math
 import numpy as np
 import pandas as pd
+import zlib
 
 DEFAULT_GRID_RUNS = 5_000
 DEFAULT_CONFIRM_RUNS = 20_000
@@ -452,7 +453,7 @@ def run(loadout,runs,mode,ids=None):
             for o1 in range(1,4):
                 for o2 in range(1,4):
                     for boss_def in (13,14):
-                        seed=(abs(hash((loadout,cid,root,o1,o2,boss_def,mode))) % (2**32-1))
+                        seed=zlib.crc32(f"{loadout}|{cid}|{root}|{o1}|{o2}|{boss_def}|{mode}".encode("utf-8")) & 0xffffffff
                         row=dict(loadout=loadout,config_id=cid,optional_pts=optional_pts,
                                  root=root,o1=o1,o2=o2,boss_def=boss_def)
                         if pc:
