@@ -253,12 +253,98 @@ En cada ciclo sólo queda una de las dos ventanas de Golpe para la técnica raí
 
 Esto demuestra por qué Fase I-C no puede juzgar una build sólo por cantidad de herramientas: la política de uso importa tanto como la build.
 
-## 6. Estado
+
+## 6. Sub-barrido 3 — Piel + Filamento
+
+Configuraciones:
+
+```text
+67 legales brutas
+-> 42 efectivamente distintas
+```
+
+Volumen:
+
+```text
+42 configuraciones
+× 27 formas raíz
+× 2 DEF
+× 5.000
+=
+11.340.000 duelos
+```
+
+### Top DEF 13
+
+| Configuración | PT opcionales | Win |
+|---|---:|---:|
+| **C02_F03** | 2 | **93,08%** |
+| C02_F20 | 2 | 92,12% |
+| C22_F00 | 2 | 91,30% |
+| C10_F03 | 2 | 90,30% |
+| C10_F20 | 2 | 89,29% |
+
+### Top DEF 14
+
+| Configuración | PT opcionales | Win |
+|---|---:|---:|
+| **C02_F03** | 2 | **86,60%** |
+| C02_F20 | 2 | 85,24% |
+| C22_F00 | 2 | 83,94% |
+| C10_F03 | 2 | 82,54% |
+| C02_F02 | 2 | 81,27% |
+
+Mejor forma:
+
+```text
+C02 = Cobre grueso
+Guardia 7
+reserva 14
+1 PT
+
+F03 = Lazo medido
+Filamento base de control
++ 1d4 al atar
+1 PT
+```
+
+Resultado:
+
+```text
+DEF 13 = 93,08%
+DEF 14 = 86,60%
+```
+
+Frente al READER universal:
+
+```text
+DEF13: 60,9 -> 93,08 = +32,18 pp
+DEF14: 54,7 -> 86,60 = +31,90 pp
+```
+
+### Lectura provisional
+
+La combinación sigue siendo excesivamente fuerte en Fase I, aunque queda por debajo de Piel aislada óptima.
+
+`MULTI_READER` usa:
+
+```text
+Golpe 1 -> precarga Piel
+Golpe 2 -> raíz
+Campanada -> Filamento
+Pata -> básico
+```
+
+Si Filamento acierta, la Campanada desaparece y la reserva de Piel queda disponible para golpes posteriores. Si falla, Piel amortigua la ventana peligrosa.
+
+La sinergia es real y robusta, pero paga una acción ofensiva adicional por ciclo.
+
+## 7. Estado
 
 ```text
 Paso + Piel       CERRADO EN SELECCIÓN
 Paso + Filamento  CERRADO EN SELECCIÓN
-Piel + Filamento  PENDIENTE
+Piel + Filamento  CERRADO EN SELECCIÓN
 Triple             PENDIENTE
 Confirmación       PENDIENTE
 FASE II            NO TOCAR
