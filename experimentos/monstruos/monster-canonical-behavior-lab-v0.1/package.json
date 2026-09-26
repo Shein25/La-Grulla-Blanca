@@ -18,6 +18,8 @@
     "test:ver74-hooks": "node tests/ver74-structured-hooks.integration.test.mjs",
     "test:survival": "node tests/survival-evolution.test.mjs",
     "benchmark:survival": "node benchmark/survival-evolution-benchmark.mjs",
-    "benchmark:player-arsenal": "node benchmark/player-arsenal-vs-survival-v0.1.mjs"
+    "benchmark:player-arsenal": "node benchmark/player-arsenal-vs-survival-v0.1.mjs",
+    "test:stage-progression": "node tests/stage-progression.test.mjs",
+    "benchmark:stage-progression": "node benchmark/stage-progression-benchmark-v0.1.mjs"
   }
 }
