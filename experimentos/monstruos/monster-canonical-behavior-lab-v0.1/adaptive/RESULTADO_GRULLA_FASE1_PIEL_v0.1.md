@@ -1,7 +1,7 @@
 # Resultado — Grulla Fase I-B · Piel de Cobre aislada v0.1
 
 **Fecha:** 2026-09-26  
-**Estado:** EXPERIMENTAL / SELECCIÓN COMPLETA / FINALISTAS PENDIENTES DE CONFIRMACIÓN  
+**Estado:** EXPERIMENTAL / BLOQUE PIEL CERRADO  
 **Rama:** `experiment/monster-adaptive-survival-lab-v0.1`
 
 ## 1. Alcance
@@ -48,7 +48,7 @@ la burbuja no decae por rondas
 se rompe cuando la reserva llega a 0
 ```
 
-`duración` en estas técnicas es por tanto un multiplicador de capacidad inicial, no un contador temporal.
+`duración` en estas técnicas es un multiplicador de capacidad inicial, no un contador temporal.
 
 `DEFENDER` conserva su semántica distinta: reducción porcentual para los dos próximos impactos reales.
 
@@ -129,11 +129,7 @@ Se ejecutó:
 4.320.000 duelos
 ```
 
-Script:
-
-`benchmark/colab/grulla-phase1-piel-v0.1.py`
-
-## 6. Resultado del grid
+Resultado del grid:
 
 | Configuración Piel | Coste | Guardia | Multiplicador | Reserva | DEF 13 | DEF 14 |
 |---|---:|---:|---:|---:|---:|---:|
@@ -154,49 +150,11 @@ Script:
 | Cobre sobrio | 4 | 3 | 2 | 6 | 74,68% | 69,59% |
 | Piel base | 5 | 3 | 2 | 6 | 74,38% | 69,03% |
 
-## 7. Comparación preliminar con READER universal
+Incluso sin invertir PT en Piel, la burbuja base supera con amplitud al READER universal.
 
-READER universal sin opcionales:
+## 6. Finalistas
 
-```text
-DEF 13 = 60,9%
-DEF 14 = 54,7%
-```
-
-Mejor forma provisional:
-
-```text
-Cobre flexible + Cobre grueso
-Guardia 7
-duración/multiplicador 3
-reserva 21
-coste 5
-```
-
-Diferencia provisional:
-
-```text
-DEF 13:
-60,9 -> 97,13
-+36,23 pp
-
-DEF 14:
-54,7 -> 95,57
-+40,87 pp
-```
-
-Incluso Piel base aporta aproximadamente:
-
-```text
-DEF 13: +13,48 pp
-DEF 14: +14,33 pp
-```
-
-La señal preliminar es que Piel, con la semántica real de burbuja de ver74 y esta política de lectura, aporta demasiado a Fase I.
-
-## 8. Finalistas para confirmación
-
-Se seleccionan las tres formas mejor posicionadas de manera consistente en DEF13 y DEF14:
+El grid dejó tres finalistas consistentes para ambos valores de DEF:
 
 ```text
 T1-2 + T2-2
@@ -221,16 +179,160 @@ multiplicador 2
 reserva 14
 ```
 
-La selección no se considera cerrada hasta confirmar estas tres formas a 20.000 duelos por escenario.
+## 7. Confirmación a 20.000
 
-## 9. Estado
+Se confirmó solamente a los tres finalistas:
+
+```text
+27 formas raíz
+× 3 finalistas
+× 2 DEF
+× 20.000 duelos
+=
+3.240.000 duelos
+```
+
+Resultado global confirmado:
+
+| Configuración Piel | DEF 13 | DEF 14 |
+|---|---:|---:|
+| **Cobre flexible + Cobre grueso** | **97,13%** | **95,54%** |
+| Cobre endurecido + Placas continuas | 95,35% | 93,14% |
+| Cobre sobrio + Cobre grueso | 94,91% | 92,78% |
+
+La confirmación reproduce prácticamente el orden y magnitud del grid de selección.
+
+## 8. Mejor forma — detalle por raíz
+
+Mejor forma confirmada:
+
+```text
+Cobre flexible + Cobre grueso
+coste 5
+Guardia 7
+multiplicador 3
+reserva 21
+```
+
+### DEF 13
+
+| Raíz | Win jugador |
+|---|---:|
+| Fuego | 97,55% |
+| Metal | 97,70% |
+| Agua | 96,13% |
+| **Global** | **97,13%** |
+
+Rango entre las 27 formas raíz:
+
+```text
+91,02% – 99,12%
+```
+
+### DEF 14
+
+| Raíz | Win jugador |
+|---|---:|
+| Fuego | 96,21% |
+| Metal | 96,78% |
+| Agua | 93,64% |
+| **Global** | **95,54%** |
+
+Rango entre las 27 formas raíz:
+
+```text
+84,77% – 98,82%
+```
+
+## 9. Comparación con READER universal
+
+READER universal sin opcionales:
+
+```text
+DEF 13 = 60,9%
+DEF 14 = 54,7%
+```
+
+Mejor Piel confirmada:
+
+```text
+DEF 13:
+60,9 -> 97,13
++36,23 puntos porcentuales
+
+DEF 14:
+54,7 -> 95,54
++40,84 puntos porcentuales
+```
+
+Piel base, ya en el grid de 5.000, había dado:
+
+```text
+DEF 13 = 74,38%  -> +13,48 pp
+DEF 14 = 69,03%  -> +14,33 pp
+```
+
+Por contraste, el mejor Paso confirmado aportaba aproximadamente:
+
+```text
+DEF 13 +5,35 pp
+DEF 14 +4,69 pp
+```
+
+Piel tiene por tanto un impacto de otra magnitud.
+
+## 10. Lectura de diseño
+
+Con la semántica real de ver74, Piel ayuda **demasiado** en Fase I.
+
+No es una mejora pequeña ni sólo una recompensa moderada por preparación:
+
+```text
+READER universal
+~61% / ~55%
+
+Piel base
+~74% / ~69%
+
+Piel especializada óptima
+~97% / ~96%
+```
+
+La causa observable es la combinación de:
+
+- absorción plana alta por golpe;
+- reserva persistente que no decae por rondas;
+- duración convertida en capacidad adicional;
+- posibilidad de conservar una burbuja entre ventanas de Campanada;
+- cuando la burbuja sigue viva, el jugador puede usar la acción de Campanada para atacar en vez de volver a defender.
+
+Bajo esta política razonable de lectura, la mejor Piel **trivializa Fase I**. Subir de DEF13 a DEF14 no corrige el problema: la tasa global sólo baja de 97,13% a 95,54%.
+
+Este bloque no modifica Piel ni los stats de la Grulla; sólo mide el comportamiento actual. Cualquier ajuste de balance debe decidirse aparte.
+
+## 11. Volumen útil
+
+```text
+4.320.000 duelos — grid de selección
+3.240.000 duelos — confirmación de 3 finalistas
+------------------------------------------------
+7.560.000 duelos útiles
+```
+
+No se cuentan Fase I-A ni Paso porque son bloques ya cerrados.
+
+## 12. Estado
 
 ```text
 FASE I-A              CERRADA
 FASE I-B / PASO       CERRADO
-FASE I-B / PIEL       GRID COMPLETO / CONFIRMACIÓN PENDIENTE
-FASE I-B / FILAMENTO  NO INICIAR
+FASE I-B / PIEL       CERRADO
+FASE I-B / FILAMENTO  PENDIENTE — NO INICIAR EN ESTE BLOQUE
 FASE I-C              NO INICIAR
 FASE II               NO TOCAR
 FASE III              NO TOCAR
 ```
+
+Script reproducible:
+
+`benchmark/colab/grulla-phase1-piel-v0.1.py`
