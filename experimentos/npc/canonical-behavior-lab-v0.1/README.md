@@ -25,6 +25,7 @@ Una política experimental **no se convierte en canon** por estar en este labora
 5. `lin_yue` — Aspirante, enlace territorial/rutas.
 6. `han_qiao` — Aspirante, recursos/contactos y logística.
 7. `zhao_wen` — Aspirante, piezas documentales / análisis.
+8. `mei_lian` — Aspirante, saber médico/local y puente Secta-Sauces.
 
 Motivo: es funcional, tiene movilidad `RUTA`, territorio y ruta documentados, y permite comparar limpiamente FSM contra Behavior Tree.
 
@@ -207,3 +208,27 @@ Gap detectado:
 - M09 requiere `ARCHIVO_RESTRINGIDO` concedido por Qiao Ren;
 - el stack GOAP actual no representa ese permiso;
 - queda como capacidad institucional pendiente.
+
+
+## Mei Lian — baseline de frente condicional
+
+Resultado: `13 PASS / 0 FAIL`.
+
+Canon M16:
+
+`SAUCES o MEDICINA según estado y responsables disponibles`.
+
+Resultado del stack actual:
+
+```text
+SAUCES   → trabajar → FULFILL_DUTY
+MEDICINA → trabajar → FULFILL_DUTY
+```
+
+La identidad del frente se pierde.
+
+Gap confirmado:
+
+`M16_FRONT_ASSIGNMENT_SAUCES_OR_MEDICINA`
+
+Hace falta una capa de dominio para frente, estado, responsables, asignación y navegación.
