@@ -302,3 +302,70 @@ PATA +3                               SIGUE PROVISIONAL
 ```
 
 No reemplazar todavía G234_D1. El siguiente test obligatorio es Piel + Filamento, porque Campanada-only ya demostró que un counter que Filamento pueda cancelar no resuelve el espacio combinado.
+
+
+## 11. Sanity check combinado — G345_D1 + Piel/Filamento
+
+Antes del grid deduplicado completo se probaron dos puntos de referencia a 2.000 duelos por escenario.
+
+### C22_F00
+
+```text
+Piel:
+Cobre flexible + Cobre grueso
+Guardia 5
+reserva 10
+2 PT
+
+Filamento base
+0 PT
+```
+
+| Estado | DEF13 | DEF14 |
+|---|---:|---:|
+| sin counter de Pata | 76,29% | 64,33% |
+| **Pata -> Golpe ×1,50 vs Piel** | **58,12%** | **46,78%** |
+
+### C02_F03
+
+```text
+Piel:
+Cobre grueso
+Guardia 5
+reserva 5
+1 PT
+
+Filamento:
+Lazo medido
++1d4 al atar
+1 PT
+```
+
+| Estado | DEF13 | DEF14 |
+|---|---:|---:|
+| sin counter de Pata | 67,23% | 55,08% |
+| **Pata -> Golpe ×1,50 vs Piel** | **49,71%** | **38,74%** |
+
+Lectura:
+
+- a diferencia del counter exclusivo de Campanada, Filamento no puede borrar esta amenaza;
+- la Piel fuerte sigue sirviendo en su propio duelo aislado;
+- intentar apilar control + absorción paga un coste real de acciones;
+- el counter puede estar siendo demasiado eficiente en MULTI_READER, por lo que todavía hace falta el grid completo antes de seleccionar este diseño.
+
+Script reproducible preparado:
+
+`benchmark/colab/grulla-phase1-piel-g345d1-pata-filamento-v0.1.py`
+
+## 12. Estado actualizado
+
+```text
+G234_D1                           VALIDADO / FALLBACK SEGURO
+G345_D1 + PATA OVERLOAD_150       AISLADO CONFIRMADO
+G345_D1 PIEL+FILAMENTO             SANITY CHECK OK / GRID COMPLETO PENDIENTE
+
+PATA SENSITIVITY ANTIGUA           PAUSADA, NO DESCARTADA
+DEF13 / DEF14                      NO SELECCIONAR
+FASE II                            NO TOCAR
+FASE III                           NO TOCAR
+```
