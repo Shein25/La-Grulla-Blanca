@@ -47,4 +47,32 @@ El Utility genérico tampoco posee actualmente una acción marcial equivalente.
 
 ## Estado
 
-`WEI_JIAN_MARTIAL_BT_BASELINE: PENDING_CONFIRMATION`
+`WEI_JIAN_MARTIAL_BT_BASELINE: 17_PASS_0_FAIL_CONFIRMED`
+
+
+## Confirmación
+
+```text
+PASS: 17
+FAIL: 0
+```
+
+Trazas clave:
+
+```text
+trainingDue
+→ SUPERVISE_TRAINING
+
+training RUNNING + suspicious
+→ training PREEMPTADA
+→ INVESTIGATE_MARTIAL_ANOMALY
+
+training RUNNING + highThreat
+→ training PREEMPTADA
+→ RESPOND_SECURITY
+
+security_response SUCCESS + trainingDue
+→ SUPERVISE_TRAINING
+```
+
+No se detectó falsa preempción al finalizar la respuesta.
