@@ -61,4 +61,21 @@ La adaptividad sólo se observa en `DECISION_EXPERIMENTAL`.
 
 ## Estado
 
-`TACTICAL_OVERLAY_V01: PENDING_CONFIRMATION`
+`TACTICAL_OVERLAY_V01: 14_PASS_0_FAIL_CONFIRMED`
+
+
+## Confirmación
+
+```text
+PASS: 14
+FAIL: 0
+```
+
+Cambios de decisión reproducidos:
+
+- `INSTINTIVO`: ignora memoria aunque exista peso;
+- `REACTIVO_1`: sólo usa un recuerdo y mantiene la técnica en el caso probado;
+- `TACTICO_3`: tres recuerdos negativos hacen que `guardian_coral` cambie técnica → básico;
+- `MANADA`: contexto social puede cambiar básico → técnica en `lobo_espiritual`;
+- `OPORTUNISTA`: jugador bajo de vida puede cambiar básico → técnica en `mono_pildoras`;
+- `CADENCE_COMPAT` permanece autoritativo y no permite alterar la técnica oficial.
