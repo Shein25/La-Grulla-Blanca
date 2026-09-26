@@ -339,13 +339,105 @@ Si Filamento acierta, la Campanada desaparece y la reserva de Piel queda disponi
 
 La sinergia es real y robusta, pero paga una acción ofensiva adicional por ciclo.
 
-## 7. Estado
+
+## 7. Sub-barrido 4 — Paso + Piel + Filamento
+
+Configuraciones:
+
+```text
+154 legales brutas
+-> 88 efectivamente distintas
+```
+
+Volumen:
+
+```text
+88 configuraciones
+× 27 formas raíz
+× 2 DEF
+× 5.000
+=
+23.760.000 duelos
+```
+
+### Top DEF 13
+
+| Configuración | PT opcionales | Win |
+|---|---:|---:|
+| **P00_C02_F03** | 2 | **53,00%** |
+| P00_C02_F20 | 2 | 49,60% |
+| P00_C10_F03 | 2 | 45,69% |
+| P00_C22_F00 | 2 | 43,94% |
+| P00_C10_F20 | 2 | 42,91% |
+
+### Top DEF 14
+
+| Configuración | PT opcionales | Win |
+|---|---:|---:|
+| **P00_C02_F03** | 2 | **39,28%** |
+| P00_C02_F20 | 2 | 36,19% |
+| P00_C10_F03 | 2 | 32,99% |
+| P00_C22_F00 | 2 | 30,80% |
+| P00_C10_F20 | 2 | 30,33% |
+
+Mejor forma:
+
+```text
+P00 = Paso base
+0 PT
+
+C02 = Cobre grueso
+Guardia 7
+reserva 14
+1 PT
+
+F03 = Lazo medido
++1d4 al atar
+1 PT
+```
+
+Resultado:
+
+```text
+DEF 13 = 53,00%
+DEF 14 = 39,28%
+```
+
+Frente al READER universal:
+
+```text
+DEF13: 60,9 -> 53,00 = -7,90 pp
+DEF14: 54,7 -> 39,28 = -15,42 pp
+```
+
+### Lectura provisional
+
+El triple no trivializa la fase bajo esta política: la sobredefiende y pierde demasiada economía de acciones.
+
+Cuando las tres herramientas están preparadas, el patrón de apertura tiende a ser:
+
+```text
+Golpe 1 -> Piel
+Golpe 2 -> Paso
+Campanada -> Filamento
+Pata -> básico
+```
+
+Mientras haya qi, puede transcurrir un ciclo completo sin una técnica raíz ofensiva.
+
+Por tanto:
+
+> Más herramientas disponibles no implican más DPS ni mayor probabilidad de victoria si se usan todas por automatismo.
+
+Ésta es precisamente una propiedad deseable para el diseño general de la Grulla: el jugador debe elegir qué respuesta merece una acción, no pulsar todas las defensas porque las posee.
+
+## 8. Estado
 
 ```text
 Paso + Piel       CERRADO EN SELECCIÓN
 Paso + Filamento  CERRADO EN SELECCIÓN
 Piel + Filamento  CERRADO EN SELECCIÓN
-Triple             PENDIENTE
+Triple             CERRADO EN SELECCIÓN
 Confirmación       PENDIENTE
 FASE II            NO TOCAR
 ```
