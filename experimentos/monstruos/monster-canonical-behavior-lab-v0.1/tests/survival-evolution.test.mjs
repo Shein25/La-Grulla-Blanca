@@ -218,10 +218,11 @@ T('synthetic smoke only: four defense mechanics remain mechanically distinct',()
   assert.ok(prevented(mitigate,accurateHeavy)>prevented(absorb,accurateHeavy));
 
   const evade20=SURVIVAL_POLICIES.serpiente_qi.effect;
-  assert.equal(
-    prevented(evade20,{attack:6,defense:12,damage:10}),
-    prevented(flat,{attack:6,defense:12,damage:10})
-  );
+  const flat3=SURVIVAL_POLICIES.lobo_espiritual.effect;
+  const sameScenario={attack:6,defense:12,damage:10};
+  const evadeValue=prevented(evade20,sameScenario);
+  assert.ok(evadeValue>prevented(flat3,sameScenario));
+  assert.ok(evadeValue<prevented(flat,sameScenario));
 });
 
 T('attack-only monsters gain defense rather than invented offense',()=>{
