@@ -62,4 +62,22 @@ debe existir antes de esperar que Luo Yan ejecute su reacción canónica.
 
 ## Estado
 
-`LUO_YAN_KNOWLEDGE_EPILOGUE_BASELINE: PENDING_CONFIRMATION`
+`LUO_YAN_KNOWLEDGE_EPILOGUE_BASELINE: 14_PASS_0_FAIL_CONFIRMED`
+
+
+## Confirmación
+
+```text
+PASS: 14
+FAIL: 0
+```
+
+Confirmado:
+
+- R1 = SOSPECHA se procesa correctamente como `RESERVA`;
+- R5 = SABE no cabe en el esquema actual: `knowledge: sobran R5`;
+- consultar R5 lanza `Tema no definido para el laboratorio: R5`;
+- GOAP no contiene semántica LIBERAR/CUSTODIAR;
+- Utility produce la misma decisión si sólo cambia una etiqueta externa `epilogueOutcome`.
+
+Los dos gaps quedan demostrados con ejecución real de los módulos.
