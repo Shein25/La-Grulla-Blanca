@@ -20,11 +20,11 @@ export const HAN_QIAO_SCENARIOS={
   ordinaryHelp:{
     description:"Solicitud ordinaria del jugador con deber material bajo.",
     world:hanWorld(),
-    contextOverrides:{dutyMode:"ninguno"}
+    contextOverrides:{dutyMode:"ninguno",superiorReachable:false}
   },
   m16Resources:{
     description:"Frente RECURSOS de M16 con deber logístico alto y solicitud simultánea del jugador.",
     world:hanWorld({dutyPending:true,dutyImportance:95,danger:55,urgency:80}),
-    contextOverrides:{dutyMode:"trabajar"}
+    contextOverrides:{dutyMode:"trabajar",superiorReachable:false}
   }
 };
