@@ -35,6 +35,7 @@
     "test:grulla-player-adapter": "node tests/grulla-player-action-adapter.test.mjs",
     "test:grulla-gate": "node tests/grulla-technique-gate.test.mjs",
     "test:grulla-session": "node tests/grulla-encounter-session.test.mjs",
-    "test:grulla-integration-ready": "node tests/grulla-encounter-runtime-contract.test.mjs && node tests/grulla-player-action-adapter.test.mjs && node tests/grulla-technique-gate.test.mjs && node tests/grulla-encounter-session.test.mjs"
+    "test:grulla-integration-ready": "node tests/grulla-encounter-runtime-contract.test.mjs && node tests/grulla-player-action-adapter.test.mjs && node tests/grulla-technique-gate.test.mjs && node tests/grulla-encounter-session.test.mjs && node tests/grulla-ver74-special-combat-adapter.test.mjs",
+    "test:grulla-special-adapter": "node tests/grulla-ver74-special-combat-adapter.test.mjs"
   }
 }
