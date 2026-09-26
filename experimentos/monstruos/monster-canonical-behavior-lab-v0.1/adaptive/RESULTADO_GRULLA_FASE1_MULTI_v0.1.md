@@ -475,7 +475,53 @@ DEF13: 60,9 -> 89,26 = +28,36 pp
 DEF14: 54,7 -> 82,58 = +27,88 pp
 ```
 
-## 9. Estado
+## 9. Confirmación — Paso + Filamento
+
+Se confirmaron los tres finalistas del grid:
+
+```text
+3 configuraciones
+× 27 formas raíz
+× 2 DEF
+× 20.000
+=
+3.240.000 duelos
+```
+
+Resultado:
+
+| Configuración | DEF 13 | DEF 14 |
+|---|---:|---:|
+| **P02_F03** | **45,20%** | **35,74%** |
+| P00_F23 | 44,01% | 34,69% |
+| P02_F20 | 42,64% | 33,73% |
+
+La confirmación conserva el orden del grid.
+
+Mejor forma confirmada:
+
+```text
+P02 = Paso velado
++25% Esquiva
+duración 2
+1 PT
+
+F03 = Lazo medido
+Filamento base
++1d4 al atar
+1 PT
+```
+
+Frente al READER universal:
+
+```text
+DEF13: 60,9 -> 45,20 = -15,70 pp
+DEF14: 54,7 -> 35,74 = -18,96 pp
+```
+
+La lectura de selección queda confirmada: Paso y Filamento se solapan demasiado frente a Campanada bajo MULTI_READER. La seguridad extra no compensa la pérdida de ofensiva.
+
+## 10. Estado
 
 ```text
 Paso + Piel       CERRADO EN SELECCIÓN
