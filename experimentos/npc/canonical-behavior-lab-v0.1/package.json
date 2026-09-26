@@ -12,7 +12,7 @@
     "test:benchmark": "node benchmark/test-benchmark.mjs",
     "benchmark:smoke": "node benchmark/run-benchmark.mjs --tier smoke --seed 1337",
     "benchmark:standard": "node benchmark/run-benchmark.mjs --tier standard --seed 1337",
-    "test": "node tests/all-npc-canon.test.mjs && node tests/gao-shun.test.mjs && node tests/pei-luo.test.mjs && node tests/jiang-rui.test.mjs && node tests/qiao-ren.test.mjs && node tests/lin-yue.test.mjs && node tests/han-qiao.test.mjs && node tests/zhao-wen.test.mjs && node tests/mei-lian.test.mjs && node tests/guo-chen.test.mjs && node tests/luo-yan.test.mjs && node tests/wei-jian.test.mjs && node tests/song-rui.test.mjs && node tests/lan-meihua.test.mjs && node tests/duan-shibo.test.mjs && node tests/he-zhen.test.mjs && node benchmark/test-benchmark.mjs",
+    "test": "node tests/all-npc-canon.test.mjs && node tests/gao-shun.test.mjs && node tests/pei-luo.test.mjs && node tests/jiang-rui.test.mjs && node tests/qiao-ren.test.mjs && node tests/lin-yue.test.mjs && node tests/han-qiao.test.mjs && node tests/zhao-wen.test.mjs && node tests/mei-lian.test.mjs && node tests/guo-chen.test.mjs && node tests/luo-yan.test.mjs && node tests/wei-jian.test.mjs && node tests/song-rui.test.mjs && node tests/lan-meihua.test.mjs && node tests/duan-shibo.test.mjs && node tests/he-zhen.test.mjs && node tests/ji-xueying.test.mjs && node benchmark/test-benchmark.mjs",
     "test:qiao": "node tests/qiao-ren.test.mjs",
     "test:lin": "node tests/lin-yue.test.mjs",
     "test:han": "node tests/han-qiao.test.mjs",
@@ -25,6 +25,7 @@
     "test:song": "node tests/song-rui.test.mjs",
     "test:lan": "node tests/lan-meihua.test.mjs",
     "test:duan": "node tests/duan-shibo.test.mjs",
-    "test:he": "node tests/he-zhen.test.mjs"
+    "test:he": "node tests/he-zhen.test.mjs",
+    "test:ji": "node tests/ji-xueying.test.mjs"
   }
 }
