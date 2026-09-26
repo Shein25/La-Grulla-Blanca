@@ -375,3 +375,74 @@ FASE III                        NO TOCAR
 - `benchmark/colab/grulla-phase1-pata-anti-absorption-v0.1.py`
 - `benchmark/colab/grulla-phase1-piel-g345d1-pata-filamento-v0.1.py`
 - `benchmark/colab/grulla-phase1-multi-g345d1-resonance-v0.1.py`
+
+
+## 14. Spot-check — repartir PT entre Paso y Piel
+
+Se probó Resonancia x1,75 con política de riesgo:
+
+```text
+usar Paso contra Resonancia sólo si HP <= 10
+```
+
+No se conoce el RNG futuro.
+
+Volumen del spot-check:
+
+```text
+6 configuraciones
+× 27 formas raíz
+× 2 DEF
+× 10.000
+=
+3.240.000 duelos
+```
+
+Resultado:
+
+| Configuración | Lectura | DEF13 | DEF14 |
+|---|---|---:|---:|
+| **P00_C22** | Paso base + 2 PT Piel | **75,07%** | **68,54%** |
+| P02_C03 | 1 PT Paso + 1 PT Piel | 54,65% | 47,90% |
+| P02_C02 | 1 PT Paso + 1 PT Piel | 54,06% | 46,45% |
+| P03_C03 | 1 PT Paso + 1 PT Piel | 54,04% | 47,31% |
+| P03_C02 | 1 PT Paso + 1 PT Piel | 53,85% | 46,14% |
+| P20_C02 | 1 PT Paso + 1 PT Piel | 53,56% | 45,99% |
+
+Conclusión:
+
+> La Grulla no debe exigir invertir PT en Paso para responder a Resonancia.
+
+La especialización fuerte en Piel sigue siendo viable, mientras Paso base puede conservar valor situacional. Dividir los 2 PT sólo para “pagar” el counter empeora demasiado la build.
+
+Esto refuerza el objetivo de diseño:
+
+- no crear una llave obligatoria;
+- permitir que el jugador se adapte con lectura y economía de acciones;
+- mantener varias rutas de build competitivas;
+- reservar la adaptación técnica más dura para Fase II/III.
+
+## 15. Estado de cierre de este bloque
+
+```text
+G345_D1                         CANDIDATO PRINCIPAL
+RESONANCIA x1,75                CANDIDATO PRINCIPAL PROVISIONAL
+
+Piel aislada x1,75              VALIDADA EN SENSIBILIDAD
+Piel+Filamento x1,50            VALIDADO
+Paso+Piel x1,50                 VALIDADO rígido/adaptativo
+Triple x1,50                    VALIDADO adaptativo
+reparto PT Paso/Piel x1,75      SPOT-CHECK CERRADO
+
+MECÁNICA PRODUCTIVA             SIN CAMBIOS
+VER74                           SIN CAMBIOS
+FASE II                         NO TOCAR
+FASE III                        NO TOCAR
+```
+
+Siguiente bloque recomendado:
+
+1. spot-check combinado bajo x1,75;
+2. decidir si x1,75 se congela;
+3. después reevaluar DEF13/14 y Pata +2/+3/+4;
+4. recién entonces cerrar Fase I.
