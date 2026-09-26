@@ -146,7 +146,7 @@ function summarize(history){
   const dominantTechniqueRole=history.findLast?.(a=>a.techniqueId===dominantTechnique)?.techniqueRole
     ?? [...history].reverse().find(a=>a.techniqueId===dominantTechnique)?.techniqueRole
     ?? null;
-  const singleSkillReliance=techniqueUses>=3&&t.size===1&&basicUses===0;
+  // Fase I es una fase completa de observación: dos exposiciones a una única\n  // técnica, sin mostrar jamás un ataque básico/alternativa real, bastan para\n  // que Fase II nazca recordándola. Dentro de Fase II/III el lock normal\n  // sigue exigiendo tres usos consecutivos.\n  const singleSkillReliance=techniqueUses>=2&&t.size===1&&basicUses===0;
   return {
     dominantTechnique,dominantTechniqueRole,dominantElement:dominant(e),
     offense,defend,recover,control,qiActions,
