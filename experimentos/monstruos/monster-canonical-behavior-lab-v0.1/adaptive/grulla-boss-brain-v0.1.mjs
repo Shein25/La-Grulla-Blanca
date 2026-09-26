@@ -215,6 +215,11 @@ export function grullaTechniqueEffectiveness(state,playerAction){
   return Object.freeze({
     multiplier:blocked?0:1,
     blocked,
+    suppressEffects:blocked,
+    suppressDamage:blocked,
+    suppressControl:blocked,
+    suppressAfflictions:blocked,
+    suppressResourceEffects:blocked,
     techniqueId:action.techniqueId,
     counteredTechniqueId:counter?.techniqueId??null,
     reason:blocked?'TECHNIQUE_FULLY_READ':'NORMAL'
