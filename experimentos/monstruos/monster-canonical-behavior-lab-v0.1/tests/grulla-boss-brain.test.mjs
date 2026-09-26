@@ -125,6 +125,11 @@ T('pure single-skill spam in Fase I is hard-countered on entry to Fase II',()=>{
   const e=grullaTechniqueEffectiveness(s,tech('palma','fuego'));
   assert.equal(e.blocked,true);
   assert.equal(e.multiplier,0);
+  assert.equal(e.suppressEffects,true);
+  assert.equal(e.suppressDamage,true);
+  assert.equal(e.suppressControl,true);
+  assert.equal(e.suppressAfflictions,true);
+  assert.equal(e.suppressResourceEffects,true);
 });
 
 T('three consecutive uses lock a technique and variation breaks the lock',()=>{
