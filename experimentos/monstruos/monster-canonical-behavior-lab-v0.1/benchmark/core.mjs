@@ -71,7 +71,14 @@ function scenario(def,random){
 function decision(M,id,s,{memoryMode='full',socialMode='full',seed=1,mode='DECISION_EXPERIMENTAL'}={}){
   const def=M[id], ids=canonicalAbilityIds(id);
   const recentAbilityIds=Array.from({length:s.repeats},()=>ids.technique);
-  const monster=buildCandidateMonsterInput({mobId:id,def,round:mode==='CADENCE_COMPAT'?s.randomRound:s.dueRound,mode,recentAbilityIds});
+  const baseMonster=buildCandidateMonsterInput({mobId:id,def,round:mode==='CADENCE_COMPAT'?s.randomRound:s.dueRound,mode,recentAbilityIds});
+  // Ablación social real: mantener las señales de combate intactas y neutralizar
+  // únicamente la interpretación del perfil social. Algunos flags (MANADA,
+  // OPORTUNISTA) se derivan también de combat.signals, por lo que vaciar sólo
+  // el objeto social no los desactiva y confundiría la métrica.
+  const monster=socialMode==='full'
+    ? baseMonster
+    : {...baseMonster,socialProfileId:'SOLITARIO'};
   const abilities=applyTacticalOverlay(id,buildCanonicalAbilityCatalog(id,def));
   const memory=memoryMode==='full'?s.memory:[];
   const social=socialMode==='full'?s.social:{alliesAlive:0,sameSpeciesAllies:0,outnumbersPlayer:false};
