@@ -4,7 +4,7 @@ import {fileURLToPath} from 'node:url';
 import {dirname,resolve} from 'node:path';
 
 import {
-  MONSTER_STAGE_PROGRESSION_STATUS,STAGE_ROLES,STAGE_BANDS,
+  MONSTER_STAGE_PROGRESSION_STATUS,STAGE_STAT_SCALING_STATUS,STAGE_STAT_SCALING,stageStatScaling,scaledNativeStats,STAGE_ROLES,STAGE_BANDS,
   NATIVE_STAGE_BY_MOB,nativeStageOf,stageRelation,adaptiveCapabilityCeiling
 } from '../adaptive/stage-progression-v0.1.mjs';
 
@@ -64,6 +64,29 @@ T('outgrowing native stage raises capability ceiling without stats',()=>{
 T('stageRelation distinguishes native match and outgrown band',()=>{
   assert.equal(stageRelation('pez_lunar',3).relation,'NATIVE_MATCH');
   assert.equal(stageRelation('pez_lunar',4).relation,'PLAYER_OUTGREW_NATIVE_STAGE');
+});
+
+
+T('proportional stage scaling is 100/105/110/115 percent on HP and damage only',()=>{
+  assert.deepEqual(
+    [1,2,3,4].map(stage=>stageStatScaling(stage)),
+    [
+      {hpMultiplier:1,damageMultiplier:1,attackBonus:0,defenseBonus:0},
+      {hpMultiplier:1.05,damageMultiplier:1.05,attackBonus:0,defenseBonus:0},
+      {hpMultiplier:1.1,damageMultiplier:1.1,attackBonus:0,defenseBonus:0},
+      {hpMultiplier:1.15,damageMultiplier:1.15,attackBonus:0,defenseBonus:0}
+    ]
+  );
+  assert.equal(STAGE_STAT_SCALING_STATUS,'EXPERIMENTAL_NON_CANONICAL_HP_DAMAGE_5PCT_PER_STAGE_V01');
+});
+
+T('stage scaling never changes attack or defense breakpoints',()=>{
+  const base={hp:46,ataque:6,defensa:15};
+  const x=scaledNativeStats(base,4);
+  assert.equal(x.hp,53);
+  assert.equal(x.ataque,6);
+  assert.equal(x.defensa,15);
+  assert.equal(x.damageMultiplier,1.15);
 });
 
 console.log(`\nPASS: ${pass}`);
