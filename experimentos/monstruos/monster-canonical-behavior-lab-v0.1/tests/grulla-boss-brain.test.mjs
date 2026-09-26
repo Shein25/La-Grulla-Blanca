@@ -6,7 +6,8 @@ import {
   chooseGrullaIntent,
   observeResolvedPlayerAction,
   interruptGrullaPlan,
-  grullaCapabilitySnapshot
+  grullaCapabilitySnapshot,
+  grullaTechniqueEffectiveness
 } from '../adaptive/grulla-boss-brain-v0.1.mjs';
 
 let pass=0,fail=0;
@@ -111,6 +112,45 @@ T('future/hidden context fields do not change the decision',()=>{
   const a=chooseGrullaIntent({state:s,context:{playerHpRatio:.8,playerQiRatio:.5,selfHpRatio:.8},rng:fixed}).intent.id;
   const b=chooseGrullaIntent({state:s,context:{playerHpRatio:.8,playerQiRatio:.5,selfHpRatio:.8,futureAction:'DEFEND',inventory:['elixir'],secretCooldown:99},rng:fixed}).intent.id;
   assert.equal(a,b);
+});
+
+
+
+T('pure single-skill spam in Fase I is hard-countered on entry to Fase II',()=>{
+  let s=initialGrullaBrainState({phase:1});
+  for(let i=0;i<4;i++)s=observeResolvedPlayerAction(s,tech('palma','fuego')).state;
+  s=enterGrullaPhase(s,2);
+  assert.equal(s.techniqueCounter.techniqueId,'palma');
+  assert.equal(s.techniqueCounter.locked,true);
+  const e=grullaTechniqueEffectiveness(s,tech('palma','fuego'));
+  assert.equal(e.blocked,true);
+  assert.equal(e.multiplier,0);
+});
+
+T('three consecutive uses lock a technique and variation breaks the lock',()=>{
+  let s=initialGrullaBrainState({phase:2});
+  for(let i=0;i<3;i++)s=observeResolvedPlayerAction(s,tech('palma','fuego')).state;
+  assert.equal(s.techniqueCounter.techniqueId,'palma');
+  assert.equal(grullaTechniqueEffectiveness(s,tech('palma','fuego')).multiplier,0);
+  const other=tech('filo','metal');
+  assert.equal(grullaTechniqueEffectiveness(s,other).multiplier,1);
+  const o=observeResolvedPlayerAction(s,other);
+  assert.equal(o.event,'TECHNIQUE_COUNTER_BROKEN_BY_VARIATION');
+  assert.equal(o.state.techniqueCounter,null);
+});
+
+T('100 percent same-skill strategy deals zero effective damage after Fase I learning',()=>{
+  let s=initialGrullaBrainState({phase:1});
+  for(let i=0;i<4;i++)s=observeResolvedPlayerAction(s,tech('palma','fuego')).state;
+  s=enterGrullaPhase(s,2);
+  let effectiveDamage=0;
+  for(let i=0;i<20;i++){
+    const action=tech('palma','fuego');
+    const eff=grullaTechniqueEffectiveness(s,action);
+    effectiveDamage+=999*eff.multiplier;
+    s=observeResolvedPlayerAction(s,action).state;
+  }
+  assert.equal(effectiveDamage,0);
 });
 
 console.log('');
