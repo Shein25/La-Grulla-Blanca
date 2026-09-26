@@ -31,6 +31,7 @@
     "test:grulla-counterplay": "node tests/grulla-counterplay-matrix.test.mjs",
     "benchmark:grulla-phase1-root-grid": "python benchmark/colab/grulla-phase1-root-grid-v0.1.py",
     "benchmark:grulla-phase1-paso": "python benchmark/colab/grulla-phase1-paso-v0.1.py",
-    "test:grulla-runtime": "node tests/grulla-encounter-runtime-contract.test.mjs"
+    "test:grulla-runtime": "node tests/grulla-encounter-runtime-contract.test.mjs",
+    "test:grulla-player-adapter": "node tests/grulla-player-action-adapter.test.mjs"
   }
 }
