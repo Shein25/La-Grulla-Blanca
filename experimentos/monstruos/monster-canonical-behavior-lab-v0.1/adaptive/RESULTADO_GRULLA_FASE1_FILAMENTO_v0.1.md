@@ -1,7 +1,7 @@
 # Resultado — Grulla Fase I-B · Filamento de Agua aislado v0.1
 
 **Fecha:** 2026-09-26  
-**Estado:** EXPERIMENTAL / SELECCIÓN COMPLETA / FINALISTAS PENDIENTES DE CONFIRMACIÓN  
+**Estado:** EXPERIMENTAL / BLOQUE FILAMENTO CERRADO  
 **Rama:** `experiment/monster-adaptive-survival-lab-v0.1`
 
 ## 1. Alcance
@@ -51,7 +51,7 @@ cooldown efectivo de Filamento = 1 ronda
 dañoAtar sólo ocurre si el control acierta
 ```
 
-La prueba usa exactamente el d20 de ver74:
+Prueba de control:
 
 ```text
 1 natural -> falla
@@ -61,29 +61,29 @@ resto -> d20 + ATQ efectivo + controlBono >= DEF jefe + 2
 
 Filamento es Agua:
 
-- raíz Agua recibe el -1 qi de afinidad;
+- raíz Agua recibe -1 qi por afinidad;
 - Fuego y Metal no;
-- siempre se respeta el piso de coste del 70%.
+- se respeta el piso de coste del 70%.
 
 ## 3. Ramas probadas
 
 Tramo 1:
 
 ```text
-Nudo ligero  -> coste -1
+Nudo ligero   -> coste -1
 Hilo cortante -> daño al atar 1d3
-Nudo firme -> control +3
+Nudo firme    -> control +3
 ```
 
 Tramo 2:
 
 ```text
-Lazo doble -> atadura 2
+Lazo doble       -> atadura 2
 Nudo perseguidor -> control +4
-Lazo medido -> daño al atar 1d4
+Lazo medido      -> daño al atar 1d4
 ```
 
-Se probaron las 16 configuraciones legales:
+Configuraciones legales:
 
 ```text
 base                1
@@ -94,7 +94,7 @@ tramo 1 + tramo 2   9
 total              16
 ```
 
-Nota importante: `Lazo doble` eleva la atadura nominal a 2, pero contra la Grulla sigue limitada a una sola acción por ser jefe único.
+`Lazo doble` eleva la atadura nominal a 2, pero contra la Grulla sigue limitada a una sola acción por el contrato de jefe único.
 
 ## 4. Política FILAMENTO_READER
 
@@ -117,9 +117,9 @@ Pata Inmóvil
 -> ATACAR básico
 ```
 
-La poción conserva prioridad en vida crítica, como en los bloques anteriores.
+La poción conserva prioridad en vida crítica.
 
-No se usa Filamento sobre Golpes normales ni Pata. Tampoco se conoce de antemano si la tirada de control acertará.
+No se usa Filamento sobre Golpes normales ni sobre Pata. La política tampoco conoce de antemano el resultado de la tirada de control.
 
 ## 5. Barrido de selección
 
@@ -131,12 +131,6 @@ No se usa Filamento sobre Golpes normales ni Pata. Tampoco se conoce de antemano
 =
 4.320.000 duelos
 ```
-
-Script:
-
-`benchmark/colab/grulla-phase1-filamento-v0.1.py`
-
-## 6. Resultados del grid
 
 ### DEF 13
 
@@ -180,7 +174,130 @@ Script:
 | Filamento base | 49,14% |
 | Lazo doble | 49,06% |
 
-## 7. Lectura preliminar
+## 6. Finalistas confirmados
+
+Se confirmaron:
+
+```text
+T1-2 + T2-3
+Hilo cortante + Lazo medido
+daño al atar 1d3+1d4
+controlBono +4
+
+T1-3 + T2-3
+Nudo firme + Lazo medido
+daño al atar 1d4
+controlBono +7
+
+T1-2 + T2-2
+Hilo cortante + Nudo perseguidor
+daño al atar 1d3
+controlBono +8
+```
+
+Coste de las tres:
+
+```text
+Fuego = 6 qi
+Metal = 6 qi
+Agua = 5 qi por afinidad
+```
+
+Confirmación:
+
+```text
+27 formas raíz
+× 3 finalistas
+× 2 DEF
+× 20.000 duelos
+=
+3.240.000 duelos
+```
+
+Resultado global:
+
+| Configuración | DEF 13 | DEF 14 |
+|---|---:|---:|
+| **Hilo cortante + Lazo medido** | **75,69%** | 66,76% |
+| **Nudo firme + Lazo medido** | 75,02% | **67,25%** |
+| Hilo cortante + Nudo perseguidor | 72,97% | 65,89% |
+
+El orden del grid se mantiene. La sensibilidad DEF cambia cuál de las dos primeras formas queda arriba.
+
+## 7. Ganador por sensibilidad
+
+### DEF 13
+
+Mejor:
+
+```text
+Hilo cortante + Lazo medido
+controlBono +4
+daño al atar 1d3+1d4
+```
+
+Por raíz:
+
+| Raíz | Win jugador |
+|---|---:|
+| Fuego | 75,44% |
+| Metal | 79,72% |
+| Agua | 71,91% |
+| **Global** | **75,69%** |
+
+Rango entre builds:
+
+```text
+57,76% – 88,10%
+```
+
+La tasa media de éxito del control en esta configuración fue aproximadamente:
+
+```text
+Agua 80,04%
+Fuego 84,96%
+Metal 90,03%
+```
+
+### DEF 14
+
+Mejor:
+
+```text
+Nudo firme + Lazo medido
+controlBono +7
+daño al atar 1d4
+```
+
+Por raíz:
+
+| Raíz | Win jugador |
+|---|---:|
+| Fuego | 68,02% |
+| Metal | 70,97% |
+| Agua | 62,77% |
+| **Global** | **67,25%** |
+
+Rango entre builds:
+
+```text
+44,62% – 86,81%
+```
+
+Éxito medio del control:
+
+```text
+Agua 90,02%
+Fuego 94,96%
+Metal 94,97%
+```
+
+No aparece una única configuración universal dominante:
+
+- DEF13 favorece acumular daño al cerrar el lazo;
+- DEF14 aumenta el valor de mejorar la precisión de control.
+
+## 8. Comparación con READER universal
 
 READER universal:
 
@@ -189,56 +306,89 @@ DEF 13 = 60,9%
 DEF 14 = 54,7%
 ```
 
+Mejor Filamento para cada sensibilidad:
+
+```text
+DEF 13:
+60,9 -> 75,69
++14,79 puntos porcentuales
+
+DEF 14:
+54,7 -> 67,25
++12,55 puntos porcentuales
+```
+
 Filamento base:
 
 ```text
-DEF 13 = 59,52%  -> -1,38 pp
-DEF 14 = 49,14%  -> -5,56 pp
+DEF 13 = 59,52% -> -1,38 pp
+DEF 14 = 49,14% -> -5,56 pp
 ```
 
-Por tanto encontrar el manual, sin especializarlo, no produce una mejora automática.
+Por tanto el manual por sí solo no es una mejora automática. La ventaja aparece al especializar correctamente la técnica.
 
-Las formas fuertes combinan una de dos ideas:
+## 9. Comparación cualitativa con Paso y Piel
 
-1. daño adicional al cerrar el control;
-2. mayor probabilidad de impedir Campanada.
-
-El extremo de duración `Lazo doble` no aporta contra la Grulla porque el contrato de jefe único limita la atadura real a una sola acción.
-
-## 8. Finalistas
-
-Se seleccionan:
+Resultados ya cerrados:
 
 ```text
-T1-2 + T2-3
-Hilo cortante + Lazo medido
-daño al atar 1d3+1d4
-controlBono +4
-coste: 6 Fuego/Metal, 5 Agua
+Paso óptimo:
+DEF13 +5,35 pp
+DEF14 +4,69 pp
 
-T1-3 + T2-3
-Nudo firme + Lazo medido
-daño al atar 1d4
-controlBono +7
-coste: 6 Fuego/Metal, 5 Agua
-
-T1-2 + T2-2
-Hilo cortante + Nudo perseguidor
-daño al atar 1d3
-controlBono +8
-coste: 6 Fuego/Metal, 5 Agua
+Piel óptima:
+DEF13 +36,23 pp
+DEF14 +40,84 pp
 ```
 
-Estos tres dominan de forma consistente el grid y representan combinaciones distintas de daño/control.
+Filamento óptimo:
 
-## 9. Estado
+```text
+DEF13 +14,79 pp
+DEF14 +12,55 pp
+```
+
+Filamento aporta más que Paso, pero muchísimo menos que Piel.
+
+## 10. Lectura de diseño
+
+Filamento ayuda **de forma fuerte pero razonable**.
+
+No trivializa Fase I:
+
+- su mejor resultado global queda alrededor de 76% / 67%;
+- sigue existiendo una diferencia importante entre builds;
+- la prueba de control puede fallar;
+- el jefe limita la atadura a una acción;
+- Tenacidad impide encadenar controles;
+- la técnica consume la acción del jugador;
+- la versión base es peor que simplemente usar el READER universal.
+
+El resultado encaja con el papel de una herramienta opcional especializada: puede neutralizar Campanadas con frecuencia, pero no convierte la fase en victoria casi automática.
+
+No se propone nerfear Filamento ni modificar stats de la Grulla a partir de este bloque.
+
+## 11. Volumen útil
+
+```text
+4.320.000 duelos — grid de selección
+3.240.000 duelos — confirmación de 3 finalistas
+------------------------------------------------
+7.560.000 duelos útiles
+```
+
+## 12. Estado
 
 ```text
 FASE I-A              CERRADA
 FASE I-B / PASO       CERRADO
 FASE I-B / PIEL       CERRADO
-FASE I-B / FILAMENTO  GRID COMPLETO / CONFIRMACIÓN PENDIENTE
-FASE I-C              NO INICIAR
+FASE I-B / FILAMENTO  CERRADO
+FASE I-C              PENDIENTE — NO INICIAR EN ESTE BLOQUE
 FASE II               NO TOCAR
 FASE III              NO TOCAR
 ```
+
+Script reproducible:
+
+`benchmark/colab/grulla-phase1-filamento-v0.1.py`
