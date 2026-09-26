@@ -2,7 +2,7 @@
 
 ## Estado
 
-`EXPERIMENTAL_NON_CANONICAL_SURVIVAL_V01_FOUR_DEFENSE_FAMILIES`
+`EXPERIMENTAL_NON_CANONICAL_SURVIVAL_V01_FINAL_CANDIDATE`
 
 Rama:
 
@@ -85,12 +85,12 @@ equipo de ataque máximo actual: +2
 
 La precisión de ramas puede sumar +7 ataque ya en Arco I, por lo que ESQUIVA y DEFENSA tienen counters reales.
 
-Mitigación 30–35% de un golpe queda por debajo de la acción DEFENDER del jugador.
+Mitigación 35–40% de un golpe queda por debajo de la acción DEFENDER del jugador.
 
 Absorción debe medirse por reserva total respecto del HP:
 
 ```text
-Devorador        6 / 38 = 15,8%
+Devorador        8 / 38 = 21,1%
 Sapo Caldera     8 / 34 = 23,5%
 Escarabajo       8 / 21 = 38,1%
 Rey Escarabajo  10 / 38 = 26,3%
@@ -100,6 +100,36 @@ Guardián Coral  10 / 52 = 19,2%
 Por ahora **no se modifica ningún número** sólo por porcentaje de golpe evitado.
 
 El próximo cierre de balance debe incluir el coste real de que el monstruo pierda su ataque al defender y el consumo completo de la reserva.
+
+
+## Cierre numérico de E1
+
+Después de simular el coste real de gastar el turno defensivo, algunos efectos se reforzaron porque la acción defensiva estaba haciendo al monstruo ligeramente más fácil al sacrificar ofensiva.
+
+Valores fijados como **candidato final experimental**:
+
+```text
+Rata                EVADE +25
+Avispa              EVADE +25
+Serpiente           EVADE +20
+Macaco              EVADE +20
+Lobo                 DEF +3
+Sapo Ceniza          MITIGA 35%
+Escarabajo           ABSORBE 4 / reserva 8
+Eco Caído            MITIGA 40%
+Sapo Caldera         ABSORBE 4 / reserva 8
+Rey Escarabajo       ABSORBE 5 / reserva 10
+Pez Lunar            EVADE +25
+Anguila              EVADE +25
+Sombra Ahogada       MITIGA 40%
+Guardián Coral       ABSORBE 5 / reserva 10
+Devorador Niebla     ABSORBE 4 / reserva 8
+Halcón Tormenta      EVADE +30
+Mantis Nube          DEF +5
+Centinela Plumas     DEF +5
+```
+
+El ajuste respecto del set anterior movió la tasa de victoria preparada por monstruo entre aproximadamente **0 y −0,4 puntos porcentuales** en el barrido dirigido: corrige el coste ofensivo de defender sin convertir E1 en un salto de dificultad.
 
 ## Ataque-only
 
