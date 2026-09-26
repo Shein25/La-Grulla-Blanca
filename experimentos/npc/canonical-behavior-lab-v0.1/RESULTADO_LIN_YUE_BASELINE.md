@@ -91,4 +91,94 @@ Esto no es un fallo de Lin Yue ni se rellena inventando movimiento en el test.
 
 ## Estado
 
-`LIN_YUE_COMPANION_BASELINE: PENDING_RUNTIME_CONFIRMATION`
+`LIN_YUE_COMPANION_BASELINE: 15_PASS_0_FAIL_RUNTIME_CONFIRMED`
+
+
+## Ejecución confirmada
+
+Resultado:
+
+```text
+PASS: 15
+FAIL: 0
+```
+
+### Sin memoria social
+
+```text
+schedulerReason = PERIODIC
+utilityAction   = hablar_jugador
+status          = UTILITY_ACTION_UNMAPPED
+goalId          = null
+session         = null
+```
+
+Relaciones derivadas = relaciones base:
+
+```text
+afinidad   40
+confianza  40
+respeto    50
+deuda       0
+temor       0
+rivalidad   0
+```
+
+### Con PLAYER_HELPED_ME
+
+El evento genera:
+
+```text
+schedulerReason = MEMORY_CHANGED
+memoryChanged   = [lin_yue_lab]
+```
+
+Relaciones derivadas:
+
+```text
+afinidad   52
+confianza  50
+respeto    50
+deuda       8
+temor       0
+rivalidad   0
+```
+
+Las relaciones base almacenadas siguen siendo:
+
+```text
+afinidad   40
+confianza  40
+respeto    50
+deuda       0
+temor       0
+rivalidad   0
+```
+
+La decisión cambia a:
+
+```text
+ayudar_jugador
+→ HELP_PLAYER
+→ [ir_jugador, ayudar_jugador]
+```
+
+Ejecución posterior:
+
+```text
+turn 2:
+STEP_APPLIED
+executed = ir_jugador
+
+turn 3:
+GOAL_REACHED
+executed = ayudar_jugador
+playerHelped = true
+session = null
+```
+
+### M16
+
+El vocabulario GOAP actual no contiene `patio_marcial`, `sala_formas`, `patio_campana` ni una noción física de `RUTAS`.
+
+La iniciativa canónica de M16 sigue correctamente registrada como gap de navegación física.
