@@ -27,4 +27,14 @@ Eventos no cerrados por canon no generan comportamiento inventado.
 
 ## Estado
 
-`JI_XUEYING_ANCHORED_BASELINE: PENDING_CONFIRMATION`
+`JI_XUEYING_ANCHORED_BASELINE: 13_PASS_0_FAIL_CONFIRMED`
+
+
+## Confirmación
+
+```text
+PASS: 13
+FAIL: 0
+```
+
+Ji permanece en `COUNCIL` en todos los escenarios; M17 emite `PRESIDE_COUNCIL`; eventos no definidos no generan movimiento ni conducta inventada.
