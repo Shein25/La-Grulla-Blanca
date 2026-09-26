@@ -431,7 +431,51 @@ Por tanto:
 
 Ésta es precisamente una propiedad deseable para el diseño general de la Grulla: el jugador debe elegir qué respuesta merece una acción, no pulsar todas las defensas porque las posee.
 
-## 8. Estado
+## 8. Confirmación — Paso + Piel
+
+Se confirmaron únicamente los tres finalistas estables del grid:
+
+```text
+3 configuraciones
+× 27 formas raíz
+× 2 DEF
+× 20.000
+=
+3.240.000 duelos
+```
+
+Resultado:
+
+| Configuración | DEF 13 | DEF 14 |
+|---|---:|---:|
+| **P02_C02** | **89,26%** | **82,58%** |
+| P00_C22 | 88,37% | 81,58% |
+| P20_C02 | 86,27% | 78,94% |
+
+La confirmación conserva el mismo orden del barrido de 5.000.
+
+Mejor forma confirmada:
+
+```text
+P02 = Paso velado
++25% Esquiva
+duración 2
+1 PT
+
+C02 = Cobre grueso
+Guardia 7
+reserva 14
+1 PT
+```
+
+Frente al READER universal:
+
+```text
+DEF13: 60,9 -> 89,26 = +28,36 pp
+DEF14: 54,7 -> 82,58 = +27,88 pp
+```
+
+## 9. Estado
 
 ```text
 Paso + Piel       CERRADO EN SELECCIÓN
