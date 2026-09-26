@@ -7,6 +7,8 @@
     "run:gao":"node run-gao-shun.mjs",
     "test:pei":"node tests/pei-luo.test.mjs",
     "run:pei":"node run-pei-luo.mjs",
-    "test":"node tests/gao-shun.test.mjs && node tests/pei-luo.test.mjs"
+    "test:jiang":"node tests/jiang-rui.test.mjs",
+    "run:jiang":"node run-jiang-rui.mjs",
+    "test":"node tests/gao-shun.test.mjs && node tests/pei-luo.test.mjs && node tests/jiang-rui.test.mjs"
   }
 }
