@@ -20,6 +20,7 @@ Una política experimental **no se convierte en canon** por estar en este labora
 
 1. `gao_shun` — Guardia de la Puerta Roja.
 2. `pei_luo` — Responsable de Cocina/Comedor.
+3. `jiang_rui` — Capitán de patrulla.
 
 Motivo: es funcional, tiene movilidad `RUTA`, territorio y ruta documentados, y permite comparar limpiamente FSM contra Behavior Tree.
 
@@ -79,3 +80,27 @@ Hallazgo provisional:
 - el Behavior Tree preempta inmediatamente la acción normal activa.
 
 No se ha elegido todavía arquitectura definitiva para Pei Luo.
+
+
+## Escenarios Jiang Rui
+
+Motores comparados: FSM, Behavior Tree y Utility AI v0.1.1.
+
+1. patrulla ordinaria;
+2. anomalía leve sin superior;
+3. anomalía grave sin superior;
+4. anomalía leve con superior alcanzable;
+5. fuera del puesto;
+6. crisis de rutas M16.
+
+Resultado baseline: `44 PASS / 0 FAIL`.
+
+Hallazgo provisional:
+
+- FSM y Behavior Tree aplican una política categórica de este laboratorio;
+- Utility varía la decisión según magnitud/contexto;
+- con el perfil experimental actual, una anomalía leve sin superior no basta para abandonar patrulla;
+- una anomalía leve con superior disponible induce `informar_superior`;
+- una anomalía grave sin superior induce `investigar`.
+
+Los traits de Utility son de calibración y NO son canon de Jiang Rui.
