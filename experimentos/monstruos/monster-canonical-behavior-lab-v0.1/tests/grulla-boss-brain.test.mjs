@@ -7,7 +7,8 @@ import {
   observeResolvedPlayerAction,
   interruptGrullaPlan,
   grullaCapabilitySnapshot,
-  grullaTechniqueEffectiveness
+  grullaTechniqueEffectiveness,
+  grullaCounterAnnouncement
 } from '../adaptive/grulla-boss-brain-v0.1.mjs';
 
 let pass=0,fail=0;
@@ -243,6 +244,17 @@ T('learned control skill uses Ancla del Voto contract',()=>{
   assert.equal(e.counterMode,'ANCLA_DEL_VOTO');
   assert.equal(e.primarySuppression,'CONTROL');
   assert.equal(e.suppressControl,true);
+});
+
+
+T('counter announcement is available immediately when a skill becomes learned',()=>{
+  let s=initialGrullaBrainState({phase:2});
+  for(let i=0;i<3;i++)s=observeResolvedPlayerAction(s,tech('paso_nube','viento',5,'NONE','esquiva')).state;
+  const a=grullaCounterAnnouncement(s);
+  assert.equal(a.techniqueId,'paso_nube');
+  assert.equal(a.techniqueRole,'esquiva');
+  assert.equal(a.counterMode,'PULSO_FIJADO');
+  assert.ok(a.telegraph.length>20);
 });
 
 console.log('');
