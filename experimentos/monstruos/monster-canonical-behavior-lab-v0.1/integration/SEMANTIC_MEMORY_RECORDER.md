@@ -37,4 +37,14 @@ La memoria debe permanecer en orden cronológico ascendente y un outcome no pued
 
 ## Estado
 
-`SEMANTIC_MEMORY_RECORDER_V01: PENDING_CONFIRMATION`
+`SEMANTIC_MEMORY_RECORDER_V01: 12_PASS_0_FAIL_CONFIRMED`
+
+
+## Verificación
+
+- 12/12 pruebas;
+- salida congelada e inmutable;
+- orden temporal validado;
+- campos extra rechazados;
+- integración directa con Monster Combat AI confirmada;
+- perfiles INSTINTIVO siguen ignorando memoria.
