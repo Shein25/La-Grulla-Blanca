@@ -5,7 +5,8 @@
   "scripts": {
     "test:canon": "node tests/all-mobs-canon.test.mjs",
     "test:representative": "node tests/representative-baseline.test.mjs",
-    "test": "node tests/all-mobs-canon.test.mjs && node tests/representative-baseline.test.mjs && node tests/all-combatants-assignment.test.mjs",
-    "test:assignments": "node tests/all-combatants-assignment.test.mjs"
+    "test": "node tests/all-mobs-canon.test.mjs && node tests/representative-baseline.test.mjs && node tests/all-combatants-assignment.test.mjs && node tests/tactical-overlay.test.mjs",
+    "test:assignments": "node tests/all-combatants-assignment.test.mjs",
+    "test:tactics": "node tests/tactical-overlay.test.mjs"
   }
 }
