@@ -59,49 +59,47 @@ violaciones CADENCE_COMPAT            0
 
 El 100% crítico no produce spam porque la defensa consume acción y entra en cooldown.
 
-## Resultado mecánico
+## Resultado mecánico — referencia actualizada
 
-Se compararon las cuatro familias usando la fórmula de impacto actual de ver74, sin inventar otra resolución.
+La tabla sintética del primer prototipo queda **retirada como evidencia de balance**.
 
-Representantes:
+Se conserva únicamente como smoke test de que las cuatro mecánicas producen efectos distintos.
 
-- Rata: `EVADE_NEXT +25`;
-- Centinela: `DEFENSE_UP +4`;
-- Eco: `MITIGATE_NEXT 35%`;
-- Guardián: `ABSORB_RESERVE 5 / reserva 10`.
+El balance vigente se calcula contra el arsenal real de ver74 en:
 
-Daño esperado evitado en el siguiente ataque:
+`adaptive/ANALISIS_ARSENAL_JUGADOR_DEFENSAS_E1_v0.1.md`
 
-```text
-                         EVADE   DEFENSE   MITIGATE   ABSORB
-grande/impreciso          5.00      4.00       4.55      3.25
-medio/equilibrado         2.50      2.00       2.25      3.75
-pequeño/preciso           1.00      0.80       0.95      3.80
-grande/preciso            5.00      4.00       6.65      4.75
-```
+Benchmark reproducible:
 
-Por tanto las cuatro familias tienen nichos diferentes:
+`npm run benchmark:player-arsenal`
 
-- esquiva castiga ataques grandes con posibilidad real de fallar;
-- defensa plana crea postura/armadura sin consumir daño después del impacto;
-- absorción protege especialmente de golpes pequeños/medios y repetidos;
-- mitigación porcentual escala con golpes grandes que probablemente conectarán.
-
-## Ajuste de absorción
-
-El primer borrador usaba reservas demasiado altas.
-
-Se redujo Evolución I a:
+Hallazgos principales:
 
 ```text
-Devorador       3 / reserva 6
-Sapo Caldera    4 / reserva 8
-Escarabajo      4 / reserva 8
-Rey Escarabajo  5 / reserva 10
-Guardián Coral  5 / reserva 10
+Arco I objetivo: LianQi IV
+ramas disponibles: 1–2
+artes raíz ofensivas: Palma / Filo / Látigo
+qi máximo: 110
+equipo de ataque máximo actual: +2
 ```
 
-Así la absorción conserva su identidad sin dominar también los golpes grandes.
+La precisión de ramas puede sumar +7 ataque ya en Arco I, por lo que ESQUIVA y DEFENSA tienen counters reales.
+
+Mitigación 30–35% de un golpe queda por debajo de la acción DEFENDER del jugador.
+
+Absorción debe medirse por reserva total respecto del HP:
+
+```text
+Devorador        6 / 38 = 15,8%
+Sapo Caldera     8 / 34 = 23,5%
+Escarabajo       8 / 21 = 38,1%
+Rey Escarabajo  10 / 38 = 26,3%
+Guardián Coral  10 / 52 = 19,2%
+```
+
+Por ahora **no se modifica ningún número** sólo por porcentaje de golpe evitado.
+
+El próximo cierre de balance debe incluir el coste real de que el monstruo pierda su ataque al defender y el consumo completo de la reserva.
 
 ## Ataque-only
 
