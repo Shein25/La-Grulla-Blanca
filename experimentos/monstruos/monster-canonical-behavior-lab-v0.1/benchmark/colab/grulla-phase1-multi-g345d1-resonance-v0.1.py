@@ -248,8 +248,12 @@ def simulate(root,o1,o2,techs,choices,boss_def,runs,seed=1):
                 need=(act==1)&(piel_capacity[idx]<=0)&(qi[idx]>=cc["cost"])
                 act[need]=5
         elif cycle==1:
-            # No precargar Paso para Campanada: se conserva para Resonancia.
             act[:]=1
+            if pc is not None and cc is None:
+                # Sin Piel, Resonancia no existe: conservar PASO_READER original para Campanada.
+                need=(paso_turns[idx]<=1)&(qi[idx]>=pc["cost"])
+                act[need]=4
+            # Con Piel, Paso se reserva para la ventana telegráfica de Resonancia.
         elif cycle==2:
             # Campanada: control primero. No se conoce de antemano si acertará.
             act[:]=2
