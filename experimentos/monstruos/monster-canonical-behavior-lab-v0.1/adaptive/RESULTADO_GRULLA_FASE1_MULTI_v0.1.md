@@ -521,7 +521,51 @@ DEF14: 54,7 -> 35,74 = -18,96 pp
 
 La lectura de selección queda confirmada: Paso y Filamento se solapan demasiado frente a Campanada bajo MULTI_READER. La seguridad extra no compensa la pérdida de ofensiva.
 
-## 10. Estado
+## 10. Confirmación — Piel + Filamento
+
+Se confirmaron los tres finalistas estables:
+
+```text
+3 configuraciones
+× 27 formas raíz
+× 2 DEF
+× 20.000
+=
+3.240.000 duelos
+```
+
+Resultado:
+
+| Configuración | DEF 13 | DEF 14 |
+|---|---:|---:|
+| **C02_F03** | **93,09%** | **86,68%** |
+| C02_F20 | 92,11% | 85,23% |
+| C22_F00 | 91,28% | 83,90% |
+
+Mejor forma confirmada:
+
+```text
+C02 = Cobre grueso
+Guardia 7
+reserva 14
+1 PT
+
+F03 = Lazo medido
+Filamento base
++1d4 al atar
+1 PT
+```
+
+Frente al READER universal:
+
+```text
+DEF13: 60,9 -> 93,09 = +32,19 pp
+DEF14: 54,7 -> 86,68 = +31,98 pp
+```
+
+La confirmación sostiene la lectura provisional: Piel cubre el fallo de Filamento y Filamento conserva la reserva cuando cancela Campanada. La combinación es robusta y demasiado fuerte para Fase I en su estado actual.
+
+## 11. Estado
 
 ```text
 Paso + Piel       CERRADO EN SELECCIÓN
