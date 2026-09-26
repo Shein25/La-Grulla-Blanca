@@ -50,4 +50,19 @@ Gap de dominio:
 
 ## Estado
 
-`SONG_RUI_ARCHIVE_BASELINE: PENDING_CONFIRMATION`
+`SONG_RUI_ARCHIVE_BASELINE: 13_PASS_0_FAIL_CONFIRMED`
+
+
+## Confirmación
+
+```text
+PASS: 13
+FAIL: 0
+```
+
+Confirmado:
+
+- R3 = SABE se evalúa como conocimiento real (`INSINUA` en el contexto de calibración);
+- R4/R5/R6/R9 producen `knowledge: sobran ...`;
+- M16 crea `trabajar → FULFILL_DUTY → cumplir_deber`;
+- `cumplir_deber` no contiene semántica de archivo/documentos.
