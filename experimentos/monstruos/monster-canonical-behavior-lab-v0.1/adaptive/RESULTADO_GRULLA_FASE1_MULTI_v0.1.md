@@ -1,7 +1,7 @@
 # Resultado — Grulla Fase I-C · combinaciones múltiples v0.1
 
 **Fecha:** 2026-09-26  
-**Estado:** EXPERIMENTAL / FASE I-C EN PROGRESO  
+**Estado:** EXPERIMENTAL / FASE I-C CERRADA  
 **Rama:** `experiment/monster-adaptive-survival-lab-v0.1`
 
 ## 1. Alcance
@@ -611,17 +611,112 @@ DEF14: 54,7 -> 39,41 = -15,29 pp
 
 La confirmación sostiene la lectura del grid: intentar mantener activas las tres herramientas consume demasiadas ventanas ofensivas. La build tiene más respuestas disponibles, pero la política que intenta usarlas todas sistemáticamente pierde eficiencia.
 
-## 12. Estado
+## 12. Cierre global de Fase I-C
+
+Las cuatro familias quedaron confirmadas a 20.000 duelos por escenario.
+
+Mejor configuración confirmada de cada familia:
+
+| Familia | Mejor configuración | DEF 13 | DEF 14 | Δ vs READER DEF13 | Δ vs READER DEF14 |
+|---|---|---:|---:|---:|---:|
+| Paso + Piel | P02_C02 | 89,26% | 82,58% | +28,36 pp | +27,88 pp |
+| Paso + Filamento | P02_F03 | 45,20% | 35,74% | -15,70 pp | -18,96 pp |
+| Piel + Filamento | **C02_F03** | **93,09%** | **86,68%** | **+32,19 pp** | **+31,98 pp** |
+| Triple | P00_C02_F03 | 52,97% | 39,41% | -7,93 pp | -15,29 pp |
+
+Referencia:
 
 ```text
-Paso + Piel       CERRADO EN SELECCIÓN
-Paso + Filamento  CERRADO EN SELECCIÓN
-Piel + Filamento  CERRADO EN SELECCIÓN
-Triple             CERRADO EN SELECCIÓN
-Confirmación       PENDIENTE
-FASE II            NO TOCAR
+READER universal
+DEF13 = 60,9%
+DEF14 = 54,7%
 ```
 
-Script:
+### Comparación con opcionales aislados ya cerrados
+
+```text
+Paso óptimo aislado:
+DEF13 66,25%
+DEF14 59,39%
+
+Piel óptima aislada:
+DEF13 97,13%
+DEF14 95,54%
+
+Filamento óptimo aislado:
+DEF13 75,69%
+DEF14 67,25%
+```
+
+La lectura conjunta es inequívoca:
+
+1. **Piel de Cobre sigue siendo el outlier de balance.**  
+   Su forma aislada óptima continúa siendo más fuerte que cualquier combinación múltiple porque MULTI_READER paga acciones para precargar otras defensas. Aun así, Piel + Filamento permanece en 93,09% / 86,68%, demasiado alta para una herramienta opcional.
+
+2. **Más técnicas disponibles no equivalen automáticamente a una build mejor.**  
+   Paso + Filamento y el triple pierden rendimiento porque consumen ventanas que de otro modo serían ofensivas. La economía de acciones importa tanto como la mitigación.
+
+3. **Filamento tiene una sinergia real con Piel.**  
+   Si el control acierta, conserva la reserva de Piel; si falla, Piel amortigua Campanada. Esa complementariedad explica C02_F03 sin necesidad de inteligencia perfecta.
+
+4. **Paso + Filamento es redundante bajo esta política.**  
+   Ambas herramientas intentan resolver la misma ventana de Campanada y sacrifican demasiado daño sostenido.
+
+5. **DEF14 no corrige el problema de Piel.**  
+   Endurece el resto del espacio de builds, pero Piel aislada sigue cerca del 96% y Piel + Filamento cerca del 87%. Por tanto no se selecciona DEF14 simplemente como parche indirecto para Piel.
+
+### Volumen de Fase I-C
+
+Selección:
+
+```text
+Paso + Piel       9.990.000
+Paso + Filamento 11.340.000
+Piel + Filamento 11.340.000
+Triple            23.760.000
+----------------------------
+56.430.000 duelos
+```
+
+Confirmación:
+
+```text
+4 familias
+× 3 finalistas
+× 27 formas raíz
+× 2 DEF
+× 20.000
+=
+12.960.000 duelos
+```
+
+Total útil Fase I-C:
+
+```text
+56.430.000 + 12.960.000
+=
+69.390.000 duelos
+```
+
+No se cuentan Fase I-A ni los tres aislamientos dentro de este volumen.
+
+## 13. Estado final
+
+```text
+FASE I-A              CERRADA
+FASE I-B / PASO       CERRADO
+FASE I-B / PIEL       CERRADO
+FASE I-B / FILAMENTO  CERRADO
+FASE I-C              CERRADA
+
+DEF13 / DEF14          TODAVÍA NO SELECCIONAR
+PIEL                   REQUIERE REVISIÓN DE BALANCE
+FASE II                NO TOCAR
+FASE III               NO TOCAR
+```
+
+El siguiente problema de Fase I ya no es descubrir más combinaciones: es resolver el outlier de Piel sin destruir su identidad de burbuja y después volver a comparar la sensibilidad DEF13/14 con el balance corregido.
+
+Script reproducible:
 
 `benchmark/colab/grulla-phase1-multi-optionals-v0.1.py`
