@@ -47,4 +47,20 @@ Behavior Tree: crisis médica preempta lección de alquimia.
 
 Todos los intents siguen siendo simbólicos; no ejecutan movimiento, cultivo, tratamiento ni crafting.
 
-Estado: `INTERMEDIATE_GROUP_BASELINE: PENDING_CONFIRMATION`.
+Estado: `INTERMEDIATE_GROUP_BASELINE: 30_PASS_0_FAIL_CONFIRMED`.
+
+
+## Confirmación
+
+```text
+PASS: 30
+FAIL: 0
+```
+
+Trazas clave confirmadas:
+
+- Tao Ming: `ROUTINE → EMERGENCY → ROUTINE`;
+- Su Lian: crisis de Jardines preempta tutorial;
+- Chen Bo: pacientes preemptan examen;
+- Yao Fen: crisis médica preempta lección de alquimia;
+- Shen Baojun y Madre Wen no generan comportamiento M16 no cerrado por fuente.
