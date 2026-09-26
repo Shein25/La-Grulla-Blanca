@@ -1,5 +1,7 @@
 # Resultado — Grulla · benchmark integral de tres fases v0.1
 
+> **RESULTADO INVALIDADO COMO BALANCE DE REFERENCIA.** Este barrido usó por error el candidato reducido 45/35/25 HP (105 totales). La Grulla de referencia previa usa 150/100/50 HP (300 totales). Se conserva este documento sólo como evidencia del comportamiento relativo del cerebro; no debe usarse para fijar win rates ni stats. El benchmark fue corregido posteriormente.
+
 **Fecha:** 2026-09-26  
 **Estado:** EXPERIMENTAL / CALIBRACIÓN, NO CANÓNICO  
 **Rama:** `experiment/monster-adaptive-survival-lab-v0.1`
