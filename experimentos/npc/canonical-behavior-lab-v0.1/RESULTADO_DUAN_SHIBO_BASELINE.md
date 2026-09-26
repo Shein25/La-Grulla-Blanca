@@ -9,4 +9,7 @@ Gaps:
 - `KNOWLEDGE_SCHEMA_R1_TO_R10`
 - `RESOURCE_ALLOCATION_AND_LOGISTICS`
 
-Estado: `PENDING_CONFIRMATION`.
+Estado: `DUAN_SHIBO_RESOURCE_BASELINE: 10_PASS_0_FAIL_CONFIRMED`.
+
+
+Confirmado: M16 Recursos produce `FULFILL_DUTY` simbólico; R6 queda fuera del esquema y no existe asignación material de recursos.
