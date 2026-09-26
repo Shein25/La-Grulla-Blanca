@@ -28,6 +28,7 @@ Una política experimental **no se convierte en canon** por estar en este labora
 8. `mei_lian` — Aspirante, saber médico/local y puente Secta-Sauces.
 9. `guo_chen` — Aspirante, trabajo material/persistencia.
 10. `luo_yan` — Aspirante, protocolo/historia oficial.
+11. `wei_jian` — Autoridad marcial / Pabellón Marcial.
 
 Motivo: es funcional, tiene movilidad `RUTA`, territorio y ruta documentados, y permite comparar limpiamente FSM contra Behavior Tree.
 
@@ -280,3 +281,24 @@ LIBERAR / CUSTODIAR
 ```
 
 R1 sí se representa correctamente como SOSPECHA sin fabricar certeza.
+
+
+## Wei Jian — baseline marcial reactivo
+
+Resultado: `17 PASS / 0 FAIL`.
+
+Behavior Tree experimental:
+
+```text
+highThreat   → RESPOND_SECURITY
+suspicious   → INVESTIGATE_MARTIAL_ANOMALY
+trainingDue  → SUPERVISE_TRAINING
+```
+
+La amenaza preempta entrenamiento activo y, al finalizar, la rutina puede reanudarse.
+
+Gaps preservados:
+
+- combate físico;
+- navegación por rooms;
+- gate `SECTA_INTERIOR`.
