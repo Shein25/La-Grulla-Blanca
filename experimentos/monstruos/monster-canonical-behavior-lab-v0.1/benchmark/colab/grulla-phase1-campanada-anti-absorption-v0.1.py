@@ -226,7 +226,7 @@ def main():
     rows=[]
     for model in range(2):
       for counter in range(6):
-       for p1,p2 in CONFIGS:
+       for p1,p2 in configs:
         for root in range(3):
          for o1 in range(1,4):
           for o2 in range(1,4):
