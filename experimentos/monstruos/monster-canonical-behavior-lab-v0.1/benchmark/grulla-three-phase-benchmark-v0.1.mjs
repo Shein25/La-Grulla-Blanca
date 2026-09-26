@@ -19,22 +19,22 @@ const ROOTS={
 
 const GEAR={attack:2,defense:7,basic:'1d8'};
 const PHASE={
- 1:{hp:45,attack:3,defense:13,basic:'1d6+1'},
- 2:{hp:35,attack:4,defense:13,basic:'1d6+2'},
- 3:{hp:25,attack:5,defense:12,basic:'1d8+2'}
+ 1:{hp:150,attack:3,defense:13,basic:'1d6+2'},
+ 2:{hp:100,attack:3,defense:13,basic:'1d6+3'},
+ 3:{hp:50,attack:5,defense:12,basic:'1d8+4'}
 };
 
 // Efectos provisionales: sólo reutilizan conceptos que Combate ya soporta.
 const FX={
  [A.GOLPE_ALA]:{kind:'ATTACK'},
- [A.CAMPANADA_PICO]:{kind:'ATTACK',attackBonus:3,damage:'2d6+1'},
+ [A.CAMPANADA_PICO]:{kind:'ATTACK',attackBonus:3,damage:'2d6+2'},
  [A.PATA_INMOVIL]:{kind:'DEFENSE_NEXT',p1:3,p3:5},
- [A.TORMENTA_MIL_PLUMAS]:{kind:'ATTACK',attackBonus:2,damage:'2d6+2',drain:3},
+ [A.TORMENTA_MIL_PLUMAS]:{kind:'ATTACK',attackBonus:3,damage:'2d6+3',drain:2},
  [A.CERRAR_ALAS]:{kind:'ABSORB',perHit:4,reserve:8},
  [A.RECORDAR_FILO]:{kind:'EVADE_NEXT',bonus:20},
  [A.ECO_MERIDIANO]:{kind:'DRAIN',drain:4},
  [A.PICOTAZO_BLANCO]:{kind:'ATTACK',attackBonus:2},
- [A.CAMPANA_SIN_DUENO]:{kind:'ATTACK',attackBonus:3,damage:'2d8+2',drain:4},
+ [A.CAMPANA_SIN_DUENO]:{kind:'ATTACK',attackBonus:5,damage:'2d8+5',drain:4},
  [A.ALA_VACIA]:{kind:'EVADE_NEXT',bonus:25},
  [A.SILENCIO_ENTRE_CAMPANAS]:{kind:'PREP'},
  [A.ROMPER_RITMO]:{kind:'ATTACK',attackBonus:4,damage:'2d8+3'},
@@ -148,7 +148,7 @@ const invariants={
  everyRootHasMinimalReaderWins:roots.every(root=>rows.some(r=>r.root===root&&r.strategy==='MINIMAL_READER'&&r.winRate>0)),
  noOptionalTechniqueRequired:true
 };
-console.log(JSON.stringify({benchmark:'GRULLA_THREE_PHASE_BENCHMARK_V01',status:STATUS,runsPerBuild:runs,totalBuilds:27,assumptions:{player:'LianQi IV, maestria 2, 9 combinaciones por raiz, gear preparado +2 ATQ/+7 DEF/1d8',optionalTechniques:'Paso/Piel/Filamento NO usados',bossStats:'45/35/25 HP provisionales, no canonicos',intentOrder:'plan -> telegraph -> jugador -> intent comprometida -> observacion'},invariants,summary:Object.fromEntries(STRATEGIES.map(s=>[s,summary(s)])),rows},null,2));
+console.log(JSON.stringify({benchmark:'GRULLA_THREE_PHASE_BENCHMARK_V01',status:STATUS,runsPerBuild:runs,totalBuilds:27,assumptions:{player:'LianQi IV, maestria 2, 9 combinaciones por raiz, gear preparado +2 ATQ/+7 DEF/1d8',optionalTechniques:'Paso/Piel/Filamento NO usados',bossStats:'150/100/50 HP del combate previo de referencia; balance nuevo aun no canonico',intentOrder:'plan -> telegraph -> jugador -> intent comprometida -> observacion'},invariants,summary:Object.fromEntries(STRATEGIES.map(s=>[s,summary(s)])),rows},null,2));
 if(!invariants.pureSingleSkillZeroWins)process.exitCode=2;
 if(!invariants.singleSkillWithDefenseZeroWins)process.exitCode=3;
 if(!invariants.everyRootHasMinimalReaderWins)process.exitCode=4;
