@@ -1,5 +1,31 @@
 export const MONSTER_STAGE_PROGRESSION_STATUS='EXPERIMENTAL_NON_CANONICAL_STAGE_PROGRESSION_V01';
 
+export const STAGE_STAT_SCALING_STATUS='EXPERIMENTAL_NON_CANONICAL_HP_DAMAGE_5PCT_PER_STAGE_V01';
+
+export const STAGE_STAT_SCALING=Object.freeze({
+  1:Object.freeze({hpMultiplier:1.00,damageMultiplier:1.00,attackBonus:0,defenseBonus:0}),
+  2:Object.freeze({hpMultiplier:1.05,damageMultiplier:1.05,attackBonus:0,defenseBonus:0}),
+  3:Object.freeze({hpMultiplier:1.10,damageMultiplier:1.10,attackBonus:0,defenseBonus:0}),
+  4:Object.freeze({hpMultiplier:1.15,damageMultiplier:1.15,attackBonus:0,defenseBonus:0})
+});
+
+export function stageStatScaling(stage){
+  const x=STAGE_STAT_SCALING[stage];
+  if(!x)throw new RangeError('stage debe ser 1..4');
+  return x;
+}
+
+export function scaledNativeStats(def,stage){
+  if(!def||typeof def!=='object')throw new TypeError('def inválida');
+  const s=stageStatScaling(stage);
+  return Object.freeze({
+    hp:Math.round(def.hp*s.hpMultiplier),
+    ataque:(def.ataque||0)+s.attackBonus,
+    defensa:(def.defensa||10)+s.defenseBonus,
+    damageMultiplier:s.damageMultiplier
+  });
+}
+
 export const STAGE_ROLES=Object.freeze([
   'NORMAL',
   'SKIRMISHER',
