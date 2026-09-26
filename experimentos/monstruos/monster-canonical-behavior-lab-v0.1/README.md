@@ -56,7 +56,7 @@ Estas asignaciones **no son canon**.
 
 ## Estado
 
-`MONSTER_LAB_STATUS: REPRESENTATIVE_BASELINE_CONFIRMED`
+`MONSTER_LAB_STATUS: TACTICAL_OVERLAY_CONFIRMED`
 
 
 ## Baseline representativo confirmado
@@ -70,3 +70,30 @@ TOTAL                    31/31 PASS
 La cadencia productiva queda preservada para los 19 MOBS.
 
 Los cinco representantes prueban el cableado de perfiles cognitivos, pero el adaptador canónico mantiene deliberadamente vacíos `signalWeights`, `memoryWeights` y `socialWeights`. Por tanto, la siguiente fase es definir asignaciones candidatas para las criaturas combatientes y una capa táctica experimental separada del canon.
+
+
+## Cobertura 18 combatientes
+
+```text
+assignment baseline 15/15 PASS
+```
+
+Las 18 criaturas combatientes tienen perfil candidato experimental. El muñeco de práctica no recibe IA.
+
+## Tactical Overlay v0.1
+
+```text
+14/14 PASS
+```
+
+Primeros cambios de decisión adaptativos confirmados sin tocar canon ni cadencia.
+
+Acumulado del laboratorio:
+
+```text
+canon transversal         13/13
+baseline representativo   18/18
+18 combatientes           15/15
+tactical overlay          14/14
+TOTAL                     60/60 PASS
+```
