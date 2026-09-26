@@ -5,7 +5,7 @@
   "scripts": {
     "test:canon": "node tests/all-mobs-canon.test.mjs",
     "test:representative": "node tests/representative-baseline.test.mjs",
-    "test": "node tests/all-mobs-canon.test.mjs && node tests/representative-baseline.test.mjs && node tests/all-combatants-assignment.test.mjs && node tests/tactical-overlay.test.mjs && node tests/integration-bridge.test.mjs && node tests/semantic-memory-recorder.test.mjs && node tests/resolved-combat-signal-adapter.test.mjs && node benchmark/test-benchmark.mjs",
+    "test": "node tests/all-mobs-canon.test.mjs && node tests/representative-baseline.test.mjs && node tests/all-combatants-assignment.test.mjs && node tests/tactical-overlay.test.mjs && node tests/integration-bridge.test.mjs && node tests/semantic-memory-recorder.test.mjs && node tests/resolved-combat-signal-adapter.test.mjs && node tests/combat-feedback-loop.test.mjs && node benchmark/test-benchmark.mjs",
     "test:assignments": "node tests/all-combatants-assignment.test.mjs",
     "test:tactics": "node tests/tactical-overlay.test.mjs",
     "test:benchmark": "node benchmark/test-benchmark.mjs",
@@ -13,6 +13,7 @@
     "benchmark:standard": "node benchmark/run-benchmark.mjs --tier standard --seed 1337",
     "test:integration": "node tests/integration-bridge.test.mjs",
     "test:memory": "node tests/semantic-memory-recorder.test.mjs",
-    "test:signals": "node tests/resolved-combat-signal-adapter.test.mjs"
+    "test:signals": "node tests/resolved-combat-signal-adapter.test.mjs",
+    "test:feedback": "node tests/combat-feedback-loop.test.mjs"
   }
 }
