@@ -22,6 +22,45 @@ export const GRULLA_ABILITIES=Object.freeze({
   BUSCAR_PULSO:'grulla__buscar_pulso'
 });
 
+export const GRULLA_COUNTER_RESPONSES=Object.freeze({
+  ofensiva:Object.freeze({
+    id:'TRAZO_VACIO',
+    label:'Trazo Vacío',
+    telegraph:'La Grulla deja de seguir el golpe: ya conoce exactamente dónde termina.',
+    primarySuppression:'DAMAGE_AND_SECONDARY'
+  }),
+  esquiva:Object.freeze({
+    id:'PULSO_FIJADO',
+    label:'Pulso Fijado',
+    telegraph:'La mirada abandona tu silueta y escucha el pulso que mueve tus pasos.',
+    primarySuppression:'EVASION'
+  }),
+  guardia:Object.freeze({
+    id:'RESONANCIA_INTERNA',
+    label:'Resonancia Interior',
+    telegraph:'La campana cambia de tono hasta resonar dentro de la misma guardia.',
+    primarySuppression:'GUARD'
+  }),
+  fortificacion:Object.freeze({
+    id:'CAMPANA_INVERSA',
+    label:'Campana Inversa',
+    telegraph:'El eco encuentra las mismas juntas cada vez que endureces la postura.',
+    primarySuppression:'DEFENSE_BUFF'
+  }),
+  control:Object.freeze({
+    id:'ANCLA_DEL_VOTO',
+    label:'Ancla del Voto',
+    telegraph:'La pata inmóvil fija el vínculo. El mismo lazo ya no encuentra dónde cerrar.',
+    primarySuppression:'CONTROL'
+  }),
+  desconocida:Object.freeze({
+    id:'PATRON_COMPRENDIDO',
+    label:'Patrón Comprendido',
+    telegraph:'La Grulla reconoce la circulación exacta de esa técnica.',
+    primarySuppression:'FULL_EFFECT'
+  })
+});
+
 const A=GRULLA_ABILITIES;
 const PHASE1_CYCLE=Object.freeze([A.GOLPE_ALA,A.GOLPE_ALA,A.CAMPANADA_PICO,A.PATA_INMOVIL]);
 const TELEGRAPH=Object.freeze({
@@ -41,6 +80,7 @@ const TELEGRAPH=Object.freeze({
 });
 
 const VALID_ACTION_TYPES=new Set(['BASIC','TECHNIQUE','CONTROL','DEFEND','RECOVER','UTILITY']);
+const VALID_TECHNIQUE_ROLES=new Set(['ofensiva','guardia','fortificacion','esquiva','control']);
 const MAX_HISTORY=8;
 
 function plain(x,label){
@@ -63,12 +103,16 @@ function actionCopy(a){
   plain(a,'playerAction');
   if(!VALID_ACTION_TYPES.has(a.type))throw new TypeError('playerAction.type inválido: '+a.type);
   if(a.techniqueId!==undefined&&typeof a.techniqueId!=='string')throw new TypeError('techniqueId inválido');
+  if(a.techniqueRole!==undefined&&a.techniqueRole!==null&&!VALID_TECHNIQUE_ROLES.has(a.techniqueRole)){
+    throw new TypeError('techniqueRole inválido: '+a.techniqueRole);
+  }
   if(a.element!==undefined&&typeof a.element!=='string')throw new TypeError('element inválido');
   if(a.qiSpent!==undefined&&(!Number.isFinite(a.qiSpent)||a.qiSpent<0))throw new TypeError('qiSpent inválido');
   if(a.damageBand!==undefined&&!['NONE','LOW','NORMAL','HEAVY'].includes(a.damageBand))throw new TypeError('damageBand inválido');
   return Object.freeze({
     type:a.type,
     techniqueId:a.techniqueId??null,
+    techniqueRole:a.techniqueRole??(a.type==='CONTROL'?'control':null),
     element:a.element??null,
     qiSpent:Number(a.qiSpent||0),
     damageBand:a.damageBand??'NONE'
@@ -85,9 +129,10 @@ export function initialGrullaBrainState({phase=1,phaseMemory={}}={}){
 
 function summarize(history){
   const t=new Map(),e=new Map();
-  let offense=0,defend=0,recover=0,control=0,qiActions=0,techniqueUses=0,nonTechniqueActions=0;
+  let offense=0,defend=0,recover=0,control=0,qiActions=0,techniqueUses=0,nonTechniqueActions=0,basicUses=0;
   for(const a of history){
     if(['BASIC','TECHNIQUE','CONTROL'].includes(a.type))offense++;
+    if(a.type==='BASIC')basicUses++;
     if(a.type==='DEFEND')defend++;
     if(a.type==='RECOVER')recover++;
     if(a.type==='CONTROL')control++;
@@ -97,11 +142,17 @@ function summarize(history){
     if(a.element)e.set(a.element,(e.get(a.element)||0)+1);
   }
   const dominant=map=>[...map.entries()].sort((x,y)=>y[1]-x[1]||x[0].localeCompare(y[0]))[0]?.[0]||null;
+  const dominantTechnique=dominant(t);
+  const dominantTechniqueRole=history.findLast?.(a=>a.techniqueId===dominantTechnique)?.techniqueRole
+    ?? [...history].reverse().find(a=>a.techniqueId===dominantTechnique)?.techniqueRole
+    ?? null;
+  const singleSkillReliance=techniqueUses>=3&&t.size===1&&basicUses===0;
   return {
-    dominantTechnique:dominant(t),dominantElement:dominant(e),
+    dominantTechnique,dominantTechniqueRole,dominantElement:dominant(e),
     offense,defend,recover,control,qiActions,
-    techniqueUses,uniqueTechniques:t.size,nonTechniqueActions,
-    pureSingleSkillSpam:techniqueUses>=3&&t.size===1&&nonTechniqueActions===0
+    techniqueUses,uniqueTechniques:t.size,nonTechniqueActions,basicUses,
+    singleSkillReliance,
+    pureSingleSkillSpam:singleSkillReliance&&nonTechniqueActions===0
   };
 }
 
@@ -112,11 +163,12 @@ export function enterGrullaPhase(state,phase){
   if(state.phase===2)memory.phase2=summarize(state.history);
 
   let techniqueCounter=state.techniqueCounter?{...state.techniqueCounter}:null;
-  if(phase===2&&memory.phase1?.pureSingleSkillSpam){
+  if(phase===2&&memory.phase1?.singleSkillReliance){
     techniqueCounter={
       techniqueId:memory.phase1.dominantTechnique,
+      techniqueRole:memory.phase1.dominantTechniqueRole??null,
       locked:true,
-      source:'PHASE1_PURE_SPAM'
+      source:'PHASE1_SINGLE_SKILL_RELIANCE'
     };
   }
 
@@ -202,6 +254,10 @@ export function chooseGrullaIntent({state,context={},rng=()=>.5}){
   return {intent:intent(c.id,'MAESTRA',{reason:'UTILITY_PLANIFICADA',planId:plan?.id||null}),state:remember(state,c.id,{plan})};
 }
 
+function counterResponseFor(role){
+  return GRULLA_COUNTER_RESPONSES[role]||GRULLA_COUNTER_RESPONSES.desconocida;
+}
+
 export function grullaTechniqueEffectiveness(state,playerAction){
   plain(state,'state');
   const action=actionCopy(playerAction);
@@ -212,16 +268,28 @@ export function grullaTechniqueEffectiveness(state,playerAction){
     action.techniqueId&&
     action.techniqueId===counter.techniqueId
   );
+  const role=counter?.techniqueRole??action.techniqueRole??null;
+  const response=counterResponseFor(role);
   return Object.freeze({
     multiplier:blocked?0:1,
     blocked,
+    consumeQi:true,
+    refundQi:false,
     suppressEffects:blocked,
     suppressDamage:blocked,
     suppressControl:blocked,
     suppressAfflictions:blocked,
     suppressResourceEffects:blocked,
+    suppressGuard:blocked&&role==='guardia',
+    suppressDefenseBuff:blocked&&role==='fortificacion',
+    suppressEvasion:blocked&&role==='esquiva',
     techniqueId:action.techniqueId,
+    techniqueRole:role,
     counteredTechniqueId:counter?.techniqueId??null,
+    counterMode:blocked?response.id:null,
+    counterLabel:blocked?response.label:null,
+    telegraph:blocked?response.telegraph:null,
+    primarySuppression:blocked?response.primarySuppression:null,
     reason:blocked?'TECHNIQUE_FULLY_READ':'NORMAL'
   });
 }
@@ -232,7 +300,15 @@ function nextTechniqueCounter(state,action,nextHistory){
   const current=state.techniqueCounter?{...state.techniqueCounter}:null;
   if(current?.locked){
     if(action.techniqueId===current.techniqueId)return current;
-    return null;
+
+    // Defender, curarse o una utility sin técnica NO hacen olvidar una skill
+    // ya comprendida. Para romper el conocimiento hay que mostrar una
+    // alternativa táctica real: otra técnica/control o un ataque básico.
+    const meaningfulVariation=
+      action.type==='BASIC'||
+      (action.techniqueId&&action.techniqueId!==current.techniqueId);
+
+    return meaningfulVariation?null:current;
   }
 
   const last3=tail(nextHistory,3);
@@ -242,6 +318,7 @@ function nextTechniqueCounter(state,action,nextHistory){
   ){
     return {
       techniqueId:last3[0].techniqueId,
+      techniqueRole:last3[0].techniqueRole??null,
       locked:true,
       source:'THREE_CONSECUTIVE_SAME_SKILL'
     };
