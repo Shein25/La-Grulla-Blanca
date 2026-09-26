@@ -55,7 +55,8 @@ function freezeState(s){
     history:Object.freeze(s.history.map(x=>Object.freeze({...x}))),
     recentIntents:Object.freeze([...s.recentIntents]),
     phaseMemory:Object.freeze({...s.phaseMemory}),
-    plan:s.plan?Object.freeze({...s.plan}):null
+    plan:s.plan?Object.freeze({...s.plan}):null,
+    techniqueCounter:s.techniqueCounter?Object.freeze({...s.techniqueCounter}):null
   });
 }
 function actionCopy(a){
@@ -79,23 +80,29 @@ function recent(state,id,depth=1){return state.recentIntents.slice(-depth).inclu
 
 export function initialGrullaBrainState({phase=1,phaseMemory={}}={}){
   phaseOk(phase);plain(phaseMemory,'phaseMemory');
-  return freezeState({phase,turn:0,history:[],recentIntents:[],phaseMemory:{...phaseMemory},plan:null});
+  return freezeState({phase,turn:0,history:[],recentIntents:[],phaseMemory:{...phaseMemory},plan:null,techniqueCounter:null});
 }
 
 function summarize(history){
   const t=new Map(),e=new Map();
-  let offense=0,defend=0,recover=0,control=0,qiActions=0;
+  let offense=0,defend=0,recover=0,control=0,qiActions=0,techniqueUses=0,nonTechniqueActions=0;
   for(const a of history){
     if(['BASIC','TECHNIQUE','CONTROL'].includes(a.type))offense++;
     if(a.type==='DEFEND')defend++;
     if(a.type==='RECOVER')recover++;
     if(a.type==='CONTROL')control++;
     if(a.qiSpent>0)qiActions++;
-    if(a.techniqueId)t.set(a.techniqueId,(t.get(a.techniqueId)||0)+1);
+    if(a.techniqueId){techniqueUses++;t.set(a.techniqueId,(t.get(a.techniqueId)||0)+1);}
+    else nonTechniqueActions++;
     if(a.element)e.set(a.element,(e.get(a.element)||0)+1);
   }
   const dominant=map=>[...map.entries()].sort((x,y)=>y[1]-x[1]||x[0].localeCompare(y[0]))[0]?.[0]||null;
-  return {dominantTechnique:dominant(t),dominantElement:dominant(e),offense,defend,recover,control,qiActions};
+  return {
+    dominantTechnique:dominant(t),dominantElement:dominant(e),
+    offense,defend,recover,control,qiActions,
+    techniqueUses,uniqueTechniques:t.size,nonTechniqueActions,
+    pureSingleSkillSpam:techniqueUses>=3&&t.size===1&&nonTechniqueActions===0
+  };
 }
 
 export function enterGrullaPhase(state,phase){
@@ -103,7 +110,17 @@ export function enterGrullaPhase(state,phase){
   const memory={...state.phaseMemory};
   if(state.phase===1)memory.phase1=summarize(state.history);
   if(state.phase===2)memory.phase2=summarize(state.history);
-  return freezeState({phase,turn:0,history:[],recentIntents:[],phaseMemory:memory,plan:null});
+
+  let techniqueCounter=state.techniqueCounter?{...state.techniqueCounter}:null;
+  if(phase===2&&memory.phase1?.pureSingleSkillSpam){
+    techniqueCounter={
+      techniqueId:memory.phase1.dominantTechnique,
+      locked:true,
+      source:'PHASE1_PURE_SPAM'
+    };
+  }
+
+  return freezeState({phase,turn:0,history:[],recentIntents:[],phaseMemory:memory,plan:null,techniqueCounter});
 }
 
 function signals(state,context){
@@ -185,11 +202,56 @@ export function chooseGrullaIntent({state,context={},rng=()=>.5}){
   return {intent:intent(c.id,'MAESTRA',{reason:'UTILITY_PLANIFICADA',planId:plan?.id||null}),state:remember(state,c.id,{plan})};
 }
 
+export function grullaTechniqueEffectiveness(state,playerAction){
+  plain(state,'state');
+  const action=actionCopy(playerAction);
+  const counter=state.techniqueCounter;
+  const blocked=!!(
+    state.phase>=2&&
+    counter?.locked&&
+    action.techniqueId&&
+    action.techniqueId===counter.techniqueId
+  );
+  return Object.freeze({
+    multiplier:blocked?0:1,
+    blocked,
+    techniqueId:action.techniqueId,
+    counteredTechniqueId:counter?.techniqueId??null,
+    reason:blocked?'TECHNIQUE_FULLY_READ':'NORMAL'
+  });
+}
+
+function nextTechniqueCounter(state,action,nextHistory){
+  if(state.phase<2)return state.techniqueCounter?{...state.techniqueCounter}:null;
+
+  const current=state.techniqueCounter?{...state.techniqueCounter}:null;
+  if(current?.locked){
+    if(action.techniqueId===current.techniqueId)return current;
+    return null;
+  }
+
+  const last3=tail(nextHistory,3);
+  if(
+    last3.length===3&&
+    last3.every(x=>x.techniqueId&&x.techniqueId===last3[0].techniqueId)
+  ){
+    return {
+      techniqueId:last3[0].techniqueId,
+      locked:true,
+      source:'THREE_CONSECUTIVE_SAME_SKILL'
+    };
+  }
+  return null;
+}
+
 export function observeResolvedPlayerAction(state,playerAction){
   plain(state,'state');
   const action=actionCopy(playerAction);
   let plan=state.plan?{...state.plan}:null;
   let event='NONE';
+  const nextHistory=[...state.history,action].slice(-MAX_HISTORY);
+  const previousCounter=state.techniqueCounter;
+  const techniqueCounter=nextTechniqueCounter(state,action,nextHistory);
 
   if(state.phase===3&&plan&&!plan.armed){
     if(plan.id==='ROMPER_REPETICION'){
@@ -206,8 +268,14 @@ export function observeResolvedPlayerAction(state,playerAction){
     event='PLAN_COMPLETED';
   }
 
+  if(!previousCounter?.locked&&techniqueCounter?.locked&&event==='NONE'){
+    event='TECHNIQUE_COUNTER_LOCKED';
+  }else if(previousCounter?.locked&&!techniqueCounter&&event==='NONE'){
+    event='TECHNIQUE_COUNTER_BROKEN_BY_VARIATION';
+  }
+
   return {
-    state:freezeState({...state,history:[...state.history,action].slice(-MAX_HISTORY),plan}),
+    state:freezeState({...state,history:nextHistory,plan,techniqueCounter}),
     event
   };
 }
@@ -227,6 +295,7 @@ export function grullaCapabilitySnapshot(state,context={}){
     memoryDepth:state.phase===1?0:4,
     signals:Object.freeze({...s,last:undefined}),
     plan:state.plan?Object.freeze({...state.plan}):null,
+    techniqueCounter:state.techniqueCounter?Object.freeze({...state.techniqueCounter}):null,
     phaseMemory:Object.freeze({...state.phaseMemory})
   });
 }
