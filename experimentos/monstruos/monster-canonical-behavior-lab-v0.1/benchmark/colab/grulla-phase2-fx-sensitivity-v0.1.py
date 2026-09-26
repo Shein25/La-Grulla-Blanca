@@ -209,13 +209,14 @@ def duel(fxmodel,profile,strategy,root,o1,o2,seed):
         else: # reader
             if hp<=9 and potion:
                 act=4
-            elif locked or evade_next>0 or reserve>0 or intent==ECO:
+            elif locked or evade_next>0 or intent==ECO:
                 act=0
-            elif intent==TORMENTA:
+            elif intent==TORMENTA and hp<=14:
                 act=3
             else:
-                # Recordar/Cerrar todavía no aplicaron su defensa: aprovechar la
-                # ventana actual, pero no repetir raíz consecutivamente.
+                # No reaccionar mecánicamente a toda defensa: una reserva de
+                # Cerrar Alas puede atravesarse si el intercambio sigue siendo bueno.
+                # Recordar/Cerrar todavía no aplicaron su efecto en esta ventana.
                 lasttech=htech[hn-1] if hn>0 else -1
                 act=1 if qi>=tcost and lasttech!=0 else 0
 
