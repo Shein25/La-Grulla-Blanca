@@ -27,6 +27,7 @@ Una política experimental **no se convierte en canon** por estar en este labora
 7. `zhao_wen` — Aspirante, piezas documentales / análisis.
 8. `mei_lian` — Aspirante, saber médico/local y puente Secta-Sauces.
 9. `guo_chen` — Aspirante, trabajo material/persistencia.
+10. `luo_yan` — Aspirante, protocolo/historia oficial.
 
 Motivo: es funcional, tiene movilidad `RUTA`, territorio y ruta documentados, y permite comparar limpiamente FSM contra Behavior Tree.
 
@@ -256,3 +257,26 @@ Guardia obligatoria:
 `EXECUTE_SECOND_BRANCH_GRAFT`
 
 no debe poder entrar por `FULFILL_DUTY`.
+
+
+## Luo Yan — baseline de conocimiento y epílogo
+
+Resultado: `14 PASS / 0 FAIL`.
+
+Gaps confirmados:
+
+```text
+R5 = SABE
+→ no cabe en knowledge R1-R3
+→ KNOWLEDGE_SCHEMA_R1_TO_R10 pendiente
+```
+
+y:
+
+```text
+LIBERAR / CUSTODIAR
+→ no existe como outcome de dominio
+→ LIBERAR_CUSTODIAR_DOMAIN_OUTCOME pendiente
+```
+
+R1 sí se representa correctamente como SOSPECHA sin fabricar certeza.
