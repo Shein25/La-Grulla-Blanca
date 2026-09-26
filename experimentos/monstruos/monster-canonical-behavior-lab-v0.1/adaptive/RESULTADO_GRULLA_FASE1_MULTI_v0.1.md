@@ -167,11 +167,97 @@ No es una contradicción: `MULTI_READER` precarga Piel y Paso en acciones distin
 
 El mejor reparto usa 1 PT en cada técnica, no 2 PT en una sola.
 
-## 5. Estado
+
+## 5. Sub-barrido 2 — Paso + Filamento
+
+Configuraciones:
+
+```text
+67 legales brutas
+-> 42 efectivamente distintas
+```
+
+Volumen:
+
+```text
+42 configuraciones
+× 27 formas raíz
+× 2 DEF
+× 5.000
+=
+11.340.000 duelos
+```
+
+### Top DEF 13
+
+| Configuración | PT opcionales | Win |
+|---|---:|---:|
+| **P02_F03** | 2 | **45,09%** |
+| P00_F23 | 2 | 44,16% |
+| P02_F20 | 2 | 42,60% |
+| P20_F03 | 2 | 39,94% |
+| P00_F33 | 2 | 38,74% |
+
+### Top DEF 14
+
+| Configuración | PT opcionales | Win |
+|---|---:|---:|
+| **P02_F03** | 2 | **35,82%** |
+| P00_F23 | 2 | 34,34% |
+| P02_F20 | 2 | 33,62% |
+| P00_F33 | 2 | 31,21% |
+| P20_F03 | 2 | 31,00% |
+
+Mejor forma:
+
+```text
+P02 = Paso velado
++25% Esquiva
+duración 2
+1 PT
+
+F03 = Lazo medido
+Filamento base de control
++ 1d4 al atar
+1 PT
+```
+
+Resultado:
+
+```text
+DEF 13 = 45,09%
+DEF 14 = 35,82%
+```
+
+Frente al READER universal:
+
+```text
+DEF13: 60,9 -> 45,09 = -15,81 pp
+DEF14: 54,7 -> 35,82 = -18,88 pp
+```
+
+### Lectura provisional
+
+La combinación no es rota; bajo `MULTI_READER` es directamente ineficiente.
+
+El patrón explica el resultado:
+
+```text
+Golpe 1 -> raíz
+Golpe 2 -> Paso
+Campanada -> Filamento
+Pata -> básico
+```
+
+En cada ciclo sólo queda una de las dos ventanas de Golpe para la técnica raíz. Paso consume qi y una acción para respaldar un Filamento que ya intenta cancelar Campanada. La defensa redundante mejora seguridad, pero reduce demasiado el daño sostenido y agota recursos antes de terminar 150 HP.
+
+Esto demuestra por qué Fase I-C no puede juzgar una build sólo por cantidad de herramientas: la política de uso importa tanto como la build.
+
+## 6. Estado
 
 ```text
 Paso + Piel       CERRADO EN SELECCIÓN
-Paso + Filamento  PENDIENTE
+Paso + Filamento  CERRADO EN SELECCIÓN
 Piel + Filamento  PENDIENTE
 Triple             PENDIENTE
 Confirmación       PENDIENTE
