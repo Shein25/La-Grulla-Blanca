@@ -165,7 +165,7 @@ La conversión entre eventos de caza y presión se calibrará después.
 
 ## 5. Techo por progresión del jugador
 
-El jugador limita hasta dónde **puede** aprender una población, pero no concede el Tier.
+El jugador limita hasta dónde **puede aprender y consolidar** una población, pero no concede el Tier. El ceiling es un **techo de aprendizaje real**, no sólo de manifestación.
 
 ```text
 playerStage < nativeStage      → máximo T0
@@ -175,7 +175,17 @@ playerStage == nativeStage + 2 → máximo T3
 playerStage == nativeStage + 3 → máximo T4
 ```
 
-Por tanto:
+Por tanto, la presión también se topa en el borde superior del Tier permitido:
+
+```text
+ceiling T0 → pressure máxima 19
+ceiling T1 → pressure máxima 44
+ceiling T2 → pressure máxima 69
+ceiling T3 → pressure máxima 89
+ceiling T4 → pressure máxima 100
+```
+
+y después:
 
 ```text
 effectiveAdaptiveTier
@@ -185,6 +195,8 @@ min(
   adaptiveCapabilityCeiling
 )
 ```
+
+Subir de etapa no revela tiers precargados: hacen falta nuevos eventos de presión para aprender el siguiente Tier.
 
 ---
 
@@ -372,6 +384,8 @@ Combat Ability Executor
 ```
 
 `CADENCE_COMPAT` sigue siendo autoridad hasta que exista una decisión explícita que lo sustituya.
+
+La semántica exacta del ceiling queda cerrada en `DECISION_TECHO_APRENDIZAJE_ADAPTATIVO_v0.2.md`.
 
 ---
 
