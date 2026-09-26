@@ -35,4 +35,21 @@ Por tanto, el acceso canónico de M09 queda registrado como gap de capacidad del
 
 ## Estado
 
-`ZHAO_WEN_DIALOGUE_BASELINE: PENDING_RUNTIME_CONFIRMATION`
+`ZHAO_WEN_DIALOGUE_BASELINE: 15_PASS_0_FAIL_CONFIRMED`
+
+
+## Verificación confirmada
+
+```text
+PASS: 15
+FAIL: 0
+```
+
+Confirmado:
+
+- R1, R2 y R3 iniciales devuelven `NO_SABE`;
+- `disclosure = 0`;
+- relaciones máximas no cambian ese resultado;
+- rango máximo del jugador tampoco cambia ese resultado;
+- el perfil canónico y el perfil experimental permanecen inmutables;
+- `ARCHIVO_RESTRINGIDO_PERMISSION` no existe en el vocabulario GOAP actual.
