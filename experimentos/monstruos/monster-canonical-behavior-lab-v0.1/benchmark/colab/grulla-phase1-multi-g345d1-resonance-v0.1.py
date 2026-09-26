@@ -15,7 +15,7 @@
 #
 # Política MULTI_READER_RES (stress-test táctico, sin RNG futuro):
 # Pata telegraphía Resonancia. Paso, si existe, se reserva para esa ventana.
-# Resonancia x1.50 sólo se aplica al Golpe siguiente si impacta con Piel activa.
+# Resonancia x1.75 sólo se aplica al Golpe siguiente si impacta con Piel activa.
 #   Golpe 1: si Piel está preparada y no queda burbuja, precargar Piel; si no, raíz.
 #   Golpe 2: si Paso está preparado y no cubriría Campanada, precargar Paso; si no, raíz.
 #   Campanada:
@@ -372,10 +372,10 @@ def simulate(root,o1,o2,techs,choices,boss_def,runs,seed=1):
                     dmg=np.where(crit,np.ceil(dmg*1.5).astype(np.int16),dmg)
                     dmg=np.where(hit,dmg,0)
 
-                    # Golpe posterior a Pata: x1.50 bruto si conecta con Piel activa.
+                    # Golpe posterior a Pata: x1.75 bruto si conecta con Piel activa.
                     resonant=(cycle==0)&resonance_ready[free]&(dmg>0)&(piel_capacity[free]>0)
                     if resonant.any():
-                        dmg[resonant]=np.ceil(dmg[resonant]*1.50).astype(np.int16)
+                        dmg[resonant]=np.ceil(dmg[resonant]*1.75).astype(np.int16)
 
                     # Piel/Guardia de técnica si existe.
                     cap=piel_capacity[free]
