@@ -565,7 +565,53 @@ DEF14: 54,7 -> 86,68 = +31,98 pp
 
 La confirmación sostiene la lectura provisional: Piel cubre el fallo de Filamento y Filamento conserva la reserva cuando cancela Campanada. La combinación es robusta y demasiado fuerte para Fase I en su estado actual.
 
-## 11. Estado
+## 11. Confirmación — Paso + Piel + Filamento
+
+Se confirmaron los tres finalistas estables del triple:
+
+```text
+3 configuraciones
+× 27 formas raíz
+× 2 DEF
+× 20.000
+=
+3.240.000 duelos
+```
+
+Resultado:
+
+| Configuración | DEF 13 | DEF 14 |
+|---|---:|---:|
+| **P00_C02_F03** | **52,97%** | **39,41%** |
+| P00_C02_F20 | 49,69% | 36,36% |
+| P00_C10_F03 | 45,86% | 33,03% |
+
+Mejor forma confirmada:
+
+```text
+P00 = Paso base
+0 PT
+
+C02 = Cobre grueso
+Guardia 7
+reserva 14
+1 PT
+
+F03 = Lazo medido
++1d4 al atar
+1 PT
+```
+
+Frente al READER universal:
+
+```text
+DEF13: 60,9 -> 52,97 = -7,93 pp
+DEF14: 54,7 -> 39,41 = -15,29 pp
+```
+
+La confirmación sostiene la lectura del grid: intentar mantener activas las tres herramientas consume demasiadas ventanas ofensivas. La build tiene más respuestas disponibles, pero la política que intenta usarlas todas sistemáticamente pierde eficiencia.
+
+## 12. Estado
 
 ```text
 Paso + Piel       CERRADO EN SELECCIÓN
