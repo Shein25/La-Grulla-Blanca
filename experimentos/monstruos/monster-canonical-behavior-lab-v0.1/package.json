@@ -5,8 +5,11 @@
   "scripts": {
     "test:canon": "node tests/all-mobs-canon.test.mjs",
     "test:representative": "node tests/representative-baseline.test.mjs",
-    "test": "node tests/all-mobs-canon.test.mjs && node tests/representative-baseline.test.mjs && node tests/all-combatants-assignment.test.mjs && node tests/tactical-overlay.test.mjs",
+    "test": "node tests/all-mobs-canon.test.mjs && node tests/representative-baseline.test.mjs && node tests/all-combatants-assignment.test.mjs && node tests/tactical-overlay.test.mjs && node benchmark/test-benchmark.mjs",
     "test:assignments": "node tests/all-combatants-assignment.test.mjs",
-    "test:tactics": "node tests/tactical-overlay.test.mjs"
+    "test:tactics": "node tests/tactical-overlay.test.mjs",
+    "test:benchmark": "node benchmark/test-benchmark.mjs",
+    "benchmark:smoke": "node benchmark/run-benchmark.mjs --tier smoke --seed 1337",
+    "benchmark:standard": "node benchmark/run-benchmark.mjs --tier standard --seed 1337"
   }
 }
