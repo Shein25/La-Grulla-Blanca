@@ -1,0 +1,482 @@
+{
+  "source": {
+    "file": "grulla-blanca_ver74.html",
+    "blob": "d34f7ea3f9de9344130aa072fac34d14a7a474d6",
+    "object": "MOBS",
+    "extraction": "exact object-literal evaluation and JSON serialization"
+  },
+  "count": 19,
+  "mobs": {
+    "muneco_practica": {
+      "name": "muñeco articulado de práctica",
+      "corto": "muñeco",
+      "hp": 14,
+      "ataque": 1,
+      "defensa": 9,
+      "daño": "1d3",
+      "qi": 0,
+      "desc": "Un armazón de madera, cuerda y sacos de arena. Sus brazos vuelven al centro con cada golpe; fue construido para enseñar errores sin tener que enterrarlos.",
+      "loot": [],
+      "practica": true
+    },
+    "rata_qi": {
+      "name": "rata de qi",
+      "corto": "rata",
+      "hp": 9,
+      "ataque": 1,
+      "defensa": 10,
+      "daño": "1d4",
+      "qi": 2,
+      "desc": "Ratas comunes que aprendieron a roer el aire tanto como el grano: sus dientes brillan con un residuo de qi robado a las reservas de la despensa.",
+      "loot": [
+        {
+          "item": "pocion",
+          "prob": 0.2
+        }
+      ]
+    },
+    "serpiente_qi": {
+      "name": "serpiente de qi verdosa",
+      "corto": "serpiente",
+      "hp": 13,
+      "ataque": 2,
+      "defensa": 11,
+      "daño": "1d4+1",
+      "qi": 3,
+      "elemento": "agua",
+      "desc": "Se enrosca cerca de fuentes de agua espiritual, con escamas del mismo verde que el qi que bebe. Su veneno no mata: entorpece la circulación de quien muerde.",
+      "tecnica": {
+        "name": "Colmillos Venenosos",
+        "cada": 3,
+        "veneno": {
+          "daño": "1d2",
+          "turnos": 3,
+          "familia": "jade",
+          "grado": 1,
+          "nombre": "Veneno de Jade I"
+        }
+      },
+      "loot": [
+        {
+          "item": "pildora_consolidacion",
+          "prob": 0.3
+        }
+      ]
+    },
+    "lobo_espiritual": {
+      "name": "lobo espiritual de tres colas",
+      "corto": "lobo",
+      "hp": 18,
+      "ataque": 3,
+      "defensa": 11,
+      "daño": "1d6+1",
+      "qi": 5,
+      "desc": "Caza como si fuera tres animales a la vez: sus tres colas se mueven de forma independiente, cada una vigilando una dirección distinta del bosque.",
+      "tecnica": {
+        "name": "Emboscada de las Tres Colas",
+        "cada": 3,
+        "ataque": 3,
+        "daño": "1d6+3"
+      },
+      "loot": [
+        {
+          "item": "pocion",
+          "prob": 0.3
+        },
+        {
+          "item": "amuleto_diente",
+          "prob": 0.25
+        }
+      ]
+    },
+    "eco_caido": {
+      "name": "Eco del Caído",
+      "corto": "eco",
+      "hp": 34,
+      "ataque": 4,
+      "defensa": 12,
+      "daño": "1d8+2",
+      "qi": 11,
+      "unico": true,
+      "desc": "Un resentimiento sin cuerpo, atado al campo de entrenamiento desde hace demasiado tiempo. No es un espíritu vengativo: es la costumbre de alguien que practicó ahí hasta el final y nunca terminó de irse.",
+      "loot": [
+        {
+          "item": "bolsa_piedras",
+          "prob": 1
+        }
+      ]
+    },
+    "pez_lunar": {
+      "name": "pez de luna sin ojos",
+      "corto": "pez",
+      "hp": 26,
+      "ataque": 3,
+      "defensa": 12,
+      "daño": "1d6+2",
+      "qi": 7,
+      "elemento": "agua",
+      "desc": "Nada en las aguas del sumidero desde antes de que nadie recuerde por qué se abrió ese pozo. Perdió los ojos hace generaciones; ahora caza siguiendo el pulso del qi ajeno.",
+      "tecnica": {
+        "name": "Mordida de Corriente",
+        "cada": 3,
+        "ataque": 2,
+        "daño": "1d6+4"
+      },
+      "loot": [
+        {
+          "item": "pocion",
+          "prob": 0.35
+        }
+      ]
+    },
+    "sombra_ahogada": {
+      "name": "sombra ahogada del estanque",
+      "corto": "sombra",
+      "hp": 42,
+      "ataque": 4,
+      "defensa": 13,
+      "daño": "2d6",
+      "qi": 13,
+      "unico": true,
+      "elemento": "agua",
+      "desc": "Lo que queda de quienes se ahogaron cuando los fundadores desviaron el manantial de la montaña. No tiene rostro, pero conserva memoria de cada gota que le costó su vida al valle.",
+      "tecnica": {
+        "name": "Velo de Ahogo",
+        "cada": 3,
+        "veneno": {
+          "daño": "1d4",
+          "turnos": 2,
+          "familia": "marea",
+          "grado": 2,
+          "nombre": "Ahogo de Marea II"
+        }
+      },
+      "loot": [
+        {
+          "item": "manual_espejo",
+          "prob": 1
+        }
+      ]
+    },
+    "centinela_pluma": {
+      "name": "centinela de plumas petrificadas",
+      "corto": "centinela",
+      "hp": 48,
+      "ataque": 5,
+      "defensa": 14,
+      "daño": "2d6+2",
+      "qi": 15,
+      "unico": true,
+      "elemento": "metal",
+      "desc": "Plumas petrificadas que los fundadores dejaron como guardia sobre la Grulla Primera. Cada golpe suyo suena a piedra, no a ala.",
+      "tecnica": {
+        "name": "Aleteo de Cuchillas",
+        "cada": 3,
+        "ataque": 3,
+        "daño": "2d6+4"
+      },
+      "loot": [
+        {
+          "item": "bolsa_piedras",
+          "prob": 1
+        }
+      ]
+    },
+    "devorador_niebla": {
+      "name": "devorador de niebla",
+      "corto": "devorador",
+      "hp": 38,
+      "ataque": 4,
+      "defensa": 13,
+      "daño": "2d6",
+      "qi": 11,
+      "elemento": "viento",
+      "desc": "Un cuerpo hecho casi enteramente de niebla condensada que se alimenta del qi disperso filtrado por las grietas de la galería.",
+      "tecnica": {
+        "name": "Exhalación Vacía",
+        "cada": 3,
+        "ataque": 2,
+        "daño": "1d8+4"
+      },
+      "loot": [
+        {
+          "item": "pocion",
+          "prob": 0.45
+        },
+        {
+          "item": "polvo_nube",
+          "prob": 0.5
+        },
+        {
+          "item": "pildora_consolidacion",
+          "prob": 0.25
+        }
+      ]
+    },
+    "avispa_jade": {
+      "name": "avispa de jade dentado",
+      "corto": "avispa",
+      "hp": 10,
+      "ataque": 2,
+      "defensa": 11,
+      "daño": "1d4",
+      "qi": 2,
+      "elemento": "viento",
+      "desc": "Diminuta y translúcida como el jade que le da nombre. Su aguijón no es letal, pero deja el brazo dormido el tiempo suficiente como para perder un asalto entero.",
+      "tecnica": {
+        "name": "Picadura de Esmeralda",
+        "cada": 4,
+        "veneno": {
+          "daño": "1d2",
+          "turnos": 2,
+          "familia": "jade",
+          "grado": 1,
+          "nombre": "Veneno de Jade I"
+        }
+      },
+      "loot": []
+    },
+    "mono_pildoras": {
+      "name": "macaco ladrón de píldoras",
+      "corto": "macaco",
+      "hp": 17,
+      "ataque": 3,
+      "defensa": 11,
+      "daño": "1d6",
+      "qi": 4,
+      "desc": "Aprendió a distinguir el olor de una píldora de consolidación entre cien frascos. Roba dantian tanto como bolsillos, y disfruta ambas cosas por igual.",
+      "tecnica": {
+        "name": "Manotazo al Dantian",
+        "cada": 3,
+        "ataque": 2,
+        "daño": "1d6+2",
+        "drenaQi": 5
+      },
+      "loot": [
+        {
+          "item": "pildora_consolidacion",
+          "prob": 0.35
+        },
+        {
+          "item": "pocion",
+          "prob": 0.25
+        }
+      ]
+    },
+    "sapo_ceniza": {
+      "name": "sapo de ceniza caliente",
+      "corto": "sapo",
+      "hp": 18,
+      "ataque": 2,
+      "defensa": 12,
+      "daño": "1d6+1",
+      "qi": 5,
+      "elemento": "fuego",
+      "desc": "Vive entre las brasas frías de hornos abandonados; su piel conserva el calor mucho después de que el fuego real se apagó.",
+      "tecnica": {
+        "name": "Nube de Hollín",
+        "cada": 3,
+        "ataque": 2,
+        "daño": "1d6+3",
+        "quemadura": {
+          "daño": "1d2",
+          "turnos": 3,
+          "familia": "ceniza",
+          "grado": 1,
+          "nombre": "Quemadura de Ceniza I"
+        }
+      },
+      "loot": []
+    },
+    "sapo_caldera": {
+      "name": "Sapo Caldera de Tres Gargantas",
+      "corto": "caldera",
+      "hp": 34,
+      "ataque": 4,
+      "defensa": 13,
+      "daño": "2d6",
+      "qi": 11,
+      "unico": true,
+      "elemento": "fuego",
+      "desc": "Tres gargantas separadas respiran turnos distintos del mismo fuego interno. Su piel de ceniza guarda cien puntos encendidos, como un manual que nunca necesitó tinta.",
+      "tecnica": {
+        "name": "Eructo del Horno Hundido",
+        "cada": 3,
+        "ataque": 2,
+        "daño": "2d6+4",
+        "quemadura": {
+          "daño": "1d3",
+          "turnos": 3,
+          "familia": "ceniza",
+          "grado": 1,
+          "nombre": "Quemadura de Ceniza I"
+        }
+      },
+      "loot": [
+        {
+          "item": "manual_circulo_ascuas",
+          "prob": 1
+        },
+        {
+          "item": "pocion_refinada",
+          "prob": 1
+        }
+      ]
+    },
+    "escarabajo_hierro": {
+      "name": "escarabajo de hierro espiritual",
+      "corto": "escarabajo",
+      "hp": 21,
+      "ataque": 2,
+      "defensa": 15,
+      "daño": "1d6+1",
+      "qi": 5,
+      "elemento": "metal",
+      "desc": "Caparazón denso, casi metálico, templado durante generaciones cerca de las vetas de mineral de la mina. Embiste antes de pensarlo dos veces.",
+      "tecnica": {
+        "name": "Carga de Caparazón",
+        "cada": 4,
+        "ataque": 4,
+        "daño": "1d8+3"
+      },
+      "loot": [
+        {
+          "item": "pildora_consolidacion",
+          "prob": 0.2
+        }
+      ]
+    },
+    "rey_escarabajo": {
+      "name": "Rey Escarabajo de la Veta Negra",
+      "corto": "rey",
+      "hp": 38,
+      "ataque": 4,
+      "defensa": 16,
+      "daño": "2d6",
+      "qi": 12,
+      "unico": true,
+      "elemento": "metal",
+      "desc": "El mayor de su especie. Sus placas se ensamblan en un diagrama defensivo que la mina parece haberle enseñado al revés, línea por línea.",
+      "tecnica": {
+        "name": "Mandíbula de Yunque",
+        "cada": 3,
+        "ataque": 3,
+        "daño": "2d8+2"
+      },
+      "loot": [
+        {
+          "item": "manual_lluvia_filos",
+          "prob": 1
+        }
+      ]
+    },
+    "anguila_estelar": {
+      "name": "anguila de constelación rota",
+      "corto": "anguila",
+      "hp": 30,
+      "ataque": 4,
+      "defensa": 13,
+      "daño": "1d8+2",
+      "qi": 8,
+      "elemento": "agua",
+      "desc": "Una línea azul le recorre el cuerpo como un meridiano fuera de sitio. Nadó tanto tiempo entre sedimento lunar que el error se volvió parte de su anatomía.",
+      "tecnica": {
+        "name": "Mordida del Meridiano Azul",
+        "cada": 3,
+        "ataque": 2,
+        "daño": "1d8+4",
+        "drenaQi": 7
+      },
+      "loot": [
+        {
+          "item": "pildora_purificacion",
+          "prob": 0.15
+        }
+      ]
+    },
+    "guardian_coral": {
+      "name": "guardián de coral memorioso",
+      "corto": "guardián",
+      "hp": 52,
+      "ataque": 5,
+      "defensa": 15,
+      "daño": "2d6+1",
+      "qi": 16,
+      "unico": true,
+      "elemento": "agua",
+      "desc": "Coral que repitió durante generaciones el movimiento de una marea que ya no existe, hasta que el instinto se convirtió en técnica. Recuerda nombres que nadie más pronuncia.",
+      "tecnica": {
+        "name": "Marea de los Nombres Hundidos",
+        "cada": 3,
+        "ataque": 3,
+        "daño": "2d8+3",
+        "drenaQi": 8
+      },
+      "loot": [
+        {
+          "item": "manual_marea_circular",
+          "prob": 1
+        }
+      ]
+    },
+    "halcon_tormenta": {
+      "name": "halcón de tormenta joven",
+      "corto": "halcón",
+      "hp": 31,
+      "ataque": 5,
+      "defensa": 14,
+      "daño": "2d6",
+      "qi": 9,
+      "elemento": "viento",
+      "desc": "Caza en las corrientes altas de la montaña, donde el viento anuncia su llegada antes que el sonido de sus alas.",
+      "tecnica": {
+        "name": "Picado del Relámpago",
+        "cada": 3,
+        "ataque": 3,
+        "daño": "2d6+4"
+      },
+      "loot": [
+        {
+          "item": "pluma_tempestad",
+          "prob": 0.6
+        },
+        {
+          "item": "polvo_nube",
+          "prob": 0.35
+        }
+      ]
+    },
+    "mantis_nube": {
+      "name": "mantis de nube cortante",
+      "corto": "mantis",
+      "hp": 46,
+      "ataque": 6,
+      "defensa": 15,
+      "daño": "2d6+2",
+      "qi": 14,
+      "unico": true,
+      "elemento": "viento",
+      "desc": "Sus cuchillas cortan el aire con la misma precisión con la que alguna vez cortaron una técnica ajena, hasta memorizarla en el propio cuerpo.",
+      "tecnica": {
+        "name": "Tijera del Horizonte",
+        "cada": 3,
+        "ataque": 3,
+        "daño": "2d8+3"
+      },
+      "loot": [
+        {
+          "item": "manual_tijera_vendaval",
+          "prob": 1
+        },
+        {
+          "item": "elixir_tempestad",
+          "prob": 1
+        },
+        {
+          "item": "pluma_tempestad",
+          "prob": 1
+        }
+      ]
+    }
+  }
+}
