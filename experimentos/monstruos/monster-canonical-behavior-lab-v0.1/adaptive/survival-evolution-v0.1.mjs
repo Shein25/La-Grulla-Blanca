@@ -22,29 +22,20 @@ const p=(name,effect,extra={})=>Object.freeze({
 export const SURVIVAL_POLICIES=Object.freeze({
   rata_qi:p('Reflejo de Madriguera',{kind:'EVADE_NEXT',evasionBonus:25,durationActions:1,cooldownRounds:2}),
   serpiente_qi:p('Muda del Cauce',{kind:'EVADE_NEXT',evasionBonus:20,durationActions:1,cooldownRounds:2}),
-  lobo_espiritual:p('Paso de la Cola Vigilante',{kind:'EVADE_NEXT',evasionBonus:20,durationActions:1,cooldownRounds:2},
-    {socialWeights:Object.freeze({MANADA_WITH_ALLY:-4})}),
+  lobo_espiritual:p('Paso de la Cola Vigilante',{kind:'EVADE_NEXT',evasionBonus:20,durationActions:1,cooldownRounds:2}),
   eco_caido:p('Guardia del Último Ensayo',{kind:'MITIGATE_NEXT',damageReductionPct:35,durationHits:1,cooldownRounds:2}),
   pez_lunar:p('Giro de Corriente Ciega',{kind:'EVADE_NEXT',evasionBonus:20,durationActions:1,cooldownRounds:2}),
   sombra_ahogada:p('Disolverse en Marea',{kind:'MITIGATE_NEXT',damageReductionPct:30,durationHits:1,cooldownRounds:2}),
-  centinela_pluma:p('Cierre de Plumas Pétreas',{kind:'MITIGATE_NEXT',damageReductionPct:35,durationHits:1,cooldownRounds:2},
-    {socialWeights:Object.freeze({TERRITORIAL_SOLO:3})}),
+  centinela_pluma:p('Cierre de Plumas Pétreas',{kind:'MITIGATE_NEXT',damageReductionPct:35,durationHits:1,cooldownRounds:2}),
   devorador_niebla:p('Cuerpo de Bruma Replegada',{kind:'MITIGATE_NEXT',damageReductionPct:30,durationHits:1,cooldownRounds:2}),
-  avispa_jade:p('Quiebro de Jade',{kind:'EVADE_NEXT',evasionBonus:25,durationActions:1,cooldownRounds:2},
-    {socialWeights:Object.freeze({COLONIA_WITH_ALLY:-4})}),
-  mono_pildoras:p('Salto del Ladrón',{kind:'EVADE_NEXT',evasionBonus:20,durationActions:1,cooldownRounds:2},
-    {socialWeights:Object.freeze({OPORTUNISTA_LOW_HP:-5})}),
-  sapo_ceniza:p('Piel de Brasa Muerta',{kind:'MITIGATE_NEXT',damageReductionPct:30,durationHits:1,cooldownRounds:2},
-    {socialWeights:Object.freeze({TERRITORIAL_SOLO:3})}),
-  sapo_caldera:p('Cierre de las Tres Gargantas',{kind:'MITIGATE_NEXT',damageReductionPct:35,durationHits:1,cooldownRounds:2},
-    {socialWeights:Object.freeze({TERRITORIAL_SOLO:3})}),
-  escarabajo_hierro:p('Cierre de Caparazón',{kind:'MITIGATE_NEXT',damageReductionPct:40,durationHits:1,cooldownRounds:2},
-    {socialWeights:Object.freeze({COLONIA_WITH_ALLY:-3})}),
-  rey_escarabajo:p('Diagrama de Placas',{kind:'MITIGATE_NEXT',damageReductionPct:40,durationHits:1,cooldownRounds:2},
-    {socialWeights:Object.freeze({COLONIA_WITH_ALLY:-3})}),
+  avispa_jade:p('Quiebro de Jade',{kind:'EVADE_NEXT',evasionBonus:25,durationActions:1,cooldownRounds:2}),
+  mono_pildoras:p('Salto del Ladrón',{kind:'EVADE_NEXT',evasionBonus:20,durationActions:1,cooldownRounds:2}),
+  sapo_ceniza:p('Piel de Brasa Muerta',{kind:'MITIGATE_NEXT',damageReductionPct:30,durationHits:1,cooldownRounds:2}),
+  sapo_caldera:p('Cierre de las Tres Gargantas',{kind:'MITIGATE_NEXT',damageReductionPct:35,durationHits:1,cooldownRounds:2}),
+  escarabajo_hierro:p('Cierre de Caparazón',{kind:'MITIGATE_NEXT',damageReductionPct:40,durationHits:1,cooldownRounds:2}),
+  rey_escarabajo:p('Diagrama de Placas',{kind:'MITIGATE_NEXT',damageReductionPct:40,durationHits:1,cooldownRounds:2}),
   anguila_estelar:p('Desliz de Meridiano',{kind:'EVADE_NEXT',evasionBonus:20,durationActions:1,cooldownRounds:2}),
-  guardian_coral:p('Arrecife Replegado',{kind:'MITIGATE_NEXT',damageReductionPct:35,durationHits:1,cooldownRounds:2},
-    {socialWeights:Object.freeze({TERRITORIAL_SOLO:3})}),
+  guardian_coral:p('Arrecife Replegado',{kind:'MITIGATE_NEXT',damageReductionPct:35,durationHits:1,cooldownRounds:2}),
   halcon_tormenta:p('Ascenso Contraviento',{kind:'EVADE_NEXT',evasionBonus:25,durationActions:1,cooldownRounds:2}),
   mantis_nube:p('Velo de Nube Cortada',{kind:'EVADE_NEXT',evasionBonus:20,durationActions:1,cooldownRounds:2})
 });
@@ -79,6 +70,16 @@ export function buildSurvivalAbilityCatalog({mobId,def,stage}){
 
   const policy=SURVIVAL_POLICIES[mobId];
   const id=survivalAbilityId(mobId);
+
+  // Calibración de etapa I:
+  // a SELF_LOW_HP queremos un empate aproximado entre atacar y sobrevivir.
+  // El ataque básico ya hereda la preferencia OFENSIVA candidata, así que la
+  // base defensiva compensa exactamente ese modificador en vez de imponer el
+  // mismo número a especies con sesgos ofensivos distintos.
+  const probe=buildCandidateMonsterInput({mobId,def,round:1,mode:'DECISION_EXPERIMENTAL'});
+  const offensivePreference=Number.isFinite(probe.preferences?.OFENSIVA)?probe.preferences.OFENSIVA:1;
+  const survivalBase=18 + (offensivePreference-1)*20;
+
   out[id]={
     id,
     intentCategory:'DEFENSA',
@@ -87,14 +88,14 @@ export function buildSurvivalAbilityCatalog({mobId,def,stage}){
     cooldownKey:`${id}__cooldown`,
     requirements:{signalsAll:[]},
     utility:{
-      base:18,
+      base:survivalBase,
       signalWeights:{
         SELF_LOW_HP:22,
         TOOK_HEAVY_HIT:10,
         PLAYER_LOW_HP:3
       },
       memoryWeights:{},
-      socialWeights:{...(policy.socialWeights||{})}
+      socialWeights:{}
     }
   };
   return out;
