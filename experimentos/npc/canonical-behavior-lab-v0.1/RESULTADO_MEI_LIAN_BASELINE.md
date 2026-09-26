@@ -36,4 +36,26 @@ No se inventa una prioridad Sauces-vs-Medicina en este baseline.
 
 ## Estado
 
-`MEI_LIAN_CONDITIONAL_FRONT_BASELINE: PENDING_CONFIRMATION`
+`MEI_LIAN_CONDITIONAL_FRONT_BASELINE: 13_PASS_0_FAIL_CONFIRMED`
+
+
+## Confirmación
+
+```text
+PASS: 13
+FAIL: 0
+```
+
+Tanto SAUCES como MEDICINA producen actualmente:
+
+```text
+trabajar
+→ FULFILL_DUTY
+→ [cumplir_deber]
+```
+
+Utility aislado acepta un campo adicional `front` pero no lo usa en la decisión.
+
+El Autonomous Loop rechaza `front` por no pertenecer a su contrato de `utilityContext`.
+
+Esto confirma que la identidad del frente no existe todavía como dato de dominio ejecutable.
