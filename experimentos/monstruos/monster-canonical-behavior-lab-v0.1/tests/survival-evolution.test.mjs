@@ -178,7 +178,7 @@ T('defensive effects stay inside conservative stage-one caps',()=>{
   }
 });
 
-T('four defense families have distinct mechanical niches under ver74 hit math',()=>{
+T('synthetic smoke only: four defense mechanics remain mechanically distinct',()=>{
   const hitChance=(attack,defense,evasion=5)=>{
     let hits=0;
     for(let roll=1;roll<=20;roll++){
