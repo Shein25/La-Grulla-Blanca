@@ -42,7 +42,7 @@ function defenseRate(id,{signals={},social,round=1,cooldown=false,mode='DECISION
   return defense/runs;
 }
 
-T('status explicitly non-canonical',()=>assert.equal(SURVIVAL_EVOLUTION_STATUS,'EXPERIMENTAL_NON_CANONICAL_SURVIVAL_V01'));
+T('status explicitly non-canonical',()=>assert.equal(SURVIVAL_EVOLUTION_STATUS,'EXPERIMENTAL_NON_CANONICAL_SURVIVAL_V01_FOUR_DEFENSE_FAMILIES'));
 
 T('all 18 combatants have exactly one survival policy',()=>{
   assert.deepEqual(Object.keys(SURVIVAL_POLICIES).sort(),combatants);
@@ -143,6 +143,19 @@ T('smarter evolved profiles take more finishing risks when both sides are low',(
   assert.ok(rates[0]>rates[1] && rates[1]>rates[2] && rates[2]>rates[3],JSON.stringify({ids,rates}));
 });
 
+T('all four defensive families are represented with intentional distribution',()=>{
+  const counts={};
+  for(const policy of Object.values(SURVIVAL_POLICIES)){
+    counts[policy.effect.kind]=(counts[policy.effect.kind]||0)+1;
+  }
+  assert.deepEqual(counts,{
+    EVADE_NEXT:7,
+    DEFENSE_UP:3,
+    MITIGATE_NEXT:3,
+    ABSORB_RESERVE:5
+  });
+});
+
 T('defensive effects stay inside conservative stage-one caps',()=>{
   for(const [id,policy] of Object.entries(SURVIVAL_POLICIES)){
     const effect=policy.effect;
@@ -150,9 +163,15 @@ T('defensive effects stay inside conservative stage-one caps',()=>{
     if(effect.kind==='EVADE_NEXT'){
       assert.equal(effect.durationActions,1,id);
       assert.ok(effect.evasionBonus>=20&&effect.evasionBonus<=25,id);
+    }else if(effect.kind==='DEFENSE_UP'){
+      assert.equal(effect.durationActions,1,id);
+      assert.ok(effect.defenseBonus>=3&&effect.defenseBonus<=4,id);
     }else if(effect.kind==='MITIGATE_NEXT'){
       assert.equal(effect.durationHits,1,id);
-      assert.ok(effect.damageReductionPct>=30&&effect.damageReductionPct<=40,id);
+      assert.ok(effect.damageReductionPct>=30&&effect.damageReductionPct<=35,id);
+    }else if(effect.kind==='ABSORB_RESERVE'){
+      assert.ok(effect.absorbPerHit>=4&&effect.absorbPerHit<=7,id);
+      assert.equal(effect.reserve,effect.absorbPerHit*2,id);
     }else{
       assert.fail(`${id}: effect kind desconocido ${effect.kind}`);
     }
