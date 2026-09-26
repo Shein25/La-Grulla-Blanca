@@ -9,6 +9,9 @@
     "run:pei":"node run-pei-luo.mjs",
     "test:jiang":"node tests/jiang-rui.test.mjs",
     "run:jiang":"node run-jiang-rui.mjs",
-    "test":"node tests/gao-shun.test.mjs && node tests/pei-luo.test.mjs && node tests/jiang-rui.test.mjs"
+    "test:benchmark":"node benchmark/test-benchmark.mjs",
+    "benchmark:smoke":"node benchmark/run-benchmark.mjs --tier smoke --seed 1337",
+    "benchmark:standard":"node benchmark/run-benchmark.mjs --tier standard --seed 1337",
+    "test":"node tests/gao-shun.test.mjs && node tests/pei-luo.test.mjs && node tests/jiang-rui.test.mjs && node benchmark/test-benchmark.mjs"
   }
 }
