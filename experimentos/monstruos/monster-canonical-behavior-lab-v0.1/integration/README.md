@@ -72,4 +72,26 @@ y sólo devuelve información; no muta combate.
 
 ## Estado
 
-`CANONICAL_INTENT_BRIDGE_V01: PENDING_RUNTIME_CONFIRMATION`
+`CANONICAL_INTENT_BRIDGE_V01: 11_PASS_0_FAIL_CONFIRMED`
+
+
+## Memoria semántica
+
+El bridge de intención queda separado del feedback del combate.
+
+El componente `Semantic Memory Recorder v0.1` fue confirmado con:
+
+```text
+12 PASS / 0 FAIL
+```
+
+Cadena validada:
+
+```text
+resolved outcome normalizado
+→ semantic event
+→ memoria semántica
+→ Monster Combat AI
+```
+
+El siguiente hueco es adaptar resultados reales del combate productivo a esos outcomes normalizados sin inferirlos.
