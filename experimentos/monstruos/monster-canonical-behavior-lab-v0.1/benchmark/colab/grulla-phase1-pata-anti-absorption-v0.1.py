@@ -22,7 +22,7 @@
 #
 # Uso:
 # python grulla-phase1-pata-anti-absorption-v0.1.py --model G345_D1 --counter OVERLOAD_150 --mode grid --runs 5000
-# python grulla-phase1-pata-anti-absorption-v0.1.py --model G345_D1 --counter OVERLOAD_150 --mode confirm --runs 20000 --finalists 2-2,1-3,3-2
+# python grulla-phase1-pata-anti-absorption-v0.1.py --model G345_D1 --counter OVERLOAD_150 --mode confirm --runs 20000 --finalists 2-2,1-3,3-2\n# python grulla-phase1-pata-anti-absorption-v0.1.py --model G345_D1 --counter OVERLOAD_175 --mode confirm --runs 20000 --finalists 2-2
 
 import argparse, math
 import numpy as np
@@ -39,7 +39,7 @@ PATA_DEF_BONUS=3
 READER_BASELINE={13:0.609,14:0.547}
 
 MODEL_NAMES=["CURRENT","G345_D1","G234_D1"]
-COUNTER_NAMES=["BASELINE","OVERLOAD_125","OVERLOAD_150","PIERCE_50","SHATTER","PIERCE50_OV150"]
+COUNTER_NAMES=["BASELINE","OVERLOAD_125","OVERLOAD_150","PIERCE_50","SHATTER","PIERCE50_OV150","OVERLOAD_175"]
 
 CONFIGS=[(0,0)]+[(a,0) for a in range(1,4)]+[(0,b) for b in range(1,4)]+[(a,b) for a in range(1,4) for b in range(1,4)]
 
@@ -110,7 +110,7 @@ def apply_counter(dmg,counter,guard,cap):
     raw=dmg
     if counter==1: raw=math.ceil(raw*1.25)
     elif counter==2: raw=math.ceil(raw*1.50)
-    elif counter==5: raw=math.ceil(raw*1.50)
+    elif counter==5: raw=math.ceil(raw*1.50)\n    elif counter==6: raw=math.ceil(raw*1.75)
 
     if counter==3 or counter==5:
         bypass=math.ceil(raw*0.5)
