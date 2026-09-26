@@ -3,7 +3,7 @@ import {buildCandidateMonsterInput} from '../adapter/candidate-assignment-adapte
 import {buildCanonicalAbilityCatalog,canonicalAbilityIds,techniqueDue} from '../adapter/canonical-combat-adapter.mjs';
 import {applyTacticalOverlay} from '../tactics/tactical-overlay-v0.1.mjs';
 
-export const SURVIVAL_EVOLUTION_STATUS='EXPERIMENTAL_NON_CANONICAL_SURVIVAL_V01_FOUR_DEFENSE_FAMILIES';
+export const SURVIVAL_EVOLUTION_STATUS='EXPERIMENTAL_NON_CANONICAL_SURVIVAL_V01_FINAL_CANDIDATE';
 
 const nextProfile=Object.freeze({
   INSTINTIVO:'REACTIVO_1',
@@ -23,24 +23,24 @@ export const SURVIVAL_POLICIES=Object.freeze({
   // Movilidad: evita que el golpe conecte.
   rata_qi:p('Reflejo de Madriguera',{kind:'EVADE_NEXT',evasionBonus:25,durationActions:1,cooldownRounds:2}),
   serpiente_qi:p('Muda del Cauce',{kind:'EVADE_NEXT',evasionBonus:20,durationActions:1,cooldownRounds:2}),
-  pez_lunar:p('Giro de Corriente Ciega',{kind:'EVADE_NEXT',evasionBonus:20,durationActions:1,cooldownRounds:2}),
+  pez_lunar:p('Giro de Corriente Ciega',{kind:'EVADE_NEXT',evasionBonus:25,durationActions:1,cooldownRounds:2}),
   avispa_jade:p('Quiebro de Jade',{kind:'EVADE_NEXT',evasionBonus:25,durationActions:1,cooldownRounds:2}),
   mono_pildoras:p('Salto del Ladrón',{kind:'EVADE_NEXT',evasionBonus:20,durationActions:1,cooldownRounds:2}),
-  anguila_estelar:p('Desliz de Meridiano',{kind:'EVADE_NEXT',evasionBonus:20,durationActions:1,cooldownRounds:2}),
-  halcon_tormenta:p('Ascenso Contraviento',{kind:'EVADE_NEXT',evasionBonus:25,durationActions:1,cooldownRounds:2}),
+  anguila_estelar:p('Desliz de Meridiano',{kind:'EVADE_NEXT',evasionBonus:25,durationActions:1,cooldownRounds:2}),
+  halcon_tormenta:p('Ascenso Contraviento',{kind:'EVADE_NEXT',evasionBonus:30,durationActions:1,cooldownRounds:2}),
 
   // Postura/armadura: sube DEFENSA; no absorbe daño una vez que el golpe entra.
   lobo_espiritual:p('Paso de la Cola Vigilante',{kind:'DEFENSE_UP',defenseBonus:3,durationActions:1,cooldownRounds:2}),
-  centinela_pluma:p('Cierre de Plumas Pétreas',{kind:'DEFENSE_UP',defenseBonus:4,durationActions:1,cooldownRounds:2}),
-  mantis_nube:p('Guardia de las Dos Hojas',{kind:'DEFENSE_UP',defenseBonus:4,durationActions:1,cooldownRounds:2}),
+  centinela_pluma:p('Cierre de Plumas Pétreas',{kind:'DEFENSE_UP',defenseBonus:5,durationActions:1,cooldownRounds:2}),
+  mantis_nube:p('Guardia de las Dos Hojas',{kind:'DEFENSE_UP',defenseBonus:5,durationActions:1,cooldownRounds:2}),
 
   // Mitigación: acepta el impacto, pero reduce porcentualmente el siguiente golpe.
-  eco_caido:p('Guardia del Último Ensayo',{kind:'MITIGATE_NEXT',damageReductionPct:35,durationHits:1,cooldownRounds:2}),
-  sombra_ahogada:p('Disolverse en Marea',{kind:'MITIGATE_NEXT',damageReductionPct:35,durationHits:1,cooldownRounds:2}),
-  sapo_ceniza:p('Piel de Brasa Muerta',{kind:'MITIGATE_NEXT',damageReductionPct:30,durationHits:1,cooldownRounds:2}),
+  eco_caido:p('Guardia del Último Ensayo',{kind:'MITIGATE_NEXT',damageReductionPct:40,durationHits:1,cooldownRounds:2}),
+  sombra_ahogada:p('Disolverse en Marea',{kind:'MITIGATE_NEXT',damageReductionPct:40,durationHits:1,cooldownRounds:2}),
+  sapo_ceniza:p('Piel de Brasa Muerta',{kind:'MITIGATE_NEXT',damageReductionPct:35,durationHits:1,cooldownRounds:2}),
 
   // Absorción: reserva finita con tope por golpe, igual al modelo de guardia ya existente.
-  devorador_niebla:p('Cuerpo de Bruma Replegada',{kind:'ABSORB_RESERVE',absorbPerHit:3,reserve:6,cooldownRounds:2}),
+  devorador_niebla:p('Cuerpo de Bruma Replegada',{kind:'ABSORB_RESERVE',absorbPerHit:4,reserve:8,cooldownRounds:2}),
   sapo_caldera:p('Cierre de las Tres Gargantas',{kind:'ABSORB_RESERVE',absorbPerHit:4,reserve:8,cooldownRounds:2}),
   escarabajo_hierro:p('Cierre de Caparazón',{kind:'ABSORB_RESERVE',absorbPerHit:4,reserve:8,cooldownRounds:2}),
   rey_escarabajo:p('Diagrama de Placas',{kind:'ABSORB_RESERVE',absorbPerHit:5,reserve:10,cooldownRounds:2}),
