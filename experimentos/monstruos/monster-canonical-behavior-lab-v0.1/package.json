@@ -21,6 +21,8 @@
     "benchmark:player-arsenal": "node benchmark/player-arsenal-vs-survival-v0.1.mjs",
     "test:stage-progression": "node tests/stage-progression.test.mjs",
     "benchmark:stage-progression": "node benchmark/stage-progression-benchmark-v0.1.mjs",
-    "benchmark:adaptive-stats": "node benchmark/adaptive-learning-stat-scaling-v0.1.mjs"
+    "benchmark:adaptive-stats": "node benchmark/adaptive-learning-stat-scaling-v0.1.mjs",
+    "test:grulla-brain": "node tests/grulla-boss-brain.test.mjs",
+    "benchmark:grulla-brain": "node benchmark/grulla-brain-capability-benchmark-v0.1.mjs"
   }
 }
