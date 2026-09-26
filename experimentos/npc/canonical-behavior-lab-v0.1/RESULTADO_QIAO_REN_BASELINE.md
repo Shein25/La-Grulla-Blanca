@@ -91,4 +91,49 @@ El stack autónomo actual tampoco implementa pathfinding/gates físicos, por lo 
 
 ## Estado
 
-`QIAO_REN_ADVANCED_BASELINE: CANDIDATE_PENDING_RUNTIME_RUN`
+`QIAO_REN_ADVANCED_BASELINE: 13_PASS_0_FAIL_RUNTIME_CONFIRMED`
+
+
+## Ejecución confirmada
+
+El stack exacto de la rama fue cargado y ejecutado recursivamente con sus dependencias reales.
+
+Resultado:
+
+```text
+PASS: 13
+FAIL: 0
+```
+
+Trazas principales confirmadas:
+
+```text
+Deber ordinario:
+DECISION
+utilityAction = trabajar
+goalId = FULFILL_DUTY
+plan = [cumplir_deber]
+
+siguiente dispatch:
+EXECUTION
+status = GOAL_REACHED
+executed = cumplir_deber
+dutySatisfied = true
+session = null
+```
+
+```text
+M16 con evidencia:
+utilityAction = informar_superior
+goalId = REPORT_SUPERIOR
+plan = [ir_superior, informar_superior]
+```
+
+```text
+Fuera del puesto:
+utilityAction = regresar_puesto
+goalId = RETURN_POST
+plan = [volver_puesto_desde_superior]
+```
+
+La búsqueda sobre `GOAP_ACTIONS` confirmó que no existe capacidad para `NUCLEO_PROFUNDO`/autorización M17.
