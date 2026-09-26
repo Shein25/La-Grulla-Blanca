@@ -56,7 +56,7 @@ Estas asignaciones **no son canon**.
 
 ## Estado
 
-`MONSTER_LAB_STATUS: RESOLVED_SIGNAL_ADAPTER_CONFIRMED`
+`MONSTER_LAB_STATUS: CLOSED_FEEDBACK_LOOP_CONFIRMED`
 
 
 ## Baseline representativo confirmado
@@ -178,3 +178,42 @@ TOTAL                     96/96 PASS
 ```
 
 Siguiente integración útil: probar el ciclo completo decisión → orden canónica → resultado resuelto → memoria → decisión siguiente, todavía dentro del laboratorio.
+
+
+## Combat Feedback Loop v0.1
+
+Resultado: `11 PASS / 0 FAIL`.
+
+Caso determinista con `guardian_coral`:
+
+```text
+sin memoria
+→ technique
+
+3 absorciones efectivas
+→ memoria DEFENSA_ABSORCION
+→ technique recibe -24
+→ basic
+```
+
+En `CADENCE_COMPAT` la técnica canónica sigue siendo obligatoria en su ronda.
+
+Acumulado funcional:
+
+```text
+canon transversal         13/13
+baseline representativo   18/18
+18 combatientes           15/15
+tactical overlay          14/14
+intent bridge             11/11
+semantic memory           12/12
+resolved signal adapter   13/13
+feedback loop             11/11
+TOTAL                    107/107 PASS
+```
+
+Siguiente hueco real:
+
+- hook productivo mínimo para absorción;
+- instrumentación estructurada de recuperación en `beber()`;
+- luego pruebas de integración sobre una copia de ver74, no sobre producción.
