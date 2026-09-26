@@ -11,4 +11,7 @@ Gaps:
 - `KNOWLEDGE_SCHEMA_R1_TO_R10`
 - `FORMATION_NETWORK_STATE_AND_REPAIR`
 
-Estado: `PENDING_CONFIRMATION`.
+Estado: `HE_ZHEN_FORMATION_BASELINE: 11_PASS_0_FAIL_CONFIRMED`.
+
+
+Confirmado: R2=SABE funciona, R7=SABE queda fuera del esquema, y M16 Formaciones se reduce actualmente a `FULFILL_DUTY` sin red/nodos/barreras.
