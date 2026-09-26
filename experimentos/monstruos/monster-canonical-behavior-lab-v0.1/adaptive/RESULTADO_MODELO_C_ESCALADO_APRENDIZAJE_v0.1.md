@@ -1,7 +1,7 @@
 # Resultado — Modelo C · escalado estadístico por aprendizaje adaptativo v0.1
 
 **Fecha:** 2026-09-26  
-**Estado:** EXPERIMENTAL / NO CANÓNICO  
+**Estado:** SELECCIONADO COMO MODELO DE ADAPTACIÓN / IMPLEMENTACIÓN AÚN EXPERIMENTAL  
 **Rama:** `experiment/monster-adaptive-survival-lab-v0.1`
 
 ## 1. Pregunta
@@ -332,9 +332,9 @@ Primero se calibra qué efecto tiene cada Tier; después se decide cuánto esfue
 
 ---
 
-## 9. Estado del Modelo C
+## 9. Estado del Modelo C — SELECCIONADO
 
-Se añade como tercer candidato experimental:
+Se evaluó originalmente como tercer candidato:
 
 ```text
 A — FINAL_E1_FIXED_STATS
@@ -351,13 +351,17 @@ C — FINAL_E1_ADAPTIVE_LEARNING_STATS
     + crecimiento escalonado sólo si la población realmente aprende
 ```
 
-Dentro de C, la configuración actualmente más prometedora es:
+Dentro de C se **selecciona para continuar el proyecto**:
 
 ```text
 C_STAGGERED
 ```
 
-No se declara todavía canónica ni reemplaza automáticamente la preferencia A.
+Esta decisión reemplaza la preferencia experimental anterior por A.
+
+A queda como baseline/control histórico y B como comparación de escalado por etapa nativa.
+
+La implementación sigue en rama experimental hasta su integración productiva, pero **la dirección de diseño ya no está abierta entre A/B/C: se continúa con C_STAGGERED**.
 
 ---
 
