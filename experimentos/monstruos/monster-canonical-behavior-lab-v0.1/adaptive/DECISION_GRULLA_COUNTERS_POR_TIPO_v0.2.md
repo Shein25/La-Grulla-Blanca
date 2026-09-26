@@ -50,7 +50,7 @@ Después de resolverla, la UI debe anunciar que la Grulla ha comprendido ese pat
 
 La siguiente repetición ya recibe el counter.
 
-Si el jugador llega a Fase II dependiendo de una única skill durante Fase I, la memoria resumida permite comenzar Fase II con esa técnica ya comprendida.
+Si el jugador llega a Fase II dependiendo de una única skill durante Fase I, la memoria resumida permite comenzar Fase II con esa técnica ya comprendida. Como la Fase I completa funciona como observación, **dos ejecuciones de esa única skill, sin haber mostrado ataque básico u otra técnica, ya bastan para esta herencia entre fases**. El umbral normal dentro de Fase II/III sigue siendo tres usos consecutivos.
 
 Defender o curarse entre usos **no borra** el conocimiento de la Grulla.
 
