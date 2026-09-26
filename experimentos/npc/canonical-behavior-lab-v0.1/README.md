@@ -350,3 +350,31 @@ Comportamientos destacados:
 - Su Lian: Jardines preempta tutorial;
 - Chen Bo: pacientes preemptan examen;
 - Yao Fen: Medicina preempta lección de alquimia.
+
+
+## Funcionales — bloque completo
+
+Gao Shun y Pei Luo tenían baseline individual; los diez restantes quedaron cubiertos por la batería agrupada.
+
+```text
+Gao Shun                  17/17
+Pei Luo                   21/21
+10 funcionales agrupados  51/51
+TOTAL                     89/89 PASS
+```
+
+## Cobertura NPC completa
+
+```text
+Autoridades    7/7
+Intermedios    7/7
+Funcionales   12/12
+Compañeros     6/6
+TOTAL         32/32 NPC
+```
+
+Baselines de comportamiento confirmados: `336/336 PASS`.
+
+Suite canónica transversal: `15/15 PASS`.
+
+Ver `MATRIZ_NPC_ARQUITECTURAS_v0.1.md` para arquitectura probada y gaps.
