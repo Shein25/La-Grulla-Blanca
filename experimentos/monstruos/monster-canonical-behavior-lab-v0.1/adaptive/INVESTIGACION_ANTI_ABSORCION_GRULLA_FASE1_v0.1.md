@@ -193,3 +193,112 @@ Antes de decidir:
 5. sólo entonces volver a sensibilidad DEF13/14 y bonus de Pata.
 
 El script de sensibilidad de Pata creado antes de esta investigación queda conservado, pero su ejecución final se pospone hasta resolver esta ruta.
+
+
+## 8. Grid completo — G345_D1 + Pata OVERLOAD_150
+
+Mecánica ensayada:
+
+```text
+Pata Inmóvil
+-> mantiene +3 DEF contra la siguiente ofensiva del jugador
+-> prepara el siguiente Golpe de Ala
+
+Golpe preparado
+-> si conecta con Piel de Cobre activa:
+   daño bruto ×1,50
+   después Piel absorbe normalmente
+-> si falla:
+   no hace daño
+   el estado preparado se consume igualmente
+```
+
+Se conservaron:
+
+- PIEL_READER;
+- costes;
+- burbuja persistente;
+- reserva = Guardia × duración;
+- no caducidad por rondas.
+
+Grid:
+
+```text
+16 configuraciones Piel
+× 27 formas raíz
+× 2 DEF
+× 5.000
+=
+4.320.000 duelos
+```
+
+Top:
+
+| Configuración | Guardia | Duración | Reserva | DEF13 | DEF14 |
+|---|---:|---:|---:|---:|---:|
+| **Cobre flexible + Cobre grueso** | **5** | **2** | **10** | **81,08%** | **76,11%** |
+| Cobre endurecido + Placas continuas | 4 | 2 | 8 | 72,33% | 66,65% |
+| Cobre flexible + Placas continuas | 3 | 3 | 9 | 67,98% | 62,31% |
+| Cobre sobrio + Cobre grueso | 5 | 1 | 5 | 67,60% | 61,45% |
+| Cobre grueso | 5 | 1 | 5 | 66,89% | 60,73% |
+
+## 9. Confirmación — 20.000
+
+Finalistas:
+
+```text
+Cobre flexible + Cobre grueso
+Cobre endurecido + Placas continuas
+Cobre flexible + Placas continuas
+```
+
+Volumen:
+
+```text
+3 × 27 × 2 × 20.000
+=
+3.240.000 duelos
+```
+
+Resultado:
+
+| Configuración | DEF13 | DEF14 |
+|---|---:|---:|
+| **Cobre flexible + Cobre grueso** | **80,96%** | **76,01%** |
+| Cobre endurecido + Placas continuas | 72,58% | 67,06% |
+| Cobre flexible + Placas continuas | 68,18% | 62,50% |
+
+La confirmación reproduce el grid.
+
+Comparación:
+
+```text
+CURRENT óptima original
+97,13 / 95,54
+
+G234_D1 óptima
+82,61 / 77,91
+
+G345_D1 + Pata OVERLOAD_150
+80,96 / 76,01
+```
+
+El nuevo modelo llega a una magnitud similar a G234_D1, pero por una vía distinta:
+
+- Piel conserva más fuerza contra golpes normales;
+- la debilidad está concentrada en un ataque telegráfico;
+- la persistencia entre ciclos tiene riesgo;
+- la identidad de burbuja se mantiene.
+
+## 10. Estado de la hipótesis
+
+```text
+AISLADO G345_D1 + PATA OVERLOAD_150   CONFIRMADO
+PIEL + FILAMENTO                      PENDIENTE
+PASO + PIEL                           PENDIENTE
+TRIPLE                                PENDIENTE
+DEF13 / DEF14                         NO SELECCIONAR AÚN
+PATA +3                               SIGUE PROVISIONAL
+```
+
+No reemplazar todavía G234_D1. El siguiente test obligatorio es Piel + Filamento, porque Campanada-only ya demostró que un counter que Filamento pueda cancelar no resuelve el espacio combinado.
