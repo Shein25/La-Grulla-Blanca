@@ -64,4 +64,48 @@ El baseline puede comprobar prioridad y finalización simbólica, pero todavía 
 
 ## Estado
 
-`HAN_QIAO_COMPANION_BASELINE: PENDING_RUNTIME_CONFIRMATION`
+`HAN_QIAO_COMPANION_BASELINE: 14_PASS_0_FAIL_RUNTIME_CONFIRMED`
+
+
+## Ejecución confirmada
+
+Resultado:
+
+```text
+PASS: 14
+FAIL: 0
+```
+
+### Solicitud ordinaria
+
+```text
+ayudar_jugador
+→ HELP_PLAYER
+→ [ir_jugador, ayudar_jugador]
+→ GOAL_REACHED
+→ playerHelped = true
+```
+
+### M16 Recursos
+
+```text
+trabajar
+→ FULFILL_DUTY
+→ [cumplir_deber]
+→ GOAL_REACHED
+→ dutySatisfied = true
+```
+
+El mismo jugador estaba solicitando ayuda; el cambio de contexto hizo que el deber logístico experimental dominara.
+
+### Límite material confirmado
+
+La acción real `cumplir_deber` tiene únicamente:
+
+```text
+effects:
+  dutyPending   = false
+  dutySatisfied = true
+```
+
+No modela asignación de recursos.
