@@ -57,21 +57,21 @@ Resultado aproximado:
 | Rata de qi | INSTINTIVO → REACTIVO_1 | **Reflejo de Madriguera** | ESQUIVA | +25 esquiva · 1 acción | sobrevive huyendo del ángulo del golpe, no bloqueándolo |
 | Serpiente de qi | REACTIVO_1 → CAZADOR_2 | **Muda del Cauce** | ESQUIVA | +20 esquiva · 1 acción | cuerpo flexible y afinidad agua; cambia la línea del ataque |
 | Lobo espiritual | CAZADOR_2 → TACTICO_3 | **Paso de la Cola Vigilante** | DEFENSA | +3 defensa · 1 acción | sus tres colas ya vigilan direcciones; aprende una postura de cobertura |
-| Eco del Caído | REACTIVO_1 → CAZADOR_2 | **Guardia del Último Ensayo** | MITIGACIÓN | −35% próximo golpe | memoria de entrenamiento: recibe mejor el impacto, no crea armadura |
-| Pez lunar | CAZADOR_2 → TACTICO_3 | **Giro de Corriente Ciega** | ESQUIVA | +20 esquiva · 1 acción | caza por pulsos de qi y puede salir de la trayectoria antes del contacto |
-| Sombra ahogada | TACTICO_3 → MASTER_4 | **Disolverse en Marea** | MITIGACIÓN | −35% próximo golpe | cuerpo de sombra/agua que dispersa parte del impacto |
-| Centinela de plumas | REACTIVO_1 → CAZADOR_2 | **Cierre de Plumas Pétreas** | DEFENSA | +4 defensa · 1 acción | placas/pétalos pétreos forman una guardia física, sin absorber energía |
-| Devorador de niebla | TACTICO_3 → MASTER_4 | **Cuerpo de Bruma Replegada** | ABSORCIÓN | 3 por golpe · reserva 6 | cuerpo condensado consume parte del golpe hasta dispersarse |
+| Eco del Caído | REACTIVO_1 → CAZADOR_2 | **Guardia del Último Ensayo** | MITIGACIÓN | −40% próximo golpe | memoria de entrenamiento: recibe mejor el impacto, no crea armadura |
+| Pez lunar | CAZADOR_2 → TACTICO_3 | **Giro de Corriente Ciega** | ESQUIVA | +25 esquiva · 1 acción | caza por pulsos de qi y puede salir de la trayectoria antes del contacto |
+| Sombra ahogada | TACTICO_3 → MASTER_4 | **Disolverse en Marea** | MITIGACIÓN | −40% próximo golpe | cuerpo de sombra/agua que dispersa parte del impacto |
+| Centinela de plumas | REACTIVO_1 → CAZADOR_2 | **Cierre de Plumas Pétreas** | DEFENSA | +5 defensa · 1 acción | placas/pétalos pétreos forman una guardia física, sin absorber energía |
+| Devorador de niebla | TACTICO_3 → MASTER_4 | **Cuerpo de Bruma Replegada** | ABSORCIÓN | 4 por golpe · reserva 8 | cuerpo condensado consume parte del golpe hasta dispersarse |
 | Avispa de jade | INSTINTIVO → REACTIVO_1 | **Quiebro de Jade** | ESQUIVA | +25 esquiva · 1 acción | criatura diminuta y aérea; bloquear sería poco coherente |
 | Macaco ladrón | CAZADOR_2 → TACTICO_3 | **Salto del Ladrón** | ESQUIVA | +20 esquiva · 1 acción | oportunista móvil que ya roba y se reposiciona |
-| Sapo de ceniza | INSTINTIVO → REACTIVO_1 | **Piel de Brasa Muerta** | MITIGACIÓN | −30% próximo golpe | la piel caliente amortigua el impacto sin volverlo difícil de acertar |
+| Sapo de ceniza | INSTINTIVO → REACTIVO_1 | **Piel de Brasa Muerta** | MITIGACIÓN | −35% próximo golpe | la piel caliente amortigua el impacto sin volverlo difícil de acertar |
 | Sapo Caldera | REACTIVO_1 → CAZADOR_2 | **Cierre de las Tres Gargantas** | ABSORCIÓN | 4 por golpe · reserva 8 | masa corporal y cámaras internas permiten “tragarse” parte del impacto |
 | Escarabajo de hierro | INSTINTIVO → REACTIVO_1 | **Cierre de Caparazón** | ABSORCIÓN | 4 por golpe · reserva 8 | su identidad ya es el caparazón metálico; la reserva representa desgaste |
 | Rey Escarabajo | CAZADOR_2 → TACTICO_3 | **Diagrama de Placas** | ABSORCIÓN | 5 por golpe · reserva 10 | versión avanzada del caparazón, coherente con su diagrama defensivo canónico |
-| Anguila estelar | REACTIVO_1 → CAZADOR_2 | **Desliz de Meridiano** | ESQUIVA | +20 esquiva · 1 acción | cuerpo lineal y acuático; desvía su trayectoria siguiendo el qi |
+| Anguila estelar | REACTIVO_1 → CAZADOR_2 | **Desliz de Meridiano** | ESQUIVA | +25 esquiva · 1 acción | cuerpo lineal y acuático; desvía su trayectoria siguiendo el qi |
 | Guardián de coral | TACTICO_3 → MASTER_4 | **Arrecife Replegado** | ABSORCIÓN | 5 por golpe · reserva 10 | el coral se erosiona por capas y puede consumir varios impactos pequeños |
-| Halcón de tormenta | CAZADOR_2 → TACTICO_3 | **Ascenso Contraviento** | ESQUIVA | +25 esquiva · 1 acción | usa altura y corriente para abandonar la línea del golpe |
-| Mantis de nube | MASTER_4 → MASTER_4 | **Guardia de las Dos Hojas** | DEFENSA | +4 defensa · 1 acción | precisión extrema: no huye, intercepta/paraliza la línea del ataque |
+| Halcón de tormenta | CAZADOR_2 → TACTICO_3 | **Ascenso Contraviento** | ESQUIVA | +30 esquiva · 1 acción | usa altura y corriente para abandonar la línea del golpe |
+| Mantis de nube | MASTER_4 → MASTER_4 | **Guardia de las Dos Hojas** | DEFENSA | +5 defensa · 1 acción | precisión extrema: no huye, intercepta/paraliza la línea del ataque |
 
 Todas consumen la acción del monstruo y proponen **2 rondas de cooldown**.
 
@@ -128,10 +128,10 @@ LianQi IV
 Conclusión provisional:
 
 - esquiva y defensa conservan counters de precisión reales;
-- mitigación 30–35% queda dentro de la escala de DEFENDER del jugador;
+- mitigación 35–40% queda dentro de la escala de DEFENDER del jugador;
 - absorción debe compararse por reserva total / HP del monstruo;
 - el Escarabajo de Hierro (reserva 8 sobre 21 HP) es el caso que requiere más vigilancia;
-- ningún valor queda congelado hasta medir combate completo y coste de oportunidad de defender.
+- los valores quedaron fijados como **candidato final experimental** tras medir combate completo, uso de defensa y coste de oportunidad de perder el ataque.
 
 ## Frontera pendiente
 
