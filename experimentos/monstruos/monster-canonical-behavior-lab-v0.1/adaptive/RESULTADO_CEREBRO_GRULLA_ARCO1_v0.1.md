@@ -321,3 +321,113 @@ Una derrota justa debería poder explicarse con una causa legible:
 Una victoria correcta debería sentirse así:
 
 No superé una barra de vida. Entendí lo que la Grulla intentaba hacer y conseguí obligarla a equivocarse.
+
+
+---
+
+## 12. Contrato duro anti-spam — 100% una sola skill = 0% victoria
+
+Se añade un requisito explícito para el jefe final:
+
+> Un jugador que intente resolver **todo el combate usando exclusivamente la misma skill** no debe poder ganar.
+
+No se implementa mediante lectura futura ni un multiplicador secreto de dificultad.
+
+### Aprendizaje
+
+Si la Grulla observa tres usos consecutivos de la misma técnica en Fase II/III:
+
+\`\`\`text
+misma skill
+→ misma skill
+→ misma skill
+→ TECHNIQUE_COUNTER_LOCKED
+\`\`\`
+
+Si el jugador llegó a Fase II habiendo usado exclusivamente una misma técnica durante Fase I, el counter puede comenzar ya consolidado al cambiar de fase.
+
+### Efecto del counter
+
+Mientras el jugador siga usando exactamente esa técnica:
+
+\`\`\`text
+daño                  ×0
+control               anulado
+aflicciones           anuladas
+drenaje/efecto recurso anulado
+efectos secundarios   anulados
+\`\`\`
+
+No es resistencia elemental.
+
+La Grulla ha leído **ese trazo concreto**.
+
+### Cómo se rompe
+
+Basta con variar de verdad:
+
+\`\`\`text
+otra técnica
+ataque básico
+defensa
+control distinto
+otra herramienta válida
+\`\`\`
+
+para romper el lock cuando corresponda.
+
+Por tanto el sistema no exige una build específica.
+
+Exige abandonar el spam.
+
+### Definición exacta del 0%
+
+El contrato “0%” se refiere al arquetipo:
+
+\`\`\`text
+cada acción ofensiva útil
+= la misma skill
+= durante todo el enfrentamiento
+\`\`\`
+
+Una vez leído el patrón, esa estrategia deja de producir progreso contra las fases restantes.
+
+La victoria vuelve a ser posible en cuanto el jugador demuestra variedad.
+
+### Telegraph obligatorio para integración futura
+
+El counter nunca debe ser invisible.
+
+Al consolidarse deberá comunicarse claramente, por ejemplo:
+
+\`\`\`text
+La Grulla sigue el mismo trazo por tercera vez.
+Las plumas dejan de apartarse.
+
+Ha comprendido esta técnica.
+Repetirla ya no abrirá una herida.
+\`\`\`
+
+El texto final queda pendiente de integración narrativa/UI.
+
+### Estado técnico
+
+La capa experimental expone:
+
+\`\`\`text
+grullaTechniqueEffectiveness(...)
+\`\`\`
+
+y cuando el counter está activo devuelve:
+
+\`\`\`text
+multiplier: 0
+blocked: true
+suppressEffects: true
+suppressDamage: true
+suppressControl: true
+suppressAfflictions: true
+suppressResourceEffects: true
+\`\`\`
+
+El executor real deberá respetar este contrato.
