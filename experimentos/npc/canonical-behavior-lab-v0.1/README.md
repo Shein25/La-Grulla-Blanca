@@ -29,6 +29,11 @@ Una política experimental **no se convierte en canon** por estar en este labora
 9. `guo_chen` — Aspirante, trabajo material/persistencia.
 10. `luo_yan` — Aspirante, protocolo/historia oficial.
 11. `wei_jian` — Autoridad marcial / Pabellón Marcial.
+12. `song_rui` — Responsable de Archivos.
+13. `lan_meihua` — Medicina / Alquimia.
+14. `duan_shibo` — Recursos / Producción.
+15. `he_zhen` — Formaciones / Territorio.
+16. `ji_xueying` — Maestra de Secta, anclada en Consejo.
 
 Motivo: es funcional, tiene movilidad `RUTA`, territorio y ruta documentados, y permite comparar limpiamente FSM contra Behavior Tree.
 
@@ -302,3 +307,26 @@ Gaps preservados:
 - combate físico;
 - navegación por rooms;
 - gate `SECTA_INTERIOR`.
+
+
+## Autoridades — bloque completo
+
+Los siete NPC de categoría `autoridad` ya tienen baseline:
+
+```text
+Qiao Ren     13/13
+Wei Jian     17/17
+Song Rui     13/13
+Lan Meihua   11/11
+Duan Shibo   10/10
+He Zhen      11/11
+Ji Xueying   13/13
+TOTAL        88/88 PASS
+```
+
+Hallazgos transversales:
+
+- un NPC anclado como Ji Xueying no necesita una arquitectura compleja para presencia básica;
+- Behavior Tree encaja bien como hipótesis reactiva para Wei Jian;
+- dominios Archivo, Medicina, Recursos y Formaciones requieren estado de mundo específico antes de que `FULFILL_DUTY` deje de ser una abstracción booleana;
+- el esquema de conocimiento R1-R3 es insuficiente para varios NPC de autoridad.
