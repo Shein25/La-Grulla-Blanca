@@ -2,6 +2,19 @@
 
 **Estado:** EXPERIMENTAL / NO CANÓNICO.
 
+## Cierre posterior de valores
+
+Este documento conserva parte del análisis histórico previo. Los valores numéricos anteriores fueron supersedidos por el cierre de combate completo.
+
+Candidato final experimental vigente:
+
+- ESQUIVA: +20 a +30 según especie;
+- DEFENSA: +3 a +5;
+- MITIGACIÓN: 35–40%;
+- ABSORCIÓN: 4/8 o 5/10 en la mayoría de especies, según anatomía/rol.
+
+El set exacto vive en `adaptive/survival-evolution-v0.1.mjs` y en `MATRIZ_EVOLUCION_SUPERVIVENCIA_v0.1.md`.
+
 ## Motivo
 
 Este documento sustituye los escenarios de daño inventados usados como primera prueba de sanidad.
@@ -382,7 +395,7 @@ No debe implementarse fingiendo una señal. Requiere que la persistencia adaptat
 
 ## Lo que aún NO queda cerrado
 
-Los valores E1 siguen siendo **candidatos**, no balance final.
+Los valores E1 quedan fijados como **candidato final experimental**, pero aún no son canon productivo.
 
 Falta un benchmark de combate completo que incluya:
 
@@ -393,7 +406,7 @@ Falta un benchmark de combate completo que incluya:
 - duración real del duelo;
 - frecuencia de reactivación tras cooldown.
 
-Hasta cerrar eso, no se deben subir ni bajar números sólo por intuición.
+El combate completo ya fue simulado para cerrar los números; lo pendiente es integración productiva y persistencia, no otro ajuste por intuición.
 
 ## Stress test ZhuJi
 
