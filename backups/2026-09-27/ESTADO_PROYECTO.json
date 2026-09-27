@@ -1,0 +1,51 @@
+{
+  "date": "2026-09-27",
+  "project": "La Grulla Blanca",
+  "backup_branch": "snapshot/handoff-2026-09-27-astra-a04",
+  "remote_base": "main",
+  "note": "A01-A04 SHAs were reported by Astra but were not present on GitHub at backup time; this branch preserves continuity metadata, not those unpushed commit objects.",
+  "integration": {
+    "A01": {
+      "status": "closed",
+      "commit": "248396792aa769e7b3e577aca4fff6ad50a7a326"
+    },
+    "A02": {
+      "status": "closed",
+      "commit": "2f6363f9c07d229ff2a3a6cd5ada3bc538469d32"
+    },
+    "A03": {
+      "status": "closed",
+      "commit": "8365c9e87fea49d9bf914befc5b921fa6b691563"
+    },
+    "A04": {
+      "status": "closed",
+      "commit": "7a5ac9a46e66ce83b8959de4f70dfc6a8d7ab683"
+    },
+    "A05": {
+      "status": "in_progress"
+    }
+  },
+  "runtime_ver76_sha256": "b41c12431f076790b2e2fb0e9e485fb35d3b8c7a834d7b1222e9105518eb270a",
+  "dialogue": {
+    "voseo_forbidden": true,
+    "language": "español neutro",
+    "natural_voice": true,
+    "influenced_by": [
+      "personalidad",
+      "historia personal",
+      "memoria",
+      "afinidad",
+      "reputación",
+      "conocimiento",
+      "rango/rol",
+      "contexto"
+    ],
+    "separate_autonomous_entrypoint": true,
+    "anti_spam": true
+  },
+  "arc3_reserved": [
+    "reinos secretos procedurales",
+    "formaciones/matrices espirituales",
+    "subastas"
+  ]
+}
