@@ -745,7 +745,7 @@ Reglas:
 
 ---
 
-# 21. Buffs / Debuffs / stacking — CANDIDATO
+# 21. Buffs / Debuffs / stacking — CERRADO
 
 ## Principio general
 
@@ -874,7 +874,19 @@ Los debuffs estadísticos ordinarios no son Control y Tenacidad no reduce autom�
 
 ---
 
-# 22. Siguientes bloques prioritarios
+# 22. Daño elemental y resistencias — SIGUIENTE BLOQUE
+
+Pendiente de cerrar:
+- qué significa una etiqueta elemental;
+- si existe resistencia elemental como estadística universal o sólo como propiedad explícita;
+- ventajas/debilidades entre elementos;
+- interacción con impactos híbridos;
+- relación con DEF universal;
+- límites para evitar duplicar capas defensivas.
+
+---
+
+# 23. Siguientes bloques prioritarios
 
 1. Cerrar orden de efectos posteriores al impacto.
 2. Definir buffs/debuffs y reducción de DEF.
