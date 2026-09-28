@@ -30,6 +30,13 @@ Reglas universales:
 8. las magnitudes numéricas se balancean después; primero se cierra identidad, canales y prioridad;
 9. la matriz usa exclusivamente propiedades registradas en `REGISTRO_UNIVERSAL_ESTADISTICAS_PROPIEDADES_COMBATE_V0_1.md`.
 
+10. **Escalado relativo obligatorio:** una Concordancia no añade cantidades absolutas de daño, DEF, curación, Absorción, Precisión, Control, Tenacidad, Penetración ni magnitudes equivalentes. Cuando aumenta una magnitud numérica escalable, lo hace como **porcentaje relativo del hook receptor**.
+11. Los modificadores de Concordancia se expresan conceptualmente como `receiver_value × (1 + concordance_scale)`, o una transformación porcentual equivalente declarada por la relación.
+12. Las propiedades probabilísticas también se escalan de forma relativa a su magnitud receptora; una Concordancia no concede puntos porcentuales fijos por defecto.
+13. Las transformaciones estructurales discretas —por ejemplo impedir un consumo una vez, crear un estado contenido, detonar un estado o cambiar su regla de propagación— pueden existir sin convertirse en una suma numérica fija.
+14. Una Concordancia no debe otorgar `+N daño`, `+N DEF`, `+N Precisión`, `+N Control` ni equivalentes como bono de escalado.
+15. Si una propiedad discreta no admite escalado porcentual coherente, la relación debe modificar su **potencia, probabilidad, eficiencia o regla estructural**, no añadir una cantidad fija arbitraria.
+
 ---
 
 # 1. FUEGO como origen — APROBADO
@@ -753,3 +760,61 @@ La magnitud, duración exacta y porcentaje de propagación quedan pendientes de 
 4. DEFENSIVE_DURATION
 \`\`\`
 
+
+
+---
+
+# Regla transversal de escalado de Concordancias — APROBADA 2026-09-28
+
+Las Concordancias están diseñadas para sobrevivir a Arcos futuros y a órdenes de magnitud superiores.
+
+Por tanto:
+
+```text
+PROHIBIDO COMO ESCALADO DE CONCORDANCIA:
++3 daño
++5 DEF
++5 Precisión
++10 Control
++2 Absorción
+```
+
+Forma correcta:
+
+```text
+daño_receptor × (1 + porcentaje_concordancia)
+DEF_otorgada × (1 + porcentaje_concordancia)
+Absorción_generada × (1 + porcentaje_concordancia)
+Precisión_aportada_por_el_hook × (1 + porcentaje_concordancia)
+potencia_de_Control_del_hook × (1 + porcentaje_concordancia)
+```
+
+La Concordancia escala **la magnitud que ya genera el receptor**, no inyecta una cantidad absoluta desligada de esa magnitud.
+
+Ejemplo estructural:
+
+```text
+Placa Fundacional
+primer impacto válido:
+- la placa no se consume;
+- la misma placa queda REFORZADA;
+
+segundo impacto válido:
+- su DEF propia se multiplica por un porcentaje de fortificación;
+- luego la placa se consume.
+```
+
+No se define `+N DEF`.
+
+Esto permite que una placa de Arco 1 y una equivalente de Arco futuro utilicen exactamente la misma Concordancia sin quedar obsoletas.
+
+Las operaciones discretas siguen permitidas cuando expresan identidad y no escala numérica, por ejemplo:
+
+- impedir un consumo una vez por activación;
+- transformar un estado;
+- habilitar detonación;
+- cambiar propagación;
+- crear un snapshot;
+- consumir una marca.
+
+Pero cualquier **aumento de magnitud** producido por la Concordancia debe ser porcentual/relativo.
