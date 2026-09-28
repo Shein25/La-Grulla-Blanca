@@ -1682,6 +1682,46 @@ Las magnitudes numéricas quedan pendientes hasta probar estas identidades sobre
 
 ---
 
+### Rama Metal — CERRADA CONCEPTUALMENTE
+
+Una técnica pura de Metal deja un **Eco de Metal**. La concordancia depende del elemento receptor.
+
+```text
+METAL → FUEGO
+Chispa / ignición
+Identidad: punto de ignición.
+- ofensiva: potencia la aplicación o potencia de Quemadura compatible;
+- defensiva: habilita una respuesta térmica/reactiva compatible.
+```
+
+```text
+METAL → AGUA
+Cauce tallado / canalización
+Identidad: flujo dirigido.
+- ofensiva/control: potencia Control o precisión del efecto compatible;
+- defensiva/utilitaria: mejora la eficiencia de Qi de esa ejecución.
+```
+
+```text
+METAL → TIERRA
+Anclaje de hierro
+Identidad: refuerzo estructural.
+- ofensiva: mejora una propiedad de ruptura/penetración compatible;
+- defensiva: potencia Absorción, Tenacidad u otra magnitud defensiva propia de la técnica Tierra.
+```
+
+```text
+METAL → VIENTO
+Filo en la corriente
+Identidad: precisión y aprovechamiento de aperturas.
+- ofensiva: mejora Precisión u otra propiedad de ejecución compatible;
+- defensiva: puede potenciar la Evasión generada por una técnica Viento, sujeto a validación con técnicas reales.
+```
+
+Las magnitudes numéricas quedan pendientes hasta probar estas identidades sobre técnicas reales.
+
+---
+
 ## Combinaciones dobles ya confirmadas
 
 El juego ya contiene cuatro Definitivas híbridas que muestran cómo una misma combinación elemental puede expresarse mediante una técnica concreta. **La orientación ofensiva, defensiva, de control o utilitaria pertenece a la técnica, no a la pareja de raíces.**
