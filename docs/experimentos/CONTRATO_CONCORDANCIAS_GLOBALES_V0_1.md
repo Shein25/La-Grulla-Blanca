@@ -76,8 +76,7 @@ Condición semántica: el hook debe representar impacto, masa, presión o ruptur
 ```text
 1. CONTROL_POWER
 2. ACTION_DENIAL
-3. MOBILITY_REDUCTION
-4. DEBUFF_DURATION
+3. 4. DEBUFF_DURATION
 ```
 
 Sólo si el control representa peso, presión, encierro, impacto o inmovilización estructural.
@@ -134,8 +133,7 @@ DOT_POTENCY
 
 ```text
 1. CONTROL_POWER
-2. MOBILITY_REDUCTION
-3. ACTION_DENIAL
+2. 3. ACTION_DENIAL
 4. DEBUFF_DURATION
 ```
 
@@ -176,8 +174,7 @@ No usa `QI_COST_PERCENT` por defecto.
 2. INTERRUPT
 3. ACTION_DENIAL
 4. PRECISION_DEBUFF
-5. MOBILITY_REDUCTION
-```
+5. ```
 
 Fuego no crea Control de la nada: presuriza una propiedad ya expuesta.
 
@@ -235,8 +232,7 @@ Se selecciona sólo el primer hook expuesto compatible.
 ```text
 1. INTERRUPT
 2. CONTROL_POWER
-3. MOBILITY_REDUCTION
-4. ACTION_DENIAL
+3. 4. ACTION_DENIAL
 ```
 
 ### UTILITY
@@ -393,8 +389,7 @@ Metal no crea Control: canaliza mejor uno ya expuesto.
 
 \`\`\`text
 1. CONTROL_POWER
-2. MOBILITY_REDUCTION
-3. ACTION_DENIAL
+2. 3. ACTION_DENIAL
 4. DEBUFF_DURATION
 \`\`\`
 
@@ -441,8 +436,7 @@ Se selecciona sólo el primer hook compatible.
 1. PRECISION
 2. INTERRUPT
 3. CONTROL_POWER
-4. MOBILITY_REDUCTION
-\`\`\`
+4. \`\`\`
 
 ### UTILITY
 
@@ -545,8 +539,7 @@ Agua representa transformación, adaptación, erosión, templado y difusión.
 \`\`\`text
 1. CONTROL_DURATION
 2. CONTROL_POWER
-3. MOBILITY_REDUCTION
-4. DEBUFF_DURATION
+3. 4. DEBUFF_DURATION
 \`\`\`
 
 ### UTILITY
@@ -569,8 +562,7 @@ Agua representa transformación, adaptación, erosión, templado y difusión.
 \`\`\`text
 1. DEF_SHRED
 2. EVASION_DEBUFF
-3. MOBILITY_REDUCTION
-4. DEBUFF_DURATION
+3. 4. DEBUFF_DURATION
 5. CONTROL_POWER
 \`\`\`
 
@@ -587,8 +579,7 @@ Agua representa transformación, adaptación, erosión, templado y difusión.
 ### CONTROL
 
 \`\`\`text
-1. MOBILITY_REDUCTION
-2. EVASION_DEBUFF
+1. 2. EVASION_DEBUFF
 3. CONTROL_POWER
 4. DEBUFF_DURATION
 5. ACTION_DENIAL
@@ -635,8 +626,7 @@ No usa \`DIRECT_DAMAGE\` como fallback.
 \`\`\`text
 1. PRECISION_DEBUFF
 2. CONTROL_POWER
-3. MOBILITY_REDUCTION
-4. INTERRUPT
+3. 4. INTERRUPT
 5. DEBUFF_DURATION
 \`\`\`
 
@@ -888,8 +878,7 @@ Esto permite que la misma Concordancia siga siendo relevante en Arcos futuros au
 ### CONTROL
 
 \`\`\`text
-1. MOBILITY_REDUCTION
-2. CONTROL_DURATION
+1. 2. CONTROL_DURATION
 3. CONTROL_POWER
 4. ACTION_DENIAL
 5. DEBUFF_DURATION
@@ -905,3 +894,25 @@ La identidad es anclar/fijar una estructura metálica de Control.
 3. DEFENSIVE_DURATION
 4. INTERNAL_RESOURCE
 \`\`\`
+
+
+---
+
+## Regla transversal — movilidad fuera del sistema
+
+El juego no utiliza una estadística o capa de movilidad en combate.
+
+Las Concordancias no pueden resolver sobre `MOBILITY_REDUCTION`.
+
+Cuando una identidad elemental sugiera peso, lodo, anclaje, arrastre o dificultad de movimiento, debe expresarse mediante hooks reales del sistema, por ejemplo:
+
+```text
+EVASION_DEBUFF
+CONTROL_POWER
+ACTION_DENIAL
+INTERRUPT
+PRECISION_DEBUFF
+DEBUFF_DURATION
+```
+
+según lo que la técnica realmente exponga.
