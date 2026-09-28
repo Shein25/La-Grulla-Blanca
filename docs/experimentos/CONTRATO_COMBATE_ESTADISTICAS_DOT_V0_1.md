@@ -373,7 +373,7 @@ clamp(Control efectivo - Tenacidad, 5, 100)
 
 ---
 
-# 13. Robo de Vida — contrato base
+# 13. Robo de Vida — CERRADO
 
 Robo de Vida será **universal respecto del origen/tipo del daño directo**.
 
@@ -406,7 +406,7 @@ Reglas:
 - No almacena recuperación sobrante.
 - Todos los impactos de una acción aportan a una reserva potencial y el límite se aplica al total de la acción.
 - En AOE se suman los aportes válidos de todos los objetivos, sujetos al mismo límite por acción.
-- El valor exacto del límite por acción se balanceará posteriormente.
+- El valor exacto del límite por acción se balanceará posteriormente; la semántica del sistema queda cerrada.
 
 Por defecto NO son elegibles:
 - DOT;
