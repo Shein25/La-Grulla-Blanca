@@ -1306,7 +1306,139 @@ Si en el futuro modificadores porcentuales producen valores fraccionarios de má
 
 ---
 
-# 25. Siguientes bloques prioritarios
+# 25. Progresión por cultivo y raíces — CANDIDATO
+
+## Principio general
+
+La progresión de cultivo debe aumentar la capacidad estructural del personaje sin inflar automáticamente todas las estadísticas de combate.
+
+Separar:
+
+```text
+PROGRESIÓN GARANTIZADA
+→ recursos / acceso / capacidad
+
+PROGRESIÓN DE BUILD
+→ daño / DEF / crítico / precisión / penetración / etc.
+```
+
+## Qué puede crecer automáticamente con cultivo
+
+El reino/etapa puede otorgar:
+- Vida máxima;
+- Qi máximo;
+- puntos de técnica / acceso a nuevas ramas;
+- desbloqueo de técnicas, equipo o sistemas;
+- parámetros de cultivo/meditación cuando corresponda.
+
+Los valores numéricos exactos se balancearán posteriormente.
+
+## Qué NO debe crecer automáticamente sólo por subir de etapa
+
+No otorgar de forma universal:
+- daño/Ataque;
+- DEF;
+- Precisión;
+- Evasión;
+- Probabilidad crítica;
+- Daño crítico;
+- Penetración;
+- Control;
+- Tenacidad;
+- Robo de Vida;
+- Absorción.
+
+Estas estadísticas deben provenir de:
+- equipo;
+- técnicas;
+- ramas;
+- buffs/debuffs;
+- efectos específicos;
+- sistemas especializados.
+
+Una escuela corporal futura puede otorgar DEF/Absorción, por ejemplo, pero no por el mero hecho de avanzar de cultivo.
+
+## Consecraciones / avances internos
+
+El modelo antiguo que sumaba automáticamente ATQ por consagración no debe migrarse.
+
+Las consagraciones pueden aumentar capacidad estructural —principalmente Vida/Qi y desbloqueos— sin introducir un multiplicador ofensivo universal.
+
+## Raíces espirituales
+
+Las raíces no deben convertirse en paquetes de estadísticas universales del tipo:
+
+```text
+Fuego = +ATQ
+Metal = +ATQ
+Agua = +DEF
+```
+
+Los antiguos bonos de ATQ/DEF deben reinterpretarse.
+
+La raíz debe funcionar principalmente como:
+- afinidad/etiqueta espiritual;
+- relación con técnicas y ramas;
+- identidad de cultivo;
+- modificador de meditación/eficiencia de Qi cuando corresponda;
+- requisito o habilitador de interacciones específicas.
+
+No debe existir una raíz que sea universalmente “la mejor de daño” o “la mejor de defensa” por un bono plano permanente.
+
+## Afinidad y técnicas
+
+Una raíz puede interactuar con una técnica sin modificar todo el daño del personaje.
+
+Ejemplos conceptuales futuros:
+
+```text
+Raíz Fuego
+→ habilita/mejora una rama de Quemadura
+```
+
+```text
+Raíz Metal
+→ habilita interacciones con técnicas de espada/corte
+```
+
+```text
+Raíz Agua
+→ habilita interacciones de flujo, control o recuperación
+```
+
+La forma exacta se definirá al rehacer técnicas; no se hardcodean todavía bonificaciones universales.
+
+## Meditación
+
+Las raíces pueden conservar perfiles distintos de eficiencia al meditar.
+
+Esto puede expresarse mediante:
+- Qi base obtenido al meditar;
+- modificadores de método;
+- afinidad con condiciones espirituales;
+- interacción con piedras/venas/objetos.
+
+Esto NO equivale a regeneración pasiva de Qi.
+
+## Crecimiento de poder
+
+La mayor potencia ofensiva al avanzar debe provenir principalmente de:
+- técnicas nuevas;
+- coeficientes/ramas mejores;
+- mayor disponibilidad de Qi;
+- mejor equipo;
+- sinergias;
+- especialización.
+
+No de una suma automática de +ATQ por nivel/etapa.
+
+## Regla final
+
+> Cultivar aumenta primero la capacidad del personaje y abre nuevas herramientas. Las estadísticas de combate especializadas pertenecen a la build, no al simple hecho de subir de etapa.
+
+---
+
+# 26. Siguientes bloques prioritarios
 
 1. Cerrar orden de efectos posteriores al impacto.
 2. Definir buffs/debuffs y reducción de DEF.
@@ -1315,7 +1447,7 @@ Si en el futuro modificadores porcentuales producen valores fraccionarios de má
 5. Definir elementos/resistencias.
 6. Curación/recuperación/Qi — CERRADO.
 7. Política global de redondeo — CERRADO.
-8. Reinterpretar progresión por cultivo y raíces.
+8. Progresión por cultivo y raíces — CANDIDATO.
 9. Rehacer técnicas.
 10. Recrear equipo.
 11. Benchmarks de jugador.
