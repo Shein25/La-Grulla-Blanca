@@ -1,8 +1,8 @@
-# Contrato del motor universal de eventos, efectos y Concordancias — v0.1
+# Contrato del motor universal de eventos, efectos y Concordancias — v0.2
 
 Fecha: 2026-09-28  
 Rama: `experiment/combat-stat-contract-v0.1`  
-Estado: **CONTRATO ARQUITECTÓNICO / NO IMPLEMENTAR TODAVÍA SIN AUTORIZACIÓN EXPLÍCITA**
+Estado: **ARQUITECTURA APROBADA / NO IMPLEMENTAR RUNTIME TODAVÍA SIN AUTORIZACIÓN EXPLÍCITA**
 
 ## 0. Propósito
 
@@ -1653,24 +1653,27 @@ Nunca crear una primitiva universal sólo para disfrazar hardcode de una técnic
 
 ---
 
-# 36. Pendientes de cierre antes de implementar
+# 36. Pendientes antes de implementar
 
-1. Definir las prioridades/hook families de las 20 Concordancias dirigidas.
+1. Definir las prioridades/hook families y reglas de escala de las 20 Concordancias dirigidas.
 2. Definir schema concreto de serialización en JS.
-3. Cerrar orden TURN_START entre DOT, regeneración y otros ticks.
-4. Cerrar base exacta de Reflect si existieran varias magnitudes candidatas.
-5. Cerrar límite numérico universal de Robo de Vida por acción.
-6. Cerrar piso de reducción de coste de Qi.
-7. Definir política de múltiples pools de Absorción si se permiten.
-8. Definir `max_reaction_depth` de seguridad.
-9. Auditar las 12 técnicas ya diseñadas contra este contrato.
-10. Auditar estadísticas y fórmulas actuales para verificar que cada una tiene una única capa de resolución.
+3. Cerrar la base numérica exacta de Reflect si existieran varias magnitudes candidatas.
+4. Cerrar el límite numérico universal de Robo de Vida por acción.
+5. Cerrar el piso numérico global de reducción de coste de Qi.
+6. Cerrar el orden exacto entre reducción plana y reducción porcentual de coste de Qi.
+7. Cerrar el techo/piso de estadísticas que siguen sujetas a benchmark cuando corresponda.
+8. Auditar numéricamente las 12 técnicas tras cerrar Concordancias y economía de puntos.
+9. Diseñar y auditar las 3 técnicas de Viento.
+
+Los bloqueantes arquitectónicos detectados por la auditoría externa del 2026-09-28 se consideran resueltos por la sección 38.
 
 ---
 
 # 37. Estado
 
-**APROBACIÓN PENDIENTE DEL USUARIO.**
+**ARQUITECTURA APROBADA POR EL DISEÑADOR.**
+
+No autoriza todavía implementación runtime. Las cifras marcadas como provisionales siguen sujetas a benchmark.
 
 Este archivo propone la arquitectura universal sobre la que deberían apoyarse:
 
@@ -1694,3 +1697,497 @@ Este archivo propone la arquitectura universal sobre la que deberían apoyarse:
 - NPC;
 - jefes;
 - contenido futuro.
+
+
+---
+
+# 38. Resoluciones post-auditoría — CERRADO 2026-09-28
+
+Esta sección resuelve los bloqueantes y huecos arquitectónicos detectados en la auditoría externa posterior a v0.1. Cuando una cláusula anterior sea menos específica, esta sección prevalece.
+
+## 38.1 Orden total de TURN_START
+
+El comienzo del turno se divide en categorías deterministas:
+
+```text
+TURN_START
+1. START_TURN_DEFENSIVE_RESTORE
+2. START_TURN_AFFLICTION_TICKS
+3. START_TURN_HP_REGENERATION
+4. START_TURN_CONTROL_AND_OTHER_TICKS
+5. START_TURN_ACTION_READY
+```
+
+Reglas:
+
+- Reflujo y otras restauraciones de Absorción ocurren en `START_TURN_DEFENSIVE_RESTORE`.
+- Quemadura, Veneno y otros DOT con tick de inicio ocurren en `START_TURN_AFFLICTION_TICKS`.
+- Regeneración de Vida ocurre después de los DOT de inicio.
+- Una aflicción puede matar antes de que el actor llegue a `START_TURN_ACTION_READY`.
+- Una familia futura puede declarar otra fase sólo mediante extensión explícita del catálogo, no mediante una prioridad ad hoc.
+- Dentro de la misma categoría se usa prioridad declarada y después un desempate estable por `effect_instance_id`.
+
+## 38.2 Ciclo de vida del Eco elemental
+
+Existe **un único slot de Eco por actor**.
+
+```text
+actor.echo_slot =
+  null
+  o
+  {
+    element,
+    source_action_id,
+    created_turn_id
+  }
+```
+
+Reglas:
+
+1. Un Eco nuevo sustituye al Eco anterior del mismo actor.
+2. El Eco pertenece al actor que lo generó; no queda ligado al objetivo.
+3. Sólo técnicas puras elegibles generan Eco.
+4. Definitivas híbridas no generan, consumen ni reciben Ecos.
+5. Al declarar una técnica pura receptora:
+   - el resolver inspecciona el Eco existente;
+   - busca una relación ORIGEN→DESTINO;
+   - busca un hook compatible.
+6. Si no existe hook compatible, la acción continúa y el Eco **no se consume**.
+7. Si existe hook compatible y la acción pasa validación/coste, el Eco queda comprometido y se consume al comenzar la ejecución.
+8. Si posteriormente el impacto falla por Evasión, el Eco sigue gastado: la energía ya fue canalizada.
+9. Una acción que consumió un Eco **no genera otro Eco al finalizar esa misma acción** por defecto.
+10. Una técnica pura que no consumió Eco puede generar su propio Eco al completar una ejecución válida.
+11. Para técnicas ofensivas, "ejecución válida" exige al menos un impacto conectado; para técnicas defensivas/utilitarias elegibles, basta una activación válida.
+12. Una excepción futura capaz de encadenar consumo→generación deberá declararlo explícitamente como propiedad especial del contenido.
+13. El Eco no se conserva indefinidamente fuera de combate: al terminar el combate se elimina salvo futura regla explícita.
+14. Acciones no técnicas no crean ni consumen Eco. No borran el Eco por defecto bajo el contrato nuevo.
+
+## 38.3 Capa AOE contra un único objetivo
+
+Se crea la capa global:
+
+```text
+AOE_SINGLE_TARGET_SCALAR = 0.65
+```
+
+Se aplica **a la magnitud ofensiva de la ejecución antes de DEF y antes del redondeo final**.
+
+Orden relevante:
+
+```text
+porciones
+→ planos
+→ pool porcentual ofensivo
+→ crítico
+→ modificadores de daño recibido
+→ AOE_SINGLE_TARGET_SCALAR si hay 1 objetivo válido
+→ sumar porciones
+→ DEF/Penetración
+→ redondeo
+→ Absorción
+→ Vida
+```
+
+Reglas:
+
+- afecta el daño directo originado por la técnica AOE;
+- afecta la potencia base de DOT/aflicción cuyo daño derive expresamente de la magnitud ofensiva de esa AOE;
+- no reduce magnitud de debuffs estadísticos, Control, duración, stacks ni otros estados que no escalen con daño;
+- no modifica el número de objetivos;
+- el valor 0.65 sigue siendo provisional para benchmark, pero su **posición en el pipeline queda cerrada**.
+
+## 38.4 Roles direccionales de eventos
+
+Todo trigger puede declarar el papel del propietario del efecto:
+
+```text
+OWNER_AS_SOURCE
+OWNER_AS_TARGET
+OWNER_AS_EITHER
+```
+
+Condiciones universales mínimas:
+
+```text
+source_is_owner
+target_is_owner
+source_is_not_owner
+target_is_not_owner
+```
+
+Los eventos canónicos incluyen además:
+
+```text
+ON_DAMAGE
+ON_HIT_RECEIVED
+ON_DAMAGE_RECEIVED
+ON_HP_DAMAGE_RECEIVED
+ON_VALID_DIRECT_IMPACT_RECEIVED
+ON_ACTION_ATTEMPT
+ON_ACTION_COMPLETED
+```
+
+Los eventos `*_RECEIVED` son vistas direccionales del mismo evento causal; no duplican el evento ni permiten doble trigger automático.
+
+Hemorragia puede escuchar `ON_ACTION_ATTEMPT` del afectado antes de ejecutar la acción voluntaria.
+
+## 38.5 Unidades de duración
+
+`duration_unit` debe ser una enumeración explícita:
+
+```text
+OWNER_TURNS
+SOURCE_TURNS
+GLOBAL_ROUNDS
+UNTIL_OWNER_TURN_START
+UNTIL_OWNER_TURN_END
+UNTIL_SOURCE_TURN_START
+UNTIL_ACTION_COMPLETED
+UNTIL_NEXT_VALID_HIT
+UNTIL_COMBAT_END
+EVENT_COUNT
+```
+
+Reglas:
+
+- "1 turno" no se interpreta por contexto; el contenido debe declarar la unidad.
+- `once_per_turn` debe declarar `OWNER_TURN`, `SOURCE_TURN` o `GLOBAL_ROUND`.
+- `once_per_activation` usa la identidad de la instancia activa del efecto.
+- Los efectos aplicados durante el turno enemigo no expiran accidentalmente por una convención implícita.
+
+## 38.6 Prevención de recursión
+
+Flags son la defensa principal. `reaction_depth` es una salvaguarda adicional.
+
+```text
+max_reaction_depth = 8
+```
+
+Reglas:
+
+- toda reacción que produzca otro evento reactivo incrementa `reaction_depth + 1`;
+- al superar 8, la nueva reacción se cancela y se registra diagnóstico;
+- un `DamagePacket` generado por `DEAL_DAMAGE` debe declarar explícitamente su `damage_source_type` y permisos;
+- ausencia de un permiso se interpreta de forma conservadora como `false` para retriggers reactivos.
+
+Defaults:
+
+```text
+DOT:
+can_trigger_on_hit = false
+can_trigger_on_damage = false
+can_trigger_lifesteal = false
+can_trigger_reflect = false
+can_trigger_retaliation = false
+
+REFLECT:
+can_crit = false
+can_use_def = true
+can_use_absorption = true
+can_trigger_on_hit = false
+can_trigger_on_damage = false
+can_trigger_lifesteal = false
+can_trigger_reflect = false
+can_trigger_retaliation = false
+
+RETALIATION:
+can_crit = false
+can_use_def = true
+can_use_absorption = true
+can_trigger_on_hit = false
+can_trigger_on_damage = false
+can_trigger_lifesteal = false
+can_trigger_reflect = false
+can_trigger_retaliation = false
+
+SECONDARY_REACTIVE:
+todos los retriggers reactivos = false por defecto
+```
+
+Las excepciones futuras deben declararse explícitamente y superar validación de contenido.
+
+## 38.7 Daño Aplazado y HP_COMMIT
+
+Se introduce la ventana:
+
+```text
+HP_COMMIT
+→ LIFE_DAMAGE_COMMITTED
+→ DAMAGE_CONVERSION
+   ├─ hp_loss_immediate
+   └─ deferred_loss_created
+→ HP_WRITE
+→ FREEZE
+```
+
+Definiciones:
+
+- `life_damage_committed`: daño real que atravesó DEF/Absorción y quedó comprometido contra Vida, limitado por la Vida disponible para evitar overkill artificial.
+- `hp_loss_immediate`: pérdida de Vida aplicada ahora.
+- `deferred_loss_created`: deuda creada.
+- `actual_hp_damage`: pérdida inmediata real de Vida en esta escritura.
+
+Semántica:
+
+- `ON_HP_DAMAGE` usa `actual_hp_damage > 0`.
+- Robo de Vida, cuando exista Aplazamiento, usa `life_damage_committed` elegible.
+- Hemorragia normal que exige daño físico a Vida usa `life_damage_committed > 0`, porque la herida fue comprometida aunque parte se aplace.
+- La deuda posterior no vuelve a generar Robo de Vida por el mismo daño.
+
+## 38.8 Zonas, terreno y efectos con dueño no actor
+
+`EffectDefinition.owner` puede ser:
+
+```text
+ACTOR
+ROOM
+POSITION
+SUMMON
+OBJECT
+```
+
+Se añaden:
+
+```text
+ZONE
+ZONE_DURATION
+ON_ZONE_TICK
+ON_ENTER_ZONE
+ON_LEAVE_ZONE
+```
+
+Una zona persistente, trampa, niebla, fuego ambiental o formación puede existir sin handler específico de técnica.
+
+## 38.9 Persistencia de aflicciones
+
+Una aflicción puede declarar:
+
+```text
+family
+grade
+persists_out_of_combat
+persists_room_change
+persists_save
+out_of_combat_lethality
+cure_tags[]
+```
+
+Defaults para aflicciones persistentes de Arco 1 cuando el contenido lo declare:
+
+- pueden sobrevivir a fin de combate y cambio de sala;
+- pueden persistir en guardado;
+- la cura puede filtrar por familia/tipo y grado máximo;
+- fuera de combate no reducen al personaje por debajo de 1 HP salvo regla excepcional explícita.
+
+Las reglas nuevas de stacking de Hemorragia/Quemadura prevalecen sobre el comportamiento histórico de `ver74`; el runtime histórico es referencia, no contrato.
+
+## 38.10 Qi: recuperación explícita vs regeneración pasiva
+
+Se permite recuperar Qi mediante efectos explícitos de técnicas, ramas, estados, equipo o eventos.
+
+Ejemplos válidos:
+
+```text
+ON_CRIT → RESTORE_QI(1)
+ON_EFFECT_EXPIRE → RESTORE_QI(1)
+ON_KILL → RESTORE_QI(X)
+```
+
+Continúa prohibido:
+
+```text
+TURN_START → RESTORE_QI(X)
+```
+
+cuando sea incondicional y permanente como regeneración automática general.
+
+Regla:
+
+> "No regeneración pasiva" significa que no existe una estadística o proceso universal automático de Qi por turno. No prohíbe recompensas explícitas condicionadas a una mecánica.
+
+## 38.11 Múltiples pools de Absorción
+
+Se permiten múltiples pools.
+
+Cada uno declara:
+
+```text
+priority
+created_order
+```
+
+Resolución:
+
+1. mayor prioridad primero;
+2. a igual prioridad, pool más antiguo primero.
+
+Restaurar un pool no cambia su orden de creación.
+
+Una reconstrucción después de llegar a 0 crea un pool nuevo con el mismo `absorption_pool_id` lógico y una nueva instancia/orden de creación.
+
+## 38.12 Concordancias persistentes: snapshot
+
+Cuando una Concordancia modifica un estado persistente:
+
+- la resolución de Concordancia ocurre al crear/activar el estado;
+- sus parámetros quedan **snapshot** en esa instancia;
+- no se vuelve a consultar el Eco ni las estadísticas de la Concordancia en cada tick/trigger;
+- reactivar/reemplazar el estado crea un nuevo snapshot.
+
+## 38.13 Concordancias globales y magnitudes
+
+La identidad y canal pertenecen a la relación global `ORIGEN→DESTINO`.
+
+La técnica receptora declara:
+
+- hooks disponibles;
+- magnitud base de la propiedad;
+- restricciones específicas de contenido.
+
+No debe existir una definición arbitraria y completamente distinta de la misma relación en cada técnica.
+
+La tabla global futura de las 20 relaciones debe declarar:
+
+```text
+relation_id
+identity
+role/context priorities
+compatible_hook_families
+transformation_rule / scale_rule
+```
+
+La técnica sólo aporta el hook y los datos sobre los que operar.
+
+## 38.14 Condiciones de build/contenido
+
+Se añaden condiciones de sólo lectura:
+
+```text
+has_branch(option_id)
+has_all_branches([...])
+action_has_hook(hook)
+action_applies_effect(effect_family)
+action_generates_resource(resource_family)
+target_has_effect(effect_family)
+resource_stacks(resource_family)
+```
+
+Estas condiciones viven en configuración de contenido; su existencia no autoriza hardcodear IDs en el resolver.
+
+## 38.15 Combatiente hostil válido
+
+Para AOE y selección automática:
+
+```text
+VALID_HOSTILE_COMBATANT
+=
+entidad viva
++ atacable
++ hostil al actor
++ presente en el espacio de combate
++ no excluida explícitamente por reglas de la acción
+```
+
+"NPC hostil" en documentos anteriores debe leerse como `VALID_HOSTILE_COMBATANT`.
+
+NPC sociales no entran en una AOE sólo por compartir sala.
+
+## 38.16 Orden determinista de objetivos AOE
+
+Los objetivos AOE se congelan al iniciar la resolución de blancos.
+
+Orden estable:
+
+1. orden de incorporación al contexto de combate;
+2. desempate por ID estable de entidad.
+
+Cada objetivo conserva su propio `impact_id`.
+
+La muerte o reacción de un objetivo no reordena los impactos restantes de esa acción.
+
+## 38.17 Disciplina RNG
+
+Cada impacto consume sorteos en orden fijo cuando corresponda:
+
+```text
+1. HIT
+2. CRIT
+3. controles/estados disparados por ese impacto en prioridad estable
+```
+
+Un sorteo que no corresponde no se consume.
+
+El RNG debe ser sembrable/reproducible para diagnóstico.
+
+## 38.18 Acción preparada/anunciada
+
+`ActionContext` puede declarar:
+
+```text
+prepared_action_id
+prepare_state
+prepare_source
+intended_targets
+execution_window
+cancellable
+```
+
+Estados mínimos:
+
+```text
+DECLARED
+PREPARED
+EXECUTING
+RESOLVED
+CANCELLED
+```
+
+`CANCEL_PREPARED_ACTION` sólo actúa sobre una acción `PREPARED` y `cancellable=true`.
+
+## 38.19 Injerto espiritual
+
+El injerto permanente **no puede compartir elemento con la raíz principal**.
+
+Su propósito es aportar una segunda afinidad real; no duplicar el mismo paquete de rasgos.
+
+## 38.20 Calor de Cuerpo-Horno
+
+El Calor consumido por una técnica ofensiva de Fuego genera una porción secundaria con:
+
+```text
+damage_source_type = DIRECT
+tags = [TECHNIQUE, DIRECT, ELEMENTAL, FIRE, STORED_RESOURCE]
+amount = recurso consumido ya fijado
+can_crit = false
+can_use_def = true
+can_use_penetration = false
+can_use_absorption = true
+can_trigger_lifesteal = false
+```
+
+La cantidad almacenada **no vuelve a recibir pools ofensivos** al liberarse. Esto evita doble escalado.
+
+## 38.21 Robo de Vida y anti-curación
+
+Los modificadores normales de curación realizada/recibida no modifican Robo de Vida.
+
+Un efecto de anti-curación sólo afecta Robo de Vida si declara explícitamente:
+
+```text
+affects_lifesteal = true
+```
+
+El límite numérico por acción continúa pendiente de benchmark.
+
+## 38.22 Cobertura de Concordancias
+
+La cobertura mínima se mide por **relación elemental habilitada en una etapa**, no por cada rol posible.
+
+Si una relación tiene al menos un receptor real y compatible en la etapa puede existir.
+
+Una técnica concreta que no expone ningún hook compatible:
+
+- no recibe transformación;
+- no consume Eco.
+
+No es obligatorio que cada relación tenga simultáneamente receptor ofensivo, defensivo, Control y utilidad.
