@@ -1475,6 +1475,31 @@ Esta propiedad pertenece a la **raíz principal Metal**. La transmisión mediant
 
 ---
 
+### Tierra — CERRADO
+
+La raíz principal de Tierra representa resistencia estructural del cuerpo.
+
+Rasgo:
+
+```text
+VIDA_MÁXIMA_FINAL
+= Vida máxima calculada × 1.10
+```
+
+Reglas:
+- aumenta **10% la Vida máxima**;
+- se aplica de forma porcentual para conservar relevancia a futuro;
+- no concede DEF plana;
+- no concede Absorción permanente;
+- no concede Tenacidad plana;
+- puede coexistir con otras fuentes porcentuales de Vida máxima;
+- los porcentajes normales compatibles de Vida máxima se combinan de forma aditiva antes de aplicar el resultado;
+- el valor final respeta la política global de redondeo para máximos derivados.
+
+Esta propiedad pertenece a la **raíz principal Tierra**. La transmisión mediante injerto todavía no está definida.
+
+---
+
 ### Agua — CERRADO
 
 La raíz principal de Agua representa eficiencia general en la circulación de Qi.
