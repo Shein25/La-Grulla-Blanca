@@ -1120,3 +1120,26 @@ no consumo de Eco
 \`\`\`
 
 Este registro debe mantenerse como fuente de verdad para nuevas estadísticas y propiedades de combate.
+
+
+---
+
+# 22. Hook estructural — CONTAINED_TRIGGER
+
+`CONTAINED_TRIGGER` representa un estado encapsulado que espera una interacción futura compatible para liberar su efecto.
+
+- clase: EFFECT_PARAMETER / hook estructural
+- disponibilidad: PREPARED_ARC1
+- no es una estadística permanente del actor
+- debe declarar duración, condición de detonación, regla de consumo y operación de liberación
+- puede declarar propagación secundaria si la técnica detonadora lo permite
+
+Manifestación inicial aprobada:
+
+```text
+Tierra → Fuego
+CONTAINED_TRIGGER
+→ Núcleo de Magma
+```
+
+El resolver universal procesa el hook y su definición de contenido; no debe hardcodear el nombre de Núcleo de Magma.
