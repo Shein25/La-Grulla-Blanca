@@ -1425,6 +1425,31 @@ Estas direcciones se apoyan en técnicas ya existentes:
 - Tierra: Sello de la Montaña Oprimida, Piel de Cobre.
 - Viento: Paso de Nube Ligera, Lanza que Parte Nubes, Tijera del Vendaval Partido.
 
+## Valores de raíces principales — en definición
+
+### Agua — CERRADO
+
+La raíz principal de Agua representa eficiencia general en la circulación de Qi.
+
+Rasgo:
+
+```text
+COSTE_FINAL_DE_TÉCNICA
+= coste calculado × 0.90
+```
+
+Reglas:
+- reduce **10% el coste de Qi de todas las técnicas**, no sólo las de Agua;
+- no genera Qi y no cuenta como regeneración;
+- no modifica el coste de acciones que no sean técnicas;
+- se aplica de forma porcentual para conservar relevancia a futuro;
+- el resultado conserva precisión decimal durante el cálculo y se redondea únicamente al convertir el coste en Qi realmente gastado, siguiendo la política global de redondeo;
+- cualquier piso global de reducción de coste se definirá por separado y aplicará después de combinar las reducciones compatibles.
+
+Esta propiedad pertenece a la **raíz principal Agua**. La transmisión mediante injerto todavía no está definida.
+
+---
+
 ## Combinaciones dobles ya confirmadas
 
 El juego ya contiene cuatro Definitivas híbridas que sirven como referencia para clasificar combinaciones de dos elementos por orientación de combate.
