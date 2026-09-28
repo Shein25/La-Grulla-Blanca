@@ -702,7 +702,179 @@ Dirección actual:
 
 ---
 
-# 20. Siguientes bloques prioritarios
+# 20. Orden posterior al impacto — CERRADO
+
+Una vez congelado `IMPACT_RESULT`, el daño principal no puede modificarse retroactivamente.
+
+Orden:
+
+```text
+CONGELAR IMPACT_RESULT
+↓
+GENERAR FLAGS
+  ON_HIT
+  ON_DAMAGE
+  ON_HP_DAMAGE
+  ON_CRIT
+  LETHAL_HIT
+↓
+EFECTOS SOBRE LA FUENTE
+  Robo de Vida / Qi / buffs / recursos
+↓
+SI EL OBJETIVO SOBREVIVE
+  DOT / debuffs / Control / estados persistentes
+↓
+REACCIONES DEL OBJETIVO
+  Reflect / Retaliation / contraefectos futuros
+↓
+RESOLVER MUERTE
+↓
+ON_DEATH
+↓
+ON_KILL
+```
+
+Reglas:
+- Un golpe letal puede generar recuperación de la fuente y reacciones provocadas por ese mismo impacto.
+- No se aplican nuevos estados persistentes normales a un objetivo ya muerto por el daño principal.
+- `ON_DEATH` pertenece al objetivo muerto.
+- `ON_KILL` pertenece a la fuente responsable.
+- DOT puede causar muerte y debe conservar la fuente para atribuir `ON_KILL`.
+- Debe conservarse metadata `kill_source` con actor, acción/familia de daño y etiquetas relevantes.
+- Vida al matar usa `ON_KILL` y es independiente de Robo de Vida.
+
+---
+
+# 21. Buffs / Debuffs / stacking — CANDIDATO
+
+## Principio general
+
+Los buffs y debuffs normales deben usar pocas reglas universales. Las excepciones de acumulación se declaran explícitamente en los datos del efecto.
+
+Cada efecto debe poder declarar:
+- `effect_id`
+- `stack_group` (por defecto igual a `effect_id`)
+- fuente
+- polaridad (buff/debuff)
+- duración
+- modo de stacking
+- modificadores
+- máximo de stacks cuando corresponda
+
+## Duración
+
+Por defecto, la duración se mide en turnos completos de la entidad afectada.
+
+- El turno en el que se aplica el efecto no consume inmediatamente una unidad de duración.
+- El efecto permanece activo durante los siguientes N turnos de su propietario.
+- La duración se reduce al final de esos turnos.
+- Reaplicar/refrescar nunca debe acortar una duración ya superior.
+- Extender duración es una operación distinta de refrescar.
+
+## Modos de stacking
+
+### UNIQUE_REFRESH — modo por defecto
+
+Un `stack_group` normal mantiene una sola instancia.
+
+- Reaplicación equivalente: refresca duración.
+- Reaplicación más fuerte: reemplaza la magnitud y usa su duración.
+- Reaplicación más débil: no reemplaza ni refresca por defecto.
+- Si distintos `effect_id` comparten `stack_group`, el diseñador debe declarar prioridad/potencia explícita; el motor no intenta inferir qué efecto multidimensional es “más fuerte”.
+
+### STACK_REFRESH — acumulación explícita
+
+Para efectos diseñados para acumular intensidad:
+- cada aplicación añade 1 stack hasta `max_stacks`;
+- todos los stacks comparten una sola duración;
+- reaplicar refresca la duración;
+- al máximo, una nueva aplicación no añade stacks pero sí refresca;
+- la magnitud total normalmente es `valor_por_stack × stacks`.
+
+Ejemplo:
+```text
+ARMOR_SHRED
+-2 DEF por stack
+max_stacks = 3
+duración = 2 turnos
+```
+
+Resultado máximo:
+```text
+-6 DEF
+```
+
+### INDEPENDENT — excepcional
+
+Instancias separadas con magnitud/duración propia. Reservado para DOT/aflicciones u otros sistemas que realmente lo necesiten; no es el modo normal de buffs/debuffs estadísticos.
+
+## Combinación entre efectos distintos
+
+Efectos de grupos diferentes pueden coexistir.
+
+Todos los modificadores planos de una misma estadística se suman en su capa.
+Todos los porcentajes normales de una misma estadística se suman en su capa.
+
+Los efectos positivos y negativos se compensan algebraicamente.
+
+## DEF actual del objetivo
+
+Candidato de fórmula:
+
+```text
+DEF_actual =
+max(
+  0,
+  (DEF_base + suma_modificadores_planos_DEF)
+  × max(0, 1 + suma_modificadores_porcentuales_DEF)
+)
+```
+
+Los debuffs de reducción de DEF forman parte de esta DEF real del objetivo y afectan a todos los atacantes.
+
+Después, para un atacante concreto:
+
+```text
+DEF_efectiva =
+max(
+  0,
+  DEF_actual × (1 - penetración_porcentual)
+  - penetración_plana
+)
+```
+
+Orden:
+```text
+DEF base
+→ buffs/debuffs planos
+→ buffs/debuffs porcentuales
+→ DEF actual
+→ penetración %
+→ penetración plana
+→ DEF efectiva
+```
+
+La DEF nunca es negativa.
+
+## Relación con triggers
+
+La técnica/equipo decide cuándo se aplica un buff/debuff:
+- ON_HIT
+- ON_DAMAGE
+- ON_HP_DAMAGE
+- ON_CRIT
+- ON_KILL
+- u otro evento explícito.
+
+Un debuff aplicado por un impacto afecta sólo cálculos futuros; no recalcula el impacto que lo generó.
+
+## Tenacidad
+
+Los debuffs estadísticos ordinarios no son Control y Tenacidad no reduce automáticamente su duración ni su magnitud. Si un efecto necesita probabilidad de aplicación propia, debe declararla explícitamente.
+
+---
+
+# 22. Siguientes bloques prioritarios
 
 1. Cerrar orden de efectos posteriores al impacto.
 2. Definir buffs/debuffs y reducción de DEF.
