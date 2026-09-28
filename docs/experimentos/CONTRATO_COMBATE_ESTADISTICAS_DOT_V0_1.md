@@ -1366,6 +1366,18 @@ Las consagraciones pueden aumentar capacidad estructural —principalmente Vida/
 
 ## Raíces espirituales
 
+El conjunto canónico de elementos del juego es exactamente:
+
+```text
+FUEGO
+METAL
+AGUA
+TIERRA
+VIENTO
+```
+
+No introducir Madera ni otros elementos nuevos dentro de este contrato.
+
 Las raíces no deben convertirse en paquetes de estadísticas universales del tipo:
 
 ```text
@@ -1385,6 +1397,34 @@ La raíz debe funcionar principalmente como:
 
 No debe existir una raíz que sea universalmente “la mejor de daño” o “la mejor de defensa” por un bono plano permanente.
 
+## Identidad preliminar de las cinco raíces canónicas
+
+Estas identidades son dirección de diseño, no paquetes gratuitos de estadísticas:
+
+```text
+FUEGO
+→ intensidad, Quemadura, combustión y transformación de daño/estados
+
+METAL
+→ corte, Hemorragia, ruptura y explotación de heridas
+
+AGUA
+→ flujo, Control, manipulación de Qi y adaptación
+
+TIERRA
+→ estabilidad corporal, Absorción, fortificación y resistencia al Control
+
+VIENTO
+→ movilidad, Evasión, reposicionamiento y precisión/ritmo de ataque sin crear una estadística de Velocidad
+```
+
+Estas direcciones se apoyan en técnicas ya existentes:
+- Fuego: Palma Ardiente, Círculo de las Cien Ascuas, Respiración del Cuerpo-Horno.
+- Metal: Filo de Qi Metálico, Lluvia de los Mil Filos.
+- Agua: Látigo de Agua, Filamento de Agua, Espejo de Luna, Marea que Barre las Ocho Orillas.
+- Tierra: Sello de la Montaña Oprimida, Piel de Cobre.
+- Viento: Paso de Nube Ligera, Lanza que Parte Nubes, Tijera del Vendaval Partido.
+
 ## Afinidad y técnicas
 
 Una raíz puede interactuar con una técnica sin modificar todo el daño del personaje.
@@ -1398,12 +1438,22 @@ Raíz Fuego
 
 ```text
 Raíz Metal
-→ habilita interacciones con técnicas de espada/corte
+→ habilita interacciones con técnicas de espada/corte y Hemorragia
 ```
 
 ```text
 Raíz Agua
-→ habilita interacciones de flujo, control o recuperación
+→ habilita interacciones de flujo, Control o manipulación de Qi
+```
+
+```text
+Raíz Tierra
+→ habilita fortificación, Absorción o Tenacidad mediante ramas concretas
+```
+
+```text
+Raíz Viento
+→ habilita interacciones de Evasión, reposicionamiento o precisión mediante ramas concretas
 ```
 
 La forma exacta se definirá al rehacer técnicas; no se hardcodean todavía bonificaciones universales.
