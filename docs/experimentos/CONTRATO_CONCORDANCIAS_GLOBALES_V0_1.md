@@ -818,3 +818,90 @@ Las operaciones discretas siguen permitidas cuando expresan identidad y no escal
 - consumir una marca.
 
 Pero cualquier **aumento de magnitud** producido por la Concordancia debe ser porcentual/relativo.
+
+
+## 6.2 TIERRA → METAL · Forja Asentada
+
+**Identidad:** Tierra proporciona una base estable al Metal. El Metal se asienta, soporta presión y conserva mejor su estructura sin desviar su fuerza.
+
+### OFFENSIVE
+
+Prioridad:
+
+\`\`\`text
+1. CRIT_CHANCE
+2. EXECUTION
+3. PRECISION
+4. PERCENT_PENETRATION
+5. FLAT_PENETRATION
+\`\`\`
+
+La Concordancia no concede puntos fijos. Cuando mejora una magnitud, la escala porcentualmente sobre el hook receptor expuesto.
+
+Interpretación:
+
+- \`CRIT_CHANCE\`: estabilidad para encontrar un punto decisivo;
+- \`EXECUTION\`: sostener el golpe hasta completar una condición de ejecución;
+- \`PRECISION\`: reducir dispersión de la trayectoria;
+- Penetración queda por debajo porque la identidad principal no es afilar, sino asentar.
+
+### DEFENSIVE
+
+Prioridad:
+
+\`\`\`text
+1. FORTIFICATION
+2. ABSORPTION
+3. DEF_GRANTED
+4. STACKABLE_STATE
+5. TENACITY_GRANTED
+\`\`\`
+
+### Manifestación actual compatible · Placa Fundacional
+
+Cuando una defensa de Metal basada en cargas/placas expone \`FORTIFICATION\`, Tierra→Metal puede crear una transformación estructural:
+
+\`\`\`text
+PLACA_FUNDACIONAL
+scope = once_per_activation
+\`\`\`
+
+Comportamiento:
+
+1. la primera Placa elegible protege un impacto válido con su potencia normal;
+2. ese primer impacto **no consume** la Placa;
+3. la Placa pasa a estado \`REFORZADA\`;
+4. en el siguiente impacto válido, la DEF propia de esa Placa se multiplica por un **porcentaje de fortificación**;
+5. después de resolver ese segundo impacto, la Placa se consume normalmente.
+
+Reglas:
+
+- el aumento de DEF nunca es un valor plano fijo;
+- escala sobre la DEF propia de la Placa, incluidas mejoras futuras de la build;
+- no puede reforzarse repetidamente;
+- sólo una Placa por activación recibe esta transformación salvo contenido futuro explícito;
+- no crea una Placa adicional: modifica el ciclo de consumo de una existente;
+- el porcentaje exacto queda pendiente de benchmark.
+
+Esto permite que la misma Concordancia siga siendo relevante en Arcos futuros aunque las magnitudes defensivas aumenten varios órdenes.
+
+### CONTROL
+
+\`\`\`text
+1. MOBILITY_REDUCTION
+2. CONTROL_DURATION
+3. CONTROL_POWER
+4. ACTION_DENIAL
+5. DEBUFF_DURATION
+\`\`\`
+
+La identidad es anclar/fijar una estructura metálica de Control.
+
+### UTILITY
+
+\`\`\`text
+1. FORTIFICATION
+2. STACKABLE_STATE
+3. DEFENSIVE_DURATION
+4. INTERNAL_RESOURCE
+\`\`\`
