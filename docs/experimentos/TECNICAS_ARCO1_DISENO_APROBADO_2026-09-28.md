@@ -15,7 +15,7 @@ Este documento consolida las decisiones de diseño aprobadas en la sesión poste
 - La identidad, función y estructura de ramas sí se consideran decisiones de diseño aprobadas salvo notas de pendiente.
 - Falta diseñar Viento.
 - Falta cerrar economía de puntos de técnica por etapa de LianQi.
-- Falta auditoría retroactiva completa de Concordancias para varias técnicas ya diseñadas.
+- La auditoría arquitectónica externa fue realizada; falta cerrar la matriz global de 20 Concordancias y mapearla sobre cada técnica.
 
 ---
 
@@ -169,7 +169,9 @@ Base provisional:
 **Horno Latente — conversión**
 - 25% del daño absorbido → Calor;
 - tope Calor = 5% Vida máxima;
-- Calor se consume en una técnica ofensiva de Fuego posterior como daño directo de Fuego;
+- Calor se consume en una técnica ofensiva de Fuego posterior como una porción secundaria de Fuego;
+- la cantidad almacenada no vuelve a escalar con pools ofensivos ni puede criticar;
+- esa porción sí pasa por DEF y Absorción, no usa Penetración y no genera Robo de Vida;
 - no es Reflect ni Retaliation.
 
 **Respiración Mesurada — eficiencia**
@@ -209,6 +211,8 @@ Auditoría receptora retroactiva pendiente. Como técnica pura, genera Eco de Fu
 ---
 
 ## 4.3 Círculo de las Cien Ascuas — AOE
+
+El `65%` de duelo se aplica como capa global antes de DEF y antes del redondeo final; no reduce por sí mismo Control, debuffs, duración ni stacks.
 
 CORRECCIÓN GLOBAL:
 
@@ -339,7 +343,8 @@ Base provisional:
 - coste: 7 Qi;
 - duración máxima: 4 turnos;
 - 3 Placas;
-- mientras quede al menos una Placa: +3 DEF contra ese impacto directo;
+- mientras quede al menos una Placa: la **Placa activa** concede +3 DEF contra ese impacto directo;
+- las Placas son cargas secuenciales: 3 Placas no significan +9 DEF simultánea;
 - después del impacto válido se consume 1 Placa;
 - una evasión no consume Placa;
 - DOT no consume Placas;
@@ -384,7 +389,8 @@ Base provisional:
 
 **Armadura Laminada — cantidad**
 - +1 Placa;
-- ruta completa: hasta 8 Placas de +3 DEF base cada una.
+- con Reserva de Plata + Segunda Capa, añade además +1 Placa de sinergia final;
+- ruta completa de cantidad: **8 Placas** de +3 DEF base cada una, consumidas secuencialmente.
 
 ### Concordancias
 Auditoría receptora retroactiva pendiente. Como técnica pura, genera Eco de Metal.
@@ -392,6 +398,8 @@ Auditoría receptora retroactiva pendiente. Como técnica pura, genera Eco de Me
 ---
 
 ## 5.3 Lluvia de Filos — AOE
+
+El `65%` de duelo se aplica como capa global antes de DEF y antes del redondeo final; no reduce por sí mismo Control, debuffs, duración ni stacks.
 
 CORRECCIÓN GLOBAL:
 
@@ -528,7 +536,7 @@ Base provisional:
 - coste: 7 Qi;
 - duración: 3 turnos;
 - Absorción = 12% Vida máxima;
-- **Reflujo**: al comienzo del turno, si queda Absorción, recupera 25% de la reserva inicial;
+- **Reflujo**: al comienzo del turno, si queda Absorción, recupera 25% de la **reserva máxima de esa instancia**;
 - nunca supera reserva máxima;
 - si llega a 0, se rompe y deja de regenerarse salvo ramas específicas;
 - genera Eco de Agua.
@@ -580,6 +588,8 @@ Auditoría receptora retroactiva pendiente. Como técnica pura, genera Eco de Ag
 ---
 
 ## 6.3 Marea de las Ocho Orillas — AOE
+
+El `65%` de duelo se aplica como capa global antes de DEF y antes del redondeo final; no reduce por sí mismo Control, debuffs, duración ni stacks.
 
 Aprobada con corrección global AOE:
 
@@ -796,6 +806,8 @@ Como técnica pura, Piel genera Eco de Tierra al activarse.
 ---
 
 ## 7.3 Temblor de Montaña — AOE
+
+El `65%` de duelo se aplica como capa global antes de DEF y antes del redondeo final; no reduce por sí mismo Control, debuffs, duración ni stacks.
 
 Aprobada con corrección de alcance.
 
