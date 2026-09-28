@@ -869,7 +869,6 @@ ANTI_HEAL
 \`\`\`text
 CONTROL_POWER
 CONTROL_DURATION
-MOBILITY_REDUCTION
 EVASION_DEBUFF
 PRECISION_DEBUFF
 ACTION_DENIAL
@@ -1165,3 +1164,31 @@ Las mejoras numéricas de Concordancia se expresan como porcentaje relativo del 
 Los cambios estructurales discretos siguen permitidos cuando no representan un aumento numérico arbitrario.
 
 Esta regla afecta sólo a la magnitud aportada por Concordancias; no elimina estadísticas planas que formen parte legítima de técnicas, equipo o del sistema base.
+
+
+---
+
+# 24. Movilidad — NO EXISTE COMO SISTEMA DE COMBATE
+
+No existe una estadística ni hook universal de movilidad en el sistema de combate.
+
+```text
+MOBILITY
+MOVEMENT_SPEED
+MOBILITY_REDUCTION
+SLOW
+```
+
+no forman parte del contrato.
+
+Los efectos que conceptualmente representen dificultad para moverse deben traducirse, si corresponde, a mecánicas reales ya existentes:
+
+- EVASION_DEBUFF;
+- CONTROL_POWER;
+- ACTION_DENIAL;
+- INTERRUPT;
+- PRECISION_DEBUFF;
+- DEBUFF_DURATION;
+- otro estado explícito soportado.
+
+No introducir una capa de movilidad sólo por narrativa.
