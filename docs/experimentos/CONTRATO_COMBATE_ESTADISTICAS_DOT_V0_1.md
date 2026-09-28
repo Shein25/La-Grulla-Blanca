@@ -1444,7 +1444,35 @@ Reglas:
 - no modifica el coste de acciones que no sean técnicas;
 - se aplica de forma porcentual para conservar relevancia a futuro;
 - el resultado conserva precisión decimal durante el cálculo y se redondea únicamente al convertir el coste en Qi realmente gastado, siguiendo la política global de redondeo;
-- cualquier piso global de reducción de coste se definirá por separado y aplicará después de combinar las reducciones compatibles.
+- esta reducción usa el sistema general de **reducción de coste de Qi** y puede coexistir con otras fuentes futuras.
+
+### Reducción de coste de Qi — sistema general
+
+Pueden existir múltiples fuentes compatibles, por ejemplo:
+- raíz principal;
+- equipo u objetos;
+- ramas de técnicas;
+- buffs/estados temporales;
+- efectos especiales.
+
+Cada fuente debe declarar su alcance, por ejemplo:
+- GLOBAL: todas las técnicas;
+- ELEMENTO: sólo técnicas de un elemento;
+- TÉCNICA/FAMILIA: sólo una técnica o grupo concreto.
+
+Las reducciones porcentuales normales compatibles se suman en un mismo pool:
+
+```text
+REDUCCIÓN_TOTAL_QI =
+suma de reducciones compatibles
+
+COSTE_QI_CALCULADO =
+coste base × (1 - REDUCCIÓN_TOTAL_QI)
+```
+
+No se redondean reducciones intermedias.
+
+Debe existir un **piso global de coste** para impedir técnicas prácticamente gratuitas. El valor numérico exacto del piso se balanceará por separado antes de implementar.
 
 Esta propiedad pertenece a la **raíz principal Agua**. La transmisión mediante injerto todavía no está definida.
 
