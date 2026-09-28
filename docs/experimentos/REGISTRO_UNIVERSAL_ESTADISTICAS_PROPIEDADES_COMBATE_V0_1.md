@@ -1143,3 +1143,25 @@ CONTAINED_TRIGGER
 ```
 
 El resolver universal procesa el hook y su definición de contenido; no debe hardcodear el nombre de Núcleo de Magma.
+
+
+---
+
+# 23. Regla de escalado de Concordancias
+
+Las Concordancias no conceden aumentos absolutos fijos sobre magnitudes escalables.
+
+```text
+NO:
++N daño
++N DEF
++N Precisión
++N Control
++N Absorción
+```
+
+Las mejoras numéricas de Concordancia se expresan como porcentaje relativo del hook receptor o transformación porcentual equivalente.
+
+Los cambios estructurales discretos siguen permitidos cuando no representan un aumento numérico arbitrario.
+
+Esta regla afecta sólo a la magnitud aportada por Concordancias; no elimina estadísticas planas que formen parte legítima de técnicas, equipo o del sistema base.
