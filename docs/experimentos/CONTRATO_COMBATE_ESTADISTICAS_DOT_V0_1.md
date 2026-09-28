@@ -1,4 +1,4 @@
-# Contrato de combate y aflicciones — checkpoint v0.1
+# Contrato de combate y aflicciones — checkpoint v0.2
 
 Fecha: 2026-09-28  
 Rama: `experiment/combat-stat-contract-v0.1`  
@@ -22,23 +22,23 @@ Checkpoint documental del rediseño del combate de Arco 1. Este archivo **no imp
 
 # 1. Jerarquía de combate
 
-Modelo lógico:
-
 ```text
 ACCIÓN
  └─ 1..N IMPACTOS
-     └─ 1..N COMPONENTES DE DAÑO
+     └─ 1..N PORCIONES / COMPONENTES DE DAÑO
 ```
 
 En Arco 1, una acción usa normalmente un solo impacto. El multigolpe queda preparado arquitectónicamente para arcos futuros.
 
-Un impacto puede contener varios componentes, por ejemplo:
+Una porción conserva etiquetas de **tipo** y **origen**, por ejemplo:
 
 ```text
-6 físico + 8 fuego
+4 físico [DIRECTO][TÉCNICA][FÍSICO]
+4 físico [DIRECTO][TÉCNICA][ARMA][FÍSICO]
+6 fuego  [DIRECTO][TÉCNICA][FUEGO][ELEMENTAL]
 ```
 
-Sigue siendo **un solo impacto** para DEF, crítico y absorción.
+Un impacto híbrido sigue siendo un solo impacto para Precisión, Crítico, DEF y Absorción.
 
 ---
 
@@ -85,7 +85,52 @@ clamp(Precisión efectiva - Evasión objetivo, 5, 100)
 
 ---
 
-# 4. Crítico
+# 4. Modificadores ofensivos
+
+Cada porción de daño recibe los modificadores compatibles con sus etiquetas.
+
+## 4.1 Bonos planos
+
+Los bonos planos se aplican una sola vez y sólo a la porción compatible.
+
+Ejemplos:
+- +3 físico → sólo porciones [FÍSICO].
+- +3 fuego → sólo porciones [FUEGO].
+- +3 global plano → una sola aportación al impacto; nunca se duplica por tener varias porciones.
+
+Los bonos planos aplicables se incorporan antes de los porcentajes.
+
+## 4.2 Bonos porcentuales
+
+Los porcentajes ofensivos compatibles con una misma porción **se suman entre sí**.
+
+```text
+Daño modificado =
+daño base modificado
+× (1 + suma de porcentajes aplicables)
+```
+
+Ejemplos de etiquetas compatibles:
+- GLOBAL
+- DIRECTO
+- TÉCNICA
+- ATAQUE_COMÚN
+- ARMA
+- FÍSICO
+- ELEMENTAL
+- FUEGO / AGUA / METAL / TIERRA / VIENTO
+
+No se multiplican entre sí los bonos normales de +X%.
+
+Una porción [TÉCNICA][ARMA][FÍSICO] puede recibir simultáneamente bonos de global, técnica, arma y físico.
+
+El bono de arma sólo afecta la porción procedente realmente del arma. El bono de técnica puede afectar también esa porción si el arma participa dentro de una técnica.
+
+El multiplicador ofensivo nunca baja de 0.
+
+---
+
+# 5. Crítico
 
 Base conceptual:
 
@@ -95,14 +140,14 @@ Daño crítico base: x1.50
 ```
 
 Los bonos de daño crítico se suman al multiplicador:
-
 ```text
 x1.50 + 20% = x1.70
 ```
 
 - Un crítico se tira por impacto.
 - Todos los componentes de un impacto híbrido comparten el mismo resultado crítico.
-- Crítico se resuelve después de modificadores ofensivos y antes de DEF.
+- Crítico se resuelve después de los modificadores ofensivos y antes de DEF.
+- Crítico es una capa multiplicativa separada de los +X% normales.
 - DOT no critica por defecto.
 - Ramas específicas podrán permitir crítico de DOT.
 - Si un DOT puede criticar, sus ticks tiran crítico independientemente.
@@ -110,12 +155,33 @@ x1.50 + 20% = x1.70
 
 ---
 
-# 5. Defensa
+# 6. Modificadores de daño recibido
+
+Los modificadores del objetivo se calculan por porción antes de sumar el impacto.
+
+Ejemplo:
+```text
+10 físico + 10 fuego
+objetivo: +20% daño de Fuego recibido
+
+→ 10 físico + 12 fuego
+→ total 22
+```
+
+Los porcentajes compatibles de daño recibido también se suman entre sí, en lugar de multiplicarse.
+
+Esta capa es distinta de los modificadores ofensivos del atacante.
+
+---
+
+# 7. Defensa
 
 DEF es reducción plana universal de daño directo.
 
+Después de terminar las porciones y modificadores de daño recibido:
+
 ```text
-daño directo del impacto
+sumar porciones del impacto
 → DEF efectiva
 → Absorción
 → Vida
@@ -123,13 +189,13 @@ daño directo del impacto
 
 - Puede reducir daño directo hasta 0.
 - Se aplica una vez por impacto.
-- Un impacto híbrido suma sus componentes y luego aplica DEF una sola vez.
+- Un impacto híbrido aplica DEF una sola vez sobre el total.
 - DOT ignora DEF.
 - En futuro multigolpe, DEF se aplica a cada impacto por separado.
 
 ---
 
-# 6. Penetración de armadura
+# 8. Penetración de armadura
 
 Universal para todo daño directo.
 
@@ -150,19 +216,17 @@ DEF real del objetivo
 
 ---
 
-# 7. Absorción
+# 9. Absorción
 
 Absorción es una reserva protectora temporal.
 
 Datos básicos:
-
 ```text
 reserva
 duración
 ```
 
 Flujo directo:
-
 ```text
 daño directo
 → DEF
@@ -171,7 +235,6 @@ daño directo
 ```
 
 Flujo DOT:
-
 ```text
 DOT
 → Absorción
@@ -179,14 +242,12 @@ DOT
 ```
 
 La Absorción desaparece únicamente por:
-
 1. reserva agotada;
 2. duración expirada.
 
 El daño no reduce duración y el paso del tiempo no reduce reserva.
 
 Excepción futura:
-
 ```text
 ignora_absorcion:true
 ```
@@ -195,7 +256,98 @@ Ese daño salta la burbuja sin consumirla ni destruirla.
 
 ---
 
-# 8. Control y Tenacidad
+# 10. Resultado de impacto y eventos
+
+Cada impacto debe producir un resultado estable:
+
+```text
+hit
+critical
+damage_before_def
+effective_def
+damage_after_def
+absorbed_damage
+hp_damage
+actual_hp_damage
+target_killed
+```
+
+Donde:
+- `hp_damage` = daño que habría llegado a Vida tras Absorción.
+- `actual_hp_damage` = daño realmente perdido por el objetivo, limitado por la Vida que tenía antes del golpe; no cuenta overkill.
+
+Eventos directos:
+
+```text
+ON_HIT
+impacto directo conectado.
+
+ON_DAMAGE
+impacto directo conectado
+y damage_after_def > 0.
+
+ON_HP_DAMAGE
+impacto directo conectado
+y actual_hp_damage > 0.
+
+ON_CRIT
+impacto directo conectado
+y resultado crítico.
+```
+
+Los triggers pueden combinarse.
+
+Los efectos disparados por un impacto se resuelven a partir del resultado ya cerrado y **no modifican retroactivamente ese mismo impacto**.
+
+DOT, Reflect y Retaliation no generan los eventos normales de impacto directo; tendrán eventos propios para evitar recursiones.
+
+En multigolpe futuro, los eventos se evalúan por impacto. Los efectos podrán declarar `once_per_impact` o `once_per_action`.
+
+---
+
+# 11. Pipeline universal de daño directo
+
+```text
+VALIDAR ACCIÓN
+↓
+PAGAR COSTES
+↓
+PRECISIÓN vs EVASIÓN
+↓
+CONSTRUIR PORCIONES DE DAÑO
+↓
+APLICAR BONOS PLANOS A SU PORCIÓN
+↓
+SUMAR % OFENSIVOS APLICABLES
+↓
+ESCALAR CADA PORCIÓN
+↓
+CRÍTICO DEL IMPACTO
+↓
+MODIFICADORES DE DAÑO RECIBIDO POR PORCIÓN
+↓
+SUMAR TODAS LAS PORCIONES
+↓
+DEF ACTUAL
+↓
+PENETRACIÓN %
+↓
+PENETRACIÓN PLANA
+↓
+RESTAR DEF UNA SOLA VEZ
+↓
+ABSORCIÓN
+↓
+VIDA
+↓
+CONGELAR RESULTADO DEL IMPACTO
+↓
+DISPARAR EFECTOS POSTERIORES
+```
+
+---
+
+# 12. Control y Tenacidad
 
 ```text
 Control ↔ Tenacidad
@@ -221,7 +373,62 @@ clamp(Control efectivo - Tenacidad, 5, 100)
 
 ---
 
-# 9. Reflect / Retaliation — post Arco 1
+# 13. Robo de Vida — contrato base
+
+Robo de Vida será **universal respecto del origen/tipo del daño directo**.
+
+No se discrimina entre:
+- físico;
+- elemental;
+- arma;
+- técnica;
+- ataque común;
+- impacto híbrido.
+
+Si el daño directo llegó realmente a la Vida del objetivo, es elegible.
+
+Base:
+
+```text
+VIDA_ROBADA_POTENCIAL =
+actual_hp_damage
+× porcentaje_robo_de_vida
+```
+
+Reglas:
+- Trigger conceptual: `ON_HP_DAMAGE`.
+- Usa `actual_hp_damage`, por lo que no cuenta overkill.
+- DEF reduce indirectamente el robo porque reduce daño a Vida.
+- Absorción reduce indirectamente el robo porque impide daño a Vida.
+- El crítico puede aumentar el robo únicamente porque aumenta el daño; la recuperación no critica.
+- Los modificadores normales de curación no aumentan Robo de Vida.
+- Sobrecuración se pierde.
+- No almacena recuperación sobrante.
+- Todos los impactos de una acción aportan a una reserva potencial y el límite se aplica al total de la acción.
+- En AOE se suman los aportes válidos de todos los objetivos, sujetos al mismo límite por acción.
+- El valor exacto del límite por acción se balanceará posteriormente.
+
+Por defecto NO son elegibles:
+- DOT;
+- Reflect;
+- Retaliation;
+- daño reactivo/secundario.
+
+Una técnica futura puede romper esta regla explícitamente, pero eso será una propiedad especial y no el Robo de Vida universal normal.
+
+Sistemas distintos:
+```text
+VIDA AL IMPACTAR ≠ ROBO DE VIDA
+VIDA AL MATAR    ≠ ROBO DE VIDA
+```
+
+Vida al impactar es una recuperación plana por evento válido.
+Vida al matar depende de `ON_KILL`.
+Ninguna de las dos escala por el porcentaje universal de Robo de Vida.
+
+---
+
+# 14. Reflect / Retaliation — post Arco 1
 
 Preparados arquitectónicamente pero no activos en Arco 1.
 
@@ -234,10 +441,9 @@ Preparados arquitectónicamente pero no activos en Arco 1.
 
 ---
 
-# 10. DOT / aflicciones — reglas universales cerradas
+# 15. DOT / aflicciones — reglas universales cerradas
 
 Las familias DOT comparten:
-
 - ignoran DEF;
 - no usan Penetración;
 - pasan por Absorción;
@@ -261,32 +467,35 @@ No todos los estados persistentes deben comportarse igual.
 
 ---
 
-# 11. HEMORRAGIA — contrato base CERRADO
+# 16. HEMORRAGIA — contrato base CERRADO
 
 ## Naturaleza
-
 Aflicción física persistente producida por determinadas acciones cortantes.
 
 ## Aplicación
 
-Sólo una acción que lo declare explícitamente puede aplicar Hemorragia.
+Sólo una acción que lo declare explícitamente puede aplicar Hemorragia. Llevar una espada no basta.
 
-Llevar una espada no basta.
+La Hemorragia física normal requiere:
+
+```text
+ON_HP_DAMAGE
+```
+
+Es decir, una Absorción que detuvo por completo el golpe también impide abrir la herida física.
 
 Orden:
-
 ```text
 1. Precisión vs Evasión
 2. Impacto válido
 3. Resolver daño directo
-4. Aplicar Hemorragia
+4. Comprobar ON_HP_DAMAGE
+5. Aplicar Hemorragia
 ```
 
-La nueva carga nunca beneficia al golpe que acaba de crearla.
+Una técnica futura puede usar otro trigger explícito, pero será una excepción declarada.
 
 ## Estructura de cada carga
-
-Cada carga conserva:
 
 ```text
 potencia
@@ -297,17 +506,12 @@ fuente
 Las cargas son independientes.
 
 La UI puede agregarlas:
-
 ```text
 HEMORRAGIA ×3
 Daño al actuar: 7
 ```
 
-aunque internamente tengan potencias/duraciones distintas.
-
 ## Activación
-
-Hemorragia no usa tick automático por turno.
 
 Se activa cuando el afectado realiza una **acción voluntaria de combate**.
 
@@ -323,8 +527,6 @@ No activa con:
 - ausencia de acción.
 
 ## Momento
-
-Se resuelve antes de ejecutar la acción elegida:
 
 ```text
 decide actuar
@@ -349,14 +551,10 @@ Hemorragia
 ## Crítico
 
 - No critica por defecto.
-- El crítico del golpe inicial no modifica automáticamente su potencia o duración.
+- El crítico del golpe inicial no modifica automáticamente potencia o duración.
 - Cualquier interacción con crítico debe venir de una rama o efecto explícito.
 
 ## Escalado
-
-La Hemorragia posee potencia propia y **no se calcula como porcentaje del daño final del golpe**.
-
-Modelo conceptual:
 
 ```text
 Potencia =
@@ -372,12 +570,6 @@ Potencia =
  + % Hemorragia)
 ```
 
-Afectan:
-- daño global aplicable;
-- daño DOT;
-- daño físico;
-- daño Hemorragia.
-
 No afectan automáticamente:
 - daño de ataque común;
 - daño de arma;
@@ -389,18 +581,11 @@ No afectan automáticamente:
 - Cargas independientes.
 - Máximo bajo y legible.
 - Parámetro inicial de laboratorio: **4 cargas**.
-- El 4 no queda congelado como valor final de balance.
-
-Al superar el máximo:
-
-```text
-la nueva carga reemplaza la más antigua
-```
+- Al superar el máximo, la nueva carga reemplaza la más antigua.
 
 ## Duración
 
 Se expresa como:
-
 ```text
 activaciones_restantes
 ```
@@ -414,7 +599,6 @@ Si el objetivo no actúa por Control, no hace daño ni consume duración.
 ## Fuera del núcleo base
 
 Hemorragia NO concede por sí misma:
-
 - vulnerabilidad a cortante;
 - detonación;
 - consumo de cargas;
@@ -426,55 +610,27 @@ Hemorragia NO concede por sí misma:
 - recuperación de Qi;
 - propagación.
 
-Todo esto pertenece a ramas, nodos, técnicas, equipo o efectos explícitos.
-
-Ejemplos de especialización futura:
-
-```text
-HERIDAS EXPUESTAS
-Cada carga aumenta el daño CORTANTE recibido.
-```
-
-```text
-DESGARRO
-Consume cargas para un efecto inmediato.
-```
-
-```text
-FILO SANGRIENTO
-Los críticos cortantes pueden aplicar una carga adicional.
-```
-
-## Identidad
-
-> Hemorragia recompensa abrir heridas mediante acciones cortantes y mantener al enemigo combatiendo. Su núcleo es daño persistente condicionado a actuar; sus interacciones ofensivas adicionales se distribuyen entre ramas de técnicas.
+Todo eso pertenece a ramas, nodos, técnicas, equipo o efectos explícitos.
 
 ---
 
-# 12. Familias en estudio
+# 17. Quemadura — candidato avanzado, aún no congelado
 
-## Quemadura — SIGUIENTE BLOQUE
+Dirección actual:
+- DOT elemental de Fuego;
+- aplicación sólo por acciones que lo declaren;
+- tick automático al comienzo del turno del afectado;
+- cargas independientes;
+- máximo base a testear: 3;
+- al superar máximo, reemplaza la más antigua;
+- potencia propia;
+- ignora DEF y pasa por Absorción;
+- no critica por defecto;
+- detonación, propagación, extensión y vulnerabilidad al Fuego no pertenecen al núcleo base.
 
-Pendiente de cerrar:
-- identidad base;
-- tick;
-- máximo de cargas;
-- duración;
-- acumulación;
-- reaplicación;
-- potencia;
-- relación con elemento Fuego;
-- reglas de detonación/consumo;
-- separación entre núcleo base y ramas.
+---
 
-Dirección de diseño ya acordada:
-- pocos stacks;
-- intensidad rápida;
-- adecuada para detonación;
-- no convertir la detonación en bucle rígido A→B;
-- varias técnicas deben poder leer/transformar/consumir cargas mediante etiquetas generales.
-
-## Veneno — pendiente
+# 18. Veneno — pendiente
 
 Dirección actual:
 - más stacks;
@@ -485,13 +641,17 @@ Dirección actual:
 
 ---
 
-# 13. Siguiente paso
+# 19. Siguientes bloques prioritarios
 
-Cerrar **QUEMADURA** con el mismo nivel de precisión usado para Hemorragia antes de rehacer las técnicas.
-
-Cuando todas las familias y estadísticas estén cerradas:
-1. reetiquetar/recrear técnicas;
-2. recrear equipo;
-3. construir baseline del jugador;
-4. ejecutar benchmarks;
-5. recién después rebalancear monstruos/jefes.
+1. Cerrar orden de efectos posteriores al impacto.
+2. Definir buffs/debuffs y reducción de DEF.
+3. Cerrar Quemadura.
+4. Cerrar Veneno.
+5. Definir elementos/resistencias.
+6. Definir curación/recuperación/Qi.
+7. Fijar política global de redondeo.
+8. Reinterpretar progresión por cultivo y raíces.
+9. Rehacer técnicas.
+10. Recrear equipo.
+11. Benchmarks de jugador.
+12. Rebalance de monstruos/jefes.
