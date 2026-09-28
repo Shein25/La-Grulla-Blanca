@@ -2,7 +2,7 @@
 
 Fecha: 2026-09-28  
 Rama: `experiment/combat-stat-contract-v0.1`  
-Estado: **EN CONSTRUCCIÓN / FUEGO Y METAL COMO ORIGEN APROBADOS**
+Estado: **EN CONSTRUCCIÓN / FUEGO, METAL Y AGUA COMO ORIGEN APROBADOS**
 
 ## 0. Principio
 
@@ -456,3 +456,199 @@ Se selecciona sólo el primer hook compatible.
 | Metal → Agua | canalización / dirección |
 | Metal → Tierra | anclaje / refuerzo |
 | Metal → Viento | trayectoria / precisión |
+
+
+---
+
+# 4. AGUA como origen — APROBADO
+
+Agua representa transformación, adaptación, erosión, templado y difusión.
+
+## 4.1 AGUA → FUEGO · Vapor Súbito
+
+**Identidad:** Agua entra en contacto con Fuego y provoca transformación brusca, choque térmico, expansión y liberación secundaria.
+
+### OFFENSIVE
+
+\`\`\`text
+1. DAMAGE_PORTION
+2. PROPAGATION
+3. INTENSITY
+4. AFFLICTION_APPLICATION
+5. DIRECT_DAMAGE
+\`\`\`
+
+\`DAMAGE_PORTION\` permite crear una porción secundaria compatible sin convertir un porcentaje concreto en la definición universal de la relación.
+
+### DEFENSIVE
+
+\`\`\`text
+1. REACTIVE_RESPONSE
+2. ABSORPTION_RESTORE
+3. INTERNAL_RESOURCE
+4. FORTIFICATION
+\`\`\`
+
+### CONTROL
+
+\`\`\`text
+1. INTERRUPT
+2. CONTROL_POWER
+3. ACTION_DENIAL
+4. AFFLICTION_APPLICATION
+\`\`\`
+
+### UTILITY
+
+\`\`\`text
+1. PROPAGATION
+2. ZONE_DURATION
+3. INTERNAL_RESOURCE
+4. AFFLICTION_APPLICATION
+\`\`\`
+
+---
+
+## 4.2 AGUA → METAL · Temple de Agua
+
+**Identidad:** Agua enfría y templa Metal, fijando su forma y mejorando estabilidad y calidad de ejecución.
+
+### OFFENSIVE
+
+\`\`\`text
+1. CRIT_DAMAGE
+2. EXECUTION
+3. CRIT_CHANCE
+4. PRECISION
+5. DIRECT_DAMAGE
+\`\`\`
+
+### DEFENSIVE
+
+\`\`\`text
+1. FORTIFICATION
+2. DEF_GRANTED
+3. ABSORPTION
+4. DEFENSIVE_DURATION
+5. TENACITY_GRANTED
+\`\`\`
+
+### CONTROL
+
+\`\`\`text
+1. CONTROL_DURATION
+2. CONTROL_POWER
+3. MOBILITY_REDUCTION
+4. DEBUFF_DURATION
+\`\`\`
+
+### UTILITY
+
+\`\`\`text
+1. FORTIFICATION
+2. DEFENSIVE_DURATION
+3. STACKABLE_STATE
+4. INTERNAL_RESOURCE
+\`\`\`
+
+---
+
+## 4.3 AGUA → TIERRA · Erosión / Sedimentación
+
+**Identidad:** ofensivamente Agua erosiona Tierra; defensivamente la sedimenta y cohesiona.
+
+### OFFENSIVE
+
+\`\`\`text
+1. DEF_SHRED
+2. EVASION_DEBUFF
+3. MOBILITY_REDUCTION
+4. DEBUFF_DURATION
+5. CONTROL_POWER
+\`\`\`
+
+### DEFENSIVE
+
+\`\`\`text
+1. FORTIFICATION
+2. DEFENSIVE_DURATION
+3. STACKABLE_STATE
+4. ABSORPTION
+5. TENACITY_GRANTED
+\`\`\`
+
+### CONTROL
+
+\`\`\`text
+1. MOBILITY_REDUCTION
+2. EVASION_DEBUFF
+3. CONTROL_POWER
+4. DEBUFF_DURATION
+5. ACTION_DENIAL
+\`\`\`
+
+### UTILITY
+
+\`\`\`text
+1. ZONE_DURATION
+2. STACKABLE_STATE
+3. FORTIFICATION
+4. DEBUFF_DURATION
+\`\`\`
+
+---
+
+## 4.4 AGUA → VIENTO · Velo de Niebla
+
+**Identidad:** Agua se dispersa dentro de Viento creando humedad, niebla, ocultación y difusión.
+
+### OFFENSIVE
+
+\`\`\`text
+1. PRECISION_DEBUFF
+2. PROPAGATION
+3. DEBUFF_DURATION
+4. AREA_EFFICIENCY
+5. CONTROL_POWER
+\`\`\`
+
+No usa \`DIRECT_DAMAGE\` como fallback.
+
+### DEFENSIVE
+
+\`\`\`text
+1. EVASION_GRANTED
+2. REACTIVE_RESPONSE
+3. DEFENSIVE_DURATION
+4. ZONE_DURATION
+\`\`\`
+
+### CONTROL
+
+\`\`\`text
+1. PRECISION_DEBUFF
+2. CONTROL_POWER
+3. MOBILITY_REDUCTION
+4. INTERRUPT
+5. DEBUFF_DURATION
+\`\`\`
+
+### UTILITY
+
+\`\`\`text
+1. ZONE_DURATION
+2. PROPAGATION
+3. AREA_EFFICIENCY
+4. REACTIVE_RESPONSE
+\`\`\`
+
+---
+
+# 5. Resumen Agua aprobado
+
+| Relación | Identidad |
+|---|---|
+| Agua → Fuego | transformación / liberación secundaria |
+| Agua → Metal | templado / estabilidad |
+| Agua → Tierra | erosión / sedimentación |
+| Agua → Viento | difusión / ocultación |
