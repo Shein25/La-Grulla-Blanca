@@ -1451,6 +1451,30 @@ Esta propiedad pertenece a la **raíz principal Fuego**. La transmisión mediant
 
 ---
 
+### Metal — CERRADO
+
+La raíz principal de Metal representa ruptura de defensas mediante técnicas.
+
+Rasgo:
+
+```text
+PENETRACIÓN_PORCENTUAL_TÉCNICAS += 10%
+```
+
+Reglas:
+- concede **10% de Penetración porcentual** al daño directo causado por todas las técnicas;
+- se aplica a técnicas físicas, elementales e híbridas;
+- no afecta ataques básicos;
+- no afecta DOT/aflicciones;
+- no afecta Reflect, Retaliation ni otras fuentes reactivas;
+- no afecta Absorción;
+- se suma de forma aditiva con otras fuentes normales de Penetración porcentual compatibles;
+- se resuelve dentro del orden universal ya cerrado: DEF real → reducción/shred → Penetración % → Penetración plana → DEF efectiva.
+
+Esta propiedad pertenece a la **raíz principal Metal**. La transmisión mediante injerto todavía no está definida.
+
+---
+
 ### Agua — CERRADO
 
 La raíz principal de Agua representa eficiencia general en la circulación de Qi.
