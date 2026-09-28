@@ -1427,6 +1427,30 @@ Estas direcciones se apoyan en técnicas ya existentes:
 
 ## Valores de raíces principales — en definición
 
+### Fuego — CERRADO
+
+La raíz principal de Fuego representa potencia ofensiva directa mediante técnicas.
+
+Rasgo:
+
+```text
+DAÑO_DIRECTO_TÉCNICA
+= daño calculado × 1.10
+```
+
+Reglas:
+- aumenta **10% el daño directo causado por todas las técnicas**, sin importar su elemento;
+- afecta componentes físicos, elementales e híbridos que formen parte del daño directo de una técnica;
+- no afecta ataques básicos;
+- no aumenta DOT/aflicciones como Quemadura o Hemorragia;
+- no aumenta Reflect, Retaliation ni otras fuentes reactivas;
+- se integra en el pool porcentual ofensivo normal compatible, no como multiplicador final separado;
+- conserva precisión decimal y sigue la política global de redondeo.
+
+Esta propiedad pertenece a la **raíz principal Fuego**. La transmisión mediante injerto todavía no está definida.
+
+---
+
 ### Agua — CERRADO
 
 La raíz principal de Agua representa eficiencia general en la circulación de Qi.
