@@ -1596,6 +1596,48 @@ Esta propiedad pertenece a la **raíz principal Agua**. La transmisión mediante
 
 ---
 
+## Injerto espiritual — CERRADO
+
+El personaje puede incorporar una única raíz secundaria permanente.
+
+La raíz secundaria transmite:
+
+```text
+AFINIDAD ELEMENTAL
+→ 100%
+
+RASGOS NUMÉRICOS DE LA RAÍZ
+→ 80%
+
+APRENDIZAJE DE TÉCNICAS AFINES
+→ 90%
+```
+
+La afinidad elemental no se reduce: el injerto cuenta plenamente como afinidad para requisitos, ramas, técnicas e híbridas.
+
+Los rasgos numéricos sí se expresan al 80% de su valor de raíz principal.
+
+Valores derivados:
+
+| Injerto | Rasgos heredados |
+|---|---|
+| Fuego | +8% daño directo general · +4% probabilidad crítica |
+| Metal | +8% Penetración porcentual general · +4% Precisión |
+| Agua | −8% coste de Qi de todas las técnicas · +4% Control |
+| Tierra | +8% Vida máxima · +4% Tenacidad |
+| Viento | 8% Evasión base · +4% Daño crítico |
+
+Reglas:
+- la raíz principal conserva el 100% de sus rasgos;
+- el injerto no sustituye ni reduce los rasgos de la raíz principal;
+- los rasgos compatibles de raíz principal, injerto, equipo, ramas y buffs se combinan según las reglas globales de cada estadística;
+- el injerto concede 100% de afinidad elemental para activar requisitos y combinaciones;
+- las técnicas de la raíz secundaria progresan al 90% de ritmo de aprendizaje;
+- sólo puede existir un injerto espiritual permanente por personaje;
+- compatibilidades, conflictos y perfiles ofensivos/defensivos de cada pareja se diseñan por separado y no alteran esta regla base salvo excepción explícita futura.
+
+---
+
 ## Combinaciones dobles ya confirmadas
 
 El juego ya contiene cuatro Definitivas híbridas que sirven como referencia para clasificar combinaciones de dos elementos por orientación de combate.
