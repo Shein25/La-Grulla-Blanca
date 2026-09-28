@@ -1802,6 +1802,46 @@ Las magnitudes numéricas quedan pendientes hasta probar estas identidades sobre
 
 ---
 
+### Rama Viento — CERRADA CONCEPTUALMENTE
+
+Una técnica pura de Viento deja un **Eco de Viento**. La concordancia depende del elemento receptor.
+
+```text
+VIENTO → FUEGO
+Avivar las brasas
+Identidad: intensificación inmediata.
+- ofensiva: potencia el daño directo de la técnica Fuego receptora;
+- defensiva: potencia la magnitud inmediata del efecto defensivo generado por la técnica Fuego.
+```
+
+```text
+VIENTO → METAL
+Filo impulsado
+Identidad: aceleración y precisión.
+- ofensiva: mejora Precisión de la técnica Metal;
+- defensiva: puede mejorar su eficiencia de ejecución, incluyendo reducción de coste de Qi cuando la técnica lo admita.
+```
+
+```text
+VIENTO → AGUA
+Corriente ligera
+Identidad: circulación eficiente.
+- cualquier técnica compatible: reduce porcentualmente el coste de Qi de la ejecución receptora;
+- esta reducción entra en el pool general de reducción de coste de Qi y respeta el piso global del sistema.
+```
+
+```text
+VIENTO → TIERRA
+Impacto de vendaval
+Identidad: impulso aplicado a masa y estructura.
+- ofensiva/control: potencia Control u otra propiedad de impacto compatible;
+- defensiva: potencia Tenacidad generada cuando la técnica Tierra posea esa propiedad.
+```
+
+Las magnitudes numéricas quedan pendientes hasta probar estas identidades sobre técnicas reales.
+
+---
+
 ## Regla de cobertura técnica de Concordancias — CERRADA
 
 Toda Concordancia habilitada en una etapa del juego debe tener una aplicación mecánica real sobre al menos una técnica receptora disponible en esa misma etapa.
