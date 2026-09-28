@@ -1898,6 +1898,15 @@ Principios:
 - dichas penalidades no impiden necesariamente la activación: convierten el uso de una Definitiva ajena en una decisión de coste/beneficio;
 - los ejes candidatos de penalización son coste de Qi, eficiencia/potencia, estabilidad de ejecución y/o requisitos de dominio; no se fijan todavía magnitudes ni se aplican todos los ejes simultáneamente por defecto;
 - la confluencia completa debe representar el uso más natural de la Definitiva, la afinidad parcial una situación intermedia y la afinidad ajena la situación con mayor fricción;
+- **candidato de diseño:** una Definitiva híbrida ejecutada con afinidad insuficiente puede provocar **retroceso espiritual** y causar un pequeño daño al propio usuario tras la ejecución;
+- este retroceso representa incompatibilidad/circulación forzada de Qi, no daño directo del enemigo;
+- candidato recomendado: escalarlo sobre un pequeño porcentaje de la Vida máxima para que siga siendo relevante en distintos niveles;
+- el retroceso no debería usar Precisión, Crítico, DEF, Penetración ni Life Leech;
+- por defecto no debería considerarse DOT ni activar eventos ofensivos normales;
+- confluencia completa: sin retroceso;
+- afinidad parcial: retroceso reducido;
+- afinidad ajena: retroceso mayor;
+- valores exactos, interacción con Absorción y si el retroceso puede matar al usuario quedan pendientes de prueba y cierre;
 - las Definitivas híbridas no deben obtener una Concordancia automática por contener dos elementos;
 - cualquier interacción entre Concordancias y Definitivas híbridas debe diseñarse de forma explícita para evitar amplificaciones descontroladas.
 
