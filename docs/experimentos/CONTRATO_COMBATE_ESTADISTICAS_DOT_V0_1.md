@@ -8,6 +8,10 @@ Base: `snapshot/handoff-2026-09-27-astra-a04`
 
 Checkpoint documental del rediseño del combate de Arco 1. Este archivo **no implementa todavía cambios en el runtime**: congela decisiones de diseño ya cerradas para evitar pérdidas de estado entre iteraciones y para que la implementación posterior no tenga ambigüedades.
 
+Contrato arquitectónico complementario:
+
+- `docs/experimentos/CONTRATO_MOTOR_EVENTOS_EFECTOS_V0_1.md`: define Event Bus, paquetes universales, State/Effect Engine, guardas de recursión, frecuencias y resolución genérica de Concordancias. No sustituye las fórmulas numéricas de este documento.
+
 ## Restricciones de repositorio
 
 - No tocar `main`.
