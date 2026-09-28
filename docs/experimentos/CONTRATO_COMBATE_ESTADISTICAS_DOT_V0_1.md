@@ -1500,6 +1500,31 @@ Esta propiedad pertenece a la **raíz principal Tierra**. La transmisión median
 
 ---
 
+### Viento — CERRADO
+
+La raíz principal de Viento representa evasión innata.
+
+Rasgo:
+
+```text
+EVASIÓN_BASE += 10 puntos porcentuales
+```
+
+Interpretación:
+- equivale a una **probabilidad innata de esquivar** dentro del sistema universal Precisión ↔ Evasión;
+- no crea una segunda tirada de esquiva ni una capa multiplicativa posterior;
+- contra Precisión 100 y sin otras fuentes de Evasión, produce 90% de impacto / 10% de evasión;
+- otras fuentes de Evasión pueden sumarse normalmente a la Evasión total;
+- sigue respetando el clamp universal de impacto 5%–100%;
+- no afecta impactos marcados como `evadible:false`;
+- no afecta DOT ya aplicados, Control puro ni daño reactivo.
+
+Aunque el valor sea fijo en puntos porcentuales, pertenece a una estadística probabilística acotada y conserva relevancia a futuro; no es un bono plano de daño/DEF/recursos que se diluya al escalar los números del juego.
+
+Esta propiedad pertenece a la **raíz principal Viento**. La transmisión mediante injerto todavía no está definida.
+
+---
+
 ### Agua — CERRADO
 
 La raíz principal de Agua representa eficiencia general en la circulación de Qi.
