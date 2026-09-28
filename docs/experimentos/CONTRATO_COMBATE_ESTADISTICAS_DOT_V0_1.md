@@ -1762,6 +1762,46 @@ Las magnitudes numéricas quedan pendientes hasta probar estas identidades sobre
 
 ---
 
+### Rama Tierra — CERRADA CONCEPTUALMENTE
+
+Una técnica pura de Tierra deja un **Eco de Tierra**. La concordancia depende del elemento receptor.
+
+```text
+TIERRA → FUEGO
+Corazón de magma
+Identidad: contención y persistencia del calor.
+- ofensiva: potencia persistencia/intensidad de una aflicción de Fuego compatible;
+- defensiva: mejora la capacidad de contener o aprovechar daño recibido mediante la técnica Fuego.
+```
+
+```text
+TIERRA → METAL
+Forja asentada
+Identidad: asentamiento y calidad estructural.
+- ofensiva: favorece Probabilidad Crítica;
+- defensiva: potencia estabilidad de DEF, Absorción o fortificación propia de la técnica Metal.
+```
+
+```text
+TIERRA → AGUA
+Cauce represado
+Identidad: peso y contención del flujo.
+- ofensiva/control: reduce Evasión u otra movilidad compatible del objetivo;
+- defensiva/utilitaria: puede aumentar duración de un efecto Agua compatible en lugar de su magnitud.
+```
+
+```text
+TIERRA → VIENTO
+Tormenta de polvo
+Identidad: dispersión material y persistencia del movimiento.
+- ofensiva: favorece área/propagación o eficiencia contra múltiples objetivos;
+- defensiva: puede aumentar duración de la Evasión generada por la técnica Viento.
+```
+
+Las magnitudes numéricas quedan pendientes hasta probar estas identidades sobre técnicas reales.
+
+---
+
 ## Combinaciones dobles ya confirmadas
 
 El juego ya contiene cuatro Definitivas híbridas que muestran cómo una misma combinación elemental puede expresarse mediante una técnica concreta. **La orientación ofensiva, defensiva, de control o utilitaria pertenece a la técnica, no a la pareja de raíces.**
