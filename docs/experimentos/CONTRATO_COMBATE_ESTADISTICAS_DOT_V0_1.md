@@ -1885,6 +1885,10 @@ Principios:
 - su uso debe plantear una decisión real sobre el momento de activación;
 - no debe ser eficiente utilizarla apenas está disponible sin considerar el estado del combate;
 - no se fijan todavía valores numéricos de Qi ni cooldown: se balancearán después sobre técnicas concretas;
+- una Definitiva híbrida **no se entrega como recompensa común ni se desbloquea automáticamente por progresión básica**;
+- su obtención debe constituir un hito relevante y deliberado de progresión, ligado al desarrollo real de ambas disciplinas y a contenido específico;
+- el método concreto de adquisición (maestro, manual, prueba, evento, legado, misión u otro) se diseña por contenido y no se universaliza todavía;
+- poseer afinidad o incluso dos raíces compatibles no concede por sí solo la Definitiva;
 - las Definitivas híbridas no deben obtener una Concordancia automática por contener dos elementos;
 - cualquier interacción entre Concordancias y Definitivas híbridas debe diseñarse de forma explícita para evitar amplificaciones descontroladas.
 
