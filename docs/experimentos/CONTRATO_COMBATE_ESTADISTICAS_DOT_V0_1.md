@@ -1802,6 +1802,33 @@ Las magnitudes numéricas quedan pendientes hasta probar estas identidades sobre
 
 ---
 
+## Regla de cobertura técnica de Concordancias — CERRADA
+
+Toda Concordancia habilitada en una etapa del juego debe tener una aplicación mecánica real sobre al menos una técnica receptora disponible en esa misma etapa.
+
+```text
+CONCORDANCIA DISPONIBLE
+→ debe existir técnica receptora compatible
+→ debe existir propiedad real que pueda potenciar/modificar
+→ el efecto debe ser visible y resolverse en runtime
+```
+
+No se admite una Concordancia meramente nominal que se active sin producir un efecto aplicable.
+
+Consecuencias de diseño:
+
+- las técnicas se auditan y, cuando corresponda, se ajustan después de cerrar las Concordancias;
+- cada técnica debe declarar qué propiedades de Concordancia acepta;
+- una técnica no necesita aceptar todas las Concordancias posibles de su elemento;
+- si una Concordancia no tiene receptor compatible en una etapa, no debe introducirse todavía en esa etapa;
+- no se inventa un bono genérico de emergencia para evitar una Concordancia vacía;
+- cuando una técnica tenga varias propiedades potenciales, la Concordancia debe indicar de forma explícita cuál modifica;
+- las Concordancias pueden añadir una propiedad nueva sólo cuando esa interacción esté diseñada expresamente para esa técnica o familia.
+
+La cobertura se valida por contenido real, no sólo por la matriz teórica de 20 relaciones dirigidas.
+
+---
+
 ## Combinaciones dobles ya confirmadas
 
 El juego ya contiene cuatro Definitivas híbridas que muestran cómo una misma combinación elemental puede expresarse mediante una técnica concreta. **La orientación ofensiva, defensiva, de control o utilitaria pertenece a la técnica, no a la pareja de raíces.**
