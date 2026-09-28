@@ -2,7 +2,7 @@
 
 Fecha: 2026-09-28  
 Rama: `experiment/combat-stat-contract-v0.1`  
-Estado: **EN CONSTRUCCIÓN / FUEGO COMO ORIGEN APROBADO**
+Estado: **EN CONSTRUCCIÓN / FUEGO Y METAL COMO ORIGEN APROBADOS**
 
 ## 0. Principio
 
@@ -251,3 +251,208 @@ Se selecciona sólo el primer hook expuesto compatible.
 | Fuego → Agua | presurizar / expandir / transformar |
 | Fuego → Viento | acelerar / elevar / dinamizar |
 
+
+
+---
+
+# 2. METAL como origen — APROBADO
+
+Metal representa dirección, precisión, filo, canalización y refuerzo estructural.
+
+## 2.1 METAL → FUEGO · Chispa de Ignición
+
+**Identidad:** Metal concentra Fuego en un punto de ignición. Favorece prender, concentrar o encontrar un punto crítico; no representa persistencia prolongada.
+
+### OFFENSIVE
+
+\`\`\`text
+1. AFFLICTION_APPLICATION
+2. DOT_POTENCY
+3. INTENSITY
+4. CRIT_CHANCE
+5. EXECUTION
+\`\`\`
+
+Si la técnica Fuego no expone ninguno de esos canales, no consume Eco Metal.
+
+### DEFENSIVE
+
+\`\`\`text
+1. REACTIVE_RESPONSE
+2. INTERNAL_RESOURCE
+3. ABSORPTION
+4. FORTIFICATION
+\`\`\`
+
+No implica Reflect automáticamente.
+
+### CONTROL
+
+\`\`\`text
+1. AFFLICTION_APPLICATION
+2. CONTROL_POWER
+3. INTERRUPT
+4. ACTION_DENIAL
+\`\`\`
+
+Sólo cuando la técnica de Fuego fundamenta su control en ignición, explosión, dolor térmico o activación equivalente.
+
+### UTILITY
+
+\`\`\`text
+1. AFFLICTION_APPLICATION
+2. INTERNAL_RESOURCE
+3. EXECUTION
+\`\`\`
+
+---
+
+## 2.2 METAL → AGUA · Cauce Tallado
+
+**Identidad:** Metal proporciona un cauce definido al Agua: la dirige, concentra y evita dispersión.
+
+### OFFENSIVE
+
+\`\`\`text
+1. PRECISION
+2. CONTROL_POWER
+3. EXECUTION
+4. QI_DRAIN
+5. DIRECT_DAMAGE
+\`\`\`
+
+\`DIRECT_DAMAGE\` queda al final.
+
+### CONTROL
+
+\`\`\`text
+1. CONTROL_POWER
+2. PRECISION
+3. INTERRUPT
+4. ACTION_DENIAL
+5. QI_DRAIN
+\`\`\`
+
+Metal no crea Control: canaliza mejor uno ya expuesto.
+
+### DEFENSIVE
+
+\`\`\`text
+1. QI_COST_PERCENT
+2. ABSORPTION_RESTORE
+3. DEFENSIVE_DURATION
+4. INTERNAL_RESOURCE
+\`\`\`
+
+### UTILITY
+
+\`\`\`text
+1. QI_COST_PERCENT
+2. QI_DRAIN
+3. EXECUTION
+4. PROPAGATION
+5. INTERNAL_RESOURCE
+\`\`\`
+
+---
+
+## 2.3 METAL → TIERRA · Anclaje de Hierro
+
+**Identidad:** Metal introduce estructura, refuerzo y puntos de anclaje dentro de Tierra.
+
+### OFFENSIVE
+
+\`\`\`text
+1. PERCENT_PENETRATION
+2. FLAT_PENETRATION
+3. DEF_SHRED
+4. CONTROL_POWER
+5. DIRECT_DAMAGE
+\`\`\`
+
+### DEFENSIVE
+
+\`\`\`text
+1. STACKABLE_STATE
+2. FORTIFICATION
+3. TENACITY_GRANTED
+4. ABSORPTION
+5. DEF_GRANTED
+\`\`\`
+
+\`STACKABLE_STATE\` permite representar casos como Arraigo sin hardcodear su nombre.
+
+### CONTROL
+
+\`\`\`text
+1. CONTROL_POWER
+2. MOBILITY_REDUCTION
+3. ACTION_DENIAL
+4. DEBUFF_DURATION
+\`\`\`
+
+### UTILITY
+
+\`\`\`text
+1. STACKABLE_STATE
+2. FORTIFICATION
+3. INTERNAL_RESOURCE
+4. DEFENSIVE_DURATION
+\`\`\`
+
+---
+
+## 2.4 METAL → VIENTO · Filo en la Corriente
+
+**Identidad:** Metal da dirección y filo a algo móvil y disperso: precisión de trayectoria y definición del borde.
+
+### OFFENSIVE
+
+\`\`\`text
+1. PRECISION
+2. PERCENT_PENETRATION
+3. FLAT_PENETRATION
+4. EXECUTION
+5. CRIT_CHANCE
+6. DIRECT_DAMAGE
+\`\`\`
+
+Se selecciona sólo el primer hook compatible.
+
+### DEFENSIVE
+
+\`\`\`text
+1. EVASION_GRANTED
+2. QI_COST_PERCENT
+3. REACTIVE_RESPONSE
+4. DEFENSIVE_DURATION
+\`\`\`
+
+### CONTROL
+
+\`\`\`text
+1. PRECISION
+2. INTERRUPT
+3. CONTROL_POWER
+4. MOBILITY_REDUCTION
+\`\`\`
+
+### UTILITY
+
+\`\`\`text
+1. EXECUTION
+2. QI_COST_PERCENT
+3. PRECISION
+4. PROPAGATION
+\`\`\`
+
+---
+
+# 3. Resumen Metal aprobado
+
+| Relación | Identidad |
+|---|---|
+| Metal → Fuego | concentración / ignición |
+| Metal → Agua | canalización / dirección |
+| Metal → Tierra | anclaje / refuerzo |
+| Metal → Viento | trayectoria / precisión |
