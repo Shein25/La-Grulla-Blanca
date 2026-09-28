@@ -1898,15 +1898,18 @@ Principios:
 - dichas penalidades no impiden necesariamente la activación: convierten el uso de una Definitiva ajena en una decisión de coste/beneficio;
 - los ejes candidatos de penalización son coste de Qi, eficiencia/potencia, estabilidad de ejecución y/o requisitos de dominio; no se fijan todavía magnitudes ni se aplican todos los ejes simultáneamente por defecto;
 - la confluencia completa debe representar el uso más natural de la Definitiva, la afinidad parcial una situación intermedia y la afinidad ajena la situación con mayor fricción;
-- **candidato de diseño:** una Definitiva híbrida ejecutada con afinidad insuficiente puede provocar **retroceso espiritual** y causar un pequeño daño al propio usuario tras la ejecución;
-- este retroceso representa incompatibilidad/circulación forzada de Qi, no daño directo del enemigo;
-- candidato recomendado: escalarlo sobre un pequeño porcentaje de la Vida máxima para que siga siendo relevante en distintos niveles;
-- el retroceso no debería usar Precisión, Crítico, DEF, Penetración ni Life Leech;
-- por defecto no debería considerarse DOT ni activar eventos ofensivos normales;
-- confluencia completa: sin retroceso;
-- afinidad parcial: retroceso reducido;
-- afinidad ajena: retroceso mayor;
-- valores exactos, interacción con Absorción y si el retroceso puede matar al usuario quedan pendientes de prueba y cierre;
+- **RETROCESO ESPIRITUAL — CERRADO COMO PRINCIPIO:** una Definitiva híbrida ejecutada con afinidad insuficiente puede provocar un retroceso interno tras la ejecución;
+- el retroceso representa una circulación forzada de Qi por meridianos no adaptados a esa combinación elemental; no es daño infligido por el enemigo ni daño normal de la propia técnica;
+- confluencia completa: sin retroceso espiritual;
+- afinidad parcial: retroceso espiritual leve;
+- afinidad ajena: retroceso espiritual mayor;
+- el retroceso puede expresarse como una pequeña pérdida de Vida proporcional a la Vida máxima; los porcentajes exactos se balancearán después;
+- el retroceso no usa Precisión, Crítico, DEF, Penetración ni Life Leech;
+- no se considera DOT ni activa eventos ofensivos normales;
+- **HERIDA MERIDIANA:** una Definitiva ajena puede, bajo condiciones o probabilidad explícita, causar una Herida Meridiana además del retroceso; esta consecuencia debe ser poco frecuente y más seria que la pérdida de Vida;
+- la Herida Meridiana no es obligatoria en cada uso ajeno: debe preservar la posibilidad estratégica de emplear una Definitiva incompatible sin convertirla en una opción irracional;
+- **DESVIACIÓN DE QI:** queda reservada para eventos excepcionales de incompatibilidad extrema, abuso, fallo grave o contenido narrativo/especial; no se usa como penalidad ordinaria por emplear una Definitiva ajena;
+- valores exactos del retroceso, probabilidad/condiciones de Herida Meridiana, interacción con Absorción y posibilidad de muerte por retroceso quedan pendientes de prueba y cierre numérico;
 - las Definitivas híbridas no deben obtener una Concordancia automática por contener dos elementos;
 - cualquier interacción entre Concordancias y Definitivas híbridas debe diseñarse de forma explícita para evitar amplificaciones descontroladas.
 
