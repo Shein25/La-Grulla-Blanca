@@ -1869,6 +1869,45 @@ La cobertura se valida por contenido real, no sólo por la matriz teórica de 20
 
 ---
 
+## Reconstrucción del catálogo de técnicas de Arco 1 — CERRADO COMO DIRECCIÓN
+
+Las técnicas comunes de Arco 1 se **recrearán desde cero** sobre el nuevo contrato de combate.
+
+El catálogo de `ver74` queda como **referencia histórica**, no como base mecánica a migrar automáticamente.
+
+Principios:
+
+- no se conservan automáticamente daño, coste de Qi, duración, DEF, Guardia, Evasión, Control, ramas ni requisitos del catálogo anterior;
+- los nombres, fantasía y conceptos de técnicas antiguas pueden reutilizarse sólo si siguen encajando con el nuevo diseño;
+- cada técnica nueva debe definirse contra las estadísticas, pipeline, Concordancias, DOT, Control, DEF, Absorción y reglas de afinidad ya cerradas;
+- cada técnica debe declarar con claridad su elemento, rol, efecto principal, coste, requisitos y compatibilidades de Concordancia;
+- no se mantiene una técnica sólo por continuidad histórica si genera contradicciones con el nuevo sistema;
+- el balance numérico se hará después de cerrar primero la identidad y función de cada técnica;
+- las Definitivas híbridas se tratan por separado del catálogo común y permanecen fuera de Concordancias.
+
+### Recordatorio de prólogo / selección inicial — PENDIENTE
+
+La selección del prólogo debe revisarse para que pueda representar correctamente los **cinco elementos canónicos**:
+
+- Fuego
+- Metal
+- Agua
+- Tierra
+- Viento
+
+El prólogo actual no debe quedar limitado al antiguo conjunto inicial de tres raíces/técnicas.
+
+Queda pendiente decidir durante el rediseño del prólogo:
+
+- si se añade una técnica inicial común por cada uno de los cinco elementos;
+- si la estructura de preguntas actual alcanza para distinguir las cinco opciones;
+- si conviene añadir **una o dos preguntas adicionales** para mejorar la selección;
+- cómo evitar que la elección de prólogo determine de forma excesivamente rígida la build futura.
+
+No se modifica todavía el runtime del prólogo.
+
+---
+
 ## Técnicas híbridas / Definitivas — PRINCIPIO CERRADO
 
 Las técnicas híbridas representan la **Definitiva del personaje**: la expresión más poderosa de dos disciplinas elementales combinadas.
