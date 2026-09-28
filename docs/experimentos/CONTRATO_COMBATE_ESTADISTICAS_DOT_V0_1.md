@@ -1,4 +1,4 @@
-# Contrato de combate y aflicciones — checkpoint v0.2
+# Contrato de combate y aflicciones — checkpoint v0.3
 
 Fecha: 2026-09-28  
 Rama: `experiment/combat-stat-contract-v0.1`  
@@ -61,7 +61,7 @@ Reglas:
 - Las ramas de una técnica AOE no aumentan el número de objetivos: el alcance total de la sala ya pertenece al contrato base.
 - El daño no se divide entre enemigos.
 - Con **2 o más objetivos válidos**, la técnica conserva el 100% de su daño calculado.
-- Con **un único objetivo válido**, la técnica conserva provisionalmente el **65% de su daño calculado**, reproduciendo la regla de duelo ya existente en `ver74`.
+- Con **un único objetivo válido**, la técnica aplica provisionalmente `AOE_SINGLE_TARGET_SCALAR = 0.65` sobre su magnitud ofensiva **antes de DEF y antes del redondeo final**, reproduciendo la identidad de duelo de `ver74` sin heredar su viejo orden de cálculo.
 - Ese 65% es una regla global de AOE, no una propiedad individual de cada técnica.
 - El valor queda sujeto a benchmark final junto al resto del balance numérico de técnicas de Arco 1.
 - Si una Concordancia modifica una AOE, debe declarar expresamente qué propiedad modifica. En el rediseño de Arco 1 se prioriza que una Concordancia válida afecte coherentemente a toda la ejecución, salvo excepción documentada.
@@ -1099,7 +1099,7 @@ Qi sólo puede recuperarse mediante:
 2. **Píldoras u otros consumibles explícitos de Qi**.
 3. **Robo/drenaje de Qi** mediante técnicas o efectos.
 4. **Piedras espirituales**.
-5. Otras fuentes futuras sólo si se declaran explícitamente como acciones/consumos; nunca como regeneración automática por turno.
+5. Efectos o eventos explícitos de técnicas, ramas, estados o equipo, siempre que estén condicionados a una mecánica real; nunca como regeneración automática universal por turno.
 
 No existirán objetos que otorguen:
 
@@ -1464,7 +1464,7 @@ Estas direcciones se apoyan en técnicas ya existentes:
 
 ## Valores de raíces principales — CERRADO
 
-Las cinco raíces principales quedan cerradas con dos rasgos porcentuales/probabilísticos cada una. No se usan bonos planos de daño, DEF, Vida, Qi, Precisión, Control o Tenacidad que se diluyan con la progresión.
+Las cinco raíces principales quedan cerradas con dos rasgos porcentuales/probabilísticos cada una. No se usan bonos planos de daño, DEF, Vida o Qi que se diluyan con la progresión. Precisión, Control, Tenacidad y Evasión se expresan en puntos dentro de sus estadísticas probabilísticas universales.
 
 | Raíz | Rasgo principal | Rasgo secundario |
 |---|---|---|
@@ -1671,6 +1671,7 @@ Reglas:
 - el injerto concede 100% de afinidad elemental para activar requisitos y combinaciones;
 - las técnicas de la raíz secundaria progresan al 90% de ritmo de aprendizaje;
 - sólo puede existir un injerto espiritual permanente por personaje;
+- el injerto no puede compartir elemento con la raíz principal;
 - compatibilidades, conflictos e interacciones entre afinidades pueden diseñarse por separado, pero **las raíces no determinan si una combinación es ofensiva, defensiva, de control o utilitaria**; esa función pertenece a cada técnica concreta.
 
 ---
@@ -2121,3 +2122,128 @@ No de una suma automática de +ATQ por nivel/etapa.
 10. Recrear equipo.
 11. Benchmarks de jugador.
 12. Rebalance de monstruos/jefes.
+
+
+---
+
+# 27. Resoluciones post-auditoría — CERRADO 2026-09-28
+
+Las siguientes reglas sincronizan este contrato numérico con `CONTRATO_MOTOR_EVENTOS_EFECTOS_V0_1.md` v0.2.
+
+## 27.1 TURN_START
+
+Orden cerrado:
+
+```text
+1. restauraciones defensivas de inicio
+2. DOT/aflicciones de inicio
+3. regeneración de Vida
+4. Control y otros ticks
+5. habilitación de la acción
+```
+
+Por tanto, Reflujo de Espejo de Luna restaura Absorción antes de un tick de Quemadura del mismo inicio de turno.
+
+## 27.2 Eco elemental
+
+El ciclo de vida del Eco se define canónicamente en Motor v0.2 §38.2:
+
+- un solo slot por actor;
+- un Eco nuevo sustituye al anterior;
+- sin hook compatible no se consume;
+- con hook compatible se consume al comenzar la ejecución después de validación/coste;
+- un fallo posterior no devuelve el Eco;
+- una técnica que consumió Eco no genera otro en esa misma acción por defecto;
+- híbridas permanecen fuera del sistema.
+
+## 27.3 AOE contra un objetivo
+
+`AOE_SINGLE_TARGET_SCALAR = 0.65` se aplica antes de DEF y antes del redondeo final.
+
+No reduce por sí mismo:
+- Control;
+- debuffs estadísticos;
+- duración;
+- stacks;
+- otras magnitudes que no deriven del daño.
+
+## 27.4 Robo de Vida agregado
+
+Los impactos elegibles de una acción acumulan crédito decimal de Robo de Vida.
+
+```text
+impactos elegibles
+→ acumular crédito
+→ aplicar límite por acción
+→ ACTION_END
+→ redondeo único
+→ HealPacket LIFESTEAL
+```
+
+El `HealPacket` se emite una sola vez al finalizar la acción y sólo si la fuente sigue viva.
+
+Las reacciones de los impactos ya se resolvieron antes de este settlement; por tanto, Reflect/Retaliation pueden matar a la fuente antes de que cobre el Robo de Vida.
+
+El límite numérico continúa pendiente de benchmark.
+
+## 27.5 Absorción múltiple
+
+Se permiten múltiples pools.
+
+Prioridad:
+1. mayor `priority`;
+2. a igual prioridad, pool más antiguo.
+
+Reconstruir un pool destruido crea una nueva instancia lógica del mismo tipo.
+
+## 27.6 Aflicciones persistentes
+
+Una familia puede declarar persistencia:
+- fuera de combate;
+- al cambiar de sala;
+- en guardado;
+- política de letalidad fuera de combate;
+- familia/grado para curas.
+
+Para aflicciones persistentes de Arco 1, cuando el contenido lo declare, el tick fuera de combate no reduce al personaje por debajo de 1 HP salvo excepción explícita.
+
+Las reglas nuevas de stacking de Hemorragia/Quemadura reemplazan la conducta histórica incompatible de `ver74`.
+
+## 27.7 Qi por efectos explícitos
+
+Continúa prohibida la regeneración automática universal de Qi por turno.
+
+Sí son válidas recompensas explícitas como:
+
+```text
+ON_CRIT → RESTORE_QI
+ON_KILL → RESTORE_QI
+ON_EFFECT_EXPIRE → RESTORE_QI
+```
+
+si la técnica/rama/estado las declara.
+
+## 27.8 Techos/pisos ya definidos
+
+- Probabilidad de impacto: clamp 5–100%.
+- Probabilidad de Control: clamp 5–100%.
+- Probabilidad crítica efectiva: clamp 0–100%.
+- Penetración porcentual efectiva: clamp 0–100% antes de Penetración plana.
+- DEF efectiva nunca baja de 0.
+- Evasión puede ser negativa; el clamp final de impacto evita resultados inválidos.
+- El piso numérico global de coste de Qi permanece pendiente de benchmark y debe cerrarse antes de implementar.
+
+## 27.9 Injerto espiritual
+
+No puede coincidir con el elemento de la raíz principal.
+
+## 27.10 Combatientes hostiles válidos
+
+En AOE, "hostil" significa entidad:
+- viva;
+- atacable;
+- hostil al actor;
+- presente en el espacio de combate;
+- no excluida expresamente por la acción.
+
+NPC sociales no son arrastrados a una AOE sólo por estar presentes.
