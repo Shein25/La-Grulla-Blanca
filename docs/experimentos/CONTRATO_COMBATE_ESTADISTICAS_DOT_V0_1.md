@@ -1894,6 +1894,10 @@ Principios:
 - obtenerla no obliga al jugador a incorporarla a su build: debe evaluar si su dominio, coste de Qi, cooldown, requisitos y sinergias justifican utilizarla;
 - la afinidad influirá en qué tan natural/eficiente resulte desarrollar y aprovechar la técnica, pero no constituye por sí sola un bloqueo universal de uso;
 - las penalizaciones o eficiencias exactas para híbridas con confluencia, afinidad parcial o afinidad ajena se definirán por separado antes del balance final;
+- una Definitiva híbrida que no sea afín a la raíz principal y/o injerto puede sufrir penalidades reales de uso;
+- dichas penalidades no impiden necesariamente la activación: convierten el uso de una Definitiva ajena en una decisión de coste/beneficio;
+- los ejes candidatos de penalización son coste de Qi, eficiencia/potencia, estabilidad de ejecución y/o requisitos de dominio; no se fijan todavía magnitudes ni se aplican todos los ejes simultáneamente por defecto;
+- la confluencia completa debe representar el uso más natural de la Definitiva, la afinidad parcial una situación intermedia y la afinidad ajena la situación con mayor fricción;
 - las Definitivas híbridas no deben obtener una Concordancia automática por contener dos elementos;
 - cualquier interacción entre Concordancias y Definitivas híbridas debe diseñarse de forma explícita para evitar amplificaciones descontroladas.
 
