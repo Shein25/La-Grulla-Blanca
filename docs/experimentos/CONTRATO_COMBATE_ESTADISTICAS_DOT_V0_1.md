@@ -1910,7 +1910,14 @@ Principios:
 - la Herida Meridiana no es obligatoria en cada uso ajeno: debe preservar la posibilidad estratégica de emplear una Definitiva incompatible sin convertirla en una opción irracional;
 - **DESVIACIÓN DE QI:** queda reservada para eventos excepcionales de incompatibilidad extrema, abuso, fallo grave o contenido narrativo/especial; no se usa como penalidad ordinaria por emplear una Definitiva ajena;
 - valores exactos del retroceso, probabilidad/condiciones de Herida Meridiana, interacción con Absorción y posibilidad de muerte por retroceso quedan pendientes de prueba y cierre numérico;
-- las Definitivas híbridas no deben obtener una Concordancia automática por contener dos elementos;
+- las Definitivas híbridas quedan **fuera del sistema de Concordancias**;
+- no consumen Ecos elementales;
+- no generan Ecos elementales;
+- no reciben mejoras de Concordancia;
+- no activan Concordancias por contener dos elementos;
+- esta exclusión es intencional: su potencia, coste de Qi y cooldown ya constituyen una capa superior de poder y decisión táctica;
+- las técnicas híbridas actuales combinan exactamente **dos elementos**;
+- cualquier técnica de tres elementos queda reservada como posibilidad futura y requerirá un contrato propio antes de implementarse;
 - cualquier interacción entre Concordancias y Definitivas híbridas debe diseñarse de forma explícita para evitar amplificaciones descontroladas.
 
 La potencia de una Definitiva no significa necesariamente daño directo: una híbrida defensiva puede constituir la herramienta defensiva más poderosa del personaje, una híbrida de control su mayor herramienta de control, etc.
