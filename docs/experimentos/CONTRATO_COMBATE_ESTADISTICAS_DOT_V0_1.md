@@ -1722,6 +1722,46 @@ Las magnitudes numéricas quedan pendientes hasta probar estas identidades sobre
 
 ---
 
+### Rama Agua — CERRADA CONCEPTUALMENTE
+
+Una técnica pura de Agua deja un **Eco de Agua**. La concordancia depende del elemento receptor.
+
+```text
+AGUA → FUEGO
+Vapor súbito
+Identidad: transformación por presión.
+- ofensiva: potencia una propiedad compatible de Quemadura, expansión o presión del efecto;
+- defensiva: habilita una respuesta térmica/reactiva compatible.
+```
+
+```text
+AGUA → METAL
+Templar el filo
+Identidad: templado y calidad del golpe.
+- ofensiva: favorece Daño Crítico u otra propiedad crítica compatible;
+- defensiva: potencia estabilidad/fortificación propia de la técnica Metal.
+```
+
+```text
+AGUA → TIERRA
+Erosión / sedimentación
+Identidad: desgaste o cohesión.
+- ofensiva: puede aplicar reducción de DEF para impactos posteriores;
+- defensiva: potencia estabilidad/cohesión de una técnica Tierra compatible.
+```
+
+```text
+AGUA → VIENTO
+Velo de niebla
+Identidad: desorientación y ocultación.
+- ofensiva: reduce Precisión u otra capacidad ofensiva compatible del objetivo;
+- defensiva: potencia la Evasión generada por la técnica Viento.
+```
+
+Las magnitudes numéricas quedan pendientes hasta probar estas identidades sobre técnicas reales.
+
+---
+
 ## Combinaciones dobles ya confirmadas
 
 El juego ya contiene cuatro Definitivas híbridas que muestran cómo una misma combinación elemental puede expresarse mediante una técnica concreta. **La orientación ofensiva, defensiva, de control o utilitaria pertenece a la técnica, no a la pareja de raíces.**
