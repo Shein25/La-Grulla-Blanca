@@ -1869,6 +1869,29 @@ La cobertura se valida por contenido real, no sólo por la matriz teórica de 20
 
 ---
 
+## Técnicas híbridas / Definitivas — PRINCIPIO CERRADO
+
+Las técnicas híbridas representan la **Definitiva del personaje**: la expresión más poderosa de dos disciplinas elementales combinadas.
+
+No forman parte de la rotación ordinaria ni deben poder utilizarse de manera repetitiva sin planificación.
+
+Principios:
+
+- una híbrida combina exactamente dos elementos y sigue siendo una sola técnica/acción;
+- su función concreta depende de la técnica: puede ser ofensiva, defensiva, de control u otra función diseñada;
+- por jerarquía, debe ser una de las herramientas más poderosas del kit del personaje;
+- su potencia se compensa mediante un coste estratégico alto;
+- el coste principal debe combinar **alto consumo de Qi** y **enfriamiento (cooldown) elevado**;
+- su uso debe plantear una decisión real sobre el momento de activación;
+- no debe ser eficiente utilizarla apenas está disponible sin considerar el estado del combate;
+- no se fijan todavía valores numéricos de Qi ni cooldown: se balancearán después sobre técnicas concretas;
+- las Definitivas híbridas no deben obtener una Concordancia automática por contener dos elementos;
+- cualquier interacción entre Concordancias y Definitivas híbridas debe diseñarse de forma explícita para evitar amplificaciones descontroladas.
+
+La potencia de una Definitiva no significa necesariamente daño directo: una híbrida defensiva puede constituir la herramienta defensiva más poderosa del personaje, una híbrida de control su mayor herramienta de control, etc.
+
+---
+
 ## Combinaciones dobles ya confirmadas
 
 El juego ya contiene cuatro Definitivas híbridas que muestran cómo una misma combinación elemental puede expresarse mediante una técnica concreta. **La orientación ofensiva, defensiva, de control o utilitaria pertenece a la técnica, no a la pareja de raíces.**
