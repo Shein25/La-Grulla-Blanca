@@ -1,4 +1,6 @@
 # CHECKPOINT — REDISEÑO DE TÉCNICAS ARCO 1
+
+> **NOTA DE CONTINUIDAD (2026-09-28, posterior a este checkpoint):** las secciones que marcaban como pendientes la estructura de 3 tramos/ramas y el inicio del diseño de Fuego quedaron superadas por `TECNICAS_ARCO1_DISENO_APROBADO_2026-09-28.md`. La arquitectura de combate fue además auditada y sus resoluciones están en `RESOLUCION_AUDITORIA_COMBATE_2026-09-28.md`. Este archivo se conserva como historial del punto de reanudación original.
 Fecha: 2026-09-28
 Rama de trabajo: `experiment/combat-stat-contract-v0.1`
 Contrato principal: `docs/experimentos/CONTRATO_COMBATE_ESTADISTICAS_DOT_V0_1.md`
