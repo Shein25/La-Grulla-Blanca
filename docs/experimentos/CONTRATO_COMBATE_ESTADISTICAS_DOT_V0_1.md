@@ -1306,7 +1306,7 @@ Si en el futuro modificadores porcentuales producen valores fraccionarios de má
 
 ---
 
-# 25. Progresión por cultivo y raíces — CANDIDATO
+# 25. Progresión por cultivo y raíces — CERRADO
 
 ## Principio general
 
@@ -1425,7 +1425,28 @@ Estas direcciones se apoyan en técnicas ya existentes:
 - Tierra: Sello de la Montaña Oprimida, Piel de Cobre.
 - Viento: Paso de Nube Ligera, Lanza que Parte Nubes, Tijera del Vendaval Partido.
 
-## Valores de raíces principales — en definición
+## Valores de raíces principales — CERRADO
+
+Las cinco raíces principales quedan cerradas con dos rasgos porcentuales/probabilísticos cada una. No se usan bonos planos de daño, DEF, Vida, Qi, Precisión, Control o Tenacidad que se diluyan con la progresión.
+
+| Raíz | Rasgo principal | Rasgo secundario |
+|---|---|---|
+| Fuego | +10% daño directo general | +5% probabilidad crítica |
+| Metal | +10% Penetración porcentual general | +5% Precisión |
+| Agua | −10% coste de Qi de todas las técnicas | +5% Control |
+| Tierra | +10% Vida máxima | +5% Tenacidad |
+| Viento | 10% Evasión base / probabilidad innata de esquivar | +5% Daño crítico |
+
+Reglas de alcance:
+- **Fuego**: el +10% afecta todo daño directo propio, incluidos ataques normales y técnicas; no aumenta DOT, Reflect ni Retaliation.
+- **Metal**: el +10% de Penetración porcentual afecta todo daño directo que pase por DEF, incluidos ataques normales y técnicas; no afecta DOT ni Absorción.
+- **Agua**: el −10% se aplica al coste de Qi de todas las técnicas, sin importar elemento; no genera Qi.
+- **Tierra**: el +10% modifica la Vida máxima derivada y escala con el crecimiento futuro del personaje.
+- **Viento**: el 10% se expresa mediante la estadística universal Evasión; no crea una segunda tirada de esquiva.
+
+Los rasgos secundarios del 5% forman parte de la identidad de la raíz. Su interacción exacta con otras fuentes del mismo tipo seguirá las reglas globales de cada estadística y sus pools compatibles.
+
+Los injertos todavía no están incluidos en este cierre: debe definirse por separado qué parte de estos rasgos transmite una raíz secundaria.
 
 ### Fuego — CERRADO
 
@@ -1453,18 +1474,17 @@ Esta propiedad pertenece a la **raíz principal Fuego**. La transmisión mediant
 
 ### Metal — CERRADO
 
-La raíz principal de Metal representa ruptura de defensas mediante técnicas.
+La raíz principal de Metal representa ruptura de defensas en todo combate directo.
 
 Rasgo:
 
 ```text
-PENETRACIÓN_PORCENTUAL_TÉCNICAS += 10%
+PENETRACIÓN_PORCENTUAL_GENERAL += 10%
 ```
 
 Reglas:
-- concede **10% de Penetración porcentual** al daño directo causado por todas las técnicas;
-- se aplica a técnicas físicas, elementales e híbridas;
-- no afecta ataques básicos;
+- concede **10% de Penetración porcentual general** a todo daño directo que pase por DEF;
+- se aplica a ataques normales, técnicas físicas, elementales e híbridas;
 - no afecta DOT/aflicciones;
 - no afecta Reflect, Retaliation ni otras fuentes reactivas;
 - no afecta Absorción;
