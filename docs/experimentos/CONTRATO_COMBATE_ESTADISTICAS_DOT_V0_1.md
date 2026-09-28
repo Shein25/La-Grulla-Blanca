@@ -1425,6 +1425,46 @@ Estas direcciones se apoyan en técnicas ya existentes:
 - Tierra: Sello de la Montaña Oprimida, Piel de Cobre.
 - Viento: Paso de Nube Ligera, Lanza que Parte Nubes, Tijera del Vendaval Partido.
 
+## Combinaciones dobles ya confirmadas
+
+El juego ya contiene cuatro Definitivas híbridas que sirven como referencia para clasificar combinaciones de dos elementos por orientación de combate.
+
+### Ofensivas
+
+```text
+FUEGO + VIENTO
+→ Brasa del Vendaval
+→ ofensiva
+```
+
+```text
+AGUA + VIENTO
+→ Aguja del Río de Plata
+→ ofensiva
+```
+
+```text
+AGUA + FUEGO
+→ Loto de Vapor Concordante
+→ ofensiva
+```
+
+### Defensiva
+
+```text
+METAL + TIERRA
+→ Coraza del Crisol Sereno
+→ guardia / Absorción
+```
+
+Estas cuatro parejas quedan como anclas existentes del diseño.
+
+Las otras seis parejas posibles entre los cinco elementos todavía **no tienen una orientación ofensiva/defensiva cerrada en el contrato** y no deben inventarse por continuidad.
+
+La clasificación de una combinación doble pertenece al diseño de la combinación, no implica que las raíces individuales otorguen automáticamente estadísticas ofensivas o defensivas.
+
+---
+
 ## Afinidad y técnicas
 
 Una raíz puede interactuar con una técnica sin modificar todo el daño del personaje.
