@@ -985,7 +985,7 @@ source_type = REFLECT
 can_trigger_reflect = false
 can_trigger_retaliation = false
 can_trigger_lifesteal = false
-can_trigger_normal_on_hit = false
+can_trigger_on_hit = false
 ```
 
 El motor debe contar además con:
