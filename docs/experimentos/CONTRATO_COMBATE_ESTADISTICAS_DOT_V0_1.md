@@ -1634,13 +1634,13 @@ Reglas:
 - el injerto concede 100% de afinidad elemental para activar requisitos y combinaciones;
 - las técnicas de la raíz secundaria progresan al 90% de ritmo de aprendizaje;
 - sólo puede existir un injerto espiritual permanente por personaje;
-- compatibilidades, conflictos y perfiles ofensivos/defensivos de cada pareja se diseñan por separado y no alteran esta regla base salvo excepción explícita futura.
+- compatibilidades, conflictos e interacciones entre afinidades pueden diseñarse por separado, pero **las raíces no determinan si una combinación es ofensiva, defensiva, de control o utilitaria**; esa función pertenece a cada técnica concreta.
 
 ---
 
 ## Combinaciones dobles ya confirmadas
 
-El juego ya contiene cuatro Definitivas híbridas que sirven como referencia para clasificar combinaciones de dos elementos por orientación de combate.
+El juego ya contiene cuatro Definitivas híbridas que muestran cómo una misma combinación elemental puede expresarse mediante una técnica concreta. **La orientación ofensiva, defensiva, de control o utilitaria pertenece a la técnica, no a la pareja de raíces.**
 
 ### Ofensivas
 
@@ -1670,11 +1670,11 @@ METAL + TIERRA
 → guardia / Absorción
 ```
 
-Estas cuatro parejas quedan como anclas existentes del diseño.
+Estas cuatro técnicas quedan como anclas existentes del diseño.
 
-Las otras seis parejas posibles entre los cinco elementos todavía **no tienen una orientación ofensiva/defensiva cerrada en el contrato** y no deben inventarse por continuidad.
+Las otras seis parejas posibles entre los cinco elementos no necesitan una orientación ofensiva/defensiva propia: una misma pareja puede sostener técnicas de funciones distintas si el diseño de esas técnicas lo justifica.
 
-La clasificación de una combinación doble pertenece al diseño de la combinación, no implica que las raíces individuales otorguen automáticamente estadísticas ofensivas o defensivas.
+La función de combate se define **por técnica**, no por raíz ni por combinación de raíces.
 
 ---
 
