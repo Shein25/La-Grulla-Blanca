@@ -14,6 +14,11 @@ Objetivo de aceptación:
 
 El contrato no reemplaza las fórmulas ya cerradas en `CONTRATO_COMBATE_ESTADISTICAS_DOT_V0_1.md`. Las organiza dentro de un motor genérico.
 
+Registro taxonómico canónico:
+
+- `docs/experimentos/REGISTRO_UNIVERSAL_ESTADISTICAS_PROPIEDADES_COMBATE_V0_1.md` es la **fuente de verdad para nombres, clase, disponibilidad y hooks universales**. Este contrato define cómo se resuelven; el registro define qué propiedades existen.
+- Una propiedad nueva no debe añadirse primero en una técnica ni en el resolver: debe registrarse allí con clase y disponibilidad.
+
 Restricciones de repositorio:
 
 - no tocar `main`;
