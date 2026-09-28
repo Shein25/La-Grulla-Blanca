@@ -874,15 +874,108 @@ Los debuffs estadísticos ordinarios no son Control y Tenacidad no reduce autom�
 
 ---
 
-# 22. Daño elemental y resistencias — SIGUIENTE BLOQUE
+# 22. Daño elemental — CERRADO
 
-Pendiente de cerrar:
-- qué significa una etiqueta elemental;
-- si existe resistencia elemental como estadística universal o sólo como propiedad explícita;
-- ventajas/debilidades entre elementos;
-- interacción con impactos híbridos;
-- relación con DEF universal;
-- límites para evitar duplicar capas defensivas.
+## Principio
+
+Los elementos son **etiquetas ofensivas y de interacción**, no una segunda familia defensiva.
+
+No existen como estadísticas base:
+- Resistencia Fuego;
+- Resistencia Agua;
+- Resistencia Metal;
+- Resistencia Tierra;
+- Resistencia Viento;
+- ni buffs genéricos de resistencia para cada elemento.
+
+La defensa universal contra daño directo sigue siendo **DEF**.
+
+## Componentes elementales
+
+Una porción puede declarar etiquetas como:
+
+```text
+[FUEGO][ELEMENTAL]
+[AGUA][ELEMENTAL]
+[METAL][ELEMENTAL]
+```
+
+Estas etiquetas permiten:
+- bonos de daño elemental;
+- bonos de un elemento específico;
+- requisitos e interacciones de técnicas;
+- aflicciones;
+- ramas;
+- combos futuros.
+
+No añaden una capa defensiva adicional.
+
+## Impactos híbridos
+
+Una acción puede contener varias porciones:
+
+```text
+8 físico + 6 fuego
+```
+
+Cada porción conserva sus etiquetas durante el cálculo ofensivo. Después se suman y la **DEF universal se aplica una sola vez por impacto**.
+
+## Inmunidades excepcionales
+
+Una criatura o efecto futuro puede poseer una inmunidad explícita y excepcional, por ejemplo:
+
+```text
+inmune_fuego: true
+```
+
+Esto no crea una estadística de resistencia ni obliga a diseñar buffs de resistencia elemental. Las inmunidades deben ser raras, temáticas y declaradas explícitamente.
+
+## Wuxing
+
+Los ciclos de generación/control no producen multiplicadores automáticos tipo piedra-papel-tijera.
+
+Se reservan para:
+- interacciones entre técnicas;
+- transformación/consumo de estados;
+- combos;
+- ramas;
+- efectos especiales.
+
+Ejemplo conceptual:
+
+```text
+estado de Madera
+→ técnica de Fuego
+→ interacción especial
+```
+
+No:
+
+```text
+Fuego siempre hace +X% a Metal
+```
+
+## Separación de conceptos
+
+Elemento ≠ tipo físico.
+
+```text
+CORTANTE / CONTUNDENTE / PERFORANTE
+```
+
+describen la forma del daño físico.
+
+```text
+FUEGO / AGUA / METAL / etc.
+```
+
+describen naturaleza elemental.
+
+Ambas dimensiones pueden coexistir dentro de una acción sin crear defensas separadas.
+
+## Regla final
+
+> Todo daño directo, físico o elemental, se mitiga con la misma DEF. Los elementos existen para construcción ofensiva, aflicciones e interacciones, no para multiplicar estadísticas defensivas ni exigir una técnica defensiva específica por elemento.
 
 ---
 
