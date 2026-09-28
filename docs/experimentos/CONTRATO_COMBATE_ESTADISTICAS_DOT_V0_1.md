@@ -40,6 +40,39 @@ Una porción conserva etiquetas de **tipo** y **origen**, por ejemplo:
 
 Un impacto híbrido sigue siendo un solo impacto para Precisión, Crítico, DEF y Absorción.
 
+## 1.1 Técnicas AOE — contrato global CERRADO
+
+Las técnicas marcadas como AOE no eligen un número máximo de blancos.
+
+```text
+AOE
+→ alcanza a todos los NPC hostiles presentes en la sala
+→ incorpora inmediatamente al combate a los hostiles alcanzados
+→ cada objetivo resuelve su propio impacto
+```
+
+Reglas:
+
+- No existe un límite base de 3, 4 o 6 objetivos para una AOE.
+- Las ramas de una técnica AOE no aumentan el número de objetivos: el alcance total de la sala ya pertenece al contrato base.
+- El daño no se divide entre enemigos.
+- Con **2 o más objetivos válidos**, la técnica conserva el 100% de su daño calculado.
+- Con **un único objetivo válido**, la técnica conserva provisionalmente el **65% de su daño calculado**, reproduciendo la regla de duelo ya existente en `ver74`.
+- Ese 65% es una regla global de AOE, no una propiedad individual de cada técnica.
+- El valor queda sujeto a benchmark final junto al resto del balance numérico de técnicas de Arco 1.
+- Si una Concordancia modifica una AOE, debe declarar expresamente qué propiedad modifica. En el rediseño de Arco 1 se prioriza que una Concordancia válida afecte coherentemente a toda la ejecución, salvo excepción documentada.
+
+Consecuencia de diseño:
+
+```text
+unitarget
+→ mejor herramienta de duelo
+
+AOE
+→ herramienta de grupo
+→ pierde eficiencia de daño cuando se fuerza contra un solo enemigo
+```
+
 ---
 
 # 2. Estadísticas nucleares
