@@ -979,14 +979,192 @@ Ambas dimensiones pueden coexistir dentro de una acción sin crear defensas sepa
 
 ---
 
-# 23. Siguientes bloques prioritarios
+# 23. Curación, recuperación y Qi — CERRADO
+
+## Recuperación de Vida
+
+```text
+RECUPERACIÓN DE VIDA
+├─ Curación directa
+├─ Regeneración de Vida
+├─ Robo de Vida
+├─ Vida al impactar
+└─ Vida al matar
+```
+
+### Curación directa
+
+```text
+CURACIÓN_GENERADA =
+(base + bonos planos de curación)
+× (1 + suma de % curación realizada)
+```
+
+Luego:
+
+```text
+CURACIÓN_RECIBIDA =
+CURACIÓN_GENERADA
+× max(0, 1 + suma de % curación recibida)
+```
+
+Y:
+
+```text
+CURACIÓN_REAL =
+min(curación_recibida, Vida máxima - Vida actual)
+```
+
+- La sobrecuración se pierde.
+- No genera Absorción salvo efecto explícito.
+- No critica por defecto.
+- Una prohibición total de curación debe ser una propiedad explícita, no un porcentaje negativo extremo.
+
+### Regeneración de Vida
+
+- Es periódica y distinta de la curación instantánea.
+- Puede existir como buff/efecto.
+- Los modificadores normales de curación pueden afectar curación directa y regeneración de Vida.
+- No afectan Robo de Vida, Vida al impactar ni Vida al matar.
+- El orden exacto entre regeneración y DOT al inicio de turno se decidirá al cerrar el ciclo completo del turno.
+
+### Resultado de curación
+
+Debe poder distinguirse:
+
+```text
+healing_generated
+actual_healing
+overhealing
+```
+
+---
+
+## Qi — recurso de combate
+
+Separar definitivamente:
+
+```text
+qi_actual
+qi_max
+qi_recompensa
+```
+
+`qi_recompensa` no es Qi utilizable en combate.
+
+## Fuentes válidas de recuperación de Qi
+
+**No existe regeneración pasiva de Qi por turno.**
+
+Qi sólo puede recuperarse mediante:
+
+1. **Meditación**.
+2. **Píldoras u otros consumibles explícitos de Qi**.
+3. **Robo/drenaje de Qi** mediante técnicas o efectos.
+4. **Piedras espirituales**.
+5. Otras fuentes futuras sólo si se declaran explícitamente como acciones/consumos; nunca como regeneración automática por turno.
+
+No existirán objetos que otorguen:
+
+```text
++X Qi por turno
+```
+
+ni estadísticas base de regeneración pasiva de Qi.
+
+## Meditación
+
+Meditación es la fuente normal y sistémica de recuperación de Qi.
+
+Puede seguir dependiendo de:
+- raíz espiritual;
+- método de cultivo;
+- vena/condición espiritual de la sala;
+- saturación;
+- heridas meridianas;
+- otros modificadores explícitos.
+
+Los antiguos conceptos `qi_med` y `hp_med` deben reinterpretarse como parámetros de recuperación **mediante meditación**, no como regeneración general de combate.
+
+### Equipo y meditación
+
+Sí pueden existir objetos que aumenten la cantidad de Qi obtenida al meditar.
+
+Ejemplo conceptual:
+
+```text
++2 Qi obtenido al meditar
+```
+
+o:
+
+```text
++X% Qi obtenido mediante meditación
+```
+
+Esto mejora la eficiencia de la acción de meditar, pero **no produce Qi automáticamente**.
+
+## Píldoras
+
+Una píldora puede restaurar Qi instantáneamente:
+
+```text
+qi_actual =
+min(qi_max, qi_actual + recuperación)
+```
+
+El exceso se pierde salvo futura mecánica explícita.
+
+## Piedras espirituales
+
+Las piedras espirituales pueden actuar como recurso consumible para recuperar Qi.
+
+Su uso debe ser explícito y consumir la piedra o la cantidad correspondiente. No equivalen a regeneración pasiva.
+
+## Robo / drenaje de Qi
+
+Queda reservado como efecto de técnicas/equipo.
+
+Ejemplo:
+
+```text
+robar 3 Qi
+```
+
+transfiere como máximo el Qi realmente disponible en el objetivo.
+
+No se crea por ahora una estadística universal de `% Robo de Qi`; se diseña por efecto/técnica para proteger el balance del recurso.
+
+## Separación de sistemas
+
+```text
++% curación
+```
+
+no afecta Qi.
+
+```text
++% Qi al meditar
+```
+
+no afecta curación de Vida.
+
+Curación no elimina Daño Aplazado; sólo aumenta la Vida disponible para soportar sus pagos. Purgar deuda aplazada requiere un efecto específico.
+
+## Regla final
+
+> Qi es un recurso deliberadamente limitado. No se regenera pasivamente durante el combate. Recuperarlo exige meditar, consumir recursos, drenar/robar Qi o usar piedras espirituales. El equipo puede mejorar la eficiencia de la meditación, pero no crear regeneración automática de Qi por turno.
+
+---
+
+# 24. Siguientes bloques prioritarios
 
 1. Cerrar orden de efectos posteriores al impacto.
 2. Definir buffs/debuffs y reducción de DEF.
 3. Cerrar Quemadura.
 4. Cerrar Veneno.
 5. Definir elementos/resistencias.
-6. Definir curación/recuperación/Qi.
+6. Curación/recuperación/Qi — CERRADO.
 7. Fijar política global de redondeo.
 8. Reinterpretar progresión por cultivo y raíces.
 9. Rehacer técnicas.
