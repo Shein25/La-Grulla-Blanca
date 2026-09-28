@@ -1889,6 +1889,11 @@ Principios:
 - su obtención debe constituir un hito relevante y deliberado de progresión, ligado al desarrollo real de ambas disciplinas y a contenido específico;
 - el método concreto de adquisición (maestro, manual, prueba, evento, legado, misión u otro) se diseña por contenido y no se universaliza todavía;
 - poseer afinidad o incluso dos raíces compatibles no concede por sí solo la Definitiva;
+- la obtención de una Definitiva híbrida es **independiente de la raíz principal y del injerto** del personaje;
+- un personaje puede obtener una Definitiva cuyos dos elementos sean ajenos a sus afinidades actuales;
+- obtenerla no obliga al jugador a incorporarla a su build: debe evaluar si su dominio, coste de Qi, cooldown, requisitos y sinergias justifican utilizarla;
+- la afinidad influirá en qué tan natural/eficiente resulte desarrollar y aprovechar la técnica, pero no constituye por sí sola un bloqueo universal de uso;
+- las penalizaciones o eficiencias exactas para híbridas con confluencia, afinidad parcial o afinidad ajena se definirán por separado antes del balance final;
 - las Definitivas híbridas no deben obtener una Concordancia automática por contener dos elementos;
 - cualquier interacción entre Concordancias y Definitivas híbridas debe diseñarse de forma explícita para evitar amplificaciones descontroladas.
 
