@@ -652,3 +652,104 @@ No usa \`DIRECT_DAMAGE\` como fallback.
 | Agua → Metal | templado / estabilidad |
 | Agua → Tierra | erosión / sedimentación |
 | Agua → Viento | difusión / ocultación |
+
+
+---
+
+# 6. TIERRA como origen — APROBADO PARCIALMENTE
+
+Tierra representa peso, contención, asentamiento, persistencia y materialización.
+
+## 6.1 TIERRA → FUEGO · Corazón de Magma
+
+**Identidad:** Tierra contiene el calor e impide que se disipe. La relación prioriza persistencia real cuando el receptor ya la expone; si no existe ningún canal persistente compatible, puede encapsular el calor como un disparador contenido.
+
+### OFFENSIVE
+
+Prioridad:
+
+\`\`\`text
+1. PERSISTENCE
+2. DOT_DURATION
+3. INTENSITY
+4. DOT_POTENCY
+5. AFFLICTION_APPLICATION
+6. CONTAINED_TRIGGER
+\`\`\`
+
+Reglas:
+
+- no existe fallback genérico de \`DIRECT_DAMAGE\`;
+- si alguno de los hooks 1–5 está expuesto, se resuelve sobre el primero compatible;
+- \`CONTAINED_TRIGGER\` sólo se usa cuando no existe una propiedad persistente más rica;
+- un único Eco sigue produciendo una sola resolución primaria.
+
+### Manifestación Fuego de CONTAINED_TRIGGER · Núcleo de Magma
+
+Cuando una técnica ofensiva de Fuego compatible no expone DOT, zona ni otra persistencia aprovechable, \`Tierra→Fuego\` puede crear un estado temporal:
+
+\`\`\`text
+NÚCLEO_DE_MAGMA
+family = CONTAINED_TRIGGER
+element = FIRE
+owner = target
+source = actor
+duration = temporal
+unique_per_source_target = true
+\`\`\`
+
+El Núcleo:
+
+- no es Quemadura;
+- no es DOT;
+- no causa daño por turno;
+- no modifica retroactivamente el impacto que lo creó;
+- espera una nueva interacción ofensiva de Fuego compatible;
+- al detonarse se consume.
+
+### Detonación
+
+Una técnica posterior de Fuego que impacte al objetivo marcado puede detonar el Núcleo.
+
+La detonación crea una porción/paquete secundario de Fuego con reglas propias y sin doble escalado.
+
+Si la técnica detonadora es unitarget:
+- la detonación afecta al objetivo marcado.
+
+Si la técnica detonadora es AOE:
+- la detonación completa se produce sobre el objetivo marcado;
+- puede generar una onda secundaria reducida sobre los demás \`VALID_HOSTILE_COMBATANT\` ya incluidos en esa ejecución AOE;
+- no añade nuevos objetivos fuera del conjunto válido;
+- no incrementa el target cap porque el sistema AOE global no tiene target cap;
+- la onda secundaria debe declararse mediante \`PROPAGATION\`/paquete secundario y no como una nueva selección arbitraria de blancos.
+
+La magnitud, duración exacta y porcentaje de propagación quedan pendientes de benchmark.
+
+### DEFENSIVE
+
+\`\`\`text
+1. INTERNAL_RESOURCE
+2. FORTIFICATION
+3. ABSORPTION
+4. REACTIVE_RESPONSE
+5. DEFENSIVE_DURATION
+\`\`\`
+
+### CONTROL
+
+\`\`\`text
+1. DEBUFF_DURATION
+2. AFFLICTION_APPLICATION
+3. CONTROL_DURATION
+4. CONTROL_POWER
+\`\`\`
+
+### UTILITY
+
+\`\`\`text
+1. ZONE_DURATION
+2. PERSISTENCE
+3. INTERNAL_RESOURCE
+4. DEFENSIVE_DURATION
+\`\`\`
+
