@@ -1157,7 +1157,7 @@ Curación no elimina Daño Aplazado; sólo aumenta la Vida disponible para sopor
 
 ---
 
-# 24. Política global de precisión y redondeo — CANDIDATO
+# 24. Política global de precisión y redondeo — CERRADO
 
 ## Principio general
 
@@ -1314,7 +1314,7 @@ Si en el futuro modificadores porcentuales producen valores fraccionarios de má
 4. Cerrar Veneno.
 5. Definir elementos/resistencias.
 6. Curación/recuperación/Qi — CERRADO.
-7. Política global de redondeo — CANDIDATO.
+7. Política global de redondeo — CERRADO.
 8. Reinterpretar progresión por cultivo y raíces.
 9. Rehacer técnicas.
 10. Recrear equipo.
