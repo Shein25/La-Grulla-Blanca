@@ -1157,7 +1157,156 @@ Curación no elimina Daño Aplazado; sólo aumenta la Vida disponible para sopor
 
 ---
 
-# 24. Siguientes bloques prioritarios
+# 24. Política global de precisión y redondeo — CANDIDATO
+
+## Principio general
+
+**Nunca redondear cálculos intermedios.**
+
+Todas las operaciones de daño, modificadores porcentuales, crítico, DEF, penetración, curación y recuperación conservan precisión decimal mientras el cálculo siga abierto.
+
+El redondeo ocurre únicamente cuando un resultado se convierte en una cantidad discreta que va a modificar un recurso del juego.
+
+## Daño directo
+
+Orden conceptual:
+
+```text
+porciones base
+→ planos
+→ porcentajes ofensivos
+→ crítico
+→ modificadores recibidos
+→ sumar porciones
+→ DEF / penetración
+→ daño_post_DEF_decimal
+→ REDONDEO ÚNICO
+→ paquete de daño entero
+→ Absorción
+→ Vida
+```
+
+No se redondea:
+- cada componente;
+- cada bono;
+- el crítico;
+- la DEF actual;
+- la penetración;
+- cada multiplicador.
+
+Se redondea **una sola vez** después de obtener el daño final post-DEF y antes de consumir Absorción/Vida.
+
+## Método de redondeo
+
+Candidato:
+
+```text
+ROUND_NEAREST
+0.5 o más → entero superior
+menos de 0.5 → entero inferior
+```
+
+Para cantidades no negativas equivale al comportamiento de `Math.round`.
+
+Ejemplos:
+
+```text
+7.49 → 7
+7.50 → 8
+0.49 → 0
+0.50 → 1
+```
+
+No existe daño mínimo obligatorio de 1.
+
+## DOT / aflicciones
+
+Cada activación/tick calcula toda su potencia con precisión decimal y redondea **una sola vez al crear el paquete de daño de ese tick**.
+
+Las cargas no se redondean individualmente antes de sumarse si comparten la misma activación; primero se obtiene el total de la activación y luego se redondea una vez.
+
+## Curación
+
+```text
+curación base
+→ modificadores
+→ curación decimal
+→ REDONDEO ÚNICO
+→ aplicar a Vida
+```
+
+La sobrecuración se calcula después del redondeo del paquete de curación.
+
+## Robo de Vida
+
+- Se calcula usando `actual_hp_damage`.
+- En multigolpe/AOE futuro se acumula el robo potencial decimal de toda la acción.
+- Se aplica el límite por acción.
+- Se redondea **una sola vez al finalizar la acción**.
+- No se redondea por impacto.
+
+Esto evita que muchos impactos pequeños generen recuperación artificialmente mayor o menor sólo por redondeos repetidos.
+
+## Qi
+
+Píldoras, meditación, piedras espirituales y otros efectos calculan su recuperación completa y redondean una sola vez cuando se modifica `qi_actual`.
+
+No existe regeneración pasiva de Qi.
+
+## DEF y Penetración
+
+DEF actual y DEF efectiva pueden conservar decimales internamente.
+
+Ejemplo:
+
+```text
+DEF = 13
+-15% DEF
+→ 11.05
+
+25% penetración
+→ 8.2875
+```
+
+No se convierte prematuramente en 11 u 8.
+
+La DEF decimal participa completa en el cálculo del daño y el resultado del daño se redondea al final.
+
+## Probabilidades
+
+Precisión/Evasión, Crítico, Control/Tenacidad y probabilidades de aplicación pueden conservar decimales.
+
+Ejemplo:
+
+```text
+73.6% de impacto
+```
+
+se compara como 73.6%, no como 74%.
+
+El redondeo visual de la UI no altera el valor mecánico interno.
+
+## Duraciones y stacks
+
+Son cantidades discretas:
+- turnos;
+- ticks;
+- activaciones;
+- stacks.
+
+No admiten fracciones salvo que una mecánica futura lo declare explícitamente.
+
+## Vida máxima y Qi máximo
+
+Si en el futuro modificadores porcentuales producen valores fraccionarios de máximos, se calcula todo el valor derivado y se redondea una sola vez al recomputar el máximo.
+
+## Regla final
+
+> Mantener precisión completa durante el cálculo y redondear una única vez en la frontera donde el resultado se convierte en una modificación real y discreta de un recurso. Nunca redondear por componente ni entre capas de la fórmula.
+
+---
+
+# 25. Siguientes bloques prioritarios
 
 1. Cerrar orden de efectos posteriores al impacto.
 2. Definir buffs/debuffs y reducción de DEF.
@@ -1165,7 +1314,7 @@ Curación no elimina Daño Aplazado; sólo aumenta la Vida disponible para sopor
 4. Cerrar Veneno.
 5. Definir elementos/resistencias.
 6. Curación/recuperación/Qi — CERRADO.
-7. Fijar política global de redondeo.
+7. Política global de redondeo — CANDIDATO.
 8. Reinterpretar progresión por cultivo y raíces.
 9. Rehacer técnicas.
 10. Recrear equipo.
