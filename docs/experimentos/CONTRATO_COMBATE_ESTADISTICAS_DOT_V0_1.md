@@ -1429,19 +1429,19 @@ Estas direcciones se apoyan en técnicas ya existentes:
 
 ### Fuego — CERRADO
 
-La raíz principal de Fuego representa potencia ofensiva directa mediante técnicas.
+La raíz principal de Fuego representa potencia ofensiva directa general.
 
 Rasgo:
 
 ```text
-DAÑO_DIRECTO_TÉCNICA
+DAÑO_DIRECTO
 = daño calculado × 1.10
 ```
 
 Reglas:
-- aumenta **10% el daño directo causado por todas las técnicas**, sin importar su elemento;
-- afecta componentes físicos, elementales e híbridos que formen parte del daño directo de una técnica;
-- no afecta ataques básicos;
+- aumenta **10% el daño directo general** causado por el personaje;
+- afecta ataques normales y técnicas;
+- afecta componentes físicos, elementales e híbridos que formen parte de un impacto directo;
 - no aumenta DOT/aflicciones como Quemadura o Hemorragia;
 - no aumenta Reflect, Retaliation ni otras fuentes reactivas;
 - se integra en el pool porcentual ofensivo normal compatible, no como multiplicador final separado;
