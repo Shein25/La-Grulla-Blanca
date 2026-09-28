@@ -428,7 +428,68 @@ Ninguna de las dos escala por el porcentaje universal de Robo de Vida.
 
 ---
 
-# 14. Reflect / Retaliation — post Arco 1
+# 14. Daño Aplazado — RESERVADO / post Arco 1
+
+Mecánica futura de suavizado temporal del daño. **No forma parte del balance activo de Arco 1**, pero queda reconocida por el contrato para no perderla ni confundirla posteriormente con un DOT.
+
+## Identidad
+
+Aplazamiento no reduce necesariamente el daño total: cambia **cuándo** se pierde la Vida.
+
+```text
+daño directo
+→ DEF
+→ Absorción
+→ daño comprometido a Vida
+→ Aplazamiento
+   ├─ pérdida inmediata
+   └─ deuda futura
+```
+
+## Reglas reservadas
+
+- Sólo actúa sobre daño que ya atravesó DEF y Absorción.
+- No es DOT.
+- No vuelve a tirar Precisión/Evasión.
+- No vuelve a aplicar Crítico.
+- La deuda no vuelve a pasar por DEF.
+- La deuda no vuelve a pasar por Penetración.
+- La deuda no vuelve a pasar por Absorción.
+- La deuda no recibe modificadores de daño DOT.
+- Puede matar por defecto.
+- La deuda se cobra en pagos futuros, preferentemente al final de turnos para conservar una ventana real de reacción.
+- Cada aplicación crea un paquete independiente; recibir daño nuevo no prolonga indefinidamente deuda antigua.
+- Técnicas, ramas o equipo futuros podrán purgar, reducir, convertir o manipular deuda explícitamente.
+
+## Variables futuras sugeridas
+
+Cuando se implemente Aplazamiento, el resultado de impacto deberá distinguir:
+
+```text
+life_damage_committed
+hp_loss_immediate
+deferred_loss_created
+```
+
+cumpliendo:
+
+```text
+life_damage_committed =
+hp_loss_immediate + deferred_loss_created
+```
+
+El Aplazamiento no se considera mitigación adicional: sólo modifica el calendario de pérdida de Vida.
+
+## Interacción futura con Robo de Vida
+
+Si se implementa, Robo de Vida deberá usar el daño real comprometido por el golpe antes de dividirlo entre pérdida inmediata y deuda aplazada, sin contar overkill. El objetivo es que aplazar daño no reduzca artificialmente el daño que realmente consiguió atravesar DEF y Absorción.
+
+## Estado
+
+**RESERVADO. No implementar ni balancear todavía en Arco 1.**
+
+
+# 15. Reflect / Retaliation — post Arco 1
 
 Preparados arquitectónicamente pero no activos en Arco 1.
 
@@ -441,7 +502,7 @@ Preparados arquitectónicamente pero no activos en Arco 1.
 
 ---
 
-# 15. DOT / aflicciones — reglas universales cerradas
+# 16. DOT / aflicciones — reglas universales cerradas
 
 Las familias DOT comparten:
 - ignoran DEF;
@@ -467,7 +528,7 @@ No todos los estados persistentes deben comportarse igual.
 
 ---
 
-# 16. HEMORRAGIA — contrato base CERRADO
+# 17. HEMORRAGIA — contrato base CERRADO
 
 ## Naturaleza
 Aflicción física persistente producida por determinadas acciones cortantes.
@@ -614,7 +675,7 @@ Todo eso pertenece a ramas, nodos, técnicas, equipo o efectos explícitos.
 
 ---
 
-# 17. Quemadura — candidato avanzado, aún no congelado
+# 18. Quemadura — candidato avanzado, aún no congelado
 
 Dirección actual:
 - DOT elemental de Fuego;
@@ -630,7 +691,7 @@ Dirección actual:
 
 ---
 
-# 18. Veneno — pendiente
+# 19. Veneno — pendiente
 
 Dirección actual:
 - más stacks;
@@ -641,7 +702,7 @@ Dirección actual:
 
 ---
 
-# 19. Siguientes bloques prioritarios
+# 20. Siguientes bloques prioritarios
 
 1. Cerrar orden de efectos posteriores al impacto.
 2. Definir buffs/debuffs y reducción de DEF.
