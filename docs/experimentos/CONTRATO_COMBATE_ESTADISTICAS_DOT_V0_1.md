@@ -1638,6 +1638,50 @@ Reglas:
 
 ---
 
+## Concordancias por rama elemental — EN DEFINICIÓN
+
+### Rama Fuego — CERRADA CONCEPTUALMENTE
+
+Una técnica pura de Fuego deja un **Eco de Fuego**. Si la siguiente técnica compatible consume ese eco, la concordancia depende del elemento receptor.
+
+No existe un bono universal de Concordancia.
+
+```text
+FUEGO → TIERRA
+Cimiento cocido
+Identidad: consolidación.
+- ofensiva: potencia la magnitud ofensiva principal de la técnica Tierra;
+- defensiva: potencia la DEF o Absorción generada por la técnica Tierra.
+```
+
+```text
+FUEGO → METAL
+Forja / templado
+Identidad: ruptura o endurecimiento.
+- ofensiva: mejora Penetración;
+- defensiva: mejora la magnitud defensiva propia de la técnica Metal.
+```
+
+```text
+FUEGO → AGUA
+Presurización / vapor
+Identidad: presión y transformación.
+- ofensiva/control: potencia Control o debilitación compatible;
+- defensiva: habilita una respuesta reactiva propia de la técnica Agua.
+```
+
+```text
+FUEGO → VIENTO
+Corriente ascendente / aceleración
+Identidad: aceleración.
+- ofensiva: mejora una propiedad crítica compatible;
+- defensiva: mejora la Evasión generada por la técnica Viento.
+```
+
+Las magnitudes numéricas quedan pendientes hasta probar estas identidades sobre técnicas reales.
+
+---
+
 ## Combinaciones dobles ya confirmadas
 
 El juego ya contiene cuatro Definitivas híbridas que muestran cómo una misma combinación elemental puede expresarse mediante una técnica concreta. **La orientación ofensiva, defensiva, de control o utilitaria pertenece a la técnica, no a la pareja de raíces.**
