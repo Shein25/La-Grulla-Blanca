@@ -1883,7 +1883,11 @@ Principios:
 - cada técnica debe declarar con claridad su elemento, rol, efecto principal, coste, requisitos y compatibilidades de Concordancia;
 - no se mantiene una técnica sólo por continuidad histórica si genera contradicciones con el nuevo sistema;
 - el balance numérico se hará después de cerrar primero la identidad y función de cada técnica;
-- las Definitivas híbridas se tratan por separado del catálogo común y permanecen fuera de Concordancias.
+- las Definitivas híbridas se tratan por separado del catálogo común y permanecen fuera de Concordancias;
+- las **cinco técnicas iniciales**, una por cada elemento canónico, serán **ofensivas**;
+- el prólogo debe presentar una opción ofensiva inicial para Fuego, Metal, Agua, Tierra y Viento;
+- la diferenciación hacia defensa, control, aflicciones, apoyo o utilidad aparecerá después mediante nuevas técnicas, ramas y progresión;
+- las cinco técnicas iniciales no necesitan compartir la misma mecánica ofensiva: pueden diferenciarse por daño directo, precisión, control asociado, preparación de estados u otras propiedades compatibles, siempre que su función principal siga siendo ofensiva;
 
 ### Recordatorio de prólogo / selección inicial — PENDIENTE
 
