@@ -927,3 +927,14 @@ VIENTO  0/3 pendiente
 ```
 
 Total actual: 12/15 técnicas básicas de Arco 1 diseñadas.
+
+
+---
+
+# Nota global — CONCORDANCIAS LEGACY / SUPERADAS
+
+Cualquier mapeo antiguo de Concordancia escrito dentro de una técnica como aumento absoluto (`+1 DEF`, `+1 stack`, `+N puntos`, etc.) se considera **referencia histórica de intención**, no magnitud canónica.
+
+La matriz global de Concordancias prevalece.
+
+Cuando una Concordancia aumente una magnitud escalable deberá hacerlo porcentualmente sobre el hook receptor. Las transformaciones discretas sólo se conservan cuando son estructurales y coherentes con la identidad global de la relación.
