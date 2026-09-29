@@ -1157,3 +1157,48 @@ Estado:
 
 Siguiente única etapa:
 - ETAPA 8C — Corteza candidata contra 3 enemigos.
+
+
+### ETAPA 8C — Corteza Endurecida · 3 enemigos — CERRADA
+
+Documento:
+- `docs/experimentos/ETAPA8C_CORTEZA_ENDURECIDA_3_ENEMIGOS_2026-09-29.md`
+
+Escenario:
+- Tierra HP33 / Qi31 / DEF1 / EVA5;
+- 3 enemigos reales 10+9+9 HP;
+- PREC90 / EVA20 / DEF2 / ataque 2d4+1.
+
+Comparación:
+- Piel base PROVISIONAL: DEF total 4 -> 5 -> 5.
+- Piel + Corteza: DEF total 5 -> 6 -> 6.
+
+200.000 combates:
+- base: 57.90% win / 19.50% HP restante.
+- Corteza: 70.03% win / 28.83% HP restante.
+- delta win ≈ +12.13 pp.
+- delta HP ≈ +9.33 pp.
+- extensión: 99.42% -> 92.34%.
+
+Repetición 4×100k:
+- delta win: +12.239 / +12.117 / +11.862 / +11.947 pp.
+- delta HP: +9.40 / +9.05 / +9.03 / +9.09 pp.
+
+Lectura:
+- fortificación escala fuerte con múltiples impactos, como se esperaba;
+- aun así, Corteza requiere inversión de Tramo I y no devuelve crecimiento de
+  DEF en el tercer Arraigo;
+- Piel+Corteza (~70%) queda apenas por encima de la antigua Piel base
+  CURRENT (~68%) en 3 enemigos;
+- mayor DEF reduce ON_HP_DAMAGE y autolimita Arraigo/extensión.
+
+Decisión:
+- `CORTEZA_PLUS1_CAP` pasa de LAB a **PROVISIONAL**.
+- curva de contribución Arraigo: 2 / 3 / 3;
+- Piel+Corteza aporta +4 / +5 / +5 DEF;
+- con DEF base1: DEF total 5 -> 6 -> 6.
+
+Guardia para Tramos II/III:
+- no continuar con escalera lineal de +1 DEF permanente;
+- Estratos Compactos y Cuerpo de Roca siguen PENDIENTES DE REBENCHMARK;
+- explorar retornos decrecientes, condiciones o ventanas defensivas.
