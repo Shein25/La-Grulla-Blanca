@@ -998,6 +998,107 @@ Si no existe hook compatible, el Eco no se consume por Concordancia; al completa
 
 ---
 
+## 8.2 Paso de Nube Ligera — defensiva
+
+**APROBADA.**
+
+Identidad: defensa de Viento basada en Evasión, adaptación y continuidad. "Paso" es una imagen narrativa; la técnica no introduce movilidad, Velocidad ni una segunda tirada de esquiva.
+
+Base provisional:
+
+- coste: 7 Qi;
+- duración: 2 turnos;
+- +15 Evasión;
+- genera Eco de Viento al activarse;
+- no se acumula consigo misma;
+- reactivar reemplaza la instancia y reinicia duración.
+
+### Tramo I
+
+**Nube Velada — evasión**
+- +5 Evasión.
+
+**Estela Vacía — respuesta**
+- primera Evasión válida mientras Paso esté activo;
+- crea `CORRIENTE_CLARA`;
+- la siguiente técnica pura de Viento obtiene +5 Precisión;
+- una vez por activación.
+
+**Respiración Ligera — eficiencia**
+- coste 7 → 6 Qi.
+
+### Tramo II
+
+**Cuerpo de Nube — evasión**
+- +5 Evasión;
+- con Nube Velada: Paso alcanza provisionalmente +25 Evasión.
+
+**Huella del Cielo — respuesta**
+- sola: primera Evasión válida → siguiente técnica Viento +5 Precisión;
+- con Estela Vacía: `CORRIENTE_CLARA` otorga +10 Precisión;
+- no concede una acción gratuita ni contraataque automático.
+
+**Circulación del Vendaval — eficiencia**
+- −10% coste;
+- con Respiración Ligera: duración 2 → 3 turnos.
+
+### Tramo III
+
+**Nube Inalcanzable — evasión**
+- +5 Evasión;
+- ruta completa provisional: +30 Evasión total otorgada por Paso;
+- magnitud final pendiente de benchmark.
+
+**Paso sin Sombra — respuesta**
+- sola: primera Evasión válida → siguiente técnica Viento +5 Precisión;
+- ruta completa: `CORRIENTE_CLARA` otorga +15 Precisión y +5 pp crítico a la siguiente técnica Viento;
+- se consume mediante la regla universal de modificación de la siguiente acción;
+- no genera una segunda acción.
+
+**Aliento de las Nubes — eficiencia**
+- −10% coste;
+- ruta completa: −1 Qi, −20% coste y duración máxima 4 turnos;
+- sujeto al piso global futuro de Qi.
+
+### Hooks canónicos
+
+```text
+role_primary = DEFENSIVE
+tags = [TECHNIQUE, ELEMENTAL, WIND, DEFENSIVE]
+
+mechanical_hooks BASE:
+- EVASION_GRANTED
+- DEFENSIVE_DURATION
+
+mechanical_hooks POR RAMA:
+- REACTIVE_RESPONSE
+- QI_COST_PERCENT
+- PRECISION
+- CRIT_CHANCE
+
+concordance_hooks BASE:
+- EVASION_GRANTED
+- DEFENSIVE_DURATION
+
+concordance_hooks POR RAMA:
+ESTELA:
+- REACTIVE_RESPONSE
+  trigger = successful_evasion
+  scale_target = next_wind_precision
+
+EFFICIENCY:
+- QI_COST_PERCENT
+```
+
+Recepción elemental:
+
+- Fuego→Viento: prioriza `EVASION_GRANTED`;
+- Metal→Viento: `QI_COST_PERCENT` si la rama lo expone; después `REACTIVE_RESPONSE`; después `EVASION_GRANTED`;
+- Agua→Viento: `REACTIVE_RESPONSE` si la rama lo expone; si no, `DEFENSIVE_DURATION`;
+- Tierra→Viento: `DEFENSIVE_DURATION`.
+
+---
+
 # 9. Correcciones retroactivas obligatorias ya identificadas
 
 Antes de considerar cerrado el paquete completo de Arco 1:
@@ -1032,10 +1133,10 @@ FUEGO   3/3 diseñadas
 METAL   3/3 diseñadas
 AGUA    3/3 diseñadas
 TIERRA  3/3 diseñadas
-VIENTO  1/3 diseñadas
+VIENTO  2/3 diseñadas
 ```
 
-Total actual: 13/15 técnicas básicas de Arco 1 diseñadas.
+Total actual: 14/15 técnicas básicas de Arco 1 diseñadas.
 
 
 ---
