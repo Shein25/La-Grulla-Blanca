@@ -479,3 +479,45 @@ Resultado LAB:
 
 No se modifica el contrato CANON todavía; la decisión se sostiene como
 resultado de benchmark para los tests siguientes.
+
+
+---
+
+## Actualización posterior — Arrastre + Peso en PHASE C
+
+Se añadió:
+
+- `experimentos/balance_nuevo/phase_c_arrastre_peso_lab.py`
+- `docs/experimentos/LAB_LIANQI_I_PHASE_C_ARRASTRE_PESO_2026-09-29.md`
+
+Resultado principal con PREC enemiga 90:
+
+- Agua sin Arrastre: ~74.4% win.
+- Arrastre 45% efectivo: ~86.2%.
+- Arrastre 55% efectivo: ~87.6%.
+- Arrastre 65% efectivo: ~88.8%.
+
+Con ~55% efectivo Agua queda cerca de Viento sin tocar su daño y evita ~1.46
+acciones enemigas por combate, respetando el lockout.
+
+Peso:
+- baseline Tierra ~89.6% win;
+- con Peso conservador (~1 acción futura): ~91%;
+- con interpretación de 2 acciones futuras: ~92.2–92.5%;
+- STACK_REFRESH vs INDEPENDENT cambia poco en este duelo;
+- la semántica exacta de stacking/duración sigue PENDIENTE.
+
+Con utilidades activas y PREC enemigo 90:
+- Fuego ~95.7%;
+- Metal ~90.5%;
+- Agua ~87.7%;
+- Tierra ~92.6%;
+- Viento ~88.1%;
+- promedio ~90.9%.
+
+Conclusión LAB:
+- no subir daño de Agua por ahora;
+- PREC90 sigue como centro LAB de criatura común;
+- PREC95 como referencia más exigente;
+- resolver stacking/duración de Peso y Tenacidad/base_control antes de PASS de
+  PHASE C.
