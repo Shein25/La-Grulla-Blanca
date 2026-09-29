@@ -786,7 +786,11 @@ al activar:      +3 DEF / +3 Tenacidad
 - al alcanzar Arraigo máximo: 5% Vida máxima;
 - una vez por activación, si baja de 30% Vida mientras Piel sigue activa: otro 5% Vida máxima.
 
-### Concordancias receptoras aprobadas
+### Concordancias receptoras — LEGACY / NO CANÓNICAS
+
+> Las entradas siguientes conservan intención histórica, pero sus magnitudes y hooks quedaron superados por la matriz global y la regla de escalado relativo. No deben implementarse. El mapeo canónico se declarará mediante `concordance_hooks[]`.
+
+
 
 **Fuego → Tierra · Cimiento cocido**
 - +1 DEF adicional mientras Piel permanezca activa.
@@ -870,7 +874,11 @@ Base provisional:
 - ruta completa: siguiente técnica Tierra +15 Precisión;
 - si la receptora puede generar Peso, consume Resonancia y genera +1 carga de Peso adicional.
 
-### Concordancias receptoras aprobadas
+### Concordancias receptoras — LEGACY / NO CANÓNICAS
+
+> Las entradas siguientes conservan intención histórica, pero no son autoridad mecánica. Se reemplazarán por el mapeo formal de `concordance_hooks[]`.
+
+
 
 **Fuego → Tierra · Cimiento cocido**
 - +15% daño directo para toda la ejecución.
