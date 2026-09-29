@@ -1439,3 +1439,61 @@ Estado:
 
 Siguiente única etapa:
 - ETAPA 10C — Cuerpo de Roca contra 3 enemigos.
+
+
+### ETAPA 10C — Cuerpo de Roca · 3 enemigos — CERRADA
+
+Documento:
+- `docs/experimentos/ETAPA10C_CUERPO_ROCA_3_ENEMIGOS_2026-09-29.md`
+
+Runner/checkpoint:
+- `experimentos/balance_nuevo/etapa10c_cuerpo_roca_3enemigos.py`
+
+Escenario:
+- Tierra HP33 / Qi31 / DEF1 / EVA5;
+- 3 enemigos 10+9+9 HP;
+- PREC90 / EVA20 / DEF2 / ataque 2d4+1.
+
+Resultado 200k:
+- Piel base: 57.90% win / 19.50% HP / extensión99.42%.
+- Piel + Roca: 66.35% / 25.67% / extensión99.43%.
+- Corteza + Estratos: 71.71% / 30.53% / extensión88.59%.
+- Corteza + Estratos + Roca: 73.87% / 32.89% / extensión88.52%.
+
+Efecto Roca:
+- sobre Piel base: +8.45 pp win / +6.18 pp HP.
+- sobre ruta Corteza+Estratos: +2.16 pp win / +2.36 pp HP.
+
+Replicación 4×50k:
+- Piel base: +8.098 a +8.506 pp win.
+- ruta completa previa: +2.088 a +2.562 pp win.
+
+Usos Guardia:
+- ~2.65 por combate sobre Piel base.
+- ~1.87 sobre Corteza+Estratos.
+
+Hallazgo:
+- no escala linealmente con atacantes porque sólo puede armarse 1 Guardia por turno;
+- Arraigo máximo y extensión permanecen prácticamente sin cambios;
+- fuerte retorno decreciente al apilar con las ramas previas.
+
+Decisión:
+- `ROCA_GUARD_MAX_3` pasa de LAB a **PROVISIONAL** para Cuerpo de Roca.
+- no CANON.
+- no runtime/HTML.
+
+Regla PROVISIONAL:
+- Piel activa + Arraigo3;
+- al inicio del turno del usuario, arma 1 Guardia;
+- primer impacto directo conectado del turno: +3 DEF sólo para ese impacto;
+- evasión no consume;
+- alcanzar Arraigo3 durante acciones enemigas no arma retroactivamente.
+
+Estado ruta fortificación:
+- Piel base PROVISIONAL.
+- Corteza Endurecida PROVISIONAL.
+- Estratos Compactos PROVISIONAL.
+- Cuerpo de Roca PROVISIONAL.
+
+Guardia:
+- revalidar Tramos I–III contra perfiles enemigos autoritativos LianQi II–IV cuando existan.
