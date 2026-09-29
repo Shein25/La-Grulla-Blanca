@@ -95,7 +95,8 @@ class HitResult:
     rolled_damage: float
     damage_before_def: float
     effective_def: float
-    damage_after_def: float
+    damage_after_def_decimal: float
+    damage_after_def: int
 
 
 def hit_probability(attacker: ActorStats, target: ActorStats, technique: Technique) -> float:
@@ -117,7 +118,7 @@ def resolve_direct_hit(
     target_count: int = 1,
 ) -> HitResult:
     if technique.damage is None:
-        return HitResult(False, False, 0, 0, effective_def(attacker, target, technique), 0)
+        return HitResult(False, False, 0, 0, effective_def(attacker, target, technique), 0, 0)
 
     if rng.random() >= hit_probability(attacker, target, technique):
         return HitResult(False, False, 0, 0, effective_def(attacker, target, technique), 0)
@@ -135,7 +136,10 @@ def resolve_direct_hit(
         modified *= technique.aoe_single_target_scalar
 
     edef = effective_def(attacker, target, technique)
-    after_def = max(0.0, modified - edef)
+    after_def_decimal = max(0.0, modified - edef)
+    # Contrato nuevo §24: un único redondeo al crear el paquete discreto,
+    # después de DEF y antes de Absorción/Vida.
+    after_def = round_half_up(after_def_decimal)
 
     return HitResult(
         hit=True,
@@ -143,6 +147,7 @@ def resolve_direct_hit(
         rolled_damage=rolled,
         damage_before_def=modified,
         effective_def=edef,
+        damage_after_def_decimal=after_def_decimal,
         damage_after_def=after_def,
     )
 
@@ -152,6 +157,7 @@ class MonteCarloSummary:
     iterations: int
     hit_rate: float
     crit_rate_per_action: float
+    mean_damage_after_def_decimal: float
     mean_damage_after_def: float
     median_damage_after_def: float
     p10_damage_after_def: float
@@ -179,6 +185,7 @@ def monte_carlo_hit(
     target_count: int = 1,
 ) -> MonteCarloSummary:
     rng = random.Random(seed)
+    damages_decimal: list[float] = []
     damages: list[float] = []
     hits = 0
     crits = 0
@@ -187,13 +194,15 @@ def monte_carlo_hit(
         r = resolve_direct_hit(rng, attacker, target, technique, target_count)
         hits += int(r.hit)
         crits += int(r.critical)
-        damages.append(r.damage_after_def)
+        damages_decimal.append(r.damage_after_def_decimal)
+        damages.append(float(r.damage_after_def))
 
     damages.sort()
     return MonteCarloSummary(
         iterations=iterations,
         hit_rate=hits / iterations,
         crit_rate_per_action=crits / iterations,
+        mean_damage_after_def_decimal=statistics.fmean(damages_decimal),
         mean_damage_after_def=statistics.fmean(damages),
         median_damage_after_def=statistics.median(damages),
         p10_damage_after_def=_percentile(damages, 0.10),
@@ -206,6 +215,7 @@ def as_dict(summary: MonteCarloSummary) -> dict:
         "iterations": summary.iterations,
         "hit_rate": summary.hit_rate,
         "crit_rate_per_action": summary.crit_rate_per_action,
+        "mean_damage_after_def_decimal": summary.mean_damage_after_def_decimal,
         "mean_damage_after_def": summary.mean_damage_after_def,
         "median_damage_after_def": summary.median_damage_after_def,
         "p10_damage_after_def": summary.p10_damage_after_def,
