@@ -1,0 +1,39 @@
+{
+  "project": "La Grulla Blanca",
+  "date": "2026-09-29",
+  "checkpoint": "A07.6.4B_CLOSED",
+  "snapshot_branch": "snapshot/handoff-2026-09-29-a07-6-4b",
+  "astra_commit": "c10943a168a16477719c3eb7014508f439f86461",
+  "astra_parent": "8bafa20d8d9e2a5c082eaf4a77e18f506af69ae1",
+  "package_sha256": "730f6d5badf02f32eb1078a11bede1dc5fb044ff8d7056477900a4c4e6e59d3b",
+  "runtime": {
+    "file": "grulla-blanca_ver76.html",
+    "sha256": "b0966fe6d4d263519e5c88d2f93cdd29dc0d3a595c3d63a0f6b3b4426eac12cd",
+    "save_schema_version": 2
+  },
+  "status": {
+    "A07.6.4A": "CLOSED",
+    "A07.6.4B": "CLOSED",
+    "A07.6.4C-A": "NEXT"
+  },
+  "verification": {
+    "A07.6.4B": "49/49 PASS",
+    "regression": "329/330; historical HTML hash sentinel only",
+    "stress": "256/256 primary exchanges; bounded; no loop/replay"
+  },
+  "runtime_flags": {
+    "MODULAR_HOST_IMPLEMENTED": true,
+    "PRODUCTIVE_BINDINGS_CONNECTED": false,
+    "runtimeConnected": false,
+    "browserExecuted": false,
+    "htmlConnected": false
+  },
+  "open_gaps": [
+    "A0764_VERIFIED_PRODUCTIVE_BINDINGS",
+    "A0764B_NATIVE_LIFECYCLE_BINDING",
+    "A0764B_EXTERNAL_SOURCE_RECONCILIATION",
+    "A0764B_BROWSER_PACKAGING_GATE"
+  ],
+  "next": "A07.6.4C-A audit real productive bindings/lifecycle/packaging before any HTML connection",
+  "note": "Remote snapshot is documentary; Astra local integration commits are not necessarily present on GitHub."
+}
