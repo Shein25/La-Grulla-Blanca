@@ -277,12 +277,12 @@ ANTI_HEAL
 ```text
 CONTROL_POWER
 CONTROL_DURATION
-MOBILITY_REDUCTION
 EVASION_DEBUFF
 PRECISION_DEBUFF
 ACTION_DENIAL
 INTERRUPT
 STAT_DEBUFF
+DEBUFF_DURATION
 ```
 
 ## 6.4 Defensivos
@@ -323,9 +323,12 @@ CHARGE
 AURA
 STANCE
 SUMMON
+ZONE
+ZONE_DURATION
 DEFERRED_DAMAGE
 IMMUNITY_WINDOW
 CONTROL_LOCKOUT
+CONTAINED_TRIGGER
 ```
 
 Una técnica no tiene obligación de exponer todas las capacidades asociadas a su rol.
@@ -768,13 +771,11 @@ Familias preparadas:
 ```text
 SKIP_ACTION
 STUN
-ROOT
 INTERRUPT
 SILENCE
 DISARM
 FEAR
 FORCED_TARGET
-MOVEMENT_DENIAL
 ```
 
 No todas están activas en Arco 1.
@@ -1202,7 +1203,7 @@ elemento de técnica receptora = DESTINO
 ↓
 consultar contrato ORIGEN→DESTINO
 ↓
-consultar rol + hooks reales de receptora
+consultar role_primary + concordance_hooks[] de receptora
 ↓
 encontrar canal compatible según prioridad
 ↓
@@ -1210,7 +1211,7 @@ producir modificador/transformation descriptor
 ↓
 si hubo resolución válida: consumir Eco
 ↓
-si no hubo propiedad compatible: conservar Eco
+si no hubo propiedad compatible: no consumir Eco; la generación posterior de un Eco nuevo puede sustituirlo según §38.2
 ```
 
 ## 24.2 No fallback genérico
@@ -1263,14 +1264,18 @@ Ejemplo conceptual:
 FUEGO → TIERRA
 
 OFFENSIVE:
-1. STRUCTURAL_MAGNITUDE
-2. IMPACT
-3. compatible rupture property
+1. DIRECT_DAMAGE
+2. CONTROL_POWER
+3. DEF_SHRED
+4. PERCENT_PENETRATION
+5. FLAT_PENETRATION
 
 DEFENSIVE:
 1. DEF_GRANTED
 2. ABSORPTION
 3. FORTIFICATION
+4. TENACITY_GRANTED
+5. DEFENSIVE_DURATION
 ```
 
 Las 20 relaciones dirigidas deberán recibir este tratamiento antes de cerrar Concordancias numéricas.
@@ -1511,9 +1516,9 @@ máximo una vez por turno
 Debe componerse con:
 
 ```text
-MODIFY_STAT
+MODIFY_STAT_TEMP
 ON_HIT_RECEIVED
-CHECK_EFFECT
+condition: has_effect(effect_family)
 APPLY_EFFECT
 RESTORE_QI
 once_per_turn
@@ -1757,7 +1762,7 @@ Reglas:
    - el resolver inspecciona el Eco existente;
    - busca una relación ORIGEN→DESTINO;
    - busca un hook compatible.
-6. Si no existe hook compatible, la acción continúa y el Eco **no se consume**.
+6. Si no existe hook compatible, la acción continúa y el Eco **no se consume por Concordancia**. Esto no impide que, al finalizar una ejecución válida, la propia técnica genere un Eco nuevo y sustituya el anterior conforme a las reglas 1 y 10.
 7. Si existe hook compatible y la acción pasa validación/coste, el Eco queda comprometido y se consume al comenzar la ejecución.
 8. Si posteriormente el impacto falla por Evasión, el Eco sigue gastado: la energía ya fue canalizada.
 9. Una acción que consumió un Eco **no genera otro Eco al finalizar esa misma acción** por defecto.
@@ -2196,3 +2201,39 @@ Una técnica concreta que no expone ningún hook compatible:
 - no consume Eco.
 
 No es obligatorio que cada relación tenga simultáneamente receptor ofensivo, defensivo, Control y utilidad.
+
+
+## 38.23 Previsualización de Concordancia y coste de Qi
+
+Para cualquier Concordancia capaz de modificar el coste de la acción se introduce una fase de **previsualización sin consumo**:
+
+```text
+DECLARE_ACTION
+→ CONCORDANCE_PREVIEW
+→ CALCULATE_FINAL_COST
+→ VALIDATE_COST
+→ PAY_COST
+→ COMMIT_CONCORDANCE
+→ EXECUTING
+```
+
+Reglas:
+
+- `CONCORDANCE_PREVIEW` puede leer el Eco y resolver qué transformación sería aplicable;
+- esta fase no consume ni sustituye el Eco;
+- sólo las propiedades declaradas como `PRE_COST` pueden modificar el coste;
+- si la acción no supera validación o pago, el Eco permanece sin consumir;
+- si la acción supera validación y existe una Concordancia válida, el Eco se compromete y se consume al comenzar `EXECUTING`;
+- las Concordancias que no afectan coste pueden resolverse en preview pero sus cambios no se materializan hasta el compromiso;
+- `QI_COST_PERCENT` de Concordancia se aplica como capa local de esa ejecución y no como modificación permanente del pool global del actor.
+
+Forma conceptual:
+
+```text
+coste_tras_modificadores_normales
+× (1 - concordance_cost_scale)
+→ piso_global_de_coste
+→ redondeo_final
+```
+
+El porcentaje exacto queda pendiente de benchmark.
