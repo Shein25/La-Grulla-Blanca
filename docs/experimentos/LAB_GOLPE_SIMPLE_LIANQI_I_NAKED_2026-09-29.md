@@ -191,3 +191,99 @@ Runner reproducible:
 `experimentos/balance_nuevo/basic_attack_phase_a_lab.py`
 
 El runner no modifica ninguna configuración CANON/PROVISIONAL.
+
+
+---
+
+## Barrido completo PHASE A — 200.000 acciones por combinación
+
+Se ejecutó una segunda validación sobre la parrilla completa:
+
+- Evasión: 0 / 10 / 20 / 30 / 40.
+- DEF: 0 / 1 / 2 / 3 / 4 / 5 / 6.
+- raíces: Fuego / Metal / Agua / Tierra / Viento.
+- candidatos básicos principales: B6, B6.5 estable, B6.5 medio y B7.
+- técnica de comparación: variante `narrow` de cada técnica inicial.
+
+Se mantuvieron todas las propiedades CANON de raíz y las propiedades
+PROVISIONAL de las técnicas. El equipo permaneció totalmente excluido.
+
+### Premium de técnica y anulaciones por DEF
+
+Los porcentajes de cero de la tabla siguiente son **impactos que sí acertaron
+pero cuya DEF dejó el paquete final en 0**; no incluyen fallos por Evasión.
+
+| DEF | B6 premium medio | B6 cero/hit | B6.5 estable premium | B6.5 estable cero/hit | B6.5 medio premium | B6.5 medio cero/hit | B7 premium | B7 cero/hit |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 0 | 1.48x | 0% | 1.36x | 0% | 1.37x | 0% | 1.27x | 0% |
+| 1 | 1.57x | 0% | 1.42x | 0% | 1.43x | 0% | 1.31x | 0% |
+| 2 | 1.69x | 0% | 1.50x | 0% | 1.51x | 0% | 1.36x | 0% |
+| 3 | 1.96x | ~5.9% | 1.68x | 0% | 1.69x | 0% | 1.49x | 0% |
+| 4 | 2.31x | ~17.6% | 1.92x | 0% | 1.93x | ~15.7% | 1.63x | ~5.9% |
+| 5 | 2.62x | ~28.7% | 2.18x | ~14.2% | 2.07x | ~25.2% | 1.71x | ~13.0% |
+| 6 | 3.48x | ~50.2% | 2.91x | ~37.8% | 2.45x | ~41.3% | 1.98x | ~28.5% |
+
+Los premiums son promedios descriptivos del barrido de raíces/Evasión; no
+representan una criatura concreta.
+
+### Lectura del barrido
+
+1. **B6 empieza a romperse en DEF 3.**
+   Ya aparecen impactos conectados anulados. En DEF 4 el fenómeno deja de ser
+   excepcional.
+
+2. **B6.5_STABLE = 1d4+4 posee una frontera muy limpia.**
+   Mantiene 0% de impactos conectados anulados hasta DEF 4 inclusive.
+   Recién en DEF 5 la armadura empieza a vencer realmente al ataque básico.
+
+3. **B6.5_MEDIUM = 1d6+3 es más dramático, pero menos fiable.**
+   Funciona igual de bien hasta DEF 3, pero en DEF 4 ya puede tirar 4 y quedar
+   completamente anulado. Su cola superior, a cambio, sobrevive algo mejor
+   cuando la DEF alcanza 5–6.
+
+4. **B7 es claramente el control alto.**
+   Tolera mejor DEF elevada, pero contra DEF baja deja demasiado poco espacio
+   de daño bruto para justificar ciertas técnicas antes de valorar sus
+   propiedades secundarias.
+
+5. **DEF 4 es el punto de discriminación más útil del laboratorio.**
+   Permite separar con claridad la identidad de un fallback fiable
+   (`1d4+4`) de uno más variable (`1d6+3`) sin introducir todavía una
+   criatura real.
+
+### Hipótesis de diseño que emerge
+
+Si el ataque básico debe representar una acción marcial fiable cuando falta
+Qi, mientras que una defensa realmente alta debe exigir técnicas, penetración
+o recursos especiales, `B6_5_STABLE = 1d4+4` es actualmente el candidato LAB
+más informativo:
+
+- media 6.5;
+- rango 5–8;
+- coste 0 Qi;
+- no activa propiedades elementales por sí mismo;
+- conserva modificadores generales de la raíz;
+- ningún impacto acertado queda a 0 hasta DEF 4 en este barrido;
+- DEF 5+ empieza a actuar como una barrera real al daño marcial común.
+
+Esto **NO lo convierte en CANON**. La interpretación depende de dónde
+terminemos ubicando la DEF ordinaria y la DEF de enemigos especialmente
+acorazados de LianQi I.
+
+`1d6+3` se conserva como alternativa si decidimos que el golpe simple debe
+tener más oscilación y alguna posibilidad de superar mejor defensas altas.
+
+## Regla para las etapas II–IV
+
+Este resultado no anticipa estadísticas de equipo.
+
+El orden se mantiene:
+
+1. cerrar LianQi I NAKED;
+2. cerrar economía de Qi y combate completo de LianQi I;
+3. recién después diseñar el equipo de LianQi II–IV;
+4. reejecutar por etapa NAKED / MINIMAL / EXPECTED / HIGH_ROLL.
+
+No se reducirá artificialmente el poder base de LianQi I para reservar
+"espacio" a estadísticas futuras. Las capas de equipo y Tramos deberán
+demostrar su propio presupuesto marginal cuando sean incorporadas.
