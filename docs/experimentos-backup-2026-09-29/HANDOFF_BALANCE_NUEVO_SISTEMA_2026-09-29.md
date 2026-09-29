@@ -1115,3 +1115,45 @@ Estado:
 
 Siguiente única etapa:
 - ETAPA 8B — CORTEZA_PLUS1_CAP contra 2 enemigos.
+
+
+### ETAPA 8B — Corteza Endurecida · 2 enemigos — CERRADA
+
+Documento:
+- `docs/experimentos/ETAPA8B_CORTEZA_ENDURECIDA_2_ENEMIGOS_2026-09-29.md`
+
+Escenario:
+- Tierra HP33 / Qi31 / DEF1 / EVA5;
+- 2 enemigos reales de 14 HP;
+- PREC90 / EVA20 / DEF2 / ataque 2d4+1.
+
+Comparación:
+- Piel base PROVISIONAL: DEF total 4 -> 5 -> 5.
+- Piel + Corteza candidata: DEF total 5 -> 6 -> 6.
+
+200.000 combates:
+- base: 84.91% win / 40.97% HP restante.
+- Corteza: 89.41% win / 48.55% HP restante.
+- delta win ≈ +4.50 pp.
+- delta HP ≈ +7.58 pp.
+- extensión: 95.90% -> 78.44%.
+
+Repetición 4×100k:
+- delta win: +4.611 / +4.592 / +4.531 / +4.562 pp.
+- delta HP: +7.54 / +7.61 / +7.49 / +7.58 pp.
+- delta extensión: alrededor de -17.4 pp.
+
+Lectura:
+- Corteza fortalece de forma clara y estable.
+- no devuelve crecimiento de DEF al tercer Arraigo;
+- más DEF reduce ON_HP_DAMAGE, por lo que baja generación de Arraigo y
+  extensión: existe autolimitación sistémica;
+- contra 2 enemigos no hay evidencia suficiente de sobreescalado.
+
+Estado:
+- PASS para continuar;
+- CORTEZA_PLUS1_CAP sigue candidato principal LAB;
+- todavía NO PROVISIONAL.
+
+Siguiente única etapa:
+- ETAPA 8C — Corteza candidata contra 3 enemigos.
