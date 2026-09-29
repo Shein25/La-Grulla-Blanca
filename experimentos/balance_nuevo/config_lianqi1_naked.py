@@ -83,14 +83,20 @@ ROOT_TO_INITIAL_TECHNIQUE = {
 
 DAMAGE_MODEL_SELECTION = {
     tech_id: P(
-        None,
-        "PENDIENTE",
-        "config_arc1_provisional.py::DICE_CANDIDATES_LAB",
-        f"Elegir distribución nueva; media objetivo provisional={cfg['nominal_damage']}. "
-        f"Candidatos LAB={DICE_CANDIDATES_LAB[cfg['nominal_damage']]}",
+        DICE_CANDIDATES_LAB[cfg["nominal_damage"]]["narrow"],
+        "PROVISIONAL",
+        "LAB_PERFILES_ENEMIGO_LIANQI_I_PHASE_A_2026-09-29.md",
+        f"Distribución narrow promovida para PHASE A; media objetivo={cfg['nominal_damage']}.",
     )
     for tech_id, cfg in BASE_OFFENSIVE.items()
 }
+
+BASIC_ATTACK_SELECTION = P(
+    "1d4+4",
+    "PROVISIONAL",
+    "LAB_GOLPE_SIMPLE_LIANQI_I_NAKED_2026-09-29.md",
+    "Ataque básico de coste 0 Qi promovido para PHASE A; media 6.5, rango 5-8.",
+)
 
 
 LIANQI_I_REFERENCE_ENEMY = {
@@ -100,10 +106,10 @@ LIANQI_I_REFERENCE_ENEMY = {
                 "Sólo necesario si el perfil usa técnicas/costes de Qi."),
     "precision": P(None, "PENDIENTE", "HANDOFF_BALANCE_NUEVO_SISTEMA_2026-09-29.md",
                    "Precisión enemiga nueva de Etapa I."),
-    "evasion": P(None, "PENDIENTE", "HANDOFF_BALANCE_NUEVO_SISTEMA_2026-09-29.md",
-                 "Evasión enemiga nueva de Etapa I."),
-    "defense": P(None, "PENDIENTE", "HANDOFF_BALANCE_NUEVO_SISTEMA_2026-09-29.md",
-                 "DEF enemiga nueva de Etapa I."),
+    "evasion": P(20.0, "PROVISIONAL", "LAB_PERFILES_ENEMIGO_LIANQI_I_PHASE_A_2026-09-29.md",
+                 "Perfil ordinario de referencia PHASE A; no representa a todos los enemigos."),
+    "defense": P(2.0, "PROVISIONAL", "LAB_PERFILES_ENEMIGO_LIANQI_I_PHASE_A_2026-09-29.md",
+                 "Perfil ordinario de referencia PHASE A; DEF 4 queda como stress resistente."),
     "control": P(None, "PENDIENTE", "checkpoint LianQi I NAKED",
                  "Sólo si el enemigo intenta Control."),
     "tenacity": P(None, "PENDIENTE", "HANDOFF_BALANCE_NUEVO_SISTEMA_2026-09-29.md",
