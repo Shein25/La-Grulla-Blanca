@@ -227,6 +227,8 @@ Se selecciona sólo el primer hook expuesto compatible.
 3. DEFENSIVE_DURATION
 ```
 
+Esta prioridad representa la intensificación dinámica propia de Fuego sobre defensas de Viento.
+
 ### CONTROL
 
 ```text
