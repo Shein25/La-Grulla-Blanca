@@ -112,8 +112,8 @@ LIANQI_I_REFERENCE_ENEMY = {
                  "Perfil ordinario de referencia PHASE A; DEF 4 queda como stress resistente."),
     "control": P(None, "PENDIENTE", "checkpoint LianQi I NAKED",
                  "Sólo si el enemigo intenta Control."),
-    "tenacity": P(None, "PENDIENTE", "HANDOFF_BALANCE_NUEVO_SISTEMA_2026-09-29.md",
-                  "Tenacidad enemiga nueva de Etapa I."),
+    "tenacity": P(20.0, "PROVISIONAL", "LAB_LIANQI_I_CONTROL_TENACIDAD_ARRASTRE_2026-09-29.md",
+                  "Referencia ordinaria LianQi I para benchmark de Control; no universal para todos los enemigos."),
     "crit_chance": P(5.0, "CANON", "CONTRATO_COMBATE_ESTADISTICAS_DOT_V0_1.md §5",
                      "Base universal salvo override explícito."),
     "crit_damage": P(1.50, "CANON", "CONTRATO_COMBATE_ESTADISTICAS_DOT_V0_1.md §5",
@@ -124,9 +124,9 @@ LIANQI_I_REFERENCE_ENEMY = {
 
 
 ARRASTRE_BASE_CONTROL = P(
-    None, "PENDIENTE",
-    "HANDOFF_BALANCE_NUEVO_SISTEMA_2026-09-29.md",
-    "Latigazo no puede valorarse completo sin potencia base de Arrastre.",
+    65.0, "PROVISIONAL",
+    "LAB_LIANQI_I_CONTROL_TENACIDAD_ARRASTRE_2026-09-29.md",
+    "Con Agua principal (+5 Control) vs Tenacidad ordinaria 20 produce 50% efectivo; sujeto a rebenchmark.",
 )
 
 
