@@ -1337,3 +1337,52 @@ Regla PROVISIONAL:
 Guardia:
 - revalidar contra perfil enemigo autoritativo de LianQi III cuando exista.
 - Cuerpo de Roca sigue PENDIENTE y no debe convertirse en otra capa permanente lineal de DEF.
+
+
+### ETAPA 10A — Cuerpo de Roca · screen estructural 1v1 — CERRADA
+
+Documento:
+- `docs/experimentos/ETAPA10A_CUERPO_ROCA_SCREEN_1V1_2026-09-29.md`
+
+Runner/checkpoint:
+- `experimentos/balance_nuevo/etapa10a_cuerpo_roca_screen_1v1.py`
+
+Problema:
+- Tramo III no debe crear DEF7+ permanente;
+- debe funcionar con o sin Corteza/Estratos;
+- debe premiar Arraigo máximo sin impedir alcanzarlo.
+
+Descartado:
+- activar desde Arraigo>=2: interfiere demasiado con ON_HP_DAMAGE,
+  generación de Arraigo y extensión.
+
+Candidato principal LAB:
+- `ROCA_GUARD_MAX_3`.
+- requiere Piel activa y Arraigo==3.
+- primer impacto directo conectado de cada turno del usuario: +3 DEF sólo para
+  ese impacto.
+- se consume para ese turno y se rearma al siguiente si Piel sigue activa y
+  Arraigo sigue en3.
+- evasión no consume.
+- no aumenta DEF permanente/Tenacidad/duración/máximo Arraigo.
+
+Screen +2/+3/+4:
+- +3 seleccionado;
+- +4 aporta casi nada adicional sobre la ruta Corteza+Estratos, especialmente
+  frente a perfil común;
+- +3 conserva más valor ante perfil pesado.
+
+Replicaciones 4×40k de +3:
+- Piel base, común: +1.00 a +1.11 pp win; +4.42 a +4.49 pp HP; ~1.22 usos.
+- ruta Corteza+Estratos, común: +0.065 a +0.110 pp win; +0.43 a +0.49 pp HP;
+  ~0.45 usos.
+- Piel base, heavy 1d6+3: +1.77 a +2.13 pp win; +6.32 a +6.60 pp HP; ~1.47 usos.
+- ruta completa, heavy: +0.318 a +0.338 pp win; +1.35 a +1.42 pp HP; ~0.80 usos.
+
+Estado:
+- candidato principal LAB;
+- NO PROVISIONAL;
+- no runtime/HTML.
+
+Siguiente única etapa:
+- ETAPA 10B — ROCA_GUARD_MAX_3 contra 2 enemigos.
