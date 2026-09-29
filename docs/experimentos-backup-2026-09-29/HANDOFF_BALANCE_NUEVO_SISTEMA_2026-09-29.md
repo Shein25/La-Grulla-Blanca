@@ -442,3 +442,40 @@ están valorados. Fuego queda en 93.85%. La diferencia exige probar utilidad
 antes de ajustar daño.
 
 PHASE C sigue NO PASS.
+
+
+---
+
+## Actualización posterior — A/B Precisión/Evasión cap95 vs cap100
+
+Se añadió:
+
+- `experimentos/balance_nuevo/phase_c_accuracy_cap_lab.py`
+- `docs/experimentos/LAB_PRECISION_EVASION_CAP95_VS_100_2026-09-29.md`
+
+Comparación:
+
+- contrato actual: `clamp(Precisión - Evasión, 5, 100)`;
+- variante: `clamp(Precisión - Evasión, 5, 95)`.
+
+Hallazgos:
+
+1. Con EVA base 5 y PREC enemigo <=100, ambos caps son prácticamente
+   equivalentes; cap95 no interviene.
+2. Con EVA 0 / PREC100, cap95 regala 5% de fallo a raíces sin Evasión.
+3. Cap95 comprime la ventaja efectiva de Viento cerca del techo:
+   - PREC100 / EVA0: Viento pasa de ventaja de 10 pp (cap100) a 5 pp (cap95).
+   - PREC105 / EVA0: cap95 puede anular completamente la ventaja de +10 EVA.
+4. Mantener cap100 y variar la Precisión propia de cada monstruo preserva mejor
+   la relación transparente Precisión/Evasión.
+
+Resultado LAB:
+
+- **cap100 permanece como candidato principal**;
+- el problema estaba en usar PREC100 como enemigo ordinario universal;
+- usar PREC90 como centro LAB del próximo enemigo ordinario;
+- banda LAB sugerida: común 85–90, competente 90–95, entrenado 95–100,
+  especialista >100.
+
+No se modifica el contrato CANON todavía; la decisión se sostiene como
+resultado de benchmark para los tests siguientes.
