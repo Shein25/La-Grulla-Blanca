@@ -1453,7 +1453,7 @@ TIERRA
 → estabilidad corporal, Absorción, fortificación y resistencia al Control
 
 VIENTO
-→ movilidad, Evasión, reposicionamiento y precisión/ritmo de ataque sin crear una estadística de Velocidad
+→ Evasión, circulación, precisión e impulso sin crear estadísticas de movilidad o Velocidad
 ```
 
 Estas direcciones se apoyan en técnicas ya existentes:
@@ -1677,7 +1677,9 @@ Reglas:
 
 ---
 
-## Concordancias por rama elemental — EN DEFINICIÓN
+## Concordancias por rama elemental — LEGACY / SUPERADA POR EL CONTRATO GLOBAL
+
+> Esta sección conserva intención histórica. La autoridad canónica es `CONTRATO_CONCORDANCIAS_GLOBALES_V0_1.md` junto con el Registro universal y el Motor. Nombres, prioridades, magnitudes y reglas operativas de esta sección no deben usarse para implementar Concordancias.
 
 ### Rama Fuego — CERRADA CONCEPTUALMENTE
 
@@ -1825,14 +1827,14 @@ Identidad: asentamiento y calidad estructural.
 TIERRA → AGUA
 Cauce represado
 Identidad: peso y contención del flujo.
-- ofensiva/control: reduce Evasión u otra movilidad compatible del objetivo;
+- ofensiva/control: modifica Evasión, Control o debilitación compatible según los hooks canónicos;
 - defensiva/utilitaria: puede aumentar duración de un efecto Agua compatible en lugar de su magnitud.
 ```
 
 ```text
 TIERRA → VIENTO
 Tormenta de polvo
-Identidad: dispersión material y persistencia del movimiento.
+Identidad: dispersión material e interferencia persistente en el espacio de combate.
 - ofensiva: favorece área/propagación o eficiencia contra múltiples objetivos;
 - defensiva: puede aumentar duración de la Evasión generada por la técnica Viento.
 ```
@@ -1866,7 +1868,7 @@ VIENTO → AGUA
 Corriente ligera
 Identidad: circulación eficiente.
 - cualquier técnica compatible: reduce porcentualmente el coste de Qi de la ejecución receptora;
-- esta reducción entra en el pool general de reducción de coste de Qi y respeta el piso global del sistema.
+- regla histórica superada: la reducción de coste de una Concordancia se resuelve mediante la fase PRE_COST / CONCORDANCE_PREVIEW del Motor.
 ```
 
 ```text
