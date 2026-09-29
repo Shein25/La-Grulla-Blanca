@@ -983,3 +983,47 @@ Conclusión:
 Siguiente única etapa:
 - ETAPA 6 — valorar la tercera carga de DEF_CAP2 contra Control enemigo
   (Tenacidad + extensión), sin abrir otras defensivas.
+
+
+### ETAPA 6 — tercer Arraigo frente a Control — CERRADA
+
+Documento:
+- `docs/experimentos/ETAPA6_PIEL_TERCER_ARRAIGO_CONTROL_2026-09-29.md`
+
+Pregunta:
+- si DEF_CAP2 elimina la tercera unidad incremental de DEF, ¿la tercera carga
+  sigue teniendo valor por Tenacidad + extensión?
+
+Resultado determinístico bajo fórmula CANON:
+- Tierra sola: Tenacidad5.
+- 2 Arraigos: Tenacidad11.
+- 3 Arraigos: Tenacidad14.
+- tercer Arraigo = +3 Tenacidad = -3 pp de P(Control) por intento en rango
+  lineal.
+- al alcanzar 3 Arraigos se activa +1 turno de duración; ese turno conserva
+  +9 Tenacidad de Piel frente a Piel expirada.
+
+Ejemplo ilustrativo con Control efectivo65, no canónico:
+- Tierra sola: 60% Control.
+- 2 Arraigos: 54%.
+- 3 Arraigos: 51%.
+- horizonte 3 intentos:
+  - 2 Arraigos y luego expiración: 1.68 aplicaciones esperadas;
+  - 3 Arraigos + extensión: 1.53;
+  - +3.30 pp de probabilidad de resistir los tres.
+
+Conclusión:
+- PASS;
+- la tercera carga de DEF_CAP2 no queda decorativa;
+- CURRENT y DEF_CAP2 conservan igual Tenacidad y extensión;
+- la única diferencia sigue siendo la unidad adicional de DEF de CURRENT.
+
+Estado DEF_CAP2:
+- Etapas1–3 PASS 1v1.
+- Etapa4 recorte visible con2 enemigos.
+- Etapa5 candidato principal LAB con3 enemigos.
+- Etapa6 PASS frente al eje Control/Tenacidad.
+
+Siguiente única etapa:
+- revisión conjunta Etapas1–6 para decidir si DEF_CAP2 pasa de LAB a
+  PROVISIONAL como base de Piel.
