@@ -580,3 +580,35 @@ Comparación con utilidades centrales:
 PHASE C sigue NO PASS. Siguiente bloque recomendado: primeras defensivas base,
 empezando por Piel de Cobre y Espejo de Luna, sin elevar todavía estos números
 a CANON.
+
+
+---
+
+## Actualización posterior — semántica de Peso
+
+Se añadió:
+
+- `docs/experimentos/LAB_LIANQI_I_PESO_SEMANTICA_2026-09-29.md`
+
+Resultado LAB:
+
+- `STACK_REFRESH` es el candidato principal para Peso;
+- razón principal: la progresión habla de un único estado Peso con máximo de
+  cargas y duración compartida (2 -> 3 al máximo), lo que encaja mejor que
+  cargas independientes;
+- candidato de duración:
+  - owner = objetivo afectado;
+  - duration_unit = TARGET_TURN;
+  - duration = 2;
+  - decay en TURN_END del objetivo;
+  - cada aplicación válida añade una carga y refresca la duración completa;
+  - al llegar a 0 expiran todas las cargas.
+
+A/B 200k duelos:
+- sin Peso ~89.65% win;
+- STACK_REFRESH ~91.80%;
+- INDEPENDENT ~91.11%;
+- una variante que garantiza dos acciones futuras completas sube sólo a ~92.4%
+  pero es semánticamente menos natural para un debuff del objetivo.
+
+No se modifica todavía el documento autoritativo ni runtime.
