@@ -2237,3 +2237,120 @@ coste_tras_modificadores_normales
 ```
 
 El porcentaje exacto queda pendiente de benchmark.
+
+
+## 38.24 Schema universal de manifestación estructural
+
+Una Concordancia STRUCTURAL o PARAMETRIC compleja no se implementa mediante condiciones por ID de técnica.
+
+Debe producir un descriptor de datos:
+
+```text
+ConcordanceManifestation {
+  manifestation_id
+  relation_id
+  receiver_hook
+  hook_class
+  activation_context
+  owner
+  source
+  target_scope
+  duration_value
+  duration_unit
+  trigger
+  conditions[]
+  frequency
+  scale_rule
+  scale_target
+  transformation_rule
+  consume_rule
+  operations[]
+  packet_flags
+  cleanup_rule
+  snapshot_fields[]
+}
+```
+
+Reglas:
+
+1. `manifestation_id` identifica contenido, no autoriza un `if manifestation_id` en el resolver.
+2. `relation_id` identifica la relación ORIGEN→DESTINO.
+3. `receiver_hook` debe estar presente en `concordance_hooks[]` de la técnica/estado receptor.
+4. `hook_class` usa `SCALAR | PARAMETRIC | STRUCTURAL`.
+5. `target_scope` nunca puede ampliar silenciosamente el conjunto congelado de blancos de una ejecución.
+6. Toda duración temporal debe declarar `duration_value + duration_unit`.
+7. Toda operación que produzca DamagePacket debe declarar flags explícitos.
+8. `snapshot_fields[]` declara qué valores quedan congelados al crear la instancia.
+9. `cleanup_rule` define expiración, consumo, ruptura o fin de combate.
+10. La transformación se selecciona por relación + hook + contexto, no por nombre de técnica.
+
+Manifestaciones iniciales:
+
+```text
+Tierra→Fuego + CONTAINED_TRIGGER → NUCLEO_DE_MAGMA
+Tierra→Metal + FORTIFICATION   → PLACA_FUNDACIONAL
+Tierra→Agua + ABSORPTION_RESTORE/INTERNAL_RESOURCE → EMBALSE
+Tierra→Viento + ZONE/ZONE_DURATION → NUBE_RESIDUAL
+```
+
+Los detalles específicos viven en datos de contenido compatibles con este schema.
+
+## 38.25 Descriptor de Concordancia por ejecución AOE
+
+Una Concordancia se resuelve **una vez por ActionContext**, no una vez por objetivo, salvo que la transformación declarada produzca efectos por objetivo.
+
+Flujo:
+
+```text
+ActionContext
+→ resolver Concordancia una vez
+→ crear ConcordanceDescriptor
+→ congelar target_set
+→ resolver impactos por objetivo
+→ aplicar el descriptor según scope
+```
+
+Reglas:
+
+- un único Eco no puede producir varias resoluciones primarias por tener múltiples objetivos;
+- `PROPAGATION`, `AREA_EFFICIENCY`, zonas y paquetes secundarios no descubren nuevos enemigos fuera de `target_set`;
+- un descriptor puede declarar `per_target` para aplicar la misma transformación a cada objetivo ya válido;
+- un descriptor puede declarar `marked_target_only` para una manifestación individual;
+- paquetes secundarios que reutilicen `target_set` conservan el orden determinista;
+- el `AOE_SINGLE_TARGET_SCALAR` sólo se aplica a paquetes que declaren explícitamente pertenecer a la magnitud ofensiva de la AOE. Un paquete secundario independiente debe declarar su propia relación con esa capa.
+
+## 38.26 Roles funcionales y composición elemental
+
+`role_primary` sólo puede ser:
+
+```text
+OFFENSIVE
+DEFENSIVE
+CONTROL
+UTILITY
+```
+
+Una técnica puede tener capacidades secundarias, pero debe elegir un único rol primario para seleccionar la tabla de prioridades de Concordancia.
+
+`HYBRID` no es un rol funcional. Describe composición elemental.
+
+Las Definitivas híbridas continúan fuera del sistema de Ecos/Concordancias por regla propia, no por `role_primary`.
+
+## 38.27 Eco del mismo elemento
+
+La diagonal elemental no tiene Concordancia:
+
+```text
+FUEGO→FUEGO
+METAL→METAL
+AGUA→AGUA
+TIERRA→TIERRA
+VIENTO→VIENTO
+= NONE
+```
+
+Si una técnica pura del mismo elemento encuentra un Eco previo:
+
+- no existe resolución de Concordancia;
+- el Eco previo no se consume;
+- si la técnica completa una ejecución válida y genera un Eco nuevo, éste sustituye al anterior conforme a §38.2.
