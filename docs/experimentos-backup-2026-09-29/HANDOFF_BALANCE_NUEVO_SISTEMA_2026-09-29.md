@@ -1076,3 +1076,42 @@ Guardia:
   Cuerpo de Roca quedan PENDIENTES DE REBENCHMARK porque sus números dependían
   de la antigua curva 4->5->6.
 - sin runtime/HTML.
+
+
+### ETAPA 8A — Corteza Endurecida · 1v1 común — CERRADA
+
+Documento:
+- `docs/experimentos/ETAPA8A_CORTEZA_ENDURECIDA_1V1_2026-09-29.md`
+
+Se compararon cuatro curvas sobre Piel DEF_CAP2:
+- BASE: 1/2/2.
+- PLUS1_CAP: 2/3/3.
+- DOUBLE_CAP: 2/4/4.
+- PROGRESSIVE: 2/3/4.
+
+Hallazgo:
+- más DEF reduce ON_HP_DAMAGE y, por tanto, reduce generación de Arraigo y
+  frecuencia de extensión;
+- DOUBLE_CAP erosiona demasiado la mecánica reactiva para la ganancia extra;
+- PROGRESSIVE reabre crecimiento de DEF en el tercer Arraigo, justo el problema
+  corregido por DEF_CAP2.
+
+Candidato LAB seleccionado:
+- `CORTEZA_PLUS1_CAP`.
+
+Curva:
+- contribución DEF de Arraigo con Corteza = 2 / 3 / 3;
+- Piel aporta total = +4 / +5 / +5 DEF;
+- con DEF base1 del benchmark = DEF total 5 -> 6 -> 6.
+
+Vs Piel base en 1v1 común:
+- +0.54 a +0.76 pp de win según semilla;
+- ~+3.0 pp de HP restante;
+- mantiene mejora clara sin reabrir la tercera unidad incremental de DEF.
+
+Estado:
+- PASS para continuar;
+- todavía NO PROVISIONAL.
+
+Siguiente única etapa:
+- ETAPA 8B — CORTEZA_PLUS1_CAP contra 2 enemigos.
