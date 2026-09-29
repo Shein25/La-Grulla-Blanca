@@ -729,12 +729,16 @@ Mapeo receptor canónico: `MAPEO_HOOKS_TECNICAS_ARCO1_2026-09-29.md`. Como técn
 
 Aprobada para testeo posterior.
 
-### Base revisada
+### Base revisada — PROVISIONAL tras Etapas 1–6
 
 - coste: 7 Qi;
 - duración: 3 turnos;
 - al activar: +2 DEF inmediata y +1 Arraigo;
-- cada Arraigo aporta +1 DEF y +3 Tenacidad;
+- cada Arraigo aporta +3 Tenacidad;
+- la contribución de DEF de Arraigo usa **DEF_CAP2 PROVISIONAL**:
+  - 1 Arraigo: +1 DEF por Arraigo acumulado;
+  - 2 Arraigos: +2 DEF acumulada;
+  - 3 Arraigos: la contribución acumulada de Arraigo permanece en +2 DEF;
 - máximo 3 Arraigos;
 - cada acción enemiga de daño directo que quite Vida: +1 Arraigo, máximo una vez por acción;
 - primera vez por activación que una acción enemiga quite al menos 10% de Vida máxima: gana +2 Arraigos en vez de +1;
@@ -742,18 +746,27 @@ Aprobada para testeo posterior.
 - al alcanzar Arraigo máximo: +1 turno a la duración restante, una vez por activación;
 - genera Eco de Tierra.
 
-Valores base por estado:
+Valores base por estado de Piel:
 
 ```text
-al activar:      +3 DEF / +3 Tenacidad
-2 Arraigos:      +4 DEF / +6 Tenacidad
-3 Arraigos:      +5 DEF / +9 Tenacidad
+al activar / 1 Arraigo: +3 DEF / +3 Tenacidad
+2 Arraigos:              +4 DEF / +6 Tenacidad
+3 Arraigos:              +4 DEF / +9 Tenacidad
 ```
+
+Nota de benchmark:
+
+- frente a un personaje con DEF base1, Piel produce DEF total 4 → 5 → 5;
+- la tercera carga sigue siendo mecánicamente relevante por +3 Tenacidad adicional y por activar la extensión de duración;
+- esta curva sustituye PROVISIONALMENTE la antigua escalera 4 → 5 → 6 del benchmark;
+- la promoción se apoya en `ETAPA1`–`ETAPA6` de Piel del 2026-09-29.
 
 ### Tramo I
 
 **Corteza Endurecida — fortificación**
-- cada Arraigo da +2 DEF en vez de +1.
+- **PENDIENTE DE REBENCHMARK tras DEF_CAP2**;
+- conserva identidad de fortificación por Arraigo;
+- la antigua regla “cada Arraigo da +2 DEF en vez de +1” no debe implementarse sin recalibrar su nueva curva y tope.
 
 **Centro Firme — estabilidad**
 - cada Arraigo da +5 Tenacidad en vez de +3.
@@ -764,8 +777,9 @@ al activar:      +3 DEF / +3 Tenacidad
 ### Tramo II
 
 **Estratos Compactos — fortificación**
-- con 2+ Arraigos: +1 DEF;
-- con Corteza: al máximo +2 DEF adicionales.
+- **PENDIENTE DE REBENCHMARK tras DEF_CAP2**;
+- conserva identidad de fortificación con 2+ Arraigos;
+- sus cifras anteriores (+1 DEF / sinergia +2) dejan de ser autoridad numérica hasta recalibración.
 
 **Raíz Profunda — estabilidad**
 - con 2+ Arraigos: +5 Tenacidad adicional;
@@ -778,9 +792,9 @@ al activar:      +3 DEF / +3 Tenacidad
 ### Tramo III
 
 **Cuerpo de Roca — fortificación**
-- +1 DEF con al menos 1 Arraigo;
-- ruta completa estabiliza la DEF generada por Piel al llegar a 3 Arraigos;
-- números de DEF máxima a testear.
+- **PENDIENTE DE REBENCHMARK tras DEF_CAP2**;
+- mantiene la identidad de especialización defensiva;
+- los números de DEF máxima deben reconstruirse desde la nueva base 4 → 5 → 5, no desde la antigua 4 → 5 → 6.
 
 **Inamovible — estabilidad**
 - +5 Tenacidad con al menos 1 Arraigo;
@@ -796,8 +810,6 @@ al activar:      +3 DEF / +3 Tenacidad
 ### Concordancias receptoras — LEGACY / NO CANÓNICAS
 
 > Las entradas siguientes conservan intención histórica, pero sus magnitudes y hooks quedaron superados por la matriz global y la regla de escalado relativo. No deben implementarse. El mapeo canónico se declarará mediante `concordance_hooks[]`.
-
-
 
 **Fuego → Tierra · Cimiento cocido**
 - +1 DEF adicional mientras Piel permanezca activa.
