@@ -397,3 +397,48 @@ Runners nuevos:
 - `experimentos/balance_nuevo/phase_a_exact_check.py`
 - `experimentos/balance_nuevo/phase_b_qi_budget_lab.py`
 - `experimentos/balance_nuevo/phase_b_hp_qi_offense_lab.py`
+
+
+---
+
+## Actualización posterior — PHASE C presión enemiga
+
+Se añadió:
+
+- `experimentos/balance_nuevo/phase_c_pressure_lab.py`
+- `docs/experimentos/LAB_LIANQI_I_PHASE_C_PRESION_2026-09-29.md`
+
+Primer duelo bidireccional LAB:
+
+- jugador actúa primero;
+- usa técnica mientras tenga Qi;
+- luego ataque básico;
+- enemigo responde con ataque directo si sigue vivo.
+
+Se compararon COMPACTA y EXTENDIDA, perfiles de HP/DEF/Evasión del jugador,
+Precisión enemiga 90/100 y daño enemigo 1d4+3 / 2d4+1 / 1d6+3.
+
+Confirmaciones de 100.000 duelos por raíz:
+
+COMPACTA P24/D1/E0, enemigo Precisión100 + 2d4+1:
+- win medio 86.36%;
+- 3.83 turnos;
+- 39.87% HP restante;
+- 23.56% usa básico.
+
+EXTENDIDA P30/D1/E5, enemigo Precisión100 + 2d4+1:
+- win medio 82.68%;
+- 5.16 turnos;
+- 33.36% HP restante;
+- 36.02% usa básico.
+
+Shortlist LAB para continuar:
+- jugador HP30 / Qi30 / DEF1 / EVA5;
+- enemigo HP28 / PREC100 / EVA20 / DEF2 / ataque 2d4+1;
+- jugador primero.
+
+No promover todavía: Agua queda en 65.22% win porque Arrastre/Control aún no
+están valorados. Fuego queda en 93.85%. La diferencia exige probar utilidad
+antes de ajustar daño.
+
+PHASE C sigue NO PASS.
