@@ -248,12 +248,28 @@ Puede esperar a benchmark:
 
 ---
 
-# 9. Próximo paso
+# 9. Cierre de contenido básico Arco 1
+
+Estado:
+
+- 15/15 técnicas básicas diseñadas;
+- Viento 3/3 cerrado;
+- 15/15 técnicas con role_primary;
+- 15/15 con mechanical_hooks[];
+- 15/15 con concordance_hooks[];
+- 60/60 combinaciones técnica × Eco registradas;
+- las 20/20 relaciones dirigidas poseen al menos un receptor real entre las técnicas disponibles;
+- no se detectan relaciones nominales sin cobertura mecánica.
+
+La cobertura puede ser base o depender de una rama explícita cuando así lo declara el contenido; no se inventan fallbacks.
+
+# 10. Próximo paso
 
 Antes de runtime:
 
-1. verificación mecánica de consistencia de documentos;
-2. diseñar las 3 técnicas de Viento usando este contrato desde el inicio;
-3. reauditar cobertura 20/20 con 15 técnicas;
-4. benchmark numérico;
-5. sólo después autorizar implementación.
+1. benchmark numérico de técnicas y Concordancias;
+2. validar convergencias mecánicas señaladas en el mapeo;
+3. cerrar porcentajes de Núcleo/Placa/Embalse/Nube;
+4. cerrar 0.65 AOE y piso de Qi;
+5. realizar una última auditoría de balance/cobertura;
+6. sólo después autorizar implementación.
