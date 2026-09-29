@@ -1386,3 +1386,56 @@ Estado:
 
 Siguiente única etapa:
 - ETAPA 10B — ROCA_GUARD_MAX_3 contra 2 enemigos.
+
+
+### ETAPA 10B — Cuerpo de Roca · 2 enemigos — CERRADA
+
+Documento:
+- `docs/experimentos/ETAPA10B_CUERPO_ROCA_2_ENEMIGOS_2026-09-29.md`
+
+Runner/checkpoint:
+- `experimentos/balance_nuevo/etapa10b_cuerpo_roca_2enemigos.py`
+
+Escenario:
+- Tierra HP33 / Qi31 / DEF1 / EVA5;
+- 2 enemigos 14+14 HP;
+- PREC90 / EVA20 / DEF2 / ataque 2d4+1.
+
+Candidato:
+- `ROCA_GUARD_MAX_3`.
+- Piel activa + Arraigo3.
+- al inicio de turno del usuario se arma 1 Guardia;
+- primer impacto directo conectado del turno recibe +3 DEF;
+- evasión no consume;
+- alcanzar Arraigo3 durante acciones enemigas no arma retroactivamente.
+
+Resultado 200k:
+- Piel base: 84.91% win / 40.97% HP / extensión95.90%.
+- Piel + Roca: 89.06% / 47.98% / extensión95.88%.
+- Corteza + Estratos: 89.90% / 49.96% / extensión69.18%.
+- Corteza + Estratos + Roca: 90.65% / 51.63% / extensión69.14%.
+
+Efecto Roca:
+- sobre Piel base: +4.15 pp win / +7.00 pp HP.
+- sobre ruta Corteza+Estratos: +0.75 pp win / +1.66 pp HP.
+
+Replicación 4×50k:
+- Piel base: +4.114 a +4.238 pp win.
+- ruta completa previa: +0.640 a +0.786 pp win.
+
+Usos Guardia:
+- ~2.15 por combate sobre Piel base.
+- ~1.19 sobre Corteza+Estratos.
+
+Hallazgo:
+- casi no altera Arraigo máximo ni extensión;
+- una Guardia por turno evita activación por enemigo;
+- fuerte retorno decreciente al apilar con ramas previas.
+
+Estado:
+- PASS para continuar;
+- sigue LAB;
+- NO PROVISIONAL todavía.
+
+Siguiente única etapa:
+- ETAPA 10C — Cuerpo de Roca contra 3 enemigos.
