@@ -825,3 +825,39 @@ Bloque pendiente antes de promoción:
 3. revisar ramas I–III de Horno/Espejo/Paso si sus nuevos valores base
    sobreviven;
 4. recién entonces promover cifras de PHASE B/C.
+
+
+---
+
+## Metodología por etapas — Piel de Cobre
+
+A partir de este punto, la comparación CURRENT vs DEF_CAP2 se hará de una sola
+variable/escenario por etapa, evitando mezclar perfiles y conclusiones.
+
+### ETAPA 1 — 1v1 enemigo común — CERRADA
+
+Documento:
+- `docs/experimentos/ETAPA1_PIEL_CURRENT_VS_DEF_CAP2_1V1_COMUN_2026-09-29.md`
+
+Baseline:
+- Tierra HP33 / Qi31 / DEF1 / EVA5;
+- enemigo HP28 / PREC90 / EVA20 / DEF2 / ataque 2d4+1;
+- Piel de apertura;
+- Peso PROVISIONAL STACK_REFRESH.
+
+200.000 duelos:
+- CURRENT: 96.21% win / 60.68% HP restante.
+- DEF_CAP2: 95.60% win / 58.39% HP restante.
+- delta win ≈ -0.61 pp.
+- delta HP restante ≈ -2.29 pp.
+
+Repetición 4×100k:
+- delta win: -0.666 / -0.521 / -0.518 / -0.555 pp.
+
+Conclusión:
+- DEF_CAP2 **PASS para continuar testeando**;
+- no rompe Piel en 1v1 común;
+- no se promueve todavía.
+
+Siguiente única etapa:
+- ETAPA 2 — CURRENT vs DEF_CAP2 contra enemigo pesado 1v1.
