@@ -888,3 +888,30 @@ Conclusión:
 
 Siguiente única etapa:
 - ETAPA 3 — CURRENT vs DEF_CAP2 contra enemigo preciso 1v1.
+
+
+### ETAPA 3 — 1v1 enemigo preciso — CERRADA
+
+Documento:
+- `docs/experimentos/ETAPA3_PIEL_CURRENT_VS_DEF_CAP2_1V1_PRECISO_2026-09-29.md`
+
+Único cambio respecto de Etapa 1:
+- Precisión enemiga `90 -> 100`.
+- daño se mantiene en `2d4+1`.
+
+200.000 duelos:
+- CURRENT: 94.70% win / 57.76% HP restante.
+- DEF_CAP2: 93.87% win / 54.93% HP restante.
+- delta win ≈ -0.83 pp.
+- delta HP restante ≈ -2.83 pp.
+
+Repetición 4×100k:
+- delta win: -0.853 / -0.818 / -0.792 / -0.810 pp.
+
+Conclusión:
+- DEF_CAP2 PASS para continuar;
+- la mayor precisión no cambia cualitativamente la comparación;
+- no se promueve todavía.
+
+Siguiente única etapa:
+- ETAPA 4 — CURRENT vs DEF_CAP2 contra 2 enemigos.
