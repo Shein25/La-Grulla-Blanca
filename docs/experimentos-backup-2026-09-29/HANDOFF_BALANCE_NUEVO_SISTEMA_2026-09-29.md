@@ -648,3 +648,73 @@ Guardia:
 1. Piel de Cobre;
 2. Espejo de Luna;
 3. después comparar las cinco defensivas base antes de cerrar LianQi I.
+
+
+---
+
+## Actualización posterior — defensivas base + economía mixta de Qi
+
+Se añadieron:
+
+- `experimentos/balance_nuevo/phase_c_defensives_lab.py`
+- `experimentos/balance_nuevo/phase_b_mixed_qi_lab.py`
+- `experimentos/balance_nuevo/phase_c_all_defensives_lab.py`
+- `docs/experimentos/LAB_LIANQI_I_DEFENSIVAS_PHASE_C_2026-09-29.md`
+- `docs/experimentos/LAB_LIANQI_I_QI_MIXTO_2026-09-29.md`
+- `docs/experimentos/LAB_LIANQI_I_CINCO_DEFENSIVAS_PHASE_C_2026-09-29.md`
+
+### Espejo y Piel
+
+Espejo 12%:
+- FAIL LAB;
+- suele romperse en un impacto;
+- Reflujo casi no participa;
+- apertura reduce win de Agua respecto de ofensiva pura.
+- banda siguiente prometedora: 22–25% HP de Absorción.
+
+Piel:
+- magnitud defensiva base PASS LAB;
+- con Qi30/coste7 sufría un acantilado de recurso;
+- con economía que permite una ofensiva adicional se vuelve fuerte.
+
+### Economía mixta
+
+Todas las defensivas base actuales cuestan 7 Qi.
+Agua las convierte en 6 efectivos por raíz.
+
+Qi30:
+- 5 ofensivas6;
+- pero defensiva7 + sólo 3 ofensivas6;
+- sobran 5 Qi.
+
+Qi31:
+- 5 ofensivas6;
+- defensiva7 + 4 ofensivas6;
+- defensiva6 + 4 ofensivas6.
+
+Por ello `Qi máximo = 31` emerge como candidato estructural LAB para comparar
+cargas mixtas. NO PROVISIONAL todavía.
+
+### Screen cinco defensivas con Qi31
+
+120k duelos por estrategia:
+
+- Fuego sólo ofensiva ~95.76%; Cuerpo-Horno15 ~94.12%.
+- Metal sólo ofensiva ~90.71%; Armadura ~92.79%.
+- Agua ofensiva+Arrastre ~86.75%; Espejo12 ~81.33%.
+- Tierra ofensiva+Peso ~91.75%; Piel ~96.28%.
+- Viento sólo ofensiva ~87.98%; Paso +15 EVA/2t ~77.81%.
+
+Lectura:
+- Metal = PASS inicial.
+- Tierra = PASS fuerte; vigilar sobrepotencia bajo muchos impactos.
+- Fuego15 = FAIL marginal; siguiente banda Absorción 22–25%.
+- Agua12 = FAIL claro; siguiente banda Absorción 22–25%.
+- Viento +15 EVA/2t = FAIL claro; necesita revisar magnitud/duración/función,
+  no sólo +5 EVA.
+
+Stress COMMON/PRECISE/HEAVY/DANGEROUS confirmó que Fuego/Agua/Viento no se
+rescatan simplemente aumentando la presión del enemigo; Metal y Tierra sí
+mantienen valor positivo.
+
+PHASE C sigue NO PASS.
