@@ -26,10 +26,12 @@ from config_arc1_provisional import BASE_OFFENSIVE, DICE_CANDIDATES_LAB, ROOTS
 
 
 BASIC_ATTACK_CANDIDATES_LAB = {
-    "B5_NARROW": "2d4",       # media 5.0
-    "B6_NARROW": "2d4+1",     # media 6.0
-    "B6_5_NARROW": "3d4-1",   # media 6.5
-    "B7_NARROW": "2d4+2",     # media 7.0
+    "B5_NARROW": "2d4",        # media 5.0
+    "B6_NARROW": "2d4+1",      # media 6.0
+    "B6_5_STABLE": "1d4+4",    # media 6.5, piso alto
+    "B6_5_MEDIUM": "1d6+3",    # media 6.5, dispersión media
+    "B6_5_BELL": "3d4-1",      # media 6.5, cola baja posible
+    "B7_NARROW": "2d4+2",      # media 7.0
 }
 
 CENTRAL_TARGETS_LAB = [
