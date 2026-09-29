@@ -200,3 +200,67 @@ Separar siempre:
 4. interacción de las tres capas.
 
 No balancear sólo el personaje final completamente equipado.
+
+
+---
+
+## Actualización posterior — arquitectura futura de slots de equipo
+
+Se registró una ampliación de arquitectura de equipamiento para implementar
+**después de cerrar los tests actuales de LianQi I NAKED**.
+
+No se modificó runtime/HTML y no se asignaron estadísticas nuevas.
+
+### Arquitectura objetivo
+
+**13 slots totales**
+
+Equipo marcial:
+- Arma
+- Tocado
+- Vestidura
+- Brazales
+- Fajín
+- Piernas
+- Calzado
+
+Accesorios:
+- Amuleto
+- Pulsera
+- Anillo I
+- Anillo II
+
+Tesoros espirituales:
+- Tesoro Espiritual I
+- Tesoro Espiritual II
+
+### Reglas registradas
+
+- Pulsera y Brazales son slots distintos.
+- Piernas y Calzado son slots distintos.
+- `mano` deberá normalizarse a Arma.
+- `torso` deberá normalizarse a Vestidura.
+- `cabeza` deberá presentarse como Tocado.
+- `cuello` deberá normalizarse a Amuleto.
+- `dedo` deberá pasar a dos slots independientes: Anillo I / Anillo II.
+- Las Sandalias de viento deberán ocupar Calzado cuando se haga la migración.
+- Los dos slots de Tesoro Espiritual existen como capacidad estructural y
+  **no se bloquean por etapa**.
+- Un slot de Tesoro vacío simplemente significa que el jugador aún no posee
+  un objeto compatible.
+- La obtención/rareza/contenido del mundo controla cuándo aparecen tesoros;
+  no una barrera artificial de etapa.
+- Tener dos slots NO implica entregar dos tesoros en el Arco 1. Pueden
+  introducirse tesoros adicionales en arcos posteriores.
+
+### Guardia
+
+Antes de implementar esta arquitectura:
+
+1. cerrar LianQi I NAKED;
+2. cerrar sus parámetros de combate relevantes;
+3. mantener todo el equipo fuera de los benchmarks NAKED;
+4. después diseñar fuentes, etapas y stats nuevos;
+5. validar NAKED / MINIMAL / EXPECTED / HIGH_ROLL.
+
+No tocar runtime por esta decisión durante el bloque actual.
