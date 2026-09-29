@@ -521,3 +521,62 @@ Conclusión LAB:
 - PREC95 como referencia más exigente;
 - resolver stacking/duración de Peso y Tenacidad/base_control antes de PASS de
   PHASE C.
+
+
+---
+
+## Actualización posterior — Arrastre, Peso y escala Control/Tenacidad
+
+Se añadieron:
+
+- `experimentos/balance_nuevo/phase_c_water_earth_utility_lab.py`
+- `experimentos/balance_nuevo/phase_c_control_tenacity_lab.py`
+- `docs/experimentos/LAB_LIANQI_I_ARRASTRE_PESO_PHASE_C_2026-09-29.md`
+- `docs/experimentos/LAB_LIANQI_I_CONTROL_TENACIDAD_ARRASTRE_2026-09-29.md`
+
+Duelo central LAB:
+- jugador HP30 / Qi30 / DEF1 / EVA5;
+- enemigo HP28 / PREC90 / EVA20 / DEF2 / ataque 2d4+1;
+- cap de impacto 100.
+
+Arrastre:
+- anti-bloqueo preservado;
+- banda efectiva prometedora: 45–55%;
+- centro LAB: ~50%;
+- con ~50% Agua pasa de ~74.1% win sin Arrastre a ~86.8%;
+- evita ~1.36 acciones enemigas por duelo;
+- no subir daño de Latigazo por ahora.
+
+Relación identificada:
+`base_control - Tenacidad_referencia ≈ 45` para Agua principal (+5 Control).
+
+Ancla LAB conveniente, NO PROVISIONAL:
+- Arrastre base_control 65;
+- Tenacidad ordinaria 20;
+- Agua +5 Control;
+- probabilidad efectiva 50%.
+
+Con base_control65:
+- Tenacidad10 -> 60%;
+- Tenacidad20 -> 50%;
+- Tenacidad30 -> 40%;
+- Tenacidad40 -> 30%.
+
+Peso:
+- -3 EVA/carga, duración2, max2 sigue sano;
+- sin Peso Tierra ~89.6% win;
+- STACK_REFRESH ~91.9%;
+- INDEPENDENT ~91.1%;
+- STACK_REFRESH queda como candidato semántico principal LAB por coherencia con
+  un estado único con cargas y duración, pero falta decisión de contenido.
+
+Comparación con utilidades centrales:
+- Fuego ~95.7%;
+- Tierra+Peso(refresh) ~91.9%;
+- Metal ~90.6%;
+- Viento ~88.0%;
+- Agua+Arrastre50 ~86.8%.
+
+PHASE C sigue NO PASS. Siguiente bloque recomendado: primeras defensivas base,
+empezando por Piel de Cobre y Espejo de Luna, sin elevar todavía estos números
+a CANON.
