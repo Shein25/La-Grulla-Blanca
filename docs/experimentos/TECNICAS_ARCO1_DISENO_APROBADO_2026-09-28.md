@@ -475,6 +475,8 @@ Base provisional:
 - daño: 8;
 - coste: 7 Qi;
 - al impactar intenta aplicar **Arrastre** mediante Control vs Tenacidad;
+- **base_control PROVISIONAL de Arrastre: 65** para benchmark LianQi I;
+- contra la Tenacidad ordinaria PROVISIONAL 20, Agua principal (+5 Control) parte de 50% efectivo;
 - Arrastre: el objetivo pierde su próxima acción;
 - puede cortar una acción enemiga anunciada todavía no ejecutada;
 - no elimina efectos ya activos;
@@ -668,6 +670,11 @@ Base provisional:
 - coste: 6 Qi;
 - aplica **Peso**;
 - Peso base: −3 Evasión por carga, duración 2 turnos, máximo 2;
+- semántica PROVISIONAL: `STACK_REFRESH`;
+- owner del estado: objetivo afectado;
+- `duration_unit = TARGET_TURN`; decrementa en `TURN_END` del objetivo;
+- cada aplicación válida añade 1 carga y refresca la duración completa;
+- al expirar la duración se eliminan todas las cargas;
 - no es Control;
 - genera Eco de Tierra.
 
