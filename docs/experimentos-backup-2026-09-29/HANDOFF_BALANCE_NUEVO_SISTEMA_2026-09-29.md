@@ -718,3 +718,110 @@ rescatan simplemente aumentando la presión del enemigo; Metal y Tierra sí
 mantienen valor positivo.
 
 PHASE C sigue NO PASS.
+
+
+---
+
+## Actualización posterior — recalibración defensiva, Qi31 y stress multi-enemigo
+
+Se añadieron:
+
+- experimentos/balance_nuevo/phase_c_defensive_recalibration_lab.py
+- experimentos/balance_nuevo/phase_c_multi_enemy_defensive_stress_lab.py
+- experimentos/balance_nuevo/phase_c_piel_scaling_lab.py
+- docs/experimentos/LAB_LIANQI_I_RECALIBRACION_DEFENSIVAS_2026-09-29.md
+- docs/experimentos/LAB_LIANQI_I_QI31_VALIDACION_DEFENSIVAS_2026-09-29.md
+- docs/experimentos/LAB_LIANQI_I_STRESS_MULTI_ENEMIGO_DEFENSIVAS_2026-09-29.md
+- docs/experimentos/LAB_LIANQI_I_PIEL_ESCALADO_MULTIIMPACTO_2026-09-29.md
+
+### Recalibración defensiva — candidatos LAB
+
+Fuego / Cuerpo-Horno:
+- 15% sigue FAIL;
+- banda 22–25% probada;
+- candidato LAB principal: 25% HP Absorción / 2 turnos / coste7;
+- queda aproximadamente en paridad de win con ofensiva pura, pero conserva
+  ~5–6 pp más HP;
+- no añadir Calor a la base.
+
+Agua / Espejo:
+- 12% sigue FAIL;
+- candidato LAB principal: 24% HP Absorción / Reflujo25% / 3 turnos;
+- mejora win ~2 pp y HP restante ~5–6 pp frente a ofensiva+Arrastre;
+- no modificar Reflujo todavía.
+
+Viento / Paso:
+- +15 EVA /2t FAIL;
+- mejoras pequeñas no alcanzan;
+- candidato puramente numérico LAB: +35 EVA /4t;
+- conserva hooks base EVASION_GRANTED + DEFENSIVE_DURATION;
+- no mueve CORRIENTE_CLARA/REACTIVE_RESPONSE a la base;
+- si se adopta, los números de ramas I–III deben recalibrarse porque la
+  escalera provisional actual +15→+30 / duración2→4 queda superada.
+
+### Qi31
+
+Qi31 continúa como candidato estructural LAB fuerte:
+- cinco ofensivas de coste6;
+- o defensiva7 + cuatro ofensivas6;
+- o defensiva Agua efectiva6 + cuatro ofensivas6.
+
+Qi30 favorece Agua por acantilado de coste.
+Qi32–35 no añaden acciones respecto de31.
+Qi36 crea otro desfase; Qi37 sería el siguiente escalón completo pero aumenta
+demasiado el presupuesto base para resolver este problema.
+
+No promover Qi31 todavía.
+
+### Stress multi-enemigo real
+
+Se usaron enemigos con HP propio, manteniendo HP total ~28:
+- 2 enemigos = 14+14;
+- 3 enemigos = 10+9+9.
+
+Hallazgo:
+- Piel actual escala de forma extrema con múltiples acciones.
+- Aproximado:
+  - 2 enemigos: Tierra ofensiva ~61% vs Piel ~89%;
+  - 3 enemigos: Tierra ofensiva ~18% vs Piel ~68%.
+- Viento gana valor naturalmente al aumentar las acciones entrantes.
+- Placas de Metal se consumen rápidamente y no se buffean por este stress.
+- Horno/Espejo comparten reserva finita y no son defensas de enjambre por
+  defecto.
+
+### Piel — variantes LAB
+
+La causa dominante no es la frecuencia del trigger por acción, sino alcanzar
+DEF plana muy alta + extensión.
+
+CURRENT:
+- DEF total con Piel: 4→5→6.
+
+Candidato LAB principal DEF_CAP2:
+- Arraigo1 → DEF4;
+- Arraigo2 → DEF5;
+- Arraigo3 → sigue DEF5;
+- tercera carga conserva Tenacidad y activa extensión;
+- mantiene trigger por acción;
+- mantiene 3 Arraigos;
+- reduce escalado multiimpacto sin rediseñar toda la técnica.
+
+Resultados aproximados DEF_CAP2:
+- 1 enemigo ~96%;
+- 2 enemigos ~85%;
+- 3 enemigos ~58%.
+
+No promover ni modificar Piel autoritativa todavía.
+
+### Estado
+
+PHASE A = PASS PROVISIONAL.
+PHASE B = PARCIAL; Qi31 es el candidato LAB actual.
+PHASE C = NO PASS.
+
+Bloque pendiente antes de promoción:
+1. validar Piel CURRENT vs DEF_CAP2 contra varios perfiles;
+2. volver a ejecutar las cinco defensivas con candidato de Piel elegido;
+3. revisar ramas I–III de Horno/Espejo/Paso si sus nuevos valores base
+   sobreviven;
+4. recién entonces promover cifras de PHASE B/C.
