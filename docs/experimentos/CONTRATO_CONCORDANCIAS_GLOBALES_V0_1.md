@@ -24,7 +24,7 @@ Reglas universales:
 2. el resolver recorre prioridades por contexto;
 3. toma el primer hook compatible expuesto;
 4. no aplica múltiples bonificaciones por un mismo Eco salvo transformación compuesta explícita;
-5. si no encuentra hook compatible, no consume Eco;
+5. si no encuentra hook compatible, no consume Eco por Concordancia; una técnica pura receptora que complete una ejecución válida puede generar después su propio Eco y sustituir el anterior;
 6. no existe fallback universal de daño;
 7. una relación sólo puede usar `DIRECT_DAMAGE` si su identidad global lo justifica;
 8. las magnitudes numéricas se balancean después; primero se cierra identidad, canales y prioridad;
@@ -36,6 +36,8 @@ Reglas universales:
 13. Las transformaciones estructurales discretas —por ejemplo impedir un consumo una vez, crear un estado contenido, detonar un estado o cambiar su regla de propagación— pueden existir sin convertirse en una suma numérica fija.
 14. Una Concordancia no debe otorgar `+N daño`, `+N DEF`, `+N Precisión`, `+N Control` ni equivalentes como bono de escalado.
 15. Si una propiedad discreta no admite escalado porcentual coherente, la relación debe modificar su **potencia, probabilidad, eficiencia o regla estructural**, no añadir una cantidad fija arbitraria.
+16. La presencia de `DIRECT_DAMAGE` en `mechanical_hooks[]` no lo expone automáticamente a Concordancias. Sólo puede resolverse sobre daño directo cuando la técnica lo declara expresamente en `concordance_hooks[]`.
+17. `EXECUTION` queda retirado temporalmente de las prioridades de la matriz hasta que exista una semántica operacional única y reutilizable.
 
 ---
 
@@ -76,7 +78,7 @@ Condición semántica: el hook debe representar impacto, masa, presión o ruptur
 ```text
 1. CONTROL_POWER
 2. ACTION_DENIAL
-3. 4. DEBUFF_DURATION
+3. DEBUFF_DURATION
 ```
 
 Sólo si el control representa peso, presión, encierro, impacto o inmovilización estructural.
@@ -113,8 +115,7 @@ DOT_POTENCY
 1. PERCENT_PENETRATION
 2. FLAT_PENETRATION
 3. DEF_SHRED
-4. EXECUTION
-5. DIRECT_DAMAGE
+4. DIRECT_DAMAGE
 ```
 
 `DIRECT_DAMAGE` queda deliberadamente al final: primero se intenta expresar forja/filo/ruptura.
@@ -133,8 +134,8 @@ DOT_POTENCY
 
 ```text
 1. CONTROL_POWER
-2. 3. ACTION_DENIAL
-4. DEBUFF_DURATION
+2. ACTION_DENIAL
+3. DEBUFF_DURATION
 ```
 
 Sólo si el control deriva de una estructura metálica coherente: cadena, jaula, grillete, anclaje o equivalente.
@@ -174,7 +175,7 @@ No usa `QI_COST_PERCENT` por defecto.
 2. INTERRUPT
 3. ACTION_DENIAL
 4. PRECISION_DEBUFF
-5. ```
+```
 
 Fuego no crea Control de la nada: presuriza una propiedad ya expuesta.
 
@@ -212,9 +213,8 @@ No usa `QI_COST_PERCENT` por defecto.
 1. CRIT_CHANCE
 2. CRIT_DAMAGE
 3. PRECISION
-4. EXECUTION
-5. PROPAGATION
-6. DIRECT_DAMAGE
+4. PROPAGATION
+5. DIRECT_DAMAGE
 ```
 
 Se selecciona sólo el primer hook expuesto compatible.
@@ -232,15 +232,14 @@ Se selecciona sólo el primer hook expuesto compatible.
 ```text
 1. INTERRUPT
 2. CONTROL_POWER
-3. 4. ACTION_DENIAL
+3. ACTION_DENIAL
 ```
 
 ### UTILITY
 
 ```text
-1. EXECUTION
-2. PROPAGATION
-3. ZONE_DURATION
+1. PROPAGATION
+2. ZONE_DURATION
 ```
 
 ---
@@ -273,7 +272,6 @@ Metal representa dirección, precisión, filo, canalización y refuerzo estructu
 2. DOT_POTENCY
 3. INTENSITY
 4. CRIT_CHANCE
-5. EXECUTION
 \`\`\`
 
 Si la técnica Fuego no expone ninguno de esos canales, no consume Eco Metal.
@@ -305,7 +303,6 @@ Sólo cuando la técnica de Fuego fundamenta su control en ignición, explosión
 \`\`\`text
 1. AFFLICTION_APPLICATION
 2. INTERNAL_RESOURCE
-3. EXECUTION
 \`\`\`
 
 ---
@@ -319,9 +316,8 @@ Sólo cuando la técnica de Fuego fundamenta su control en ignición, explosión
 \`\`\`text
 1. PRECISION
 2. CONTROL_POWER
-3. EXECUTION
-4. QI_DRAIN
-5. DIRECT_DAMAGE
+3. QI_DRAIN
+4. DIRECT_DAMAGE
 \`\`\`
 
 \`DIRECT_DAMAGE\` queda al final.
@@ -352,9 +348,8 @@ Metal no crea Control: canaliza mejor uno ya expuesto.
 \`\`\`text
 1. QI_COST_PERCENT
 2. QI_DRAIN
-3. EXECUTION
-4. PROPAGATION
-5. INTERNAL_RESOURCE
+3. PROPAGATION
+4. INTERNAL_RESOURCE
 \`\`\`
 
 ---
@@ -389,8 +384,8 @@ Metal no crea Control: canaliza mejor uno ya expuesto.
 
 \`\`\`text
 1. CONTROL_POWER
-2. 3. ACTION_DENIAL
-4. DEBUFF_DURATION
+2. ACTION_DENIAL
+3. DEBUFF_DURATION
 \`\`\`
 
 ### UTILITY
@@ -414,9 +409,8 @@ Metal no crea Control: canaliza mejor uno ya expuesto.
 1. PRECISION
 2. PERCENT_PENETRATION
 3. FLAT_PENETRATION
-4. EXECUTION
-5. CRIT_CHANCE
-6. DIRECT_DAMAGE
+4. CRIT_CHANCE
+5. DIRECT_DAMAGE
 \`\`\`
 
 Se selecciona sólo el primer hook compatible.
@@ -436,15 +430,14 @@ Se selecciona sólo el primer hook compatible.
 1. PRECISION
 2. INTERRUPT
 3. CONTROL_POWER
-4. \`\`\`
+\`\`\`
 
 ### UTILITY
 
 \`\`\`text
-1. EXECUTION
-2. QI_COST_PERCENT
-3. PRECISION
-4. PROPAGATION
+1. QI_COST_PERCENT
+2. PRECISION
+3. PROPAGATION
 \`\`\`
 
 ---
@@ -518,10 +511,9 @@ Agua representa transformación, adaptación, erosión, templado y difusión.
 
 \`\`\`text
 1. CRIT_DAMAGE
-2. EXECUTION
-3. CRIT_CHANCE
-4. PRECISION
-5. DIRECT_DAMAGE
+2. CRIT_CHANCE
+3. PRECISION
+4. DIRECT_DAMAGE
 \`\`\`
 
 ### DEFENSIVE
@@ -539,7 +531,7 @@ Agua representa transformación, adaptación, erosión, templado y difusión.
 \`\`\`text
 1. CONTROL_DURATION
 2. CONTROL_POWER
-3. 4. DEBUFF_DURATION
+3. DEBUFF_DURATION
 \`\`\`
 
 ### UTILITY
@@ -562,8 +554,8 @@ Agua representa transformación, adaptación, erosión, templado y difusión.
 \`\`\`text
 1. DEF_SHRED
 2. EVASION_DEBUFF
-3. 4. DEBUFF_DURATION
-5. CONTROL_POWER
+3. DEBUFF_DURATION
+4. CONTROL_POWER
 \`\`\`
 
 ### DEFENSIVE
@@ -579,10 +571,10 @@ Agua representa transformación, adaptación, erosión, templado y difusión.
 ### CONTROL
 
 \`\`\`text
-1. 2. EVASION_DEBUFF
-3. CONTROL_POWER
-4. DEBUFF_DURATION
-5. ACTION_DENIAL
+1. EVASION_DEBUFF
+2. CONTROL_POWER
+3. DEBUFF_DURATION
+4. ACTION_DENIAL
 \`\`\`
 
 ### UTILITY
@@ -626,8 +618,8 @@ No usa \`DIRECT_DAMAGE\` como fallback.
 \`\`\`text
 1. PRECISION_DEBUFF
 2. CONTROL_POWER
-3. 4. INTERRUPT
-5. DEBUFF_DURATION
+3. INTERRUPT
+4. DEBUFF_DURATION
 \`\`\`
 
 ### UTILITY
@@ -653,7 +645,7 @@ No usa \`DIRECT_DAMAGE\` como fallback.
 
 ---
 
-# 6. TIERRA como origen — APROBADO PARCIALMENTE
+# 6. TIERRA como origen — APROBADO
 
 Tierra representa peso, contención, asentamiento, persistencia y materialización.
 
@@ -820,10 +812,9 @@ Prioridad:
 
 \`\`\`text
 1. CRIT_CHANCE
-2. EXECUTION
-3. PRECISION
-4. PERCENT_PENETRATION
-5. FLAT_PENETRATION
+2. PRECISION
+3. PERCENT_PENETRATION
+4. FLAT_PENETRATION
 \`\`\`
 
 La Concordancia no concede puntos fijos. Cuando mejora una magnitud, la escala porcentualmente sobre el hook receptor expuesto.
@@ -878,10 +869,10 @@ Esto permite que la misma Concordancia siga siendo relevante en Arcos futuros au
 ### CONTROL
 
 \`\`\`text
-1. 2. CONTROL_DURATION
-3. CONTROL_POWER
-4. ACTION_DENIAL
-5. DEBUFF_DURATION
+1. CONTROL_DURATION
+2. CONTROL_POWER
+3. ACTION_DENIAL
+4. DEBUFF_DURATION
 \`\`\`
 
 La identidad es anclar/fijar una estructura metálica de Control.
@@ -1090,9 +1081,8 @@ No existe una estadística de movilidad; Viento actúa sobre hooks reales del si
 \`\`\`text
 1. INTENSITY
 2. DIRECT_DAMAGE
-3. EXECUTION
-4. CRIT_DAMAGE
-5. PROPAGATION
+3. CRIT_DAMAGE
+4. PROPAGATION
 \`\`\`
 
 \`DIRECT_DAMAGE\` es válido aquí porque avivar una llama directa pertenece a la identidad de la relación.
@@ -1122,8 +1112,7 @@ Toda mejora de magnitud es porcentual respecto del hook receptor.
 \`\`\`text
 1. INTERNAL_RESOURCE
 2. PROPAGATION
-3. EXECUTION
-4. ZONE_DURATION
+3. ZONE_DURATION
 \`\`\`
 
 ---
@@ -1136,10 +1125,9 @@ Toda mejora de magnitud es porcentual respecto del hook receptor.
 
 \`\`\`text
 1. PRECISION
-2. EXECUTION
-3. PERCENT_PENETRATION
-4. CRIT_CHANCE
-5. FLAT_PENETRATION
+2. PERCENT_PENETRATION
+3. CRIT_CHANCE
+4. FLAT_PENETRATION
 \`\`\`
 
 Una Concordancia que modifique \`PRECISION\` escala la Precisión aportada por el hook receptor, no toda la Precisión total del actor.
@@ -1166,9 +1154,8 @@ Una Concordancia que modifique \`PRECISION\` escala la Precisión aportada por e
 
 \`\`\`text
 1. QI_COST_PERCENT
-2. EXECUTION
-3. PRECISION
-4. PROPAGATION
+2. PRECISION
+3. PROPAGATION
 \`\`\`
 
 ---
@@ -1181,10 +1168,9 @@ Una Concordancia que modifique \`PRECISION\` escala la Precisión aportada por e
 
 \`\`\`text
 1. QI_COST_PERCENT
-2. EXECUTION
-3. PROPAGATION
-4. CONTROL_POWER
-5. PRECISION
+2. PROPAGATION
+3. CONTROL_POWER
+4. PRECISION
 \`\`\`
 
 ### DEFENSIVE
@@ -1210,8 +1196,7 @@ Una Concordancia que modifique \`PRECISION\` escala la Precisión aportada por e
 \`\`\`text
 1. QI_COST_PERCENT
 2. PROPAGATION
-3. EXECUTION
-4. INTERNAL_RESOURCE
+3. INTERNAL_RESOURCE
 \`\`\`
 
 La reducción de coste es porcentual; no resta una cantidad fija de Qi.
@@ -1229,7 +1214,6 @@ La reducción de coste es porcentual; no resta una cantidad fija de Qi.
 2. DIRECT_DAMAGE
 3. PRECISION
 4. AREA_EFFICIENCY
-5. EXECUTION
 \`\`\`
 
 La relación prioriza impacto/control cuando existe. Si no existe, puede aumentar porcentualmente la magnitud directa del golpe.
