@@ -162,6 +162,8 @@ class MonteCarloSummary:
     median_damage_after_def: float
     p10_damage_after_def: float
     p90_damage_after_def: float
+    zero_damage_rate_per_action: float
+    zero_damage_rate_on_hit: float
 
 
 def _percentile(sorted_values: Sequence[float], q: float) -> float:
@@ -189,6 +191,8 @@ def monte_carlo_hit(
     damages: list[float] = []
     hits = 0
     crits = 0
+    zero_damage_actions = 0
+    zero_damage_hits = 0
 
     for _ in range(iterations):
         r = resolve_direct_hit(rng, attacker, target, technique, target_count)
@@ -196,6 +200,10 @@ def monte_carlo_hit(
         crits += int(r.critical)
         damages_decimal.append(r.damage_after_def_decimal)
         damages.append(float(r.damage_after_def))
+        if r.damage_after_def == 0:
+            zero_damage_actions += 1
+            if r.hit:
+                zero_damage_hits += 1
 
     damages.sort()
     return MonteCarloSummary(
@@ -207,6 +215,8 @@ def monte_carlo_hit(
         median_damage_after_def=statistics.median(damages),
         p10_damage_after_def=_percentile(damages, 0.10),
         p90_damage_after_def=_percentile(damages, 0.90),
+        zero_damage_rate_per_action=zero_damage_actions / iterations,
+        zero_damage_rate_on_hit=(zero_damage_hits / hits) if hits else 0.0,
     )
 
 
@@ -220,4 +230,6 @@ def as_dict(summary: MonteCarloSummary) -> dict:
         "median_damage_after_def": summary.median_damage_after_def,
         "p10_damage_after_def": summary.p10_damage_after_def,
         "p90_damage_after_def": summary.p90_damage_after_def,
+        "zero_damage_rate_per_action": summary.zero_damage_rate_per_action,
+        "zero_damage_rate_on_hit": summary.zero_damage_rate_on_hit,
     }
