@@ -326,3 +326,74 @@ Hipótesis principal para continuar, todavía NO canonizada:
 
 Antes de desbloquear el runner estricto de PHASE A se requiere decisión humana
 para promover esos candidatos de LAB a PROVISIONAL.
+
+
+---
+
+## Actualización posterior — inicio de testeos estrictos LianQi I
+
+### PHASE A
+
+**PASS PROVISIONAL**
+
+Promovidos a PROVISIONAL:
+
+- enemigo de referencia: Evasión 20 / DEF 2;
+- ataque básico: 1d4+4;
+- técnicas iniciales: variantes narrow.
+
+Validación:
+
+- 300.000 acciones por acción/raíz;
+- cross-check determinístico por enumeración exacta;
+- desviación máxima Monte Carlo vs exacto <0.25%;
+- 0% impactos conectados anulados por DEF en el baseline.
+
+Documento:
+
+- `docs/experimentos/TEST_LIANQI_I_NAKED_PHASE_A_2026-09-29.md`
+
+### PHASE B — presupuesto Qi
+
+Barrido LAB:
+
+- Qi máximo 18/24/30/36/42;
+- pisos de coste 1/3/5/6.
+
+Hallazgo:
+
+- las cinco técnicas iniciales cuestan efectivamente 6 Qi en su raíz principal;
+- Agua: 7 × 0.90 = 6.3 -> ROUND_HALF_UP = 6;
+- pisos 1–6 son indistinguibles en este subtest y el piso global sigue PENDIENTE;
+- banda principal de Qi para pruebas siguientes: 24–30 LAB.
+
+Documento:
+
+- `docs/experimentos/LAB_LIANQI_I_NAKED_PHASE_B_QI_2026-09-29.md`
+
+### Cruce ofensivo HP × Qi
+
+Se simularon 20.000 combates por raíz/combinación sin respuesta enemiga.
+
+Dos parejas principales LAB:
+
+1. COMPACTA: Qi 24 / HP enemigo 20
+   - ~4.08 turnos medios;
+   - ~28% de combates usan ataque básico.
+
+2. EXTENDIDA: Qi 30 / HP enemigo 28
+   - ~5.51 turnos medios;
+   - ~40% de combates usan ataque básico.
+
+No fijar todavía Qi máximo ni HP enemigo. Falta incorporar presión enemiga,
+HP/DEF/Evasión del jugador y valor real de utilidades/defensivas.
+
+Documento:
+
+- `docs/experimentos/LAB_LIANQI_I_HP_QI_OFENSIVO_2026-09-29.md`
+
+Runners nuevos:
+
+- `experimentos/balance_nuevo/phase_a_exact_check.py`
+- `experimentos/balance_nuevo/phase_b_qi_budget_lab.py`
+- `experimentos/balance_nuevo/phase_b_hp_qi_offense_lab.py`
