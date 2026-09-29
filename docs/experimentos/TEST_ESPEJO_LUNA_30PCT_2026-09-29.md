@@ -1,3 +1,6 @@
+> ⚠️ **HISTÓRICO / NO USAR CIFRAS PARA BALANCE DEL SISTEMA NUEVO.**  
+> Este informe fue producido antes de declarar obsoleto el sistema numérico legacy. Puede conservar hallazgos de arquitectura, interacción o metodología, pero cualquier resultado que dependa de HP/Qi/perfiles enemigos/DEF/Evasión/daño derivados o inspirados en `ver74` debe repetirse con el marco `experimentos/balance_nuevo/`. No convertir estadísticas legacy al contrato nuevo.
+
 # Test de Espejo de Luna — base 30% HP
 
 Fecha: 2026-09-29  
