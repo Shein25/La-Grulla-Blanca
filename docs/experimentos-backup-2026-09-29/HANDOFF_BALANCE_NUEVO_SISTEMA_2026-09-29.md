@@ -861,3 +861,30 @@ Conclusión:
 
 Siguiente única etapa:
 - ETAPA 2 — CURRENT vs DEF_CAP2 contra enemigo pesado 1v1.
+
+
+### ETAPA 2 — 1v1 enemigo pesado — CERRADA
+
+Documento:
+- `docs/experimentos/ETAPA2_PIEL_CURRENT_VS_DEF_CAP2_1V1_PESADO_2026-09-29.md`
+
+Único cambio respecto de Etapa 1:
+- daño enemigo `2d4+1 -> 1d6+3`.
+
+200.000 duelos:
+- CURRENT: 93.91% win / 55.92% HP restante.
+- DEF_CAP2: 92.96% win / 53.15% HP restante.
+- delta win ≈ -0.95 pp.
+- delta HP restante ≈ -2.78 pp.
+
+Repetición 4×100k:
+- delta win: -0.898 / -0.895 / -1.013 / -1.013 pp.
+
+Conclusión:
+- DEF_CAP2 PASS para continuar;
+- pérdida medible pero moderada;
+- Piel conserva función defensiva fuerte contra daño alto;
+- no se promueve todavía.
+
+Siguiente única etapa:
+- ETAPA 3 — CURRENT vs DEF_CAP2 contra enemigo preciso 1v1.
