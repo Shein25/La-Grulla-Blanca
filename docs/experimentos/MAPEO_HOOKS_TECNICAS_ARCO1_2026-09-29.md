@@ -423,7 +423,42 @@ Los mapeos legacy de Penetración, DEF_SHRED y Evasión adicional quedan sin aut
 
 ---
 
-# 5. Mini-reauditoría 12 × 4
+# 5. VIENTO
+
+## 5.1 Lanza que Parte Nubes
+
+```text
+role_primary = OFFENSIVE
+tags = [TECHNIQUE, DIRECT, ELEMENTAL, WIND, UNITARGET]
+
+mechanical_hooks BASE:
+- DIRECT_DAMAGE
+- PRECISION
+- CRIT_CHANCE
+
+mechanical_hooks POR RAMA:
+- CRIT_DAMAGE
+- QI_COST_PERCENT
+
+concordance_hooks BASE:
+- PRECISION
+- CRIT_CHANCE
+
+concordance_hooks POR RAMA:
+CRITICAL:
+- CRIT_DAMAGE
+```
+
+Decisiones:
+- `DIRECT_DAMAGE` es mecánico pero no se expone a Concordancias;
+- Fuego→Viento resuelve sobre `CRIT_CHANCE`;
+- Metal→Viento resuelve sobre `PRECISION`;
+- Agua→Viento y Tierra→Viento no tienen receptor compatible en Lanza;
+- la ausencia de receptor no crea fallback ni consume el Eco por Concordancia.
+
+---
+
+# 6. Mini-reauditoría 13 × 4
 
 Esta tabla usa exclusivamente los `concordance_hooks` anteriores y la matriz global actual.
 
@@ -479,16 +514,20 @@ Esta tabla usa exclusivamente los `concordance_hooks` anteriores y la matriz glo
 | Temblor | Metal→Tierra | DIRECT_DAMAGE | Anclaje cae a daño | PASS con convergencia |
 | Temblor | Agua→Tierra | EVASION_DEBUFF | Suelo Inestable escalado | PASS |
 | Temblor | Viento→Tierra | DIRECT_DAMAGE | impulso AOE | PASS con convergencia |
+| Lanza | Fuego→Viento | CRIT_CHANCE | Corriente Ascendente escala la probabilidad crítica propia | PASS |
+| Lanza | Metal→Viento | PRECISION | Filo en la Corriente escala la Precisión propia | PASS |
+| Lanza | Agua→Viento | NONE | Sin resolución; sin fallback | PASS |
+| Lanza | Tierra→Viento | NONE | Sin resolución; sin fallback | PASS |
 
 ---
 
-# 6. Resultado
+# 7. Resultado
 
 ## Cerrado
 
-- las 12 técnicas poseen `role_primary`;
-- todas poseen `mechanical_hooks[]`;
-- todas poseen `concordance_hooks[]`;
+- las 13 técnicas diseñadas poseen `role_primary`;
+- 13/13 poseen `mechanical_hooks[]`;
+- 13/13 poseen `concordance_hooks[]`;
 - hooks de ramas son condicionales;
 - DIRECT_DAMAGE deja de exponerse automáticamente;
 - Latigazo queda como CONTROL;
@@ -496,7 +535,7 @@ Esta tabla usa exclusivamente los `concordance_hooks` anteriores y la matriz glo
 - Armadura expone FORTIFICATION para Placa Fundacional;
 - Espejo expone ABSORPTION_RESTORE para Embalse;
 - Palma/Círculo exponen CONTAINED_TRIGGER para Núcleo;
-- las 48 combinaciones tienen resultado determinista bajo la matriz actual.
+- las 52 combinaciones de las 13 técnicas diseñadas tienen resultado determinista bajo la matriz actual.
 
 ## Riesgos no bloqueantes detectados
 
