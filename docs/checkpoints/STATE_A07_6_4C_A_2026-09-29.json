@@ -1,0 +1,26 @@
+{
+  "project": "La Grulla Blanca",
+  "date": "2026-09-29",
+  "checkpoint": "A07.6.4C-A",
+  "status": "AUDIT_APPROVED_BLOCKED_BY_PRODUCTIVE_AUTHORITY",
+  "snapshot_branch": "snapshot/handoff-2026-09-29-a07-6-4c-a",
+  "astra_commit": "3b40896b9e234cc126c06d9d62f2ab4d7b150434",
+  "astra_parent": "c10943a168a16477719c3eb7014508f439f86461",
+  "package_sha256": "2ffb035f2c93a1854d9ad6e130d575d66009940c88e7aee84ebb7cb55d1134fa",
+  "manifest": "97/97 PASS",
+  "tests": "29/29 PASS",
+  "regression": "146/149; 3 historical HTML hash sentinels only",
+  "runtime_sha256": "b0966fe6d4d263519e5c88d2f93cdd29dc0d3a595c3d63a0f6b3b4426eac12cd",
+  "next": "A07.6.4C-B0 mobility authority/no-calendar calibration",
+  "open_gaps": [
+    "schedulerConfigurations",
+    "agendaBindings",
+    "actorInputs/local projection",
+    "MOVE bindings/policy",
+    "revision",
+    "enginePort",
+    "epoch/session",
+    "external source reconciliation",
+    "browser packaging gate"
+  ]
+}
