@@ -612,3 +612,39 @@ A/B 200k duelos:
   pero es semánticamente menos natural para un debuff del objetivo.
 
 No se modifica todavía el documento autoritativo ni runtime.
+
+
+---
+
+## Decisión aprobada — Arrastre / Tenacidad / Peso pasan a PROVISIONAL
+
+Aprobación humana registrada el 2026-09-29.
+
+Se promueven para los siguientes benchmarks, **no a CANON**:
+
+### Arrastre
+- `base_control = 65` PROVISIONAL.
+- Tenacidad de referencia ordinaria LianQi I = `20` PROVISIONAL.
+- Agua principal aporta +5 Control CANON.
+- Resultado de referencia: `65 + 5 - 20 = 50%` de Arrastre.
+- Anti-bloqueo se conserva.
+
+### Peso
+- `-3 EVA/carga`, máximo 2, duración 2.
+- `stacking_mode = STACK_REFRESH` PROVISIONAL.
+- owner = objetivo afectado.
+- `duration_unit = TARGET_TURN`.
+- decremento en `TURN_END` del objetivo.
+- cada aplicación válida añade una carga y refresca la duración completa.
+- al expirar se eliminan todas las cargas.
+
+Guardia:
+- sin cambio de runtime/HTML;
+- sin elevar a CANON;
+- rebenchmark obligatorio con defensivas y posteriores capas del sistema.
+
+### Siguiente bloque activo
+**PHASE C — defensivas base**:
+1. Piel de Cobre;
+2. Espejo de Luna;
+3. después comparar las cinco defensivas base antes de cerrar LianQi I.
