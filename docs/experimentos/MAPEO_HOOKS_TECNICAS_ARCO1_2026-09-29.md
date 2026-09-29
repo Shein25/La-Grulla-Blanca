@@ -492,9 +492,56 @@ Decisiones:
 - `REACTIVE_RESPONSE` sólo existe con la rama Estela/Huella/Paso sin Sombra;
 - `QI_COST_PERCENT` sólo existe con la rama de eficiencia.
 
+## 5.3 Tijera del Vendaval Partido
+
+```text
+role_primary = OFFENSIVE
+tags = [TECHNIQUE, DIRECT, ELEMENTAL, WIND, AOE, DEBUFF]
+
+mechanical_hooks BASE:
+- DIRECT_DAMAGE
+- PRECISION_DEBUFF
+- DEBUFF_DURATION
+- AREA_EFFICIENCY
+
+mechanical_hooks POR RAMA:
+INTERFERENCE:
+- PRECISION_DEBUFF
+- DEBUFF_DURATION
+
+TEMPEST:
+- CRIT_CHANCE
+- CRIT_DAMAGE
+
+FLOW:
+- PRECISION
+- QI_COST_PERCENT
+
+concordance_hooks BASE:
+- PRECISION_DEBUFF
+- DEBUFF_DURATION
+- AREA_EFFICIENCY
+
+concordance_hooks POR RAMA:
+TEMPEST:
+- CRIT_CHANCE
+- CRIT_DAMAGE
+
+FLOW:
+- PRECISION
+```
+
+Decisiones:
+- `DIRECT_DAMAGE` no se expone a Concordancias;
+- `QI_COST_PERCENT` es mecánico de la ruta de circulación pero no receptor de Concordancia;
+- Agua→Viento resuelve de base sobre `PRECISION_DEBUFF`;
+- Tierra→Viento resuelve de base sobre `AREA_EFFICIENCY`;
+- Fuego→Viento exige la ruta Tempestad para abrir `CRIT_CHANCE`;
+- Metal→Viento exige la ruta Corriente para abrir `PRECISION`.
+
 ---
 
-# 6. Mini-reauditoría 14 × 4
+# 6. Mini-reauditoría 15 × 4
 
 Esta tabla usa exclusivamente los `concordance_hooks` anteriores y la matriz global actual.
 
@@ -558,6 +605,10 @@ Esta tabla usa exclusivamente los `concordance_hooks` anteriores y la matriz glo
 | Paso | Metal→Viento | EVASION_GRANTED base; QI_COST_PERCENT/REACTIVE_RESPONSE por rama | eficiencia/adaptación/evitación | PASS |
 | Paso | Agua→Viento | DEFENSIVE_DURATION base; REACTIVE_RESPONSE por rama | continuidad/adaptación | PASS |
 | Paso | Tierra→Viento | DEFENSIVE_DURATION | permanencia asentada | PASS |
+| Tijera | Fuego→Viento | BASE NONE; ruta Tempestad: CRIT_CHANCE | Corriente Ascendente crítica | PASS |
+| Tijera | Metal→Viento | BASE NONE; ruta Corriente: PRECISION | Filo en la Corriente | PASS |
+| Tijera | Agua→Viento | PRECISION_DEBUFF | Velo de Niebla intensifica Turbulencia | PASS |
+| Tijera | Tierra→Viento | AREA_EFFICIENCY | Tormenta de Polvo escala magnitud AOE | PASS |
 
 ---
 
@@ -565,9 +616,9 @@ Esta tabla usa exclusivamente los `concordance_hooks` anteriores y la matriz glo
 
 ## Cerrado
 
-- las 14 técnicas diseñadas poseen `role_primary`;
-- 14/14 poseen `mechanical_hooks[]`;
-- 14/14 poseen `concordance_hooks[]`;
+- las 15 técnicas de Arco 1 poseen `role_primary`;
+- 15/15 poseen `mechanical_hooks[]`;
+- 15/15 poseen `concordance_hooks[]`;
 - hooks de ramas son condicionales;
 - DIRECT_DAMAGE deja de exponerse automáticamente;
 - Latigazo queda como CONTROL;
@@ -575,7 +626,7 @@ Esta tabla usa exclusivamente los `concordance_hooks` anteriores y la matriz glo
 - Armadura expone FORTIFICATION para Placa Fundacional;
 - Espejo expone ABSORPTION_RESTORE para Embalse;
 - Palma/Círculo exponen CONTAINED_TRIGGER para Núcleo;
-- las 56 combinaciones de las 14 técnicas diseñadas tienen resultado determinista bajo la matriz actual.
+- las 60 combinaciones de las 15 técnicas tienen resultado determinista bajo la matriz actual.
 
 ## Riesgos no bloqueantes detectados
 
@@ -590,7 +641,7 @@ Esto no viola el resolver ni produce doble resolución, pero debe considerarse a
 
 ## Pendiente
 
-- las 3 técnicas de Viento;
+- diseño de Viento: CERRADO 3/3;
 - porcentajes finales de Concordancia;
 - benchmark de 0.65 AOE;
 - valores de manifestaciones;
