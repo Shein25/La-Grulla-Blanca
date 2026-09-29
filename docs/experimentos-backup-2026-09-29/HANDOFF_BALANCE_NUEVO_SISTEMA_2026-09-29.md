@@ -288,3 +288,41 @@ Objetivo:
 
 Guardia: no tocar runtime, quests ni diálogos actuales por este pendiente hasta
 cerrar A07.
+
+
+---
+
+## Actualización posterior — PHASE A perfiles abstractos LianQi I
+
+Se añadió:
+
+- `experimentos/balance_nuevo/phase_a_enemy_profiles_lab.py`
+- `docs/experimentos/LAB_PERFILES_ENEMIGO_LIANQI_I_PHASE_A_2026-09-29.md`
+
+Todo sigue en **LAB**.
+
+Perfiles evaluados:
+
+- L1_SOFT = Evasión 10 / DEF 1
+- L1_STANDARD = Evasión 20 / DEF 2
+- L1_ARMORED = Evasión 20 / DEF 4
+- L1_EVASIVE = Evasión 35 / DEF 2
+
+Con ataque básico `1d4+4` y técnicas `narrow`, el perfil STANDARD produce
+aprox. 80% de impacto normal (85% con Precisión adicional) y un premium medio
+de técnica de ~1.51x. El perfil ARMORED eleva el premium medio a ~1.92x.
+
+Hallazgo adicional: a igual media, las variantes `wide` empiezan a producir
+impactos acertados de 0 contra DEF 4 en Agua/Tierra/Viento, mientras las
+variantes `narrow` no.
+
+Hipótesis principal para continuar, todavía NO canonizada:
+
+- referencia ordinaria: E20 / DEF2;
+- ataque básico: 1d4+4;
+- técnicas: narrow;
+- DEF4 como perfil resistente/stress;
+- Evasión ~35 como perfil evasivo especializado.
+
+Antes de desbloquear el runner estricto de PHASE A se requiere decisión humana
+para promover esos candidatos de LAB a PROVISIONAL.
