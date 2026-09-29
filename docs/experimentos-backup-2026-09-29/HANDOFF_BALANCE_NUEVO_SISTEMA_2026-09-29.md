@@ -1245,3 +1245,45 @@ Estado:
 
 Siguiente única etapa:
 - ETAPA 9B — ESTRATO_REACTIVO_2 contra 2 enemigos.
+
+
+### ETAPA 9B — Estratos Compactos · 2 enemigos — CERRADA
+
+Documento:
+- `docs/experimentos/ETAPA9B_ESTRATOS_COMPACTOS_2_ENEMIGOS_2026-09-29.md`
+
+Runner/checkpoint:
+- `experimentos/balance_nuevo/etapa9b_estratos_compactos_2enemigos.py`
+
+Escenario:
+- Tierra HP33 / Qi31 / DEF1 / EVA5;
+- 2 enemigos 14+14 HP;
+- PREC90 / EVA20 / DEF2 / ataque 2d4+1.
+
+Resultado 200k:
+- Piel base: 84.91% win / 40.97% HP / extensión95.90%.
+- Piel base + Estratos: 87.30% / 45.01% / extensión91.80%.
+- Corteza: 89.41% / 48.55% / extensión78.44%.
+- Corteza + Estratos: 89.90% / 49.96% / extensión69.18%.
+
+Efecto Estratos:
+- sobre Piel base: +2.39 pp win / +4.03 pp HP.
+- sobre Corteza: +0.49 pp win / +1.42 pp HP.
+
+Replicación 4×50k:
+- Piel base: +2.386 a +2.510 pp win.
+- con Corteza: +0.374 a +0.722 pp win.
+
+Hallazgo:
+- retorno decreciente fuerte al combinar Corteza + Estratos;
+- no existe DEF permanente adicional;
+- usos Estrato ≈1.63 sin Corteza y ≈1.50 con Corteza;
+- extensión baja al aumentar mitigación, reforzando autolimitación.
+
+Estado:
+- ESTRATO_REACTIVO_2 PASS para continuar;
+- sigue LAB;
+- NO PROVISIONAL todavía.
+
+Siguiente única etapa:
+- ETAPA 9C — Estratos contra 3 enemigos.
