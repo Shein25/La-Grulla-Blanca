@@ -920,6 +920,7 @@ ZONE_DURATION
 DEFERRED_DAMAGE
 IMMUNITY_WINDOW
 CONTROL_LOCKOUT
+CONTAINED_TRIGGER
 \`\`\`
 
 Este catálogo es extensible, pero añadir un hook nuevo debe representar una familia mecánica reutilizable.
@@ -1192,3 +1193,291 @@ Los efectos que conceptualmente representen dificultad para moverse deben traduc
 - otro estado explícito soportado.
 
 No introducir una capa de movilidad sólo por narrativa.
+
+
+---
+
+# 25. Semántica operacional de hooks de Concordancia
+
+Esta sección define cómo una Concordancia puede operar sobre un hook. La existencia del nombre del hook no basta: debe existir una operación determinista.
+
+## 25.1 Tres clases operacionales
+
+Todo `concordance_hook` debe declarar una clase:
+
+```text
+SCALAR
+PARAMETRIC
+STRUCTURAL
+```
+
+### SCALAR
+
+Existe una magnitud numérica propia y direccionable del receptor.
+
+Forma general:
+
+```text
+receiver_value
+→ receiver_value × (1 + concordance_scale)
+```
+
+`receiver_value` significa **la contribución emitida por la técnica/efecto receptor para ese hook**, después de sus propias ramas y sinergias locales, pero antes de pools globales del actor y de mitigación del objetivo.
+
+Nunca significa la estadística total del actor.
+
+Para magnitudes con signo, como un debuff:
+
+```text
+sign(v) × abs(v) × (1 + concordance_scale)
+```
+
+Ejemplos compatibles:
+
+```text
+DIRECT_DAMAGE
+CRIT_CHANCE
+CRIT_DAMAGE
+PRECISION
+PERCENT_PENETRATION
+FLAT_PENETRATION
+DEF_SHRED
+DOT_POTENCY
+CONTROL_POWER
+EVASION_DEBUFF
+PRECISION_DEBUFF
+DEF_GRANTED
+ABSORPTION
+ABSORPTION_RESTORE
+TENACITY_GRANTED
+EVASION_GRANTED
+```
+
+Una aportación ausente o igual a cero **no crea compatibilidad por sí sola**. El contenido debe exponer una contribución real o una transformación estructural explícita.
+
+### PARAMETRIC
+
+El hook representa una familia con uno o más parámetros. El contenido debe declarar cuál es el objetivo exacto mediante:
+
+```text
+scale_target
+```
+
+Ejemplos:
+
+```text
+DOT_DURATION
+DEBUFF_DURATION
+CONTROL_DURATION
+DEFENSIVE_DURATION
+ZONE_DURATION
+AFFLICTION_APPLICATION
+INTENSITY
+PROPAGATION
+AREA_EFFICIENCY
+DAMAGE_PORTION
+INTERNAL_RESOURCE
+```
+
+No se permite multiplicar "la familia" sin identificar el parámetro.
+
+### STRUCTURAL
+
+El hook modifica comportamiento discreto, ciclo de vida o topología del efecto.
+
+Ejemplos:
+
+```text
+FORTIFICATION
+STACKABLE_STATE
+REACTIVE_RESPONSE
+ACTION_DENIAL
+INTERRUPT
+CONTAINED_TRIGGER
+ZONE
+CONTROL_LOCKOUT
+```
+
+Un hook STRUCTURAL no usa por defecto `receiver_value × (1+s)`.
+
+Requiere una `transformation_rule` declarada por datos.
+
+---
+
+## 25.2 Capa del pipeline
+
+Para un hook SCALAR de técnica:
+
+```text
+valor local de técnica
+→ ramas/sinergias propias
+→ CONCORDANCE_LOCAL_SCALE
+→ pools/modificadores globales compatibles
+→ resto del pipeline
+```
+
+La Concordancia es por tanto una capa local separada, no una entrada silenciosa en el pool global del actor.
+
+Para DEF/Absorción/estados se aplica el mismo principio: escala la contribución propia de la instancia antes de combinarla con modificadores globales compatibles.
+
+`QI_COST_PERCENT` es una excepción operacional y usa la fase PRE_COST definida por el contrato del Motor.
+
+---
+
+## 25.3 Duraciones discretas
+
+Las duraciones continúan siendo unidades discretas.
+
+Cuando una Concordancia escala porcentualmente una duración:
+
+```text
+duracion_escalada_real
+=
+duracion_receptora × (1 + concordance_scale)
+
+duracion_snapshot
+=
+ROUND_HALF_UP(duracion_escalada_real)
+```
+
+Reglas:
+
+- se redondea una sola vez al crear el snapshot del efecto;
+- no se acumulan fracciones ocultas entre activaciones;
+- no existe mínimo artificial de `+1 turno`;
+- la unidad debe ser una de las enumeradas por el Motor;
+- si un porcentaje de balance no produce diferencia visible sobre una duración corta, ése es un problema de benchmark/cobertura, no motivo para introducir un bono plano.
+
+---
+
+## 25.4 Definiciones de hooks ambiguos
+
+### PERSISTENCE
+
+No significa duración ordinaria.
+
+Representa **política de persistencia/ciclo de vida** de un estado o aflicción: sobrevivir a eventos de limpieza, combate, sala, guardado u otra frontera declarada.
+
+Es STRUCTURAL/PARAMETRIC y requiere `scale_target` o `transformation_rule`.
+
+Para aumentar ticks/turnos usar `DOT_DURATION`, `DEBUFF_DURATION`, `ZONE_DURATION` o la duración específica correspondiente.
+
+### INTENSITY
+
+Sólo puede representar una magnitud explícita `intensity_value` de una aflicción/estado que no tenga un hook más específico.
+
+No es alias de `DIRECT_DAMAGE` ni de `DOT_POTENCY`.
+
+Si el contenido no declara `intensity_value`, INTENSITY no es compatible.
+
+### FORTIFICATION
+
+Representa una transformación estructural de una defensa: estabilidad, consumo, reconstrucción, resistencia del estado o refuerzo de una propiedad defensiva declarada.
+
+No es sinónimo de `DEF_GRANTED` ni `ABSORPTION`.
+
+Si el resultado buscado es sólo más DEF o más Absorción, debe usarse el hook escalar específico.
+
+### REACTIVE_RESPONSE
+
+Representa una respuesta disparada por evento.
+
+Debe declarar:
+
+```text
+trigger
+operation
+scale_target opcional
+frequency
+```
+
+No implica Reflect ni Retaliation.
+
+### STACKABLE_STATE
+
+Representa la estructura de un estado apilable: reglas de ganancia, consumo, máximo, refresco o transformación.
+
+La potencia numérica de cada stack debe usar un hook específico cuando exista.
+
+### INTERNAL_RESOURCE
+
+Debe identificar el recurso y el campo exacto:
+
+```text
+resource_family
+scale_target = capacity | gain | spend_efficiency | release
+```
+
+No se escala genéricamente "el recurso".
+
+### AFFLICTION_APPLICATION
+
+Por defecto escala únicamente una `application_chance` explícita.
+
+Una aplicación garantizada sin probabilidad propia no se vuelve más fuerte por multiplicación; requerirá otra propiedad o una transformación estructural.
+
+### PROPAGATION
+
+Describe una propagación secundaria declarada.
+
+Debe especificar:
+
+```text
+source_scope
+eligible_existing_target_set
+propagation_scale_target
+packet/effect
+```
+
+Nunca descubre enemigos nuevos fuera del conjunto de objetivos ya congelado para la ejecución, salvo futura regla global explícita.
+
+### AREA_EFFICIENCY
+
+Sólo es compatible con acciones `AOE`.
+
+Representa un multiplicador local de la **magnitud ofensiva propia de la ejecución AOE**, sin alterar:
+
+- conjunto de blancos;
+- target cap;
+- debuffs;
+- Control;
+- duración;
+- stacks;
+- propagación.
+
+Orden:
+
+```text
+magnitud ofensiva local AOE
+→ AREA_EFFICIENCY
+→ AOE_SINGLE_TARGET_SCALAR si corresponde
+→ mitigación posterior
+```
+
+No es sinónimo de PROPAGATION.
+
+### DAMAGE_PORTION
+
+Debe identificar una porción existente o una porción secundaria creada mediante una transformación declarada.
+
+Campos mínimos:
+
+```text
+portion_id/family
+amount_basis
+scale_target
+tags
+packet_flags
+```
+
+No autoriza por sí sola a crear una nueva porción arbitraria.
+
+---
+
+# 26. EXECUTION — retirado temporalmente de Concordancias
+
+`EXECUTION` continúa registrado como familia mecánica de contenido, pero no puede utilizarse como `concordance_hook` mientras no exista una semántica única, numérica o estructural, reutilizable.
+
+Las entradas antiguas de la matriz que lo usaban quedan superadas.
+
+Esto no afecta al ciclo normal de `ActionContext` ni a los estados DECLARED/PREPARED/EXECUTING/RESOLVED/CANCELLED.
