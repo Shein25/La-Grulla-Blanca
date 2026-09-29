@@ -1202,3 +1202,46 @@ Guardia para Tramos II/III:
 - no continuar con escalera lineal de +1 DEF permanente;
 - Estratos Compactos y Cuerpo de Roca siguen PENDIENTES DE REBENCHMARK;
 - explorar retornos decrecientes, condiciones o ventanas defensivas.
+
+
+### ETAPA 9A — Estratos Compactos · screen estructural 1v1 — CERRADA
+
+Documento:
+- docs/experimentos/ETAPA9A_ESTRATOS_COMPACTOS_SCREEN_1V1_2026-09-29.md
+
+Runner/checkpoint:
+- experimentos/balance_nuevo/etapa9a_estratos_compactos_screen.py
+
+Problema:
+- no continuar escalera permanente de DEF hacia 7+;
+- Estratos debe funcionar incluso sin Corteza.
+
+Candidato principal LAB:
+- ESTRATO_REACTIVO_2.
+- al aumentar Arraigo y alcanzar 2 o 3: gana/refresca 1 Estrato;
+- máximo 1;
+- siguiente impacto directo conectado: +2 DEF sólo para ese impacto;
+- se consume al conectar;
+- evasión no consume;
+- salto 1->3 genera un solo Estrato;
+- ascenso gradual puede proteger hasta dos impactos por activación.
+
+Screen 50k, seed 20260929:
+- común 2d4+1, Piel base: 95.60% -> 96.10% win; HP +2.14 pp.
+- común, Piel+Corteza: 96.37% -> 96.31%; HP +0.08 pp.
+- heavy 1d6+3, Piel base: 92.99% -> 93.92%; HP +3.10 pp.
+- heavy, Piel+Corteza: 94.31% -> 94.55%; HP +1.20 pp.
+
+Lectura:
+- funciona sin Corteza;
+- con Corteza muestra retornos decrecientes en enemigo común;
+- gana valor frente a impactos pesados;
+- evita DEF7 permanente y limita usos por transiciones de Arraigo.
+
+Estado:
+- candidato principal LAB;
+- NO PROVISIONAL todavía;
+- no runtime/HTML.
+
+Siguiente única etapa:
+- ETAPA 9B — ESTRATO_REACTIVO_2 contra 2 enemigos.
