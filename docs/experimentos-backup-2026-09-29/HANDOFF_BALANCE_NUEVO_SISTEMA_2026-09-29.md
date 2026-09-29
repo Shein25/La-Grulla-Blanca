@@ -1287,3 +1287,53 @@ Estado:
 
 Siguiente única etapa:
 - ETAPA 9C — Estratos contra 3 enemigos.
+
+
+### ETAPA 9C — Estratos Compactos · 3 enemigos — CERRADA
+
+Documento:
+- `docs/experimentos/ETAPA9C_ESTRATOS_COMPACTOS_3_ENEMIGOS_2026-09-29.md`
+
+Runner/checkpoint:
+- `experimentos/balance_nuevo/etapa9c_estratos_compactos_3enemigos.py`
+
+Escenario:
+- Tierra HP33 / Qi31 / DEF1 / EVA5;
+- 3 enemigos 10+9+9 HP;
+- PREC90 / EVA20 / DEF2 / ataque 2d4+1.
+
+Resultado 200k:
+- Piel base: 57.90% win / 19.50% HP / extensión99.42%.
+- Piel base + Estratos: 62.43% / 22.73% / extensión98.82%.
+- Corteza: 70.03% / 28.83% / extensión92.34%.
+- Corteza + Estratos: 71.71% / 30.53% / extensión88.59%.
+
+Efecto Estratos:
+- sobre Piel base: +4.53 pp win / +3.24 pp HP.
+- sobre Corteza: +1.68 pp win / +1.71 pp HP.
+
+Usos medios Estrato:
+- 3 enemigos: ~1.72 sin Corteza / ~1.74 con Corteza.
+- no crecen proporcionalmente a los ataques porque nacen de transiciones de Arraigo.
+
+Replicación 4×50k:
+- Piel base: +4.056 a +4.624 pp win.
+- con Corteza: +1.546 a +1.904 pp win.
+
+Decisión:
+- `ESTRATO_REACTIVO_2` pasa de LAB a **PROVISIONAL** para Estratos Compactos.
+- no CANON.
+- no runtime/HTML.
+
+Regla PROVISIONAL:
+- cuando Arraigo aumente a 2 o 3, gana/refresca 1 Estrato;
+- máximo1;
+- siguiente impacto directo conectado recibe +2 DEF sólo para ese impacto;
+- consume Estrato;
+- evasión no consume;
+- salto 1->3 genera un solo Estrato;
+- funciona con o sin Corteza.
+
+Guardia:
+- revalidar contra perfil enemigo autoritativo de LianQi III cuando exista.
+- Cuerpo de Roca sigue PENDIENTE y no debe convertirse en otra capa permanente lineal de DEF.
