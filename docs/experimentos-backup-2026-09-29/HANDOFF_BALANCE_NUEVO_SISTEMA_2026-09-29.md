@@ -1027,3 +1027,52 @@ Estado DEF_CAP2:
 Siguiente única etapa:
 - revisión conjunta Etapas1–6 para decidir si DEF_CAP2 pasa de LAB a
   PROVISIONAL como base de Piel.
+
+
+### ETAPA 7 — cierre de Piel base — CERRADA
+
+Documento:
+- `docs/experimentos/ETAPA7_CIERRE_PIEL_DEF_CAP2_PROVISIONAL_2026-09-29.md`
+
+Decisión:
+- `DEF_CAP2` pasa de LAB a **PROVISIONAL** para Piel de Cobre base.
+- No pasa a CANON.
+
+Curva PROVISIONAL:
+
+```text
+Piel aporta:
+1 Arraigo -> +3 DEF / +3 Tenacidad
+2 Arraigos -> +4 DEF / +6 Tenacidad
+3 Arraigos -> +4 DEF / +9 Tenacidad
+```
+
+Con DEF base1 del benchmark:
+- DEF total 4 -> 5 -> 5.
+
+Se conserva:
+- coste7;
+- duración3;
+- +2 DEF inmediata;
+- 1 Arraigo inicial;
+- máximo3;
+- +3 Tenacidad por Arraigo;
+- trigger reactivo;
+- trigger fuerte;
+- extensión al máximo;
+- Eco de Tierra.
+
+Motivo:
+- 1v1: impacto mínimo (~0.6–1.0 pp de win).
+- 2 enemigos: recorte ~3.9 pp.
+- 3 enemigos: recorte ~10.1 pp, pero DEF_CAP2 conserva ~58% win frente a
+  ~17% sin Piel.
+- tercer Arraigo conserva valor por +3 Tenacidad y extensión.
+
+Documento autoritativo de técnicas actualizado.
+
+Guardia:
+- ramas de fortificación Corteza Endurecida / Estratos Compactos /
+  Cuerpo de Roca quedan PENDIENTES DE REBENCHMARK porque sus números dependían
+  de la antigua curva 4->5->6.
+- sin runtime/HTML.
