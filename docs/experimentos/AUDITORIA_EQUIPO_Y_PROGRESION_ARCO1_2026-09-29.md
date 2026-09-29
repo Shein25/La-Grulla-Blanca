@@ -294,3 +294,96 @@ Antes de diseñar stats de objetos:
 7. probar políticas alternativas de recompensa por ascenso.
 
 La economía del equipo y la progresión de cultivo deben cerrarse juntas, porque ambas determinan el crecimiento real de poder del Arco 1.
+
+
+---
+
+## 10. Arquitectura objetivo de slots — DECISIÓN REGISTRADA / IMPLEMENTACIÓN DIFERIDA
+
+Esta decisión se adopta como arquitectura objetivo para el rediseño de equipo,
+pero **NO debe implementarse todavía en el runtime**. Primero debe concluir el
+bloque actual de pruebas de LianQi I NAKED y el cierre de su base de combate.
+
+### Slots objetivo
+
+El sistema futuro deberá contemplar **13 slots totales**:
+
+#### Equipo marcial
+1. **Arma**
+2. **Tocado**
+3. **Vestidura**
+4. **Brazales**
+5. **Fajín**
+6. **Piernas**
+7. **Calzado**
+
+#### Accesorios
+8. **Amuleto**
+9. **Pulsera**
+10. **Anillo I**
+11. **Anillo II**
+
+#### Tesoros espirituales
+12. **Tesoro Espiritual I**
+13. **Tesoro Espiritual II**
+
+### Distinciones obligatorias
+
+- **Brazales** y **Pulsera** son slots diferentes.
+  - Brazales = pieza marcial/protectora de antebrazos.
+  - Pulsera = accesorio/joyería con identidad espiritual o utilitaria.
+- **Piernas** y **Calzado** son slots diferentes.
+  - Las actuales Sandalias de viento deberán migrar conceptualmente a
+    **Calzado** cuando se implemente el rediseño.
+- El antiguo slot **mano** se normalizará a **Arma**.
+- El antiguo slot **torso** se normalizará a **Vestidura**.
+- El antiguo slot **cabeza** se presentará como **Tocado**.
+- El antiguo slot **cuello** se normalizará a **Amuleto**.
+- El antiguo slot **dedo** se sustituirá por dos posiciones independientes:
+  **Anillo I** y **Anillo II**.
+
+### Tesoros espirituales
+
+Los dos slots de Tesoro Espiritual forman parte de la arquitectura desde el
+principio.
+
+**No existe bloqueo artificial por etapa o arco.**
+
+Si el jugador no posee un Tesoro Espiritual, el slot permanece vacío. La
+progresión se controla mediante la **obtención real de los objetos**, no
+mediante una regla del tipo `unlock_slot_by_stage`.
+
+Esto permite:
+
+- que el Arco 1 pueda introducir cero, uno o varios tesoros candidatos sin
+  obligar a entregar dos;
+- que sólo puedan equiparse simultáneamente hasta dos;
+- que nuevos tesoros sigan apareciendo en arcos posteriores;
+- que un tesoro excepcional obtenido antes de lo habitual pueda equiparse sin
+  una barrera artificial de etapa.
+
+La cantidad y momento de aparición de los Tesoros Espirituales **no quedan
+cerrados por esta decisión**.
+
+### Guardia de implementación
+
+Hasta terminar el benchmark actual:
+
+- NO modificar la estructura de slots del HTML/runtime;
+- NO migrar objetos existentes;
+- NO crear estadísticas nuevas de equipo para llenar estos slots;
+- NO reducir el poder base de LianQi I para reservar espacio a equipo futuro;
+- NO asumir que todos los slots deban estar ocupados en el Arco 1.
+
+Después del cierre de LianQi I NAKED se deberá diseñar por separado:
+
+1. qué slots reciben objetos en LianQi I;
+2. qué nuevas piezas aparecen en LianQi II, III y IV;
+3. fuente de cada pieza;
+4. rareza/accesibilidad;
+5. estadísticas bajo el contrato nuevo;
+6. perfiles NAKED / MINIMAL / EXPECTED / HIGH_ROLL.
+
+La arquitectura de 13 slots ofrece espacio de progresión futuro, pero cada
+pieza deberá justificar su presupuesto de poder y no convertirse en una suma
+indiscriminada de estadísticas.
