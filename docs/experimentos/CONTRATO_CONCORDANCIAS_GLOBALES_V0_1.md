@@ -916,3 +916,83 @@ DEBUFF_DURATION
 ```
 
 según lo que la técnica realmente exponga.
+
+
+## 6.3 TIERRA → AGUA · Cauce Represado
+
+**Identidad:** Tierra contiene el flujo de Agua, evita su dispersión y fuerza a que la energía acuática permanezca dentro de un cauce o reserva.
+
+### OFFENSIVE
+
+Prioridad:
+
+\`\`\`text
+1. EVASION_DEBUFF
+2. CONTROL_POWER
+3. ACTION_DENIAL
+4. DEBUFF_DURATION
+\`\`\`
+
+No existe hook de movilidad.
+
+La relación no crea daño directo por fallback.
+
+### CONTROL
+
+\`\`\`text
+1. CONTROL_POWER
+2. ACTION_DENIAL
+3. CONTROL_DURATION
+4. EVASION_DEBUFF
+\`\`\`
+
+Tierra no crea un Control nuevo: refuerza porcentualmente un canal real ya expuesto por la técnica de Agua.
+
+### DEFENSIVE
+
+Prioridad:
+
+\`\`\`text
+1. INTERNAL_RESOURCE
+2. ABSORPTION_RESTORE
+3. ABSORPTION
+4. DEFENSIVE_DURATION
+5. FORTIFICATION
+\`\`\`
+
+### Manifestación actual compatible · Embalse
+
+Una defensa acuática que exponga restauración de Absorción puede convertir parte de la restauración excedente en un recurso temporal contenido:
+
+\`\`\`text
+EMBALSE
+class = INTERNAL_RESOURCE
+source = defensive_effect_instance
+scope = activation
+\`\`\`
+
+Comportamiento:
+
+1. una restauración de Absorción se calcula normalmente;
+2. la parte que cabe entra en el pool;
+3. el exceso que normalmente se perdería puede almacenarse en \`EMBALSE\`;
+4. cuando el mismo pool pierde Absorción y vuelve a tener espacio, Embalse puede liberar automáticamente parte de su reserva;
+5. la liberación restaura el mismo pool, no crea una barrera distinta;
+6. no cura Vida;
+7. no cuenta como DEF;
+8. no genera Robo de Vida ni reacciones ofensivas;
+9. la capacidad de Embalse se escala porcentualmente respecto de la magnitud propia de la defensa/reflujo, nunca mediante un valor plano fijo;
+10. Embalse desaparece al terminar la activación o al invalidarse el efecto defensivo del que depende.
+
+El porcentaje de almacenamiento y de liberación queda pendiente de benchmark.
+
+### UTILITY
+
+\`\`\`text
+1. INTERNAL_RESOURCE
+2. ZONE_DURATION
+3. DEBUFF_DURATION
+4. ABSORPTION_RESTORE
+5. CONTROL_LOCKOUT
+\`\`\`
+
