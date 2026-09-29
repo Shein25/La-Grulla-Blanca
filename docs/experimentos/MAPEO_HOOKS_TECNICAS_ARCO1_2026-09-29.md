@@ -456,9 +456,45 @@ Decisiones:
 - Agua→Viento y Tierra→Viento no tienen receptor compatible en Lanza;
 - la ausencia de receptor no crea fallback ni consume el Eco por Concordancia.
 
+## 5.2 Paso de Nube Ligera
+
+```text
+role_primary = DEFENSIVE
+tags = [TECHNIQUE, ELEMENTAL, WIND, DEFENSIVE]
+
+mechanical_hooks BASE:
+- EVASION_GRANTED
+- DEFENSIVE_DURATION
+
+mechanical_hooks POR RAMA:
+- REACTIVE_RESPONSE
+- QI_COST_PERCENT
+- PRECISION
+- CRIT_CHANCE
+
+concordance_hooks BASE:
+- EVASION_GRANTED
+- DEFENSIVE_DURATION
+
+concordance_hooks POR RAMA:
+ESTELA:
+- REACTIVE_RESPONSE
+  trigger = successful_evasion
+  scale_target = next_wind_precision
+
+EFFICIENCY:
+- QI_COST_PERCENT
+```
+
+Decisiones:
+- no existe movilidad;
+- la Evasión otorgada usa la estadística universal;
+- `REACTIVE_RESPONSE` sólo existe con la rama Estela/Huella/Paso sin Sombra;
+- `QI_COST_PERCENT` sólo existe con la rama de eficiencia.
+
 ---
 
-# 6. Mini-reauditoría 13 × 4
+# 6. Mini-reauditoría 14 × 4
 
 Esta tabla usa exclusivamente los `concordance_hooks` anteriores y la matriz global actual.
 
@@ -518,6 +554,10 @@ Esta tabla usa exclusivamente los `concordance_hooks` anteriores y la matriz glo
 | Lanza | Metal→Viento | PRECISION | Filo en la Corriente escala la Precisión propia | PASS |
 | Lanza | Agua→Viento | NONE | Sin resolución; sin fallback | PASS |
 | Lanza | Tierra→Viento | NONE | Sin resolución; sin fallback | PASS |
+| Paso | Fuego→Viento | EVASION_GRANTED | escala Evasión otorgada | PASS |
+| Paso | Metal→Viento | EVASION_GRANTED base; QI_COST_PERCENT/REACTIVE_RESPONSE por rama | eficiencia/adaptación/evitación | PASS |
+| Paso | Agua→Viento | DEFENSIVE_DURATION base; REACTIVE_RESPONSE por rama | continuidad/adaptación | PASS |
+| Paso | Tierra→Viento | DEFENSIVE_DURATION | permanencia asentada | PASS |
 
 ---
 
@@ -525,9 +565,9 @@ Esta tabla usa exclusivamente los `concordance_hooks` anteriores y la matriz glo
 
 ## Cerrado
 
-- las 13 técnicas diseñadas poseen `role_primary`;
-- 13/13 poseen `mechanical_hooks[]`;
-- 13/13 poseen `concordance_hooks[]`;
+- las 14 técnicas diseñadas poseen `role_primary`;
+- 14/14 poseen `mechanical_hooks[]`;
+- 14/14 poseen `concordance_hooks[]`;
 - hooks de ramas son condicionales;
 - DIRECT_DAMAGE deja de exponerse automáticamente;
 - Latigazo queda como CONTROL;
@@ -535,7 +575,7 @@ Esta tabla usa exclusivamente los `concordance_hooks` anteriores y la matriz glo
 - Armadura expone FORTIFICATION para Placa Fundacional;
 - Espejo expone ABSORPTION_RESTORE para Embalse;
 - Palma/Círculo exponen CONTAINED_TRIGGER para Núcleo;
-- las 52 combinaciones de las 13 técnicas diseñadas tienen resultado determinista bajo la matriz actual.
+- las 56 combinaciones de las 14 técnicas diseñadas tienen resultado determinista bajo la matriz actual.
 
 ## Riesgos no bloqueantes detectados
 
