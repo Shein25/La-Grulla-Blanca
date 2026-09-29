@@ -182,3 +182,33 @@ Cerrar PHASE_A:
 5. después pasar a HP/Qi y duelo completo.
 
 Ningún resultado LAB se vuelve CANON por ser ejecutado.
+
+
+---
+
+## Actualización — PHASE A cerrada provisionalmente
+
+Resultado:
+
+**PHASE_A_DIRECT_PACKET = PASS PROVISIONAL**
+
+Baseline actual:
+
+- enemigo de referencia: Evasión 20 / DEF 2;
+- ataque básico: 1d4+4;
+- técnicas iniciales: distribuciones narrow;
+- 300.000 acciones por combinación en Monte Carlo;
+- cross-check determinístico por enumeración exacta;
+- desviación máxima Monte Carlo vs exacto <0.25%;
+- 0% de impactos conectados anulados por DEF en el baseline.
+
+Documento:
+
+`docs/experimentos/TEST_LIANQI_I_NAKED_PHASE_A_2026-09-29.md`
+
+PHASE A no se eleva todavía a CANON. El objetivo es congelar un baseline sano
+para avanzar a PHASE B sin reabrir continuamente el paquete directo.
+
+Siguiente bloque activo:
+
+**PHASE_B_QI_BUDGET**
