@@ -152,58 +152,82 @@ Mapeo receptor canónico: `MAPEO_HOOKS_TECNICAS_ARCO1_2026-09-29.md`. Como técn
 
 ## 4.2 Respiración del Cuerpo-Horno — defensiva
 
-Base provisional:
+Base — **PROVISIONAL tras ETAPA 11**:
 
 - coste: 7 Qi;
 - duración: 2 turnos;
-- Absorción = 15% Vida máxima;
+- Absorción = **25% Vida máxima**;
 - genera Eco de Fuego;
 - no se acumula consigo misma;
-- reactivar reemplaza reserva y reinicia duración.
+- reactivar reemplaza reserva y reinicia duración;
+- no genera Calor de base.
+
+La subida 15% → 25% fue revalidada en 1v1, perfiles preciso/pesado/peligroso,
+2 enemigos y 3 enemigos. El 15% queda descartado como magnitud principal.
 
 ### Tramo I
 
-**Cámara Sellada — barrera**
-- Absorción 15% → 20% Vida máxima.
+**Cámara Sellada — barrera — PROVISIONAL**
+- +5 pp Absorción;
+- con la nueva base: 25% → 30% Vida máxima.
 
-**Horno Latente — conversión**
-- 25% del daño absorbido → Calor;
-- tope Calor = 5% Vida máxima;
-- Calor se consume en una técnica ofensiva de Fuego posterior como una porción secundaria de Fuego;
+**Horno Latente — conversión — PROVISIONAL**
+- **40%** del daño absorbido → Calor;
+- tope Calor = **10% Vida máxima**;
+- Calor se consume mediante una técnica ofensiva de Fuego posterior como una porción secundaria de Fuego;
 - la cantidad almacenada no vuelve a escalar con pools ofensivos ni puede criticar;
 - esa porción sí pasa por DEF y Absorción, no usa Penetración y no genera Robo de Vida;
-- no es Reflect ni Retaliation.
+- no es Reflect ni Retaliation;
+- el detalle exacto de consumo frente a hit/miss debe sincronizarse con el contrato del Motor antes de runtime.
 
-**Respiración Mesurada — eficiencia**
-- 7 → 6 Qi.
+**Respiración Mesurada — eficiencia — PROVISIONAL**
+- 7 → 6 Qi;
+- su ganancia de economía depende del umbral discreto de Qi disponible.
 
 ### Tramo II
 
-**Crisol de Nueve Sellos — barrera**
+**Crisol de Nueve Sellos — barrera — PROVISIONAL**
 - +5 pp de Vida máxima como Absorción;
-- con Cámara: sinergia adicional +5 pp.
+- con Cámara: sinergia adicional +5 pp;
+- Cámara + Crisol sobre base25: 40% HP de Absorción.
 
-**Corazón Reavivado — conversión**
-- sola: 20% absorbido → Calor, tope 5% HP;
-- con Horno Latente: 45%, tope 10% HP.
+**Corazón Reavivado — conversión — PROVISIONAL**
+- sola: **50%** absorbido → Calor, tope **10% HP**;
+- con Horno Latente: **60%**, tope **15% HP**.
 
-**Circuito del Horno — eficiencia**
+**Circuito del Horno — eficiencia — PROVISIONAL**
 - −10% coste;
-- con Respiración Mesurada: duración 2 → 3.
+- con Respiración Mesurada: duración 2 → 3;
+- debe rebenchmarcarse cuando se fije Qi máximo de LianQi III.
 
 ### Tramo III
 
-**Muro de Calor — barrera**
+**Muro de Calor — barrera — PROVISIONAL**
 - +5 pp Absorción;
-- ruta completa: alrededor de 35% HP de Absorción y 3 turnos.
+- ruta Barrera completa: **45% HP de Absorción / 2 turnos / 7 Qi**.
 
-**Calor Acumulado — conversión**
-- ruta completa: 60% del daño absorbido → Calor;
-- tope 15% Vida máxima.
+**Calor Acumulado — conversión — PROVISIONAL**
+- sin Conversión previa: **50%** absorbido → Calor, tope **10% HP**;
+- con exactamente un nodo previo de Conversión: **70%**, tope **15% HP**;
+- con Horno Latente + Corazón Reavivado: **80%**, tope **20% HP**.
 
-**Horno Continuo — eficiencia**
+**Horno Continuo — eficiencia — PROVISIONAL**
 - −10% coste;
-- ruta completa: duración hasta 4 turnos y +5 pp Absorción.
+- ruta Eficiencia completa: duración hasta 4 turnos y +5 pp Absorción;
+- bajo el redondeo LAB actual la ruta completa queda en coste efectivo5, duración4 y Absorción30%;
+- debe rebenchmarcarse cuando se fije Qi máximo de LianQi IV.
+
+### Resultado de benchmark de ramas
+
+- 27/27 combinaciones mixables fueron sometidas a screen;
+- Barrera domina supervivencia bruta;
+- Conversión gana valor relativo con múltiples enemigos al reducir acciones futuras;
+- Eficiencia muestra valor dependiente de los umbrales discretos de Qi;
+- no se detectó una combinación con escalado ilimitado;
+- todas las magnitudes de Tramos I–III permanecen **PROVISIONAL**, no CANON, hasta revalidación con perfiles enemigos y Qi de LianQi II–IV.
+
+Referencia:
+`docs/experimentos/ETAPA11_CUERPO_HORNO_COMPLETO_2026-09-29.md`.
 
 ### Concordancias
 Mapeo receptor canónico: `MAPEO_HOOKS_TECNICAS_ARCO1_2026-09-29.md`. Como técnica pura, genera Eco de Fuego.
