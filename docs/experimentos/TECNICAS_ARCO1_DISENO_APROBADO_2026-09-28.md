@@ -1099,6 +1099,152 @@ Recepción elemental:
 
 ---
 
+## 8.3 Tijera del Vendaval Partido — AOE
+
+**APROBADA.**
+
+Identidad: corrientes cruzadas de Viento que golpean e interfieren con la lectura del combate. No introduce movilidad, Velocidad ni Control automático.
+
+El `65%` de duelo se aplica como capa global antes de DEF y antes del redondeo final; no reduce por sí mismo debuffs, duración, stacks ni otros estados que no escalen con daño.
+
+Base provisional:
+
+- daño nominal: 6 por enemigo;
+- coste: 9 Qi;
+- objetivos: todos los `VALID_HOSTILE_COMBATANT`;
+- sin target cap;
+- sin split;
+- 2+ objetivos: 100% magnitud;
+- 1 objetivo: `AOE_SINGLE_TARGET_SCALAR = 0.65` provisional;
+- cada objetivo cuyo impacto conecte recibe **Turbulencia**;
+- genera Eco de Viento por ejecución válida.
+
+### Turbulencia
+
+```text
+PRECISION_DEBUFF = -3 Precisión
+duration_value = 1
+duration_unit = OWNER_TURNS
+```
+
+Reglas:
+
+- es un debuff estadístico;
+- no es Control;
+- no modifica Evasión;
+- no impide acciones;
+- no representa movilidad;
+- sólo se aplica a objetivos cuyo impacto conecte.
+
+La técnica expone además:
+
+```text
+AREA_EFFICIENCY
+scale_target = offensive_aoe_magnitude
+```
+
+### Tramo I
+
+**Ojo de la Tormenta — interferencia**
+- Turbulencia: −3 → −5 Precisión.
+
+**Alas Cortantes — tempestad**
+- +15% daño directo.
+
+**Corriente Ordenada — circulación**
+- coste 9 → 8 Qi;
+- +5 Precisión propia.
+
+### Tramo II
+
+**Cielo Turbio — interferencia**
+- sola: Turbulencia 1 → 2 OWNER_TURNS;
+- con Ojo de la Tormenta: −8 Precisión durante 2 OWNER_TURNS.
+
+**Vendaval Gemelo — tempestad**
+- +20% daño directo;
+- +1 Qi;
+- con Alas Cortantes: +35% daño directo acumulado y +5 pp Probabilidad Crítica.
+
+**Cauce del Aire — circulación**
+- −10% coste;
+- con Corriente Ordenada: +5 Precisión adicional.
+
+### Tramo III
+
+**Tormenta Ciega — interferencia**
+- −3 Precisión adicional;
+- ruta completa: Turbulencia −12 Precisión durante 2 OWNER_TURNS;
+- el snapshot de Turbulencia se conserva para los objetivos ya afectados aunque otros mueran durante la resolución de la misma AOE.
+
+**Cizalla del Cielo — tempestad**
+- +15% daño directo;
+- ruta completa: +50% daño directo, +10 pp Probabilidad Crítica y +10% Daño Crítico;
+- sigue recibiendo `AOE_SINGLE_TARGET_SCALAR` en duelo.
+
+**Corriente Perfecta — circulación**
+- −10% coste;
+- ruta completa: −1 Qi, −20% coste y +15 Precisión propia;
+- sujeto al piso global futuro de Qi.
+
+### Hooks canónicos
+
+```text
+role_primary = OFFENSIVE
+
+tags = [
+  TECHNIQUE,
+  DIRECT,
+  ELEMENTAL,
+  WIND,
+  AOE,
+  DEBUFF
+]
+
+mechanical_hooks BASE:
+- DIRECT_DAMAGE
+- PRECISION_DEBUFF
+- DEBUFF_DURATION
+- AREA_EFFICIENCY
+
+mechanical_hooks POR RAMA:
+INTERFERENCE:
+- PRECISION_DEBUFF
+- DEBUFF_DURATION
+
+TEMPEST:
+- CRIT_CHANCE
+- CRIT_DAMAGE
+
+FLOW:
+- PRECISION
+- QI_COST_PERCENT
+
+concordance_hooks BASE:
+- PRECISION_DEBUFF
+- DEBUFF_DURATION
+- AREA_EFFICIENCY
+
+concordance_hooks POR RAMA:
+TEMPEST:
+- CRIT_CHANCE
+- CRIT_DAMAGE
+
+FLOW:
+- PRECISION
+```
+
+`DIRECT_DAMAGE` y `QI_COST_PERCENT` no se exponen como `concordance_hooks` en esta técnica.
+
+Recepción elemental:
+
+- Fuego→Viento: base sin hook compatible; ruta Tempestad abre `CRIT_CHANCE`;
+- Metal→Viento: base sin hook compatible; ruta Corriente abre `PRECISION`;
+- Agua→Viento: `PRECISION_DEBUFF` de base;
+- Tierra→Viento: `AREA_EFFICIENCY` de base.
+
+---
+
 # 9. Correcciones retroactivas obligatorias ya identificadas
 
 Antes de considerar cerrado el paquete completo de Arco 1:
@@ -1133,10 +1279,10 @@ FUEGO   3/3 diseñadas
 METAL   3/3 diseñadas
 AGUA    3/3 diseñadas
 TIERRA  3/3 diseñadas
-VIENTO  2/3 diseñadas
+VIENTO  3/3 diseñadas
 ```
 
-Total actual: 14/15 técnicas básicas de Arco 1 diseñadas.
+Total actual: 15/15 técnicas básicas de Arco 1 diseñadas.
 
 
 ---
