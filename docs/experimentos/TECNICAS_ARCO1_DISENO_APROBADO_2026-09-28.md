@@ -146,7 +146,7 @@ Base provisional:
 - sujeto al futuro piso global de coste.
 
 ### Concordancias
-Auditoría receptora retroactiva pendiente. Como técnica pura, genera Eco de Fuego.
+Mapeo receptor canónico: `MAPEO_HOOKS_TECNICAS_ARCO1_2026-09-29.md`. Como técnica pura, genera Eco de Fuego.
 
 ---
 
@@ -206,7 +206,7 @@ Base provisional:
 - ruta completa: duración hasta 4 turnos y +5 pp Absorción.
 
 ### Concordancias
-Auditoría receptora retroactiva pendiente. Como técnica pura, genera Eco de Fuego.
+Mapeo receptor canónico: `MAPEO_HOOKS_TECNICAS_ARCO1_2026-09-29.md`. Como técnica pura, genera Eco de Fuego.
 
 ---
 
@@ -271,7 +271,7 @@ Base provisional:
 - ruta completa: −1 Qi, −20% coste, +10 Precisión.
 
 ### Concordancias
-Auditoría receptora retroactiva pendiente. Como técnica pura, genera Eco de Fuego.
+Mapeo receptor canónico: `MAPEO_HOOKS_TECNICAS_ARCO1_2026-09-29.md`. Como técnica pura, genera Eco de Fuego.
 
 ---
 
@@ -330,7 +330,7 @@ Base provisional:
 - ruta completa: −1 Qi, −20% coste, +10 Precisión.
 
 ### Concordancias
-Auditoría receptora retroactiva pendiente. Como técnica pura, genera Eco de Metal.
+Mapeo receptor canónico: `MAPEO_HOOKS_TECNICAS_ARCO1_2026-09-29.md`. Como técnica pura, genera Eco de Metal.
 
 ---
 
@@ -393,7 +393,7 @@ Base provisional:
 - ruta completa de cantidad: **8 Placas** de +3 DEF base cada una, consumidas secuencialmente.
 
 ### Concordancias
-Auditoría receptora retroactiva pendiente. Como técnica pura, genera Eco de Metal.
+Mapeo receptor canónico: `MAPEO_HOOKS_TECNICAS_ARCO1_2026-09-29.md`. Como técnica pura, genera Eco de Metal.
 
 ---
 
@@ -458,7 +458,7 @@ Base provisional:
 - ruta completa: −1 Qi, −20% coste, +10 Precisión y +5 pp Penetración %.
 
 ### Concordancias
-Auditoría receptora retroactiva pendiente. Como técnica pura, genera Eco de Metal.
+Mapeo receptor canónico: `MAPEO_HOOKS_TECNICAS_ARCO1_2026-09-29.md`. Como técnica pura, genera Eco de Metal.
 
 ---
 
@@ -523,7 +523,7 @@ Base provisional:
 - ruta completa: −1 Qi, −20% coste, +10 Precisión.
 
 ### Concordancias
-Auditoría receptora retroactiva pendiente. Como técnica pura, genera Eco de Agua.
+Mapeo receptor canónico: `MAPEO_HOOKS_TECNICAS_ARCO1_2026-09-29.md`. Como técnica pura, genera Eco de Agua.
 
 ---
 
@@ -583,7 +583,7 @@ Base provisional:
 - si termina naturalmente conservando Absorción: recupera 1 Qi (fuente explícita, no regeneración pasiva).
 
 ### Concordancias
-Auditoría receptora retroactiva pendiente. Como técnica pura, genera Eco de Agua.
+Mapeo receptor canónico: `MAPEO_HOOKS_TECNICAS_ARCO1_2026-09-29.md`. Como técnica pura, genera Eco de Agua.
 
 ---
 
@@ -650,7 +650,7 @@ Base provisional:
 - si impacta a todos los hostiles presentes y hay grupo real, puede devolver 1 Qi una vez por ejecución; revisar en benchmark para evitar abuso en salas pobladas.
 
 ### Concordancias
-Auditoría receptora retroactiva pendiente. Como técnica pura, genera Eco de Agua.
+Mapeo receptor canónico: `MAPEO_HOOKS_TECNICAS_ARCO1_2026-09-29.md`. Como técnica pura, genera Eco de Agua.
 
 ---
 
@@ -714,7 +714,7 @@ Base provisional:
 - si un Control falla en ese período, siguiente Golpe de Montaña +5 Precisión.
 
 ### Concordancias
-Auditoría receptora retroactiva pendiente. Como técnica pura, genera Eco de Tierra.
+Mapeo receptor canónico: `MAPEO_HOOKS_TECNICAS_ARCO1_2026-09-29.md`. Como técnica pura, genera Eco de Tierra.
 
 ---
 
@@ -946,3 +946,24 @@ Cualquier mapeo antiguo de Concordancia escrito dentro de una técnica como aume
 La matriz global de Concordancias prevalece.
 
 Cuando una Concordancia aumente una magnitud escalable deberá hacerlo porcentualmente sobre el hook receptor. Las transformaciones discretas sólo se conservan cuando son estructurales y coherentes con la identidad global de la relación.
+
+
+---
+
+# 10. Autoridad actual de hooks de Concordancia
+
+Las declaraciones canónicas de:
+
+```text
+role_primary
+mechanical_hooks[]
+concordance_hooks[]
+```
+
+para las 12 técnicas están en:
+
+`docs/experimentos/MAPEO_HOOKS_TECNICAS_ARCO1_2026-09-29.md`
+
+Cualquier bloque anterior denominado "Concordancias receptoras" que contenga bonos absolutos debe leerse como LEGACY / NO CANÓNICO.
+
+La matriz global y el mapeo de hooks prevalecen.
