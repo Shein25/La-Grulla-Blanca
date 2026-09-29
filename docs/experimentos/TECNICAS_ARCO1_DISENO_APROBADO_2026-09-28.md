@@ -780,10 +780,21 @@ Nota de benchmark:
 
 ### Tramo II
 
-**Estratos Compactos — fortificación**
-- **PENDIENTE DE REBENCHMARK tras DEF_CAP2**;
-- conserva identidad de fortificación con 2+ Arraigos;
-- sus cifras anteriores (+1 DEF / sinergia +2) dejan de ser autoridad numérica hasta recalibración.
+**Estratos Compactos — fortificación — PROVISIONAL**
+- usa `ESTRATO_REACTIVO_2`;
+- mientras Piel esté activa, cuando Arraigo aumente y el nuevo valor sea 2 o 3, gana/refresca 1 **Estrato Compacto**;
+- máximo 1 Estrato almacenado;
+- el siguiente impacto directo conectado contra el usuario recibe +2 DEF sólo para ese impacto;
+- después de ese impacto conectado, el Estrato se consume;
+- una evasión no consume Estrato;
+- si un trigger hace saltar Arraigo directamente de 1→3, genera un solo Estrato;
+- si el ascenso ocurre 1→2→3, puede proteger como máximo dos impactos en toda la activación;
+- no aumenta la DEF permanente de Piel;
+- no modifica Tenacidad, duración ni máximo de Arraigo;
+- funciona aunque no se haya elegido Corteza Endurecida;
+- con Corteza muestra retornos decrecientes en los benchmarks, en vez de crear una suma lineal de DEF;
+- validado provisionalmente en 1v1, perfil pesado, 2 enemigos y 3 enemigos durante Etapas 9A–9C;
+- deberá revalidarse contra un perfil enemigo autoritativo de LianQi III cuando exista.
 
 **Raíz Profunda — estabilidad**
 - con 2+ Arraigos: +5 Tenacidad adicional;
