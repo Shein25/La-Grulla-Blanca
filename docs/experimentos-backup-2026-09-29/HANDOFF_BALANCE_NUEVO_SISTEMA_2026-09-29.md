@@ -264,3 +264,27 @@ Antes de implementar esta arquitectura:
 5. validar NAKED / MINIMAL / EXPECTED / HIGH_ROLL.
 
 No tocar runtime por esta decisión durante el bloque actual.
+
+
+---
+
+## Pendiente agendado — hotfix narrativo de Concordancias post-A07
+
+Se registró un hotfix narrativo para ejecutar **después de cerrar e integrar los
+diálogos NPC de A07**.
+
+Documento de trabajo:
+
+- `docs/experimentos/PENDIENTE_HOTFIX_CONCORDANCIAS_NARRATIVA_ARCO1_2026-09-29.md`
+
+Objetivo:
+
+- fijar Concordancia como enseñanza característica/básica de la Grulla Blanca;
+- no añadir bonus ni sistema nuevo;
+- auditar Prólogo → M18 + Epílogo;
+- revisar siembra, spoilers, terminología, doctrina, conocimiento NPC y
+  compatibilidad con flags/gates;
+- aplicar el hotfix sólo después de la auditoría y de congelar los diálogos.
+
+Guardia: no tocar runtime, quests ni diálogos actuales por este pendiente hasta
+cerrar A07.
