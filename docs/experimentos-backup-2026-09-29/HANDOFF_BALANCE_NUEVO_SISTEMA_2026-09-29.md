@@ -145,3 +145,58 @@ El código de simulación no debe reescribirse prueba por prueba. Se modifica la
 - equipo nuevo: pendiente.
 - cuatro huecos de ramas mixtas detectados en Pass 3: pendientes de semántica standalone.
 
+
+
+---
+
+## Actualización posterior — progresión y equipo
+
+Se amplió el laboratorio para probar hipótesis donde el ascenso de etapa conceda, además de HP/Qi/acceso, estadísticas de combate adicionales. Esto **no modifica el contrato canónico**: se ejecuta como sensibilidad LAB contra el control.
+
+Archivos nuevos:
+
+- `experimentos/balance_nuevo/progression_lab.py`
+- `experimentos/balance_nuevo/equipment_lab.py`
+- `docs/experimentos/AUDITORIA_EQUIPO_Y_PROGRESION_ARCO1_2026-09-29.md`
+
+El notebook Colab fue ampliado con bloques para:
+
+- políticas de ascenso;
+- acumulación LianQi I–IV;
+- disponibilidad de equipo por etapa;
+- futuras matrices NAKED / EXPECTED / HIGH_ROLL.
+
+### Auditoría de equipo actual
+
+Actualmente obtenibles desde el ecosistema inicial:
+
+- espada de madera — inventario inicial;
+- uniforme externo — inventario inicial;
+- cuchillo de hueso — sólo origen callejero;
+- anillo herrumbroso — Camino de la Montaña;
+- amuleto de colmillo — drop del lobo espiritual en zona inicialmente accesible.
+
+Definidos pero sin fuente jugable activa:
+
+- espada de hierro;
+- túnica reforzada;
+- bandana de cuero;
+- sandalias de viento;
+- uniforme interno.
+
+Razón: `CATALOGO=[]`, comercio pendiente y `QUESTS={}`.
+
+Consecuencia:
+
+> El equipo actual no posee una progresión real LianQi I → IV. Antes de asignar estadísticas nuevas hay que distribuir fuentes/etapas de obtención.
+
+### Regla de test futuro
+
+Separar siempre:
+
+1. crecimiento por cultivo;
+2. crecimiento por rama;
+3. crecimiento por equipo;
+4. interacción de las tres capas.
+
+No balancear sólo el personaje final completamente equipado.
