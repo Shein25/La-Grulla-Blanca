@@ -763,10 +763,14 @@ Nota de benchmark:
 
 ### Tramo I
 
-**Corteza Endurecida — fortificación**
-- **PENDIENTE DE REBENCHMARK tras DEF_CAP2**;
-- conserva identidad de fortificación por Arraigo;
-- la antigua regla “cada Arraigo da +2 DEF en vez de +1” no debe implementarse sin recalibrar su nueva curva y tope.
+**Corteza Endurecida — fortificación — PROVISIONAL**
+- mantiene la nueva filosofía `DEF_CAP2`: la tercera carga no vuelve a añadir otra unidad incremental de DEF;
+- reemplaza la contribución acumulada de DEF de Arraigo `1 / 2 / 2` por `2 / 3 / 3`;
+- con la +2 DEF inmediata de Piel, la técnica aporta `+4 / +5 / +5 DEF`;
+- con DEF base1 del benchmark, produce DEF total `5 → 6 → 6`;
+- validada en 1v1, 2 enemigos y 3 enemigos durante Etapas 8A–8C;
+- el aumento de DEF reduce ON_HP_DAMAGE y autolimita generación de Arraigo/extensión;
+- no implica autorización para que Tramos II/III sigan sumando DEF plana linealmente.
 
 **Centro Firme — estabilidad**
 - cada Arraigo da +5 Tenacidad en vez de +3.
