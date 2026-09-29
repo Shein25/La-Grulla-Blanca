@@ -897,7 +897,108 @@ Como técnica pura, genera Eco de Tierra.
 
 ---
 
-# 8. Correcciones retroactivas obligatorias ya identificadas
+# 8. VIENTO
+
+Identidad general: Evasión, circulación, precisión e impulso sin crear estadísticas de movilidad o Velocidad.
+
+## 8.1 Lanza que Parte Nubes — unitarget
+
+**APROBADA.**
+
+Identidad: ataque directo de Viento basado en trayectoria limpia, precisión propia y aprovechamiento crítico. No crea movilidad ni una segunda tirada de esquiva.
+
+Base provisional:
+
+- daño nominal: 8;
+- coste: 6 Qi;
+- objetivo: 1 enemigo;
+- +5 Precisión propia;
+- +5 pp Probabilidad Crítica propia;
+- 1 acción → 1 impacto → 1 porción [TECHNIQUE][DIRECT][ELEMENTAL][WIND];
+- genera Eco de Viento al impactar.
+
+### Tramo I
+
+**Ojo del Vendaval — precisión**
+- +5 Precisión.
+
+**Punta de Tormenta — impacto**
+- +20% daño directo.
+
+**Respiración del Cielo — eficiencia**
+- coste 6 → 5 Qi.
+
+### Tramo II
+
+**Horizonte Claro — precisión**
+- +5 Precisión;
+- +5 pp crítico;
+- con Ojo del Vendaval: +10% Daño Crítico.
+
+**Nube Partida — impacto**
+- +25% daño directo;
+- +1 Qi;
+- con Punta de Tormenta: +45% daño directo acumulado.
+
+**Corriente Continua — eficiencia**
+- −10% coste;
+- con Respiración del Cielo: +5 Precisión.
+
+### Tramo III
+
+**Mirada del Cielo Vacío — precisión**
+- +5 Precisión;
+- +5 pp crítico;
+- ruta completa: Precisión propia alta, +10 pp crítico acumulado y +10% Daño Crítico;
+- los valores finales de Precisión quedan sujetos a benchmark.
+
+**Lanza que Abre el Cielo — impacto**
+- +15% daño directo;
+- ruta completa: +60% daño directo.
+
+**Aliento sin Interrupción — eficiencia**
+- −10% coste;
+- ruta completa: −1 Qi, −20% coste y +10 Precisión;
+- sujeto al piso global futuro de coste.
+
+### Hooks canónicos
+
+```text
+role_primary = OFFENSIVE
+tags = [TECHNIQUE, DIRECT, ELEMENTAL, WIND, UNITARGET]
+
+mechanical_hooks BASE:
+- DIRECT_DAMAGE
+- PRECISION
+- CRIT_CHANCE
+
+mechanical_hooks POR RAMA:
+- CRIT_DAMAGE
+- QI_COST_PERCENT
+
+concordance_hooks BASE:
+- PRECISION
+- CRIT_CHANCE
+
+concordance_hooks POR RAMA:
+CRITICAL:
+- CRIT_DAMAGE
+```
+
+`DIRECT_DAMAGE` no se expone como `concordance_hook`.
+
+Recepción elemental base:
+
+- Fuego→Viento · Corriente Ascendente: `CRIT_CHANCE`;
+- Metal→Viento · Filo en la Corriente: `PRECISION`;
+- Agua→Viento · Velo de Niebla: sin hook compatible;
+- Tierra→Viento · Tormenta de Polvo: sin hook compatible.
+
+Si no existe hook compatible, el Eco no se consume por Concordancia; al completar una ejecución válida, el Eco de Viento generado por Lanza puede sustituirlo según el contrato universal.
+
+---
+
+# 9. Correcciones retroactivas obligatorias ya identificadas
 
 Antes de considerar cerrado el paquete completo de Arco 1:
 
@@ -924,17 +1025,17 @@ Antes de considerar cerrado el paquete completo de Arco 1:
 
 ---
 
-# 9. Estado del paquete elemental
+# 10. Estado del paquete elemental
 
 ```text
 FUEGO   3/3 diseñadas
 METAL   3/3 diseñadas
 AGUA    3/3 diseñadas
 TIERRA  3/3 diseñadas
-VIENTO  0/3 pendiente
+VIENTO  1/3 diseñadas
 ```
 
-Total actual: 12/15 técnicas básicas de Arco 1 diseñadas.
+Total actual: 13/15 técnicas básicas de Arco 1 diseñadas.
 
 
 ---
@@ -950,7 +1051,7 @@ Cuando una Concordancia aumente una magnitud escalable deberá hacerlo porcentua
 
 ---
 
-# 10. Autoridad actual de hooks de Concordancia
+# 11. Autoridad actual de hooks de Concordancia
 
 Las declaraciones canónicas de:
 
