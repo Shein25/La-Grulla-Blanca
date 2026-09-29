@@ -806,10 +806,20 @@ Nota de benchmark:
 
 ### Tramo III
 
-**Cuerpo de Roca — fortificación**
-- **PENDIENTE DE REBENCHMARK tras DEF_CAP2**;
-- mantiene la identidad de especialización defensiva;
-- los números de DEF máxima deben reconstruirse desde la nueva base 4 → 5 → 5, no desde la antigua 4 → 5 → 6.
+**Cuerpo de Roca — fortificación — PROVISIONAL**
+- usa `ROCA_GUARD_MAX_3`;
+- requiere Piel activa y Arraigo máximo (3);
+- al comienzo de cada turno del usuario, si Piel sigue activa y Arraigo sigue en 3, arma 1 **Guardia de Roca**;
+- el primer impacto directo conectado contra el usuario durante ese turno recibe +3 DEF sólo para ese impacto;
+- después del impacto conectado, la Guardia se consume hasta el siguiente turno;
+- una evasión no consume la Guardia;
+- alcanzar Arraigo3 durante las acciones enemigas no arma la Guardia retroactivamente;
+- no aumenta la DEF permanente de Piel;
+- no modifica Tenacidad, duración ni máximo de Arraigo;
+- funciona aunque no se hayan elegido Corteza Endurecida o Estratos Compactos;
+- combinado con ambas ramas muestra retornos decrecientes en los benchmarks;
+- validado provisionalmente en 1v1, perfil pesado, 2 enemigos y 3 enemigos durante Etapas 10A–10C;
+- deberá revalidarse contra un perfil enemigo autoritativo de LianQi IV cuando exista.
 
 **Inamovible — estabilidad**
 - +5 Tenacidad con al menos 1 Arraigo;
