@@ -1833,6 +1833,8 @@ ON_HIT_RECEIVED
 ON_DAMAGE_RECEIVED
 ON_HP_DAMAGE_RECEIVED
 ON_VALID_DIRECT_IMPACT_RECEIVED
+ON_ABSORPTION_RESTORE_RESOLVED
+ON_ABSORPTION_LOSS_RESOLVED
 ON_ACTION_ATTEMPT
 ON_ACTION_COMPLETED
 ```
@@ -2354,3 +2356,57 @@ Si una técnica pura del mismo elemento encuentra un Eco previo:
 - no existe resolución de Concordancia;
 - el Eco previo no se consume;
 - si la técnica completa una ejecución válida y genera un Eco nuevo, éste sustituye al anterior conforme a §38.2.
+
+
+## 38.28 Resultados de restauración y pérdida de Absorción
+
+Toda operación `RESTORE_ABSORPTION` produce un resultado congelado:
+
+```text
+AbsorptionRestoreResult {
+  absorption_pool_id
+  pool_instance_id
+  requested_restore
+  actual_restore
+  overflow_restore
+  reserve_before
+  reserve_after
+  reserve_max
+}
+```
+
+donde:
+
+```text
+overflow_restore
+=
+max(0, requested_restore - actual_restore)
+```
+
+Después de escribir el nuevo valor del pool se emite:
+
+```text
+ON_ABSORPTION_RESTORE_RESOLVED
+```
+
+Cuando un DamagePacket u otra operación reduce una reserva, después de resolver esa reducción para el paquete actual se emite:
+
+```text
+ON_ABSORPTION_LOSS_RESOLVED
+```
+
+con al menos:
+
+```text
+absorption_pool_id
+pool_instance_id
+loss_amount
+reserve_before
+reserve_after
+reserve_max
+root_action_id
+```
+
+Una reacción a `ON_ABSORPTION_LOSS_RESOLVED` puede restaurar reserva para **paquetes futuros**, pero nunca vuelve atrás para absorber daño del paquete que ya produjo el evento.
+
+Esto permite recursos como Embalse sin crear una segunda barrera ni reabrir el DamagePacket actual.
