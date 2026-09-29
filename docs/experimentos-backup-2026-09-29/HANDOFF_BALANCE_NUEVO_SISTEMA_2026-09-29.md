@@ -1497,3 +1497,81 @@ Estado ruta fortificación:
 
 Guardia:
 - revalidar Tramos I–III contra perfiles enemigos autoritativos LianQi II–IV cuando existan.
+
+
+### ETAPA 11 — Respiración del Cuerpo-Horno completa — CERRADA
+
+Documento:
+- `docs/experimentos/ETAPA11_CUERPO_HORNO_COMPLETO_2026-09-29.md`
+
+Runner:
+- `experimentos/balance_nuevo/etapa11_cuerpo_horno_completo.py`
+
+Alcance:
+- base;
+- Tramos I–III;
+- 27/27 combinaciones mixables;
+- COMMON / PRECISE / HEAVY / DANGEROUS;
+- 2 y 3 enemigos;
+- lattice de economía Qi.
+
+Base:
+- antiguo 15% descartado como magnitud principal;
+- **25% HP Absorción / 2t / coste7 → PROVISIONAL**.
+- no Calor base.
+
+Repetición 4×25k, 25% vs 15%:
+- COMMON: +1.71 a +2.02 pp win; +7.33 a +7.42 pp HP.
+- 2 enemigos: +8.16 a +9.12 pp win; +5.93 a +6.71 pp HP.
+- 3 enemigos: +5.59 a +7.02 pp win; +2.21 a +2.90 pp HP.
+
+Barrera — PROVISIONAL:
+- Cámara: +5 pp; base25 ->30%.
+- Crisol: +5 pp; con Cámara +5 pp sinergia; BB=40%.
+- Muro: +5 pp; BBB=45% /2t/7Qi.
+- BBB promedio 4×25k: COMMON ~97.12%; 3 enemigos ~41.06%.
+
+Conversión:
+- problema antiguo: cap5% HP =1.5 con HP30; contra DEF2 el paquete temprano de Calor daba 0 daño efectivo.
+- valores antiguos de Conversión reemplazados.
+
+Conversión — PROVISIONAL recalibrada:
+- Horno Latente T1: 40% absorbido -> Calor; cap10% HP.
+- Corazón T2 solo: 50% / cap10%.
+- Corazón con Horno: 60% / cap15%.
+- Calor Acumulado T3 sin C previa: 50% / cap10%.
+- con exactamente 1 C previa: 70% / cap15%.
+- con 2 C previas: 80% / cap20%.
+- CCC promedio 4×25k: COMMON ~96.67%; 3 enemigos ~49.59%.
+
+Semántica LAB usada para Calor:
+- recurso consumido por técnica ofensiva de Fuego posterior;
+- comparte hit/miss de técnica portadora;
+- no tirada propia;
+- flags de DamagePacket siguen Motor §38.20.
+- momento exacto de consumo frente a hit/miss sigue pendiente de cierre de Motor; no implementar desde la suposición LAB.
+
+Eficiencia — PROVISIONAL con guardia:
+- Respiración Mesurada 7->6 Qi.
+- Circuito -10%; con Mesurada duración3.
+- Horno Continuo -10%; ruta completa duración4 +5pp Absorción.
+- bajo redondeo LAB EEE queda coste5 / duración4 / Absorción30%.
+- Qi31 oculta parte del beneficio porque coste7/6/5 permiten 4 Palmas.
+- umbrales donde cambia economía: Qi29/30/35/36/41/42/etc.
+- revalidar obligatoriamente cuando se fije Qi máximo LianQi II–IV.
+
+Screen 27/27:
+- COMMON win ~95.86–97.23%.
+- 2 enemigos ~68.76–80.05%.
+- 3 enemigos ~30.03–50.18%.
+- sin escalado ilimitado.
+- Barrera = supervivencia bruta.
+- Conversión = tempo ofensivo.
+- Eficiencia = economía/duración dependiente de Qi.
+
+Estado final:
+- base PROVISIONAL.
+- Barrera I–III PROVISIONAL.
+- Conversión I–III PROVISIONAL recalibrada.
+- Eficiencia I–III PROVISIONAL condicionada a Qi futuro.
+- runtime/HTML SIN CAMBIOS.
