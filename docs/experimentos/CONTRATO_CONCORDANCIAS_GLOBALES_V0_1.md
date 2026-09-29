@@ -2,7 +2,7 @@
 
 Fecha: 2026-09-28  
 Rama: `experiment/combat-stat-contract-v0.1`  
-Estado: **EN CONSTRUCCIÓN / FUEGO, METAL Y AGUA COMO ORIGEN APROBADOS**
+Estado: **EN CONSTRUCCIÓN / FUEGO, METAL, AGUA Y TIERRA COMO ORIGEN APROBADOS**
 
 ## 0. Principio
 
@@ -996,3 +996,78 @@ El porcentaje de almacenamiento y de liberación queda pendiente de benchmark.
 5. CONTROL_LOCKOUT
 \`\`\`
 
+
+
+## 6.4 TIERRA → VIENTO · Tormenta de Polvo
+
+**Identidad:** Tierra da cuerpo al Viento. La corriente transporta materia, ocupa espacio e interfiere con el entorno.
+
+### OFFENSIVE
+
+Prioridad:
+
+\`\`\`text
+1. AREA_EFFICIENCY
+2. PROPAGATION
+3. PRECISION_DEBUFF
+4. ZONE_DURATION
+5. DEBUFF_DURATION
+\`\`\`
+
+No existe fallback genérico de \`DIRECT_DAMAGE\`.
+
+La relación no aumenta el número de objetivos de una AOE.
+
+### CONTROL
+
+\`\`\`text
+1. PRECISION_DEBUFF
+2. CONTROL_POWER
+3. ACTION_DENIAL
+4. INTERRUPT
+5. DEBUFF_DURATION
+\`\`\`
+
+### DEFENSIVE
+
+\`\`\`text
+1. DEFENSIVE_DURATION
+2. EVASION_GRANTED
+3. REACTIVE_RESPONSE
+4. ZONE_DURATION
+\`\`\`
+
+La prioridad por duración evita duplicar la identidad de Fuego→Viento, que representa aceleración/magnitud dinámica.
+
+### UTILITY
+
+\`\`\`text
+1. ZONE_DURATION
+2. PROPAGATION
+3. AREA_EFFICIENCY
+4. DEBUFF_DURATION
+5. REACTIVE_RESPONSE
+\`\`\`
+
+### Manifestación compatible · Nube Residual
+
+Una técnica de Viento que exponga \`ZONE\` o \`ZONE_DURATION\` puede dejar después de su ejecución una zona temporal de partículas suspendidas.
+
+La zona:
+
+- no añade objetivos al impacto original;
+- no introduce una estadística de movilidad;
+- puede aplicar únicamente efectos reales declarados por su contenido, como \`PRECISION_DEBUFF\`;
+- su duración y magnitud escalan porcentualmente sobre los hooks receptores;
+- no crea daño automático si la técnica no expone un canal de daño apropiado.
+
+---
+
+# 7. Resumen Tierra aprobado
+
+| Relación | Identidad |
+|---|---|
+| Tierra → Fuego | contención / persistencia / Núcleo de Magma |
+| Tierra → Metal | asentamiento / fortificación / Placa Fundacional |
+| Tierra → Agua | contención de flujo / Embalse |
+| Tierra → Viento | materialización / interferencia / Nube Residual |
