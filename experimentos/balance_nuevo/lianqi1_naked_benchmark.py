@@ -16,6 +16,7 @@ from config_lianqi1_naked import (
     QI_COST_FLOOR,
     ROOT_TO_INITIAL_TECHNIQUE,
     DAMAGE_MODEL_SELECTION,
+    BASIC_ATTACK_SELECTION,
     LIANQI_I_REFERENCE_ENEMY,
     ARRASTRE_BASE_CONTROL,
     Parameter,
@@ -39,6 +40,8 @@ def readiness_report() -> dict:
     for tech_id, p in DAMAGE_MODEL_SELECTION.items():
         if not p.ready:
             phase_a.append(f"damage_model.{tech_id}")
+    if not BASIC_ATTACK_SELECTION.ready:
+        phase_a.append("damage_model.ataque_basico")
 
     phase_b = []
     if not PLAYER_BASE["qi_max"].ready:
@@ -147,6 +150,21 @@ def build_phase_a_target() -> ActorStats:
     )
 
 
+def build_basic_attack() -> Technique:
+    notation = str(_value(BASIC_ATTACK_SELECTION, "damage_model.ataque_basico"))
+    dice = Dice(notation)
+    if abs(dice.mean() - 6.5) > 1e-9:
+        raise ValueError(
+            f"ataque_basico: {notation} tiene media {dice.mean()}, "
+            "pero el candidato provisional PHASE A exige media 6.5."
+        )
+    return Technique(
+        name="ataque_basico",
+        qi_cost=0.0,
+        damage=dice,
+    )
+
+
 def build_phase_a_scenarios(iterations: int = 200_000, seed: int = 20260929) -> list[Scenario]:
     blocked = readiness_report()["PHASE_A_DIRECT_PACKET"]
     if blocked:
@@ -156,6 +174,16 @@ def build_phase_a_scenarios(iterations: int = 200_000, seed: int = 20260929) -> 
     scenarios = []
     for offset, (root, tech_id) in enumerate(ROOT_TO_INITIAL_TECHNIQUE.items()):
         player = apply_main_root_for_direct_packet(_base_player_for_direct_packet(), root)
+        basic = build_basic_attack()
+        scenarios.append(Scenario(
+            id=f"L1_NAKED_A_{root.upper()}_ATAQUE_BASICO",
+            provenance="PROVISIONAL",
+            attacker=player,
+            target=target,
+            technique=basic,
+            iterations=iterations,
+            seed=seed + offset * 2,
+        ))
         technique = build_initial_technique(root)
         scenarios.append(Scenario(
             id=f"L1_NAKED_A_{root.upper()}_{tech_id.upper()}",
@@ -164,7 +192,7 @@ def build_phase_a_scenarios(iterations: int = 200_000, seed: int = 20260929) -> 
             target=target,
             technique=technique,
             iterations=iterations,
-            seed=seed + offset,
+            seed=seed + offset * 2 + 1,
         ))
     return scenarios
 
