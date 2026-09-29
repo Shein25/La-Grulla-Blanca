@@ -946,3 +946,40 @@ Hallazgo:
 
 Siguiente única etapa:
 - ETAPA 5 — CURRENT vs DEF_CAP2 contra 3 enemigos.
+
+
+### ETAPA 5 — 3 enemigos — CERRADA
+
+Documento:
+- `docs/experimentos/ETAPA5_PIEL_CURRENT_VS_DEF_CAP2_3_ENEMIGOS_2026-09-29.md`
+
+Escenario:
+- 3 enemigos reales 10 + 9 + 9 HP;
+- HP total 28;
+- PREC90 / EVA20 / DEF2 / ataque 2d4+1;
+- una acción por enemigo vivo y ronda.
+
+200.000 combates:
+- CURRENT: 68.04% win / 26.72% HP restante.
+- DEF_CAP2: 57.90% win / 19.50% HP restante.
+- delta win ≈ -10.14 pp.
+- delta HP restante ≈ -7.22 pp.
+
+Repetición 4×100k:
+- delta win: -10.212 / -10.050 / -10.181 / -9.903 pp.
+
+Contexto:
+- Tierra sin Piel en el mismo escenario ≈17.34% win.
+- DEF_CAP2 sigue siendo una defensiva muy fuerte (~58% win) y conserva
+  Arraigo/extension prácticamente intactos.
+
+Conclusión:
+- CURRENT amplifica demasiado la tercera unidad de DEF bajo múltiples impactos.
+- DEF_CAP2 logra el patrón buscado: casi no altera 1v1, recorta progresivamente
+  al crecer la cantidad de impactos.
+- DEF_CAP2 pasa a ser candidato principal LAB frente a CURRENT.
+- todavía NO PROVISIONAL.
+
+Siguiente única etapa:
+- ETAPA 6 — valorar la tercera carga de DEF_CAP2 contra Control enemigo
+  (Tenacidad + extensión), sin abrir otras defensivas.
