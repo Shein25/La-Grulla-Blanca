@@ -1,0 +1,48 @@
+{
+  "project": "La Grulla Blanca",
+  "date": "2026-09-29",
+  "checkpoint": "A07.6.3C_CLOSED",
+  "snapshot_branch": "snapshot/handoff-2026-09-29-a07-6-3c-closed",
+  "astra_commit": "e6a1c9c702083a10b0d5315660be90a278f66738",
+  "astra_parent": "1decdc5a210aa313ccd384667b7358eebb01e385",
+  "package_sha256": "6d1cfc7beb7af038becdc0b9828b313303b027cf8d43f12339caf0c79642ec3d",
+  "bundle_sha256": "9eb0647ac2e93a843140e87910c95974452bba3a3d93dabffb39db521b3af5e1",
+  "runtime": {
+    "file": "grulla-blanca_ver76.html",
+    "sha256": "b0966fe6d4d263519e5c88d2f93cdd29dc0d3a595c3d63a0f6b3b4426eac12cd",
+    "save_schema_version": 2
+  },
+  "tests": {
+    "A07.6.3C": "52/52 PASS",
+    "A07.6.3A": "36/36 PASS",
+    "A07.6.2B": "46/46 PASS",
+    "A07.6.1": "94/94 PASS",
+    "R4.1": "45/45 PASS",
+    "A07.4": "131/132; historical HTML hash sentinel only"
+  },
+  "stress": {
+    "exchanges": 256,
+    "maxDepth": 2,
+    "maxHop": 1,
+    "maxPendingReceipts": 1,
+    "maxPendingIntents": 1,
+    "history": 0,
+    "backlog": 0,
+    "noLoop": true,
+    "zeroWrites": 256
+  },
+  "status": {
+    "A07.5": "CLOSED",
+    "A07.6.0": "CLOSED",
+    "A07.6.1A": "CLOSED",
+    "A07.6.1B": "CLOSED",
+    "A07.6.2A": "CLOSED",
+    "A07.6.2B": "CLOSED",
+    "A07.6.3A": "CLOSED",
+    "A07.6.3B": "CLOSED_AUDIT",
+    "A07.6.3C": "CLOSED",
+    "A07.6.4A": "NEXT"
+  },
+  "next": "A07.6.4A audit scheduler/runtime hook before productive connection",
+  "note": "Remote snapshot is documentary; local Astra integration commits are not necessarily present on GitHub."
+}
