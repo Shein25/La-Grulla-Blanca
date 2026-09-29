@@ -121,7 +121,7 @@ def resolve_direct_hit(
         return HitResult(False, False, 0, 0, effective_def(attacker, target, technique), 0, 0)
 
     if rng.random() >= hit_probability(attacker, target, technique):
-        return HitResult(False, False, 0, 0, effective_def(attacker, target, technique), 0)
+        return HitResult(False, False, 0, 0, effective_def(attacker, target, technique), 0, 0)
 
     rolled = technique.damage.roll(rng)
     normal_pct = attacker.damage_done_percent + technique.damage_percent
