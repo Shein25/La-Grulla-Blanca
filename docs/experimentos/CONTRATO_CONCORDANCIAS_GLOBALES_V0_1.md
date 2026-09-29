@@ -2,7 +2,7 @@
 
 Fecha: 2026-09-28  
 Rama: `experiment/combat-stat-contract-v0.1`  
-Estado: **EN CONSTRUCCIÓN / FUEGO, METAL, AGUA Y TIERRA COMO ORIGEN APROBADOS**
+Estado: **MATRIZ CONCEPTUAL COMPLETA / 20 DE 20 RELACIONES APROBADAS / SIN NÚMEROS DE BALANCE**
 
 ## 0. Principio
 
@@ -1071,3 +1071,230 @@ La zona:
 | Tierra → Metal | asentamiento / fortificación / Placa Fundacional |
 | Tierra → Agua | contención de flujo / Embalse |
 | Tierra → Viento | materialización / interferencia / Nube Residual |
+
+
+---
+
+# 8. VIENTO como origen — APROBADO
+
+Viento representa impulso, aceleración, circulación y ligereza.
+
+No existe una estadística de movilidad; Viento actúa sobre hooks reales del sistema.
+
+## 8.1 VIENTO → FUEGO · Avivamiento
+
+**Identidad:** Viento alimenta la llama y acelera su manifestación inmediata.
+
+### OFFENSIVE
+
+\`\`\`text
+1. INTENSITY
+2. DIRECT_DAMAGE
+3. EXECUTION
+4. CRIT_DAMAGE
+5. PROPAGATION
+\`\`\`
+
+\`DIRECT_DAMAGE\` es válido aquí porque avivar una llama directa pertenece a la identidad de la relación.
+
+Toda mejora de magnitud es porcentual respecto del hook receptor.
+
+### DEFENSIVE
+
+\`\`\`text
+1. ABSORPTION
+2. INTERNAL_RESOURCE
+3. REACTIVE_RESPONSE
+4. DEFENSIVE_DURATION
+\`\`\`
+
+### CONTROL
+
+\`\`\`text
+1. INTERRUPT
+2. CONTROL_POWER
+3. ACTION_DENIAL
+4. DEBUFF_DURATION
+\`\`\`
+
+### UTILITY
+
+\`\`\`text
+1. INTERNAL_RESOURCE
+2. PROPAGATION
+3. EXECUTION
+4. ZONE_DURATION
+\`\`\`
+
+---
+
+## 8.2 VIENTO → METAL · Filo Propulsado
+
+**Identidad:** Viento impulsa al Metal y mejora la trayectoria/ejecución de una propiedad que el receptor ya posee.
+
+### OFFENSIVE
+
+\`\`\`text
+1. PRECISION
+2. EXECUTION
+3. PERCENT_PENETRATION
+4. CRIT_CHANCE
+5. FLAT_PENETRATION
+\`\`\`
+
+Una Concordancia que modifique \`PRECISION\` escala la Precisión aportada por el hook receptor, no toda la Precisión total del actor.
+
+### DEFENSIVE
+
+\`\`\`text
+1. QI_COST_PERCENT
+2. REACTIVE_RESPONSE
+3. DEFENSIVE_DURATION
+4. FORTIFICATION
+\`\`\`
+
+### CONTROL
+
+\`\`\`text
+1. INTERRUPT
+2. PRECISION
+3. CONTROL_POWER
+4. ACTION_DENIAL
+\`\`\`
+
+### UTILITY
+
+\`\`\`text
+1. QI_COST_PERCENT
+2. EXECUTION
+3. PRECISION
+4. PROPAGATION
+\`\`\`
+
+---
+
+## 8.3 VIENTO → AGUA · Corriente Ligera
+
+**Identidad:** Viento facilita la circulación del Agua, reduce resistencia y permite que el flujo ocurra con mayor eficiencia.
+
+### OFFENSIVE
+
+\`\`\`text
+1. QI_COST_PERCENT
+2. EXECUTION
+3. PROPAGATION
+4. CONTROL_POWER
+5. PRECISION
+\`\`\`
+
+### DEFENSIVE
+
+\`\`\`text
+1. QI_COST_PERCENT
+2. ABSORPTION_RESTORE
+3. DEFENSIVE_DURATION
+4. INTERNAL_RESOURCE
+\`\`\`
+
+### CONTROL
+
+\`\`\`text
+1. QI_COST_PERCENT
+2. CONTROL_POWER
+3. INTERRUPT
+4. ACTION_DENIAL
+\`\`\`
+
+### UTILITY
+
+\`\`\`text
+1. QI_COST_PERCENT
+2. PROPAGATION
+3. EXECUTION
+4. INTERNAL_RESOURCE
+\`\`\`
+
+La reducción de coste es porcentual; no resta una cantidad fija de Qi.
+
+---
+
+## 8.4 VIENTO → TIERRA · Golpe del Vendaval
+
+**Identidad:** Viento comunica impulso a la masa de Tierra.
+
+### OFFENSIVE
+
+\`\`\`text
+1. CONTROL_POWER
+2. DIRECT_DAMAGE
+3. PRECISION
+4. AREA_EFFICIENCY
+5. EXECUTION
+\`\`\`
+
+La relación prioriza impacto/control cuando existe. Si no existe, puede aumentar porcentualmente la magnitud directa del golpe.
+
+### DEFENSIVE
+
+\`\`\`text
+1. TENACITY_GRANTED
+2. FORTIFICATION
+3. DEF_GRANTED
+4. REACTIVE_RESPONSE
+\`\`\`
+
+Cuando modifica \`TENACITY_GRANTED\`, escala porcentualmente la Tenacidad otorgada por el estado/técnica receptora, no añade puntos fijos.
+
+### CONTROL
+
+\`\`\`text
+1. CONTROL_POWER
+2. ACTION_DENIAL
+3. INTERRUPT
+4. EVASION_DEBUFF
+5. DEBUFF_DURATION
+\`\`\`
+
+### UTILITY
+
+\`\`\`text
+1. TENACITY_GRANTED
+2. FORTIFICATION
+3. INTERNAL_RESOURCE
+4. AREA_EFFICIENCY
+\`\`\`
+
+---
+
+# 9. Matriz conceptual completa — 20/20 APROBADAS
+
+| Origen ↓ / Destino → | Fuego | Metal | Agua | Tierra | Viento |
+|---|---|---|---|---|---|
+| Fuego | — | Forja Ardiente | Presurización | Cimiento Cocido | Corriente Ascendente |
+| Metal | Chispa de Ignición | — | Cauce Tallado | Anclaje de Hierro | Filo en la Corriente |
+| Agua | Vapor Súbito | Temple de Agua | — | Erosión / Sedimentación | Velo de Niebla |
+| Tierra | Corazón de Magma | Forja Asentada | Cauce Represado | — | Tormenta de Polvo |
+| Viento | Avivamiento | Filo Propulsado | Corriente Ligera | Golpe del Vendaval | — |
+
+## 9.1 Estado
+
+Las 20 relaciones dirigidas ya tienen:
+
+- identidad global;
+- prioridades por rol/contexto;
+- hooks compatibles;
+- ausencia de fallback universal;
+- escalado relativo/porcentual;
+- reglas de interacción con hooks;
+- tratamiento explícito cuando no existe receptor compatible.
+
+A partir de este punto no se deben añadir números de balance a la matriz conceptual.
+
+El siguiente trabajo consiste en:
+
+1. mapear cada técnica diseñada contra sus \`mechanical_hooks\`;
+2. declarar sus \`concordance_hooks\`;
+3. verificar qué relaciones puede recibir realmente cada técnica;
+4. detectar relaciones sin cobertura actual;
+5. diseñar Viento sin romper la matriz global;
+6. recién después asignar magnitudes y hacer benchmark.
