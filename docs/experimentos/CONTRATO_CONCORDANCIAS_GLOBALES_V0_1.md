@@ -1282,3 +1282,211 @@ El siguiente trabajo consiste en:
 4. detectar relaciones sin cobertura actual;
 5. diseñar Viento sin romper la matriz global;
 6. recién después asignar magnitudes y hacer benchmark.
+
+
+---
+
+# 10. Descriptores estructurales canónicos
+
+Regla de precedencia:
+
+> Si una combinación `relation_id + receiver_hook + context` tiene una manifestación estructural registrada, esa manifestación constituye la **única resolución primaria** del Eco. No se aplica además un escalado SCALAR genérico sobre el mismo hook.
+
+Los porcentajes exactos continúan pendientes de benchmark.
+
+## 10.1 Tierra→Fuego + CONTAINED_TRIGGER · Núcleo de Magma
+
+```text
+manifestation_id = NUCLEO_DE_MAGMA
+relation_id = EARTH_TO_FIRE
+receiver_hook = CONTAINED_TRIGGER
+hook_class = STRUCTURAL
+activation_context = OFFENSIVE
+owner = TARGET
+source = ACTOR
+target_scope = CONNECTED_TARGETS
+duration_unit = SOURCE_TURNS
+duration_value = PENDING_BENCHMARK
+frequency = once_per_target_per_action
+scale_rule = RELATIVE_TO_CREATOR_HOOK
+scale_target = stored_magnitude
+consume_rule = CONSUME_ON_VALID_DETONATION
+cleanup_rule = EXPIRE_OR_COMBAT_END
+detonator_source_must_match = true
+```
+
+Creación:
+
+- sólo se crea sobre un objetivo cuyo impacto conectó;
+- si el ataque creador falla contra un objetivo, ese objetivo no recibe Núcleo;
+- en una AOE, un único descriptor puede aplicar un Núcleo a cada objetivo conectado del conjunto congelado;
+- crear varios Núcleos por una AOE no implica varias resoluciones de Eco: sigue existiendo una única resolución primaria por ActionContext;
+- `stored_magnitude` toma como base una magnitud local del hook creador declarada por contenido y queda snapshot;
+- la proporción exacta de almacenamiento queda pendiente de benchmark.
+
+Detonación:
+
+```text
+trigger = ON_VALID_DIRECT_IMPACT
+condition:
+- source == manifestation.source
+- incoming element == FIRE
+- offensive interaction compatible
+```
+
+El paquete de detonación usa:
+
+```text
+damage_source_type = SECONDARY_REACTIVE
+tags = [TECHNIQUE, DIRECT, ELEMENTAL, FIRE, CONCORDANCE, CONTAINED_TRIGGER]
+can_crit = false
+can_use_def = true
+can_use_penetration = false
+can_use_absorption = true
+can_trigger_on_hit = false
+can_trigger_on_damage = false
+can_trigger_lifesteal = false
+can_trigger_reflect = false
+can_trigger_retaliation = false
+aoe_single_target_scalar_applies = false
+```
+
+La detonación no vuelve a escalar `stored_magnitude` con pools ofensivos del detonador.
+
+Si el detonador es AOE:
+
+- el objetivo marcado recibe la detonación completa;
+- una onda secundaria sólo puede reutilizar los demás objetivos del `target_set` ya congelado;
+- la onda usa PROPAGATION declarada por el descriptor;
+- no descubre enemigos nuevos.
+
+## 10.2 Tierra→Metal + FORTIFICATION · Placa Fundacional
+
+```text
+manifestation_id = PLACA_FUNDACIONAL
+relation_id = EARTH_TO_METAL
+receiver_hook = FORTIFICATION
+hook_class = STRUCTURAL
+activation_context = DEFENSIVE
+owner = ACTOR
+target_scope = SELF
+frequency = once_per_activation
+scale_rule = RELATIVE_TO_RECEIVER
+scale_target = plate_def_value
+snapshot_fields = [plate_def_value, concordance_scale]
+cleanup_rule = ACTIVATION_END
+```
+
+Ciclo:
+
+```text
+NORMAL
+→ primer ON_VALID_DIRECT_IMPACT_RECEIVED
+→ protege con plate_def_value
+→ NO consume la Placa
+→ estado REFORZADA
+
+REFORZADA
+→ siguiente ON_VALID_DIRECT_IMPACT_RECEIVED
+→ protege con plate_def_value × (1 + concordance_scale)
+→ termina la transformación Fundacional
+→ la Placa vuelve a las reglas ordinarias de consumo
+```
+
+Reglas:
+
+- Evasión y DOT no cuentan como impacto válido;
+- un impacto directo válido cuenta aunque DEF reduzca su daño a 0;
+- al segundo impacto, el modificador Fundacional termina siempre;
+- si otra regla legítima de Armadura evita consumir la Placa en ese segundo impacto, la Placa puede sobrevivir, pero vuelve a estado NORMAL y no conserva el refuerzo;
+- no puede entrar otra vez en REFORZADA durante la misma activación por esta manifestación;
+- no crea una carga extra.
+
+## 10.3 Tierra→Agua + ABSORPTION_RESTORE · Embalse
+
+```text
+manifestation_id = EMBALSE
+relation_id = EARTH_TO_WATER
+receiver_hook = ABSORPTION_RESTORE
+hook_class = STRUCTURAL
+activation_context = DEFENSIVE
+owner = ACTOR
+source = defensive_effect_instance
+target_scope = SELF
+resource_family = EMBALSE
+scale_rule = RELATIVE_TO_RECEIVER
+scale_target = overflow_storage_capacity
+frequency = per_restore_event
+cleanup_rule = SOURCE_EFFECT_INSTANCE_END
+```
+
+Captura:
+
+```text
+ON_ABSORPTION_RESTORE_RESOLVED
+if overflow_restore > 0
+→ STORE_RESOURCE(EMBALSE, amount derived from overflow_restore)
+```
+
+Liberación:
+
+```text
+ON_ABSORPTION_LOSS_RESOLVED
+if same pool_instance_id remains valid
+and reserve_after < reserve_max
+and EMBALSE > 0
+→ RESTORE_ABSORPTION from EMBALSE
+```
+
+Reglas:
+
+- no es una segunda barrera;
+- no cura Vida;
+- no retroabsorbe el paquete que produjo la pérdida;
+- no genera triggers ofensivos;
+- capacidad y liberación escalan relativamente;
+- si el pool/effect instance se rompe y queda invalidado, Embalse se limpia;
+- una reconstrucción crea nueva instancia y no hereda Embalse de la instancia rota salvo futura regla explícita.
+
+## 10.4 Tierra→Viento + ZONE/ZONE_DURATION · Nube Residual
+
+```text
+manifestation_id = NUBE_RESIDUAL
+relation_id = EARTH_TO_WIND
+receiver_hook = ZONE | ZONE_DURATION
+hook_class = STRUCTURAL/PARAMETRIC
+activation_context = OFFENSIVE | UTILITY
+owner = ROOM
+source = ACTOR
+target_scope = FROZEN_ACTION_TARGET_SET
+duration_unit = SOURCE_TURNS
+duration_value = PENDING_BENCHMARK
+scale_rule = RELATIVE_TO_RECEIVER
+scale_target = zone_duration | declared_zone_effect_magnitude
+cleanup_rule = DURATION_END_OR_COMBAT_END
+```
+
+Reglas:
+
+- no requiere posiciones internas;
+- pertenencia significa presencia en el mismo espacio de combate/sala;
+- por defecto sólo puede afectar a entidades del `target_set` congelado de la acción creadora;
+- enemigos que entren después no se añaden automáticamente;
+- no introduce movilidad;
+- sólo aplica efectos explícitos del descriptor, por ejemplo `PRECISION_DEBUFF`;
+- no causa daño si no existe un canal de daño declarado;
+- si la técnica expone un hook compatible de mayor prioridad que ZONE/ZONE_DURATION, ese hook gana y Nube Residual no se crea.
+
+---
+
+# 11. Regla AOE transversal para Concordancias
+
+Para cualquier Concordancia aplicada a una AOE:
+
+1. el Eco se resuelve una vez por ActionContext;
+2. el descriptor resultante puede operar `per_target`, pero no vuelve a resolver la relación;
+3. `PROPAGATION` no equivale a AOE;
+4. `AREA_EFFICIENCY` no equivale a PROPAGATION;
+5. ningún hook descubre blancos fuera del conjunto congelado salvo futura excepción global explícita;
+6. un debuff escalado por Concordancia se aplica con la misma regla a cada objetivo al que la técnica ya habría aplicado ese debuff;
+7. efectos `once_per_action` siguen siendo uno por ejecución, no por objetivo.
