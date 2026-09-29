@@ -915,3 +915,34 @@ Conclusión:
 
 Siguiente única etapa:
 - ETAPA 4 — CURRENT vs DEF_CAP2 contra 2 enemigos.
+
+
+### ETAPA 4 — 2 enemigos — CERRADA
+
+Documento:
+- `docs/experimentos/ETAPA4_PIEL_CURRENT_VS_DEF_CAP2_2_ENEMIGOS_2026-09-29.md`
+
+Escenario:
+- 2 enemigos reales de 14 HP;
+- HP total ~28;
+- PREC90 / EVA20 / DEF2 / ataque 2d4+1;
+- una acción por enemigo vivo y ronda.
+
+200.000 combates:
+- CURRENT: 88.83% win / 46.52% HP restante.
+- DEF_CAP2: 84.91% win / 40.97% HP restante.
+- delta win ≈ -3.92 pp.
+- delta HP restante ≈ -5.54 pp.
+
+Repetición 4×100k:
+- delta win: -4.040 / -3.947 / -3.766 / -3.882 pp.
+
+Hallazgo:
+- primera etapa donde DEF_CAP2 deja de ser casi equivalente a CURRENT;
+- ambas variantes alcanzan Arraigo máximo ~2.96;
+- ambas activan extensión ~96%;
+- el recorte proviene específicamente de limitar DEF máxima 6 -> 5;
+- DEF_CAP2 sigue siendo viable, pero entra en zona de decisión.
+
+Siguiente única etapa:
+- ETAPA 5 — CURRENT vs DEF_CAP2 contra 3 enemigos.
