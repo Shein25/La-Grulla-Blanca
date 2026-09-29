@@ -142,3 +142,49 @@ Prioridad:
 4. reejecutar las cinco defensivas juntas;
 5. comprobar perfiles enemigo común / resistente / preciso antes de promover.
 
+
+
+---
+
+## Stress check — ¿las defensivas débiles sólo eran situacionales?
+
+Se repitió la comparación actual contra cuatro presiones LAB:
+
+- COMMON: PREC90 / 2d4+1;
+- PRECISE: PREC100 / 2d4+1;
+- HEAVY: PREC90 / 1d6+3;
+- DANGEROUS: PREC100 / 1d6+3.
+
+Se mide delta de win rate de apertura defensiva frente a sólo ofensiva.
+
+| Perfil | Fuego | Metal | Agua | Tierra | Viento |
+|---|---:|---:|---:|---:|---:|
+| COMMON | −1.7 pp | +2.2 pp | −5.7 pp | +4.5 pp | −10.0 pp |
+| PRECISE | −2.4 pp | +2.2 pp | −8.1 pp | +6.3 pp | −14.0 pp |
+| HEAVY | −2.8 pp | +2.2 pp | −7.7 pp | +5.5 pp | −12.2 pp |
+| DANGEROUS | −4.3 pp | +1.9 pp | −10.7 pp | +8.0 pp | −16.8 pp |
+
+Lectura:
+
+- Armadura de Plata conserva valor positivo bajo presión.
+- Piel de Cobre escala muy bien con presión y requiere vigilancia por posible
+  sobrepotencia en escenarios de muchos impactos.
+- Cuerpo-Horno 15% no se rescata al aumentar daño/Precisión.
+- Espejo 12% empeora aún más cuando aumenta la presión.
+- Paso +15 EVA / 2 turnos tampoco se rescata contra enemigos más peligrosos.
+
+Por tanto, Fuego/Agua/Viento necesitan recalibración real; no basta con
+etiquetarlos como defensivas situacionales contra enemigos duros.
+
+### Nota de grupos
+
+Se hizo además un stress exploratorio con varias acciones enemigas por ronda.
+No se toma como balance de grupo real porque los atacantes extra no eran
+objetivos eliminables, pero sí mostró una advertencia:
+
+- Piel escala muy rápido cuando recibe muchos impactos;
+- Placas se consumen mucho más deprisa;
+- Paso actual sigue sin compensar el turno en esa simulación artificial.
+
+Antes de balancear grupos habrá que usar combates multiobjetivo reales, no
+multiplicar ataques sobre un único HP enemigo.
