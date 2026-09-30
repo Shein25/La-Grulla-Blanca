@@ -2551,3 +2551,36 @@ Correcciones:
 
 DEF equipo máxima:
 - LI0 / LII0 / LIII+1 / LIV+1.
+
+
+### ETAPA18A — CORRECCIÓN DEF DE ARMADURA
+
+La regla previa de máximo +1 DEF total de equipo fue descartada por ser demasiado conservadora.
+
+Nueva regla:
+- DEF de equipo sólo en slot VESTIDURA durante Arc1;
+- otros slots = 0 DEF;
+- stats planos siguen enteros.
+
+Curva máxima:
+- LI +1 DEF.
+- LII +2.
+- LIII +3.
+- LIV +4.
+
+Vestiduras:
+- Uniforme aspirante: DEF1 HP1.
+- Sobretúnica patrulla: DEF2 HP2.
+- Túnica Sauces: DEF1 EVA3 HP1.
+- Túnica reforzada trama cobre: DEF3 HP2.
+- Vestidura flujo ligero: DEF1 EVA4 Qi2.
+- Manto mantenimiento: DEF4 Ten3 Qi2.
+- Vestidura Ala Cerrada: DEF3 HP4 Ten3.
+
+Con DEF base1:
+- máximo desnudo+armadura por etapa = 2 / 3 / 4 / 5 antes de técnicas.
+- se revalidará con enemigos II–IV; no nerfear usando sólo benchmarks LianQi I.
+
+Validador:
+- falla si cualquier slot no-VESTIDURA intenta dar DEF;
+- VESTIDURA usa ceiling diagnóstico específico.
