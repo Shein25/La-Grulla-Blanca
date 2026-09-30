@@ -95,7 +95,12 @@ def validate_catalog() -> list[str]:
         errors.append("DUPLICATE_ITEM_ID")
 
     ceilings = CATALOG["stage_power_budget_ceiling"]
+    percentage_keys = {"crit_chance_pp", "crit_damage_pp", "percent_penetration_pp", "technique_direct_damage_percent"}
+
     for item in ITEMS:
+        for stat, amount in item.get("stats", {}).items():
+            if stat not in percentage_keys and abs(float(amount) - round(float(amount))) > 1e-9:
+                errors.append(f"FRACTIONAL_FLAT_STAT:{item['item_id']}:{stat}:{amount}")
         if not str(item.get("description", "")).strip():
             errors.append(f"MISSING_DESCRIPTION:{item['item_id']}")
         if "pendiente de redacción" in str(item.get("description", "")).lower():
