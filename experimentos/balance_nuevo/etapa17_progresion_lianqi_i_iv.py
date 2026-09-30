@@ -16,10 +16,10 @@ from __future__ import annotations
 import csv
 
 STAGES = [
-    {"stage":"LianQi_I","name":"Percepcion","hp":30,"qi":31,"tech_points_gained":0,"tech_points_total":0,"tramo_cap":"BASE"},
-    {"stage":"LianQi_II","name":"Circulacion","hp":36,"qi":37,"tech_points_gained":2,"tech_points_total":2,"tramo_cap":"TRAMO_I"},
-    {"stage":"LianQi_III","name":"Consolidacion","hp":42,"qi":43,"tech_points_gained":2,"tech_points_total":4,"tramo_cap":"TRAMO_II"},
-    {"stage":"LianQi_IV","name":"Refinamiento","hp":48,"qi":49,"tech_points_gained":2,"tech_points_total":6,"tramo_cap":"TRAMO_III"},
+    {"stage":"LianQi_I","name":"Percepcion","hp":30,"qi":37,"tech_points_gained":0,"tech_points_total":0,"tramo_cap":"BASE"},
+    {"stage":"LianQi_II","name":"Circulacion","hp":36,"qi":43,"tech_points_gained":2,"tech_points_total":2,"tramo_cap":"TRAMO_I"},
+    {"stage":"LianQi_III","name":"Consolidacion","hp":42,"qi":49,"tech_points_gained":2,"tech_points_total":4,"tramo_cap":"TRAMO_II"},
+    {"stage":"LianQi_IV","name":"Refinamiento","hp":48,"qi":55,"tech_points_gained":2,"tech_points_total":6,"tramo_cap":"TRAMO_III"},
 ]
 
 def budget(qi: int) -> dict:
