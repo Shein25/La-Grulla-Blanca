@@ -31,8 +31,8 @@
     "crit_chance_pp": 0.5,
     "crit_damage_pp": 0.2,
     "percent_penetration_pp": 0.2,
-    "direct_damage_percent": 0.3333333333333333,
-    "basic_attack_flat": 1
+    "basic_attack_flat": 1,
+    "technique_direct_damage_percent": 0.3333333333333333
   },
   "effect_budget_weights": {
     "MEDITATION_BONUS": 0,
@@ -224,8 +224,7 @@
         "calzas_trama_sello",
         "calzado_nube_baja",
         "amuleto_ancla_resonante",
-        "anillo_hilo_plata",
-        "placa_mantenimiento_antigua"
+        "anillo_hilo_plata"
       ]
     },
     "HIGH_ROLL_STRESS": {
@@ -248,8 +247,7 @@
         "amuleto_colmillo_montado",
         "pulsera_cauce_trenzado",
         "anillo_sello_hierro",
-        "anillo_corriente_clara",
-        "placa_ruta_grulla"
+        "anillo_corriente_clara"
       ],
       "LianQi_III": [
         "espada_vena_clara",
@@ -263,7 +261,6 @@
         "pulsera_nudo_formacion",
         "anillo_hilo_plata",
         "anillo_tierra_profunda",
-        "brujula_seis_corrientes",
         "espejo_pulso_velado"
       ],
       "LianQi_IV": [
@@ -278,7 +275,7 @@
         "pulsera_nudo_formacion",
         "anillo_hilo_plata",
         "anillo_marca_quieta",
-        "brujula_seis_corrientes"
+        "espejo_pulso_velado"
       ]
     }
   },
@@ -1004,7 +1001,7 @@
       "accessibility": "MATERIAL_SERVICIO",
       "power_budget": 1,
       "stats": {
-        "direct_damage_percent": 3
+        "technique_direct_damage_percent": 3
       },
       "source_type": "WORKSHOP_SERVICE_MATERIAL",
       "source_npc": "Ning Cai",
@@ -1018,7 +1015,7 @@
       ],
       "unique": false,
       "build_tags": [
-        "DIRECT_DAMAGE"
+        "TECHNIQUE_DIRECT_DAMAGE"
       ],
       "effect": null,
       "availability": "OPTIONAL",
@@ -1137,39 +1134,6 @@
       "notes": ""
     },
     {
-      "item_id": "placa_ruta_grulla",
-      "name": "Placa de Ruta de la Grulla",
-      "min_stage": "LianQi_II",
-      "slot": "TESORO_ESPIRITUAL",
-      "grade": "ARTEFACTO_MENOR",
-      "accessibility": "UNICO",
-      "power_budget": 1.5,
-      "stats": {
-        "tenacity": 2
-      },
-      "source_type": "MISSION_UNLOCK_REDEMPTION",
-      "source_npc": "Qiao Ren",
-      "source_location": "pabellon_disciplina",
-      "source_mission": "M07",
-      "price_stones": null,
-      "price_contribution": 4,
-      "required_permission": "INFORME_FRONTERA_ACEPTADO",
-      "materials": [],
-      "unique": true,
-      "build_tags": [
-        "TENACITY",
-        "REACTIVE_DEFENSE"
-      ],
-      "effect": {
-        "type": "FIRST_CONTROL_RESIST_BONUS",
-        "tenacity": 5,
-        "uses": 1,
-        "duration": "CONTROL_CHECK_ONLY"
-      },
-      "availability": "OPTIONAL",
-      "notes": "Tesoro menor institucional."
-    },
-    {
       "item_id": "espada_vena_clara",
       "name": "Espada de vena clara",
       "min_stage": "LianQi_III",
@@ -1239,8 +1203,8 @@
       "power_budget": 3,
       "stats": {
         "basic_attack_flat": 2,
-        "direct_damage_percent": 2,
-        "precision": -1
+        "precision": -1,
+        "technique_direct_damage_percent": 2
       },
       "source_type": "WORKSHOP_SERVICE_STONES",
       "source_npc": "Lu Cheng",
@@ -1253,7 +1217,7 @@
       "unique": false,
       "build_tags": [
         "BASIC_ATTACK",
-        "DIRECT_DAMAGE",
+        "TECHNIQUE_DIRECT_DAMAGE",
         "AGGRESSION"
       ],
       "effect": null,
@@ -1609,49 +1573,16 @@
       "notes": ""
     },
     {
-      "item_id": "brujula_seis_corrientes",
-      "name": "Brújula de Seis Corrientes",
-      "min_stage": "LianQi_III",
-      "slot": "TESORO_ESPIRITUAL",
-      "grade": "ARTEFACTO_MENOR",
-      "accessibility": "UNICO",
-      "power_budget": 1.92,
-      "stats": {
-        "precision": 2,
-        "control": 2
-      },
-      "source_type": "MISSION_UNLOCK_REDEMPTION",
-      "source_npc": "He Zhen",
-      "source_location": "formaciones",
-      "source_mission": "M12",
-      "price_stones": null,
-      "price_contribution": 8,
-      "required_permission": "PRIMERA_ALA_INVESTIGACION",
-      "materials": [],
-      "unique": true,
-      "build_tags": [
-        "PRECISION",
-        "CONTROL",
-        "UTILITY"
-      ],
-      "effect": {
-        "type": "FIRST_TECHNIQUE_PRECISION",
-        "precision": 4,
-        "uses": 1
-      },
-      "availability": "OPTIONAL",
-      "notes": "Instrumento de formación convertido en tesoro auxiliar."
-    },
-    {
       "item_id": "espejo_pulso_velado",
       "name": "Espejo de Pulso Velado",
       "min_stage": "LianQi_III",
       "slot": "TESORO_ESPIRITUAL",
       "grade": "ANTIGUO_FUNCIONAL",
       "accessibility": "UNICO",
-      "power_budget": 1.67,
+      "power_budget": 2.5,
       "stats": {
-        "evasion": 2
+        "evasion": 3,
+        "tenacity": 2
       },
       "source_type": "EXPLORATION_UNIQUE",
       "source_npc": null,
@@ -1659,21 +1590,23 @@
       "source_mission": "M12",
       "price_stones": null,
       "price_contribution": null,
-      "required_permission": null,
+      "required_permission": "PRIMERA_ALA_INVESTIGACION",
       "materials": [],
       "unique": true,
       "build_tags": [
         "EVASION",
-        "REACTIVE_DEFENSE"
+        "TENACITY",
+        "REACTIVE_DEFENSE",
+        "TREASURE"
       ],
       "effect": {
         "type": "HP_THRESHOLD_ABSORPTION",
         "threshold_pct": 35,
-        "absorption_flat": 3,
+        "absorption_max_hp_percent": 15,
         "uses": 1
       },
-      "availability": "OPTIONAL",
-      "notes": "Hallazgo opcional; no es llave de progresión."
+      "availability": "HIDDEN_OPTIONAL",
+      "notes": "ÚNICO Tesoro Espiritual obtenible en Arco 1. Hallazgo oculto de la Primera Ala: no se compra, no se canjea y no es recompensa automática. Requiere resolver una ruta opcional de exploración durante/post M12. Al caer por primera vez a <=35% HP en combate, genera Absorción equivalente al 15% de HP máximo, una vez por combate."
     },
     {
       "item_id": "hoja_seis_corrientes",
@@ -1685,8 +1618,8 @@
       "power_budget": 3.67,
       "stats": {
         "basic_attack_flat": 2,
-        "direct_damage_percent": 3,
-        "precision": 2
+        "precision": 2,
+        "technique_direct_damage_percent": 3
       },
       "source_type": "WORKSHOP_SERVICE_CONTRIBUTION",
       "source_npc": "Lu Cheng",
@@ -1699,7 +1632,7 @@
       "unique": false,
       "build_tags": [
         "BASIC_ATTACK",
-        "DIRECT_DAMAGE",
+        "TECHNIQUE_DIRECT_DAMAGE",
         "PRECISION"
       ],
       "effect": null,
@@ -1986,8 +1919,8 @@
       "accessibility": "INSTITUCIONAL",
       "power_budget": 2,
       "stats": {
-        "direct_damage_percent": 3,
-        "crit_chance_pp": 2
+        "crit_chance_pp": 2,
+        "technique_direct_damage_percent": 3
       },
       "source_type": "CONTRIBUTION_REDEMPTION",
       "source_npc": "Lu Cheng",
@@ -1999,7 +1932,7 @@
       "materials": [],
       "unique": false,
       "build_tags": [
-        "DIRECT_DAMAGE",
+        "TECHNIQUE_DIRECT_DAMAGE",
         "CRIT"
       ],
       "effect": null,
@@ -2034,72 +1967,12 @@
       "effect": null,
       "availability": "OPTIONAL",
       "notes": ""
-    },
-    {
-      "item_id": "placa_mantenimiento_antigua",
-      "name": "Placa de mantenimiento antigua",
-      "min_stage": "LianQi_IV",
-      "slot": "TESORO_ESPIRITUAL",
-      "grade": "ANTIGUO_FUNCIONAL",
-      "accessibility": "UNICO",
-      "power_budget": 1.75,
-      "stats": {
-        "tenacity": 3
-      },
-      "source_type": "EXPLORATION_UNIQUE",
-      "source_npc": null,
-      "source_location": "mantenimiento_antiguo",
-      "source_mission": "M13",
-      "price_stones": null,
-      "price_contribution": null,
-      "required_permission": null,
-      "materials": [],
-      "unique": true,
-      "build_tags": [
-        "TENACITY",
-        "REACTIVE_DEFENSE"
-      ],
-      "effect": {
-        "type": "FIRST_DIRECT_HIT_ABSORPTION",
-        "absorption_flat": 4,
-        "uses": 1
-      },
-      "availability": "OPTIONAL",
-      "notes": "Artefacto antiguo funcional pero menor; no es reliquia legendaria."
-    },
-    {
-      "item_id": "campana_relevo_silencioso",
-      "name": "Campana de relevo silencioso",
-      "min_stage": "LianQi_IV",
-      "slot": "TESORO_ESPIRITUAL",
-      "grade": "ARTEFACTO_MENOR",
-      "accessibility": "UNICO",
-      "power_budget": 2.17,
-      "stats": {
-        "control": 3,
-        "qi_max": 2
-      },
-      "source_type": "MISSION_UNLOCK_REDEMPTION",
-      "source_npc": "Ji Xueying",
-      "source_location": "consejo",
-      "source_mission": "M17",
-      "price_stones": null,
-      "price_contribution": 10,
-      "required_permission": "NUCLEO_PROFUNDO",
-      "materials": [],
-      "unique": true,
-      "build_tags": [
-        "CONTROL",
-        "QI",
-        "REACTIVE_DEFENSE"
-      ],
-      "effect": {
-        "type": "FIRST_CONTROL_FAILURE_QI_REFUND",
-        "qi_flat": 2,
-        "uses": 1
-      },
-      "availability": "OPTIONAL",
-      "notes": "Recurso de preparación final, no recompensa de M18."
     }
-  ]
+  ],
+  "treasure_policy": {
+    "equip_slots": 2,
+    "obtainable_arc1": 1,
+    "second_slot_arc1": "EMPTY_BY_DESIGN",
+    "philosophy": "TESOROS_PODEROSOS_RAROS_DIFICILES_DE_OBTENER"
+  }
 }
