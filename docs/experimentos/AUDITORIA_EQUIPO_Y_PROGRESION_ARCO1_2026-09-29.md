@@ -402,10 +402,10 @@ La fase que este documento dejaba pendiente ya fue ejecutada en:
 Estado actualizado:
 
 - 13 slots objetivo conservados;
-- 62 piezas PROVISIONALES diseñadas;
+- 58 piezas PROVISIONALES diseñadas;
 - 12 LianQi I / 19 LianQi II / 17 LianQi III / 14 LianQi IV;
 - fuentes de obtención, NPC, misión/permiso, piedras y/o Contribución definidos;
-- 5 tesoros espirituales menores;
+- 1 Tesoro Espiritual único, oculto y difícil de obtener;
 - perfiles MANDATORY_ENTRY / EXPECTED_STAGE / HIGH_ROLL_STRESS preparados;
 - catálogo validado sin IDs duplicados, overflow de slots ni piezas sobre su presupuesto diagnóstico;
 - runtime/HTML sigue SIN CAMBIOS.
