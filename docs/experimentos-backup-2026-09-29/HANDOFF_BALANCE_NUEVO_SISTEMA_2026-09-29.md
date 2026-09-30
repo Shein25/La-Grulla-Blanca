@@ -2357,14 +2357,14 @@ Arquitectura:
 - no full-set bonus, rareza MMO, refuerzo +1/+10 ni durabilidad.
 
 Catálogo:
-- 62 piezas.
+- 58 piezas.
 - LI 12.
-- LII 19.
-- LIII 17.
-- LIV 14.
+- LII 18.
+- LIII 16.
+- LIV 12.
 - 11 armas / 6 tocados / 6 vestiduras / 5 brazales / 4 fajines /
   4 piernas / 5 calzados / 5 amuletos / 4 pulseras / 7 anillos /
-  5 tesoros espirituales.
+  1 Tesoro Espiritual.
 
 Fuentes:
 - dotación inicial / origen;
@@ -2407,12 +2407,9 @@ Balance:
   HP/Tenacidad, Control, Qi/continuidad, balanceada.
 
 Tesoros:
-- Placa Ruta Grulla;
-- Brújula Seis Corrientes;
-- Espejo Pulso Velado;
-- Placa Mantenimiento Antigua;
-- Campana Relevo Silencioso.
-- 2 slots, 5 candidatos; efectos acotados once/combat o utilidad.
+- Espejo de Pulso Velado solamente.
+- 2 slots arquitectónicos, 1 tesoro obtenible en Arc1.
+- segundo slot vacío por diseño.
 
 Simulación preparada:
 - MANDATORY_ENTRY.
