@@ -223,7 +223,7 @@ No se gasta como precio. Sigue siendo historial/prestigio y puede contribuir a a
 | **Pulsera de nudo de formación** | PULSERA | Qi +3; Control +3 | — | Wen Tao · M08 | 5 contrib. | QI, CONTROL |
 | **Anillo de hilo de plata** | ANILLO | Crít. +2 pp; Prec +2 | — | Lu Cheng · M09 | 18 piedras | CRIT, PRECISION |
 | **Anillo de tierra profunda** | ANILLO | HP +2; Ten +4 | — | Ning Cai · M10 | 5 contrib. | HP, TENACITY |
-| **Espejo de Pulso Velado** | TESORO_ESPIRITUAL | EVA +3; Ten +2 | 1/combate al caer a ≤35% HP: Absorción 15% HP máx. | primera_ala · M12 | exploración oculta | EVASION, TENACITY, REACTIVE_DEFENSE, TREASURE |
+| **Espejo de Pulso Velado** | TESORO_ESPIRITUAL | EVA +5; Ten +3 | 1/combate al caer a ≤35% HP: Absorción 20% HP máx. | primera_ala · M12 | exploración oculta | EVASION, TENACITY, REACTIVE_DEFENSE, TREASURE |
 
 ### LianQi_IV — 12 piezas nuevas
 
@@ -260,16 +260,17 @@ El juego no debe regalar una armadura completa por seguir la historia. La column
 
 Aunque la arquitectura permite **dos slots de Tesoro Espiritual**, durante el Arco 1 sólo existe **un tesoro obtenible**.
 
-Esto es deliberado:
+Esto es deliberado: los Tesoros Espirituales son objetos excepcionalmente poderosos y difíciles de conseguir. No deben convertirse en accesorios normales con otro nombre.
 
 ```text
 2 slots disponibles
 ≠
-2 tesoros garantizados
+2 tesoros en Arco 1
 
 Arco 1
-→ 1 Tesoro Espiritual posible
-→ difícil de encontrar
+→ 1 único Tesoro Espiritual
+→ oculto
+→ difícil de obtener
 → completamente opcional
 → no comprable
 → no canjeable
@@ -288,14 +289,15 @@ Arco 1
 | Contribución | no |
 | Garantizado | no |
 | Único | sí |
-| Stats | +3 Evasión; +2 Tenacidad |
-| Efecto | 1 vez por combate, al caer por primera vez a <=35% HP, genera Absorción = 15% del HP máximo |
+| Stats | **+5 Evasión; +3 Tenacidad** |
+| Efecto | **1 vez por combate**, al caer por primera vez a ≤35% HP, genera **Absorción = 20% del HP máximo** |
+| Power budget diagnóstico | 3.42 |
 
-El segundo slot de Tesoro Espiritual permanecerá **vacío por diseño durante todo el Arco 1**.
+El segundo slot de Tesoro Espiritual permanece **vacío por diseño durante todo el Arco 1**.
 
 El Espejo no es una llave de M12 ni de M18. El jugador puede terminar el arco sin encontrarlo. Los encuentros principales nunca se balancearán suponiendo que lo posee.
 
-Su `power_budget` es superior al de buena parte del equipo común de su etapa porque **un Tesoro Espiritual debe sentirse excepcional**. La contrapartida es su extrema escasez y ausencia de adquisición garantizada.
+Precisamente porque sólo existe uno en todo el arco, puede superar claramente a un accesorio ordinario sin iniciar una escalada de artefactos.
 
 ## 10. Requisiciones que alimentan la economía
 
