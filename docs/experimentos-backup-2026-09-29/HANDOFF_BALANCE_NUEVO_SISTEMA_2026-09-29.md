@@ -2016,3 +2016,75 @@ WATCH:
 
 Siguiente bloque correcto:
 - screen conjunto final real de las cinco defensivas completas.
+
+
+### ETAPA 15C — Screen conjunto final de las cinco defensivas completas — CERRADA
+
+Documento:
+- docs/experimentos/ETAPA15C_SCREEN_FINAL_DEFENSIVAS_COMPLETAS_2026-09-29.md
+
+Runner agregador:
+- experimentos/balance_nuevo/etapa15c_screen_final_defensivas_completas.py
+
+Metodología:
+- no vuelve a simular todo en un único motor;
+- agrega los benchmarks autoritativos ya cerrados de ETAPA11/12/13/14/15B;
+- criterio = integridad estructural + nicho, no igualación de win rate;
+- técnicas avanzadas siguen probadas contra perfiles LianQi I, por lo que no
+  representan balance final II–IV.
+
+Rangos 27/27 COMMON:
+- Fuego 95.86–97.23%.
+- Metal 93.19–98.55%.
+- Agua 89.74–92.84%.
+- Tierra 95.71–99.11%.
+- Viento 90.31–93.45%.
+
+Rangos 27/27 2EN:
+- Fuego 68.76–80.05%.
+- Metal 56.94–83.20%.
+- Agua 40.33–59.28%.
+- Tierra 84.84–96.16%.
+- Viento 65.35–78.30%.
+
+Rangos 27/27 3EN:
+- Fuego 30.03–50.18%.
+- Metal 11.38–34.03%.
+- Agua 4.60–12.44%.
+- Tierra 59.06–87.01%.
+- Viento 31.24–50.33%.
+
+Lectura global:
+- no hay una defensiva globalmente equivalente por win rate y no se busca eso;
+- Tierra sigue WATCH multiimpacto, sin nerf adicional;
+- Agua queda WATCH burst múltiple, pero el set actual no incluye su perfil
+  favorable de presión espaciada/Reflujo;
+- Metal conserva dispersión legítima por Resistencia/Adaptación/Cantidad;
+- Fuego conserva identidad de reserva finita + Conversión a tempo ofensivo;
+- Viento conserva escalado natural por múltiples intentos, limitado por clamp,
+  una sola CORRIENTE y ausencia de segunda esquiva.
+
+Guardias globales:
+- Fuego pool/cap Calor finitos y sin escalado recursivo.
+- Metal Placas secuenciales, nunca sumadas.
+- Agua Reflujo requiere pool vivo y reconstrucción una vez.
+- Tierra DEF_CAP2 + Estrato max1 + Roca max1/turno + AGUANTE_DUR_CAP1 + curas once.
+- Viento clamp hit + CORRIENTE once + sin Velocidad/movimiento.
+
+Estado:
+- 5/5 defensivas completas.
+- 5/5 bases PROVISIONAL.
+- 15/15 familias de progresión cerradas estructuralmente.
+- 135/135 rutas conceptuales cubiertas (27×5).
+- no cambios numéricos en ETAPA15C.
+- runtime/HTML SIN CAMBIOS.
+
+WATCH:
+- Tierra multiimpacto y mezclas F+A.
+- Agua burst simultáneo / falta presión espaciada.
+- Metal Control real / multihit.
+- Fuego consumo exacto de Calor hit/miss y Qi futuro.
+- Viento Precisión enemiga II–IV y Qi futuro.
+
+Siguiente única etapa:
+- ETAPA16 — validación final de Qi31 para decidir LAB -> PROVISIONAL.
