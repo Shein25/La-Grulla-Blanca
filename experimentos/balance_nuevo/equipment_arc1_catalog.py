@@ -96,6 +96,10 @@ def validate_catalog() -> list[str]:
 
     ceilings = CATALOG["stage_power_budget_ceiling"]
     for item in ITEMS:
+        if not str(item.get("description", "")).strip():
+            errors.append(f"MISSING_DESCRIPTION:{item['item_id']}")
+        if "pendiente de redacción" in str(item.get("description", "")).lower():
+            errors.append(f"PLACEHOLDER_DESCRIPTION:{item['item_id']}")
         actual = item_power_budget(item)
         stored = float(item["power_budget"])
         if abs(actual - stored) > 0.011:
@@ -110,6 +114,23 @@ def validate_catalog() -> list[str]:
             errors.append(f"MISSING_CONTRIB_PRICE:{item['item_id']}")
         if source == "WORKSHOP_SERVICE_DUAL" and not (item.get("price_stones") and item.get("price_contribution")):
             errors.append(f"MISSING_DUAL_PRICE:{item['item_id']}")
+
+    legacy_policy = CATALOG.get("legacy_equipment_policy", {})
+    if legacy_policy.get("coexistence_forbidden"):
+        legacy_ids = set(legacy_policy.get("replacements", {}).keys())
+        collisions = sorted(legacy_ids.intersection(ITEM_BY_ID))
+        for item_id in collisions:
+            errors.append(f"LEGACY_ID_REUSED:{item_id}")
+
+    treasures = [item for item in ITEMS if item["slot"] == "TESORO_ESPIRITUAL"]
+    expected_treasures = int(CATALOG.get("treasure_policy", {}).get("obtainable_arc1", len(treasures)))
+    if len(treasures) != expected_treasures:
+        errors.append(f"TREASURE_COUNT:{len(treasures)}!={expected_treasures}")
+
+    prologue = CATALOG.get("prologue_issue", {})
+    for item_id in prologue.get("guaranteed_items", []):
+        if item_id not in ITEM_BY_ID:
+            errors.append(f"BAD_PROLOGUE_ITEM:{item_id}")
 
     for profile, stages in CATALOG["simulation_loadouts"].items():
         for stage, item_ids in stages.items():
