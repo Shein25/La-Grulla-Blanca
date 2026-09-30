@@ -84,11 +84,11 @@ TARGET_SENSITIVITY_LAB = {
 }
 
 # Progresión garantizada: el contrato sólo permite crecer automáticamente
-# HP/Qi/acceso. Qi de LianQi I fue promovido a PROVISIONAL en ETAPA16.
-# HP y los valores de LianQi II–IV permanecen pendientes.
+# Progresión estructural PROVISIONAL cerrada en ETAPA17.
+# Sólo HP/Qi/puntos/acceso crecen automáticamente por cultivo.
 STAGES = {
-    "LianQi_I":   {"hp": None, "qi": 31, "unlocks": "BASE"},
-    "LianQi_II":  {"hp": None, "qi": None, "unlocks": "TRAMO_I"},
-    "LianQi_III": {"hp": None, "qi": None, "unlocks": "TRAMO_II"},
-    "LianQi_IV":  {"hp": None, "qi": None, "unlocks": "TRAMO_III"},
+    "LianQi_I":   {"hp": 30, "qi": 31, "tech_points_gained": 0, "tech_points_total": 0, "unlocks": "BASE"},
+    "LianQi_II":  {"hp": 36, "qi": 37, "tech_points_gained": 2, "tech_points_total": 2, "unlocks": "TRAMO_I"},
+    "LianQi_III": {"hp": 42, "qi": 43, "tech_points_gained": 2, "tech_points_total": 4, "unlocks": "TRAMO_II"},
+    "LianQi_IV":  {"hp": 48, "qi": 49, "tech_points_gained": 2, "tech_points_total": 6, "unlocks": "TRAMO_III"},
 }
