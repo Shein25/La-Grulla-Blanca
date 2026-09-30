@@ -362,59 +362,91 @@ Mapeo receptor canónico: `MAPEO_HOOKS_TECNICAS_ARCO1_2026-09-29.md`. Como técn
 
 Mecánica central aprobada: **Placas de Plata consumibles por impacto**.
 
-Base provisional:
+Base — **PROVISIONAL tras ETAPA 14**:
 
 - coste: 7 Qi;
 - duración máxima: 4 turnos;
 - 3 Placas;
 - mientras quede al menos una Placa: la **Placa activa** concede +3 DEF contra ese impacto directo;
-- las Placas son cargas secuenciales: 3 Placas no significan +9 DEF simultánea;
-- después del impacto válido se consume 1 Placa;
+- las Placas son cargas secuenciales: varias Placas nunca suman su DEF simultáneamente;
+- después de un impacto directo conectado válido se consume 1 Placa;
 - una evasión no consume Placa;
 - DOT no consume Placas;
-- genera Eco de Metal.
+- genera Eco de Metal;
+- la base fue revalidada en COMMON / PRECISE / HEAVY / DANGEROUS y stress de 2/3 enemigos.
+
+Las tres familias de rama se resuelven por **cantidad de nodos de esa familia** para que las 27 combinaciones mixables sean deterministas.
 
 ### Tramo I
 
-**Placas Gruesas — resistencia**
-- +3 → +4 DEF por Placa.
+**Placas Gruesas — resistencia — PROVISIONAL**
+- pertenece a la familia Resistencia;
+- con 1 nodo de Resistencia: +4 DEF por Placa;
+- con 2 nodos: +6 DEF por Placa;
+- con 3 nodos: +8 DEF por Placa.
 
-**Acero Flexible — adaptación**
-- al romperse una Placa: +5 Tenacidad hasta el comienzo del próximo turno.
+**Acero Flexible — adaptación — PROVISIONAL**
+- pertenece a la familia Adaptación;
+- con 1 nodo de Adaptación, al romperse una Placa: +5 Tenacidad hasta el comienzo del próximo turno del usuario;
+- con 2 nodos: +10 Tenacidad reactiva y, si DEF deja el impacto conectado en 0 antes de Absorción, la Placa no se consume;
+- con 3 nodos: +15 Tenacidad reactiva y conserva el no-consumo por daño0.
 
-**Reserva de Plata — cantidad**
-- 3 → 4 Placas.
+**Reserva de Plata — cantidad — PROVISIONAL**
+- pertenece a la familia Cantidad;
+- con 1 nodo de Cantidad: 4 Placas;
+- con 2 nodos: 6 Placas;
+- con 3 nodos: 8 Placas.
 
 ### Tramo II
 
-**Núcleo Reforzado — resistencia**
-- +1 DEF por Placa;
-- con Placas Gruesas: especialización llega orientativamente a +6 DEF por Placa en este tramo.
+**Núcleo Reforzado — resistencia — PROVISIONAL**
+- añade un nodo de Resistencia;
+- la magnitud final se obtiene por conteo de nodos: 1→+4, 2→+6, 3→+8 DEF por Placa.
 
-**Temple Reactivo — adaptación**
-- sola: +5 Tenacidad al romperse una Placa;
-- con Acero Flexible: +10 Tenacidad y una Placa no se consume si el impacto fue completamente detenido por DEF.
+**Temple Reactivo — adaptación — PROVISIONAL**
+- añade un nodo de Adaptación;
+- con 1 nodo: +5 Tenacidad al romperse una Placa;
+- con 2 nodos: +10 Tenacidad y daño0 por DEF no consume la Placa;
+- el chequeo de daño0 se hace post-DEF y antes de cualquier Absorción externa.
 
-**Segunda Capa — cantidad**
-- +1 Placa;
-- con Reserva de Plata: sinergia adicional +1 Placa, alcanzando 6.
+**Segunda Capa — cantidad — PROVISIONAL**
+- añade un nodo de Cantidad;
+- la cantidad final se obtiene por conteo: 1→4, 2→6, 3→8 Placas.
 
 ### Tramo III
 
-**Acero Cerrado — resistencia**
-- +1 DEF por Placa;
-- ruta completa: 3 Placas de alrededor de +8 DEF cada una.
+**Acero Cerrado — resistencia — PROVISIONAL**
+- añade un nodo de Resistencia;
+- ruta completa RRR: **3 Placas de +8 DEF cada una**, secuenciales;
+- incluso si DEF reduce el impacto a 0, la Placa se consume salvo que Adaptación de 2+ nodos habilite explícitamente lo contrario;
+- la DEF no se vuelve permanente.
 
-**Temple Perfecto — adaptación**
-- +5 Tenacidad al romperse una Placa;
-- ruta completa: +15 Tenacidad reactiva;
-- si DEF reduce el impacto a 0, no consume Placa;
-- primera vez por activación que un Control falle: recupera 1 Placa rota, sin superar el máximo inicial.
+**Temple Perfecto — adaptación — PROVISIONAL**
+- añade un nodo de Adaptación;
+- con 3 nodos: +15 Tenacidad reactiva;
+- daño0 por DEF no consume Placa;
+- primera vez por activación que un Control falle: recupera 1 Placa rota, sin superar el máximo inicial;
+- la recuperación requiere que exista una Placa previamente rota;
+- debe revalidarse con enemigos reales de Control LianQi II–IV.
 
-**Armadura Laminada — cantidad**
-- +1 Placa;
-- con Reserva de Plata + Segunda Capa, añade además +1 Placa de sinergia final;
-- ruta completa de cantidad: **8 Placas** de +3 DEF base cada una, consumidas secuencialmente.
+**Armadura Laminada — cantidad — PROVISIONAL**
+- añade un nodo de Cantidad;
+- ruta completa QQQ: **8 Placas de +3 DEF cada una**, consumidas secuencialmente;
+- duración4 sigue limitando el tiempo disponible para usar las cargas;
+- su principal ganancia aparece frente a múltiples impactos.
+
+### Resultado de benchmark de ramas
+
+- 27/27 combinaciones mixables fueron sometidas a screen;
+- Resistencia domina pocos impactos importantes;
+- Cantidad gana valor frente a múltiples atacantes;
+- Adaptación se especializa en Control y conserva una mejora menor contra daño puro mediante no-consumo de Placa a daño0;
+- rutas mixtas R+Q encuentran puntos intermedios muy eficientes sin crear DEF permanente;
+- no se detectó una combinación con escalado ilimitado;
+- todas las magnitudes I–III permanecen **PROVISIONAL**, no CANON, hasta revalidación con perfiles enemigos LianQi II–IV.
+
+Referencia:
+`docs/experimentos/ETAPA14_ARMADURA_PLATA_COMPLETA_2026-09-29.md`.
 
 ### Concordancias
 Mapeo receptor canónico: `MAPEO_HOOKS_TECNICAS_ARCO1_2026-09-29.md`. Como técnica pura, genera Eco de Metal.
