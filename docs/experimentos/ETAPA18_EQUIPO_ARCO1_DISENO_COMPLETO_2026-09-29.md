@@ -89,7 +89,7 @@ Techos por pieza:
 | LianQi III | 3.50 |
 | LianQi IV | 4.00 |
 
-DEF plana es deliberadamente cara. El catálogo completo sólo permite un máximo teórico de ~+1.25 DEF de equipo incluso en LianQi IV; así no destruimos DEF_CAP2, Placas ni el valor de los impactos pequeños.
+DEF plana es deliberadamente cara. El catálogo completo sólo permite un máximo teórico de **+1 DEF de equipo** en Arco 1, y recién desde LianQi III. LI/LII usan HP, Tenacidad y Evasión para aguante. Así no destruimos DEF_CAP2, Placas ni el valor de los impactos pequeños.
 
 ## 5. Economías y adquisición
 
@@ -164,14 +164,14 @@ No se gasta como precio. Sigue siendo historial/prestigio y puede contribuir a a
 
 ## 7. Catálogo por etapa
 
-### LianQi_I — 12 piezas nuevas
+### LianQi_I — 14 piezas nuevas
 
 | Pieza | Slot | Stats | Efecto | Fuente | Precio | Perfil |
 |---|---|---|---|---|---|---|
 | **Espada de madera de entrenamiento** | ARMA | Prec +1 | — | Tao Ming · P | sin coste · dotación | PRECISION, BALANCED |
 | **Cuchillo de hueso pulido** | ARMA | Básico plano +1; Prec -1 | — | exploración · P | sin coste · origen | BASIC_ATTACK, AGGRESSION |
 | **Bastón de fresno de práctica** | ARMA | Ten +2 | — | Wei Jian · M03 | 1 contrib. | TENACITY, BALANCED |
-| **Uniforme gris de ingreso** | VESTIDURA | HP +1; DEF +0.25 | — | Tao Ming · P | sin coste · dotación | HP, DEFENSE, BALANCED |
+| **Uniforme gris de aspirante** | VESTIDURA | HP +2 | — | Tao Ming · P | sin coste · dotación | HP, DEFENSE, BALANCED |
 | **Bandana de lino simple** | TOCADO | Ten +2 | — | Ning Cai · M02 | 1 contrib. | TENACITY, ANTI_CONTROL |
 | **Vendas de antebrazo de práctica** | BRAZALES | Prec +2 | — | Wei Jian · M03 | 1 contrib. | PRECISION |
 | **Fajín de discípulo externo** | FAJIN | Qi +2 | — | Qiao Ren · M03 | sin coste · recompensa | QI, BALANCED |
@@ -179,9 +179,11 @@ No se gasta como precio. Sigue siendo historial/prestigio y puede contribuir a a
 | **Zapatos de suela blanda** | CALZADO | EVA +2 | — | Ning Cai · M02 | 1 contrib. | EVASION |
 | **Colgante de fragmento de jade** | AMULETO | Control +2 | — | camino_montana | exploración oculta | CONTROL |
 | **Pulsera de fibra trenzada** | PULSERA | Qi +1; Ten +1 | — | Ning Cai · M02 | 1 contrib. | QI, TENACITY |
-| **Anillo herrumbroso** | ANILLO | Qi +1 | +1 Qi al meditar (pendiente recuperación) | camino_montana | exploración oculta | QI, UTILITY |
+| **Anillo de hierro oxidado** | ANILLO | Qi +1 | +1 Qi al meditar (pendiente recuperación) | camino_montana | exploración oculta | QI, UTILITY |
+| **Cinta de patio del aspirante** | TOCADO | Prec +1; Ten +1 | — | Tao Ming · M02 | 1 contrib. | PRECISION, TENACITY |
+| **Anillo de cobre sin sello** | ANILLO | Qi +1; Control +1 | — | Tao Ming · M02 | 1 contrib. | QI, CONTROL |
 
-### LianQi_II — 18 piezas nuevas
+### LianQi_II — 21 piezas nuevas
 
 | Pieza | Slot | Stats | Efecto | Fuente | Precio | Perfil |
 |---|---|---|---|---|---|---|
@@ -190,21 +192,24 @@ No se gasta como precio. Sigue siendo historial/prestigio y puede contribuir a a
 | **Aguja de acero frío** | ARMA | Prec +3; Pen% +3 pp | — | Lu Cheng · M06 | 5 contrib. | PRECISION, PENETRATION |
 | **Bandana de cuero reforzada** | TOCADO | Ten +3; HP +1 | — | Ning Cai · M04 | 7 piedras / 2 contrib. | TENACITY, HP |
 | **Capucha del observador del valle** | TOCADO | Prec +3 | — | Puestos del Mercado del Valle · M05 | 7 piedras | PRECISION |
-| **Sobretúnica de patrulla** | VESTIDURA | HP +3; DEF +0.25 | — | Jiang Rui · M04 | 3 contrib. | HP, DEFENSE |
+| **Sobretúnica de patrulla** | VESTIDURA | HP +3; Ten +2 | — | Jiang Rui · M04 | 3 contrib. | HP, DEFENSE |
 | **Túnica de ruta de Sauces** | VESTIDURA | EVA +2; HP +2 | — | Artesanos de Sauces · M05 | 10 piedras | EVASION, HP |
-| **Brazales de cuero cruzado** | BRAZALES | DEF +0.5 | — | Ning Cai · M04 | 9 piedras / 3 contrib. | DEFENSE |
+| **Brazales de cuero cruzado** | BRAZALES | HP +2; Ten +2 | — | Ning Cai · M04 | 9 piedras / 3 contrib. | DEFENSE |
 | **Brazales de pulso firme** | BRAZALES | Control +2; Ten +2 | — | Chen Bo · M06 | 3 contrib. | CONTROL, TENACITY |
 | **Fajín de patrulla** | FAJIN | Qi +3; Ten +1 | — | Jiang Rui · M04 | 2 contrib. | QI, TENACITY |
 | **Calzas de sendero de pinos** | PIERNAS | HP +3; EVA +1 | — | Ning Cai · M04 | 8 piedras | HP, EVASION |
-| **Sandalias de viento** | CALZADO | EVA +4 | — | Artesanos de Sauces · M05 | 11 piedras | EVASION |
+| **Sandalias de corriente ligera** | CALZADO | EVA +4 | — | Artesanos de Sauces · M05 | 11 piedras | EVASION |
 | **Botas de piedra húmeda** | CALZADO | Ten +3; EVA +1 | — | Puestos del Mercado del Valle · M05 | 9 piedras | TENACITY, EVASION |
 | **Amuleto de colmillo montado** | AMULETO | Daño técnica directa% +3 pp | — | Ning Cai · M05 | 4 piedras / material: colmillo_lobo_legitimo | TECHNIQUE_DIRECT_DAMAGE |
 | **Amuleto de sauce sereno** | AMULETO | Control +3; Qi +1 | — | Artesanos de Sauces · M05 | 10 piedras | CONTROL, QI |
 | **Pulsera de cauce trenzado** | PULSERA | Qi +3 | — | Artesanos de Sauces · M05 | 8 piedras | QI |
 | **Anillo del sello de hierro** | ANILLO | Pen% +4 pp | — | Lu Cheng · M06 | 4 contrib. | PENETRATION |
 | **Anillo de corriente clara** | ANILLO | Prec +2; Control +2 | — | Puestos del Mercado del Valle · M05 | 10 piedras | PRECISION, CONTROL |
+| **Pulsera de tensión meridiana** | PULSERA | Daño técnica directa% +2 pp | — | Lan Meihua · M06 | 4 contrib. | TECHNIQUE_DIRECT_DAMAGE |
+| **Calzas de guardia externa** | PIERNAS | HP +2; Ten +2 | — | Jiang Rui · M04 | 2 contrib. | HP, TENACITY |
+| **Anillo de reserva menor** | ANILLO | Qi +2; Prec +1 | — | Puestos del Mercado del Valle · M05 | 8 piedras | QI, PRECISION |
 
-### LianQi_III — 16 piezas nuevas
+### LianQi_III — 19 piezas nuevas
 
 | Pieza | Slot | Stats | Efecto | Fuente | Precio | Perfil |
 |---|---|---|---|---|---|---|
@@ -213,7 +218,7 @@ No se gasta como precio. Sigue siendo historial/prestigio y puede contribuir a a
 | **Sable de anillo gris** | ARMA | Básico plano +2; Prec -1; Daño técnica directa% +2 pp | — | Lu Cheng · M08 | 18 piedras | BASIC_ATTACK, TECHNIQUE_DIRECT_DAMAGE, AGGRESSION |
 | **Tocado de hilo de formación** | TOCADO | Prec +3; Control +2 | — | Wen Tao · M08 | 5 contrib. | PRECISION, CONTROL |
 | **Velo del archivo sereno** | TOCADO | Ten +4; Qi +2 | — | Song Rui · M09 | 5 contrib. | TENACITY, QI |
-| **Túnica reforzada** | VESTIDURA | DEF +0.75; HP +3 | — | Ning Cai · M08 | 22 piedras / 8 contrib. | DEFENSE, HP |
+| **Túnica reforzada de trama de cobre** | VESTIDURA | DEF +1; HP +2 | — | Ning Cai · M08 | 22 piedras / 8 contrib. | DEFENSE, HP |
 | **Vestidura de flujo ligero** | VESTIDURA | EVA +4; Qi +2 | — | Ning Cai · M08 | 20 piedras | EVASION, QI |
 | **Brazales de pulso médico** | BRAZALES | Ten +4; Control +2 | — | Lan Meihua · M10 | 6 contrib. | TENACITY, CONTROL |
 | **Fajín de las Dos Alas** | FAJIN | Qi +4; Control +2 | — | He Zhen · M11 | sin coste · recompensa | QI, CONTROL |
@@ -224,16 +229,19 @@ No se gasta como precio. Sigue siendo historial/prestigio y puede contribuir a a
 | **Anillo de hilo de plata** | ANILLO | Crít. +2 pp; Prec +2 | — | Lu Cheng · M09 | 18 piedras | CRIT, PRECISION |
 | **Anillo de tierra profunda** | ANILLO | HP +2; Ten +4 | — | Ning Cai · M10 | 5 contrib. | HP, TENACITY |
 | **Espejo de Pulso Velado** | TESORO_ESPIRITUAL | EVA +5; Ten +3 | 1/combate al caer a ≤35% HP: Absorción 20% HP máx. | primera_ala · M12 | exploración oculta | EVASION, TENACITY, REACTIVE_DEFENSE, TREASURE |
+| **Fajín de respiración larga** | FAJIN | Qi +4; EVA +1 | — | Ning Cai · M08 | 16 piedras | QI, EVASION |
+| **Brazales de aguja de plata** | BRAZALES | Prec +2; Pen% +3 pp | — | Lu Cheng · M09 | 5 contrib. | PRECISION, PENETRATION |
+| **Amuleto de flujo contenido** | AMULETO | Daño técnica directa% +2 pp; Qi +2 | — | Wen Tao · M08 | 6 contrib. | TECHNIQUE_DIRECT_DAMAGE, QI |
 
-### LianQi_IV — 12 piezas nuevas
+### LianQi_IV — 14 piezas nuevas
 
 | Pieza | Slot | Stats | Efecto | Fuente | Precio | Perfil |
 |---|---|---|---|---|---|---|
 | **Hoja de seis corrientes** | ARMA | Básico plano +2; Prec +2; Daño técnica directa% +3 pp | — | Lu Cheng · M13 | 10 contrib. | BASIC_ATTACK, TECHNIQUE_DIRECT_DAMAGE, PRECISION |
 | **Vara de relevo** | ARMA | Control +5; Ten +3; Qi +2 | — | Duan Shibo · M16 | 9 contrib. | CONTROL, TENACITY, QI |
 | **Velo del vigilante del núcleo** | TOCADO | Prec +3; Ten +4 | — | Qiao Ren · M14 | 7 contrib. | PRECISION, TENACITY |
-| **Manto de mantenimiento** | VESTIDURA | DEF +0.75; Ten +3; Qi +2 | — | Duan Shibo · M13 | 9 contrib. | DEFENSE, TENACITY, QI |
-| **Brazales de relevo** | BRAZALES | DEF +0.5; HP +3; Ten +2 | — | Lu Cheng · M16 | 8 contrib. | DEFENSE, HP, TENACITY |
+| **Manto de mantenimiento** | VESTIDURA | DEF +1; Ten +3; Qi +2 | — | Duan Shibo · M13 | 9 contrib. | DEFENSE, TENACITY, QI |
+| **Brazales de relevo** | BRAZALES | HP +4; Ten +3 | — | Lu Cheng · M16 | 8 contrib. | DEFENSE, HP, TENACITY |
 | **Fajín del núcleo profundo** | FAJIN | Qi +5; Ten +2 | — | Ji Xueying · M17 | sin coste · recompensa | QI, TENACITY |
 | **Calzas de trama de sello** | PIERNAS | HP +4; EVA +3 | — | Ning Cai · M13 | 27 piedras | HP, EVASION |
 | **Botas del voto inmóvil** | CALZADO | EVA +5; Ten +3 | — | Ning Cai · M17 | 8 contrib. | EVASION, TENACITY |
@@ -241,6 +249,8 @@ No se gasta como precio. Sigue siendo historial/prestigio y puede contribuir a a
 | **Pulsera del nudo de crisis** | PULSERA | Qi +4; EVA +2; Ten +2 | — | Lan Meihua · M16 | 7 contrib. | QI, EVASION, TENACITY |
 | **Anillo de relevo** | ANILLO | Crít. +2 pp; Daño técnica directa% +3 pp | — | Lu Cheng · M16 | 9 contrib. | TECHNIQUE_DIRECT_DAMAGE, CRIT |
 | **Anillo de marca quieta** | ANILLO | Prec +3; Pen% +5 pp | — | Wen Tao · M13 | 8 contrib. | PRECISION, PENETRATION |
+| **Vestidura del Ala Cerrada** | VESTIDURA | HP +5; Ten +4 | — | Qiao Ren · M14 | 8 contrib. | HP, TENACITY, DEFENSE |
+| **Pulsera del meridiano profundo** | PULSERA | Qi +5; Control +3 | — | Lan Meihua · M16 | 8 contrib. | QI, CONTROL |
 
 ## 8. Dotación garantizada y recompensas directas
 
@@ -503,3 +513,27 @@ Cambios vigentes:
 - auditoría integral de adquisición y Colab masivo quedan deliberadamente diferidos.
 
 El JSON `equipment_arc1_catalog.json` es la fuente machine-readable vigente.
+
+
+## ADDENDUM — Contrato numérico entero de equipo
+
+Corrección posterior:
+- los stats planos de equipo deben ser **enteros**;
+- queda prohibida la DEF fraccionaria;
+- porcentajes y puntos porcentuales usan campos explícitos (`*_percent`, `*_pp`);
+- DEF de equipo:
+  - LianQi I: máximo0;
+  - LianQi II: máximo0;
+  - LianQi III: máximo+1;
+  - LianQi IV: máximo+1.
+
+Cambios principales:
+- Uniforme gris de aspirante: HP +2, sin DEF;
+- Sobretúnica de patrulla: HP +3, Tenacidad +2;
+- Brazales de cuero cruzado: HP +2, Tenacidad +2;
+- Túnica reforzada de trama de cobre: DEF +1, HP +2;
+- Manto de mantenimiento: DEF +1, Tenacidad +3, Qi +2;
+- Brazales de relevo: HP +4, Tenacidad +3;
+- Vestidura del Ala Cerrada: HP +5, Tenacidad +4.
+
+No existe ningún `+0.25/+0.5/+0.75 DEF` en el catálogo vigente.
