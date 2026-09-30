@@ -2584,3 +2584,49 @@ Con DEF base1:
 Validador:
 - falla si cualquier slot no-VESTIDURA intenta dar DEF;
 - VESTIDURA usa ceiling diagnóstico específico.
+
+
+### ETAPA18B — GUARDIA MONSTER-AWARE PARA EQUIPO
+
+Documento:
+- docs/experimentos/ETAPA18B_GUARDIA_MONSTER_AWARE_EQUIPO_2026-09-29.md
+
+Revisión realizada sobre laboratorio monstruos HEAD histórico 94e925a...
+
+Bandas nativas:
+- LI 5 especies.
+- LII 5.
+- LIII 4.
+- LIV 4.
+
+Fichas ver74 muestran crecimiento real:
+- HP medio aprox 13.4 / 29.0 / 37.5 / 40.75.
+- daño básico medio aprox 3.3 / 5.9 / 6.75 / 8.0.
+- bosses superan ampliamente las medias.
+- campos ATQ/DEF legacy no se transplantan automáticamente al contrato nuevo.
+
+E1 Survival:
+- EVADE_NEXT / DEFENSE_UP / ABSORB_RESERVE / MITIGATE_NEXT.
+- ejemplos: Lobo DEF+3 temporal, Mantis/Centinela DEF+5,
+  Guardián/Rey absorción, criaturas rápidas EVA+20–30.
+
+Modelo adaptativo seleccionado:
+- C_STAGGERED.
+- T1 HP/dmg x1.025 + E1.
+- T2 x1.05 + HIT1 + memoria.
+- T3 x1.075 + HIT1 + EVA5 + counter.
+- T4 x1.10 + HIT1 + EVA5 + crit10% + segunda adaptación.
+- requiere presión real; subir etapa no regala tiers.
+
+Integración experimental confirmada:
+- Monster Combat AI -> Intent Bridge -> Signal Adapter -> Semantic Memory -> Feedback.
+- CADENCE_COMPAT sigue autoridad productiva hasta integración explícita.
+
+Consecuencia para equipo:
+- no diseñar/cerrar gear mirando sólo benchmarks LI.
+- curva vestidura DEF +1/+2/+3/+4 se mantiene como punto de partida, no ceiling dogmático.
+- HP/Prec/Pen/Qi/Ten/Control/EVA y daño técnico deben evaluarse contra kits y adaptación.
+- ningún budget II–IV pasa a CANON antes de T0/T1/veterano × rol × NAKED/MANDATORY/EXPECTED/HIGH_ROLL.
+
+JSON equipment_arc1_catalog.json ya incluye monster_aware_contract.
+Auditoría de adquisición y Monte Carlo masivo siguen diferidos.
