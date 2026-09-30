@@ -1935,3 +1935,84 @@ Estado:
 Siguiente única etapa:
 - ETAPA15B — Piel de Cobre completa: Estabilidad + Aguante + 27 rutas.
 - luego screen conjunto final real de las cinco técnicas completas.
+
+
+### ETAPA 15B — Piel de Cobre completa — CERRADA
+
+Documento:
+- `docs/experimentos/ETAPA15B_PIEL_COBRE_COMPLETA_2026-09-29.md`
+
+Runner:
+- `experimentos/balance_nuevo/etapa15b_piel_cobre_completa.py`
+
+Alcance:
+- base DEF_CAP2;
+- Fortificación I–III;
+- Estabilidad I–III;
+- Aguante I–III;
+- 27/27 combinaciones F/S/A;
+- COMMON / PRECISE / HEAVY / DANGEROUS;
+- 2/3 enemigos;
+- stress LAB Control efectivo65;
+- curación/duración.
+
+Fortificación:
+- no se reabre.
+- Corteza / Estratos / Cuerpo de Roca permanecen PROVISIONAL.
+
+Estabilidad — PROVISIONAL:
+- Centro Firme: +5 Tenacidad por Arraigo en vez de +3.
+- Raíz Profunda: +5 Tenacidad con2+; con Centro, primer fallo de Control/activación +1 duración restante.
+- Inamovible: +5 Tenacidad con1+; primer Control resistido a Arraigo3 prepara siguiente Golpe +10 Precisión.
+- SSS a Arraigo3: Piel aporta +25 Tenacidad; con raíz Tierra total actor30.
+- Stress Control 4×12k:
+  FFF P(Control) agregada ~53.64%;
+  SSS ~37.43%;
+  SSS win ~91.91% vs FFF ~88.72%;
+  extensión Centro+Raíz ~92.1%;
+  trigger Inamovible ~78.9%.
+
+Aguante — PROVISIONAL recalibrado:
+- problema detectado: sumar >1 turno base amplificaba demasiado DEF plana multiimpacto.
+- nueva regla **AGUANTE_DUR_CAP1**: Aguante aporta máximo +1 turno a duración base.
+- Tierra Persistente: +1 turno desde activación.
+- Suelo que Sostiene: cura5% al primer Arraigo3; se elimina antigua sinergia de otro +1 turno.
+- Montaña Persistente: +1 turno sólo si Aguante aún no lo dio; cura5% al Arraigo3 + otro5% una vez si HP<30%.
+- AAA: base duration4; extensión propia de Arraigo3 puede llevar a5; curación teórica máxima15%/activación.
+
+CAP1 vs duración antigua, 4×10k pareado:
+- AA- 3EN: 81.91% -> 74.64% (-7.27pp); COMMON -0.94pp.
+- AAA 3EN: 84.42% -> 77.16% (-7.25pp); COMMON -0.74pp.
+- AAF 3EN: 89.61% -> 82.00% (-7.62pp); COMMON -0.65pp.
+=> corrige exceso multiimpacto sin destruir duelo.
+
+Rutas puras finales, promedio 4×15k:
+- FFF COMMON96.44 / 2EN90.35 / 3EN73.80.
+- SSS COMMON95.71 / 2EN84.77 / 3EN57.56.
+- AAA COMMON98.61 / 2EN93.54 / 3EN77.36.
+- AAF mixed: COMMON98.89 / 2EN95.31 / 3EN82.14.
+- FAA mixed: 2EN~96.10 / 3EN~86.18; WATCH F+A.
+
+Screen 27/27 final, 8k/celda:
+- COMMON 95.71–99.11%.
+- PRECISE 94.19–98.39%.
+- HEAVY 92.43–98.01%.
+- DANGEROUS 90.38–97.38%.
+- 2EN 84.84–96.16%.
+- 3EN 59.06–87.01%.
+
+Estado:
+- Piel BASE PROVISIONAL.
+- Fortificación I–III PROVISIONAL.
+- Estabilidad I–III PROVISIONAL.
+- Aguante I–III PROVISIONAL recalibrado.
+- 27/27 PASS.
+- runtime/HTML SIN CAMBIOS.
+
+WATCH:
+1. Piel sigue outlier multiimpacto global.
+2. mezclas Fortificación+Aguante son prioridad al existir perfiles enemigos II–IV.
+3. Estabilidad debe revalidarse con enemigos reales de Control.
+
+Siguiente bloque correcto:
+- screen conjunto final real de las cinco defensivas completas.
