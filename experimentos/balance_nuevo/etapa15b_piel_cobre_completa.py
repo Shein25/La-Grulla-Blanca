@@ -446,6 +446,9 @@ def run_control_stress(
         defense_used = False
         skip_next_action = False
 
+        peso_stacks = 0
+        peso_duration = 0
+
         active = False
         piel_left = 0
         arraigo = 0
