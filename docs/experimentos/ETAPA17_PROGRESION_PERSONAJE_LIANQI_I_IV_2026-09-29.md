@@ -166,7 +166,7 @@ Especialista + cobertura:
 
 ## 10. Cómo afecta el cultivo a las habilidades
 
-No existe multiplicador global por reino para daño, DEF, Precisión, Evasión o Control.
+ETAPA17C introduce un escalar PROVISIONAL y acotado sólo para la magnitud base del daño directo de técnicas: x1.00 / x1.08 / x1.16 / x1.24. No aumenta DEF, Precisión, Evasión, Control ni otras magnitudes.
 
 El cultivo afecta una técnica por cuatro vías:
 
@@ -215,7 +215,7 @@ Paso de Nube:
 la Evasión otorgada permanece plana salvo ramas.
 
 Golpes ofensivos y AOE:
-el daño base no recibe multiplicador automático de cultivo.
+la magnitud base de sus porciones DIRECTAS compatibles recibe el escalar de cultivo de ETAPA17C. DOT, daño secundario no reescalable, curación, Absorción y recursos internos no lo reciben.
 
 Palma, Destello, Latigazo, Golpe, Lanza y las AOE mejoran mediante:
 - ramas;
@@ -255,7 +255,9 @@ Se promueve estructuralmente para Arco 1:
 - HP +6 por etapa;
 - Qi +6 por etapa desde baseline jugable37;
 - +2 puntos de técnica por avance II/III/IV;
-- sin multiplicador global de técnica por reino.
+- Golpe básico progresa 1d4+4 → 1d4+5 → 1d4+6 → 1d4+7;
+- daño directo base de técnicas usa x1.00 → x1.08 → x1.16 → x1.24;
+- no existe multiplicador universal sobre DEF/Precisión/Evasión/Control ni sobre efectos no compatibles.
 
 Todo permanece PROVISIONAL salvo stats ya CANON globalmente.
 
@@ -275,3 +277,8 @@ Siguiente bloque: construir perfiles enemigos autoritativos de LianQi II, III y 
 ## Nota ETAPA17B
 
 La elección original Qi31 se conserva como frontera matemática mínima, pero deja de ser el baseline jugable. ETAPA17B establece Qi37/43/49/55 para dar una técnica base adicional de margen y reducir la presión de meditación sin adelantar dos escalones de economía.
+
+
+## Nota ETAPA17C
+
+ETAPA17C reemplaza la regla anterior de “sin crecimiento ofensivo intrínseco”. El cultivo sí aumenta moderadamente el Golpe básico y la magnitud base del daño directo de técnicas. El resto de la progresión cuantitativa queda principalmente en equipo/build, sin doble escalado de efectos %HP ni recursos defensivos.
