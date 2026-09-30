@@ -2088,3 +2088,54 @@ WATCH:
 
 Siguiente única etapa:
 - ETAPA16 — validación final de Qi31 para decidir LAB -> PROVISIONAL.
+
+
+### ETAPA 16 — Validación final de Qi31 — CERRADA
+
+Documento:
+- docs/experimentos/ETAPA16_QI31_VALIDACION_FINAL_2026-09-29.md
+
+Runner:
+- experimentos/balance_nuevo/etapa16_qi31_validacion_final.py
+
+Decisión:
+- LianQi I Qi máximo = **31 PROVISIONAL**.
+- pasa de LAB -> PROVISIONAL.
+- no CANON.
+
+Razón estructural:
+- ofensivas base efectivas: 6 Qi.
+- defensivas Fuego/Metal/Tierra/Viento: 7 Qi.
+- defensiva Agua efectiva: 6 Qi.
+- Qi30: ofensiva pura5; Agua def+4; resto def+3 => asimetría.
+- Qi31: ofensiva pura5; Agua def+4; resto def+4 => primera frontera limpia.
+- Qi32–35: misma cantidad de acciones que31; sólo residuo.
+- Qi36: ofensiva pura6 / Agua def+5 / resto def+4 => reaparece acantilado.
+- Qi37: restaura paridad pero sube presupuesto general a seis ofensivas.
+
+Relaciones:
+- 5*6 = 30.
+- 7 + 4*6 = 31.
+- 6 + 4*6 = 30.
+
+Evidencia de promoción ya satisfecha:
+- bases ofensivas cerradas;
+- Arrastre/Peso cerrados PROVISIONAL;
+- cinco defensivas completas;
+- stress 2/3 enemigos;
+- screen conjunto ETAPA15C;
+- enemigo ordinario LianQi I usado como marco LAB.
+
+Configs actualizadas:
+- config_lianqi1_naked.py: PLAYER_BASE.qi_max = 31 PROVISIONAL.
+- config_arc1_provisional.py: STAGES["LianQi_I"]["qi"] = 31.
+
+No fija:
+- Qi II/III/IV;
+- regeneración pasiva;
+- piso global de coste.
+
+runtime/HTML SIN CAMBIOS.
+
+Siguiente bloque sugerido:
+- formalizar baseline desnudo LianQi I restante: HP30 / DEF1 / EVA5 y perfil enemigo ordinario completo.
