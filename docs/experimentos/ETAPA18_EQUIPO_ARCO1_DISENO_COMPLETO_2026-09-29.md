@@ -177,11 +177,11 @@ No se gasta como precio. Sigue siendo historial/prestigio y puede contribuir a a
 | **Fajín de discípulo externo** | FAJIN | Qi +2 | — | Qiao Ren · M03 | sin coste · recompensa | QI, BALANCED |
 | **Pantalón de viaje gris** | PIERNAS | HP +2 | — | Ning Cai · M02 | 1 contrib. | HP |
 | **Zapatos de suela blanda** | CALZADO | EVA +2 | — | Ning Cai · M02 | 1 contrib. | EVASION |
-| **Colgante de fragmento de jade** | AMULETO | Control +2 | — | camino_montana | exploración | CONTROL |
+| **Colgante de fragmento de jade** | AMULETO | Control +2 | — | camino_montana | exploración oculta | CONTROL |
 | **Pulsera de fibra trenzada** | PULSERA | Qi +1; Ten +1 | — | Ning Cai · M02 | 1 contrib. | QI, TENACITY |
-| **Anillo herrumbroso** | ANILLO | Qi +1 | +1 Qi al meditar (pendiente recuperación) | camino_montana | exploración | QI, UTILITY |
+| **Anillo herrumbroso** | ANILLO | Qi +1 | +1 Qi al meditar (pendiente recuperación) | camino_montana | exploración oculta | QI, UTILITY |
 
-### LianQi_II — 19 piezas nuevas
+### LianQi_II — 18 piezas nuevas
 
 | Pieza | Slot | Stats | Efecto | Fuente | Precio | Perfil |
 |---|---|---|---|---|---|---|
@@ -198,20 +198,19 @@ No se gasta como precio. Sigue siendo historial/prestigio y puede contribuir a a
 | **Calzas de sendero de pinos** | PIERNAS | HP +3; EVA +1 | — | Ning Cai · M04 | 8 piedras | HP, EVASION |
 | **Sandalias de viento** | CALZADO | EVA +4 | — | Artesanos de Sauces · M05 | 11 piedras | EVASION |
 | **Botas de piedra húmeda** | CALZADO | Ten +3; EVA +1 | — | Puestos del Mercado del Valle · M05 | 9 piedras | TENACITY, EVASION |
-| **Amuleto de colmillo montado** | AMULETO | Daño técnica directa% +3 pp | — | Ning Cai · M05 | 4 piedras / material: colmillo_lobo_legitimo | DIRECT_DAMAGE |
+| **Amuleto de colmillo montado** | AMULETO | Daño técnica directa% +3 pp | — | Ning Cai · M05 | 4 piedras / material: colmillo_lobo_legitimo | TECHNIQUE_DIRECT_DAMAGE |
 | **Amuleto de sauce sereno** | AMULETO | Control +3; Qi +1 | — | Artesanos de Sauces · M05 | 10 piedras | CONTROL, QI |
 | **Pulsera de cauce trenzado** | PULSERA | Qi +3 | — | Artesanos de Sauces · M05 | 8 piedras | QI |
 | **Anillo del sello de hierro** | ANILLO | Pen% +4 pp | — | Lu Cheng · M06 | 4 contrib. | PENETRATION |
 | **Anillo de corriente clara** | ANILLO | Prec +2; Control +2 | — | Puestos del Mercado del Valle · M05 | 10 piedras | PRECISION, CONTROL |
-| **Placa de Ruta de la Grulla** | TESORO_ESPIRITUAL | Ten +2 | 1/combate: +5 Tenacidad a un chequeo de Control | Qiao Ren · M07 | 4 contrib. | TENACITY, REACTIVE_DEFENSE |
 
-### LianQi_III — 17 piezas nuevas
+### LianQi_III — 16 piezas nuevas
 
 | Pieza | Slot | Stats | Efecto | Fuente | Precio | Perfil |
 |---|---|---|---|---|---|---|
 | **Espada de vena clara** | ARMA | Básico plano +1; Prec +3; Pen% +3 pp | — | Lu Cheng · M08 | 20 piedras / 7 contrib. | BASIC_ATTACK, PRECISION, PENETRATION |
 | **Vara de dos corrientes** | ARMA | Control +4; Ten +2 | — | He Zhen · M11 | 7 contrib. | CONTROL, TENACITY |
-| **Sable de anillo gris** | ARMA | Básico plano +2; Daño técnica directa% +2 pp; Prec -1 | — | Lu Cheng · M08 | 18 piedras | BASIC_ATTACK, DIRECT_DAMAGE, AGGRESSION |
+| **Sable de anillo gris** | ARMA | Básico plano +2; Prec -1; Daño técnica directa% +2 pp | — | Lu Cheng · M08 | 18 piedras | BASIC_ATTACK, TECHNIQUE_DIRECT_DAMAGE, AGGRESSION |
 | **Tocado de hilo de formación** | TOCADO | Prec +3; Control +2 | — | Wen Tao · M08 | 5 contrib. | PRECISION, CONTROL |
 | **Velo del archivo sereno** | TOCADO | Ten +4; Qi +2 | — | Song Rui · M09 | 5 contrib. | TENACITY, QI |
 | **Túnica reforzada** | VESTIDURA | DEF +0.75; HP +3 | — | Ning Cai · M08 | 22 piedras / 8 contrib. | DEFENSE, HP |
@@ -224,14 +223,13 @@ No se gasta como precio. Sigue siendo historial/prestigio y puede contribuir a a
 | **Pulsera de nudo de formación** | PULSERA | Qi +3; Control +3 | — | Wen Tao · M08 | 5 contrib. | QI, CONTROL |
 | **Anillo de hilo de plata** | ANILLO | Crít. +2 pp; Prec +2 | — | Lu Cheng · M09 | 18 piedras | CRIT, PRECISION |
 | **Anillo de tierra profunda** | ANILLO | HP +2; Ten +4 | — | Ning Cai · M10 | 5 contrib. | HP, TENACITY |
-| **Brújula de Seis Corrientes** | TESORO_ESPIRITUAL | Prec +2; Control +2 | 1/combate: siguiente técnica +4 Precisión | He Zhen · M12 | 8 contrib. | PRECISION, CONTROL, UTILITY |
-| **Espejo de Pulso Velado** | TESORO_ESPIRITUAL | EVA +2 | 1/combate bajo 35% HP: Absorción 3 | primera_ala · M12 | exploración | EVASION, REACTIVE_DEFENSE |
+| **Espejo de Pulso Velado** | TESORO_ESPIRITUAL | EVA +3; Ten +2 | 1/combate al caer a ≤35% HP: Absorción 15% HP máx. | primera_ala · M12 | exploración oculta | EVASION, TENACITY, REACTIVE_DEFENSE, TREASURE |
 
-### LianQi_IV — 14 piezas nuevas
+### LianQi_IV — 12 piezas nuevas
 
 | Pieza | Slot | Stats | Efecto | Fuente | Precio | Perfil |
 |---|---|---|---|---|---|---|
-| **Hoja de seis corrientes** | ARMA | Básico plano +2; Daño técnica directa% +3 pp; Prec +2 | — | Lu Cheng · M13 | 10 contrib. | BASIC_ATTACK, DIRECT_DAMAGE, PRECISION |
+| **Hoja de seis corrientes** | ARMA | Básico plano +2; Prec +2; Daño técnica directa% +3 pp | — | Lu Cheng · M13 | 10 contrib. | BASIC_ATTACK, TECHNIQUE_DIRECT_DAMAGE, PRECISION |
 | **Vara de relevo** | ARMA | Control +5; Ten +3; Qi +2 | — | Duan Shibo · M16 | 9 contrib. | CONTROL, TENACITY, QI |
 | **Velo del vigilante del núcleo** | TOCADO | Prec +3; Ten +4 | — | Qiao Ren · M14 | 7 contrib. | PRECISION, TENACITY |
 | **Manto de mantenimiento** | VESTIDURA | DEF +0.75; Ten +3; Qi +2 | — | Duan Shibo · M13 | 9 contrib. | DEFENSE, TENACITY, QI |
@@ -241,10 +239,8 @@ No se gasta como precio. Sigue siendo historial/prestigio y puede contribuir a a
 | **Botas del voto inmóvil** | CALZADO | EVA +5; Ten +3 | — | Ning Cai · M17 | 8 contrib. | EVASION, TENACITY |
 | **Amuleto de ancla resonante** | AMULETO | HP +3; Control +3; Ten +3 | — | He Zhen · M14 | 8 contrib. | HP, CONTROL, TENACITY |
 | **Pulsera del nudo de crisis** | PULSERA | Qi +4; EVA +2; Ten +2 | — | Lan Meihua · M16 | 7 contrib. | QI, EVASION, TENACITY |
-| **Anillo de relevo** | ANILLO | Daño técnica directa% +3 pp; Crít. +2 pp | — | Lu Cheng · M16 | 9 contrib. | DIRECT_DAMAGE, CRIT |
+| **Anillo de relevo** | ANILLO | Crít. +2 pp; Daño técnica directa% +3 pp | — | Lu Cheng · M16 | 9 contrib. | TECHNIQUE_DIRECT_DAMAGE, CRIT |
 | **Anillo de marca quieta** | ANILLO | Prec +3; Pen% +5 pp | — | Wen Tao · M13 | 8 contrib. | PRECISION, PENETRATION |
-| **Placa de mantenimiento antigua** | TESORO_ESPIRITUAL | Ten +3 | 1/combate: Absorción 4 al primer impacto directo | mantenimiento_antiguo · M13 | exploración | TENACITY, REACTIVE_DEFENSE |
-| **Campana de relevo silencioso** | TESORO_ESPIRITUAL | Control +3; Qi +2 | 1/combate al fallar Control enemigo: +2 Qi | Ji Xueying · M17 | 10 contrib. | CONTROL, QI, REACTIVE_DEFENSE |
 
 ## 8. Dotación garantizada y recompensas directas
 
@@ -439,9 +435,9 @@ Además, Precisión, crítico y Penetración pueden mejorar el rendimiento ofens
 58 piezas totales
 
 LianQi I   12
-LianQi II  19
-LianQi III 17
-LianQi IV  14
+LianQi II  18
+LianQi III 16
+LianQi IV  12
 
 ARMA                 11
 TOCADO                6
@@ -455,6 +451,12 @@ PULSERA                4
 ANILLO                 7
 TESORO_ESPIRITUAL      1
 ```
+
+Política de tesoros Arco 1:
+- capacidad arquitectónica: 2;
+- tesoros obtenibles: **1**;
+- segundo slot: vacío por diseño;
+- el único Tesoro Espiritual es el **Espejo de Pulso Velado**.
 
 El catálogo machine-readable pasó validación de:
 - IDs únicos;
