@@ -2336,3 +2336,102 @@ Curva vigente:
 Guardia:
 - PROVISIONAL hasta validar contra enemigos LianQi II–IV.
 - runtime/HTML SIN CAMBIOS.
+
+
+### ETAPA 18 — Equipo Arco 1 LianQi I–IV — DISEÑO COMPLETO
+
+Documento:
+- docs/experimentos/ETAPA18_EQUIPO_ARCO1_DISENO_COMPLETO_2026-09-29.md
+
+Catálogo:
+- experimentos/balance_nuevo/equipment_arc1_catalog.json
+- experimentos/balance_nuevo/equipment_arc1_catalog.py
+
+Estado:
+- PROVISIONAL / listo para benchmark; NO runtime.
+
+Arquitectura:
+- 13 slots: Arma, Tocado, Vestidura, Brazales, Fajín, Piernas, Calzado,
+  Amuleto, Pulsera, 2 Anillos, 2 Tesoros.
+- no bloqueo artificial de slots de tesoro.
+- no full-set bonus, rareza MMO, refuerzo +1/+10 ni durabilidad.
+
+Catálogo:
+- 62 piezas.
+- LI 12.
+- LII 19.
+- LIII 17.
+- LIV 14.
+- 11 armas / 6 tocados / 6 vestiduras / 5 brazales / 4 fajines /
+  4 piernas / 5 calzados / 5 amuletos / 4 pulseras / 7 anillos /
+  5 tesoros espirituales.
+
+Fuentes:
+- dotación inicial / origen;
+- exploración única;
+- piedras en mercado/Sauces;
+- Lu Cheng (armas/metal);
+- Ning Cai (textil/cuero/accesorios);
+- Jiang Rui (patrulla);
+- Chen Bo/Lan Meihua (médico);
+- Wen Tao/He Zhen (formaciones);
+- Song Rui (archivo);
+- Qiao Ren (institucional);
+- Duan Shibo (logística);
+- Ji Xueying (Núcleo);
+- canjes desbloqueados por misión.
+
+Economía:
+- M02–M07 mantiene CANON contribución total12.
+- propuesta LIII para equipo: M08 4 / M09 2 / M10 3 / M11 3 / M12 6 =18.
+- propuesta LIV: M13 4 / M14 3 / M15 1 / M16 6 / M17 5 / M18 0 =19.
+- valores LIII/LIV NO se sincronizan todavía a misiones: primero simular economía.
+- 10 requisiciones definidas; objetivo 5–8 activas por partida, 1–3 contribución c/u.
+- Mérito no se gasta.
+- piedras y Contribución siguen economías separadas.
+
+Dotación garantizada propuesta:
+- P: espada madera + uniforme.
+- M03: fajín discípulo externo.
+- M11: fajín Dos Alas.
+- M17: fajín Núcleo Profundo.
+- M18: NO loot/equipo legendario.
+
+Balance:
+- power budget por pieza diagnóstico:
+  LI<=1.5, LII<=2.5, LIII<=3.5, LIV<=4.0.
+- DEF de equipo deliberadamente limitada; máximo teórico catálogo ~+1.25.
+- no gear Qi cost % en Arc1 para no pisar ramas de Eficiencia.
+- piezas no root-locked.
+- builds soportadas: precisión, agresión/crítico, penetración, evasión,
+  HP/Tenacidad, Control, Qi/continuidad, balanceada.
+
+Tesoros:
+- Placa Ruta Grulla;
+- Brújula Seis Corrientes;
+- Espejo Pulso Velado;
+- Placa Mantenimiento Antigua;
+- Campana Relevo Silencioso.
+- 2 slots, 5 candidatos; efectos acotados once/combat o utilidad.
+
+Simulación preparada:
+- MANDATORY_ENTRY.
+- EXPECTED_STAGE.
+- HIGH_ROLL_STRESS.
+- loader/validator permite aggregate_stats, effects, tags y export CSV.
+
+Validación catálogo:
+- 62 IDs únicos;
+- cero overflow perfiles;
+- cero pieza sobre ceiling;
+- fuentes/precios obligatorios completos.
+
+Guardias:
+- balancear monstruos contra MANDATORY_ENTRY, revisar EXPECTED, HIGH_ROLL sólo stress.
+- equipo no repara baseline roto; amplifica/especializa.
+- Uniforme Discípulo Interno sigue Arc2.
+- Lu Cheng/Ning Cai servicios, no profesiones.
+- recuperación/meditación pendiente afecta valor de +Qi y Anillo Herrumbroso.
+
+Siguiente etapa:
+- ETAPA18B — benchmark equipo por etapa/arquetipo en Colab/Monte Carlo.
