@@ -180,7 +180,7 @@ def export_csv(path: str = "equipment_arc1_catalog.csv") -> None:
         "power_budget", "source_type", "source_npc", "source_location",
         "source_mission", "price_stones", "price_contribution",
         "required_permission", "materials", "unique", "build_tags",
-        "stats", "effect", "availability", "notes",
+        "stats", "effect", "description", "availability", "notes",
     ]
     with open(path, "w", newline="", encoding="utf-8") as fh:
         writer = csv.DictWriter(fh, fieldnames=fields)
