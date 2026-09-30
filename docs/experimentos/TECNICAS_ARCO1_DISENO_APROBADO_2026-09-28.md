@@ -1088,65 +1088,89 @@ Si no existe hook compatible, el Eco no se consume por Concordancia; al completa
 
 ## 8.2 Paso de Nube Ligera — defensiva
 
-**APROBADA.**
+**APROBADA / PROVISIONAL tras ETAPA 13.**
 
 Identidad: defensa de Viento basada en Evasión, adaptación y continuidad. "Paso" es una imagen narrativa; la técnica no introduce movilidad, Velocidad ni una segunda tirada de esquiva.
 
-Base provisional:
+Base — **PROVISIONAL**:
 
 - coste: 7 Qi;
-- duración: 2 turnos;
-- +15 Evasión;
+- duración: **4 turnos**;
+- **+35 Evasión**;
 - genera Eco de Viento al activarse;
 - no se acumula consigo misma;
-- reactivar reemplaza la instancia y reinicia duración.
+- reactivar reemplaza la instancia y reinicia duración;
+- el antiguo +15 EVA / 2 turnos queda descartado como magnitud principal.
 
 ### Tramo I
 
-**Nube Velada — evasión**
-- +5 Evasión.
+**Nube Velada — evasión — PROVISIONAL**
+- +5 Evasión;
+- Paso pasa de +35 → +40 EVA.
 
-**Estela Vacía — respuesta**
-- primera Evasión válida mientras Paso esté activo;
-- crea `CORRIENTE_CLARA`;
-- la siguiente técnica pura de Viento obtiene +5 Precisión;
+**Estela Vacía — respuesta — PROVISIONAL**
+- pertenece a la familia `CORRIENTE_CLARA`;
+- la primera Evasión válida mientras Paso esté activo crea `CORRIENTE_CLARA`;
+- con un solo nodo de Respuesta, la siguiente técnica pura de Viento obtiene +5 Precisión;
 - una vez por activación.
 
-**Respiración Ligera — eficiencia**
+**Respiración Ligera — eficiencia — PROVISIONAL**
 - coste 7 → 6 Qi.
 
 ### Tramo II
 
-**Cuerpo de Nube — evasión**
+**Cuerpo de Nube — evasión — PROVISIONAL**
 - +5 Evasión;
-- con Nube Velada: Paso alcanza provisionalmente +25 Evasión.
+- con Nube Velada: Paso alcanza +45 Evasión otorgada.
 
-**Huella del Cielo — respuesta**
-- sola: primera Evasión válida → siguiente técnica Viento +5 Precisión;
-- con Estela Vacía: `CORRIENTE_CLARA` otorga +10 Precisión;
-- no concede una acción gratuita ni contraataque automático.
+**Huella del Cielo — respuesta — PROVISIONAL**
+- pertenece a la misma familia `CORRIENTE_CLARA`;
+- un solo nodo de Respuesta: +5 Precisión;
+- cualquier combinación de dos nodos de Respuesta: `CORRIENTE_CLARA` otorga +10 Precisión;
+- no concede acción gratuita ni contraataque automático.
 
-**Circulación del Vendaval — eficiencia**
+**Circulación del Vendaval — eficiencia — PROVISIONAL**
 - −10% coste;
-- con Respiración Ligera: duración 2 → 3 turnos.
+- si existe un nodo previo de Eficiencia: +1 turno de duración;
+- con Respiración Ligera: duración 4 → 5 turnos.
 
 ### Tramo III
 
-**Nube Inalcanzable — evasión**
+**Nube Inalcanzable — evasión — PROVISIONAL**
 - +5 Evasión;
-- ruta completa provisional: +30 Evasión total otorgada por Paso;
-- magnitud final pendiente de benchmark.
+- ruta Evasión completa: **+50 Evasión otorgada por Paso**;
+- con EVA base5 + raíz Viento10: EVA total durante Paso = 65;
+- contra PREC90 implica 25% de impacto; contra PREC100, 35%;
+- no produce inmunidad ni alcanza el clamp mínimo universal.
 
-**Paso sin Sombra — respuesta**
-- sola: primera Evasión válida → siguiente técnica Viento +5 Precisión;
-- ruta completa: `CORRIENTE_CLARA` otorga +15 Precisión y +5 pp crítico a la siguiente técnica Viento;
+**Paso sin Sombra — respuesta — PROVISIONAL**
+- pertenece a la familia `CORRIENTE_CLARA`;
+- un nodo de Respuesta: +5 Precisión;
+- dos nodos: +10 Precisión;
+- tres nodos: +15 Precisión y +5 pp crítico a la siguiente técnica pura de Viento;
 - se consume mediante la regla universal de modificación de la siguiente acción;
+- el ataque básico no consume `CORRIENTE_CLARA`;
 - no genera una segunda acción.
 
-**Aliento de las Nubes — eficiencia**
+**Aliento de las Nubes — eficiencia — PROVISIONAL**
 - −10% coste;
-- ruta completa: −1 Qi, −20% coste y duración máxima 4 turnos;
-- sujeto al piso global futuro de Qi.
+- si existe al menos un nodo previo de Eficiencia: +1 turno de duración;
+- ruta completa EEE: **coste efectivo5 / duración6 / +35 EVA**;
+- el techo de coste conserva la intención histórica: 6 × 0.90 × 0.90 = 4.86 → 5;
+- sujeto al piso global futuro de Qi y a rebenchmark cuando se fijen Qi máximos de LianQi II–IV.
+
+### Resultado de benchmark de ramas
+
+- 27/27 combinaciones mixables fueron sometidas a screen;
+- Evasión domina frente a muchos impactos;
+- Respuesta convierte una evasión en mejora ofensiva una vez por activación;
+- Eficiencia compite mejor cuando importa mantener Paso durante más turnos;
+- contra PREC100 la ruta EEE queda cerca o ligeramente por encima de VVV en algunos perfiles;
+- no se detectó una combinación fuera de escala;
+- todas las magnitudes I–III permanecen **PROVISIONAL**, no CANON, hasta revalidación con perfiles enemigos y Qi de LianQi II–IV.
+
+Referencia:
+`docs/experimentos/ETAPA13_PASO_NUBE_COMPLETO_2026-09-29.md`.
 
 ### Hooks canónicos
 
