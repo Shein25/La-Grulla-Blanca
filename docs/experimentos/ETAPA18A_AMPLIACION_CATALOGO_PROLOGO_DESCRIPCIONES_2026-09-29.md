@@ -214,9 +214,8 @@ No se añadió ningún tesoro extra.
 
 **Vestidura del Ala Cerrada**
 - Vestidura;
-- +4 HP;
-- +3 Tenacidad;
-- +0.25 DEF.
+- +5 HP;
+- +4 Tenacidad.
 
 **Pulsera del meridiano profundo**
 - Pulsera;
@@ -328,3 +327,24 @@ ADQUISICIÓN INTEGRAL      DIFERIDA
 COLAB MASIVO              DIFERIDO
 RUNTIME                   SIN CAMBIOS
 ```
+
+
+## 11. Corrección numérica — stats planos enteros
+
+Se elimina toda estadística plana fraccionaria del equipo.
+
+Regla vigente:
+
+```text
+HP / Qi / Precisión / Evasión / DEF / Control / Tenacidad
+→ enteros
+
+% y puntos porcentuales
+→ campos explícitos de porcentaje/pp
+```
+
+En particular:
+- DEF nunca usa 0.25 / 0.5 / 0.75;
+- LI/LII no obtienen DEF por equipo;
+- el primer +1 DEF de equipo aparece en LianQi III;
+- máximo teórico de DEF por equipo en Arco 1 = +1.
