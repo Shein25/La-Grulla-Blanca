@@ -1852,3 +1852,86 @@ Guardias:
 - multihit puede consumir varias Placas por impactos separados;
 - no-consumo por daño0 depende de DEF, no Absorción;
 - nunca sumar DEF de varias Placas.
+
+
+### ETAPA 15A — Screen conjunto de defensivas BASE — CERRADA
+
+Documento:
+- `docs/experimentos/ETAPA15A_SCREEN_CONJUNTO_DEFENSIVAS_BASE_2026-09-29.md`
+
+Runner:
+- `experimentos/balance_nuevo/etapa15a_screen_conjunto_defensivas_base.py`
+
+Metodología:
+- único runner para las cinco raíces;
+- reglas CANON de raíz + ofensivas PROVISIONAL actuales;
+- bases defensivas recalibradas actuales;
+- Piel usa DEF_CAP2;
+- 4 semillas × 10k por celda en la repetición principal;
+- COMMON / PRECISE / HEAVY / DANGEROUS / 2EN / 3EN.
+
+COMMON, defensa vs ofensiva propia:
+- Fuego 95.85% vs95.66% => +0.19pp; HP +5.80pp.
+- Metal 93.05 vs90.66 => +2.40pp; HP +9.75pp.
+- Agua 88.76 vs86.79 => +1.96pp; HP +5.32pp.
+- Tierra 95.72 vs91.66 => +4.06pp; HP +15.46pp.
+- Viento 89.19 vs87.76 => +1.44pp; HP +7.20pp.
+
+PRECISE delta win:
+- Fuego +0.18pp.
+- Metal +2.06.
+- Agua +2.38.
+- Tierra +5.46.
+- Viento +0.17.
+
+HEAVY:
+- Fuego −0.05pp, HP +4.81pp.
+- Metal +1.86.
+- Agua +1.56.
+- Tierra +5.01.
+- Viento +1.64.
+
+DANGEROUS:
+- Fuego −0.58pp, HP +4.06pp.
+- Metal +0.87.
+- Agua +0.66.
+- Tierra +6.69.
+- Viento +1.41.
+
+2EN delta win:
+- Fuego −6.43pp.
+- Metal −6.16.
+- Agua −7.99.
+- Tierra +23.55.
+- Viento +9.97.
+
+3EN delta win:
+- Fuego −14.31pp.
+- Metal −6.64.
+- Agua −7.09.
+- Tierra +40.66.
+- Viento +13.26.
+
+Lectura:
+- no igualar win entre raíces;
+- pools/cargas finitas pierden contra presión múltiple;
+- Viento escala por oportunidades de evasión;
+- Tierra sigue outlier multiimpacto.
+- Piel queda PROVISIONAL + WATCH multiimpacto; no nerf automático desde stress unitarget.
+
+Hallazgo de auditoría:
+- Fuego/Metal/Agua/Viento tienen benchmark integral 27/27.
+- Tierra NO está completa todavía.
+- Cerrados Tierra: base + Fortificación (Corteza/Estratos/Cuerpo de Roca).
+- PENDIENTES de benchmark integral:
+  Estabilidad = Centro Firme / Raíz Profunda / Inamovible.
+  Aguante = Tierra Persistente / Suelo que Sostiene / Montaña Persistente.
+
+Estado:
+- ETAPA15A PASS como screen conjunto BASE.
+- no cambios numéricos.
+- runtime/HTML SIN CAMBIOS.
+
+Siguiente única etapa:
+- ETAPA15B — Piel de Cobre completa: Estabilidad + Aguante + 27 rutas.
+- luego screen conjunto final real de las cinco técnicas completas.
