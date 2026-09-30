@@ -2431,5 +2431,38 @@
       "LianQi_III": 9,
       "LianQi_IV": 12
     }
+  },
+  "monster_aware_contract": {
+    "required": true,
+    "authority": "docs/experimentos/ETAPA18B_GUARDIA_MONSTER_AWARE_EQUIPO_2026-09-29.md",
+    "stage_native_bands": {
+      "LianQi_I": 5,
+      "LianQi_II": 5,
+      "LianQi_III": 4,
+      "LianQi_IV": 4
+    },
+    "adaptive_model": "C_STAGGERED",
+    "survival_families": [
+      "EVADE_NEXT",
+      "DEFENSE_UP",
+      "ABSORB_RESERVE",
+      "MITIGATE_NEXT"
+    ],
+    "future_benchmark_axes": [
+      "T0_NATURAL",
+      "T1_SURVIVAL",
+      "VETERAN_ELIGIBLE",
+      "NORMAL",
+      "SKIRMISHER_TANK",
+      "ELITE_APEX",
+      "BOSS"
+    ],
+    "gear_profiles": [
+      "NAKED",
+      "MANDATORY_ENTRY",
+      "EXPECTED_STAGE",
+      "HIGH_ROLL_STRESS"
+    ],
+    "rule": "Do not canonize stage II-IV gear budgets from LianQi I benchmarks only."
   }
 }
