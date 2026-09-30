@@ -2400,7 +2400,7 @@ Dotación garantizada propuesta:
 Balance:
 - power budget por pieza diagnóstico:
   LI<=1.5, LII<=2.5, LIII<=3.5, LIV<=4.0.
-- DEF de equipo deliberadamente limitada; máximo teórico catálogo ~+1.25.
+- DEF de equipo deliberadamente limitada; máximo teórico catálogo +1.
 - no gear Qi cost % en Arc1 para no pisar ramas de Eficiencia.
 - piezas no root-locked.
 - builds soportadas: precisión, agresión/crítico, penetración, evasión,
@@ -2486,7 +2486,7 @@ Confirmación ver74:
 Prólogo nuevo:
 - antes de descansillo: ningún equipo de secta.
 - descansillo, una sola vez:
-  1) uniforme_gris_aspirante (auto-equip);
+  1) uniforme_gris_aspirante (HP+2, auto-equip);
   2) espada_madera_entrenamiento.
 - campesino/escolar: espada auto-equip.
 - callejero: conserva cuchillo_hueso_callejero, recibe también espada y puede
@@ -2531,3 +2531,23 @@ Validador actualizado:
 - exactamente1 tesoro;
 - IDs de prólogo deben existir;
 - export CSV incluye description.
+
+
+### ETAPA18A — CORRECCIÓN STATS PLANOS ENTEROS
+
+Regla:
+- todo stat plano de equipo debe ser entero;
+- porcentajes/pp sólo mediante campos explícitos;
+- prohibida DEF fraccionaria.
+
+Correcciones:
+- uniforme aspirante: HP+2, DEF0.
+- sobretúnica patrulla: HP+3, Ten+2.
+- brazales cuero cruzado: HP+2, Ten+2.
+- túnica reforzada trama cobre: DEF+1, HP+2.
+- manto mantenimiento: DEF+1, Ten+3, Qi+2.
+- brazales relevo: HP+4, Ten+3.
+- vestidura Ala Cerrada: HP+5, Ten+4.
+
+DEF equipo máxima:
+- LI0 / LII0 / LIII+1 / LIV+1.
