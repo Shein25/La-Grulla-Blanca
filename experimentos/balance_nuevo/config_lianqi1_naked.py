@@ -40,8 +40,8 @@ def P(value: Any | None, provenance: str, source: str, note: str = "") -> Parame
 PLAYER_BASE = {
     "hp_max": P(30, "PROVISIONAL", "ETAPA17_PROGRESION_PERSONAJE_LIANQI_I_IV_2026-09-29.md",
                 "Baseline fijo LianQi I; progresión estructural +6 HP por etapa."),
-    "qi_max": P(31, "PROVISIONAL", "ETAPA16_QI31_VALIDACION_FINAL_2026-09-29.md",
-                "Qi31 es la frontera mínima que iguala ofensiva pura y apertura defensiva coste7/6."),
+    "qi_max": P(37, "PROVISIONAL", "ETAPA17B_RESERVA_QI_JUGABLE_2026-09-29.md",
+                "Qi37 conserva la paridad de costes y añade una técnica base completa de margen jugable sobre el mínimo Qi31."),
     "precision": P(100.0, "CANON", "CONTRATO_COMBATE_ESTADISTICAS_DOT_V0_1.md §3",
                    "Precisión normal de referencia."),
     "evasion": P(5.0, "PROVISIONAL", "ETAPA17_PROGRESION_PERSONAJE_LIANQI_I_IV_2026-09-29.md",
