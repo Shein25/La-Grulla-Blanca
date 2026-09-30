@@ -1,6 +1,6 @@
 {
-  "schema_version": "arc1-equipment-v0.1",
-  "status": "PROVISIONAL_DESIGN",
+  "schema_version": "arc1-equipment-v0.2",
+  "status": "PROVISIONAL_DESIGN_DESCRIPTIONS_AND_PROLOGUE_CLOSED_ACQUISITION_AUDIT_DEFERRED",
   "slots": {
     "ARMA": 1,
     "TOCADO": 1,
@@ -171,28 +171,28 @@
     "MANDATORY_ENTRY": {
       "LianQi_I": [
         "espada_madera_entrenamiento",
-        "uniforme_gris_externo"
+        "uniforme_gris_aspirante"
       ],
       "LianQi_II": [
         "espada_madera_entrenamiento",
-        "uniforme_gris_externo",
+        "uniforme_gris_aspirante",
         "fajin_discipulo_externo"
       ],
       "LianQi_III": [
         "espada_madera_entrenamiento",
-        "uniforme_gris_externo",
+        "uniforme_gris_aspirante",
         "fajin_discipulo_externo"
       ],
       "LianQi_IV": [
         "espada_madera_entrenamiento",
-        "uniforme_gris_externo",
+        "uniforme_gris_aspirante",
         "fajin_dos_alas"
       ]
     },
     "EXPECTED_STAGE": {
       "LianQi_I": [
         "espada_madera_entrenamiento",
-        "uniforme_gris_externo",
+        "uniforme_gris_aspirante",
         "fajin_discipulo_externo",
         "zapatos_suela_blanda"
       ],
@@ -201,14 +201,14 @@
         "bandana_cuero_reforzada",
         "sobretunica_patrulla",
         "fajin_patrulla",
-        "sandalias_viento",
+        "sandalias_corriente_ligera",
         "pulsera_cauce_trenzado",
-        "anillo_herrumbroso"
+        "anillo_hierro_oxidado"
       ],
       "LianQi_III": [
         "espada_vena_clara",
         "tocado_hilo_formacion",
-        "tunica_reforzada",
+        "tunica_reforzada_trama_cobre",
         "brazales_pulso_medico",
         "fajin_dos_alas",
         "calzado_nube_baja",
@@ -230,11 +230,11 @@
     "HIGH_ROLL_STRESS": {
       "LianQi_I": [
         "espada_madera_entrenamiento",
-        "uniforme_gris_externo",
+        "uniforme_gris_aspirante",
         "fajin_discipulo_externo",
         "zapatos_suela_blanda",
         "colgante_fragmento_jade",
-        "anillo_herrumbroso"
+        "anillo_hierro_oxidado"
       ],
       "LianQi_II": [
         "aguja_acero_frio",
@@ -243,7 +243,7 @@
         "brazales_cuero_cruzado",
         "fajin_patrulla",
         "calzas_sendero_pinos",
-        "sandalias_viento",
+        "sandalias_corriente_ligera",
         "amuleto_colmillo_montado",
         "pulsera_cauce_trenzado",
         "anillo_sello_hierro",
@@ -252,7 +252,7 @@
       "LianQi_III": [
         "espada_vena_clara",
         "tocado_hilo_formacion",
-        "tunica_reforzada",
+        "tunica_reforzada_trama_cobre",
         "brazales_pulso_medico",
         "fajin_dos_alas",
         "calzas_paso_silencioso",
@@ -266,7 +266,7 @@
       "LianQi_IV": [
         "hoja_seis_corrientes",
         "tocado_hilo_formacion",
-        "tunica_reforzada",
+        "tunica_reforzada_trama_cobre",
         "vendas_antebrazo_practica",
         "fajin_dos_alas",
         "calzas_paso_silencioso",
@@ -306,7 +306,8 @@
       ],
       "effect": null,
       "availability": "GUARANTEED",
-      "notes": ""
+      "notes": "",
+      "description": "Una espada de madera oscura, recta y sin adorno. El lomo conserva marcas de otros aspirantes; el equilibrio está hecho para enseñar dónde termina el brazo y empieza el arma."
     },
     {
       "item_id": "cuchillo_hueso_callejero",
@@ -335,7 +336,8 @@
       ],
       "effect": null,
       "availability": "ORIGIN_ONLY",
-      "notes": ""
+      "notes": "",
+      "description": "Una hoja corta tallada en hueso denso y pulida muchas veces con piedra barata. La empuñadura está envuelta en tela vieja: no es elegante, pero sobrevivió al mercado sur de Anling contigo."
     },
     {
       "item_id": "baston_fresno_practica",
@@ -363,11 +365,12 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Un bastón de fresno claro, liso salvo por las hendiduras de las manos. Flexiona lo suficiente para perdonar un error, pero no tanto como para ocultarlo."
     },
     {
-      "item_id": "uniforme_gris_externo",
-      "name": "Uniforme gris de ingreso",
+      "item_id": "uniforme_gris_aspirante",
+      "name": "Uniforme gris de aspirante",
       "min_stage": "LianQi_I",
       "slot": "VESTIDURA",
       "grade": "MUNDANO_TRABAJADO",
@@ -393,7 +396,8 @@
       ],
       "effect": null,
       "availability": "GUARANTEED",
-      "notes": ""
+      "notes": "Dotación de Prólogo en descansillo; reemplaza completamente al uniforme legacy.",
+      "description": "Paño gris sin insignias, ceñido con cordones sencillos. La tela raspa un poco en el cuello y huele a almacén seco; es la ropa de quien todavía debe demostrar que merece un emblema."
     },
     {
       "item_id": "bandana_lino_simple",
@@ -421,7 +425,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Lino grueso doblado dos veces y cosido con hilo pardo. Mantiene el sudor fuera de los ojos y da una extraña sensación de orden cuando la respiración se acelera."
     },
     {
       "item_id": "vendas_antebrazo_practica",
@@ -448,7 +453,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Tiras de algodón endurecidas por resina ligera. Al ceñirlas, las muñecas quedan firmes y el golpe sale con menos temblor."
     },
     {
       "item_id": "fajin_discipulo_externo",
@@ -476,7 +482,8 @@
       ],
       "effect": null,
       "availability": "GUARANTEED_AFTER_M03",
-      "notes": ""
+      "notes": "",
+      "description": "Un fajín gris con una única hebra blanca en el borde. No proclama prestigio; simplemente dice que la secta ya sabe tu nombre y espera servicio a cambio."
     },
     {
       "item_id": "pantalon_viaje_gris",
@@ -503,7 +510,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Pantalón de tela basta, amplio en las rodillas y reforzado donde roza la roca. Fue cosido para caminar más que para lucirse."
     },
     {
       "item_id": "zapatos_suela_blanda",
@@ -530,7 +538,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Zapatos de tela oscura con suela fina de cuero. Se sienten inseguros en piedra mojada, pero permiten notar el suelo antes de apoyar todo el peso."
     },
     {
       "item_id": "colgante_fragmento_jade",
@@ -557,7 +566,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": "Hallazgo menor; no es reliquia-llave."
+      "notes": "Hallazgo menor; no es reliquia-llave.",
+      "description": "Un fragmento irregular de jade pálido atravesado por una cuerda. No es valioso como joya, pero al sostenerlo entre dos dedos el qi parece ordenar su curso por un instante."
     },
     {
       "item_id": "pulsera_fibra_trenzada",
@@ -586,11 +596,12 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Fibras vegetales trenzadas alrededor de un hilo rojizo. La pulsera es casi demasiado ligera para notarla, salvo cuando el pulso espiritual se acelera."
     },
     {
-      "item_id": "anillo_herrumbroso",
-      "name": "Anillo herrumbroso",
+      "item_id": "anillo_hierro_oxidado",
+      "name": "Anillo de hierro oxidado",
       "min_stage": "LianQi_I",
       "slot": "ANILLO",
       "grade": "MUNDANO_TRABAJADO",
@@ -618,7 +629,8 @@
         "simulation_scope": "OUT_OF_COMBAT_PENDING"
       },
       "availability": "OPTIONAL",
-      "notes": "La bonificación de meditación queda pendiente del contrato de recuperación."
+      "notes": "La bonificación de meditación queda pendiente del contrato de recuperación.",
+      "description": "Un aro de hierro cubierto de óxido oscuro. Bajo la corrosión quedan diminutas líneas concéntricas; al meditar, el metal se enfría antes que el resto de la mano."
     },
     {
       "item_id": "espada_hierro_equilibrada",
@@ -648,7 +660,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Hoja de hierro gris, sin brillo de ceremonia. Lu Cheng adelgazó el tercio final y engrosó la espiga: no corta mejor por magia, sino porque cae exactamente donde la muñeca espera."
     },
     {
       "item_id": "sable_patrulla_valle",
@@ -677,7 +690,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Un sable ancho, con la punta pesada y mellas reparadas a martillo. Está hecho para terminar una pelea breve antes de que el bosque tenga tiempo de complicarla."
     },
     {
       "item_id": "aguja_acero_frio",
@@ -706,7 +720,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Una hoja estrecha como una aguja de telar, forjada en acero pálido. Apenas ofrece superficie al aire y obliga a atacar por líneas pequeñas, precisas e incómodas de detener."
     },
     {
       "item_id": "bandana_cuero_reforzada",
@@ -735,7 +750,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Cuero fino acolchado por dentro y dividido en tres segmentos sobre la frente. Parece insignificante hasta que algo golpea la cabeza o intenta romper la concentración."
     },
     {
       "item_id": "capucha_observador_valle",
@@ -762,7 +778,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Capucha de tejido marrón verdoso con un borde rígido sobre los ojos. Reduce el resplandor del cielo y vuelve más fácil seguir movimientos entre ramas y niebla."
     },
     {
       "item_id": "sobretunica_patrulla",
@@ -791,7 +808,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Una sobretúnica corta, reforzada en costillas y hombros. Los cierres están puestos para abrirse si una rama atrapa la tela, antes de arrastrar al portador con ella."
     },
     {
       "item_id": "tunica_ruta_sauces",
@@ -820,7 +838,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Tela flexible teñida con corteza y savia. El faldón está cortado en paneles separados para no sujetar las piernas cuando hay que cambiar de dirección con rapidez."
     },
     {
       "item_id": "brazales_cuero_cruzado",
@@ -847,7 +866,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Dos capas de cuero superpuestas en diagonal dejan pequeñas zonas de aire entre ellas. El conjunto es rígido sin convertirse en una férula."
     },
     {
       "item_id": "brazales_pulso_firme",
@@ -876,7 +896,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Brazales delgados con nudos colocados sobre puntos de pulso. Chen Bo insiste en que no curan nada: sólo recuerdan al cuerpo dónde debe mantener la tensión."
     },
     {
       "item_id": "fajin_patrulla",
@@ -905,7 +926,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Un fajín ancho con bolsillos planos y una costura interna endurecida. Aprieta el abdomen lo justo para que la respiración no se desordene al correr o recibir un golpe."
     },
     {
       "item_id": "calzas_sendero_pinos",
@@ -934,11 +956,12 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Tela oscura encerada desde la rodilla hacia abajo. Las espinas y el barro resbalan mejor sobre ella, y el corte amplio permite agacharse sin que tire de la cintura."
     },
     {
-      "item_id": "sandalias_viento",
-      "name": "Sandalias de viento",
+      "item_id": "sandalias_corriente_ligera",
+      "name": "Sandalias de corriente ligera",
       "min_stage": "LianQi_II",
       "slot": "CALZADO",
       "grade": "TRABAJO_ESPIRITUAL_MENOR",
@@ -961,7 +984,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Sandalias de tiras finas con suelas laminadas. Cada apoyo parece terminar un instante antes de que el peso haya bajado por completo."
     },
     {
       "item_id": "botas_piedra_humeda",
@@ -990,7 +1014,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Botas bajas, pesadas y rugosas, con pequeños granos de piedra incrustados en la suela. No son rápidas, pero cuesta mucho hacer que el pie ceda donde no debe."
     },
     {
       "item_id": "amuleto_colmillo_montado",
@@ -1019,7 +1044,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": "No cae como collar: requiere material legítimo + montaje."
+      "notes": "No cae como collar: requiere material legítimo + montaje.",
+      "description": "Un colmillo legítimamente obtenido, pulido y sujeto dentro de una montura de cobre. Ning Cai ha cortado canales mínimos alrededor de la raíz para que el qi salga más concentrado al atacar."
     },
     {
       "item_id": "amuleto_sauce_sereno",
@@ -1048,7 +1074,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Una lámina de madera de sauce encerrada entre dos piezas de jade verde. Al tocarla, la respiración parece alargarse un poco antes de pedir el siguiente aliento."
     },
     {
       "item_id": "pulsera_cauce_trenzado",
@@ -1075,7 +1102,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Cordones azules y grises entrelazados alrededor de tres cuentas huecas. El qi entra y sale de las cuentas con un murmullo que sólo se oye cuando la sala está en silencio."
     },
     {
       "item_id": "anillo_sello_hierro",
@@ -1102,7 +1130,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Aro de hierro negro con una línea recta grabada de extremo a extremo. La marca no añade fuerza: enseña al qi a no abrirse antes de atravesar la defensa."
     },
     {
       "item_id": "anillo_corriente_clara",
@@ -1131,7 +1160,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Anillo de piedra translúcida con una veta de agua atrapada en su interior. La veta parece moverse apenas cuando el portador fija la atención sobre un objetivo."
     },
     {
       "item_id": "espada_vena_clara",
@@ -1162,7 +1192,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Hoja estrecha de acero claro con una veta pulida que corre desde la guarda hasta la punta. Cuando el golpe está bien alineado, la veta parece prolongarse más allá del metal."
     },
     {
       "item_id": "vara_dos_corrientes",
@@ -1191,7 +1222,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Una vara de madera negra con dos líneas de cobre que nunca llegan a tocarse. El qi puede circular por ambas a la vez, manteniendo tensión sin mezclar los flujos."
     },
     {
       "item_id": "sable_anillo_gris",
@@ -1222,7 +1254,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Sable pesado con un aro de hierro gris en el pomo. El aro vibra al descargar qi y devuelve la vibración hacia la hoja como un golpe que llega medio latido tarde."
     },
     {
       "item_id": "tocado_hilo_formacion",
@@ -1251,7 +1284,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Tocado sencillo atravesado por hilos tan finos que parecen cabellos plateados. Los nudos están colocados según una formación de observación y ayudan a mantener referencias cuando todo se mueve."
     },
     {
       "item_id": "velo_archivo_sereno",
@@ -1280,11 +1314,12 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Velo gris azulado, casi transparente, impregnado con el olor seco de los archivos. Las letras bordadas en el borde no forman palabras completas, pero ordenan la respiración al seguirlas con la vista."
     },
     {
-      "item_id": "tunica_reforzada",
-      "name": "Túnica reforzada",
+      "item_id": "tunica_reforzada_trama_cobre",
+      "name": "Túnica reforzada de trama de cobre",
       "min_stage": "LianQi_III",
       "slot": "VESTIDURA",
       "grade": "REFINADO_MENOR",
@@ -1309,7 +1344,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Túnica de varias capas con una malla de hilos cobrizos escondida entre la tela. No suena al moverse; sólo se percibe el peso cuando recibe un golpe y lo reparte por el torso."
     },
     {
       "item_id": "vestidura_flujo_ligero",
@@ -1338,7 +1374,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Vestidura de mangas estrechas y faldón dividido, tejida con fibras que apenas retienen humedad. El aire se cuela por las capas y hace que los cambios de dirección resulten menos bruscos."
     },
     {
       "item_id": "brazales_pulso_medico",
@@ -1367,7 +1404,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Brazales blandos con pequeñas placas de jade sobre puntos del antebrazo. Las marcas de Lan Meihua señalan dónde debe pasar el qi y dónde conviene no forzarlo."
     },
     {
       "item_id": "fajin_dos_alas",
@@ -1396,7 +1434,8 @@
       ],
       "effect": null,
       "availability": "GUARANTEED_AFTER_M11",
-      "notes": ""
+      "notes": "",
+      "description": "Fajín blanco grisáceo con dos líneas bordadas que se separan en la espalda. El patrón reproduce una formación simple: dos rutas distintas que regresan al mismo centro."
     },
     {
       "item_id": "calzas_paso_silencioso",
@@ -1425,7 +1464,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Calzas ajustadas en el tobillo y amplias en cadera y rodilla. Las costuras están escondidas para que ni la tela ni la propia pierna anuncien el siguiente paso."
     },
     {
       "item_id": "calzado_nube_baja",
@@ -1454,7 +1494,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Calzado ligero con capas de fieltro y cuero flexible. La suela hunde el peso antes de devolverlo, como pisar una nube demasiado cercana al suelo."
     },
     {
       "item_id": "amuleto_meridiano_estable",
@@ -1483,7 +1524,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Jade blanco lechoso montado sobre madera medicinal. Las vetas siguen el dibujo de dos meridianos principales y parecen calentarse cuando el flujo intenta desviarse."
     },
     {
       "item_id": "pulsera_nudo_formacion",
@@ -1512,7 +1554,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Pulsera formada por segmentos de jade unidos con hilo metálico. Cada unión es un pequeño nudo de formación; juntos mantienen una tensión constante alrededor de la muñeca."
     },
     {
       "item_id": "anillo_hilo_plata",
@@ -1541,7 +1584,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Un hilo de plata enrollado tantas veces que termina formando un anillo sólido. Las capas internas no están soldadas y vibran entre sí cuando el qi se descarga con violencia."
     },
     {
       "item_id": "anillo_tierra_profunda",
@@ -1570,7 +1614,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Aro de piedra marrón oscura, pulido sólo en la cara interior. Es pesado para su tamaño y parece asentarse sobre el dedo en lugar de simplemente rodearlo."
     },
     {
       "item_id": "espejo_pulso_velado",
@@ -1606,7 +1651,8 @@
         "uses": 1
       },
       "availability": "HIDDEN_OPTIONAL",
-      "notes": "ÚNICO Tesoro Espiritual obtenible en Arco 1. Hallazgo oculto de la Primera Ala: no se compra, no se canjea y no es recompensa automática. Requiere resolver una ruta opcional de exploración durante/post M12. Al caer por primera vez a <=35% HP en combate, genera Absorción equivalente al 20% de HP máximo, una vez por combate."
+      "notes": "ÚNICO Tesoro Espiritual obtenible en Arco 1. Hallazgo oculto de la Primera Ala: no se compra, no se canjea y no es recompensa automática. Requiere resolver una ruta opcional de exploración durante/post M12. Al caer por primera vez a <=35% HP en combate, genera Absorción equivalente al 20% de HP máximo, una vez por combate.",
+      "description": "Un espejo de bronce ennegrecido, no más grande que una palma. No devuelve el rostro con fidelidad: bajo cierta luz muestra primero el pulso del qi, y sólo después a quien lo sostiene."
     },
     {
       "item_id": "hoja_seis_corrientes",
@@ -1637,7 +1683,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Hoja de secta refinada con seis canales mínimos tallados junto al lomo. Ninguno conduce por sí solo suficiente qi; juntos hacen que el golpe salga más lleno sin volver torpe la espada."
     },
     {
       "item_id": "vara_relevo",
@@ -1668,7 +1715,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Una vara de jade oscuro segmentada por abrazaderas de cobre. Cada sección acepta parte del flujo y lo entrega a la siguiente, como manos que se pasan un peso sin dejarlo caer."
     },
     {
       "item_id": "velo_vigilante_nucleo",
@@ -1697,7 +1745,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Velo corto de fibra gris con pequeñas cuentas opacas en el borde. Cada cuenta sirve como referencia táctil para no perder orientación cuando la percepción espiritual se satura."
     },
     {
       "item_id": "manto_mantenimiento",
@@ -1728,7 +1777,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Manto pesado, manchado de aceite mineral y polvo antiguo. Sus capas fueron pensadas para arrastrarse entre mecanismos, sellos y piedra rota sin exponer la piel a todo lo que espera allí."
     },
     {
       "item_id": "brazales_relevo",
@@ -1759,7 +1809,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Brazales robustos con juntas superpuestas. Cuando un golpe llega de lado, las placas se deslizan unas sobre otras y reparten la presión antes de volver a su sitio."
     },
     {
       "item_id": "fajin_nucleo_profundo",
@@ -1788,7 +1839,8 @@
       ],
       "effect": null,
       "availability": "GUARANTEED_AFTER_M17",
-      "notes": ""
+      "notes": "",
+      "description": "Fajín oscuro entregado sólo a quienes han descendido lo suficiente como para que el silencio de la montaña deje de parecer vacío. El tejido está cruzado por un hilo plateado que nunca aflora a la superficie."
     },
     {
       "item_id": "calzas_trama_sello",
@@ -1817,7 +1869,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Calzas reforzadas con pequeñas figuras geométricas cosidas bajo la tela exterior. Las figuras se deforman al moverse y recuperan su forma cuando el cuerpo vuelve a asentarse."
     },
     {
       "item_id": "botas_voto_inmovil",
@@ -1846,7 +1899,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Botas altas de cuero gris con contrapesos planos ocultos en la suela. Permiten pasos rápidos, pero cuando el portador decide plantar el pie, el peso parece descender de golpe hacia la tierra."
     },
     {
       "item_id": "amuleto_ancla_resonante",
@@ -1877,7 +1931,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Un disco de jade oscuro suspendido dentro de un aro metálico sin tocarlo. Cuando una fuerza espiritual intenta arrastrar la atención, el disco golpea el aro con un sonido casi inaudible."
     },
     {
       "item_id": "pulsera_nudo_crisis",
@@ -1908,7 +1963,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Pulsera hecha con segmentos desiguales de jade medicinal. Los nudos no son simétricos: cada uno fue pensado para sostener un flujo distinto cuando el cuerpo ya no puede mantener todos a la vez."
     },
     {
       "item_id": "anillo_relevo",
@@ -1937,7 +1993,8 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Aro de metal gris con una pequeña hendidura en forma de ala. Al concentrar qi ofensivo, la hendidura se calienta como si una parte del impulso quedara esperando allí."
     },
     {
       "item_id": "anillo_marca_quieta",
@@ -1966,7 +2023,308 @@
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": ""
+      "notes": "",
+      "description": "Anillo de jade blanco sin brillo. Una sola marca negra cruza su superficie; cuanto menos se mueve la mano, más nítida parece la línea."
+    },
+    {
+      "item_id": "cinta_patio_aspirante",
+      "name": "Cinta de patio del aspirante",
+      "min_stage": "LianQi_I",
+      "slot": "TOCADO",
+      "grade": "MUNDANO_TRABAJADO",
+      "accessibility": "INSTITUCIONAL",
+      "stats": {
+        "precision": 1,
+        "tenacity": 1
+      },
+      "source_type": "CONTRIBUTION_REDEMPTION",
+      "source_npc": "Tao Ming",
+      "source_location": "oficina_servicios",
+      "source_mission": "M02",
+      "price_stones": null,
+      "price_contribution": 1,
+      "required_permission": "ASPIRANTE",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "PRECISION",
+        "TENACITY"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": "",
+      "description": "Una tira de lino gris endurecida por sudor y polvo de patio. No tiene bordados ni rango; sólo evita que el cabello caiga sobre los ojos cuando la respiración se vuelve irregular.",
+      "power_budget": 0.58
+    },
+    {
+      "item_id": "anillo_cobre_sin_sello",
+      "name": "Anillo de cobre sin sello",
+      "min_stage": "LianQi_I",
+      "slot": "ANILLO",
+      "grade": "MUNDANO_TRABAJADO",
+      "accessibility": "INSTITUCIONAL",
+      "stats": {
+        "qi_max": 1,
+        "control": 1
+      },
+      "source_type": "CONTRIBUTION_REDEMPTION",
+      "source_npc": "Tao Ming",
+      "source_location": "oficina_servicios",
+      "source_mission": "M02",
+      "price_stones": null,
+      "price_contribution": 1,
+      "required_permission": "ASPIRANTE",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "QI",
+        "CONTROL"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": "",
+      "description": "Un aro de cobre liso, demasiado modesto para llevar emblema. Su interior está recorrido por una ranura apenas visible que ayuda a mantener el qi reunido en la punta de los dedos.",
+      "power_budget": 0.58
+    },
+    {
+      "item_id": "pulsera_tension_meridiana",
+      "name": "Pulsera de tensión meridiana",
+      "min_stage": "LianQi_II",
+      "slot": "PULSERA",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "accessibility": "INSTITUCIONAL",
+      "stats": {
+        "technique_direct_damage_percent": 2
+      },
+      "source_type": "CONTRIBUTION_REDEMPTION",
+      "source_npc": "Lan Meihua",
+      "source_location": "medicina",
+      "source_mission": "M06",
+      "price_stones": null,
+      "price_contribution": 4,
+      "required_permission": "DISCIPULO_EXTERNO",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "TECHNIQUE_DIRECT_DAMAGE"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": "",
+      "description": "Tres vueltas de hilo oscuro sostienen una pequeña pieza de jade contra el pulso. Al hacer circular qi, la presión obliga al flujo a salir más compacto y menos disperso.",
+      "power_budget": 0.67
+    },
+    {
+      "item_id": "calzas_guardia_externa",
+      "name": "Calzas de guardia externa",
+      "min_stage": "LianQi_II",
+      "slot": "PIERNAS",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "accessibility": "INSTITUCIONAL",
+      "stats": {
+        "hp_max": 2,
+        "tenacity": 2
+      },
+      "source_type": "CONTRIBUTION_REDEMPTION",
+      "source_npc": "Jiang Rui",
+      "source_location": "puesto_valle",
+      "source_mission": "M04",
+      "price_stones": null,
+      "price_contribution": 2,
+      "required_permission": "PATRULLA_TERRITORIAL",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "HP",
+        "TENACITY"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": "",
+      "description": "Tela gruesa en las rodillas y costuras dobles en la cara interna de los muslos. Fueron hechas para pasar horas en senderos húmedos sin que una caída o un tirón arruinen la patrulla.",
+      "power_budget": 1.5
+    },
+    {
+      "item_id": "anillo_reserva_menor",
+      "name": "Anillo de reserva menor",
+      "min_stage": "LianQi_II",
+      "slot": "ANILLO",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "accessibility": "ABIERTO_CON_RECURSOS",
+      "stats": {
+        "qi_max": 2,
+        "precision": 1
+      },
+      "source_type": "STONE_PURCHASE",
+      "source_npc": "Puestos del Mercado del Valle",
+      "source_location": "mercado_valle",
+      "source_mission": "M05",
+      "price_stones": 8,
+      "price_contribution": null,
+      "required_permission": null,
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "QI",
+        "PRECISION"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": "",
+      "description": "Un anillo de piedra azul grisácea, hueco en su centro. La talla es tosca, pero el qi que entra en él tarda un instante más en dispersarse.",
+      "power_budget": 1
+    },
+    {
+      "item_id": "fajin_respiracion_larga",
+      "name": "Fajín de respiración larga",
+      "min_stage": "LianQi_III",
+      "slot": "FAJIN",
+      "grade": "REFINADO_MENOR",
+      "accessibility": "DUAL",
+      "stats": {
+        "qi_max": 4,
+        "evasion": 1
+      },
+      "source_type": "WORKSHOP_SERVICE_STONES",
+      "source_npc": "Ning Cai",
+      "source_location": "taller_textiles_cuero",
+      "source_mission": "M08",
+      "price_stones": 16,
+      "price_contribution": null,
+      "required_permission": "SECTA_INTERIOR",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "QI",
+        "EVASION"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": "",
+      "description": "Un fajín ancho tejido con fibras que ceden al inspirar y se tensan al exhalar. Al moverse, acompaña el abdomen en lugar de combatirlo, como si recordara el ritmo de una respiración tranquila.",
+      "power_budget": 1.67
+    },
+    {
+      "item_id": "brazales_aguja_plata",
+      "name": "Brazales de aguja de plata",
+      "min_stage": "LianQi_III",
+      "slot": "BRAZALES",
+      "grade": "REFINADO_MENOR",
+      "accessibility": "INSTITUCIONAL",
+      "stats": {
+        "precision": 2,
+        "percent_penetration_pp": 3
+      },
+      "source_type": "WORKSHOP_SERVICE_CONTRIBUTION",
+      "source_npc": "Lu Cheng",
+      "source_location": "taller_armas",
+      "source_mission": "M09",
+      "price_stones": null,
+      "price_contribution": 5,
+      "required_permission": "SECTA_INTERIOR",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "PRECISION",
+        "PENETRATION"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": "",
+      "description": "Placas estrechas de metal claro protegen el antebrazo sin cubrir la muñeca. Bajo cada placa, una nervadura rígida obliga a mantener la línea del golpe incluso cuando el impacto quiere desviarla.",
+      "power_budget": 1.27
+    },
+    {
+      "item_id": "amuleto_flujo_contenido",
+      "name": "Amuleto de flujo contenido",
+      "min_stage": "LianQi_III",
+      "slot": "AMULETO",
+      "grade": "REFINADO_MENOR",
+      "accessibility": "INSTITUCIONAL",
+      "stats": {
+        "technique_direct_damage_percent": 2,
+        "qi_max": 2
+      },
+      "source_type": "CONTRIBUTION_REDEMPTION",
+      "source_npc": "Wen Tao",
+      "source_location": "taller_formaciones",
+      "source_mission": "M08",
+      "price_stones": null,
+      "price_contribution": 6,
+      "required_permission": "FORMACIONES_INVESTIGACION",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "TECHNIQUE_DIRECT_DAMAGE",
+        "QI"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": "",
+      "description": "Dos láminas de jade oscuro encierran un hilo de formación casi invisible. Cuando el qi atraviesa el pecho, el hilo vibra y devuelve parte de la dispersión hacia el centro.",
+      "power_budget": 1.33
+    },
+    {
+      "item_id": "vestidura_ala_cerrada",
+      "name": "Vestidura del Ala Cerrada",
+      "min_stage": "LianQi_IV",
+      "slot": "VESTIDURA",
+      "grade": "REFINADO_DE_SECTA",
+      "accessibility": "INSTITUCIONAL",
+      "stats": {
+        "hp_max": 4,
+        "tenacity": 3,
+        "defense": 0.25
+      },
+      "source_type": "CONTRIBUTION_REDEMPTION",
+      "source_npc": "Qiao Ren",
+      "source_location": "pabellon_disciplina",
+      "source_mission": "M14",
+      "price_stones": null,
+      "price_contribution": 8,
+      "required_permission": "NUCLEO_SUPERIOR",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "HP",
+        "TENACITY",
+        "DEFENSE"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": "",
+      "description": "Paño gris azulado de muchas capas, cosido para que ninguna costura coincida con otra. Es pesada al tomarla en las manos, pero sobre el cuerpo reparte la tensión como las plumas superpuestas de un ala recogida.",
+      "power_budget": 3.38
+    },
+    {
+      "item_id": "pulsera_meridiano_profundo",
+      "name": "Pulsera del meridiano profundo",
+      "min_stage": "LianQi_IV",
+      "slot": "PULSERA",
+      "grade": "REFINADO_DE_SECTA",
+      "accessibility": "INSTITUCIONAL",
+      "stats": {
+        "qi_max": 5,
+        "control": 3
+      },
+      "source_type": "CONTRIBUTION_REDEMPTION",
+      "source_npc": "Lan Meihua",
+      "source_location": "medicina",
+      "source_mission": "M16",
+      "price_stones": null,
+      "price_contribution": 8,
+      "required_permission": "EMERGENCIA_SECTA",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "QI",
+        "CONTROL"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": "",
+      "description": "Una pulsera de jade oscuro atravesada por vetas rojizas. Lan Meihua marca cada pieza después de comprobar que el pulso espiritual del portador puede soportar la presión de un circuito más profundo.",
+      "power_budget": 2.42
     }
   ],
   "treasure_policy": {
@@ -1974,5 +2332,57 @@
     "obtainable_arc1": 1,
     "second_slot_arc1": "EMPTY_BY_DESIGN",
     "philosophy": "TESOROS_PODEROSOS_RAROS_DIFICILES_DE_OBTENER"
+  },
+  "legacy_equipment_policy": {
+    "mode": "REPLACE_ALL_LEGACY_EQUIPMENT",
+    "coexistence_forbidden": true,
+    "runtime_implementation": "DEFERRED",
+    "migration_required_for_old_saves": true,
+    "scope": "EQUIPMENT_ONLY_CONSUMABLES_MATERIALS_MANUALS_OUTSIDE_THIS_PASS",
+    "replacements": {
+      "espada_madera": "espada_madera_entrenamiento",
+      "uniforme": "uniforme_gris_aspirante",
+      "cuchillo_hueso": "cuchillo_hueso_callejero",
+      "anillo_herrumbroso": "anillo_hierro_oxidado",
+      "espada_hierro": "espada_hierro_equilibrada",
+      "tunica_reforzada": "tunica_reforzada_trama_cobre",
+      "bandana": "bandana_cuero_reforzada",
+      "sandalias_viento": "sandalias_corriente_ligera",
+      "amuleto_colmillo": "amuleto_colmillo_montado"
+    }
+  },
+  "prologue_issue": {
+    "status": "PROVISIONAL_CLOSED_FOR_EQUIPMENT_DESIGN",
+    "source_room": "descansillo",
+    "one_shot_flag": "equipoInicialEntregado",
+    "before_issue": "No sect equipment is granted during character creation.",
+    "guaranteed_items": [
+      "uniforme_gris_aspirante",
+      "espada_madera_entrenamiento"
+    ],
+    "auto_equip": {
+      "uniforme_gris_aspirante": true,
+      "espada_madera_entrenamiento": "campesino|escolar"
+    },
+    "street_origin": {
+      "preserves_origin_item": "cuchillo_hueso_callejero",
+      "receives_sect_sword_too": true,
+      "equipment_choice": "Choose between cuchillo_hueso_callejero and espada_madera_entrenamiento as active weapon; keep both.",
+      "recommended_tutorial_use": "Teach weapon swapping here without changing power budget."
+    },
+    "consumables_note": "Consumables are outside this equipment pass; no new consumable is added here.",
+    "narrative_reason": "La secta viste y arma al aspirante después del diagnóstico de raíz, no antes."
+  },
+  "description_contract": {
+    "field": "description",
+    "legacy_equivalent": "ITEMS[id].desc",
+    "required_for_every_equipment_item": true,
+    "examine_behavior": "EXAMINAR/MIRAR shows diegetic description; stats/effects are rendered separately from structured fields.",
+    "no_placeholder_allowed": true
+  },
+  "next_steps": {
+    "acquisition_audit": "DEFERRED_BY_USER",
+    "mass_colab_registration_and_testing": "DEFERRED_BY_USER",
+    "runtime_replacement": "DEFERRED_UNTIL_ACQUISITION_AUDIT"
   }
 }
