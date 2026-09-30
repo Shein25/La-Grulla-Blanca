@@ -40,8 +40,8 @@ def P(value: Any | None, provenance: str, source: str, note: str = "") -> Parame
 PLAYER_BASE = {
     "hp_max": P(None, "PENDIENTE", "HANDOFF_BALANCE_NUEVO_SISTEMA_2026-09-29.md",
                 "HP inicial nuevo de LianQi I no cerrado."),
-    "qi_max": P(None, "PENDIENTE", "HANDOFF_BALANCE_NUEVO_SISTEMA_2026-09-29.md",
-                "Qi máximo inicial nuevo de LianQi I no cerrado."),
+    "qi_max": P(31, "PROVISIONAL", "ETAPA16_QI31_VALIDACION_FINAL_2026-09-29.md",
+                "Qi31 es la frontera mínima que iguala ofensiva pura y apertura defensiva coste7/6."),
     "precision": P(100.0, "CANON", "CONTRATO_COMBATE_ESTADISTICAS_DOT_V0_1.md §3",
                    "Precisión normal de referencia."),
     "evasion": P(None, "PENDIENTE", "COLAB_BALANCE_NUEVO.ipynb §1",
