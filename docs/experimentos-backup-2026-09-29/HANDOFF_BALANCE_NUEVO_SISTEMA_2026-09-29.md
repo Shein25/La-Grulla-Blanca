@@ -2277,3 +2277,62 @@ Archivos sincronizados:
 - ETAPA16 marcada como frontera matemática, no baseline vigente.
 
 runtime/HTML SIN CAMBIOS.
+
+
+### ETAPA 17C — Potencia intrínseca de cultivo + equipo — CERRADA
+
+Documento:
+- docs/experimentos/ETAPA17C_POTENCIA_INTRINSECA_CULTIVO_EQUIPO_2026-09-29.md
+
+Decisión PROVISIONAL:
+- ascender de reino sí aumenta poder intrínseco ofensivo de forma moderada;
+- el resto del crecimiento cuantitativo queda principalmente en equipo/build.
+
+Golpe básico:
+- LianQi I: 1d4+4, media6.5.
+- LianQi II: 1d4+5, media7.5.
+- LianQi III: 1d4+6, media8.5.
+- LianQi IV: 1d4+7, media9.5.
+
+Potencia de daño DIRECTO base de técnicas:
+- I x1.00.
+- II x1.08.
+- III x1.16.
+- IV x1.24.
+
+Aplicación:
+- magnitud base directa de técnica -> scalar cultivo -> planos -> % ofensivos -> crítico -> DEF/Absorción.
+- una sola vez.
+- no es stat ATQ.
+
+Excluidos del scalar:
+- Golpe básico (ya escala por dado).
+- DOT.
+- Reflect/Retaliation.
+- Calor almacenado.
+- Robo de Vida.
+- curaciones.
+- Absorción.
+- DEF/EVA/Precisión/Control/Tenacidad.
+- duración/cargas/recursos internos.
+- daño secundario no_offensive_rescale.
+
+%HP/%Qi:
+- no doble escalar; ya crecen con el recurso máximo.
+
+Papel del equipo:
+- principal segunda capa de progresión cuantitativa;
+- podrá aportar daño, DEF, precisión, evasión, crítico, penetración,
+  Control/Tenacidad, HP/Qi y propiedades especiales;
+- no usar equipo para reparar baseline roto.
+
+Curva vigente:
+- HP 30/36/42/48.
+- Qi 37/43/49/55.
+- básico 1d4+4/+5/+6/+7.
+- tech directa x1.00/1.08/1.16/1.24.
+- puntos 0/2/4/6.
+
+Guardia:
+- PROVISIONAL hasta validar contra enemigos LianQi II–IV.
+- runtime/HTML SIN CAMBIOS.
