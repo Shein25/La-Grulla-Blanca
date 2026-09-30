@@ -23,7 +23,7 @@ Antes de raíz, equipo, buffs o técnicas:
 | Stat | Valor | Estado |
 |---|---:|---|
 | HP máximo | 30 | PROVISIONAL |
-| Qi máximo | 31 | PROVISIONAL |
+| Qi máximo | 37 | PROVISIONAL |
 | Precisión | 100 | CANON |
 | Evasión | 5 | PROVISIONAL |
 | DEF | 1 | PROVISIONAL |
@@ -42,7 +42,7 @@ No existe un stat universal de ATQ que suba automáticamente por cultivo.
 
 La raíz se aplica después del baseline fijo.
 
-- Fuego: HP30, Qi31, Prec100, EVA5, DEF1, +10% daño directo, crítico10%.
+- Fuego: HP30, Qi37, Prec100, EVA5, DEF1, +10% daño directo, crítico10%.
 - Metal: Prec105, Penetración %10, resto baseline.
 - Agua: Control5 y costes Qi compatibles x0.90 antes del redondeo.
 - Tierra: HP33 tras +10% HP, Tenacidad5, DEF sigue1 fuera de técnicas.
@@ -56,10 +56,10 @@ Se adopta provisionalmente:
 
 | Etapa | Nombre | HP | Qi | Puntos ganados | Total puntos | Acceso |
 |---|---|---:|---:|---:|---:|---|
-| LianQi I | Percepción | 30 | 31 | 0 | 0 | BASE |
-| LianQi II | Circulación | 36 | 37 | +2 | 2 | Tramo I |
-| LianQi III | Consolidación | 42 | 43 | +2 | 4 | Tramo II |
-| LianQi IV | Refinamiento | 48 | 49 | +2 | 6 | Tramo III |
+| LianQi I | Percepción | 30 | 37 | 0 | 0 | BASE |
+| LianQi II | Circulación | 36 | 43 | +2 | 2 | Tramo I |
+| LianQi III | Consolidación | 42 | 49 | +2 | 4 | Tramo II |
+| LianQi IV | Refinamiento | 48 | 55 | +2 | 6 | Tramo III |
 
 Regla de avance:
 
@@ -70,25 +70,25 @@ Regla de avance:
 
 No suben automáticamente otras estadísticas nucleares.
 
-## 5. Por qué Qi 31→37→43→49
+## 5. Por qué Qi 37→43→49→55
 
 Ofensivas base coste6:
 
-- LianQi I: 5 usos;
-- LianQi II: 6;
-- LianQi III: 7;
-- LianQi IV: 8.
+- LianQi I: 6 usos;
+- LianQi II: 7;
+- LianQi III: 8;
+- LianQi IV: 9.
 
 Defensiva coste7 + ofensivas coste6:
 
-- Qi31: defensa +4 ofensivas = 5 acciones;
-- Qi37: defensa +5 = 6;
+- Qi37: defensa +5 ofensivas = 6 acciones;
 - Qi43: defensa +6 = 7;
-- Qi49: defensa +7 = 8.
+- Qi49: defensa +7 = 8;
+- Qi55: defensa +8 = 9.
 
 Agua, con defensiva efectiva6, obtiene la misma cantidad total de acciones.
 
-La igualdad conseguida en ETAPA16 se conserva en todas las etapas.
+La igualdad matemática de ETAPA16 se conserva, pero ETAPA17B eleva el baseline jugable una acción completa por encima del mínimo Qi31.
 
 ## 6. AOE y secuencias mixtas
 
@@ -96,24 +96,24 @@ AOE base cuesta9.
 
 Usos AOE puros:
 
-- Qi31: 3;
 - Qi37: 4;
 - Qi43: 4;
-- Qi49: 5.
+- Qi49: 5;
+- Qi55: 6.
 
 Una AOE9 seguida de ofensivas6:
 
-- Qi31: AOE +3 ofensivas = 4 acciones;
-- Qi37: AOE +4 = 5;
+- Qi37: AOE +4 ofensivas = 5 acciones;
 - Qi43: AOE +5 = 6;
-- Qi49: AOE +6 = 7.
+- Qi49: AOE +6 = 7;
+- Qi55: AOE +7 = 8.
 
 Defensiva7 + AOE9 + ofensivas6:
 
-- Qi31: 4 acciones totales;
-- Qi37: 5;
+- Qi37: 5 acciones totales;
 - Qi43: 6;
-- Qi49: 7.
+- Qi49: 7;
+- Qi55: 8.
 
 Las ramas de Eficiencia pueden cruzar umbrales adicionales deliberadamente; ése es su premio de build y deberá revalidarse por etapa.
 
@@ -247,13 +247,13 @@ Se promueve estructuralmente para Arco 1:
 
 - baseline de combate fijo, no aleatorio;
 - HP LianQi I = 30;
-- Qi LianQi I = 31;
+- Qi LianQi I = 37;
 - EVA base = 5;
 - DEF base = 1;
 - Control base = 0;
 - Tenacidad base = 0;
 - HP +6 por etapa;
-- Qi +6 por etapa;
+- Qi +6 por etapa desde baseline jugable37;
 - +2 puntos de técnica por avance II/III/IV;
 - sin multiplicador global de técnica por reino.
 
@@ -263,10 +263,15 @@ Todo permanece PROVISIONAL salvo stats ya CANON globalmente.
 
 Todavía deben revalidarse con enemigos de etapa:
 - HP36/42/48 contra enemigos II–IV;
-- Qi37/43/49 con costes avanzados;
+- Qi43/49/55 con costes avanzados;
 - ramas de Eficiencia;
 - DEF plana frente a daño superior;
 - Evasión frente a Precisión superior;
 - perfiles enemigos II–IV.
 
 Siguiente bloque: construir perfiles enemigos autoritativos de LianQi II, III y IV y revalidar cada Tramo contra su etapa real.
+
+
+## Nota ETAPA17B
+
+La elección original Qi31 se conserva como frontera matemática mínima, pero deja de ser el baseline jugable. ETAPA17B establece Qi37/43/49/55 para dar una técnica base adicional de margen y reducir la presión de meditación sin adelantar dos escalones de economía.
