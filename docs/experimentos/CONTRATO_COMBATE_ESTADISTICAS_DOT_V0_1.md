@@ -1402,6 +1402,45 @@ El modelo antiguo que sumaba automáticamente ATQ por consagración no debe migr
 
 Las consagraciones pueden aumentar capacidad estructural —principalmente Vida/Qi y desbloqueos— sin introducir un multiplicador ofensivo universal.
 
+## Valores estructurales PROVISIONALES de Arco 1 — ETAPA17
+
+Baseline desnudo LianQi I:
+
+~~~text
+HP 30
+Qi 31
+Precisión 100
+Evasión 5
+DEF 1
+Control 0
+Tenacidad 0
+Crítico 5%
+Daño crítico x1.50
+~~~
+
+Los stats iniciales nucleares son **fijos, no aleatorios**. La variación de personaje debe provenir de raíz, técnicas, equipo, Concordancias, buffs y otros sistemas explícitos.
+
+Progresión estructural:
+
+~~~text
+LianQi I  Percepción      HP30 / Qi31 / 0 puntos / BASE
+LianQi II Circulación     HP36 / Qi37 / +2 puntos / Tramo I
+LianQi III Consolidación  HP42 / Qi43 / +2 puntos / Tramo II
+LianQi IV Refinamiento    HP48 / Qi49 / +2 puntos / Tramo III
+~~~
+
+Reglas:
+
+- +6 HP y +6 Qi por avance;
+- +2 puntos de técnica por avance II/III/IV;
+- no existe multiplicador global de magnitud por etapa;
+- una técnica con fórmula relativa a HP/Qi escala porque cambia el recurso de referencia;
+- los valores planos de daño, DEF, Evasión, Precisión, Control, etc. no escalan por reino salvo que una técnica/rama/sistema lo declare;
+- los valores II–IV son PROVISIONALES estructurales y deben revalidarse contra perfiles enemigos autoritativos de su etapa.
+
+Referencia:
+`docs/experimentos/ETAPA17_PROGRESION_PERSONAJE_LIANQI_I_IV_2026-09-29.md`.
+
 ## Raíces espirituales
 
 El conjunto canónico de elementos del juego es exactamente:
