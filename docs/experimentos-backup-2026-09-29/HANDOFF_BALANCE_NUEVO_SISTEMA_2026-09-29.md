@@ -2221,3 +2221,59 @@ Guardia:
 
 Siguiente bloque:
 - perfiles enemigos LianQi II/III/IV y revalidación por Tramo.
+
+
+### ETAPA 17B — Reserva jugable de Qi — CERRADA
+
+Documento:
+- docs/experimentos/ETAPA17B_RESERVA_QI_JUGABLE_2026-09-29.md
+
+Motivo:
+- Qi31 era la frontera matemática mínima, pero demasiado austera como reserva
+  jugable para combates duros y podía empujar a meditar demasiado seguido.
+
+Decisión:
+- LianQi I Qi37.
+- LianQi II Qi43.
+- LianQi III Qi49.
+- LianQi IV Qi55.
+- progresión continúa +6 Qi por etapa.
+- HP permanece 30/36/42/48.
+- puntos de técnica permanecen +2 por avance, total6.
+- stats iniciales siguen fijos, no aleatorios.
+
+Comparación LianQi I:
+- Qi31: 5 ofensivas6 / def7+4 / 3 AOE9.
+- Qi37: 6 ofensivas6 / def7+5 / 4 AOE9.
+- Qi43: 7 ofensivas6 / def7+6 / 4 AOE9.
+- se elige37: +1 técnica base (+20%) sin adelantar dos escalones de economía.
+
+Interpretación ETAPA16:
+- Qi31 = mínimo matemático limpio.
+- Qi37 = baseline jugable elegido.
+
+Curva vigente:
+- 37 -> 43 -> 49 -> 55.
+
+Economía:
+- ofensivas6 puras: 6 / 7 / 8 / 9.
+- def7 + ofensivas6: 1+5 / 1+6 / 1+7 / 1+8.
+- Agua def6 mantiene igual total de acciones.
+- AOE9 + ofensivas6: 5 / 6 / 7 / 8 acciones totales.
+- def7 + AOE9 + ofensivas6: 5 / 6 / 7 / 8.
+
+Guardia:
+- no se introduce regen pasiva universal.
+- la cadencia real de meditación sigue PENDIENTE y debe diseñarse aparte.
+- ramas de Eficiencia y resultados dependientes de fallback Qi deben revalidarse
+  bajo el nuevo baseline.
+
+Archivos sincronizados:
+- config_lianqi1_naked.py.
+- config_arc1_provisional.py.
+- etapa17_progresion_lianqi_i_iv.py.
+- ETAPA17_PROGRESION_PERSONAJE_LIANQI_I_IV...
+- CONTRATO_COMBATE_ESTADISTICAS_DOT...
+- ETAPA16 marcada como frontera matemática, no baseline vigente.
+
+runtime/HTML SIN CAMBIOS.
