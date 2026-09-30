@@ -375,10 +375,9 @@
       "slot": "VESTIDURA",
       "grade": "MUNDANO_TRABAJADO",
       "accessibility": "UNICO",
-      "power_budget": 1.13,
+      "power_budget": 1,
       "stats": {
-        "hp_max": 1,
-        "defense": 0.25
+        "hp_max": 2
       },
       "source_type": "STARTING_ISSUE",
       "source_npc": "Tao Ming",
@@ -396,8 +395,9 @@
       ],
       "effect": null,
       "availability": "GUARANTEED",
-      "notes": "Dotación de Prólogo en descansillo; reemplaza completamente al uniforme legacy.",
-      "description": "Paño gris sin insignias, ceñido con cordones sencillos. La tela raspa un poco en el cuello y huele a almacén seco; es la ropa de quien todavía debe demostrar que merece un emblema."
+      "notes": "Dotación de Prólogo en descansillo; reemplaza completamente al uniforme legacy. Sin DEF fraccionaria.",
+      "description": "Paño gris sin insignias, ceñido con cordones sencillos. La tela raspa un poco en el cuello y huele a almacén seco; es la ropa de quien todavía debe demostrar que merece un emblema.",
+      "balance_revision_note": "El equipo inicial no debe introducir DEF plana; gana +2 HP."
     },
     {
       "item_id": "bandana_lino_simple",
@@ -788,10 +788,10 @@
       "slot": "VESTIDURA",
       "grade": "TRABAJO_ESPIRITUAL_MENOR",
       "accessibility": "INSTITUCIONAL",
-      "power_budget": 2.13,
+      "power_budget": 2,
       "stats": {
         "hp_max": 3,
-        "defense": 0.25
+        "tenacity": 2
       },
       "source_type": "CONTRIBUTION_REDEMPTION",
       "source_npc": "Jiang Rui",
@@ -809,7 +809,8 @@
       "effect": null,
       "availability": "OPTIONAL",
       "notes": "",
-      "description": "Una sobretúnica corta, reforzada en costillas y hombros. Los cierres están puestos para abrirse si una rama atrapa la tela, antes de arrastrar al portador con ella."
+      "description": "Una sobretúnica corta, reforzada en costillas y hombros. Los cierres están puestos para abrirse si una rama atrapa la tela, antes de arrastrar al portador con ella.",
+      "balance_revision_note": "Sustituye +0.25 DEF por aguante entero apropiado para patrulla."
     },
     {
       "item_id": "tunica_ruta_sauces",
@@ -848,9 +849,10 @@
       "slot": "BRAZALES",
       "grade": "TRABAJO_ESPIRITUAL_MENOR",
       "accessibility": "DUAL",
-      "power_budget": 1.25,
+      "power_budget": 1.5,
       "stats": {
-        "defense": 0.5
+        "hp_max": 2,
+        "tenacity": 2
       },
       "source_type": "WORKSHOP_SERVICE_DUAL",
       "source_npc": "Ning Cai",
@@ -867,7 +869,8 @@
       "effect": null,
       "availability": "OPTIONAL",
       "notes": "",
-      "description": "Dos capas de cuero superpuestas en diagonal dejan pequeñas zonas de aire entre ellas. El conjunto es rígido sin convertirse en una férula."
+      "description": "Dos capas de cuero superpuestas en diagonal dejan pequeñas zonas de aire entre ellas. El conjunto es rígido sin convertirse en una férula.",
+      "balance_revision_note": "Sustituye +0.5 DEF; brazales protectores dan HP/Tenacidad, no media DEF."
     },
     {
       "item_id": "brazales_pulso_firme",
@@ -1324,10 +1327,10 @@
       "slot": "VESTIDURA",
       "grade": "REFINADO_MENOR",
       "accessibility": "DUAL",
-      "power_budget": 3.38,
+      "power_budget": 3.5,
       "stats": {
-        "defense": 0.75,
-        "hp_max": 3
+        "defense": 1,
+        "hp_max": 2
       },
       "source_type": "WORKSHOP_SERVICE_DUAL",
       "source_npc": "Ning Cai",
@@ -1345,7 +1348,8 @@
       "effect": null,
       "availability": "OPTIONAL",
       "notes": "",
-      "description": "Túnica de varias capas con una malla de hilos cobrizos escondida entre la tela. No suena al moverse; sólo se percibe el peso cuando recibe un golpe y lo reparte por el torso."
+      "description": "Túnica de varias capas con una malla de hilos cobrizos escondida entre la tela. No suena al moverse; sólo se percibe el peso cuando recibe un golpe y lo reparte por el torso.",
+      "balance_revision_note": "Primera vestidura con +1 DEF real; LianQi III justifica el umbral."
     },
     {
       "item_id": "vestidura_flujo_ligero",
@@ -1755,9 +1759,9 @@
       "slot": "VESTIDURA",
       "grade": "REFINADO_DE_SECTA",
       "accessibility": "INSTITUCIONAL",
-      "power_budget": 3.29,
+      "power_budget": 3.92,
       "stats": {
-        "defense": 0.75,
+        "defense": 1,
         "tenacity": 3,
         "qi_max": 2
       },
@@ -1778,7 +1782,8 @@
       "effect": null,
       "availability": "OPTIONAL",
       "notes": "",
-      "description": "Manto pesado, manchado de aceite mineral y polvo antiguo. Sus capas fueron pensadas para arrastrarse entre mecanismos, sellos y piedra rota sin exponer la piel a todo lo que espera allí."
+      "description": "Manto pesado, manchado de aceite mineral y polvo antiguo. Sus capas fueron pensadas para arrastrarse entre mecanismos, sellos y piedra rota sin exponer la piel a todo lo que espera allí.",
+      "balance_revision_note": "Vestidura LIV avanzada; +1 DEF entero y utilidades."
     },
     {
       "item_id": "brazales_relevo",
@@ -1787,11 +1792,10 @@
       "slot": "BRAZALES",
       "grade": "REFINADO_DE_SECTA",
       "accessibility": "INSTITUCIONAL",
-      "power_budget": 3.25,
+      "power_budget": 2.75,
       "stats": {
-        "defense": 0.5,
-        "hp_max": 3,
-        "tenacity": 2
+        "hp_max": 4,
+        "tenacity": 3
       },
       "source_type": "CONTRIBUTION_REDEMPTION",
       "source_npc": "Lu Cheng",
@@ -1810,7 +1814,8 @@
       "effect": null,
       "availability": "OPTIONAL",
       "notes": "",
-      "description": "Brazales robustos con juntas superpuestas. Cuando un golpe llega de lado, las placas se deslizan unas sobre otras y reparten la presión antes de volver a su sitio."
+      "description": "Brazales robustos con juntas superpuestas. Cuando un golpe llega de lado, las placas se deslizan unas sobre otras y reparten la presión antes de volver a su sitio.",
+      "balance_revision_note": "Evita apilar +DEF desde otro slot; refuerza aguante con enteros."
     },
     {
       "item_id": "fajin_nucleo_profundo",
@@ -2272,9 +2277,8 @@
       "grade": "REFINADO_DE_SECTA",
       "accessibility": "INSTITUCIONAL",
       "stats": {
-        "hp_max": 4,
-        "tenacity": 3,
-        "defense": 0.25
+        "hp_max": 5,
+        "tenacity": 4
       },
       "source_type": "CONTRIBUTION_REDEMPTION",
       "source_npc": "Qiao Ren",
@@ -2294,7 +2298,8 @@
       "availability": "OPTIONAL",
       "notes": "",
       "description": "Paño gris azulado de muchas capas, cosido para que ninguna costura coincida con otra. Es pesada al tomarla en las manos, pero sobre el cuerpo reparte la tensión como las plumas superpuestas de un ala recogida.",
-      "power_budget": 3.38
+      "power_budget": 3.5,
+      "balance_revision_note": "Alternativa LIV sin DEF; maximiza cuerpo/Tenacidad en vez de fracción plana."
     },
     {
       "item_id": "pulsera_meridiano_profundo",
@@ -2384,5 +2389,17 @@
     "acquisition_audit": "DEFERRED_BY_USER",
     "mass_colab_registration_and_testing": "DEFERRED_BY_USER",
     "runtime_replacement": "DEFERRED_UNTIL_ACQUISITION_AUDIT"
+  },
+  "numeric_contract": {
+    "equipment_flat_stats_integer_only": true,
+    "forbidden_fractional_flat_stats": true,
+    "percentage_stats_use_explicit_percent_or_pp_fields": true,
+    "defense_rule": "Equipment DEF is integer flat DEF. No fractional DEF. Ordinary early gear uses HP/Tenacity instead; only selected advanced vestments grant +1 DEF.",
+    "max_theoretical_equipment_defense_by_stage": {
+      "LianQi_I": 0,
+      "LianQi_II": 0,
+      "LianQi_III": 1,
+      "LianQi_IV": 1
+    }
   }
 }
