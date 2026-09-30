@@ -491,12 +491,13 @@ def run_control_stress(
                 precision = PLAYER_PREC + (
                     10.0 if precision_buff else 0.0
                 )
+                target_evasion = ENEMY_EVA - 3.0 * peso_stacks
 
                 if qi >= 6:
-                    _, damage = hit_damage(
+                    hit, damage = hit_damage(
                         rng,
                         precision,
-                        ENEMY_EVA,
+                        target_evasion,
                         "2d4+4",
                         ENEMY_DEF,
                     )
@@ -504,11 +505,15 @@ def run_control_stress(
 
                     if precision_buff:
                         precision_buff = False
+
+                    if hit:
+                        peso_stacks = min(2, peso_stacks + 1)
+                        peso_duration = 2
                 else:
                     _, damage = hit_damage(
                         rng,
                         PLAYER_PREC,
-                        ENEMY_EVA,
+                        target_evasion,
                         "1d4+4",
                         ENEMY_DEF,
                     )
@@ -656,6 +661,11 @@ def run_control_stress(
                     arraigo = 0
                     estrato = False
                     roca_guard = False
+
+            if peso_duration > 0:
+                peso_duration -= 1
+                if peso_duration <= 0:
+                    peso_stacks = 0
 
             if round_no > 100:
                 raise RuntimeError("stress de Control excedió 100 rondas")
