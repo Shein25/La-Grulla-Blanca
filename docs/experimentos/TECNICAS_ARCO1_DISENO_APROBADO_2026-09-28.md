@@ -848,11 +848,14 @@ Nota de benchmark:
 - el aumento de DEF reduce ON_HP_DAMAGE y autolimita generación de Arraigo/extensión;
 - no implica autorización para que Tramos II/III sigan sumando DEF plana linealmente.
 
-**Centro Firme — estabilidad**
-- cada Arraigo da +5 Tenacidad en vez de +3.
+**Centro Firme — estabilidad — PROVISIONAL**
+- cada Arraigo da +5 Tenacidad en vez de +3;
+- validada dentro del benchmark integral de Piel de Cobre.
 
-**Tierra Persistente — aguante**
-- +1 turno de duración desde la activación.
+**Tierra Persistente — aguante — PROVISIONAL**
+- +1 turno de duración desde la activación;
+- activa el bono compartido de duración de Aguante;
+- la familia Aguante usa **AGUANTE_DUR_CAP1**: sus bonos propios de duración base no pueden superar +1 turno total.
 
 ### Tramo II
 
@@ -872,13 +875,16 @@ Nota de benchmark:
 - validado provisionalmente en 1v1, perfil pesado, 2 enemigos y 3 enemigos durante Etapas 9A–9C;
 - deberá revalidarse contra un perfil enemigo autoritativo de LianQi III cuando exista.
 
-**Raíz Profunda — estabilidad**
+**Raíz Profunda — estabilidad — PROVISIONAL**
 - con 2+ Arraigos: +5 Tenacidad adicional;
-- con Centro Firme: primera vez que falle un Control contra el usuario, +1 turno de duración.
+- con Centro Firme: primera vez por activación que falle un Control contra el usuario, +1 turno de duración restante;
+- esa extensión reactiva no pertenece al cap de duración base de Aguante.
 
-**Suelo que Sostiene — aguante**
+**Suelo que Sostiene — aguante — PROVISIONAL recalibrada**
 - primera vez que alcanza 3 Arraigos: recupera 5% Vida máxima;
-- con Tierra Persistente: +1 turno adicional de duración máxima.
+- ya no añade un segundo turno base con Tierra Persistente;
+- el antiguo bono adicional de duración queda descartado porque amplificaba en exceso la DEF plana bajo multiimpacto;
+- la curación queda limitada a una vez por activación.
 
 ### Tramo III
 
@@ -897,16 +903,33 @@ Nota de benchmark:
 - validado provisionalmente en 1v1, perfil pesado, 2 enemigos y 3 enemigos durante Etapas 10A–10C;
 - deberá revalidarse contra un perfil enemigo autoritativo de LianQi IV cuando exista.
 
-**Inamovible — estabilidad**
+**Inamovible — estabilidad — PROVISIONAL**
 - +5 Tenacidad con al menos 1 Arraigo;
-- ruta completa orientativa: +25 Tenacidad;
-- primera vez que resiste Control con Arraigo máximo: siguiente Golpe de Montaña +10 Precisión.
+- ruta SSS completa aporta +25 Tenacidad desde Piel a Arraigo máximo;
+- sumada a la raíz Tierra CANON (+5), el actor alcanza 30 Tenacidad total en ese estado;
+- primera vez por activación que resiste Control con Arraigo máximo: siguiente Golpe de Montaña +10 Precisión;
+- no genera una acción adicional.
 
-**Montaña Persistente — aguante**
-- +1 turno de duración máxima;
-- ruta completa: duración base efectiva 3 → 5 antes de extensiones reactivas;
-- al alcanzar Arraigo máximo: 5% Vida máxima;
-- una vez por activación, si baja de 30% Vida mientras Piel sigue activa: otro 5% Vida máxima.
+**Montaña Persistente — aguante — PROVISIONAL recalibrada**
+- concede +1 turno de duración base sólo si Aguante todavía no concedió uno;
+- con Tierra Persistente no añade otro turno: rige **AGUANTE_DUR_CAP1**;
+- al alcanzar Arraigo máximo: recupera 5% Vida máxima, una vez por activación;
+- una vez por activación, si baja de 30% Vida mientras Piel sigue activa: recupera otro 5% Vida máxima;
+- con Suelo que Sostiene puede recuperar hasta 10% Vida máxima al alcanzar Arraigo3;
+- ruta AAA completa: duración base4; la extensión propia de Arraigo máximo puede llevarla a5; curación teórica máxima15% por activación, siempre limitada por Vida faltante.
+
+### Resultado de benchmark integral de Piel
+
+- 27/27 combinaciones Fortificación / Estabilidad / Aguante fueron sometidas a screen;
+- Fortificación permanece sin cambios respecto de Etapas 8–10;
+- Estabilidad conserva sus valores y queda PROVISIONAL tras stress específico de Control;
+- Aguante usa **AGUANTE_DUR_CAP1** para impedir que la duración vuelva a multiplicar en exceso la DEF plana bajo varios atacantes;
+- el screen final no detectó duración infinita, curación repetible sin límite, DEF permanente adicional ni generación ilimitada de Estratos/Guardias;
+- Piel completa queda **PROVISIONAL** con WATCH de escalado multiimpacto;
+- mezclas Fortificación + Aguante (por ejemplo FAA/AAF) quedan como WATCH prioritario para futuros perfiles enemigos LianQi II–IV.
+
+Referencia:
+`docs/experimentos/ETAPA15B_PIEL_COBRE_COMPLETA_2026-09-29.md`.
 
 ### Concordancias receptoras — LEGACY / NO CANÓNICAS
 
