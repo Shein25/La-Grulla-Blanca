@@ -1751,3 +1751,104 @@ Guardias:
 - revalidar perfiles enemigos II–IV;
 - CORRIENTE una vez/activación;
 - no movimiento/Velocidad/segunda esquiva.
+
+
+### ETAPA 14 — Armadura de Plata completa — CERRADA
+
+Documento:
+- `docs/experimentos/ETAPA14_ARMADURA_PLATA_COMPLETA_2026-09-29.md`
+
+Runner:
+- `experimentos/balance_nuevo/etapa14_armadura_plata_completa.py`
+
+Alcance:
+- base;
+- Tramos I–III;
+- 27/27 rutas mixables;
+- COMMON / PRECISE / HEAVY / DANGEROUS;
+- 2 y 3 enemigos;
+- consumo/no-consumo de Placas;
+- stress LAB de Control para Adaptación.
+
+Base — PROVISIONAL:
+- coste7 / duración4.
+- 3 Placas.
+- +3 DEF por Placa contra impacto directo actual.
+- Placas secuenciales; no suman DEF entre sí.
+- impacto conectado consume1.
+- evasión/DOT no consumen.
+
+Base vs ofensiva pura, promedio 4×25k:
+- COMMON +2.19 pp win.
+- PRECISE +2.26.
+- HEAVY +2.19.
+- DANGEROUS +1.82.
+- 2 enemigos −6.15.
+- 3 enemigos −6.83.
+Lectura: buena 1v1, débil a multiimpacto por consumo rápido; identidad válida.
+
+Ramas se formalizan por cantidad de nodos para 27 rutas.
+
+Resistencia — PROVISIONAL:
+- 0R +3 DEF/Placa.
+- 1R +4.
+- 2R +6.
+- 3R +8.
+- RRR = 3 Placas +8 / dur4 / coste7.
+- promedio 4×15k:
+  COMMON97.76 / PRECISE96.08 / HEAVY96.63 / DANG93.96 /
+  2EN70.26 / 3EN16.78.
+- impacto conectado sigue consumiendo Placa aunque daño0, salvo Adaptación2+.
+
+Cantidad — PROVISIONAL:
+- 0Q 3 Placas.
+- 1Q 4.
+- 2Q 6.
+- 3Q 8.
+- QQQ = 8 Placas +3 / dur4 / coste7.
+- promedio:
+  COMMON94.81 / PRECISE92.24 / HEAVY90.94 / DANG87.39 /
+  2EN76.36 / 3EN33.09.
+- duración4 limita uso de cargas en 1v1.
+
+Adaptación — PROVISIONAL:
+- 1A: +5 Tenacidad tras romper Placa hasta próximo turno usuario.
+- 2A: +10; si DEF deja impacto conectado en0, Placa no se consume.
+- 3A: +15; conserva no-consumo; primer Control fallido/activación recupera 1 Placa rota, cap máximo inicial.
+- chequeo daño0 es post-DEF y antes de Absorción externa.
+- AAA daño puro promedio:
+  COMMON93.59 / PRECISE90.02 / HEAVY88.89 / DANG83.99 /
+  2EN57.01 / 3EN10.97.
+- no se buffea por escenarios sin Control.
+
+Stress Control LAB ilustrativo:
+- Control efectivo65, intento tras impacto conectado.
+- matemáticamente justo tras ruptura: A0 65%, A1 60, A2 55, A3 50.
+- agregado 4×20k:
+  A0 65.01% / A1 62.95 / A2 61.39 / A3 59.11.
+- AAA recuperación ~96.98% en este stress deliberadamente cargado.
+- NO perfil enemigo canónico.
+
+Screen 27/27, 8k/celda:
+- COMMON 93.19–98.55%.
+- PRECISE 90.26–97.76%.
+- HEAVY 88.48–97.14%.
+- DANGEROUS 83.84–95.99%.
+- 2 enemigos 56.94–83.20%.
+- 3 enemigos 11.38–34.03%.
+- sin escalado ilimitado.
+- mezclas RRQ fuertes 1v1; RQQ/QRQ fuertes multiimpacto.
+
+Estado:
+- base PROVISIONAL.
+- Resistencia I–III PROVISIONAL.
+- Adaptación I–III PROVISIONAL.
+- Cantidad I–III PROVISIONAL.
+- runtime/HTML SIN CAMBIOS.
+
+Guardias:
+- revalidar II–IV contra perfiles autoritativos;
+- Adaptación con enemigos reales de Control;
+- multihit puede consumir varias Placas por impactos separados;
+- no-consumo por daño0 depende de DEF, no Absorción;
+- nunca sumar DEF de varias Placas.
