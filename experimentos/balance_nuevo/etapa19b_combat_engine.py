@@ -954,7 +954,7 @@ def fight_once(*,stage: str,root: str,item_ids: Sequence[str],paths: Mapping[str
     return {
         "win":win,"timeout":state.round_no>=max_rounds and player.alive() and monster.alive(),"rounds":state.round_no,
         "player_hp_final":max(0.0,player.hp),"player_hp_final_pct":max(0.0,player.hp)/player.hp_max,
-        "player_qi_final":max(0.0,player.qi),"player_qi_spent":state.metrics.qi_spent,"monster_hp_final":max(0.0,monster.hp),
+        "player_qi_final":max(0.0,player.qi),"player_qi_spent":state.metrics.qi_spent,"monster_hp_final":max(0.0,monster.hp),"monster_hp_final_pct":max(0.0,monster.hp)/monster.hp_max,
         "root":root,"stage":stage,"tier":tier,"monster_id":monster_profile["monster_id"],"policy":policy,
         "signal_low_hp_ratio_lab":signal_bridge.low_hp_ratio,"signal_heavy_hit_ratio_lab":signal_bridge.heavy_hit_ratio,
         "qi_exhaustion_loss":bool((not win) and state.loss_used_basic_after_qi_exhaustion),
@@ -973,7 +973,7 @@ def monte_carlo(*,iterations: int,seed: int=20260930,**fight_kwargs) -> dict:
     for r in rows:skill.update(r["metrics"]["skill_usage"])
     return {
         "iterations":iterations,"seed":seed,"stage":rows[0]["stage"],"root":rows[0]["root"],"monster_id":rows[0]["monster_id"],"tier":rows[0]["tier"],"policy":rows[0]["policy"],
-        "win_rate":sum(r["win"] for r in rows)/iterations,"timeout_rate":sum(r["timeout"] for r in rows)/iterations,"mean_rounds":statistics.fmean(r["rounds"] for r in rows),"mean_hp_final_pct":statistics.fmean(r["player_hp_final_pct"] for r in rows),"mean_qi_final":statistics.fmean(r["player_qi_final"] for r in rows),"mean_qi_spent":statistics.fmean(r["player_qi_spent"] for r in rows),"mean_damage_per_qi":statistics.fmean(r["damage_per_qi"] for r in rows),"qi_exhaustion_loss_rate":sum(r["qi_exhaustion_loss"] for r in rows)/iterations,
+        "win_rate":sum(r["win"] for r in rows)/iterations,"timeout_rate":sum(r["timeout"] for r in rows)/iterations,"mean_rounds":statistics.fmean(r["rounds"] for r in rows),"mean_hp_final_pct":statistics.fmean(r["player_hp_final_pct"] for r in rows),"mean_monster_hp_final_pct":statistics.fmean(r["monster_hp_final_pct"] for r in rows),"mean_qi_final":statistics.fmean(r["player_qi_final"] for r in rows),"mean_qi_spent":statistics.fmean(r["player_qi_spent"] for r in rows),"mean_damage_per_qi":statistics.fmean(r["damage_per_qi"] for r in rows),"qi_exhaustion_loss_rate":sum(r["qi_exhaustion_loss"] for r in rows)/iterations,
         "hit_rate":hits/attempts if attempts else 0.0,"crit_rate_per_hit":crits/hits if hits else 0.0,"control_success_rate":csucc/cattempts if cattempts else 0.0,
         "mean_metrics":agg,"mean_skill_usage":{k:v/iterations for k,v in skill.items()},
         "signal_bridge":asdict(fight_kwargs.get("signal_bridge",LabSignalBridge())),
