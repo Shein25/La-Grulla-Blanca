@@ -1575,3 +1575,86 @@ Estado final:
 - Conversión I–III PROVISIONAL recalibrada.
 - Eficiencia I–III PROVISIONAL condicionada a Qi futuro.
 - runtime/HTML SIN CAMBIOS.
+
+
+### ETAPA 12 — Espejo de Luna completo — CERRADA
+
+Documento:
+- `docs/experimentos/ETAPA12_ESPEJO_LUNA_COMPLETO_2026-09-29.md`
+
+Runner:
+- `experimentos/balance_nuevo/etapa12_espejo_luna_completo.py`
+
+Alcance:
+- base;
+- Tramos I–III;
+- 27/27 combinaciones mixables;
+- COMMON / PRECISE / HEAVY / DANGEROUS;
+- 2 y 3 enemigos;
+- economía Qi;
+- Reflujo/reconstrucción;
+- Arrastre con anti-lock correcto por objetivo.
+
+Base:
+- 12% descartado.
+- **24% HP Absorción / Reflujo25% / duración3 / coste base7 / efectivo Agua6 → PROVISIONAL**.
+
+Base24 vs12, repetición 4×25k:
+- COMMON: +7.58 a +8.24 pp win; +11.94 a +12.51 pp HP.
+- PRECISE: +9.88 a +10.30 pp win.
+- HEAVY: +8.71 a +9.30 pp win.
+- DANGEROUS: +11.19 a +11.86 pp win.
+- 2 enemigos: +10.32 a +11.58 pp win.
+- 3 enemigos: +2.30 a +2.60 pp win.
+
+Base24 vs ofensiva pura:
+- mejora 1v1;
+- queda peor en 2/3 enemigos porque el pool puede romperse antes del siguiente TURN_START;
+- se conserva como debilidad identitaria de barrera regenerativa.
+
+Reserva — PROVISIONAL:
+- T1 Marea Profunda: +5 pp =>29%.
+- T2 Marea Alta: +5 pp; con Marea Profunda +3 pp sinergia => RR37%.
+- T3 Mar Interior: +5 pp.
+- RRR = 42% reserva / Reflujo25 / dur3 / coste6.
+- RRR promedio 4×15k: COMMON92.62%; 2 enemigos59.60%; 3 enemigos12.38%.
+
+Reflujo — PROVISIONAL:
+- T1 Agua Renovada: Reflujo35%.
+- T2 Corriente Retorno: +10 pp; con G1 reconstrucción40% una vez.
+- T3 Marea Eterna: +10 pp con tope50%; reconstrucción40->50 si ya existe.
+- GGG = reserva24 / Reflujo50 / reconstrucción50 una vez / dur3 / coste6.
+- GGG promedio: COMMON91.76%; 2 enemigos49.92%; 3 enemigos8.19%.
+- reconstrucción: ~24% common / ~88% 2en / ~99% 3en.
+- no convierte Reflujo en defensa anti-burst; diferencia intencional frente a Reserva.
+
+Eficiencia — PROVISIONAL recalibrada:
+- problema: −10% aislado + raíz Agua seguía redondeando coste efectivo6 => nodo nulo.
+- T1 Circulación Serena: nominal7->6; efectivo Agua5.
+- T2 Flujo Ligero: **−15%**; standalone efectivo6->5; con T1 duración4.
+- T3 Corriente Ininterrumpida: **−15%**; al expirar naturalmente con reserva +1 Qi explícito; funciona standalone.
+- EEE = reserva24 / Reflujo25 / duración5 / coste efectivo4 / refund1.
+- EEE promedio: COMMON90.65%; 2 enemigos39.72%; 3 enemigos4.72%.
+- Qi31 no cruza nuevos umbrales de cantidad de ofensivas; revalidar obligatoriamente en Qi II–IV.
+
+Screen 27/27, 8k/celda:
+- COMMON win 89.74–92.84%.
+- PRECISE 85.09–89.70%.
+- HEAVY 84.43–89.31%.
+- DANGEROUS 78.86–85.15%.
+- 2 enemigos 40.33–59.28%.
+- 3 enemigos 4.60–12.44%.
+- ninguna ruta fuera de escala.
+
+Estado:
+- base PROVISIONAL.
+- Reserva I–III PROVISIONAL.
+- Reflujo I–III PROVISIONAL.
+- Eficiencia I–III PROVISIONAL recalibrada y condicionada a Qi futuro.
+- runtime/HTML SIN CAMBIOS.
+
+Guardias:
+- revalidar con perfiles enemigos II–IV autoritativos;
+- revalidar economía al fijar Qi II–IV;
+- TURN_START mantiene Reflujo antes de DOT;
+- +1 Qi de Corriente Ininterrumpida es fuente explícita, no regen universal.
