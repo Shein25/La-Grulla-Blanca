@@ -555,58 +555,78 @@ Mapeo receptor canónico: `MAPEO_HOOKS_TECNICAS_ARCO1_2026-09-29.md`. Como técn
 
 ## 6.2 Espejo de Luna — defensiva
 
-Aprobada.
+Base — **PROVISIONAL tras ETAPA 12**:
 
-Base provisional:
-
-- coste: 7 Qi;
+- coste base: 7 Qi;
+- coste efectivo con raíz Agua: 6 Qi;
 - duración: 3 turnos;
-- Absorción = 12% Vida máxima;
+- Absorción = **24% Vida máxima**;
 - **Reflujo**: al comienzo del turno, si queda Absorción, recupera 25% de la **reserva máxima de esa instancia**;
 - nunca supera reserva máxima;
 - si llega a 0, se rompe y deja de regenerarse salvo ramas específicas;
-- genera Eco de Agua.
+- genera Eco de Agua;
+- el antiguo 12% queda descartado como magnitud principal.
 
 ### Tramo I
 
-**Marea Profunda — reserva**
-- 12% → 17% Vida máxima.
+**Marea Profunda — reserva — PROVISIONAL**
+- +5 pp Absorción;
+- 24% → 29% Vida máxima.
 
-**Agua Renovada — Reflujo**
+**Agua Renovada — Reflujo — PROVISIONAL**
 - 25% → 35%.
 
-**Circulación Serena — eficiencia**
-- 7 → 6 Qi.
+**Circulación Serena — eficiencia — PROVISIONAL**
+- coste nominal 7 → 6 Qi;
+- con raíz Agua, coste efectivo = 5 Qi.
 
 ### Tramo II
 
-**Marea Alta — reserva**
+**Marea Alta — reserva — PROVISIONAL**
 - +5 pp de Vida máxima como Absorción;
-- con Marea Profunda: sinergia, orientativamente 25% total.
+- con Marea Profunda: +3 pp adicionales de sinergia;
+- Marea Profunda + Marea Alta sobre base24: 37% HP de reserva.
 
-**Corriente de Retorno — regeneración**
+**Corriente de Retorno — regeneración — PROVISIONAL**
 - +10 pp Reflujo;
-- con Agua Renovada: una vez por activación, si se rompe, al siguiente turno se reconstruye con 40% de su reserva máxima.
+- con Agua Renovada: una vez por activación, si se rompe, al siguiente TURN_START se reconstruye con 40% de su reserva máxima;
+- con Agua Renovada: Reflujo total45%.
 
-**Flujo Ligero — eficiencia**
-- −10% coste;
+**Flujo Ligero — eficiencia — PROVISIONAL**
+- **−15% coste**;
+- el antiguo −10% se descarta porque con la raíz Agua podía redondear al mismo coste efectivo6 y convertirse en un nodo nulo;
+- elegido sin Circulación Serena lleva el coste efectivo 6 → 5;
 - con Circulación Serena: duración 3 → 4.
 
 ### Tramo III
 
-**Mar Interior — reserva**
-- +5 pp;
-- ruta completa: alrededor de 30% Vida máxima de reserva.
+**Mar Interior — reserva — PROVISIONAL**
+- +5 pp Absorción;
+- ruta Reserva completa: **42% Vida máxima de reserva / Reflujo25% / duración3 / coste efectivo6**.
 
-**Marea Eterna — regeneración**
-- +10 pp Reflujo;
-- ruta completa: Reflujo 50%;
-- reconstrucción una vez por activación con 50% de la reserva máxima.
+**Marea Eterna — regeneración — PROVISIONAL**
+- +10 pp Reflujo con tope de ruta en **50%**;
+- si la reconstrucción ya fue habilitada por Agua Renovada + Corriente de Retorno: 40% → 50% de la reserva máxima;
+- ruta Reflujo completa: **24% reserva / Reflujo50% / reconstrucción50% una vez / duración3 / coste efectivo6**.
 
-**Corriente Ininterrumpida — eficiencia**
-- −10% coste;
-- ruta completa: −1 Qi, −20% coste, duración 3 → 5;
-- si termina naturalmente conservando Absorción: recupera 1 Qi (fuente explícita, no regeneración pasiva).
+**Corriente Ininterrumpida — eficiencia — PROVISIONAL**
+- **−15% coste**;
+- si Espejo termina naturalmente conservando Absorción: recupera 1 Qi (fuente explícita, no regeneración pasiva);
+- esta recuperación funciona aunque no se hayan elegido los nodos previos de Eficiencia;
+- ruta Eficiencia completa: **24% reserva / Reflujo25% / duración5 / coste efectivo4 / +1 Qi al expirar con reserva**;
+- debe rebenchmarcarse cuando se fijen Qi máximos de LianQi II–IV.
+
+### Resultado de benchmark de ramas
+
+- 27/27 combinaciones mixables fueron sometidas a screen;
+- Reserva domina burst multiimpacto;
+- Reflujo domina presión sostenida cuando la reserva sobrevive entre TURN_START;
+- Eficiencia depende de umbrales discretos de Qi y no pretende ser la mejor respuesta a burst de grupo;
+- no se detectó una combinación fuera de escala;
+- todas las magnitudes I–III permanecen **PROVISIONAL**, no CANON, hasta revalidación con perfiles enemigos y Qi de LianQi II–IV.
+
+Referencia:
+`docs/experimentos/ETAPA12_ESPEJO_LUNA_COMPLETO_2026-09-29.md`.
 
 ### Concordancias
 Mapeo receptor canónico: `MAPEO_HOOKS_TECNICAS_ARCO1_2026-09-29.md`. Como técnica pura, genera Eco de Agua.
