@@ -387,3 +387,27 @@ Después del cierre de LianQi I NAKED se deberá diseñar por separado:
 La arquitectura de 13 slots ofrece espacio de progresión futuro, pero cada
 pieza deberá justificar su presupuesto de poder y no convertirse en una suma
 indiscriminada de estadísticas.
+
+
+---
+
+## 11. ADDENDUM ETAPA18 — CATÁLOGO DISEÑADO
+
+La fase que este documento dejaba pendiente ya fue ejecutada en:
+
+- `docs/experimentos/ETAPA18_EQUIPO_ARCO1_DISENO_COMPLETO_2026-09-29.md`
+- `experimentos/balance_nuevo/equipment_arc1_catalog.json`
+- `experimentos/balance_nuevo/equipment_arc1_catalog.py`
+
+Estado actualizado:
+
+- 13 slots objetivo conservados;
+- 62 piezas PROVISIONALES diseñadas;
+- 12 LianQi I / 19 LianQi II / 17 LianQi III / 14 LianQi IV;
+- fuentes de obtención, NPC, misión/permiso, piedras y/o Contribución definidos;
+- 5 tesoros espirituales menores;
+- perfiles MANDATORY_ENTRY / EXPECTED_STAGE / HIGH_ROLL_STRESS preparados;
+- catálogo validado sin IDs duplicados, overflow de slots ni piezas sobre su presupuesto diagnóstico;
+- runtime/HTML sigue SIN CAMBIOS.
+
+Los stats legacy siguen OBSOLETOS: ETAPA18 usa magnitudes nuevas bajo el contrato de combate vigente.
