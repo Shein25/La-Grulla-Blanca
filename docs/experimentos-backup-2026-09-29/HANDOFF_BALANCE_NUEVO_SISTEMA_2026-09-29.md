@@ -2630,3 +2630,59 @@ Consecuencia para equipo:
 
 JSON equipment_arc1_catalog.json ya incluye monster_aware_contract.
 Auditoría de adquisición y Monte Carlo masivo siguen diferidos.
+
+
+### ETAPA19 — MATRIZ MASIVA COLAB — INICIADA
+
+Documento:
+- docs/experimentos/ETAPA19_MATRIZ_MASIVA_COLAB_ARCO1_2026-09-29.md
+
+Notebook:
+- experimentos/balance_nuevo/COLAB_ETAPA19_MATRIZ_MASIVA_ARCO1.ipynb
+
+Nuevos archivos:
+- monster_arc1_new_contract_lab.json
+- etapa19_skill_buildspace.py
+- etapa19_buildspace_planner.py
+- docs/experimentos/ETAPA19A_PILOTO_ARMADURA_MONSTRUOS_NATIVOS_2026-09-29.md
+
+Espacio exacto:
+- equipo LI 6,144 / LII 6,881,280 / LIII 548,100,000 / LIV 5,234,761,728.
+- skills por raíz LI1 / LII37 / LIII739 / LIV11,512.
+- skills cinco raíces LI5 / LII185 / LIII3,695 / LIV57,560.
+- builds jugador brutas:
+  LI 30,720;
+  LII 1,273,036,800;
+  LIII 2,025,229,500,000;
+  LIV 301,312,885,063,680.
+- native T0/T1 scenario rows antes de iteraciones:
+  LI307,200;
+  LII12,730,368,000;
+  LIII16,201,836,000,000;
+  LIV2,410,503,080,509,440.
+
+Conclusión:
+- brute-force Monte Carlo de cada producto cartesiano es imposible incluso en Colab;
+- exhaustividad = contar/generar todo estructuralmente + firmas mecánicas + cobertura estratificada + MC funnel/high-N;
+- conservar multiplicidades/trazabilidad.
+
+Traducción monstruos LAB:
+- 18/18 perfiles.
+- HP/daño/técnica anclados a snapshot ver74.
+- Precision = 60 + 5*legacy_attack.
+- Evasion = 5*legacy_defense - 10.
+- legacy defense NO se convierte a flat DEF.
+- flat DEF y Tenacity LAB por anatomía/rol.
+- C_STAGGERED T0–T4 registrado.
+- matriz nativa principal usa T0/T1.
+
+Piloto armadura (15k/celda, SIN skills/root/resto gear):
+- LI +1 DEF: mejora pequeña salvo Lobo +6.57pp.
+- LII +2: Sapo normal +9.02; Escarabajo +35.52; Eco +37.19; bosses siguen ~0–4%.
+- LIII +3: Pez +10.49; Anguila +34.88; Sombra +29.61; Guardián 0.71% armado.
+- LIV +4: Devorador 43.19→96.49; Halcón47.75→92.10; Mantis0.38→9.15; Centinela0.21→8.59.
+- resultado: no reducir DEF armadura preventivamente; WATCH gran efecto vs fauna normal LIV.
+
+Pendiente ETAPA19B:
+- motor unificado jugador+15 técnicas+monstruo para 1v1 native.
+- luego Colab T0/T1, packs AOE, regresión T2–T4.
