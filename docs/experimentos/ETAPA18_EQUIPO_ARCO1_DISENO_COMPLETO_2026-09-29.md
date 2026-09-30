@@ -26,7 +26,7 @@ CONCORDANCIAS
 
 El personaje debe ser viable desnudo. El equipo da margen y permite construir estilos de juego diferentes; ninguna misión principal se balanceará suponiendo el mejor set posible.
 
-Este documento diseña **62 piezas** para los 13 slots previstos. No modifica runtime/HTML.
+Este documento diseña **58 piezas** para los 13 slots previstos. No modifica runtime/HTML.
 
 Fuentes machine-readable:
 - `experimentos/balance_nuevo/equipment_arc1_catalog.json`
@@ -64,7 +64,7 @@ Referencias consultadas:
 | Accesorio | Anillo | 2 |
 | Tesoro | Tesoro espiritual | 2 |
 
-Los dos anillos usan el mismo catálogo de ANILLO. Los dos tesoros usan el mismo catálogo de TESORO_ESPIRITUAL. Un objeto único no puede duplicarse.
+Los dos anillos usan el mismo catálogo de ANILLO. Los dos slots usan el mismo catálogo de TESORO_ESPIRITUAL, pero Arco 1 sólo ofrece un tesoro obtenible. El segundo slot queda vacío. Un objeto único no puede duplicarse.
 
 No es objetivo llenar los 13 slots en LianQi I ni II.
 
@@ -198,7 +198,7 @@ No se gasta como precio. Sigue siendo historial/prestigio y puede contribuir a a
 | **Calzas de sendero de pinos** | PIERNAS | HP +3; EVA +1 | — | Ning Cai · M04 | 8 piedras | HP, EVASION |
 | **Sandalias de viento** | CALZADO | EVA +4 | — | Artesanos de Sauces · M05 | 11 piedras | EVASION |
 | **Botas de piedra húmeda** | CALZADO | Ten +3; EVA +1 | — | Puestos del Mercado del Valle · M05 | 9 piedras | TENACITY, EVASION |
-| **Amuleto de colmillo montado** | AMULETO | Daño directo% +3 pp | — | Ning Cai · M05 | 4 piedras / material: colmillo_lobo_legitimo | DIRECT_DAMAGE |
+| **Amuleto de colmillo montado** | AMULETO | Daño técnica directa% +3 pp | — | Ning Cai · M05 | 4 piedras / material: colmillo_lobo_legitimo | DIRECT_DAMAGE |
 | **Amuleto de sauce sereno** | AMULETO | Control +3; Qi +1 | — | Artesanos de Sauces · M05 | 10 piedras | CONTROL, QI |
 | **Pulsera de cauce trenzado** | PULSERA | Qi +3 | — | Artesanos de Sauces · M05 | 8 piedras | QI |
 | **Anillo del sello de hierro** | ANILLO | Pen% +4 pp | — | Lu Cheng · M06 | 4 contrib. | PENETRATION |
@@ -211,7 +211,7 @@ No se gasta como precio. Sigue siendo historial/prestigio y puede contribuir a a
 |---|---|---|---|---|---|---|
 | **Espada de vena clara** | ARMA | Básico plano +1; Prec +3; Pen% +3 pp | — | Lu Cheng · M08 | 20 piedras / 7 contrib. | BASIC_ATTACK, PRECISION, PENETRATION |
 | **Vara de dos corrientes** | ARMA | Control +4; Ten +2 | — | He Zhen · M11 | 7 contrib. | CONTROL, TENACITY |
-| **Sable de anillo gris** | ARMA | Básico plano +2; Daño directo% +2 pp; Prec -1 | — | Lu Cheng · M08 | 18 piedras | BASIC_ATTACK, DIRECT_DAMAGE, AGGRESSION |
+| **Sable de anillo gris** | ARMA | Básico plano +2; Daño técnica directa% +2 pp; Prec -1 | — | Lu Cheng · M08 | 18 piedras | BASIC_ATTACK, DIRECT_DAMAGE, AGGRESSION |
 | **Tocado de hilo de formación** | TOCADO | Prec +3; Control +2 | — | Wen Tao · M08 | 5 contrib. | PRECISION, CONTROL |
 | **Velo del archivo sereno** | TOCADO | Ten +4; Qi +2 | — | Song Rui · M09 | 5 contrib. | TENACITY, QI |
 | **Túnica reforzada** | VESTIDURA | DEF +0.75; HP +3 | — | Ning Cai · M08 | 22 piedras / 8 contrib. | DEFENSE, HP |
@@ -231,7 +231,7 @@ No se gasta como precio. Sigue siendo historial/prestigio y puede contribuir a a
 
 | Pieza | Slot | Stats | Efecto | Fuente | Precio | Perfil |
 |---|---|---|---|---|---|---|
-| **Hoja de seis corrientes** | ARMA | Básico plano +2; Daño directo% +3 pp; Prec +2 | — | Lu Cheng · M13 | 10 contrib. | BASIC_ATTACK, DIRECT_DAMAGE, PRECISION |
+| **Hoja de seis corrientes** | ARMA | Básico plano +2; Daño técnica directa% +3 pp; Prec +2 | — | Lu Cheng · M13 | 10 contrib. | BASIC_ATTACK, DIRECT_DAMAGE, PRECISION |
 | **Vara de relevo** | ARMA | Control +5; Ten +3; Qi +2 | — | Duan Shibo · M16 | 9 contrib. | CONTROL, TENACITY, QI |
 | **Velo del vigilante del núcleo** | TOCADO | Prec +3; Ten +4 | — | Qiao Ren · M14 | 7 contrib. | PRECISION, TENACITY |
 | **Manto de mantenimiento** | VESTIDURA | DEF +0.75; Ten +3; Qi +2 | — | Duan Shibo · M13 | 9 contrib. | DEFENSE, TENACITY, QI |
@@ -241,7 +241,7 @@ No se gasta como precio. Sigue siendo historial/prestigio y puede contribuir a a
 | **Botas del voto inmóvil** | CALZADO | EVA +5; Ten +3 | — | Ning Cai · M17 | 8 contrib. | EVASION, TENACITY |
 | **Amuleto de ancla resonante** | AMULETO | HP +3; Control +3; Ten +3 | — | He Zhen · M14 | 8 contrib. | HP, CONTROL, TENACITY |
 | **Pulsera del nudo de crisis** | PULSERA | Qi +4; EVA +2; Ten +2 | — | Lan Meihua · M16 | 7 contrib. | QI, EVASION, TENACITY |
-| **Anillo de relevo** | ANILLO | Daño directo% +3 pp; Crít. +2 pp | — | Lu Cheng · M16 | 9 contrib. | DIRECT_DAMAGE, CRIT |
+| **Anillo de relevo** | ANILLO | Daño técnica directa% +3 pp; Crít. +2 pp | — | Lu Cheng · M16 | 9 contrib. | DIRECT_DAMAGE, CRIT |
 | **Anillo de marca quieta** | ANILLO | Prec +3; Pen% +5 pp | — | Wen Tao · M13 | 8 contrib. | PRECISION, PENETRATION |
 | **Placa de mantenimiento antigua** | TESORO_ESPIRITUAL | Ten +3 | 1/combate: Absorción 4 al primer impacto directo | mantenimiento_antiguo · M13 | exploración | TENACITY, REACTIVE_DEFENSE |
 | **Campana de relevo silencioso** | TESORO_ESPIRITUAL | Control +3; Qi +2 | 1/combate al fallar Control enemigo: +2 Qi | Ji Xueying · M17 | 10 contrib. | CONTROL, QI, REACTIVE_DEFENSE |
@@ -262,17 +262,44 @@ El juego no debe regalar una armadura completa por seguir la historia. La column
 
 ## 9. Tesoros espirituales
 
-Sólo existen cinco candidatos en Arco 1 y hay dos slots. Son auxiliares, no artefactos destructores de reino.
+Aunque la arquitectura permite **dos slots de Tesoro Espiritual**, durante el Arco 1 sólo existe **un tesoro obtenible**.
 
-| Tesoro | Etapa | Función | Fuente |
-|---|---|---|---|
-| Placa de Ruta de la Grulla | LianQi_II | Ten +2; 1/combate: +5 Tenacidad a un chequeo de Control | Qiao Ren · M07 · 4 contrib. |
-| Brújula de Seis Corrientes | LianQi_III | Prec +2; Control +2; 1/combate: siguiente técnica +4 Precisión | He Zhen · M12 · 8 contrib. |
-| Espejo de Pulso Velado | LianQi_III | EVA +2; 1/combate bajo 35% HP: Absorción 3 | primera_ala · M12 · exploración |
-| Placa de mantenimiento antigua | LianQi_IV | Ten +3; 1/combate: Absorción 4 al primer impacto directo | mantenimiento_antiguo · M13 · exploración |
-| Campana de relevo silencioso | LianQi_IV | Control +3; Qi +2; 1/combate al fallar Control enemigo: +2 Qi | Ji Xueying · M17 · 10 contrib. |
+Esto es deliberado:
 
-Los tesoros de exploración no son llaves narrativas. Derrotar una entidad antigua no debe ser obligatorio para abrir la historia.
+```text
+2 slots disponibles
+≠
+2 tesoros garantizados
+
+Arco 1
+→ 1 Tesoro Espiritual posible
+→ difícil de encontrar
+→ completamente opcional
+→ no comprable
+→ no canjeable
+→ no recompensa automática
+```
+
+### Espejo de Pulso Velado
+
+| Campo | Diseño |
+|---|---|
+| Etapa mínima | LianQi III |
+| Slot | Tesoro Espiritual |
+| Fuente | exploración oculta de la Primera Ala |
+| Ventana narrativa | durante/después de M12 |
+| Compra | no |
+| Contribución | no |
+| Garantizado | no |
+| Único | sí |
+| Stats | +3 Evasión; +2 Tenacidad |
+| Efecto | 1 vez por combate, al caer por primera vez a <=35% HP, genera Absorción = 15% del HP máximo |
+
+El segundo slot de Tesoro Espiritual permanecerá **vacío por diseño durante todo el Arco 1**.
+
+El Espejo no es una llave de M12 ni de M18. El jugador puede terminar el arco sin encontrarlo. Los encuentros principales nunca se balancearán suponiendo que lo posee.
+
+Su `power_budget` es superior al de buena parte del equipo común de su etapa porque **un Tesoro Espiritual debe sentirse excepcional**. La contrapartida es su extrema escasez y ausencia de adquisición garantizada.
 
 ## 10. Requisiciones que alimentan la economía
 
@@ -319,7 +346,7 @@ Objetivo de jugador razonablemente activo, con varias decisiones de gasto.
 | LianQi_I | espada_madera_entrenamiento, uniforme_gris_externo, fajin_discipulo_externo, zapatos_suela_blanda | Prec +1; HP +1; DEF +0.25; Qi +2; EVA +2 |
 | LianQi_II | espada_hierro_equilibrada, bandana_cuero_reforzada, sobretunica_patrulla, fajin_patrulla, sandalias_viento, pulsera_cauce_trenzado, anillo_herrumbroso | Básico plano +1; Prec +2; Ten +4; HP +4; DEF +0.25; Qi +7; EVA +4 |
 | LianQi_III | espada_vena_clara, tocado_hilo_formacion, tunica_reforzada, brazales_pulso_medico, fajin_dos_alas, calzado_nube_baja, amuleto_meridiano_estable, anillo_hilo_plata | Básico plano +1; Prec +9; Pen% +3 pp; Control +6; DEF +0.75; HP +6; Ten +8; Qi +4; EVA +5; Crít. +2 pp |
-| LianQi_IV | hoja_seis_corrientes, velo_vigilante_nucleo, manto_mantenimiento, brazales_pulso_medico, fajin_dos_alas, calzas_trama_sello, calzado_nube_baja, amuleto_ancla_resonante, anillo_hilo_plata, placa_mantenimiento_antigua | Básico plano +2; Daño directo% +3 pp; Prec +8; Ten +17; DEF +0.75; Qi +6; Control +7; HP +7; EVA +8; Crít. +2 pp |
+| LianQi_IV | hoja_seis_corrientes, velo_vigilante_nucleo, manto_mantenimiento, brazales_pulso_medico, fajin_dos_alas, calzas_trama_sello, calzado_nube_baja, amuleto_ancla_resonante, anillo_hilo_plata, placa_mantenimiento_antigua | Básico plano +2; Daño técnica directa% +3 pp; Prec +8; Ten +17; DEF +0.75; Qi +6; Control +7; HP +7; EVA +8; Crít. +2 pp |
 
 ### HIGH_ROLL_STRESS
 
@@ -328,9 +355,9 @@ Perfil deliberadamente cargado para comprobar que el sistema no se rompe. No es 
 | Etapa | Piezas | Stats agregados |
 |---|---|---|
 | LianQi_I | espada_madera_entrenamiento, uniforme_gris_externo, fajin_discipulo_externo, zapatos_suela_blanda, colgante_fragmento_jade, anillo_herrumbroso | Prec +1; HP +1; DEF +0.25; Qi +3; EVA +2; Control +2 |
-| LianQi_II | aguja_acero_frio, bandana_cuero_reforzada, tunica_ruta_sauces, brazales_cuero_cruzado, fajin_patrulla, calzas_sendero_pinos, sandalias_viento, amuleto_colmillo_montado, pulsera_cauce_trenzado, anillo_sello_hierro, anillo_corriente_clara, placa_ruta_grulla | Prec +5; Pen% +7 pp; Ten +6; HP +6; EVA +7; DEF +0.5; Qi +6; Daño directo% +3 pp; Control +2 |
+| LianQi_II | aguja_acero_frio, bandana_cuero_reforzada, tunica_ruta_sauces, brazales_cuero_cruzado, fajin_patrulla, calzas_sendero_pinos, sandalias_viento, amuleto_colmillo_montado, pulsera_cauce_trenzado, anillo_sello_hierro, anillo_corriente_clara, placa_ruta_grulla | Prec +5; Pen% +7 pp; Ten +6; HP +6; EVA +7; DEF +0.5; Qi +6; Daño técnica directa% +3 pp; Control +2 |
 | LianQi_III | espada_vena_clara, tocado_hilo_formacion, tunica_reforzada, brazales_pulso_medico, fajin_dos_alas, calzas_paso_silencioso, calzado_nube_baja, amuleto_meridiano_estable, pulsera_nudo_formacion, anillo_hilo_plata, anillo_tierra_profunda, brujula_seis_corrientes, espejo_pulso_velado | Básico plano +1; Prec +11; Pen% +3 pp; Control +11; DEF +0.75; HP +11; Ten +12; Qi +7; EVA +10; Crít. +2 pp |
-| LianQi_IV | hoja_seis_corrientes, tocado_hilo_formacion, tunica_reforzada, vendas_antebrazo_practica, fajin_dos_alas, calzas_paso_silencioso, calzado_nube_baja, amuleto_colmillo_montado, pulsera_nudo_formacion, anillo_hilo_plata, anillo_marca_quieta, brujula_seis_corrientes | Básico plano +2; Daño directo% +6 pp; Prec +15; Control +9; DEF +0.75; HP +6; Qi +7; EVA +8; Crít. +2 pp; Pen% +5 pp |
+| LianQi_IV | hoja_seis_corrientes, tocado_hilo_formacion, tunica_reforzada, vendas_antebrazo_practica, fajin_dos_alas, calzas_paso_silencioso, calzado_nube_baja, amuleto_colmillo_montado, pulsera_nudo_formacion, anillo_hilo_plata, anillo_marca_quieta, brujula_seis_corrientes | Básico plano +2; Daño técnica directa% +6 pp; Prec +15; Control +9; DEF +0.75; HP +6; Qi +7; EVA +8; Crít. +2 pp; Pen% +5 pp |
 
 ## 12. Builds que el catálogo debe permitir
 
@@ -360,6 +387,37 @@ Mezcla 1–2 piezas de cada eje. Es el perfil que más se parece a EXPECTED_STAG
 
 Ninguna pieza está bloqueada por raíz elemental. La raíz crea sinergias, no permisos artificiales.
 
+## 12B. Daño de técnicas aportado por equipo
+
+Sí existe, pero de forma intencionalmente pequeña y explícita mediante:
+
+`technique_direct_damage_percent`
+
+Este stat aumenta **sólo el daño directo compatible de técnicas**.
+
+No modifica:
+- Golpe básico;
+- DOT;
+- Reflect;
+- Retaliation;
+- Calor almacenado;
+- curaciones;
+- Absorción;
+- daño secundario marcado `no_offensive_rescale`.
+
+Piezas actuales:
+
+| Pieza | Etapa | Bono |
+|---|---|---:|
+| Amuleto de colmillo montado | LianQi II | +3% daño directo de técnicas |
+| Sable de anillo gris | LianQi III | +2% |
+| Hoja de seis corrientes | LianQi IV | +3% |
+| Anillo de relevo | LianQi IV | +3% |
+
+Un personaje de LianQi IV que sacrifique varios slots para apilar las piezas compatibles puede alcanzar aproximadamente **+8–9%** de daño directo de técnica según el arma elegida. Eso ya es una build ofensiva especializada, no el baseline esperado.
+
+Además, Precisión, crítico y Penetración pueden mejorar el rendimiento ofensivo de las técnicas sin multiplicar su magnitud base.
+
 ## 13. Guardias de balance
 
 1. **No full-set bonus** en Arco 1.
@@ -378,7 +436,7 @@ Ninguna pieza está bloqueada por raíz elemental. La raíz crea sinergias, no p
 ## 14. Estado del catálogo
 
 ```text
-62 piezas totales
+58 piezas totales
 
 LianQi I   12
 LianQi II  19
@@ -395,7 +453,7 @@ CALZADO                5
 AMULETO                5
 PULSERA                4
 ANILLO                 7
-TESORO_ESPIRITUAL      5
+TESORO_ESPIRITUAL      1
 ```
 
 El catálogo machine-readable pasó validación de:
