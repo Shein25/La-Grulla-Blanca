@@ -109,8 +109,14 @@ def validate_catalog() -> list[str]:
         stored = float(item["power_budget"])
         if abs(actual - stored) > 0.011:
             errors.append(f"BUDGET_MISMATCH:{item['item_id']}:{stored}!={actual}")
-        if actual > float(ceilings[item["min_stage"]]):
-            errors.append(f"BUDGET_OVER:{item['item_id']}:{actual}>{ceilings[item['min_stage']]}")
+        slot_ceilings = CATALOG.get("slot_power_budget_ceiling", {}).get(item["slot"])
+        ceiling = float(
+            slot_ceilings[item["min_stage"]]
+            if slot_ceilings and item["min_stage"] in slot_ceilings
+            else ceilings[item["min_stage"]]
+        )
+        if actual > ceiling:
+            errors.append(f"BUDGET_OVER:{item['item_id']}:{actual}>{ceiling}")
 
         source = item["source_type"]
         if source in {"STONE_PURCHASE", "WORKSHOP_SERVICE_STONES"} and not item.get("price_stones"):
@@ -126,6 +132,12 @@ def validate_catalog() -> list[str]:
         collisions = sorted(legacy_ids.intersection(ITEM_BY_ID))
         for item_id in collisions:
             errors.append(f"LEGACY_ID_REUSED:{item_id}")
+
+    defense_slot = CATALOG.get("numeric_contract", {}).get("defense_equipment_slot")
+    if defense_slot:
+        for item in ITEMS:
+            if item["slot"] != defense_slot and float(item.get("stats", {}).get("defense", 0)) != 0:
+                errors.append(f"DEFENSE_OUTSIDE_SLOT:{item['item_id']}:{item['slot']}")
 
     treasures = [item for item in ITEMS if item["slot"] == "TESORO_ESPIRITUAL"]
     expected_treasures = int(CATALOG.get("treasure_policy", {}).get("obtainable_arc1", len(treasures)))
