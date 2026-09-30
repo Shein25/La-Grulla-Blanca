@@ -2139,3 +2139,85 @@ runtime/HTML SIN CAMBIOS.
 
 Siguiente bloque sugerido:
 - formalizar baseline desnudo LianQi I restante: HP30 / DEF1 / EVA5 y perfil enemigo ordinario completo.
+
+
+### ETAPA 17 — Progresión personaje LianQi I–IV — CERRADA
+
+Documento:
+- docs/experimentos/ETAPA17_PROGRESION_PERSONAJE_LIANQI_I_IV_2026-09-29.md
+
+Runner:
+- experimentos/balance_nuevo/etapa17_progresion_lianqi_i_iv.py
+
+Decisiones estructurales PROVISIONALES:
+
+Stats iniciales:
+- fijos, NO aleatorios;
+- HP30;
+- Qi31;
+- Prec100 CANON;
+- EVA5;
+- DEF1;
+- Control0;
+- Tenacidad0;
+- crit5% CANON;
+- crit damage x1.50 CANON.
+- raíz se aplica después del baseline.
+
+Progresión:
+- LianQi I Percepción: HP30 / Qi31 / 0 pts / BASE.
+- LianQi II Circulación: HP36 / Qi37 / +2 pts / Tramo I.
+- LianQi III Consolidación: HP42 / Qi43 / +2 pts / Tramo II.
+- LianQi IV Refinamiento: HP48 / Qi49 / +2 pts / Tramo III.
+
+Regla por avance:
+- +6 HP.
+- +6 Qi.
+- +2 puntos de técnica.
+- nuevo techo de Tramo.
+- NO daño/DEF/Prec/EVA/crit/pen/control/tenacity automáticos.
+
+Qi:
+- 31/37/43/49 conserva paridad entre ofensiva6 y defensiva7/Agua6;
+- base6 pura: 5/6/7/8 usos;
+- def7 + base6: 1+4 /1+5 /1+6 /1+7;
+- secuencias con AOE9 también ganan ~1 acción mixta por etapa;
+- eficiencia puede cruzar umbrales adicionales como premio de build.
+
+Puntos:
+- 2 por avance II/III/IV;
+- total6 a LianQi IV;
+- 3 técnicas ×3 Tramos =9 slots posibles;
+- obliga a elegir entre especializar y repartir;
+- 1 nodo =1 punto;
+- T2 requiere cualquier T1 previo en la misma técnica;
+- T3 requiere cualquier T2;
+- identidad de rama puede cambiar;
+- puntos se pueden guardar.
+
+Afectación de habilidades:
+- NO stage_multiplier global.
+- stage abre Tramos y puntos.
+- más Qi permite más usos.
+- efectos %HP/%Qi se recomputan naturalmente con nuevo máximo.
+- valores planos siguen planos salvo rama/equipo/Concordancia/buff explícito.
+
+Ejemplos HP30→36→42→48:
+- Horno25%: 7.5→9→10.5→12.
+- Horno45%: 13.5→16.2→18.9→21.6.
+- Espejo24%: 7.2→8.64→10.08→11.52.
+- Espejo42%: 12.6→15.12→17.64→20.16.
+- curas Piel5%: 1.5→1.8→2.1→2.4.
+
+Configs/docs sincronizados:
+- config_lianqi1_naked.py baseline HP/EVA/DEF/Control/Tenacity.
+- config_arc1_provisional.py STAGES HP/Qi/puntos/acceso.
+- TECNICAS_ARCO1... economía de puntos.
+- CONTRATO_COMBATE... progresión provisional.
+
+Guardia:
+- valores II–IV son PROVISIONALES estructurales;
+- no afirmar balance final hasta crear perfiles enemigos II–IV.
+
+Siguiente bloque:
+- perfiles enemigos LianQi II/III/IV y revalidación por Tramo.
