@@ -375,9 +375,10 @@
       "slot": "VESTIDURA",
       "grade": "MUNDANO_TRABAJADO",
       "accessibility": "UNICO",
-      "power_budget": 1,
+      "power_budget": 3,
       "stats": {
-        "hp_max": 2
+        "defense": 1,
+        "hp_max": 1
       },
       "source_type": "STARTING_ISSUE",
       "source_npc": "Tao Ming",
@@ -391,13 +392,15 @@
       "build_tags": [
         "HP",
         "DEFENSE",
-        "BALANCED"
+        "BALANCED",
+        "ARMOR"
       ],
       "effect": null,
       "availability": "GUARANTEED",
       "notes": "Dotación de Prólogo en descansillo; reemplaza completamente al uniforme legacy. Sin DEF fraccionaria.",
       "description": "Paño gris sin insignias, ceñido con cordones sencillos. La tela raspa un poco en el cuello y huele a almacén seco; es la ropa de quien todavía debe demostrar que merece un emblema.",
-      "balance_revision_note": "El equipo inicial no debe introducir DEF plana; gana +2 HP."
+      "balance_revision_note": "Protección inicial real, todavía modesta.",
+      "armor_class": "CLOTH_TRAINING"
     },
     {
       "item_id": "bandana_lino_simple",
@@ -788,10 +791,10 @@
       "slot": "VESTIDURA",
       "grade": "TRABAJO_ESPIRITUAL_MENOR",
       "accessibility": "INSTITUCIONAL",
-      "power_budget": 2,
+      "power_budget": 6,
       "stats": {
-        "hp_max": 3,
-        "tenacity": 2
+        "defense": 2,
+        "hp_max": 2
       },
       "source_type": "CONTRIBUTION_REDEMPTION",
       "source_npc": "Jiang Rui",
@@ -804,13 +807,15 @@
       "unique": false,
       "build_tags": [
         "HP",
-        "DEFENSE"
+        "DEFENSE",
+        "ARMOR"
       ],
       "effect": null,
       "availability": "OPTIONAL",
       "notes": "",
       "description": "Una sobretúnica corta, reforzada en costillas y hombros. Los cierres están puestos para abrirse si una rama atrapa la tela, antes de arrastrar al portador con ella.",
-      "balance_revision_note": "Sustituye +0.25 DEF por aguante entero apropiado para patrulla."
+      "balance_revision_note": "Opción protectora LII.",
+      "armor_class": "MEDIUM_PATROL"
     },
     {
       "item_id": "tunica_ruta_sauces",
@@ -819,10 +824,11 @@
       "slot": "VESTIDURA",
       "grade": "TRABAJO_ESPIRITUAL_MENOR",
       "accessibility": "ABIERTO_CON_RECURSOS",
-      "power_budget": 1.67,
+      "power_budget": 4,
       "stats": {
-        "evasion": 2,
-        "hp_max": 2
+        "defense": 1,
+        "evasion": 3,
+        "hp_max": 1
       },
       "source_type": "STONE_PURCHASE",
       "source_npc": "Artesanos de Sauces",
@@ -835,12 +841,15 @@
       "unique": false,
       "build_tags": [
         "EVASION",
-        "HP"
+        "HP",
+        "ARMOR"
       ],
       "effect": null,
       "availability": "OPTIONAL",
       "notes": "",
-      "description": "Tela flexible teñida con corteza y savia. El faldón está cortado en paneles separados para no sujetar las piernas cuando hay que cambiar de dirección con rapidez."
+      "description": "Tela flexible teñida con corteza y savia. El faldón está cortado en paneles separados para no sujetar las piernas cuando hay que cambiar de dirección con rapidez.",
+      "armor_class": "LIGHT_MOBILE",
+      "balance_revision_note": "Menos DEF, más movilidad."
     },
     {
       "item_id": "brazales_cuero_cruzado",
@@ -1327,9 +1336,9 @@
       "slot": "VESTIDURA",
       "grade": "REFINADO_MENOR",
       "accessibility": "DUAL",
-      "power_budget": 3.5,
+      "power_budget": 8.5,
       "stats": {
-        "defense": 1,
+        "defense": 3,
         "hp_max": 2
       },
       "source_type": "WORKSHOP_SERVICE_DUAL",
@@ -1343,13 +1352,15 @@
       "unique": false,
       "build_tags": [
         "DEFENSE",
-        "HP"
+        "HP",
+        "ARMOR"
       ],
       "effect": null,
       "availability": "OPTIONAL",
       "notes": "",
       "description": "Túnica de varias capas con una malla de hilos cobrizos escondida entre la tela. No suena al moverse; sólo se percibe el peso cuando recibe un golpe y lo reparte por el torso.",
-      "balance_revision_note": "Primera vestidura con +1 DEF real; LianQi III justifica el umbral."
+      "balance_revision_note": "Armadura principal LIII de máxima DEF.",
+      "armor_class": "HEAVY_REINFORCED"
     },
     {
       "item_id": "vestidura_flujo_ligero",
@@ -1358,8 +1369,9 @@
       "slot": "VESTIDURA",
       "grade": "REFINADO_MENOR",
       "accessibility": "ABIERTO_CON_RECURSOS",
-      "power_budget": 2,
+      "power_budget": 4.5,
       "stats": {
+        "defense": 1,
         "evasion": 4,
         "qi_max": 2
       },
@@ -1374,12 +1386,15 @@
       "unique": false,
       "build_tags": [
         "EVASION",
-        "QI"
+        "QI",
+        "ARMOR"
       ],
       "effect": null,
       "availability": "OPTIONAL",
       "notes": "",
-      "description": "Vestidura de mangas estrechas y faldón dividido, tejida con fibras que apenas retienen humedad. El aire se cuela por las capas y hace que los cambios de dirección resulten menos bruscos."
+      "description": "Vestidura de mangas estrechas y faldón dividido, tejida con fibras que apenas retienen humedad. El aire se cuela por las capas y hace que los cambios de dirección resulten menos bruscos.",
+      "armor_class": "LIGHT_SPIRITUAL",
+      "balance_revision_note": "DEF baja, EVA/Qi altos."
     },
     {
       "item_id": "brazales_pulso_medico",
@@ -1759,9 +1774,9 @@
       "slot": "VESTIDURA",
       "grade": "REFINADO_DE_SECTA",
       "accessibility": "INSTITUCIONAL",
-      "power_budget": 3.92,
+      "power_budget": 11.42,
       "stats": {
-        "defense": 1,
+        "defense": 4,
         "tenacity": 3,
         "qi_max": 2
       },
@@ -1777,13 +1792,15 @@
       "build_tags": [
         "DEFENSE",
         "TENACITY",
-        "QI"
+        "QI",
+        "ARMOR"
       ],
       "effect": null,
       "availability": "OPTIONAL",
       "notes": "",
       "description": "Manto pesado, manchado de aceite mineral y polvo antiguo. Sus capas fueron pensadas para arrastrarse entre mecanismos, sellos y piedra rota sin exponer la piel a todo lo que espera allí.",
-      "balance_revision_note": "Vestidura LIV avanzada; +1 DEF entero y utilidades."
+      "balance_revision_note": "Máxima DEF disponible en Arco 1.",
+      "armor_class": "HEAVY_SECT"
     },
     {
       "item_id": "brazales_relevo",
@@ -2277,8 +2294,9 @@
       "grade": "REFINADO_DE_SECTA",
       "accessibility": "INSTITUCIONAL",
       "stats": {
-        "hp_max": 5,
-        "tenacity": 4
+        "defense": 3,
+        "hp_max": 4,
+        "tenacity": 3
       },
       "source_type": "CONTRIBUTION_REDEMPTION",
       "source_npc": "Qiao Ren",
@@ -2292,14 +2310,16 @@
       "build_tags": [
         "HP",
         "TENACITY",
-        "DEFENSE"
+        "DEFENSE",
+        "ARMOR"
       ],
       "effect": null,
       "availability": "OPTIONAL",
       "notes": "",
       "description": "Paño gris azulado de muchas capas, cosido para que ninguna costura coincida con otra. Es pesada al tomarla en las manos, pero sobre el cuerpo reparte la tensión como las plumas superpuestas de un ala recogida.",
-      "power_budget": 3.5,
-      "balance_revision_note": "Alternativa LIV sin DEF; maximiza cuerpo/Tenacidad en vez de fracción plana."
+      "power_budget": 10.25,
+      "balance_revision_note": "Alternativa LIV de aguante integral.",
+      "armor_class": "MEDIUM_SECT"
     },
     {
       "item_id": "pulsera_meridiano_profundo",
@@ -2394,12 +2414,22 @@
     "equipment_flat_stats_integer_only": true,
     "forbidden_fractional_flat_stats": true,
     "percentage_stats_use_explicit_percent_or_pp_fields": true,
-    "defense_rule": "Equipment DEF is integer flat DEF. No fractional DEF. Ordinary early gear uses HP/Tenacity instead; only selected advanced vestments grant +1 DEF.",
+    "defense_rule": "Arc1 equipment DEF is integer flat DEF concentrated in VESTIDURA. Other slots grant no DEF. Protective vestidura progression: LI max+1, LII max+2, LIII max+3, LIV max+4; light variants trade DEF for EVA/Qi.",
     "max_theoretical_equipment_defense_by_stage": {
-      "LianQi_I": 0,
-      "LianQi_II": 0,
-      "LianQi_III": 1,
-      "LianQi_IV": 1
+      "LianQi_I": 1,
+      "LianQi_II": 2,
+      "LianQi_III": 3,
+      "LianQi_IV": 4
+    },
+    "defense_equipment_slot": "VESTIDURA",
+    "defense_other_slots_arc1": 0
+  },
+  "slot_power_budget_ceiling": {
+    "VESTIDURA": {
+      "LianQi_I": 3,
+      "LianQi_II": 6,
+      "LianQi_III": 9,
+      "LianQi_IV": 12
     }
   }
 }
