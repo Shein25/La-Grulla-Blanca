@@ -1658,3 +1658,96 @@ Guardias:
 - revalidar economía al fijar Qi II–IV;
 - TURN_START mantiene Reflujo antes de DOT;
 - +1 Qi de Corriente Ininterrumpida es fuente explícita, no regen universal.
+
+
+### ETAPA 13 — Paso de Nube Ligera completo — CERRADA
+
+Documento:
+- `docs/experimentos/ETAPA13_PASO_NUBE_COMPLETO_2026-09-29.md`
+
+Runner:
+- `experimentos/balance_nuevo/etapa13_paso_nube_completo.py`
+
+Alcance:
+- base antigua vs nueva;
+- Tramos I–III;
+- 27/27 combinaciones mixables;
+- COMMON / PRECISE / HEAVY / DANGEROUS;
+- 2 y 3 enemigos;
+- CORRIENTE_CLARA;
+- economía Qi/duración.
+
+Base:
+- antiguo +15 EVA /2t descartado.
+- **+35 EVA /4t /coste7 → PROVISIONAL**.
+
+Base nueva vs antigua, 4×25k:
+- COMMON: +11.55 pp win promedio.
+- PRECISE: +14.68 pp.
+- HEAVY: +14.78 pp.
+- DANGEROUS: +17.37 pp.
+- 2 enemigos: +28.86 pp.
+- 3 enemigos: +23.65 pp.
+
+Base nueva vs ofensiva pura:
+- COMMON +1.53 pp.
+- PRECISE +0.12 pp.
+- HEAVY +2.25 pp.
+- DANGEROUS +0.77 pp.
+- 2 enemigos +9.66 pp.
+- 3 enemigos +13.22 pp.
+- confirma identidad natural de Evasión multiimpacto sin dominar PREC100.
+
+Evasión — PROVISIONAL:
+- T1 Nube Velada +5 => Paso40.
+- T2 Cuerpo de Nube +5 => con T1 Paso45.
+- T3 Nube Inalcanzable +5 => VVV Paso50.
+- con EVA base5 + raíz10: EVA total65.
+- VVV promedio 4×15k:
+  COMMON93.77 / PRECISE88.48 / HEAVY90.67 / DANGEROUS83.45 /
+  2EN78.18 / 3EN51.38.
+- no inmunidad: hit25% vs PREC90,35% vs PREC100.
+
+Respuesta — PROVISIONAL recalibrada por conteo:
+- primera evasión válida durante Paso crea CORRIENTE_CLARA una vez/activación.
+- 1 nodo R: siguiente técnica pura Viento +5 Precisión.
+- 2 nodos R: +10 Precisión.
+- 3 nodos R: +15 Precisión +5 pp crítico.
+- ataque básico no consume.
+- trigger ~94–100% según perfil.
+- RRR promedio:
+  COMMON91.72 / PRECISE85.69 / HEAVY87.67 / DANGEROUS80.04 /
+  2EN68.03 / 3EN34.72.
+
+Eficiencia — PROVISIONAL recalibrada:
+- T1 Respiración Ligera: coste7->6.
+- T2 Circulación: -10%; con E previa +1 duración.
+- T3 Aliento: -10%; con cualquier E previa +1 duración.
+- EEE = coste5 / duración6 / +35 EVA.
+- conserva techo histórico de coste: 6*.9*.9=4.86->5.
+- EEE promedio:
+  COMMON93.42 / PRECISE88.22 / HEAVY90.38 / DANGEROUS83.61 /
+  2EN72.80 / 3EN41.88.
+- contra DANGEROUS EEE queda ligeramente sobre VVV, por lo que VVV no domina todo.
+
+Screen 27/27, 8k/celda:
+- COMMON 90.31–93.45%.
+- PRECISE 83.73–88.60%.
+- HEAVY 86.61–91.34%.
+- DANGEROUS 77.86–83.81%.
+- 2 enemigos 65.35–78.30%.
+- 3 enemigos 31.24–50.33%.
+- ninguna ruta fuera de escala.
+
+Estado:
+- base PROVISIONAL.
+- Evasión I–III PROVISIONAL.
+- Respuesta I–III PROVISIONAL por conteo de nodos.
+- Eficiencia I–III PROVISIONAL con nueva duración.
+- runtime/HTML SIN CAMBIOS.
+
+Guardias:
+- revalidar Qi II–IV;
+- revalidar perfiles enemigos II–IV;
+- CORRIENTE una vez/activación;
+- no movimiento/Velocidad/segunda esquiva.
