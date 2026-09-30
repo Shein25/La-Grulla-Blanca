@@ -1579,10 +1579,10 @@
       "slot": "TESORO_ESPIRITUAL",
       "grade": "ANTIGUO_FUNCIONAL",
       "accessibility": "UNICO",
-      "power_budget": 2.5,
+      "power_budget": 3.42,
       "stats": {
-        "evasion": 3,
-        "tenacity": 2
+        "evasion": 5,
+        "tenacity": 3
       },
       "source_type": "EXPLORATION_UNIQUE",
       "source_npc": null,
@@ -1602,11 +1602,11 @@
       "effect": {
         "type": "HP_THRESHOLD_ABSORPTION",
         "threshold_pct": 35,
-        "absorption_max_hp_percent": 15,
+        "absorption_max_hp_percent": 20,
         "uses": 1
       },
       "availability": "HIDDEN_OPTIONAL",
-      "notes": "ÚNICO Tesoro Espiritual obtenible en Arco 1. Hallazgo oculto de la Primera Ala: no se compra, no se canjea y no es recompensa automática. Requiere resolver una ruta opcional de exploración durante/post M12. Al caer por primera vez a <=35% HP en combate, genera Absorción equivalente al 15% de HP máximo, una vez por combate."
+      "notes": "ÚNICO Tesoro Espiritual obtenible en Arco 1. Hallazgo oculto de la Primera Ala: no se compra, no se canjea y no es recompensa automática. Requiere resolver una ruta opcional de exploración durante/post M12. Al caer por primera vez a <=35% HP en combate, genera Absorción equivalente al 20% de HP máximo, una vez por combate."
     },
     {
       "item_id": "hoja_seis_corrientes",
