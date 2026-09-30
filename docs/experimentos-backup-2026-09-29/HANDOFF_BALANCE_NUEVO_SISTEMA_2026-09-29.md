@@ -2435,3 +2435,33 @@ Guardias:
 
 Siguiente etapa:
 - ETAPA18B — benchmark equipo por etapa/arquetipo en Colab/Monte Carlo.
+
+
+### ETAPA18 — CORRECCIÓN TESORO ÚNICO + DAÑO DE TÉCNICAS
+
+Decisión:
+- 2 slots arquitectónicos de Tesoro Espiritual;
+- sólo **1 tesoro obtenible en Arc1**;
+- segundo slot vacío todo Arc1;
+- tesoros deben ser poderosos/raros/difíciles, no accesorios normales.
+
+Único Arc1:
+- Espejo de Pulso Velado;
+- LianQi III+, oculto Primera Ala / M12;
+- no compra/canje/recompensa automática;
+- +5 EVA;
+- +3 Tenacidad;
+- 1/combat al caer primero a <=35% HP -> Absorción20% HPmax.
+- no necesario para balance ni progreso principal.
+
+Catálogo:
+- 58 piezas total.
+- LI12 / LII18 / LIII16 / LIV12.
+- TESORO_ESPIRITUAL=1.
+
+Ofensiva de equipo:
+- stat renombrado `technique_direct_damage_percent`.
+- sólo escala daño directo compatible de TÉCNICAS.
+- no básico, DOT, Reflect, Retaliation, Calor, curación, Absorción ni secondary no_offensive_rescale.
+- piezas actuales: Amuleto Colmillo +3%, Sable Anillo Gris +2%, Hoja Seis Corrientes +3%, Anillo Relevo +3%.
+- máximo teórico LIV especializado ~+9% (arma + amuleto + anillo), no baseline.
