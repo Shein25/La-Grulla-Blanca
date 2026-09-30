@@ -45,7 +45,18 @@ Reglas:
 4. Mezclar identidades debe seguir siendo válido.
 5. Repetir la misma identidad durante I + II + III debe producir una versión claramente especializada.
 6. No debe existir una elección-trampa que quede inútil por una decisión anterior.
-7. La cantidad de puntos ganados en cada etapa de LianQi queda pendiente. El objetivo es que el jugador deba decidir entre profundizar una técnica o repartir inversión entre varias.
+7. Economía de puntos — PROVISIONAL tras ETAPA17:
+   - LianQi I: 0 puntos de Tramo;
+   - LianQi II: +2 puntos, acceso máximo Tramo I;
+   - LianQi III: +2 puntos adicionales, acceso máximo Tramo II;
+   - LianQi IV: +2 puntos adicionales, acceso máximo Tramo III;
+   - total al llegar a LianQi IV: 6 puntos;
+   - 1 nodo cuesta 1 punto;
+   - para comprar Tramo II de una técnica debe existir cualquier elección de Tramo I en esa técnica;
+   - para comprar Tramo III debe existir cualquier elección de Tramo II;
+   - no es obligatorio mantener la misma identidad de rama entre Tramos;
+   - los puntos pueden guardarse;
+   - con 3 técnicas básicas × 3 Tramos existen 9 slots posibles, por lo que 6 puntos fuerzan una decisión real entre profundizar y repartir.
 8. En Arco 2 una técnica básica puede evolucionar o ser desplazada por una técnica superior; el Tramo III no obliga a mantenerla para siempre.
 
 ---
