@@ -348,3 +348,47 @@ En particular:
 - LI/LII no obtienen DEF por equipo;
 - el primer +1 DEF de equipo aparece en LianQi III;
 - máximo teórico de DEF por equipo en Arco 1 = +1.
+
+
+## 12. Corrección de diseño — la Vestidura sí debe sentirse como armadura
+
+La regla previa que limitaba la DEF total de equipo a +1 era demasiado conservadora.
+
+Nueva regla PROVISIONAL de Arco 1:
+
+```text
+La DEF de equipo se concentra en VESTIDURA.
+Los demás slots no dan DEF.
+```
+
+Progresión máxima de la vestidura protectora:
+
+| Etapa | DEF máxima de Vestidura |
+|---|---:|
+| LianQi I | +1 |
+| LianQi II | +2 |
+| LianQi III | +3 |
+| LianQi IV | +4 |
+
+Esto permite que una armadura se sienta como una armadura sin sumar DEF desde tocado, brazales, botas, anillos y otros slots.
+
+Vestiduras vigentes:
+
+| Pieza | Etapa | Stats |
+|---|---|---|
+| Uniforme gris de aspirante | LI | DEF +1; HP +1 |
+| Sobretúnica de patrulla | LII | DEF +2; HP +2 |
+| Túnica de ruta de Sauces | LII | DEF +1; EVA +3; HP +1 |
+| Túnica reforzada de trama de cobre | LIII | DEF +3; HP +2 |
+| Vestidura de flujo ligero | LIII | DEF +1; EVA +4; Qi +2 |
+| Manto de mantenimiento | LIV | DEF +4; Tenacidad +3; Qi +2 |
+| Vestidura del Ala Cerrada | LIV | DEF +3; HP +4; Tenacidad +3 |
+
+Lectura:
+- pesada = más DEF;
+- ligera = menos DEF a cambio de movilidad/recursos;
+- media = DEF alta + supervivencia.
+
+La DEF base del personaje sigue siendo 1. Por tanto un LIV con Manto de Mantenimiento alcanza DEF total5 antes de técnicas, buffs o estados.
+
+Este valor se revalidará en Monte Carlo contra enemigos LianQi II–IV; no se reducirá preventivamente sólo para proteger benchmarks LianQi I.
