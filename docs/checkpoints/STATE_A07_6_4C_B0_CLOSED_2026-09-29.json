@@ -1,0 +1,53 @@
+{
+  "project": "La Grulla Blanca",
+  "date": "2026-09-29",
+  "checkpoint": "A07.6.4C-B0_CLOSED",
+  "snapshot_branch": "snapshot/handoff-2026-09-29-a07-6-4c-b0",
+  "astra_commit": "1d499df2a33c95bdc164668b133529a52121351d",
+  "astra_parent": "3b40896b9e234cc126c06d9d62f2ab4d7b150434",
+  "package_sha256": "023390b8162a2acc2df2caddaa05baee1383a0a327af3130b8b48c9944f53aae",
+  "runtime_sha256": "b0966fe6d4d263519e5c88d2f93cdd29dc0d3a595c3d63a0f6b3b4426eac12cd",
+  "save_schema_version": 2,
+  "decisions": {
+    "calendar": "NONE_ACTION_DRIVEN",
+    "scheduler": {
+      "id": "S2",
+      "interval": 2,
+      "minGap": 0,
+      "firstPeriodicTurn": 1
+    },
+    "mobility_gate": {
+      "id": "H2",
+      "kind": "ACTOR_NATIVE_TURN_HASH",
+      "buckets": 10000,
+      "thresholds": {
+        "mei_lian": 2500,
+        "guo_chen": 4000
+      }
+    },
+    "route_policy": "P1_ROUTE_TOUR",
+    "ambient_mobility": "THIN_POLICY_SEPARATE_FROM_UTILITY_GOAP",
+    "packaging_direction": "OPTION_C_ESM_TO_SINGLE_CLASSIC_INLINE_LATER"
+  },
+  "long_window_S2_H2_P1": {
+    "turns": 1000,
+    "mei_moves_per_100": 12.6,
+    "guo_moves_per_100": 20.4,
+    "arrival_opportunities_per_100": 3.6,
+    "copresent_fraction": 0.102,
+    "avoidable_reversals": 0,
+    "pathological_alternation": 0
+  },
+  "next": "A07.6.4C-B1 implement modular productive pilot mobility bindings; no HTML/browser yet",
+  "documentation_issue": "HUMAN_DECISION_MATRIX.md rendered undefined rows; JSON was correct; fix generator in next package",
+  "guards": [
+    "no main",
+    "no merge",
+    "no ROOMS.exits",
+    "no HTML connection in B1",
+    "no A07.7 UI",
+    "no A07.6.5 memory",
+    "no Utility/GOAP semantic distortion",
+    "SAVE_SCHEMA_VERSION remains 2"
+  ]
+}
