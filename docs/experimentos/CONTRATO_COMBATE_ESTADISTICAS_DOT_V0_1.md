@@ -1408,7 +1408,7 @@ Baseline desnudo LianQi I:
 
 ~~~text
 HP 30
-Qi 31
+Qi 37
 Precisión 100
 Evasión 5
 DEF 1
@@ -1423,15 +1423,16 @@ Los stats iniciales nucleares son **fijos, no aleatorios**. La variación de per
 Progresión estructural:
 
 ~~~text
-LianQi I  Percepción      HP30 / Qi31 / 0 puntos / BASE
-LianQi II Circulación     HP36 / Qi37 / +2 puntos / Tramo I
-LianQi III Consolidación  HP42 / Qi43 / +2 puntos / Tramo II
-LianQi IV Refinamiento    HP48 / Qi49 / +2 puntos / Tramo III
+LianQi I  Percepción      HP30 / Qi37 / 0 puntos / BASE
+LianQi II Circulación     HP36 / Qi43 / +2 puntos / Tramo I
+LianQi III Consolidación  HP42 / Qi49 / +2 puntos / Tramo II
+LianQi IV Refinamiento    HP48 / Qi55 / +2 puntos / Tramo III
 ~~~
 
 Reglas:
 
 - +6 HP y +6 Qi por avance;
+- Qi37 es el baseline jugable; Qi31 queda sólo como frontera matemática mínima documentada en ETAPA16;
 - +2 puntos de técnica por avance II/III/IV;
 - no existe multiplicador global de magnitud por etapa;
 - una técnica con fórmula relativa a HP/Qi escala porque cambia el recurso de referencia;
