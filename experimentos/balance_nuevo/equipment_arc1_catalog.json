@@ -1,0 +1,2105 @@
+{
+  "schema_version": "arc1-equipment-v0.1",
+  "status": "PROVISIONAL_DESIGN",
+  "slots": {
+    "ARMA": 1,
+    "TOCADO": 1,
+    "VESTIDURA": 1,
+    "BRAZALES": 1,
+    "FAJIN": 1,
+    "PIERNAS": 1,
+    "CALZADO": 1,
+    "AMULETO": 1,
+    "PULSERA": 1,
+    "ANILLO": 2,
+    "TESORO_ESPIRITUAL": 2
+  },
+  "stage_power_budget_ceiling": {
+    "LianQi_I": 1.5,
+    "LianQi_II": 2.5,
+    "LianQi_III": 3.5,
+    "LianQi_IV": 4
+  },
+  "power_budget_weights": {
+    "hp_max": 0.5,
+    "qi_max": 0.3333333333333333,
+    "precision": 0.3333333333333333,
+    "evasion": 0.3333333333333333,
+    "defense": 2.5,
+    "control": 0.25,
+    "tenacity": 0.25,
+    "crit_chance_pp": 0.5,
+    "crit_damage_pp": 0.2,
+    "percent_penetration_pp": 0.2,
+    "direct_damage_percent": 0.3333333333333333,
+    "basic_attack_flat": 1
+  },
+  "effect_budget_weights": {
+    "MEDITATION_BONUS": 0,
+    "FIRST_CONTROL_RESIST_BONUS": 1,
+    "FIRST_TECHNIQUE_PRECISION": 0.75,
+    "HP_THRESHOLD_ABSORPTION": 1,
+    "FIRST_DIRECT_HIT_ABSORPTION": 1,
+    "FIRST_CONTROL_FAILURE_QI_REFUND": 0.75
+  },
+  "stone_price_bands": {
+    "LianQi_I": [
+      0,
+      6
+    ],
+    "LianQi_II": [
+      7,
+      12
+    ],
+    "LianQi_III": [
+      16,
+      22
+    ],
+    "LianQi_IV": [
+      24,
+      30
+    ]
+  },
+  "contribution_plan": {
+    "CANON_EARLY": {
+      "M02": 1,
+      "M03": 0,
+      "M04": 2,
+      "M05": 3,
+      "M06": 2,
+      "M07": 4
+    },
+    "PROPOSED_LIII_EQUIPMENT_ECONOMY": {
+      "M08": 4,
+      "M09": 2,
+      "M10": 3,
+      "M11": 3,
+      "M12": 6
+    },
+    "PROPOSED_LIV_EQUIPMENT_ECONOMY": {
+      "M13": 4,
+      "M14": 3,
+      "M15": 1,
+      "M16": 6,
+      "M17": 5,
+      "M18": 0
+    }
+  },
+  "requisitions": [
+    {
+      "id": "req_med_gl_fria",
+      "stage": "LianQi_II",
+      "department": "Medicina",
+      "npc": "Lan Meihua",
+      "material": "glándula fría de Salamandra de Musgo Frío",
+      "reward_contribution": 2
+    },
+    {
+      "id": "req_med_sanguijuela",
+      "stage": "LianQi_II",
+      "department": "Medicina",
+      "npc": "Chen Bo",
+      "material": "muestra útil de Sanguijuela de Vena",
+      "reward_contribution": 2
+    },
+    {
+      "id": "req_jardin_fibra_jade",
+      "stage": "LianQi_II",
+      "department": "Jardines",
+      "npc": "Su Lian",
+      "material": "fibra de jade limpia",
+      "reward_contribution": 1
+    },
+    {
+      "id": "req_ning_seda",
+      "stage": "LianQi_II",
+      "department": "Ning Cai",
+      "npc": "Ning Cai",
+      "material": "seda pálida íntegra",
+      "reward_contribution": 2
+    },
+    {
+      "id": "req_lu_mineral",
+      "stage": "LianQi_II",
+      "department": "Lu Cheng",
+      "npc": "Lu Cheng",
+      "material": "fragmento de mineral trabajable",
+      "reward_contribution": 2
+    },
+    {
+      "id": "req_recursos_muestra",
+      "stage": "LianQi_II",
+      "department": "Recursos",
+      "npc": "Duan Shibo",
+      "material": "muestra mineral estable",
+      "reward_contribution": 2
+    },
+    {
+      "id": "req_form_saco_resonante",
+      "stage": "LianQi_III",
+      "department": "Formaciones",
+      "npc": "Wen Tao",
+      "material": "saco resonante de Murciélago de Veta",
+      "reward_contribution": 2
+    },
+    {
+      "id": "req_form_filamento",
+      "stage": "LianQi_III",
+      "department": "Formaciones",
+      "npc": "He Zhen",
+      "material": "filamento antiguo utilizable",
+      "reward_contribution": 3
+    },
+    {
+      "id": "req_ning_membrana",
+      "stage": "LianQi_III",
+      "department": "Ning Cai",
+      "npc": "Ning Cai",
+      "material": "membrana vibratoria íntegra",
+      "reward_contribution": 2
+    },
+    {
+      "id": "req_med_meridiano",
+      "stage": "LianQi_III",
+      "department": "Medicina",
+      "npc": "Lan Meihua",
+      "material": "muestra meridiana estable",
+      "reward_contribution": 3
+    }
+  ],
+  "simulation_loadouts": {
+    "MANDATORY_ENTRY": {
+      "LianQi_I": [
+        "espada_madera_entrenamiento",
+        "uniforme_gris_externo"
+      ],
+      "LianQi_II": [
+        "espada_madera_entrenamiento",
+        "uniforme_gris_externo",
+        "fajin_discipulo_externo"
+      ],
+      "LianQi_III": [
+        "espada_madera_entrenamiento",
+        "uniforme_gris_externo",
+        "fajin_discipulo_externo"
+      ],
+      "LianQi_IV": [
+        "espada_madera_entrenamiento",
+        "uniforme_gris_externo",
+        "fajin_dos_alas"
+      ]
+    },
+    "EXPECTED_STAGE": {
+      "LianQi_I": [
+        "espada_madera_entrenamiento",
+        "uniforme_gris_externo",
+        "fajin_discipulo_externo",
+        "zapatos_suela_blanda"
+      ],
+      "LianQi_II": [
+        "espada_hierro_equilibrada",
+        "bandana_cuero_reforzada",
+        "sobretunica_patrulla",
+        "fajin_patrulla",
+        "sandalias_viento",
+        "pulsera_cauce_trenzado",
+        "anillo_herrumbroso"
+      ],
+      "LianQi_III": [
+        "espada_vena_clara",
+        "tocado_hilo_formacion",
+        "tunica_reforzada",
+        "brazales_pulso_medico",
+        "fajin_dos_alas",
+        "calzado_nube_baja",
+        "amuleto_meridiano_estable",
+        "anillo_hilo_plata"
+      ],
+      "LianQi_IV": [
+        "hoja_seis_corrientes",
+        "velo_vigilante_nucleo",
+        "manto_mantenimiento",
+        "brazales_pulso_medico",
+        "fajin_dos_alas",
+        "calzas_trama_sello",
+        "calzado_nube_baja",
+        "amuleto_ancla_resonante",
+        "anillo_hilo_plata",
+        "placa_mantenimiento_antigua"
+      ]
+    },
+    "HIGH_ROLL_STRESS": {
+      "LianQi_I": [
+        "espada_madera_entrenamiento",
+        "uniforme_gris_externo",
+        "fajin_discipulo_externo",
+        "zapatos_suela_blanda",
+        "colgante_fragmento_jade",
+        "anillo_herrumbroso"
+      ],
+      "LianQi_II": [
+        "aguja_acero_frio",
+        "bandana_cuero_reforzada",
+        "tunica_ruta_sauces",
+        "brazales_cuero_cruzado",
+        "fajin_patrulla",
+        "calzas_sendero_pinos",
+        "sandalias_viento",
+        "amuleto_colmillo_montado",
+        "pulsera_cauce_trenzado",
+        "anillo_sello_hierro",
+        "anillo_corriente_clara",
+        "placa_ruta_grulla"
+      ],
+      "LianQi_III": [
+        "espada_vena_clara",
+        "tocado_hilo_formacion",
+        "tunica_reforzada",
+        "brazales_pulso_medico",
+        "fajin_dos_alas",
+        "calzas_paso_silencioso",
+        "calzado_nube_baja",
+        "amuleto_meridiano_estable",
+        "pulsera_nudo_formacion",
+        "anillo_hilo_plata",
+        "anillo_tierra_profunda",
+        "brujula_seis_corrientes",
+        "espejo_pulso_velado"
+      ],
+      "LianQi_IV": [
+        "hoja_seis_corrientes",
+        "tocado_hilo_formacion",
+        "tunica_reforzada",
+        "vendas_antebrazo_practica",
+        "fajin_dos_alas",
+        "calzas_paso_silencioso",
+        "calzado_nube_baja",
+        "amuleto_colmillo_montado",
+        "pulsera_nudo_formacion",
+        "anillo_hilo_plata",
+        "anillo_marca_quieta",
+        "brujula_seis_corrientes"
+      ]
+    }
+  },
+  "items": [
+    {
+      "item_id": "espada_madera_entrenamiento",
+      "name": "Espada de madera de entrenamiento",
+      "min_stage": "LianQi_I",
+      "slot": "ARMA",
+      "grade": "MUNDANO_TRABAJADO",
+      "accessibility": "UNICO",
+      "power_budget": 0.33,
+      "stats": {
+        "precision": 1
+      },
+      "source_type": "STARTING_ISSUE",
+      "source_npc": "Tao Ming",
+      "source_location": "descansillo",
+      "source_mission": "P",
+      "price_stones": null,
+      "price_contribution": null,
+      "required_permission": null,
+      "materials": [],
+      "unique": true,
+      "build_tags": [
+        "PRECISION",
+        "BALANCED"
+      ],
+      "effect": null,
+      "availability": "GUARANTEED",
+      "notes": ""
+    },
+    {
+      "item_id": "cuchillo_hueso_callejero",
+      "name": "Cuchillo de hueso pulido",
+      "min_stage": "LianQi_I",
+      "slot": "ARMA",
+      "grade": "MUNDANO_TRABAJADO",
+      "accessibility": "UNICO",
+      "power_budget": 1.33,
+      "stats": {
+        "basic_attack_flat": 1,
+        "precision": -1
+      },
+      "source_type": "ORIGIN_START",
+      "source_npc": null,
+      "source_location": null,
+      "source_mission": "P",
+      "price_stones": null,
+      "price_contribution": null,
+      "required_permission": null,
+      "materials": [],
+      "unique": true,
+      "build_tags": [
+        "BASIC_ATTACK",
+        "AGGRESSION"
+      ],
+      "effect": null,
+      "availability": "ORIGIN_ONLY",
+      "notes": ""
+    },
+    {
+      "item_id": "baston_fresno_practica",
+      "name": "Bastón de fresno de práctica",
+      "min_stage": "LianQi_I",
+      "slot": "ARMA",
+      "grade": "MUNDANO_TRABAJADO",
+      "accessibility": "INSTITUCIONAL",
+      "power_budget": 0.5,
+      "stats": {
+        "tenacity": 2
+      },
+      "source_type": "CONTRIBUTION_REDEMPTION",
+      "source_npc": "Wei Jian",
+      "source_location": "pabellon_marcial",
+      "source_mission": "M03",
+      "price_stones": null,
+      "price_contribution": 1,
+      "required_permission": "DISCIPULO_EXTERNO",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "TENACITY",
+        "BALANCED"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "uniforme_gris_externo",
+      "name": "Uniforme gris de ingreso",
+      "min_stage": "LianQi_I",
+      "slot": "VESTIDURA",
+      "grade": "MUNDANO_TRABAJADO",
+      "accessibility": "UNICO",
+      "power_budget": 1.13,
+      "stats": {
+        "hp_max": 1,
+        "defense": 0.25
+      },
+      "source_type": "STARTING_ISSUE",
+      "source_npc": "Tao Ming",
+      "source_location": "descansillo",
+      "source_mission": "P",
+      "price_stones": null,
+      "price_contribution": null,
+      "required_permission": null,
+      "materials": [],
+      "unique": true,
+      "build_tags": [
+        "HP",
+        "DEFENSE",
+        "BALANCED"
+      ],
+      "effect": null,
+      "availability": "GUARANTEED",
+      "notes": ""
+    },
+    {
+      "item_id": "bandana_lino_simple",
+      "name": "Bandana de lino simple",
+      "min_stage": "LianQi_I",
+      "slot": "TOCADO",
+      "grade": "MUNDANO_TRABAJADO",
+      "accessibility": "INSTITUCIONAL",
+      "power_budget": 0.5,
+      "stats": {
+        "tenacity": 2
+      },
+      "source_type": "WORKSHOP_SERVICE_CONTRIBUTION",
+      "source_npc": "Ning Cai",
+      "source_location": "taller_textiles_cuero",
+      "source_mission": "M02",
+      "price_stones": null,
+      "price_contribution": 1,
+      "required_permission": "ASPIRANTE",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "TENACITY",
+        "ANTI_CONTROL"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "vendas_antebrazo_practica",
+      "name": "Vendas de antebrazo de práctica",
+      "min_stage": "LianQi_I",
+      "slot": "BRAZALES",
+      "grade": "MUNDANO_TRABAJADO",
+      "accessibility": "INSTITUCIONAL",
+      "power_budget": 0.67,
+      "stats": {
+        "precision": 2
+      },
+      "source_type": "CONTRIBUTION_REDEMPTION",
+      "source_npc": "Wei Jian",
+      "source_location": "pabellon_marcial",
+      "source_mission": "M03",
+      "price_stones": null,
+      "price_contribution": 1,
+      "required_permission": "DISCIPULO_EXTERNO",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "PRECISION"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "fajin_discipulo_externo",
+      "name": "Fajín de discípulo externo",
+      "min_stage": "LianQi_I",
+      "slot": "FAJIN",
+      "grade": "MUNDANO_TRABAJADO",
+      "accessibility": "UNICO",
+      "power_budget": 0.67,
+      "stats": {
+        "qi_max": 2
+      },
+      "source_type": "MISSION_REWARD",
+      "source_npc": "Qiao Ren",
+      "source_location": "pabellon_disciplina",
+      "source_mission": "M03",
+      "price_stones": null,
+      "price_contribution": null,
+      "required_permission": null,
+      "materials": [],
+      "unique": true,
+      "build_tags": [
+        "QI",
+        "BALANCED"
+      ],
+      "effect": null,
+      "availability": "GUARANTEED_AFTER_M03",
+      "notes": ""
+    },
+    {
+      "item_id": "pantalon_viaje_gris",
+      "name": "Pantalón de viaje gris",
+      "min_stage": "LianQi_I",
+      "slot": "PIERNAS",
+      "grade": "MUNDANO_TRABAJADO",
+      "accessibility": "INSTITUCIONAL",
+      "power_budget": 1,
+      "stats": {
+        "hp_max": 2
+      },
+      "source_type": "WORKSHOP_SERVICE_CONTRIBUTION",
+      "source_npc": "Ning Cai",
+      "source_location": "taller_textiles_cuero",
+      "source_mission": "M02",
+      "price_stones": null,
+      "price_contribution": 1,
+      "required_permission": "ASPIRANTE",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "HP"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "zapatos_suela_blanda",
+      "name": "Zapatos de suela blanda",
+      "min_stage": "LianQi_I",
+      "slot": "CALZADO",
+      "grade": "MUNDANO_TRABAJADO",
+      "accessibility": "INSTITUCIONAL",
+      "power_budget": 0.67,
+      "stats": {
+        "evasion": 2
+      },
+      "source_type": "WORKSHOP_SERVICE_CONTRIBUTION",
+      "source_npc": "Ning Cai",
+      "source_location": "taller_textiles_cuero",
+      "source_mission": "M02",
+      "price_stones": null,
+      "price_contribution": 1,
+      "required_permission": "ASPIRANTE",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "EVASION"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "colgante_fragmento_jade",
+      "name": "Colgante de fragmento de jade",
+      "min_stage": "LianQi_I",
+      "slot": "AMULETO",
+      "grade": "MUNDANO_TRABAJADO",
+      "accessibility": "UNICO",
+      "power_budget": 0.5,
+      "stats": {
+        "control": 2
+      },
+      "source_type": "EXPLORATION_UNIQUE",
+      "source_npc": null,
+      "source_location": "camino_montana",
+      "source_mission": null,
+      "price_stones": null,
+      "price_contribution": null,
+      "required_permission": null,
+      "materials": [],
+      "unique": true,
+      "build_tags": [
+        "CONTROL"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": "Hallazgo menor; no es reliquia-llave."
+    },
+    {
+      "item_id": "pulsera_fibra_trenzada",
+      "name": "Pulsera de fibra trenzada",
+      "min_stage": "LianQi_I",
+      "slot": "PULSERA",
+      "grade": "MUNDANO_TRABAJADO",
+      "accessibility": "INSTITUCIONAL",
+      "power_budget": 0.58,
+      "stats": {
+        "qi_max": 1,
+        "tenacity": 1
+      },
+      "source_type": "WORKSHOP_SERVICE_CONTRIBUTION",
+      "source_npc": "Ning Cai",
+      "source_location": "taller_textiles_cuero",
+      "source_mission": "M02",
+      "price_stones": null,
+      "price_contribution": 1,
+      "required_permission": "ASPIRANTE",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "QI",
+        "TENACITY"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "anillo_herrumbroso",
+      "name": "Anillo herrumbroso",
+      "min_stage": "LianQi_I",
+      "slot": "ANILLO",
+      "grade": "MUNDANO_TRABAJADO",
+      "accessibility": "UNICO",
+      "power_budget": 0.33,
+      "stats": {
+        "qi_max": 1
+      },
+      "source_type": "EXPLORATION_UNIQUE",
+      "source_npc": null,
+      "source_location": "camino_montana",
+      "source_mission": null,
+      "price_stones": null,
+      "price_contribution": null,
+      "required_permission": null,
+      "materials": [],
+      "unique": true,
+      "build_tags": [
+        "QI",
+        "UTILITY"
+      ],
+      "effect": {
+        "type": "MEDITATION_BONUS",
+        "qi_flat": 1,
+        "simulation_scope": "OUT_OF_COMBAT_PENDING"
+      },
+      "availability": "OPTIONAL",
+      "notes": "La bonificación de meditación queda pendiente del contrato de recuperación."
+    },
+    {
+      "item_id": "espada_hierro_equilibrada",
+      "name": "Espada de hierro equilibrada",
+      "min_stage": "LianQi_II",
+      "slot": "ARMA",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "accessibility": "DUAL",
+      "power_budget": 1.67,
+      "stats": {
+        "basic_attack_flat": 1,
+        "precision": 2
+      },
+      "source_type": "WORKSHOP_SERVICE_DUAL",
+      "source_npc": "Lu Cheng",
+      "source_location": "taller_armas",
+      "source_mission": "M04",
+      "price_stones": 12,
+      "price_contribution": 5,
+      "required_permission": "PATRULLA_TERRITORIAL",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "BASIC_ATTACK",
+        "PRECISION",
+        "BALANCED"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "sable_patrulla_valle",
+      "name": "Sable de patrulla del valle",
+      "min_stage": "LianQi_II",
+      "slot": "ARMA",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "accessibility": "ABIERTO_CON_RECURSOS",
+      "power_budget": 2.33,
+      "stats": {
+        "basic_attack_flat": 2,
+        "precision": -1
+      },
+      "source_type": "WORKSHOP_SERVICE_STONES",
+      "source_npc": "Lu Cheng",
+      "source_location": "taller_armas",
+      "source_mission": "M04",
+      "price_stones": 10,
+      "price_contribution": null,
+      "required_permission": "PATRULLA_TERRITORIAL",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "BASIC_ATTACK",
+        "AGGRESSION"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "aguja_acero_frio",
+      "name": "Aguja de acero frío",
+      "min_stage": "LianQi_II",
+      "slot": "ARMA",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "accessibility": "INSTITUCIONAL",
+      "power_budget": 1.6,
+      "stats": {
+        "precision": 3,
+        "percent_penetration_pp": 3
+      },
+      "source_type": "WORKSHOP_SERVICE_CONTRIBUTION",
+      "source_npc": "Lu Cheng",
+      "source_location": "taller_armas",
+      "source_mission": "M06",
+      "price_stones": null,
+      "price_contribution": 5,
+      "required_permission": "DISCIPULO_EXTERNO",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "PRECISION",
+        "PENETRATION"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "bandana_cuero_reforzada",
+      "name": "Bandana de cuero reforzada",
+      "min_stage": "LianQi_II",
+      "slot": "TOCADO",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "accessibility": "DUAL",
+      "power_budget": 1.25,
+      "stats": {
+        "tenacity": 3,
+        "hp_max": 1
+      },
+      "source_type": "WORKSHOP_SERVICE_DUAL",
+      "source_npc": "Ning Cai",
+      "source_location": "taller_textiles_cuero",
+      "source_mission": "M04",
+      "price_stones": 7,
+      "price_contribution": 2,
+      "required_permission": "DISCIPULO_EXTERNO",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "TENACITY",
+        "HP"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "capucha_observador_valle",
+      "name": "Capucha del observador del valle",
+      "min_stage": "LianQi_II",
+      "slot": "TOCADO",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "accessibility": "ABIERTO_CON_RECURSOS",
+      "power_budget": 1,
+      "stats": {
+        "precision": 3
+      },
+      "source_type": "STONE_PURCHASE",
+      "source_npc": "Puestos del Mercado del Valle",
+      "source_location": "mercado_valle",
+      "source_mission": "M05",
+      "price_stones": 7,
+      "price_contribution": null,
+      "required_permission": null,
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "PRECISION"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "sobretunica_patrulla",
+      "name": "Sobretúnica de patrulla",
+      "min_stage": "LianQi_II",
+      "slot": "VESTIDURA",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "accessibility": "INSTITUCIONAL",
+      "power_budget": 2.13,
+      "stats": {
+        "hp_max": 3,
+        "defense": 0.25
+      },
+      "source_type": "CONTRIBUTION_REDEMPTION",
+      "source_npc": "Jiang Rui",
+      "source_location": "puesto_valle",
+      "source_mission": "M04",
+      "price_stones": null,
+      "price_contribution": 3,
+      "required_permission": "PATRULLA_TERRITORIAL",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "HP",
+        "DEFENSE"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "tunica_ruta_sauces",
+      "name": "Túnica de ruta de Sauces",
+      "min_stage": "LianQi_II",
+      "slot": "VESTIDURA",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "accessibility": "ABIERTO_CON_RECURSOS",
+      "power_budget": 1.67,
+      "stats": {
+        "evasion": 2,
+        "hp_max": 2
+      },
+      "source_type": "STONE_PURCHASE",
+      "source_npc": "Artesanos de Sauces",
+      "source_location": "sauces_plaza",
+      "source_mission": "M05",
+      "price_stones": 10,
+      "price_contribution": null,
+      "required_permission": "HUESPED_SAUCES",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "EVASION",
+        "HP"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "brazales_cuero_cruzado",
+      "name": "Brazales de cuero cruzado",
+      "min_stage": "LianQi_II",
+      "slot": "BRAZALES",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "accessibility": "DUAL",
+      "power_budget": 1.25,
+      "stats": {
+        "defense": 0.5
+      },
+      "source_type": "WORKSHOP_SERVICE_DUAL",
+      "source_npc": "Ning Cai",
+      "source_location": "taller_textiles_cuero",
+      "source_mission": "M04",
+      "price_stones": 9,
+      "price_contribution": 3,
+      "required_permission": "DISCIPULO_EXTERNO",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "DEFENSE"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "brazales_pulso_firme",
+      "name": "Brazales de pulso firme",
+      "min_stage": "LianQi_II",
+      "slot": "BRAZALES",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "accessibility": "INSTITUCIONAL",
+      "power_budget": 1,
+      "stats": {
+        "control": 2,
+        "tenacity": 2
+      },
+      "source_type": "CONTRIBUTION_REDEMPTION",
+      "source_npc": "Chen Bo",
+      "source_location": "sala_anatomica",
+      "source_mission": "M06",
+      "price_stones": null,
+      "price_contribution": 3,
+      "required_permission": "DISCIPULO_EXTERNO",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "CONTROL",
+        "TENACITY"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "fajin_patrulla",
+      "name": "Fajín de patrulla",
+      "min_stage": "LianQi_II",
+      "slot": "FAJIN",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "accessibility": "INSTITUCIONAL",
+      "power_budget": 1.25,
+      "stats": {
+        "qi_max": 3,
+        "tenacity": 1
+      },
+      "source_type": "CONTRIBUTION_REDEMPTION",
+      "source_npc": "Jiang Rui",
+      "source_location": "puesto_valle",
+      "source_mission": "M04",
+      "price_stones": null,
+      "price_contribution": 2,
+      "required_permission": "PATRULLA_TERRITORIAL",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "QI",
+        "TENACITY"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "calzas_sendero_pinos",
+      "name": "Calzas de sendero de pinos",
+      "min_stage": "LianQi_II",
+      "slot": "PIERNAS",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "accessibility": "ABIERTO_CON_RECURSOS",
+      "power_budget": 1.83,
+      "stats": {
+        "hp_max": 3,
+        "evasion": 1
+      },
+      "source_type": "WORKSHOP_SERVICE_STONES",
+      "source_npc": "Ning Cai",
+      "source_location": "taller_textiles_cuero",
+      "source_mission": "M04",
+      "price_stones": 8,
+      "price_contribution": null,
+      "required_permission": null,
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "HP",
+        "EVASION"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "sandalias_viento",
+      "name": "Sandalias de viento",
+      "min_stage": "LianQi_II",
+      "slot": "CALZADO",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "accessibility": "ABIERTO_CON_RECURSOS",
+      "power_budget": 1.33,
+      "stats": {
+        "evasion": 4
+      },
+      "source_type": "STONE_PURCHASE",
+      "source_npc": "Artesanos de Sauces",
+      "source_location": "sauces_plaza",
+      "source_mission": "M05",
+      "price_stones": 11,
+      "price_contribution": null,
+      "required_permission": "HUESPED_SAUCES",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "EVASION"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "botas_piedra_humeda",
+      "name": "Botas de piedra húmeda",
+      "min_stage": "LianQi_II",
+      "slot": "CALZADO",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "accessibility": "ABIERTO_CON_RECURSOS",
+      "power_budget": 1.08,
+      "stats": {
+        "tenacity": 3,
+        "evasion": 1
+      },
+      "source_type": "STONE_PURCHASE",
+      "source_npc": "Puestos del Mercado del Valle",
+      "source_location": "mercado_valle",
+      "source_mission": "M05",
+      "price_stones": 9,
+      "price_contribution": null,
+      "required_permission": null,
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "TENACITY",
+        "EVASION"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "amuleto_colmillo_montado",
+      "name": "Amuleto de colmillo montado",
+      "min_stage": "LianQi_II",
+      "slot": "AMULETO",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "accessibility": "MATERIAL_SERVICIO",
+      "power_budget": 1,
+      "stats": {
+        "direct_damage_percent": 3
+      },
+      "source_type": "WORKSHOP_SERVICE_MATERIAL",
+      "source_npc": "Ning Cai",
+      "source_location": "taller_textiles_cuero",
+      "source_mission": "M05",
+      "price_stones": 4,
+      "price_contribution": null,
+      "required_permission": null,
+      "materials": [
+        "colmillo_lobo_legitimo"
+      ],
+      "unique": false,
+      "build_tags": [
+        "DIRECT_DAMAGE"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": "No cae como collar: requiere material legítimo + montaje."
+    },
+    {
+      "item_id": "amuleto_sauce_sereno",
+      "name": "Amuleto de sauce sereno",
+      "min_stage": "LianQi_II",
+      "slot": "AMULETO",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "accessibility": "ABIERTO_CON_RECURSOS",
+      "power_budget": 1.08,
+      "stats": {
+        "control": 3,
+        "qi_max": 1
+      },
+      "source_type": "STONE_PURCHASE",
+      "source_npc": "Artesanos de Sauces",
+      "source_location": "sauces_plaza",
+      "source_mission": "M05",
+      "price_stones": 10,
+      "price_contribution": null,
+      "required_permission": "HUESPED_SAUCES",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "CONTROL",
+        "QI"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "pulsera_cauce_trenzado",
+      "name": "Pulsera de cauce trenzado",
+      "min_stage": "LianQi_II",
+      "slot": "PULSERA",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "accessibility": "ABIERTO_CON_RECURSOS",
+      "power_budget": 1,
+      "stats": {
+        "qi_max": 3
+      },
+      "source_type": "STONE_PURCHASE",
+      "source_npc": "Artesanos de Sauces",
+      "source_location": "sauces_plaza",
+      "source_mission": "M05",
+      "price_stones": 8,
+      "price_contribution": null,
+      "required_permission": "HUESPED_SAUCES",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "QI"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "anillo_sello_hierro",
+      "name": "Anillo del sello de hierro",
+      "min_stage": "LianQi_II",
+      "slot": "ANILLO",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "accessibility": "INSTITUCIONAL",
+      "power_budget": 0.8,
+      "stats": {
+        "percent_penetration_pp": 4
+      },
+      "source_type": "WORKSHOP_SERVICE_CONTRIBUTION",
+      "source_npc": "Lu Cheng",
+      "source_location": "taller_armas",
+      "source_mission": "M06",
+      "price_stones": null,
+      "price_contribution": 4,
+      "required_permission": "DISCIPULO_EXTERNO",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "PENETRATION"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "anillo_corriente_clara",
+      "name": "Anillo de corriente clara",
+      "min_stage": "LianQi_II",
+      "slot": "ANILLO",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "accessibility": "ABIERTO_CON_RECURSOS",
+      "power_budget": 1.17,
+      "stats": {
+        "precision": 2,
+        "control": 2
+      },
+      "source_type": "STONE_PURCHASE",
+      "source_npc": "Puestos del Mercado del Valle",
+      "source_location": "mercado_valle",
+      "source_mission": "M05",
+      "price_stones": 10,
+      "price_contribution": null,
+      "required_permission": null,
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "PRECISION",
+        "CONTROL"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "placa_ruta_grulla",
+      "name": "Placa de Ruta de la Grulla",
+      "min_stage": "LianQi_II",
+      "slot": "TESORO_ESPIRITUAL",
+      "grade": "ARTEFACTO_MENOR",
+      "accessibility": "UNICO",
+      "power_budget": 1.5,
+      "stats": {
+        "tenacity": 2
+      },
+      "source_type": "MISSION_UNLOCK_REDEMPTION",
+      "source_npc": "Qiao Ren",
+      "source_location": "pabellon_disciplina",
+      "source_mission": "M07",
+      "price_stones": null,
+      "price_contribution": 4,
+      "required_permission": "INFORME_FRONTERA_ACEPTADO",
+      "materials": [],
+      "unique": true,
+      "build_tags": [
+        "TENACITY",
+        "REACTIVE_DEFENSE"
+      ],
+      "effect": {
+        "type": "FIRST_CONTROL_RESIST_BONUS",
+        "tenacity": 5,
+        "uses": 1,
+        "duration": "CONTROL_CHECK_ONLY"
+      },
+      "availability": "OPTIONAL",
+      "notes": "Tesoro menor institucional."
+    },
+    {
+      "item_id": "espada_vena_clara",
+      "name": "Espada de vena clara",
+      "min_stage": "LianQi_III",
+      "slot": "ARMA",
+      "grade": "REFINADO_MENOR",
+      "accessibility": "DUAL",
+      "power_budget": 2.6,
+      "stats": {
+        "basic_attack_flat": 1,
+        "precision": 3,
+        "percent_penetration_pp": 3
+      },
+      "source_type": "WORKSHOP_SERVICE_DUAL",
+      "source_npc": "Lu Cheng",
+      "source_location": "taller_armas",
+      "source_mission": "M08",
+      "price_stones": 20,
+      "price_contribution": 7,
+      "required_permission": "SECTA_INTERIOR",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "BASIC_ATTACK",
+        "PRECISION",
+        "PENETRATION"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "vara_dos_corrientes",
+      "name": "Vara de dos corrientes",
+      "min_stage": "LianQi_III",
+      "slot": "ARMA",
+      "grade": "REFINADO_MENOR",
+      "accessibility": "INSTITUCIONAL",
+      "power_budget": 1.5,
+      "stats": {
+        "control": 4,
+        "tenacity": 2
+      },
+      "source_type": "MISSION_UNLOCK_REDEMPTION",
+      "source_npc": "He Zhen",
+      "source_location": "formaciones",
+      "source_mission": "M11",
+      "price_stones": null,
+      "price_contribution": 7,
+      "required_permission": "DOS_ALAS_PRINCIPIO",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "CONTROL",
+        "TENACITY"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "sable_anillo_gris",
+      "name": "Sable de anillo gris",
+      "min_stage": "LianQi_III",
+      "slot": "ARMA",
+      "grade": "REFINADO_MENOR",
+      "accessibility": "ABIERTO_CON_RECURSOS",
+      "power_budget": 3,
+      "stats": {
+        "basic_attack_flat": 2,
+        "direct_damage_percent": 2,
+        "precision": -1
+      },
+      "source_type": "WORKSHOP_SERVICE_STONES",
+      "source_npc": "Lu Cheng",
+      "source_location": "taller_armas",
+      "source_mission": "M08",
+      "price_stones": 18,
+      "price_contribution": null,
+      "required_permission": "SECTA_INTERIOR",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "BASIC_ATTACK",
+        "DIRECT_DAMAGE",
+        "AGGRESSION"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "tocado_hilo_formacion",
+      "name": "Tocado de hilo de formación",
+      "min_stage": "LianQi_III",
+      "slot": "TOCADO",
+      "grade": "REFINADO_MENOR",
+      "accessibility": "INSTITUCIONAL",
+      "power_budget": 1.5,
+      "stats": {
+        "precision": 3,
+        "control": 2
+      },
+      "source_type": "CONTRIBUTION_REDEMPTION",
+      "source_npc": "Wen Tao",
+      "source_location": "taller_formaciones",
+      "source_mission": "M08",
+      "price_stones": null,
+      "price_contribution": 5,
+      "required_permission": "FORMACIONES_INVESTIGACION",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "PRECISION",
+        "CONTROL"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "velo_archivo_sereno",
+      "name": "Velo del archivo sereno",
+      "min_stage": "LianQi_III",
+      "slot": "TOCADO",
+      "grade": "REFINADO_MENOR",
+      "accessibility": "INSTITUCIONAL",
+      "power_budget": 1.67,
+      "stats": {
+        "tenacity": 4,
+        "qi_max": 2
+      },
+      "source_type": "MISSION_UNLOCK_REDEMPTION",
+      "source_npc": "Song Rui",
+      "source_location": "archivos",
+      "source_mission": "M09",
+      "price_stones": null,
+      "price_contribution": 5,
+      "required_permission": "ARCHIVO_RESTRINGIDO",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "TENACITY",
+        "QI"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "tunica_reforzada",
+      "name": "Túnica reforzada",
+      "min_stage": "LianQi_III",
+      "slot": "VESTIDURA",
+      "grade": "REFINADO_MENOR",
+      "accessibility": "DUAL",
+      "power_budget": 3.38,
+      "stats": {
+        "defense": 0.75,
+        "hp_max": 3
+      },
+      "source_type": "WORKSHOP_SERVICE_DUAL",
+      "source_npc": "Ning Cai",
+      "source_location": "taller_textiles_cuero",
+      "source_mission": "M08",
+      "price_stones": 22,
+      "price_contribution": 8,
+      "required_permission": "SECTA_INTERIOR",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "DEFENSE",
+        "HP"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "vestidura_flujo_ligero",
+      "name": "Vestidura de flujo ligero",
+      "min_stage": "LianQi_III",
+      "slot": "VESTIDURA",
+      "grade": "REFINADO_MENOR",
+      "accessibility": "ABIERTO_CON_RECURSOS",
+      "power_budget": 2,
+      "stats": {
+        "evasion": 4,
+        "qi_max": 2
+      },
+      "source_type": "WORKSHOP_SERVICE_STONES",
+      "source_npc": "Ning Cai",
+      "source_location": "taller_textiles_cuero",
+      "source_mission": "M08",
+      "price_stones": 20,
+      "price_contribution": null,
+      "required_permission": "SECTA_INTERIOR",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "EVASION",
+        "QI"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "brazales_pulso_medico",
+      "name": "Brazales de pulso médico",
+      "min_stage": "LianQi_III",
+      "slot": "BRAZALES",
+      "grade": "REFINADO_MENOR",
+      "accessibility": "INSTITUCIONAL",
+      "power_budget": 1.5,
+      "stats": {
+        "tenacity": 4,
+        "control": 2
+      },
+      "source_type": "CONTRIBUTION_REDEMPTION",
+      "source_npc": "Lan Meihua",
+      "source_location": "medicina",
+      "source_mission": "M10",
+      "price_stones": null,
+      "price_contribution": 6,
+      "required_permission": "R4_CONFIRMADO",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "TENACITY",
+        "CONTROL"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "fajin_dos_alas",
+      "name": "Fajín de las Dos Alas",
+      "min_stage": "LianQi_III",
+      "slot": "FAJIN",
+      "grade": "REFINADO_MENOR",
+      "accessibility": "UNICO",
+      "power_budget": 1.83,
+      "stats": {
+        "qi_max": 4,
+        "control": 2
+      },
+      "source_type": "MISSION_REWARD",
+      "source_npc": "He Zhen",
+      "source_location": "formaciones",
+      "source_mission": "M11",
+      "price_stones": null,
+      "price_contribution": null,
+      "required_permission": null,
+      "materials": [],
+      "unique": true,
+      "build_tags": [
+        "QI",
+        "CONTROL"
+      ],
+      "effect": null,
+      "availability": "GUARANTEED_AFTER_M11",
+      "notes": ""
+    },
+    {
+      "item_id": "calzas_paso_silencioso",
+      "name": "Calzas de paso silencioso",
+      "min_stage": "LianQi_III",
+      "slot": "PIERNAS",
+      "grade": "REFINADO_MENOR",
+      "accessibility": "ABIERTO_CON_RECURSOS",
+      "power_budget": 2.5,
+      "stats": {
+        "evasion": 3,
+        "hp_max": 3
+      },
+      "source_type": "WORKSHOP_SERVICE_STONES",
+      "source_npc": "Ning Cai",
+      "source_location": "taller_textiles_cuero",
+      "source_mission": "M08",
+      "price_stones": 16,
+      "price_contribution": null,
+      "required_permission": null,
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "EVASION",
+        "HP"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "calzado_nube_baja",
+      "name": "Calzado de nube baja",
+      "min_stage": "LianQi_III",
+      "slot": "CALZADO",
+      "grade": "REFINADO_MENOR",
+      "accessibility": "INSTITUCIONAL",
+      "power_budget": 2,
+      "stats": {
+        "evasion": 5,
+        "precision": 1
+      },
+      "source_type": "CONTRIBUTION_REDEMPTION",
+      "source_npc": "Ning Cai",
+      "source_location": "taller_textiles_cuero",
+      "source_mission": "M11",
+      "price_stones": null,
+      "price_contribution": 6,
+      "required_permission": "SECTA_INTERIOR",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "EVASION",
+        "PRECISION"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "amuleto_meridiano_estable",
+      "name": "Amuleto de meridiano estable",
+      "min_stage": "LianQi_III",
+      "slot": "AMULETO",
+      "grade": "REFINADO_MENOR",
+      "accessibility": "INSTITUCIONAL",
+      "power_budget": 2.5,
+      "stats": {
+        "hp_max": 3,
+        "tenacity": 4
+      },
+      "source_type": "CONTRIBUTION_REDEMPTION",
+      "source_npc": "Lan Meihua",
+      "source_location": "medicina",
+      "source_mission": "M10",
+      "price_stones": null,
+      "price_contribution": 6,
+      "required_permission": "R4_CONFIRMADO",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "HP",
+        "TENACITY"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "pulsera_nudo_formacion",
+      "name": "Pulsera de nudo de formación",
+      "min_stage": "LianQi_III",
+      "slot": "PULSERA",
+      "grade": "REFINADO_MENOR",
+      "accessibility": "INSTITUCIONAL",
+      "power_budget": 1.75,
+      "stats": {
+        "qi_max": 3,
+        "control": 3
+      },
+      "source_type": "CONTRIBUTION_REDEMPTION",
+      "source_npc": "Wen Tao",
+      "source_location": "taller_formaciones",
+      "source_mission": "M08",
+      "price_stones": null,
+      "price_contribution": 5,
+      "required_permission": "FORMACIONES_INVESTIGACION",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "QI",
+        "CONTROL"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "anillo_hilo_plata",
+      "name": "Anillo de hilo de plata",
+      "min_stage": "LianQi_III",
+      "slot": "ANILLO",
+      "grade": "REFINADO_MENOR",
+      "accessibility": "ABIERTO_CON_RECURSOS",
+      "power_budget": 1.67,
+      "stats": {
+        "crit_chance_pp": 2,
+        "precision": 2
+      },
+      "source_type": "WORKSHOP_SERVICE_STONES",
+      "source_npc": "Lu Cheng",
+      "source_location": "taller_armas",
+      "source_mission": "M09",
+      "price_stones": 18,
+      "price_contribution": null,
+      "required_permission": "SECTA_INTERIOR",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "CRIT",
+        "PRECISION"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "anillo_tierra_profunda",
+      "name": "Anillo de tierra profunda",
+      "min_stage": "LianQi_III",
+      "slot": "ANILLO",
+      "grade": "REFINADO_MENOR",
+      "accessibility": "INSTITUCIONAL",
+      "power_budget": 2,
+      "stats": {
+        "hp_max": 2,
+        "tenacity": 4
+      },
+      "source_type": "WORKSHOP_SERVICE_CONTRIBUTION",
+      "source_npc": "Ning Cai",
+      "source_location": "taller_textiles_cuero",
+      "source_mission": "M10",
+      "price_stones": null,
+      "price_contribution": 5,
+      "required_permission": "SECTA_INTERIOR",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "HP",
+        "TENACITY"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "brujula_seis_corrientes",
+      "name": "Brújula de Seis Corrientes",
+      "min_stage": "LianQi_III",
+      "slot": "TESORO_ESPIRITUAL",
+      "grade": "ARTEFACTO_MENOR",
+      "accessibility": "UNICO",
+      "power_budget": 1.92,
+      "stats": {
+        "precision": 2,
+        "control": 2
+      },
+      "source_type": "MISSION_UNLOCK_REDEMPTION",
+      "source_npc": "He Zhen",
+      "source_location": "formaciones",
+      "source_mission": "M12",
+      "price_stones": null,
+      "price_contribution": 8,
+      "required_permission": "PRIMERA_ALA_INVESTIGACION",
+      "materials": [],
+      "unique": true,
+      "build_tags": [
+        "PRECISION",
+        "CONTROL",
+        "UTILITY"
+      ],
+      "effect": {
+        "type": "FIRST_TECHNIQUE_PRECISION",
+        "precision": 4,
+        "uses": 1
+      },
+      "availability": "OPTIONAL",
+      "notes": "Instrumento de formación convertido en tesoro auxiliar."
+    },
+    {
+      "item_id": "espejo_pulso_velado",
+      "name": "Espejo de Pulso Velado",
+      "min_stage": "LianQi_III",
+      "slot": "TESORO_ESPIRITUAL",
+      "grade": "ANTIGUO_FUNCIONAL",
+      "accessibility": "UNICO",
+      "power_budget": 1.67,
+      "stats": {
+        "evasion": 2
+      },
+      "source_type": "EXPLORATION_UNIQUE",
+      "source_npc": null,
+      "source_location": "primera_ala",
+      "source_mission": "M12",
+      "price_stones": null,
+      "price_contribution": null,
+      "required_permission": null,
+      "materials": [],
+      "unique": true,
+      "build_tags": [
+        "EVASION",
+        "REACTIVE_DEFENSE"
+      ],
+      "effect": {
+        "type": "HP_THRESHOLD_ABSORPTION",
+        "threshold_pct": 35,
+        "absorption_flat": 3,
+        "uses": 1
+      },
+      "availability": "OPTIONAL",
+      "notes": "Hallazgo opcional; no es llave de progresión."
+    },
+    {
+      "item_id": "hoja_seis_corrientes",
+      "name": "Hoja de seis corrientes",
+      "min_stage": "LianQi_IV",
+      "slot": "ARMA",
+      "grade": "REFINADO_DE_SECTA",
+      "accessibility": "INSTITUCIONAL",
+      "power_budget": 3.67,
+      "stats": {
+        "basic_attack_flat": 2,
+        "direct_damage_percent": 3,
+        "precision": 2
+      },
+      "source_type": "WORKSHOP_SERVICE_CONTRIBUTION",
+      "source_npc": "Lu Cheng",
+      "source_location": "taller_armas",
+      "source_mission": "M13",
+      "price_stones": null,
+      "price_contribution": 10,
+      "required_permission": "MANTENIMIENTO_INVESTIGACION",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "BASIC_ATTACK",
+        "DIRECT_DAMAGE",
+        "PRECISION"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "vara_relevo",
+      "name": "Vara de relevo",
+      "min_stage": "LianQi_IV",
+      "slot": "ARMA",
+      "grade": "REFINADO_DE_SECTA",
+      "accessibility": "INSTITUCIONAL",
+      "power_budget": 2.67,
+      "stats": {
+        "control": 5,
+        "tenacity": 3,
+        "qi_max": 2
+      },
+      "source_type": "MISSION_UNLOCK_REDEMPTION",
+      "source_npc": "Duan Shibo",
+      "source_location": "oficina_logistica",
+      "source_mission": "M16",
+      "price_stones": null,
+      "price_contribution": 9,
+      "required_permission": "EMERGENCIA_SECTA",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "CONTROL",
+        "TENACITY",
+        "QI"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "velo_vigilante_nucleo",
+      "name": "Velo del vigilante del núcleo",
+      "min_stage": "LianQi_IV",
+      "slot": "TOCADO",
+      "grade": "REFINADO_DE_SECTA",
+      "accessibility": "INSTITUCIONAL",
+      "power_budget": 2,
+      "stats": {
+        "precision": 3,
+        "tenacity": 4
+      },
+      "source_type": "CONTRIBUTION_REDEMPTION",
+      "source_npc": "Qiao Ren",
+      "source_location": "pabellon_disciplina",
+      "source_mission": "M14",
+      "price_stones": null,
+      "price_contribution": 7,
+      "required_permission": "NUCLEO_SUPERIOR",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "PRECISION",
+        "TENACITY"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "manto_mantenimiento",
+      "name": "Manto de mantenimiento",
+      "min_stage": "LianQi_IV",
+      "slot": "VESTIDURA",
+      "grade": "REFINADO_DE_SECTA",
+      "accessibility": "INSTITUCIONAL",
+      "power_budget": 3.29,
+      "stats": {
+        "defense": 0.75,
+        "tenacity": 3,
+        "qi_max": 2
+      },
+      "source_type": "MISSION_UNLOCK_REDEMPTION",
+      "source_npc": "Duan Shibo",
+      "source_location": "oficina_logistica",
+      "source_mission": "M13",
+      "price_stones": null,
+      "price_contribution": 9,
+      "required_permission": "MANTENIMIENTO_INVESTIGACION",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "DEFENSE",
+        "TENACITY",
+        "QI"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "brazales_relevo",
+      "name": "Brazales de relevo",
+      "min_stage": "LianQi_IV",
+      "slot": "BRAZALES",
+      "grade": "REFINADO_DE_SECTA",
+      "accessibility": "INSTITUCIONAL",
+      "power_budget": 3.25,
+      "stats": {
+        "defense": 0.5,
+        "hp_max": 3,
+        "tenacity": 2
+      },
+      "source_type": "CONTRIBUTION_REDEMPTION",
+      "source_npc": "Lu Cheng",
+      "source_location": "taller_armas",
+      "source_mission": "M16",
+      "price_stones": null,
+      "price_contribution": 8,
+      "required_permission": "EMERGENCIA_SECTA",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "DEFENSE",
+        "HP",
+        "TENACITY"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "fajin_nucleo_profundo",
+      "name": "Fajín del núcleo profundo",
+      "min_stage": "LianQi_IV",
+      "slot": "FAJIN",
+      "grade": "REFINADO_DE_SECTA",
+      "accessibility": "UNICO",
+      "power_budget": 2.17,
+      "stats": {
+        "qi_max": 5,
+        "tenacity": 2
+      },
+      "source_type": "MISSION_REWARD",
+      "source_npc": "Ji Xueying",
+      "source_location": "consejo",
+      "source_mission": "M17",
+      "price_stones": null,
+      "price_contribution": null,
+      "required_permission": null,
+      "materials": [],
+      "unique": true,
+      "build_tags": [
+        "QI",
+        "TENACITY"
+      ],
+      "effect": null,
+      "availability": "GUARANTEED_AFTER_M17",
+      "notes": ""
+    },
+    {
+      "item_id": "calzas_trama_sello",
+      "name": "Calzas de trama de sello",
+      "min_stage": "LianQi_IV",
+      "slot": "PIERNAS",
+      "grade": "REFINADO_DE_SECTA",
+      "accessibility": "ABIERTO_CON_RECURSOS",
+      "power_budget": 3,
+      "stats": {
+        "hp_max": 4,
+        "evasion": 3
+      },
+      "source_type": "WORKSHOP_SERVICE_STONES",
+      "source_npc": "Ning Cai",
+      "source_location": "taller_textiles_cuero",
+      "source_mission": "M13",
+      "price_stones": 27,
+      "price_contribution": null,
+      "required_permission": "LIV_REVELACION",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "HP",
+        "EVASION"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "botas_voto_inmovil",
+      "name": "Botas del voto inmóvil",
+      "min_stage": "LianQi_IV",
+      "slot": "CALZADO",
+      "grade": "REFINADO_DE_SECTA",
+      "accessibility": "INSTITUCIONAL",
+      "power_budget": 2.42,
+      "stats": {
+        "evasion": 5,
+        "tenacity": 3
+      },
+      "source_type": "MISSION_UNLOCK_REDEMPTION",
+      "source_npc": "Ning Cai",
+      "source_location": "taller_textiles_cuero",
+      "source_mission": "M17",
+      "price_stones": null,
+      "price_contribution": 8,
+      "required_permission": "NUCLEO_PROFUNDO",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "EVASION",
+        "TENACITY"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "amuleto_ancla_resonante",
+      "name": "Amuleto de ancla resonante",
+      "min_stage": "LianQi_IV",
+      "slot": "AMULETO",
+      "grade": "REFINADO_DE_SECTA",
+      "accessibility": "INSTITUCIONAL",
+      "power_budget": 3,
+      "stats": {
+        "hp_max": 3,
+        "control": 3,
+        "tenacity": 3
+      },
+      "source_type": "MISSION_UNLOCK_REDEMPTION",
+      "source_npc": "He Zhen",
+      "source_location": "formaciones",
+      "source_mission": "M14",
+      "price_stones": null,
+      "price_contribution": 8,
+      "required_permission": "NUCLEO_SUPERIOR",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "HP",
+        "CONTROL",
+        "TENACITY"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "pulsera_nudo_crisis",
+      "name": "Pulsera del nudo de crisis",
+      "min_stage": "LianQi_IV",
+      "slot": "PULSERA",
+      "grade": "REFINADO_DE_SECTA",
+      "accessibility": "INSTITUCIONAL",
+      "power_budget": 2.5,
+      "stats": {
+        "qi_max": 4,
+        "evasion": 2,
+        "tenacity": 2
+      },
+      "source_type": "MISSION_UNLOCK_REDEMPTION",
+      "source_npc": "Lan Meihua",
+      "source_location": "medicina",
+      "source_mission": "M16",
+      "price_stones": null,
+      "price_contribution": 7,
+      "required_permission": "EMERGENCIA_SECTA",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "QI",
+        "EVASION",
+        "TENACITY"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "anillo_relevo",
+      "name": "Anillo de relevo",
+      "min_stage": "LianQi_IV",
+      "slot": "ANILLO",
+      "grade": "REFINADO_DE_SECTA",
+      "accessibility": "INSTITUCIONAL",
+      "power_budget": 2,
+      "stats": {
+        "direct_damage_percent": 3,
+        "crit_chance_pp": 2
+      },
+      "source_type": "CONTRIBUTION_REDEMPTION",
+      "source_npc": "Lu Cheng",
+      "source_location": "taller_armas",
+      "source_mission": "M16",
+      "price_stones": null,
+      "price_contribution": 9,
+      "required_permission": "EMERGENCIA_SECTA",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "DIRECT_DAMAGE",
+        "CRIT"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "anillo_marca_quieta",
+      "name": "Anillo de marca quieta",
+      "min_stage": "LianQi_IV",
+      "slot": "ANILLO",
+      "grade": "REFINADO_DE_SECTA",
+      "accessibility": "INSTITUCIONAL",
+      "power_budget": 2,
+      "stats": {
+        "precision": 3,
+        "percent_penetration_pp": 5
+      },
+      "source_type": "MISSION_UNLOCK_REDEMPTION",
+      "source_npc": "Wen Tao",
+      "source_location": "taller_formaciones",
+      "source_mission": "M13",
+      "price_stones": null,
+      "price_contribution": 8,
+      "required_permission": "MANTENIMIENTO_INVESTIGACION",
+      "materials": [],
+      "unique": false,
+      "build_tags": [
+        "PRECISION",
+        "PENETRATION"
+      ],
+      "effect": null,
+      "availability": "OPTIONAL",
+      "notes": ""
+    },
+    {
+      "item_id": "placa_mantenimiento_antigua",
+      "name": "Placa de mantenimiento antigua",
+      "min_stage": "LianQi_IV",
+      "slot": "TESORO_ESPIRITUAL",
+      "grade": "ANTIGUO_FUNCIONAL",
+      "accessibility": "UNICO",
+      "power_budget": 1.75,
+      "stats": {
+        "tenacity": 3
+      },
+      "source_type": "EXPLORATION_UNIQUE",
+      "source_npc": null,
+      "source_location": "mantenimiento_antiguo",
+      "source_mission": "M13",
+      "price_stones": null,
+      "price_contribution": null,
+      "required_permission": null,
+      "materials": [],
+      "unique": true,
+      "build_tags": [
+        "TENACITY",
+        "REACTIVE_DEFENSE"
+      ],
+      "effect": {
+        "type": "FIRST_DIRECT_HIT_ABSORPTION",
+        "absorption_flat": 4,
+        "uses": 1
+      },
+      "availability": "OPTIONAL",
+      "notes": "Artefacto antiguo funcional pero menor; no es reliquia legendaria."
+    },
+    {
+      "item_id": "campana_relevo_silencioso",
+      "name": "Campana de relevo silencioso",
+      "min_stage": "LianQi_IV",
+      "slot": "TESORO_ESPIRITUAL",
+      "grade": "ARTEFACTO_MENOR",
+      "accessibility": "UNICO",
+      "power_budget": 2.17,
+      "stats": {
+        "control": 3,
+        "qi_max": 2
+      },
+      "source_type": "MISSION_UNLOCK_REDEMPTION",
+      "source_npc": "Ji Xueying",
+      "source_location": "consejo",
+      "source_mission": "M17",
+      "price_stones": null,
+      "price_contribution": 10,
+      "required_permission": "NUCLEO_PROFUNDO",
+      "materials": [],
+      "unique": true,
+      "build_tags": [
+        "CONTROL",
+        "QI",
+        "REACTIVE_DEFENSE"
+      ],
+      "effect": {
+        "type": "FIRST_CONTROL_FAILURE_QI_REFUND",
+        "qi_flat": 2,
+        "uses": 1
+      },
+      "availability": "OPTIONAL",
+      "notes": "Recurso de preparación final, no recompensa de M18."
+    }
+  ]
+}
