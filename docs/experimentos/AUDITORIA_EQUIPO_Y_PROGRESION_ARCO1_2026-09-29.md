@@ -411,3 +411,21 @@ Estado actualizado:
 - runtime/HTML sigue SIN CAMBIOS.
 
 Los stats legacy siguen OBSOLETOS: ETAPA18 usa magnitudes nuevas bajo el contrato de combate vigente.
+
+
+### Corrección ETAPA18 — política de Tesoro Espiritual
+
+Decisión humana posterior:
+- Arco 1 tendrá **un único Tesoro Espiritual obtenible** aunque existan 2 slots.
+- segundo slot vacío por diseño;
+- tesoros = poderosos, raros y difíciles de obtener;
+- único candidato Arc1: **Espejo de Pulso Velado**, oculto en Primera Ala;
+- no compra, no Contribución, no recompensa automática;
+- +5 EVA, +3 Tenacidad;
+- 1/combate al caer por primera vez a <=35% HP: Absorción 20% HP máximo.
+- catálogo corregido de 62 a **58 piezas**.
+
+Además se renombra el stat ofensivo de equipo:
+`direct_damage_percent` -> `technique_direct_damage_percent`
+
+para dejar explícito que afecta daño DIRECTO compatible de técnicas y no Golpe básico/DOT/daño secundario.
