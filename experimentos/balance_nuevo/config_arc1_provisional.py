@@ -87,8 +87,8 @@ TARGET_SENSITIVITY_LAB = {
 # Progresión estructural PROVISIONAL cerrada en ETAPA17.
 # Sólo HP/Qi/puntos/acceso crecen automáticamente por cultivo.
 STAGES = {
-    "LianQi_I":   {"hp": 30, "qi": 37, "tech_points_gained": 0, "tech_points_total": 0, "unlocks": "BASE"},
-    "LianQi_II":  {"hp": 36, "qi": 43, "tech_points_gained": 2, "tech_points_total": 2, "unlocks": "TRAMO_I"},
-    "LianQi_III": {"hp": 42, "qi": 49, "tech_points_gained": 2, "tech_points_total": 4, "unlocks": "TRAMO_II"},
-    "LianQi_IV":  {"hp": 48, "qi": 55, "tech_points_gained": 2, "tech_points_total": 6, "unlocks": "TRAMO_III"},
+    "LianQi_I":   {"hp": 30, "qi": 37, "basic_attack": "1d4+4", "cultivation_direct_tech_scalar": 1.00, "tech_points_gained": 0, "tech_points_total": 0, "unlocks": "BASE"},
+    "LianQi_II":  {"hp": 36, "qi": 43, "basic_attack": "1d4+5", "cultivation_direct_tech_scalar": 1.08, "tech_points_gained": 2, "tech_points_total": 2, "unlocks": "TRAMO_I"},
+    "LianQi_III": {"hp": 42, "qi": 49, "basic_attack": "1d4+6", "cultivation_direct_tech_scalar": 1.16, "tech_points_gained": 2, "tech_points_total": 4, "unlocks": "TRAMO_II"},
+    "LianQi_IV":  {"hp": 48, "qi": 55, "basic_attack": "1d4+7", "cultivation_direct_tech_scalar": 1.24, "tech_points_gained": 2, "tech_points_total": 6, "unlocks": "TRAMO_III"},
 }
