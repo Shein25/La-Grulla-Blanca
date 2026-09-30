@@ -1,3 +1,5 @@
+> **NOTA DE SUPERSESIÓN:** ETAPA17B conserva Qi31 como frontera matemática mínima, pero eleva el baseline jugable de LianQi I a Qi37 para dar mayor reserva entre meditaciones. La progresión vigente es 37→43→49→55.
+
 # ETAPA 16 — Validación final de Qi31
 
 Fecha: 2026-09-29  
