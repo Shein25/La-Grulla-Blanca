@@ -2462,3 +2462,72 @@ Ofensiva de equipo:
 - no básico, DOT, Reflect, Retaliation, Calor, curación, Absorción ni secondary no_offensive_rescale.
 - piezas actuales: Amuleto Colmillo +3%, Sable Anillo Gris +2%, Hoja Seis Corrientes +3%, Anillo Relevo +3%.
 - máximo teórico LIV especializado ~+9% (arma + amuleto + anillo), no baseline.
+
+
+### ETAPA18A — AMPLIACIÓN, PRÓLOGO Y DESCRIPCIONES — CERRADA
+
+Documento:
+- docs/experimentos/ETAPA18A_AMPLIACION_CATALOGO_PROLOGO_DESCRIPCIONES_2026-09-29.md
+
+Catálogo vigente:
+- 68 piezas.
+- LI14 / LII21 / LIII19 / LIV14.
+- 1 único Tesoro Espiritual Arc1.
+- 68/68 tienen description examinable.
+- cero placeholders.
+
+Confirmación ver74:
+- ITEMS usaba campo desc para descripciones examinables.
+- nuevaPartida legacy arrancaba con pocion + uniforme + espada_madera.
+- callejero añadía cuchillo_hueso.
+- contrato 3C6 ya quitó auto-entrega de uniforme/espada en creación y trasladó
+  la entrega al descansillo, one-shot equipoInicialEntregado.
+
+Prólogo nuevo:
+- antes de descansillo: ningún equipo de secta.
+- descansillo, una sola vez:
+  1) uniforme_gris_aspirante (auto-equip);
+  2) espada_madera_entrenamiento.
+- campesino/escolar: espada auto-equip.
+- callejero: conserva cuchillo_hueso_callejero, recibe también espada y puede
+  elegir arma activa; conserva ambas.
+- consumibles fuera de este pase: no modificar pociones aquí.
+
+Reemplazo legacy:
+- todo EQUIPO nuevo reemplaza equipo legacy; coexistencia prohibida.
+- mapa previsto:
+  espada_madera -> espada_madera_entrenamiento
+  uniforme -> uniforme_gris_aspirante
+  cuchillo_hueso -> cuchillo_hueso_callejero
+  anillo_herrumbroso -> anillo_hierro_oxidado
+  espada_hierro -> espada_hierro_equilibrada
+  tunica_reforzada -> tunica_reforzada_trama_cobre
+  bandana -> bandana_cuero_reforzada
+  sandalias_viento -> sandalias_corriente_ligera
+  amuleto_colmillo -> amuleto_colmillo_montado
+- runtime/migración todavía DEFER.
+
+10 piezas agregadas:
+- LI: Cinta patio aspirante; Anillo cobre sin sello.
+- LII: Pulsera tensión meridiana; Calzas guardia externa; Anillo reserva menor.
+- LIII: Fajín respiración larga; Brazales aguja plata; Amuleto flujo contenido.
+- LIV: Vestidura Ala Cerrada; Pulsera meridiano profundo.
+
+Daño directo de técnicas por equipo:
+- stat explícito technique_direct_damage_percent.
+- máximo teórico por slots:
+  LI0 / LII5 / LIII7 / LIV11%.
+- no afecta básico, DOT, secondary no_offensive_rescale, Calor, curación ni Absorción.
+
+Diferido por decisión:
+- auditoría integral de adquisiciones;
+- reconciliación final de precios/fuentes;
+- registro/Monte Carlo masivo en Colab;
+- runtime.
+
+Validador actualizado:
+- description obligatoria;
+- legacy ID no reutilizable;
+- exactamente1 tesoro;
+- IDs de prólogo deben existir;
+- export CSV incluye description.
