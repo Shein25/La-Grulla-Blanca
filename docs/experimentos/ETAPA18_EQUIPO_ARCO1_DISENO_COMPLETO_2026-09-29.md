@@ -26,7 +26,7 @@ CONCORDANCIAS
 
 El personaje debe ser viable desnudo. El equipo da margen y permite construir estilos de juego diferentes; ninguna misión principal se balanceará suponiendo el mejor set posible.
 
-Este documento diseña **58 piezas** para los 13 slots previstos. No modifica runtime/HTML.
+Este documento diseña **68 piezas** para los 13 slots previstos. No modifica runtime/HTML.
 
 Fuentes machine-readable:
 - `experimentos/balance_nuevo/equipment_arc1_catalog.json`
@@ -434,12 +434,12 @@ Además, Precisión, crítico y Penetración pueden mejorar el rendimiento ofens
 ## 14. Estado del catálogo
 
 ```text
-58 piezas totales
+68 piezas totales
 
-LianQi I   12
-LianQi II  18
-LianQi III 16
-LianQi IV  12
+LianQi I   14
+LianQi II  21
+LianQi III 19
+LianQi IV  14
 
 ARMA                 11
 TOCADO                6
@@ -479,3 +479,27 @@ Este catálogo es **PROVISIONAL**. Antes de promover:
 7. revalidar contra enemigos LianQi II–IV cuando existan.
 
 El siguiente bloque correcto es **ETAPA 18B — simulación de equipo**, no implementación runtime.
+
+
+## ADDENDUM ETAPA18A — catálogo ampliado y contrato de inspección
+
+ETAPA18A amplía y corrige este diseño.
+
+Autoridad adicional:
+- `docs/experimentos/ETAPA18A_AMPLIACION_CATALOGO_PROLOGO_DESCRIPCIONES_2026-09-29.md`
+
+Cambios vigentes:
+- catálogo ampliado de 58 a **68 piezas**;
+- 14 LI / 21 LII / 19 LIII / 14 LIV;
+- todos los objetos de equipo tienen campo obligatorio `description`;
+- MIRAR/EXAMINAR mostrará descripción diegética y luego propiedades estructuradas;
+- el Prólogo entrega en `descansillo`, una sola vez:
+  - `uniforme_gris_aspirante`;
+  - `espada_madera_entrenamiento`;
+- el origen callejero conserva `cuchillo_hueso_callejero` y puede elegir arma activa;
+- no se entrega equipo de secta al crear el personaje;
+- todo equipo legacy queda sustituido por IDs nuevos; coexistencia prohibida;
+- consumibles/materiales/manuales están fuera de este reemplazo;
+- auditoría integral de adquisición y Colab masivo quedan deliberadamente diferidos.
+
+El JSON `equipment_arc1_catalog.json` es la fuente machine-readable vigente.
