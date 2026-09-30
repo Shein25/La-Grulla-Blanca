@@ -714,4 +714,292 @@ def resolve_monster_direct(state: FightState, rng: random.Random, dice: str) -> 
         if ds["stratum_defense"] and ds["arraigo"]>old and ds["arraigo"] in (2,3): ds["stratum"]=True
         if old<ds["max_arraigo"] and ds["arraigo"]==ds["max_arraigo"]:
             if not ds["max_extension_used"]: ds["turns_left"]+=ds["reach_max_duration_extension"];ds["max_extension_used"]=True
-            if not ds["reach_heal_used"] an
+            if not ds["reach_heal_used"] and ds["reach_max_heal_pct"]>0:
+                _heal_player(state,ds["reach_max_heal_pct"]*p.hp_max);ds["reach_heal_used"]=True
+        if ds["low_hp_threshold"] and p.hp>0 and p.hp/p.hp_max<ds["low_hp_threshold"] and not ds["low_heal_used"]:
+            _heal_player(state,ds["low_hp_heal_pct"]*p.hp_max);ds["low_heal_used"]=True
+    return {"hit":True,"critical":crit,"actual_hp_damage":actual,"absorbed":absorbed}
+
+
+def _heal_player(state: FightState, amount: float) -> None:
+    p=state.player;actual=min(amount,p.hp_max-p.hp);p.hp+=actual;state.metrics.overheal+=max(0,amount-actual)
+
+
+def _tick_dots(target: Actor, state: FightState, rng: random.Random, target_is_player: bool) -> None:
+    if not target.dots:return
+    kept=[]
+    for d in target.dots:
+        if d.get("flat") is not None: dmg=float(d["flat"])
+        else: dmg=roll_dice(rng,d["dice"])*float(d.get("mult",1.0))
+        packet=round_half_up(max(0,dmg));packet,_=_absorb(target,float(packet),state.metrics,target_is_player,state if target_is_player else None)
+        actual=min(target.hp,float(packet));target.hp-=actual
+        if target_is_player: _maybe_trigger_gear_absorption(state)
+        if target_is_player:state.metrics.monster_damage_dot+=actual
+        else:state.metrics.player_damage_dot+=actual
+        d=dict(d);d["ticks_left"]-=1
+        if d["ticks_left"]>0:kept.append(d)
+        if target.hp<=0:break
+    target.dots=kept
+
+
+def _add_dot(target: Actor, dot: dict, source: str) -> None:
+    fam=dot["family"];same=[i for i,d in enumerate(target.dots) if d.get("family")==fam and d.get("source")==source]
+    while len(same)>=dot.get("max_stacks",999):
+        target.dots.pop(same[0]);same=[i for i,d in enumerate(target.dots) if d.get("family")==fam and d.get("source")==source]
+    target.dots.append({"family":fam,"source":source,"flat":dot["flat_per_tick"],"ticks_left":dot["ticks"]})
+
+
+# ---------------------------------------------------------------------------
+# Player technique execution
+# ---------------------------------------------------------------------------
+
+def _pay_qi(state: FightState, cost: int) -> bool:
+    if state.player.qi<cost:return False
+    state.player.qi-=cost;state.metrics.qi_spent+=cost;return True
+
+
+def activate_defense(state: FightState, c: dict) -> bool:
+    if not _pay_qi(state,c["qi_cost"]):return False
+    d=dict(c["defensive"]);d["turns_left"]=d["duration"]
+    if d["kind"]=="FIRE_BARRIER":
+        reserve=d["absorption_pct"]*state.player.hp_max;state.player.absorption=reserve;state.player.absorption_max=reserve;state.player_heat=0.0
+    elif d["kind"]=="WATER_MIRROR":
+        reserve=d["reserve_pct"]*state.player.hp_max;state.player.absorption=reserve;state.player.absorption_max=reserve;d["reconstructed"]=False
+    elif d["kind"]=="METAL_PLATES": d["max_plates"]=d["plates"]
+    elif d["kind"]=="EARTH_SKIN":
+        d.update({"arraigo":d["initial_arraigo"],"large_hit_used":False,"max_extension_used":False,"stratum":False,"rock_guard":False,"reach_heal_used":False,"low_heal_used":False})
+    elif d["kind"]=="WIND_STEP": d["response_created"]=False
+    state.player_defense=d;state.metrics.skill_usage[c["technique_id"]]+=1;return True
+
+
+def execute_player_technique(state: FightState, rng: random.Random, c: dict) -> bool:
+    if c["role"]=="DEFENSIVE":return activate_defense(state,c)
+    if not _pay_qi(state,c["qi_cost"]):return False
+    state.metrics.skill_usage[c["technique_id"]]+=1
+    r=resolve_player_direct(state,rng,c,False);state.last_player_hp_damage_to_monster=r["actual_hp_damage"]
+    # Heat is consumed by the next offensive Fire technique regardless of hit.
+    if c["root"]=="fuego" and state.player_heat>0:
+        stored=state.player_heat;state.player_heat=0.0
+        if r["hit"] and state.monster.alive():
+            real_def=max(0,_monster_dynamic_defense(state));after=round_half_up(max(0,stored-real_def));state.metrics.monster_def_prevented+=max(0,stored-max(0,stored-real_def))
+            after,_=_absorb(state.monster,float(after),state.metrics,False);actual=min(state.monster.hp,float(after));state.monster.hp-=actual;state.metrics.player_damage_direct+=actual
+    if not r["hit"] or not state.monster.alive():return True
+    if c.get("dot"):_add_dot(state.monster,c["dot"],c["technique_id"])
+    if c.get("debuff"):
+        db=c["debuff"];_replace_effect(state.monster,db["stat"],db["amount"],db["turns"],f"{c['technique_id']}:{db['stat']}")
+        if db.get("next_water_control"):state.next_water_control_bonus=max(state.next_water_control_bonus,db["next_water_control"])
+    if c.get("control"):
+        ctl=c["control"]
+        if not (ctl["anti_lock"] and state.arrastre_locked):
+            state.metrics.control_attempts+=1;base=ctl["base"]+ctl["bonus"]+state.player.control+state.next_water_control_bonus;state.next_water_control_bonus=0
+            if rng.random()<clamp(base-state.monster.tenacity,5,100)/100:
+                state.metrics.control_successes+=1;state.monster.skip_next_action=True;state.arrastre_locked=True
+                if ctl["precision_debuff_on_success"]:state.arrastre_precision_debuff=ctl["precision_debuff_on_success"]
+                if ctl["next_precision"]: state.next_latigazo_precision=ctl["next_precision"]
+    if c["model"]=="EARTH_OFFENSE":
+        stab=c.get("self_stability",{})
+        if stab.get("tenacity"):_replace_effect(state.player,"tenacity",stab["tenacity"],1,"golpe:tenacity")
+        if stab.get("defense"):_replace_effect(state.player,"defense",stab["defense"],1,"golpe:defense")
+        state.peso["per_stack"]=c["peso"]["evasion_per_stack"];state.peso["max"]=c["peso"]["max_stacks"];state.peso["stacks"]=min(state.peso["max"],state.peso["stacks"]+1);state.peso["duration"]=c["peso"]["duration"]
+        if state.resonance:
+            if state.resonance.get("extra_peso_stack"):state.peso["stacks"]=min(state.peso["max"],state.peso["stacks"]+state.resonance["extra_peso_stack"])
+            state.resonance=None
+    if c.get("resonance"):state.resonance=dict(c["resonance"])
+    return True
+
+
+def execute_basic(state: FightState, rng: random.Random) -> None:
+    state.metrics.basic_usage+=1
+    if state.player.qi<min((x["qi_cost"] for x in state.compiled.values() if x["role"]!="DEFENSIVE"),default=999): state.loss_used_basic_after_qi_exhaustion=True
+    r=resolve_player_direct(state,rng,None,True);state.last_player_hp_damage_to_monster=r["actual_hp_damage"]
+
+
+def choose_player_action(state: FightState, policy: str) -> str:
+    offensive,defensive,aoe=ROOT_TECHNIQUES[state.player_root]
+    if policy=="UNITARGET_FIRST":return offensive
+    if policy=="AOE_FIRST":return aoe
+    if policy=="DEFENSE_OPEN":
+        if state.round_no==1:return defensive
+        return offensive
+    if policy=="ROTATION":
+        if state.round_no==1:return defensive
+        return aoe if state.round_no%2==0 else offensive
+    raise ValueError(f"policy desconocida: {policy}")
+
+
+# ---------------------------------------------------------------------------
+# Monster T0/T1 behavior
+# ---------------------------------------------------------------------------
+
+def _survival_choice(state: FightState, rng: random.Random) -> bool:
+    if state.tier!="T1" or state.monster_survival_cd>0:return False
+    policy=state.monster_profile["ai"].get("survival_t1")
+    if not policy:return False
+    b=state.signal_bridge;m=state.monster;p=state.player
+    low=m.hp/m.hp_max<=b.low_hp_ratio
+    heavy=state.last_player_hp_damage_to_monster>=b.heavy_hit_ratio*m.hp_max
+    player_low=p.hp/p.hp_max<=b.low_hp_ratio
+    if not low:return False
+    cog=PROFILE_NEXT.get(state.monster_profile["ai"].get("cognition","INSTINTIVO"),"REACTIVO_1");par=PROFILE_PARAMS[cog];pref=OFFENSE_PREFS.get(state.monster_profile["monster_id"],1.0);mod=(pref-1)*20
+    recent=list(state.monster_recent_actions)
+    basic_id="BASIC";surv_id="SURVIVAL"
+    bscore=40+mod+(5 if player_low else 0)-recent.count(basic_id)*par["repetition"]+(rng.random()*2-1)*par["jitter"]
+    sscore=18+mod+22+(10 if heavy else 0)+(3 if player_low else 0)-recent.count(surv_id)*par["repetition"]+(rng.random()*2-1)*par["jitter"]
+    return sscore>=bscore
+
+
+def _activate_monster_survival(state: FightState) -> None:
+    p=dict(state.monster_profile["ai"]["survival_t1"]);kind=p["kind"]
+    if kind=="ABSORB_RESERVE": state.monster.absorption=float(p["reserve"]);state.monster.absorption_max=float(p["reserve"])
+    state.monster_survival=p;state.monster_survival_cd=2;state.metrics.adaptation_procs+=1;state.metrics.defense_procs+=1;state.monster_recent_actions.append("SURVIVAL")
+
+
+def execute_monster_turn(state: FightState, rng: random.Random) -> None:
+    m=state.monster_profile["new_contract_lab"];tech=m.get("technique");r=state.round_no
+    if state.monster.skip_next_action:
+        state.monster.skip_next_action=False;return
+    due=bool(tech and r%int(tech["cada"])==0)
+    if not due and _survival_choice(state,rng):_activate_monster_survival(state);return
+    # CADENCE_COMPAT: due technique is mandatory; otherwise basic.
+    if due:
+        connected=True
+        if tech.get("daño"):
+            rr=resolve_monster_direct(state,rng,tech["daño"]);connected=rr["hit"]
+        else:
+            state.metrics.monster_attempts+=1;connected=rng.random()<clamp(state.monster.effective("precision")- _player_dynamic_evasion(state),5,100)/100
+            if connected:state.metrics.monster_hits+=1
+            else:state.metrics.player_evades+=1
+        if connected and state.player.alive():
+            mult=float(state.monster_profile["adaptive_c_staggered"][state.tier]["damage_mult"])
+            dot=tech.get("veneno") or tech.get("quemadura")
+            if dot:state.player.dots.append({"family":"MONSTER_DOT","source":state.monster_profile["monster_id"],"dice":dot["daño"],"mult":mult,"ticks_left":int(dot["turnos"])})
+            if tech.get("drenaQi"):
+                amt=min(state.player.qi,float(tech["drenaQi"]));state.player.qi-=amt;state.metrics.qi_drained+=amt
+        state.monster_recent_actions.append("TECHNIQUE")
+    else:
+        resolve_monster_direct(state,rng,m["damage"]);state.monster_recent_actions.append("BASIC")
+    # Completing a normal action releases Arrastre anti-lock and its precision debuff.
+    if state.arrastre_locked:
+        state.arrastre_locked=False;state.arrastre_precision_debuff=0.0
+
+
+# ---------------------------------------------------------------------------
+# Turn lifecycle
+# ---------------------------------------------------------------------------
+
+def player_turn_start(state: FightState, rng: random.Random) -> None:
+    ds=state.player_defense
+    if ds and ds["kind"]=="WATER_MIRROR" and ds["turns_left"]>0:
+        if state.player.absorption>0:
+            restore=min(state.player.absorption_max-state.player.absorption,ds["reflow_pct"]*state.player.absorption_max);state.player.absorption+=restore
+        elif ds["reconstruct_pct"]>0 and not ds["reconstructed"]:
+            state.player.absorption=ds["reconstruct_pct"]*state.player.absorption_max;ds["reconstructed"]=True;state.metrics.defense_procs+=1
+    if ds and ds["kind"]=="EARTH_SKIN" and ds["turns_left"]>0 and ds["arraigo"]==ds["max_arraigo"] and ds["rock_guard_defense"]:
+        ds["rock_guard"]=True
+    _tick_dots(state.player,state,rng,True)
+
+
+def monster_turn_start(state: FightState, rng: random.Random) -> None:
+    _tick_dots(state.monster,state,rng,False)
+
+
+def end_round(state: FightState) -> None:
+    ds=state.player_defense
+    if ds:
+        ds["turns_left"]-=1
+        if ds["turns_left"]<=0:
+            if ds["kind"]=="WATER_MIRROR" and state.player.absorption>0 and ds.get("restore_qi_on_natural_expire",0):
+                amount=min(ds["restore_qi_on_natural_expire"],state.player.qi_max-state.player.qi);state.player.qi+=amount;state.metrics.qi_restored+=amount
+            if ds["kind"] in {"FIRE_BARRIER","WATER_MIRROR"}:state.player.absorption=0;state.player.absorption_max=0
+            state.player_defense=None
+    if state.monster_survival_cd>0:state.monster_survival_cd-=1
+    if state.peso["duration"]>0:
+        state.peso["duration"]-=1
+        if state.peso["duration"]<=0:state.peso["stacks"]=0
+    if state.resonance:
+        state.resonance["duration"]-=1
+        if state.resonance["duration"]<=0:state.resonance=None
+    _tick_effects(state.monster);_tick_effects(state.player)
+
+
+# ---------------------------------------------------------------------------
+# Public fight / Monte Carlo API
+# ---------------------------------------------------------------------------
+
+def normalize_paths(paths: Mapping[str,Any]) -> dict[str,tuple[int,...]]:
+    out={}
+    for tid,v in paths.items():
+        if hasattr(v,"choices"): out[tid]=tuple(v.choices)
+        else: out[tid]=tuple(v)
+    return out
+
+
+def fight_once(*,stage: str,root: str,item_ids: Sequence[str],paths: Mapping[str,Sequence[int]],monster_profile: dict,tier: str="T0",policy: str="UNITARGET_FIRST",seed: int=20260930,signal_bridge: LabSignalBridge=LabSignalBridge(),technique_catalog: dict|None=None,equipment_catalog: dict|None=None,max_rounds: int=100) -> dict:
+    signal_bridge.validate();tc=technique_catalog or load_json(TECHNIQUE_CATALOG_PATH);ec=equipment_catalog or load_json(EQUIPMENT_CATALOG_PATH)
+    player,build_meta=build_player(stage,root,item_ids,ec);monster=build_monster(monster_profile,tier);compiled=compile_build(root,normalize_paths(paths),tc)
+    state=FightState(player=player,monster=monster,player_root=root,stage=stage,tier=tier,player_basic_dice=STAGES[stage]["basic_attack"],tech_scalar=STAGES[stage]["tech_scalar"],compiled=compiled,monster_profile=monster_profile,signal_bridge=signal_bridge,equipment_effects=build_meta["equipment_effects"])
+    rng=random.Random(seed)
+    initial_qi=player.qi
+    while player.alive() and monster.alive() and state.round_no<max_rounds:
+        state.round_no+=1;player_turn_start(state,rng)
+        if not player.alive():break
+        action=choose_player_action(state,policy);c=compiled[action]
+        if not execute_player_technique(state,rng,c):execute_basic(state,rng)
+        if not monster.alive():break
+        monster_turn_start(state,rng)
+        if not monster.alive():break
+        execute_monster_turn(state,rng)
+        end_round(state)
+    win=monster.hp<=0 and player.hp>0
+    return {
+        "win":win,"timeout":state.round_no>=max_rounds and player.alive() and monster.alive(),"rounds":state.round_no,
+        "player_hp_final":max(0.0,player.hp),"player_hp_final_pct":max(0.0,player.hp)/player.hp_max,
+        "player_qi_final":max(0.0,player.qi),"player_qi_spent":state.metrics.qi_spent,"monster_hp_final":max(0.0,monster.hp),
+        "root":root,"stage":stage,"tier":tier,"monster_id":monster_profile["monster_id"],"policy":policy,
+        "signal_low_hp_ratio_lab":signal_bridge.low_hp_ratio,"signal_heavy_hit_ratio_lab":signal_bridge.heavy_hit_ratio,
+        "qi_exhaustion_loss":bool((not win) and state.loss_used_basic_after_qi_exhaustion),
+        "damage_per_qi":((state.metrics.player_damage_direct+state.metrics.player_damage_dot)/state.metrics.qi_spent if state.metrics.qi_spent else 0.0),
+        "metrics":{**asdict(state.metrics),"skill_usage":dict(state.metrics.skill_usage)},"build_meta":build_meta,
+        "initial_qi":initial_qi,
+    }
+
+
+def monte_carlo(*,iterations: int,seed: int=20260930,**fight_kwargs) -> dict:
+    rows=[fight_once(seed=seed+i,**fight_kwargs) for i in range(iterations)]
+    metkeys=["player_damage_direct","player_damage_dot","monster_damage_direct","monster_damage_dot","player_def_prevented","monster_def_prevented","player_absorbed","monster_absorbed","player_hits","player_attempts","player_crits","monster_hits","monster_attempts","monster_crits","player_evades","monster_evades","control_attempts","control_successes","defense_procs","adaptation_procs","basic_usage","qi_spent","qi_drained","qi_restored","overheal"]
+    agg={k:statistics.fmean(float(r["metrics"][k]) for r in rows) for k in metkeys}
+    attempts=sum(r["metrics"]["player_attempts"] for r in rows);hits=sum(r["metrics"]["player_hits"] for r in rows);crits=sum(r["metrics"]["player_crits"] for r in rows);cattempts=sum(r["metrics"]["control_attempts"] for r in rows);csucc=sum(r["metrics"]["control_successes"] for r in rows)
+    skill=Counter()
+    for r in rows:skill.update(r["metrics"]["skill_usage"])
+    return {
+        "iterations":iterations,"seed":seed,"stage":rows[0]["stage"],"root":rows[0]["root"],"monster_id":rows[0]["monster_id"],"tier":rows[0]["tier"],"policy":rows[0]["policy"],
+        "win_rate":sum(r["win"] for r in rows)/iterations,"timeout_rate":sum(r["timeout"] for r in rows)/iterations,"mean_rounds":statistics.fmean(r["rounds"] for r in rows),"mean_hp_final_pct":statistics.fmean(r["player_hp_final_pct"] for r in rows),"mean_qi_final":statistics.fmean(r["player_qi_final"] for r in rows),"mean_qi_spent":statistics.fmean(r["player_qi_spent"] for r in rows),"mean_damage_per_qi":statistics.fmean(r["damage_per_qi"] for r in rows),"qi_exhaustion_loss_rate":sum(r["qi_exhaustion_loss"] for r in rows)/iterations,
+        "hit_rate":hits/attempts if attempts else 0.0,"crit_rate_per_hit":crits/hits if hits else 0.0,"control_success_rate":csucc/cattempts if cattempts else 0.0,
+        "mean_metrics":agg,"mean_skill_usage":{k:v/iterations for k,v in skill.items()},
+        "signal_bridge":asdict(fight_kwargs.get("signal_bridge",LabSignalBridge())),
+    }
+
+
+def validate_catalog(catalog: dict) -> list[str]:
+    errors=[];techs=catalog.get("techniques",{})
+    if len(techs)!=15:errors.append(f"TECHNIQUE_COUNT:{len(techs)}!=15")
+    for root,ids in ROOT_TECHNIQUES.items():
+        if len(ids)!=3:errors.append(f"ROOT_COUNT:{root}")
+        for tid in ids:
+            if tid not in techs:errors.append(f"MISSING:{tid}");continue
+            s=techs[tid]
+            if s["root"]!=root:errors.append(f"ROOT_MISMATCH:{tid}")
+            if len(s.get("tramos",[]))!=3 or any(len(x)!=3 for x in s.get("tramos",[])):errors.append(f"BAD_TREE:{tid}")
+            # Every 27 full route must compile.
+            for a in range(3):
+                for b in range(3):
+                    for c in range(3):
+                        try:compile_technique(s,(a,b,c),root)
+                        except Exception as e:errors.append(f"COMPILE:{tid}:{a}{b}{c}:{e}")
+    return errors
+
+
+if __name__=="__main__":
+    cat=load_json(TECHNIQUE_CATALOG_PATH);errs=validate_catalog(cat)
+    print({"techniques":len(cat["techniques"]),"validation_errors":errs})
+    if errs:raise SystemExit(1)
