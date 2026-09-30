@@ -84,9 +84,10 @@ TARGET_SENSITIVITY_LAB = {
 }
 
 # Progresión garantizada: el contrato sólo permite crecer automáticamente
-# HP/Qi/acceso. Los valores exactos permanecen intencionalmente vacíos.
+# HP/Qi/acceso. Qi de LianQi I fue promovido a PROVISIONAL en ETAPA16.
+# HP y los valores de LianQi II–IV permanecen pendientes.
 STAGES = {
-    "LianQi_I":   {"hp": None, "qi": None, "unlocks": "BASE"},
+    "LianQi_I":   {"hp": None, "qi": 31, "unlocks": "BASE"},
     "LianQi_II":  {"hp": None, "qi": None, "unlocks": "TRAMO_I"},
     "LianQi_III": {"hp": None, "qi": None, "unlocks": "TRAMO_II"},
     "LianQi_IV":  {"hp": None, "qi": None, "unlocks": "TRAMO_III"},
