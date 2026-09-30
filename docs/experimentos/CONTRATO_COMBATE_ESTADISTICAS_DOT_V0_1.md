@@ -1434,13 +1434,18 @@ Reglas:
 - +6 HP y +6 Qi por avance;
 - Qi37 es el baseline jugable; Qi31 queda sólo como frontera matemática mínima documentada en ETAPA16;
 - +2 puntos de técnica por avance II/III/IV;
-- no existe multiplicador global de magnitud por etapa;
-- una técnica con fórmula relativa a HP/Qi escala porque cambia el recurso de referencia;
-- los valores planos de daño, DEF, Evasión, Precisión, Control, etc. no escalan por reino salvo que una técnica/rama/sistema lo declare;
+- Golpe básico progresa por etapa: 1d4+4 / 1d4+5 / 1d4+6 / 1d4+7;
+- el daño DIRECTO base de técnicas compatibles usa un escalar de cultivo x1.00 / x1.08 / x1.16 / x1.24;
+- el escalar se aplica una sola vez sobre magnitud base y antes de los modificadores ofensivos normales;
+- no se aplica a DOT, Reflect, Retaliation, Calor almacenado, curación, Absorción, DEF, Evasión, Precisión, Control, Tenacidad, duración, cargas ni recursos internos;
+- una técnica con fórmula relativa a HP/Qi escala porque cambia el recurso de referencia y NO recibe además el escalar de cultivo salvo declaración explícita;
+- DEF, Evasión, Precisión, Control, crítico y Penetración no aumentan automáticamente por reino;
+- el equipo queda como principal segunda capa de progresión cuantitativa y especialización;
 - los valores II–IV son PROVISIONALES estructurales y deben revalidarse contra perfiles enemigos autoritativos de su etapa.
 
-Referencia:
-`docs/experimentos/ETAPA17_PROGRESION_PERSONAJE_LIANQI_I_IV_2026-09-29.md`.
+Referencias:
+- `docs/experimentos/ETAPA17_PROGRESION_PERSONAJE_LIANQI_I_IV_2026-09-29.md`;
+- `docs/experimentos/ETAPA17C_POTENCIA_INTRINSECA_CULTIVO_EQUIPO_2026-09-29.md`.
 
 ## Raíces espirituales
 
