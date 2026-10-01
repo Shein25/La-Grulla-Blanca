@@ -1,0 +1,53 @@
+{
+  "schema_version": "rata-t1-individual-variance-interaction-v0.1",
+  "status": "LAB_INPUT_NOT_CANON",
+  "source_t1_branch": "experiment/rata-t1-reflejo-calibration-v0.1",
+  "source_t1_commit": "c64b08764db28e327dbb05bb04e9466cc3ca2182",
+  "source_variance_status": "HUMAN_RATIFIED_FOR_EXPERIMENTAL_RUNTIME_INTEGRATION",
+  "species": "rata_qi",
+  "t0_trial": 4254,
+  "ability": {
+    "name": "Reflejo de Madriguera",
+    "kind": "EVADE_NEXT"
+  },
+  "candidates": [
+    {
+      "label": "MODERATE",
+      "evasion_bonus": 25,
+      "cooldown_rounds": 5
+    },
+    {
+      "label": "CENTRAL_PROVISIONAL",
+      "evasion_bonus": 40,
+      "cooldown_rounds": 5
+    },
+    {
+      "label": "STRONG",
+      "evasion_bonus": 50,
+      "cooldown_rounds": 5
+    }
+  ],
+  "signal_arms": {
+    "EARLY": {
+      "low_hp_ratio": 0.4,
+      "heavy_hit_ratio": 0.15
+    },
+    "BASE": {
+      "low_hp_ratio": 0.3,
+      "heavy_hit_ratio": 0.2
+    },
+    "LATE": {
+      "low_hp_ratio": 0.2,
+      "heavy_hit_ratio": 0.25
+    }
+  },
+  "guards": {
+    "same_individual_instance_for_t0_t1_pair": true,
+    "same_combat_seed_for_t0_t1_pair": true,
+    "separate_ai_rng": true,
+    "mutant_classification_frozen_before_t1": true,
+    "t1_must_not_modify_instance_stats": true,
+    "no_canonical_write": true,
+    "no_t2_t4": true
+  }
+}
