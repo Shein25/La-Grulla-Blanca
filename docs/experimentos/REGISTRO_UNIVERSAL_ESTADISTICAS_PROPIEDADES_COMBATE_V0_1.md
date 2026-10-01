@@ -101,6 +101,24 @@ Son valores persistentes/derivados propios de una entidad y admiten múltiples f
 
 ## 3.2 Qi
 
+### Aplicabilidad por actor
+
+Qi es una estadística universal disponible para actores cuyo contrato declare:
+
+```text
+resource_model = QI
+```
+
+Los monstruos del Arco 1 declaran autoritativamente:
+
+```text
+resource_model = NONE
+qi_max = null
+```
+
+Para ellos, `null` significa **N/A** y no constituye un campo pendiente ni un bloqueo de `READY`. No poseen reserva propia, no pagan costes de Qi y no regeneran Qi. Pueden, sin embargo, aplicar efectos de drenaje contra objetivos que sí posean Qi.
+
+
 ### QI_CURRENT
 - clase: CORE_STAT
 - disponibilidad: ACTIVE_ARC1
