@@ -61,7 +61,7 @@ jobs:
               assert p["stats_status"]=="READY",mid
               assert p["stats"]==e["stats"],mid
               assert p["technique"]==e["technique"],mid
-          assert d["profiles"]["rata_qi"]["adaptive"]["status"]=="T2_READY_FOR_T3_CALIBRATION"
+          assert d["profiles"]["rata_qi"]["adaptive"]["status"]=="T3_READY_FOR_T4_CALIBRATION"
           for mid in ["avispa_jade","serpiente_qi","mono_pildoras","lobo_espiritual"]:
               assert d["profiles"][mid]["adaptive"]["status"]=="READY_FOR_T1_RECALIBRATION",mid
           assert set(d["rules"]["ready_profiles"])=={"rata_qi","avispa_jade","serpiente_qi","mono_pildoras","lobo_espiritual"}
@@ -183,7 +183,7 @@ jobs:
           print("PASS: five-species variance combat smoke")
           PY
 
-      - name: Validate frozen Rata T1-T2 and T3 gate
+      - name: Validate frozen Rata T1-T3 and T4 gate
         working-directory: experimentos/balance_nuevo/rata_adaptive_tiers_v0.1
         run: |
           python recognition_kernel_test.py
@@ -193,10 +193,12 @@ jobs:
           python - <<'PY'
           import json
           d=json.load(open("RATA_ADAPTIVE_TIER_CONTRACT_V0_1.json",encoding="utf-8"))
-          assert d["status"]=="T2_HUMAN_RATIFIED_T3_LAB_ALLOWED"
+          assert d["status"]=="T3_HUMAN_RATIFIED_T4_LAB_ALLOWED"
+
           assert d["t1"]["status"]=="READY_HUMAN_RATIFIED"
           assert d["t1"]["ability"]["evasion_bonus"]==40
           assert d["t1"]["ability"]["cooldown_rounds"]==5
+
           assert d["t2"]["status"]=="READY_HUMAN_RATIFIED"
           assert d["t2"]["candidate"]=="R2_SHORT"
           r=d["t2"]["recognition"]
@@ -204,222 +206,20 @@ jobs:
           assert r["repeated_same_category_required"]==2
           assert r["count_results"]==["EFECTIVA"]
           assert r["preemptive_survival_bonus"]==8
-          assert d["t3"]["status"]=="CALIBRATION_ALLOWED_NOT_SELECTED"
-          assert d["t4"]["status"]=="BLOCKED_UNTIL_T3_HUMAN_CLOSURE"
-          print("PASS: Rata T1/T2 frozen; only T3 LAB gate is open")
+
+          assert d["t3"]["status"]=="READY_HUMAN_RATIFIED"
+          assert d["t3"]["trigger"]["label"]=="CONFIRMED_PATTERN_REFLEJO_MISS"
+          assert d["t3"]["trigger"]["causal_reflejo_miss_required"] is True
+          assert d["t3"]["damage"]["mode"]=="INSTANCE_BASIC"
+          assert d["t3"]["damage"]["direct_damage_pipeline"] is True
+          assert d["t3"]["evidence"]["false_counter_rate"]==0
+          assert d["t3"]["evidence"]["degenerate_counter_loops"]==0
+
+          assert d["t4"]["status"]=="CALIBRATION_ALLOWED_NOT_SELECTED"
+          assert d["t4"]["identity"]=="MORDISCO_FRENETICO"
+          print("PASS: Rata T1-T3 frozen; only T4 LAB gate is open")
           PY
 
-      - name: Rata T3 causal counter smoke
-        working-directory: experimentos/balance_nuevo/rata_adaptive_tiers_v0.1
+      - name: Confirm Rata T4 calibration is open
         run: |
-          rm -rf ci_rata_t3
-          python rata_t3_counter_lab.py --preset smoke --outdir ci_rata_t3 --namespace CI_T3
-          test -f ci_rata_t3/RESULTADOS_RATA_T3_COUNTER_V01.zip
-          python - <<'PY'
-          import gzip,json
-          s=json.load(open("ci_rata_t3/SUMMARY.json",encoding="utf-8"))
-          assert s["experiment"]=="RATA_T3_COUNTER_V01"
-          assert s["t1_frozen"] is True
-          assert s["t2_frozen"] is True
-          assert s["counter_damage_reference"]=="2d4"
-          assert s["reflejo_causal_miss_detection"] is True
-          assert s["canonical_write"] is False
-          assert s["t4_executed"] is False
-          with gzip.open("ci_rata_t3/t3_results.json.gz","rt",encoding="utf-8") as f:
-              rows=json.load(f)
-          assert len(rows)==3
-          assert {r["candidate"]["label"] for r in rows}=={
-              "RECOGNIZED_REFLEJO_MISS",
-              "CONFIRMED_PATTERN_REFLEJO_MISS",
-              "CONFIRMED_PATTERN_ONCE_PER_FIGHT",
-          }
-          for r in rows:
-              assert r["result"]["natural_all"]["fights"]==20
-              assert r["result"]["mutant_conditional"]["fights"]==10
-              assert r["result"]["natural_all"]["t3"]["degenerate_counter_loop_count"]==0
-              assert r["result"]["mutant_conditional"]["t3"]["degenerate_counter_loop_count"]==0
-          for r in rows:
-              if r["candidate"]["requires_prediction_confirmed"]:
-                  assert r["result"]["natural_all"]["t3"]["false_counter_rate"]==0
-                  assert r["result"]["mutant_conditional"]["t3"]["false_counter_rate"]==0
-          print("PASS: Rata T3 counter uses causal Reflejo misses; T4 stays blocked")
-          PY
-
-      - name: Rata T3 directed trigger study
-        if: contains(github.event.head_commit.message, '[T3_DIRECTED]')
-        working-directory: experimentos/balance_nuevo/rata_adaptive_tiers_v0.1
-        run: |
-          rm -rf ci_rata_t3_directed
-          python rata_t3_counter_lab.py --preset directed --outdir ci_rata_t3_directed --namespace CI_T3_DIRECTED
-          python - <<'PY'
-          import gzip,json
-          with gzip.open("ci_rata_t3_directed/frozen_t2_baseline.json.gz","rt",encoding="utf-8") as f:
-              baseline=json.load(f)
-          with gzip.open("ci_rata_t3_directed/t3_results.json.gz","rt",encoding="utf-8") as f:
-              rows=json.load(f)
-          out={
-              "baseline":{
-                  "normal_win":baseline["natural_normal"]["win_rate"],
-                  "normal_hp":baseline["natural_normal"]["hp_final_pct_mean"],
-                  "mutant_win":baseline["mutant_conditional"]["win_rate"],
-                  "mutant_hp":baseline["mutant_conditional"]["hp_final_pct_mean"],
-              },
-              "candidates":[]
-          }
-          for r in rows:
-              n=r["result"]["natural_normal"]
-              m=r["result"]["mutant_conditional"]
-              out["candidates"].append({
-                  "label":r["candidate"]["label"],
-                  "normal":{
-                      "win":n["win_rate"],
-                      "hp":n["hp_final_pct_mean"],
-                      "counter_per_fight":n["t3"]["counter_activation_per_fight"],
-                      "counter_damage":n["t3"]["counter_damage_per_fight"],
-                      "false_counter_rate":n["t3"]["false_counter_rate"],
-                      "confirmed_at_miss":n["t3"]["prediction_confirmed_rate_at_recognition_miss"],
-                      "multi_counter_fight_rate":n["t3"]["multi_counter_fight_rate"],
-                      "max_counters":n["t3"]["max_counters_in_one_fight"],
-                      "degenerate_loops":n["t3"]["degenerate_counter_loop_count"],
-                  },
-                  "mutant":{
-                      "win":m["win_rate"],
-                      "hp":m["hp_final_pct_mean"],
-                      "counter_per_fight":m["t3"]["counter_activation_per_fight"],
-                      "counter_damage":m["t3"]["counter_damage_per_fight"],
-                      "false_counter_rate":m["t3"]["false_counter_rate"],
-                      "confirmed_at_miss":m["t3"]["prediction_confirmed_rate_at_recognition_miss"],
-                      "multi_counter_fight_rate":m["t3"]["multi_counter_fight_rate"],
-                      "max_counters":m["t3"]["max_counters_in_one_fight"],
-                      "degenerate_loops":m["t3"]["degenerate_counter_loop_count"],
-                  },
-                  "delta_normal":r["delta_vs_frozen_t2"]["natural_normal"],
-                  "delta_mutant":r["delta_vs_frozen_t2"]["mutant_conditional"],
-              })
-          print("T3_DIRECTED_RESULT="+json.dumps(out,sort_keys=True))
-          PY
-
-      - name: Rata T3 policy generalization study
-        if: contains(github.event.head_commit.message, '[T3_POLICY]')
-        working-directory: experimentos/balance_nuevo/rata_adaptive_tiers_v0.1
-        run: |
-          rm -rf ci_rata_t3_policy
-          python rata_t3_policy_generalization.py --natural-fights 200 --mutant-fights 50 --outdir ci_rata_t3_policy --namespace CI_T3_POLICY
-          python - <<'PY'
-          import gzip,json
-          with gzip.open("ci_rata_t3_policy/policy_generalization_results.json.gz","rt",encoding="utf-8") as f:
-              rows=json.load(f)
-          out=[]
-          for r in rows:
-              n=r["t3"]["natural_normal"]["t3"]
-              m=r["t3"]["mutant_conditional"]["t3"]
-              out.append({
-                  "policy":r["policy"],
-                  "candidate":r["candidate"]["label"],
-                  "normal_counter_per_fight":n["counter_activation_per_fight"],
-                  "normal_false_counter_rate":n["false_counter_rate"],
-                  "normal_confirmed_at_miss":n["prediction_confirmed_rate_at_recognition_miss"],
-                  "normal_multi_counter_rate":n["multi_counter_fight_rate"],
-                  "mutant_counter_per_fight":m["counter_activation_per_fight"],
-                  "mutant_false_counter_rate":m["false_counter_rate"],
-                  "mutant_confirmed_at_miss":m["prediction_confirmed_rate_at_recognition_miss"],
-                  "mutant_multi_counter_rate":m["multi_counter_fight_rate"],
-                  "delta_normal":r["delta_vs_frozen_t2"]["natural_normal"],
-                  "delta_mutant":r["delta_vs_frozen_t2"]["mutant_conditional"],
-              })
-          print("T3_POLICY_RESULT="+json.dumps(out,sort_keys=True))
-          PY
-
-      - name: Rata T3 damage calibration study
-        if: contains(github.event.head_commit.message, '[T3_DAMAGE]')
-        working-directory: experimentos/balance_nuevo/rata_adaptive_tiers_v0.1
-        run: |
-          rm -rf ci_rata_t3_damage
-          python rata_t3_damage_calibration.py --natural-fights 200 --mutant-fights 50 --outdir ci_rata_t3_damage --namespace CI_T3_DAMAGE
-          python - <<'PY'
-          import gzip,json
-          with gzip.open("ci_rata_t3_damage/damage_calibration_results.json.gz","rt",encoding="utf-8") as f:
-              rows=json.load(f)
-          out=[]
-          for r in rows:
-              n=r["t3"]["natural_normal"]
-              m=r["t3"]["mutant_conditional"]
-              out.append({
-                  "policy":r["policy"],
-                  "damage":r["damage_candidate"]["label"],
-                  "normal_counter_per_fight":n["t3"]["counter_activation_per_fight"],
-                  "normal_damage_per_fight":n["t3"]["counter_damage_per_fight"],
-                  "normal_damage_per_activation":n["t3"]["counter_damage_per_activation"],
-                  "normal_damage_p90":n["t3"]["counter_damage_p90_per_activation"],
-                  "normal_hp_pressure_delta":r["delta_vs_frozen_t2"]["natural_normal"]["hp_pressure_delta"],
-                  "normal_win_delta":r["delta_vs_frozen_t2"]["natural_normal"]["win_rate_delta"],
-                  "mutant_counter_per_fight":m["t3"]["counter_activation_per_fight"],
-                  "mutant_damage_per_fight":m["t3"]["counter_damage_per_fight"],
-                  "mutant_damage_per_activation":m["t3"]["counter_damage_per_activation"],
-                  "mutant_damage_p90":m["t3"]["counter_damage_p90_per_activation"],
-                  "mutant_hp_pressure_delta":r["delta_vs_frozen_t2"]["mutant_conditional"]["hp_pressure_delta"],
-                  "mutant_win_delta":r["delta_vs_frozen_t2"]["mutant_conditional"]["win_rate_delta"],
-                  "loops_normal":n["t3"]["degenerate_counter_loop_count"],
-                  "loops_mutant":m["t3"]["degenerate_counter_loop_count"],
-              })
-          print("T3_DAMAGE_RESULT="+json.dumps(out,sort_keys=True))
-          PY
-
-      - name: Rata T3 final candidate validation
-        if: contains(github.event.head_commit.message, '[T3_FINAL]')
-        working-directory: experimentos/balance_nuevo/rata_adaptive_tiers_v0.1
-        run: |
-          rm -rf ci_rata_t3_final
-          python rata_t3_final_validation.py --natural-fights 1000 --mutant-fights 250 --outdir ci_rata_t3_final --namespace CI_T3_FINAL
-          python - <<'PY'
-          import gzip,json
-          s=json.load(open("ci_rata_t3_final/SUMMARY.json",encoding="utf-8"))
-          assert s["experiment"]=="RATA_T3_FINAL_VALIDATION_V01"
-          assert s["total_fights"]==125000
-          assert s["canonical_write"] is False
-          assert s["t4_executed"] is False
-          with gzip.open("ci_rata_t3_final/final_validation_results.json.gz","rt",encoding="utf-8") as f:
-              rows=json.load(f)
-          out=[]
-          for r in rows:
-              n=r["t3"]["natural_normal"]
-              m=r["t3"]["mutant_conditional"]
-              out.append({
-                  "policy":r["policy"],
-                  "normal":{
-                      "win":n["win_rate"],
-                      "hp":n["hp_final_pct_mean"],
-                      "counter_per_fight":n["t3"]["counter_activation_per_fight"],
-                      "damage_per_fight":n["t3"]["counter_damage_per_fight"],
-                      "damage_per_activation":n["t3"]["counter_damage_per_activation"],
-                      "damage_p90":n["t3"]["counter_damage_p90_per_activation"],
-                      "false_counter_rate":n["t3"]["false_counter_rate"],
-                      "multi_counter_rate":n["t3"]["multi_counter_fight_rate"],
-                      "max_counters":n["t3"]["max_counters_in_one_fight"],
-                      "loops":n["t3"]["degenerate_counter_loop_count"],
-                  },
-                  "mutant":{
-                      "win":m["win_rate"],
-                      "hp":m["hp_final_pct_mean"],
-                      "counter_per_fight":m["t3"]["counter_activation_per_fight"],
-                      "damage_per_fight":m["t3"]["counter_damage_per_fight"],
-                      "damage_per_activation":m["t3"]["counter_damage_per_activation"],
-                      "damage_p90":m["t3"]["counter_damage_p90_per_activation"],
-                      "false_counter_rate":m["t3"]["false_counter_rate"],
-                      "multi_counter_rate":m["t3"]["multi_counter_fight_rate"],
-                      "max_counters":m["t3"]["max_counters_in_one_fight"],
-                      "loops":m["t3"]["degenerate_counter_loop_count"],
-                  },
-                  "delta_normal":r["delta_vs_frozen_t2"]["natural_normal"],
-                  "delta_mutant":r["delta_vs_frozen_t2"]["mutant_conditional"],
-              })
-          assert all(x["normal"]["false_counter_rate"]==0 for x in out)
-          assert all(x["mutant"]["false_counter_rate"]==0 for x in out)
-          assert all(x["normal"]["loops"]==0 for x in out)
-          assert all(x["mutant"]["loops"]==0 for x in out)
-          print("T3_FINAL_RESULT="+json.dumps(out,sort_keys=True))
-          PY
-
-      - name: Confirm Rata T4 remains blocked
-        run: |
-          grep -q "T3_CALIBRATION_OPEN / T4 STRUCTURE_ONLY / NO T4 NUMERIC CALIBRATION" experimentos/balance_nuevo/parallel_arc1_pipeline/RATA_T2_T4_STRUCTURAL_AUDIT.md
+          grep -q "T4_CALIBRATION_OPEN / T0-T3 FROZEN" experimentos/balance_nuevo/parallel_arc1_pipeline/RATA_T2_T4_STRUCTURAL_AUDIT.md
