@@ -1,0 +1,304 @@
+{
+  "schema_version": "parallel-t0-directed-v0.1",
+  "status": "LAB_INPUT_FROM_2026_10_01_OVERNIGHT",
+  "source_run": {
+    "label": "5_MONSTRUOS_OVERNIGHT",
+    "trials_per_species": 1500,
+    "search_fights_per_context": 100,
+    "revalidate_fights_per_context": 1000,
+    "high_precision_fights_per_context": 5000,
+    "contexts": 10
+  },
+  "species": {
+    "avispa_jade": [
+      {
+        "trial": 1119,
+        "params": {
+          "basic_damage": "2d2",
+          "defense": 0,
+          "evasion": 29,
+          "hp": 8,
+          "poison_damage": "1d2",
+          "poison_ticks": 2,
+          "precision": 87,
+          "technique_cadence": 4,
+          "tenacity": 5
+        }
+      },
+      {
+        "trial": 1251,
+        "params": {
+          "basic_damage": "1d3+4",
+          "defense": 2,
+          "evasion": 55,
+          "hp": 20,
+          "poison_damage": "1d3+2",
+          "poison_ticks": 4,
+          "precision": 103,
+          "technique_cadence": 2,
+          "tenacity": 8
+        }
+      },
+      {
+        "trial": 1468,
+        "params": {
+          "basic_damage": "2d2+3",
+          "defense": 0,
+          "evasion": 29,
+          "hp": 10,
+          "poison_damage": "1d2",
+          "poison_ticks": 2,
+          "precision": 87,
+          "technique_cadence": 4,
+          "tenacity": 5
+        }
+      },
+      {
+        "trial": 1417,
+        "params": {
+          "basic_damage": "1d2+1",
+          "defense": 2,
+          "evasion": 55,
+          "hp": 20,
+          "poison_damage": "2d2+1",
+          "poison_ticks": 4,
+          "precision": 103,
+          "technique_cadence": 2,
+          "tenacity": 8
+        }
+      },
+      {
+        "trial": 872,
+        "params": {
+          "basic_damage": "1d2+1",
+          "defense": 0,
+          "evasion": 22,
+          "hp": 17,
+          "poison_damage": "1d3+2",
+          "poison_ticks": 2,
+          "precision": 90,
+          "technique_cadence": 2,
+          "tenacity": 7
+        }
+      }
+    ],
+    "serpiente_qi": [
+      {
+        "trial": 848,
+        "params": {
+          "basic_damage": "1d2+2",
+          "defense": 0,
+          "evasion": 5,
+          "hp": 12,
+          "poison_damage": "1d3",
+          "poison_ticks": 3,
+          "precision": 86,
+          "technique_cadence": 4,
+          "tenacity": 6
+        }
+      },
+      {
+        "trial": 1453,
+        "params": {
+          "basic_damage": "1d2+2",
+          "defense": 3,
+          "evasion": 30,
+          "hp": 29,
+          "poison_damage": "1d6+2",
+          "poison_ticks": 4,
+          "precision": 106,
+          "technique_cadence": 2,
+          "tenacity": 32
+        }
+      },
+      {
+        "trial": 1412,
+        "params": {
+          "basic_damage": "1d2+2",
+          "defense": 2,
+          "evasion": 30,
+          "hp": 29,
+          "poison_damage": "2d3+2",
+          "poison_ticks": 4,
+          "precision": 89,
+          "technique_cadence": 2,
+          "tenacity": 5
+        }
+      },
+      {
+        "trial": 1484,
+        "params": {
+          "basic_damage": "1d2+2",
+          "defense": 0,
+          "evasion": 5,
+          "hp": 27,
+          "poison_damage": "1d2+2",
+          "poison_ticks": 3,
+          "precision": 86,
+          "technique_cadence": 2,
+          "tenacity": 5
+        }
+      },
+      {
+        "trial": 1013,
+        "params": {
+          "basic_damage": "1d2+2",
+          "defense": 1,
+          "evasion": 8,
+          "hp": 27,
+          "poison_damage": "2d2+3",
+          "poison_ticks": 3,
+          "precision": 92,
+          "technique_cadence": 2,
+          "tenacity": 5
+        }
+      }
+    ],
+    "mono_pildoras": [
+      {
+        "trial": 1211,
+        "params": {
+          "basic_damage": "2d4",
+          "defense": 0,
+          "evasion": 15,
+          "hp": 18,
+          "precision": 93,
+          "qi_drain": 1,
+          "technique_cadence": 4,
+          "technique_direct_damage": "1d4+2",
+          "tenacity": 11
+        }
+      },
+      {
+        "trial": 1179,
+        "params": {
+          "basic_damage": "1d3+4",
+          "defense": 3,
+          "evasion": 43,
+          "hp": 34,
+          "precision": 111,
+          "qi_drain": 8,
+          "technique_cadence": 2,
+          "technique_direct_damage": "1d4+2",
+          "tenacity": 10
+        }
+      },
+      {
+        "trial": 1068,
+        "params": {
+          "basic_damage": "1d2+3",
+          "defense": 3,
+          "evasion": 44,
+          "hp": 34,
+          "precision": 91,
+          "qi_drain": 5,
+          "technique_cadence": 2,
+          "technique_direct_damage": "1d2+3",
+          "tenacity": 12
+        }
+      },
+      {
+        "trial": 1331,
+        "params": {
+          "basic_damage": "1d2+3",
+          "defense": 0,
+          "evasion": 23,
+          "hp": 14,
+          "precision": 90,
+          "qi_drain": 2,
+          "technique_cadence": 4,
+          "technique_direct_damage": "1d4+2",
+          "tenacity": 11
+        }
+      },
+      {
+        "trial": 1274,
+        "params": {
+          "basic_damage": "2d3+3",
+          "defense": 3,
+          "evasion": 43,
+          "hp": 34,
+          "precision": 108,
+          "qi_drain": 4,
+          "technique_cadence": 2,
+          "technique_direct_damage": "2d3+5",
+          "tenacity": 11
+        }
+      }
+    ],
+    "lobo_espiritual": [
+      {
+        "trial": 1429,
+        "params": {
+          "basic_damage": "2d6",
+          "defense": 1,
+          "evasion": 12,
+          "hp": 24,
+          "precision": 96,
+          "technique_cadence": 5,
+          "technique_direct_damage": "1d4+6",
+          "tenacity": 20
+        }
+      },
+      {
+        "trial": 1463,
+        "params": {
+          "basic_damage": "1d2+6",
+          "defense": 5,
+          "evasion": 12,
+          "hp": 57,
+          "precision": 96,
+          "technique_cadence": 5,
+          "technique_direct_damage": "2d6+1",
+          "tenacity": 20
+        }
+      },
+      {
+        "trial": 629,
+        "params": {
+          "basic_damage": "1d2+6",
+          "defense": 4,
+          "evasion": 12,
+          "hp": 56,
+          "precision": 101,
+          "technique_cadence": 5,
+          "technique_direct_damage": "1d3+6",
+          "tenacity": 20
+        }
+      },
+      {
+        "trial": 1425,
+        "params": {
+          "basic_damage": "2d4+2",
+          "defense": 1,
+          "evasion": 12,
+          "hp": 41,
+          "precision": 97,
+          "technique_cadence": 5,
+          "technique_direct_damage": "2d6+1",
+          "tenacity": 20
+        }
+      },
+      {
+        "trial": 1194,
+        "params": {
+          "basic_damage": "1d6+4",
+          "defense": 1,
+          "evasion": 12,
+          "hp": 57,
+          "precision": 96,
+          "technique_cadence": 5,
+          "technique_direct_damage": "2d6+1",
+          "tenacity": 20
+        }
+      }
+    ]
+  },
+  "guards": {
+    "automatic_selection": false,
+    "canonical_write": false,
+    "target_win_rate": false,
+    "t1_t4": false,
+    "definitives": false
+  }
+}
