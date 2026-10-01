@@ -26,9 +26,6 @@ def _axis_count(spec):
 
 def instantiate(species_id:str,seed:int)->dict:
     spec=CONFIG["species"][species_id]
-    if spec.get("status")=="BLOCKED_UNTIL_T0_HUMAN_RATIFICATION":
-        raise RuntimeError(f"{species_id}: variance blocked until T0 human ratification")
-
     rng=random.Random(seed)
     q_by_axis={}
     stats={}
@@ -78,8 +75,6 @@ def instantiate(species_id:str,seed:int)->dict:
 def selfcheck(samples=50000):
     rates={}
     for species_id,spec in CONFIG["species"].items():
-        if spec.get("status")=="BLOCKED_UNTIL_T0_HUMAN_RATIFICATION":
-            continue
         mutants=0
         for seed in range(samples):
             x=instantiate(species_id,seed)
@@ -107,6 +102,9 @@ def selfcheck(samples=50000):
     assert len(CONFIG["species"]["avispa_jade"]["attacks"]["poison_ticks"]["ladder"])>1
     assert len(CONFIG["species"]["serpiente_qi"]["attacks"]["poison_damage"]["ladder"])>1
     assert len(CONFIG["species"]["lobo_espiritual"]["attacks"]["technique_direct_damage"]["ladder"])>1
+    assert len(CONFIG["species"]["mono_pildoras"]["attacks"]["basic_damage"]["ladder"])>1
+    assert len(CONFIG["species"]["mono_pildoras"]["attacks"]["technique_direct_damage"]["ladder"])>1
+    assert CONFIG["species"]["mono_pildoras"]["fixed_technique"]["qi_drain"]==5
 
     print("PASS: defensive and offensive individual variance stays inside measured envelopes")
     print("PASS: Mutante incidence <1%; loot and XP multipliers are exactly 1.5")
