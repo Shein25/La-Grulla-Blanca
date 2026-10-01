@@ -37,7 +37,10 @@ def build_report(study) -> dict[str,Any]:
     all_keys=sorted({k for t in complete for k in t.params})
     for key in all_keys:
         vals=[t.params[key] for t in complete if key in t.params]
-        if vals and all isinstance(x,(int,float)) and not isinstance(x,bool) for x in vals:
+        if vals and all(
+            isinstance(x,(int,float)) and not isinstance(x,bool)
+            for x in vals
+        ):
             coverage[key]={
                 "type":"numeric",
                 "min":min(vals),
