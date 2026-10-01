@@ -24,6 +24,8 @@ import random
 import re
 import statistics
 
+from monster_new_engine_guard import validate_profile
+
 HERE = Path(__file__).resolve().parent
 TECHNIQUE_CATALOG_PATH = HERE / "techniques_arc1_catalog.json"
 MONSTER_CATALOG_PATH = HERE / "monster_arc1_registry.json"
@@ -519,18 +521,7 @@ def build_player(stage: str, root: str, item_ids: Sequence[str], equipment_catal
 def _require_monster_ready(profile: dict, tier: str) -> None:
     if tier != "T0":
         raise ValueError("T1-T4 requieren la capa adaptativa recalibrada sobre un T0 READY")
-    if profile.get("engine_contract") != "NEW_COMBAT_STATS_V0_1":
-        raise ValueError("perfil de monstruo fuera del contrato NEW_COMBAT_STATS_V0_1")
-    if profile.get("stats_status") != "READY":
-        raise ValueError(f"{profile.get('id','?')}: T0 stats are not READY")
-    stats = profile.get("stats") or {}
-    required = ("hp","qi_max","precision","evasion","defense","tenacity","control","crit_chance","crit_damage","basic_damage")
-    missing = [key for key in required if stats.get(key) is None]
-    if missing:
-        raise ValueError(f"{profile.get('id','?')}: stats pendientes: {', '.join(missing)}")
-    tech = profile.get("technique")
-    if tech and tech.get("params_status") != "READY":
-        raise ValueError(f"{profile.get('id','?')}: technique params are not READY")
+    validate_profile(profile, require_ready=True)
 
 
 def build_monster(profile: dict, tier: str) -> Actor:
