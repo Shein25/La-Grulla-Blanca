@@ -1,0 +1,146 @@
+{
+  "schema_version": "alchemy-recipe-economy-proposal-v0.1",
+  "status": "STRUCTURAL_PROPOSAL_AWAITING_HUMAN_REVIEW",
+  "principles": [
+    "Core progression recipes must use renewable/farmable materials because quality mastery requires repeated valid crafts.",
+    "Unique/boss-only materials are reserved for special one-off or prestige formulas, never mandatory repeated practice.",
+    "Failure consumes ingredients, so recipe burden must include expected failed attempts.",
+    "Later formulations increase source diversity and scarcity more than raw ingredient count.",
+    "Crafting output remains one unit before future yield/efficiency systems."
+  ],
+  "vitality_progression": [
+    {
+      "stage": "LianQi_I",
+      "formulation": "Básica",
+      "difficulty": "sencilla",
+      "ingredients": {
+        "raiz_sangre": 1,
+        "hierba_claridad": 1
+      },
+      "valid_crafts_to_exceptional_ceiling": 2,
+      "base_material_units_per_attempt": 2,
+      "notes": "Preserves the current introductory blood recipe identity."
+    },
+    {
+      "stage": "LianQi_II",
+      "formulation": "Templada",
+      "difficulty": "normal",
+      "ingredients": {
+        "raiz_sangre": 1,
+        "hongo_medula": 1,
+        "petalo_ceniza": 1
+      },
+      "valid_crafts_to_exceptional_ceiling": 3,
+      "base_material_units_per_attempt": 3,
+      "notes": "All ingredients are renewable; adds nourishment and controlled heat."
+    },
+    {
+      "stage": "LianQi_III",
+      "formulation": "Profunda",
+      "difficulty": "dificil",
+      "ingredients": {
+        "raiz_sangre": 1,
+        "medula_fungica": 1,
+        "musgo_lunar": 1,
+        "rocio_niebla": 1
+      },
+      "valid_crafts_to_exceptional_ceiling": 6,
+      "base_material_units_per_attempt": 4,
+      "notes": "Uses a destructive-but-renewable fungal extraction as its principal scarcity gate."
+    },
+    {
+      "stage": "LianQi_IV",
+      "formulation": "Condensada",
+      "difficulty": "muy_dificil",
+      "ingredients": {
+        "raiz_sangre": 1,
+        "semilla_trueno": 1,
+        "fibra_tempestad": 1,
+        "polvo_nube": 1
+      },
+      "valid_crafts_to_exceptional_ceiling": 6,
+      "base_material_units_per_attempt": 4,
+      "notes": "Late renewable plant + monster resources. No unique/boss component."
+    }
+  ],
+  "pure_qi_progression": [
+    {
+      "stage": "LianQi_I",
+      "working_name": "Elixir de Qi Menor",
+      "difficulty": "normal",
+      "ingredients": {
+        "rocio_niebla": 1,
+        "hongo_medula": 1,
+        "hierba_claridad": 1
+      },
+      "notes": "Separates Qi recovery from the blood-root vitality loop."
+    },
+    {
+      "stage": "LianQi_II",
+      "working_name": "Elixir de Circulación",
+      "difficulty": "normal",
+      "ingredients": {
+        "rocio_niebla": 1,
+        "musgo_lunar": 1,
+        "fibra_jade": 1
+      },
+      "notes": "Working name only; all ingredients already exist."
+    },
+    {
+      "stage": "LianQi_III",
+      "working_name": "Elixir de Cauce Profundo",
+      "difficulty": "dificil",
+      "ingredients": {
+        "rocio_niebla": 1,
+        "medula_fungica": 1,
+        "musgo_lunar": 1
+      },
+      "notes": "Working name only; stronger gate through destructive fungal extraction."
+    },
+    {
+      "stage": "LianQi_IV",
+      "working_name": "Elixir de Tempestad Menor",
+      "difficulty": "muy_dificil",
+      "ingredients": {
+        "fibra_tempestad": 1,
+        "semilla_trueno": 1,
+        "polvo_nube": 1
+      },
+      "notes": "Preserves the existing Tempestad recipe identity."
+    }
+  ],
+  "support_recipe_policy": {
+    "antidoto_jade": {
+      "role": "specific cure",
+      "quality_proposal": {
+        "impura": "cures jade poison grade I +1 impurity",
+        "estable": "cures jade poison grade I",
+        "superior": "cures jade poison grade I + purify 1",
+        "excepcional": "cures jade poison grade I + purify 2"
+      }
+    },
+    "balsamo_ceniza": {
+      "role": "specific cure",
+      "quality_proposal": {
+        "impura": "cures ash burn grade I +1 impurity",
+        "estable": "cures ash burn grade I",
+        "superior": "cures ash burn grade I + purify 1",
+        "excepcional": "cures ash burn grade I + purify 2"
+      }
+    },
+    "pildora_purificacion": {
+      "current_quality_curve": "1 / 3 / 4 / 5 impurity removed",
+      "recommendation": "KEEP_PENDING_ECONOMY_TEST"
+    },
+    "pildora_meridianos": {
+      "current_quality_curve": "repair1+impurity1 / repair1 / repair1+purify1 / repair2+purify1",
+      "recommendation": "KEEP_PENDING_ECONOMY_TEST"
+    }
+  },
+  "guards": {
+    "ingredient_names_existing_only": true,
+    "no_unique_material_for_core_mastery": true,
+    "no_runtime_write": true,
+    "no_vendor_price_ratification_here": true
+  }
+}
