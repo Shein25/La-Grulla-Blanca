@@ -4,15 +4,15 @@ Este directorio contiene el laboratorio de balance del contrato nuevo.
 
 ## Regla cero
 
-**No importar estadísticas numéricas de ver74.**
+**El motor nuevo es la única autoridad numérica.**
 
-Toda magnitud usada por una simulación debe aparecer explícitamente en un archivo/configuración de escenario y tener una de estas procedencias:
+Toda magnitud usada por una simulación debe aparecer explícitamente en un archivo/configuración del motor nuevo y tener una de estas procedencias:
 
 - `CANON`: cerrada por contrato nuevo.
 - `PROVISIONAL`: valor actual de una técnica del rediseño.
 - `LAB`: hipótesis deliberada para sensibilidad.
 
-Nunca se permiten valores implícitos.
+Nunca se permiten valores implícitos ni rutas alternativas de estadísticas.
 
 ## Flujo de trabajo
 
@@ -85,39 +85,29 @@ El notebook `COLAB_BALANCE_NUEVO.ipynb` está pensado para:
 
 La semilla queda fija por escenario para reproducibilidad.
 
-## Guardia de monstruos — migración v0.2 (2026-09-30)
+## Monstruos del Arco 1
 
-La Regla cero se aplica también a **todos los monstruos**.
+Existe una sola fuente de estadísticas de monstruos:
 
-Fuente de entrada obligatoria para nuevo balance:
+`monster_arc1_registry.json`
 
-`monster_arc1_new_engine_registry_v0_2.json`
+Los 18 perfiles deben declarar directamente las estadísticas del contrato
+`NEW_COMBAT_STATS_V0_1`.
 
-El archivo `monster_arc1_new_contract_lab.json` queda **DEPRECATED / LEGACY_CONTAMINATED / DIAGNOSTIC_ONLY**.
+Mientras un perfil tenga:
 
-Prohibido para los 18 monstruos:
+`stats_status = PENDING_INTEGRAL_REBALANCE`
 
-- heredar HP, daño o magnitudes de técnicas desde ver74;
-- convertir `legacy_attack` en Precisión;
-- convertir `legacy_defense` en Evasión o DEF;
-- usar una cifra legacy porque "se parece" a la escala nueva;
-- aplicar T1–T4 sobre un T0 todavía pendiente de migración.
+no puede entrar a una simulación de balance.
 
-Todo runner nuevo de balance debe abortar si `stats_status` sigue en
-`PENDING_INTEGRAL_REBALANCE_NEW_ENGINE`.
-
-Orden:
+Orden obligatorio:
 
 ```text
-identidad del monstruo
-→ stats T0 expresadas directamente en unidades del motor nuevo
+perfil T0 del motor nuevo
 → validación integral
 → adaptación T1–T4
 → IA
 → resolver nuevo
 ```
 
-Auditoría completa:
-
-`docs/experimentos/AUDITORIA_MIGRACION_ESTADISTICAS_18_MONSTRUOS_NUEVO_MOTOR_2026-09-30.md`
-
+No existe capa de compatibilidad ni fallback de estadísticas.
