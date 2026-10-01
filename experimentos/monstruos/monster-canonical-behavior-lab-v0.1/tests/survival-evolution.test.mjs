@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {
-  SURVIVAL_EVOLUTION_STATUS,SURVIVAL_POLICIES,
+  SURVIVAL_EVOLUTION_STATUS,ADAPTIVE_PARAMS_STATUS,SURVIVAL_POLICIES,
   adaptationXpGain,survivalUnlockXp,survivalEvolutionStage,
   survivalAbilityId,buildSurvivalMonsterInput
 } from '../adaptive/survival-evolution-v0.1.mjs';
@@ -12,9 +12,12 @@ const combatants=Object.keys(M).sort();
 let pass=0,fail=0;
 const T=(n,fn)=>{try{fn();pass++;console.log('PASS',n)}catch(e){fail++;console.error('FAIL',n);console.error(e.stack||e)}};
 
-T('status explicitly experimental',()=>assert.equal(SURVIVAL_EVOLUTION_STATUS,'EXPERIMENTAL_NON_CANONICAL_SURVIVAL_V01_FINAL_CANDIDATE'));
+T('status requires new-engine numeric recalibration',()=>{
+  assert.equal(SURVIVAL_EVOLUTION_STATUS,'EXPERIMENTAL_NEW_ENGINE_PENDING_NUMERIC_CALIBRATION_V02');
+  assert.equal(ADAPTIVE_PARAMS_STATUS,'PENDING_T0_T4_REBALANCE');
+});
 
-T('all 18 monsters have exactly one survival policy',()=>{
+T('all 18 monsters have exactly one survival identity',()=>{
   assert.deepEqual(Object.keys(SURVIVAL_POLICIES).sort(),combatants);
 });
 
@@ -23,12 +26,6 @@ T('adaptation XP rewards encounters, not idle calls',()=>{
   assert.equal(adaptationXpGain({rounds:1}),1);
   assert.equal(adaptationXpGain({rounds:4,reachedLowHp:true}),2);
   assert.equal(adaptationXpGain({rounds:4,heavyHitObserved:true}),2);
-  assert.equal(adaptationXpGain({rounds:4,reachedLowHp:true,heavyHitObserved:true}),2);
-});
-
-T('common unlock is 6 XP and unique unlock is 4 XP',()=>{
-  assert.equal(survivalUnlockXp(M.rata_qi),6);
-  assert.equal(survivalUnlockXp(M.eco_caido),4);
 });
 
 T('survival stage calculation remains independent of combat numbers',()=>{
@@ -39,10 +36,12 @@ T('survival stage calculation remains independent of combat numbers',()=>{
   }
 });
 
-T('all four defensive families remain represented',()=>{
+T('all four defensive mechanic families remain represented',()=>{
   const counts={};
   for(const policy of Object.values(SURVIVAL_POLICIES)){
     counts[policy.effect.kind]=(counts[policy.effect.kind]||0)+1;
+    assert.equal(policy.effect.paramsStatus,ADAPTIVE_PARAMS_STATUS);
+    assert.deepEqual(Object.keys(policy.effect).sort(),['kind','paramsStatus']);
   }
   assert.deepEqual(counts,{EVADE_NEXT:7,DEFENSE_UP:3,MITIGATE_NEXT:3,ABSORB_RESERVE:5});
 });
