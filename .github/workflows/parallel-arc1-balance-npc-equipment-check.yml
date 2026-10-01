@@ -220,9 +220,16 @@ jobs:
           assert d["t3"]["evidence"]["false_counter_rate"]==0
           assert d["t3"]["evidence"]["degenerate_counter_loops"]==0
 
-          assert d["t4"]["status"]=="CALIBRATION_ALLOWED_NOT_SELECTED"
+          assert d["t4"]["status"]=="FULL_CANDIDATE_AWAITING_HUMAN_RATIFICATION"
           assert d["t4"]["identity"]=="MORDISCO_FRENETICO"
-          print("PASS: Rata T1-T3 frozen; only T4 LAB gate is open")
+          assert d["t4"]["candidate"]["name"]=="Mordisco Frenético"
+          assert d["t4"]["candidate"]["opening"]=="INSTANCE_BASIC x1.0"
+          assert d["t4"]["candidate"]["followup"]=="1 x CANONICAL_T0_BASIC_2D4 x0.50"
+          assert d["t4"]["candidate"]["cooldown_rounds"]==5
+          assert d["t4"]["evidence"]["final_validation_fights"]==125000
+          assert d["t4"]["evidence"]["workflow_conclusion"]=="success"
+          assert d["t4"]["evidence"]["no_t5"] is True
+          print("PASS: Rata T1-T3 frozen; T4 candidate validated and awaits human ratification")
           PY
 
       - name: Rata T4 Mordisco geometry smoke
