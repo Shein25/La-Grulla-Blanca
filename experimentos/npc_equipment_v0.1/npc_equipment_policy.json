@@ -1,0 +1,140 @@
+{
+  "schema_version": "npc-equipment-policy-v0.1",
+  "status": "LAB_PROPOSAL_NOT_CANON",
+  "stage_semantics": "Story/player progression visibility gate, not NPC cultivation rank.",
+  "unique_policy": "Player-catalog items with unique=true are never assigned to NPCs by this layer.",
+  "source_policy": "source_npc/source_type never implies the NPC wears the item; no source-affinity score is applied.",
+  "combat_policy": "Assignments are wardrobe/inventory candidates only. Stats are not applied to NPC combat until a separate NPC combat-stat contract is closed.",
+  "slot_caps": {
+    "ARMA": 1,
+    "TOCADO": 1,
+    "VESTIDURA": 1,
+    "BRAZALES": 1,
+    "FAJIN": 1,
+    "PIERNAS": 1,
+    "CALZADO": 1,
+    "AMULETO": 1,
+    "PULSERA": 1,
+    "ANILLO": 2,
+    "TESORO_ESPIRITUAL": 2
+  },
+  "group_item_caps": {
+    "COMPANIONS": {
+      "LianQi_I": 4,
+      "LianQi_II": 6,
+      "LianQi_III": 8,
+      "LianQi_IV": 9
+    },
+    "AUTHORITIES": {
+      "LianQi_I": 3,
+      "LianQi_II": 5,
+      "LianQi_III": 7,
+      "LianQi_IV": 8
+    },
+    "INTERMEDIATE": {
+      "LianQi_I": 3,
+      "LianQi_II": 5,
+      "LianQi_III": 6,
+      "LianQi_IV": 7
+    },
+    "FUNCTIONAL_SUPPORT": {
+      "LianQi_I": 2,
+      "LianQi_II": 4,
+      "LianQi_III": 5,
+      "LianQi_IV": 6
+    }
+  },
+  "family_preferences": {
+    "BALANCED_PEER": [
+      "BALANCED",
+      "PRECISION",
+      "EVASION",
+      "TENACITY",
+      "HP",
+      "QI",
+      "CONTROL"
+    ],
+    "LEADER": [
+      "CONTROL",
+      "TENACITY",
+      "PRECISION",
+      "QI",
+      "HP",
+      "BALANCED"
+    ],
+    "MARTIAL": [
+      "BASIC_ATTACK",
+      "PRECISION",
+      "TENACITY",
+      "HP",
+      "DEFENSE",
+      "EVASION",
+      "PENETRATION",
+      "CRIT",
+      "BALANCED"
+    ],
+    "ADMIN": [
+      "TENACITY",
+      "CONTROL",
+      "PRECISION",
+      "QI",
+      "HP"
+    ],
+    "MEDICAL": [
+      "CONTROL",
+      "TENACITY",
+      "QI",
+      "HP",
+      "EVASION"
+    ],
+    "MEDICAL_FIELD": [
+      "CONTROL",
+      "TENACITY",
+      "EVASION",
+      "HP",
+      "QI"
+    ],
+    "FORMATION": [
+      "CONTROL",
+      "QI",
+      "PRECISION",
+      "TENACITY",
+      "TECHNIQUE_DIRECT_DAMAGE"
+    ],
+    "LOGISTICS": [
+      "TENACITY",
+      "HP",
+      "CONTROL",
+      "QI",
+      "PRECISION"
+    ],
+    "CIVILIAN_SUPPORT": [
+      "HP",
+      "TENACITY",
+      "EVASION",
+      "QI"
+    ],
+    "CRAFT_MARTIAL": [
+      "PRECISION",
+      "PENETRATION",
+      "BASIC_ATTACK",
+      "TENACITY",
+      "HP",
+      "DEFENSE"
+    ],
+    "CRAFT_SUPPORT": [
+      "HP",
+      "TENACITY",
+      "EVASION",
+      "QI",
+      "CONTROL"
+    ],
+    "FIELD_HEAVY": [
+      "HP",
+      "TENACITY",
+      "DEFENSE",
+      "BASIC_ATTACK",
+      "PRECISION"
+    ]
+  }
+}
