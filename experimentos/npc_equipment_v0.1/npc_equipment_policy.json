@@ -206,5 +206,10 @@
       "CALZADO",
       "ANILLO"
     ]
+  },
+  "auto_catalog_stage_policy": {
+    "first_story_stage": "LianQi_II",
+    "item_stage_rule": "EXACT_STORY_STAGE",
+    "rationale": "Established NPCs must not be auto-dressed in aspirant/practice gear or retain low-stage gear solely because tags score well."
   }
 }
