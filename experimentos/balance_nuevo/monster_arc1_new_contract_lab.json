@@ -1,8 +1,8 @@
 {
   "schema_version": "arc1-monsters-new-contract-lab-v0.1",
-  "status": "LAB_TRANSLATION_FOR_MASS_SIMULATION_NOT_CANON",
+  "status": "DEPRECATED_LEGACY_CONTAMINATED_DIAGNOSTIC_ONLY",
   "source_monster_lab_commit": "94e925aa5b7f380898ea57a10125fc9b3e772634",
-  "conversion_guard": "legacy defensa is NOT new flat DEF",
+  "conversion_guard": "DEPRECATED: legacy numeric conversion is forbidden under the new engine. Existing translated values are historical diagnostic data only.",
   "hit_translation_reference": {
     "legacy_player_attack": 1,
     "legacy_player_defense": 10,
@@ -1824,5 +1824,21 @@
         }
       }
     }
+  },
+  "deprecation": {
+    "date": "2026-09-30",
+    "reason": "18/18 profiles retain or translate numeric values from ver74; forbidden as balance authority by balance_nuevo Regla cero.",
+    "replacement": "experimentos/balance_nuevo/monster_arc1_new_engine_registry_v0_2.json",
+    "hard_guard": "DO_NOT_USE_FOR_NEW_MONSTER_BALANCE",
+    "allowed_use": [
+      "historical diagnostics",
+      "sensitivity provenance",
+      "reproducing pre-migration experiments"
+    ],
+    "forbidden_use": [
+      "freezing T0 stats",
+      "calibrating T1-T4 numeric balance",
+      "new balance benchmarks"
+    ]
   }
 }
