@@ -66,6 +66,24 @@ LianQi I therefore remains empty for established auto-catalog NPCs. Their
 ordinary clothing/older personal equipment belongs to wardrobe or bespoke NPC
 design, not to the player's combat-progression catalog.
 
+## Thematic family pools
+
+Automatic assignment does not rank all 68 player items globally.
+
+Each allowed equipment family has an explicit per-stage pool of item IDs whose
+diegetic identity is compatible with that family. Statistical/build tags rank
+items **inside** that curated pool only.
+
+This prevents mechanically attractive but narratively implausible assignments,
+for example:
+
+- medical staff receiving patrol-specific gear solely for Tenacity/Qi;
+- field workers receiving archive/formations garments solely for their stats;
+- a weaponsmith receiving unrelated support gear because it scores well.
+
+The pools are LAB proposal data and remain human-reviewable. They do not make
+the resulting loadouts CANON.
+
 ## Sparse slots
 
 NPCs are not MMO mannequins. Empty slots are valid and expected.
