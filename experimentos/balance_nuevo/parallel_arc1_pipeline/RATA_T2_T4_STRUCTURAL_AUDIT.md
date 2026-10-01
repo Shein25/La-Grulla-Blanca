@@ -2,8 +2,8 @@
 
 **Status:** STRUCTURE_ONLY / NO NUMERIC CALIBRATION / NO EXECUTION
 
-T0 is READY (trial 4254). T1 Reflejo de Madriguera is currently being calibrated.
-This document prepares later tiers without bypassing the sequential gate.
+T0 is READY (trial 4254). T1 Reflejo de Madriguera is HUMAN-RATIFIED and frozen at +40 EVA / CD5 / REACTIVO_1 / BASE signals.
+T2 calibration is now permitted. T3–T4 remain blocked until sequential closure.
 
 ## T2 — recognition
 
@@ -12,13 +12,13 @@ Preserved identity:
 - preemptive survival eligibility.
 
 Required before numeric calibration:
-- T1 human-selected and closed;
+- T1 human-selected and closed — SATISFIED 2026-10-01;
 - exact observable event vocabulary from T1;
 - persistent population state remains pressure + maxTierReached;
 - no hidden player-build inspection;
 - metrics for repeated-action recognition, false-positive anticipation, action diversity and survival-action displacement.
 
-No active T2 ability is selected here.
+No active T2 ability is selected here yet. This document now authorizes T2 LAB calibration only; it does not authorize T2 CANON promotion.
 
 ## T3 — species counter
 
