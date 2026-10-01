@@ -1,0 +1,83 @@
+{
+  "schema_version": "rata-t3-counter-damage-input-v0.1",
+  "status": "LAB_INPUT_NOT_CANON",
+  "species_id": "rata_qi",
+  "prerequisite": "T3_TRIGGER_PROVISIONAL_CONFIRMED_PATTERN_REFLEJO_MISS",
+  "frozen_t1": {
+    "ability": "Reflejo de Madriguera",
+    "evasion_bonus": 40,
+    "cooldown_rounds": 5
+  },
+  "frozen_t2": {
+    "candidate": "R2_SHORT",
+    "memory_window": 2,
+    "repeated_same_category_required": 2,
+    "count_results": [
+      "EFECTIVA"
+    ],
+    "preemptive_survival_bonus": 8
+  },
+  "frozen_t3_trigger": {
+    "label": "CONFIRMED_PATTERN_REFLEJO_MISS",
+    "requires_t2_recognition_active": true,
+    "requires_prediction_confirmed": true,
+    "requires_t1_reflejo_active": true,
+    "requires_player_attack_miss": true,
+    "counter_limit": "NO_EXTRA_LIMIT_BEYOND_T1_GATE"
+  },
+  "damage_candidates": [
+    {
+      "label": "FIXED_CANONICAL_2D4",
+      "counter_damage_mode": "FIXED",
+      "counter_damage_expression": "2d4",
+      "source": "T0 trial 4254 canonical basic"
+    },
+    {
+      "label": "INSTANCE_BASIC",
+      "counter_damage_mode": "INSTANCE_BASIC",
+      "source": "human-ratified individual variance Rata basic ladder",
+      "measured_expressions": [
+        "2d4",
+        "2d4+1",
+        "2d3+3",
+        "2d4+2"
+      ],
+      "measured_sources": [
+        4254,
+        251,
+        192,
+        240
+      ]
+    },
+    {
+      "label": "FIXED_MEASURED_HIGH_2D4_PLUS_2",
+      "counter_damage_mode": "FIXED",
+      "counter_damage_expression": "2d4+2",
+      "source": "measured Rata trial 240"
+    }
+  ],
+  "required_metrics": [
+    "counter_activation_per_fight",
+    "counter_damage_per_fight",
+    "counter_damage_per_activation",
+    "counter_damage_p90_per_activation",
+    "player_hp_pressure_delta_vs_T2",
+    "win_rate_delta_vs_T2",
+    "normal_vs_mutant_split",
+    "policy_spread",
+    "multi_counter_fight_rate",
+    "degenerate_counter_loop_count"
+  ],
+  "guards": {
+    "no_canonical_write": true,
+    "no_trigger_changes": true,
+    "no_t1_changes": true,
+    "no_t2_changes": true,
+    "measured_damage_sources_only": true,
+    "normal_direct_pipeline": true,
+    "no_qi_drain": true,
+    "no_dot": true,
+    "no_control": true,
+    "t4_blocked": true
+  }
+}
