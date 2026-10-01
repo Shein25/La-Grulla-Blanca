@@ -205,7 +205,19 @@ Motivo:
 
 Estado recomendado:
 
-`T1_NUMERIC_CANDIDATE_SELECTED_AWAITING_HUMAN_RATIFICATION`
+`T1_READY_HUMAN_RATIFIED`
 
-No escribir CANON todavía.
-No habilitar T2.
+Ratificación humana: 2026-10-01.
+
+Contrato congelado:
+
+```text
+Reflejo de Madriguera
+EVADE_NEXT
++40 EVA
+CD 5
+selector REACTIVO_1
+señales BASE: SELF_LOW_HP 30% / TOOK_HEAVY_HIT 20%
+```
+
+T2 queda habilitado sólo para calibración experimental. T3–T4 permanecen bloqueados.
