@@ -1,0 +1,184 @@
+{
+  "schema_version": "monster-individual-variance-v0.1",
+  "status": "LAB_PROPOSAL_NOT_RUNTIME_CANON",
+  "semantics": {
+    "canonical_t0": "natural_floor",
+    "natural_ceiling": "strongest representative same-species envelope selected from tested candidates",
+    "experimental_frontier": "excluded from natural spawn",
+    "roll_once_per_instance": true,
+    "below_t0_variance": false,
+    "adaptive_tiers_separate": true
+  },
+  "quality_distribution": [
+    {
+      "probability": 0.7,
+      "q_min": 0,
+      "q_max": 0.5
+    },
+    {
+      "probability": 0.25,
+      "q_min": 0.5,
+      "q_max": 0.8
+    },
+    {
+      "probability": 0.05,
+      "q_min": 0.8,
+      "q_max": 1
+    }
+  ],
+  "coordinated_stats": [
+    "hp",
+    "defense",
+    "evasion",
+    "precision",
+    "tenacity"
+  ],
+  "discrete_basic_damage": true,
+  "fixed_fields": [
+    "resource_model",
+    "control",
+    "crit_chance",
+    "crit_damage",
+    "technique.mechanics",
+    "technique.params.cadence",
+    "technique DOT/QI_DRAIN/control params",
+    "ai.cognition",
+    "ai.social",
+    "adaptive"
+  ],
+  "species": {
+    "rata_qi": {
+      "base": {
+        "source_trial": 4254,
+        "hp": 21,
+        "defense": 0,
+        "evasion": 0,
+        "precision": 80,
+        "tenacity": 0,
+        "basic_damage": "2d4"
+      },
+      "natural_ceiling": {
+        "source_trial": 4554,
+        "hp": 22,
+        "defense": 0,
+        "evasion": 0,
+        "precision": 92,
+        "tenacity": 0,
+        "basic_damage": "2d6"
+      },
+      "basic_damage_ladder": [
+        "2d4",
+        "2d6"
+      ],
+      "experimental_frontier_excluded": [
+        3991,
+        4002,
+        3325
+      ],
+      "note": "Keep lowest supernatural threat readable; stronger frontier candidates remain out of natural spawn."
+    },
+    "avispa_jade": {
+      "base": {
+        "source_trial": 872,
+        "hp": 17,
+        "defense": 0,
+        "evasion": 22,
+        "precision": 90,
+        "tenacity": 7,
+        "basic_damage": "1d2+1"
+      },
+      "natural_ceiling": {
+        "source_trial": 1251,
+        "hp": 20,
+        "defense": 2,
+        "evasion": 55,
+        "precision": 103,
+        "tenacity": 8,
+        "basic_damage": "1d3+4"
+      },
+      "basic_damage_ladder": [
+        "1d2+1",
+        "2d2",
+        "2d2+3",
+        "1d3+4"
+      ],
+      "experimental_frontier_excluded": [
+        1417
+      ],
+      "note": "Ceiling is strong but still preserves short-poison/evasive identity better than trial 1417."
+    },
+    "serpiente_qi": {
+      "base": {
+        "source_trial": 1484,
+        "hp": 27,
+        "defense": 0,
+        "evasion": 5,
+        "precision": 86,
+        "tenacity": 5,
+        "basic_damage": "1d2+2"
+      },
+      "natural_ceiling": {
+        "source_trial": 1013,
+        "hp": 27,
+        "defense": 1,
+        "evasion": 8,
+        "precision": 92,
+        "tenacity": 5,
+        "basic_damage": "1d2+2"
+      },
+      "basic_damage_ladder": [
+        "1d2+2"
+      ],
+      "experimental_frontier_excluded": [
+        1412,
+        1453
+      ],
+      "note": "1013 is the strongest still useful same-identity anchor; poison params remain fixed to canonical 1484 in v0.1."
+    },
+    "lobo_espiritual": {
+      "base": {
+        "source_trial": 1425,
+        "hp": 41,
+        "defense": 1,
+        "evasion": 12,
+        "precision": 97,
+        "tenacity": 20,
+        "basic_damage": "2d4+2"
+      },
+      "natural_ceiling": {
+        "source_trial": 1194,
+        "hp": 57,
+        "defense": 1,
+        "evasion": 12,
+        "precision": 96,
+        "tenacity": 20,
+        "basic_damage": "1d6+4"
+      },
+      "basic_damage_ladder": [
+        "2d4+2",
+        "1d6+4"
+      ],
+      "experimental_frontier_excluded": [
+        629,
+        1463
+      ],
+      "note": "1194 is intentionally a rare upper envelope; near-lethal 629/1463 are excluded."
+    },
+    "mono_pildoras": {
+      "status": "BLOCKED_UNTIL_T0_LOCAL_REFINEMENT_READY",
+      "base": null,
+      "natural_ceiling": null,
+      "basic_damage_ladder": null,
+      "experimental_frontier_excluded": [],
+      "note": "Populate only after current Mono local refinement is human-selected."
+    }
+  },
+  "guards": {
+    "no_new_species_ids": true,
+    "no_visible_variant_tiers_required": true,
+    "no_independent_stat_max_rolls": true,
+    "no_below_t0_spawn": true,
+    "no_adaptive_tier_grant_from_quality": true,
+    "no_automatic_runtime_activation": true
+  }
+}
