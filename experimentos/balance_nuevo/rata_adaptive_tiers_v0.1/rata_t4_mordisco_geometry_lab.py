@@ -110,17 +110,21 @@ class T4FightState:
         }
 
 
-def _scaled_direct_packet(state,rng,scalar:float,dice_expr:str)->dict:
+def _scaled_direct_packet(state,rng,scalar:float,dice_expr:str,*,allow_crit:bool=True)->dict:
     """Use the authoritative direct resolver while scaling only the chosen roll."""
     original_roll=engine.roll_dice
+    original_crit=float(state.monster.crit_chance)
     def scaled_roll(inner_rng,dice):
         if dice!=dice_expr:
             raise AssertionError(f"T4 packet expected {dice_expr}, got {dice}")
         return original_roll(inner_rng,dice)*float(scalar)
     engine.roll_dice=scaled_roll
+    if not allow_crit:
+        state.monster.crit_chance=0.0
     try:
         return engine.resolve_monster_direct(state,rng,dice_expr)
     finally:
+        state.monster.crit_chance=original_crit
         engine.roll_dice=original_roll
 
 
@@ -147,14 +151,23 @@ def _execute_mordisco(state,rng,candidate,t4:T4FightState):
             raise ValueError("invalid T4 geometry")
         packet_plan.extend([(dice_expr,scalar)]*hit_count)
 
+    precision_rule=candidate.get("precision_rule",FIXED["precision_rule"])
+    critical_rule=candidate.get("critical_rule",FIXED["critical_rule"])
+
     t4.uses+=1
-    t4.next_ready_round=int(state.round_no)+int(FIXED["cooldown_rounds"])
+    t4.next_ready_round=int(state.round_no)+int(candidate.get("cooldown_rounds",FIXED["cooldown_rounds"]))
     before=float(state.player.hp)
     packets=0
-    for dice_expr,scalar in packet_plan:
+    opening_hit=None
+    for idx,(dice_expr,scalar) in enumerate(packet_plan):
         if not state.player.alive():
             break
-        out=_scaled_direct_packet(state,rng,scalar,dice_expr)
+        if idx>0 and precision_rule=="FOLLOWUP_REQUIRES_OPENING_HIT" and not opening_hit:
+            break
+        allow_crit=not (idx>0 and critical_rule=="OPENING_ONLY")
+        out=_scaled_direct_packet(state,rng,scalar,dice_expr,allow_crit=allow_crit)
+        if idx==0:
+            opening_hit=bool(out.get("hit"))
         packets+=1
         t4.packets+=1
         t4.hits+=int(bool(out.get("hit")))
