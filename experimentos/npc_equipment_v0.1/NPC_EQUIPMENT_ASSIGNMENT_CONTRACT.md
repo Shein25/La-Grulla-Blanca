@@ -56,6 +56,16 @@ reward/exploration item.
 LianQi I–IV means story/player progression visibility, not the NPC's cultivation
 rank. It prevents automatic early spoilers of later player equipment.
 
+For `AUTO_CATALOG_ROLE_GUIDED` the automatic layer begins at **LianQi II**
+and only considers items whose `min_stage` exactly matches the current story
+band. This deliberately prevents an established patrol captain, instructor or
+craft specialist from carrying aspirant/practice pieces forever merely because
+their tags score well.
+
+LianQi I therefore remains empty for established auto-catalog NPCs. Their
+ordinary clothing/older personal equipment belongs to wardrobe or bespoke NPC
+design, not to the player's combat-progression catalog.
+
 ## Sparse slots
 
 NPCs are not MMO mannequins. Empty slots are valid and expected.
