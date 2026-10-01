@@ -231,11 +231,11 @@
         "tenacity": 20
       },
       "upper_envelope": {
-        "source_trial": 1463,
+        "source_trial": "1463_survival; precision held at T0 floor 97",
         "hp": 57,
         "defense": 5,
         "evasion": 12,
-        "precision": 96,
+        "precision": 97,
         "tenacity": 20
       },
       "attacks": {
@@ -341,6 +341,7 @@
     "no_automatic_runtime_activation": true,
     "runtime_adapter_must_not_mutate_canonical": true,
     "profession_xp_must_not_receive_mutant_multiplier": true,
-    "loot_probability_must_not_be_scaled_by_adapter": true
+    "loot_probability_must_not_be_scaled_by_adapter": true,
+    "every_upper_stat_must_be_gte_t0": true
   }
 }
