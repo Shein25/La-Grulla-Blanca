@@ -1,9 +1,9 @@
 # Rata de Qi — T2–T4 structural preparation
 
-**Status:** T4_FINAL_CANDIDATE_AWAITING_HUMAN_RATIFICATION / T0-T3 FROZEN
+**Status:** ADAPTIVE_CHAIN_T0_T4_HUMAN_RATIFIED_CLOSED
 
 T0 is READY (trial 4254). T1 Reflejo de Madriguera is HUMAN-RATIFIED and frozen at +40 EVA / CD5 / REACTIVO_1 / BASE signals.
-T2 R2_SHORT is HUMAN-RATIFIED and frozen (memory 2 / repeat 2 / effective-only / +8). T3 CONFIRMED_PATTERN_REFLEJO_MISS + INSTANCE_BASIC is HUMAN-RATIFIED and frozen. T4 Mordisco Frenético completed final validation and now awaits human ratification.
+T2 R2_SHORT is HUMAN-RATIFIED and frozen (memory 2 / repeat 2 / effective-only / +8). T3 CONFIRMED_PATTERN_REFLEJO_MISS + INSTANCE_BASIC is HUMAN-RATIFIED and frozen. T4 Mordisco Frenético is HUMAN-RATIFIED and frozen. The Rata adaptive chain is closed at T4.
 
 ## T2 — recognition
 
@@ -59,4 +59,4 @@ Keep the existing adaptive decisions:
 - decay floors: T0→T0, T1→T1, T2→T1, T3→T2, T4→T3;
 - advancing player stage alone never grants a higher adaptive tier.
 
-These identities/threshold structures are retained. T4 combat numbers are validated experimentally but are not promoted without human ratification. No T5 exists in this contract.
+These identities/threshold structures are retained and frozen. T4 is human-ratified. No T5 exists in this contract and no adaptive tier may be added without an explicit human reopen.
