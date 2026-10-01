@@ -1,62 +1,58 @@
 import assert from 'node:assert/strict';
-import fs from 'node:fs';
+import {readFileSync} from 'node:fs';
 
-const data=JSON.parse(fs.readFileSync(new URL('../canonical/MOBS_ver74.snapshot.json',import.meta.url),'utf8'));
-const M=data.mobs;
+const data=JSON.parse(readFileSync(new URL('../canonical/monsters.json',import.meta.url),'utf8'));
+const M=data.profiles;
 let pass=0,fail=0;
 const T=(n,fn)=>{try{fn();pass++;console.log('PASS',n)}catch(e){fail++;console.error('FAIL',n);console.error(e.stack||e)}};
 
-T('source blob is exact ver74',()=>assert.equal(data.source.blob,'d34f7ea3f9de9344130aa072fac34d14a7a474d6'));
-T('catalog has 19 mobs',()=>assert.equal(Object.keys(M).length,19));
-T('declared count matches',()=>assert.equal(data.count,Object.keys(M).length));
-T('all mobs have core combat fields',()=>{
+T('catalog uses the new combat-stat contract',()=>{
+  assert.equal(data.schema_version,'arc1-monsters-v1');
+  assert.equal(data.status,'NEW_ENGINE_ONLY');
+  assert.equal(data.engine_contract,'NEW_COMBAT_STATS_V0_1');
+});
+
+T('catalog has exactly 18 Arc 1 monsters',()=>assert.equal(Object.keys(M).length,18));
+
+T('all monsters expose the new schema',()=>{
   for(const [id,m] of Object.entries(M)){
+    assert.equal(m.id,id);
     assert.equal(typeof m.name,'string',id);
-    assert.equal(typeof m.corto,'string',id);
-    assert.ok(Number.isFinite(m.hp)&&m.hp>0,id);
-    assert.ok(Number.isFinite(m.ataque),id);
-    assert.ok(Number.isFinite(m.defensa),id);
-    assert.equal(typeof m.daño,'string',id);
-    assert.ok(Number.isFinite(m.qi)&&m.qi>=0,id);
-    assert.ok(Array.isArray(m.loot),id);
+    assert.equal(m.engine_contract,'NEW_COMBAT_STATS_V0_1',id);
+    assert.equal(typeof m.stats,'object',id);
+    assert.ok(Object.hasOwn(m.stats,'precision'),id);
+    assert.ok(Object.hasOwn(m.stats,'evasion'),id);
+    assert.ok(Object.hasOwn(m.stats,'defense'),id);
+    assert.ok(Object.hasOwn(m.stats,'tenacity'),id);
+    assert.ok(Object.hasOwn(m.stats,'control'),id);
   }
 });
-T('loot probabilities are in [0,1]',()=>{
-  for(const [id,m] of Object.entries(M)) for(const d of m.loot) assert.ok(Number.isFinite(d.prob)&&d.prob>=0&&d.prob<=1,`${id}:${d.item}`);
-});
-T('16 mobs have canonical techniques',()=>assert.equal(Object.values(M).filter(x=>x.tecnica).length,16));
-T('technique cadence is integer >= 1',()=>{
-  for(const [id,m] of Object.entries(M)) if(m.tecnica) assert.ok(Number.isInteger(m.tecnica.cada)&&m.tecnica.cada>=1,id);
-});
-T('7 mobs are canonically unique',()=>assert.equal(Object.values(M).filter(x=>x.unico===true).length,7));
-T('practice dummy is the only practica mob',()=>{
-  assert.equal(M.muneco_practica.practica,true);
-  assert.deepEqual(Object.entries(M).filter(([,x])=>x.practica===true).map(([id])=>id),['muneco_practica']);
-});
-T('canonical poison techniques preserve families',()=>{
-  assert.equal(M.serpiente_qi.tecnica.veneno.familia,'jade');
-  assert.equal(M.avispa_jade.tecnica.veneno.familia,'jade');
-  assert.equal(M.sombra_ahogada.tecnica.veneno.familia,'marea');
-});
-T('canonical burn techniques preserve ceniza family',()=>{
-  assert.equal(M.sapo_ceniza.tecnica.quemadura.familia,'ceniza');
-  assert.equal(M.sapo_caldera.tecnica.quemadura.familia,'ceniza');
-});
-T('Qi-drain techniques preserve exact drain values',()=>{
-  assert.equal(M.mono_pildoras.tecnica.drenaQi,5);
-  assert.equal(M.anguila_estelar.tecnica.drenaQi,7);
-  assert.equal(M.guardian_coral.tecnica.drenaQi,8);
-});
-T('element set stays limited to current canon',()=>{
-  const set=[...new Set(Object.values(M).map(x=>x.elemento).filter(Boolean))].sort();
-  assert.deepEqual(set,['agua','fuego','metal','viento']);
-});
-T('no canonical mob entry contains AI profile fields',()=>{
+
+T('all uncalibrated T0 profiles remain explicitly pending',()=>{
   for(const [id,m] of Object.entries(M)){
-    assert.equal(Object.hasOwn(m,'profileId'),false,id);
-    assert.equal(Object.hasOwn(m,'socialProfileId'),false,id);
-    assert.equal(Object.hasOwn(m,'effectiveKit'),false,id);
+    assert.equal(m.stats_status,'PENDING_INTEGRAL_REBALANCE',id);
   }
+});
+
+T('technique identities use mechanic families, not combat numbers',()=>{
+  for(const [id,m] of Object.entries(M)){
+    if(!m.technique)continue;
+    assert.equal(typeof m.technique.name,'string',id);
+    assert.ok(Array.isArray(m.technique.mechanics),id);
+    assert.equal(m.technique.params_status,'PENDING_INTEGRAL_REBALANCE',id);
+    assert.equal(m.technique.params,null,id);
+  }
+});
+
+T('native stage distribution is 5/5/4/4',()=>{
+  const counts={1:0,2:0,3:0,4:0};
+  for(const m of Object.values(M))counts[m.native_stage_index]++;
+  assert.deepEqual(counts,{1:5,2:5,3:4,4:4});
+});
+
+T('element set stays limited to current content',()=>{
+  const set=[...new Set(Object.values(M).map(x=>x.element).filter(Boolean))].sort();
+  assert.deepEqual(set,['agua','fuego','metal','viento']);
 });
 
 console.log(`\nPASS: ${pass}`);
