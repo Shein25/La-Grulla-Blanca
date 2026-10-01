@@ -211,5 +211,182 @@
     "first_story_stage": "LianQi_II",
     "item_stage_rule": "EXACT_STORY_STAGE",
     "rationale": "Established NPCs must not be auto-dressed in aspirant/practice gear or retain low-stage gear solely because tags score well."
+  },
+  "family_stage_item_pools": {
+    "MARTIAL": {
+      "LianQi_II": [
+        "espada_hierro_equilibrada",
+        "sable_patrulla_valle",
+        "aguja_acero_frio",
+        "bandana_cuero_reforzada",
+        "sobretunica_patrulla",
+        "brazales_cuero_cruzado",
+        "fajin_patrulla",
+        "calzas_guardia_externa",
+        "botas_piedra_humeda",
+        "amuleto_colmillo_montado",
+        "anillo_sello_hierro",
+        "anillo_reserva_menor"
+      ],
+      "LianQi_III": [
+        "espada_vena_clara",
+        "sable_anillo_gris",
+        "tunica_reforzada_trama_cobre",
+        "brazales_aguja_plata",
+        "fajin_respiracion_larga",
+        "calzas_paso_silencioso",
+        "calzado_nube_baja",
+        "amuleto_meridiano_estable",
+        "anillo_hilo_plata",
+        "anillo_tierra_profunda"
+      ],
+      "LianQi_IV": [
+        "hoja_seis_corrientes",
+        "velo_vigilante_nucleo",
+        "vestidura_ala_cerrada",
+        "brazales_relevo",
+        "calzas_trama_sello",
+        "botas_voto_inmovil",
+        "amuleto_ancla_resonante",
+        "pulsera_nudo_crisis",
+        "anillo_relevo",
+        "anillo_marca_quieta"
+      ]
+    },
+    "MEDICAL": {
+      "LianQi_II": [
+        "brazales_pulso_firme",
+        "amuleto_sauce_sereno",
+        "pulsera_cauce_trenzado",
+        "pulsera_tension_meridiana",
+        "anillo_corriente_clara",
+        "anillo_reserva_menor",
+        "tunica_ruta_sauces",
+        "bandana_cuero_reforzada"
+      ],
+      "LianQi_III": [
+        "brazales_pulso_medico",
+        "amuleto_meridiano_estable",
+        "vestidura_flujo_ligero",
+        "fajin_respiracion_larga",
+        "calzado_nube_baja",
+        "anillo_tierra_profunda",
+        "calzas_paso_silencioso"
+      ],
+      "LianQi_IV": [
+        "pulsera_nudo_crisis",
+        "pulsera_meridiano_profundo",
+        "amuleto_ancla_resonante",
+        "brazales_relevo",
+        "botas_voto_inmovil",
+        "calzas_trama_sello",
+        "vestidura_ala_cerrada"
+      ]
+    },
+    "MEDICAL_FIELD": {
+      "LianQi_II": [
+        "tunica_ruta_sauces",
+        "calzas_sendero_pinos",
+        "sandalias_corriente_ligera",
+        "botas_piedra_humeda",
+        "amuleto_sauce_sereno",
+        "pulsera_cauce_trenzado",
+        "brazales_pulso_firme"
+      ],
+      "LianQi_III": [
+        "vestidura_flujo_ligero",
+        "brazales_pulso_medico",
+        "calzas_paso_silencioso",
+        "calzado_nube_baja",
+        "amuleto_meridiano_estable",
+        "fajin_respiracion_larga",
+        "anillo_tierra_profunda"
+      ],
+      "LianQi_IV": [
+        "pulsera_nudo_crisis",
+        "pulsera_meridiano_profundo",
+        "amuleto_ancla_resonante",
+        "brazales_relevo",
+        "calzas_trama_sello",
+        "botas_voto_inmovil",
+        "vestidura_ala_cerrada"
+      ]
+    },
+    "FORMATION": {
+      "LianQi_II": [
+        "amuleto_sauce_sereno",
+        "anillo_corriente_clara",
+        "anillo_reserva_menor",
+        "brazales_pulso_firme",
+        "pulsera_cauce_trenzado"
+      ],
+      "LianQi_III": [
+        "vara_dos_corrientes",
+        "tocado_hilo_formacion",
+        "pulsera_nudo_formacion",
+        "amuleto_flujo_contenido",
+        "vestidura_flujo_ligero",
+        "fajin_respiracion_larga"
+      ],
+      "LianQi_IV": [
+        "vara_relevo",
+        "amuleto_ancla_resonante",
+        "anillo_marca_quieta",
+        "pulsera_meridiano_profundo",
+        "manto_mantenimiento",
+        "velo_vigilante_nucleo"
+      ]
+    },
+    "CRAFT_MARTIAL": {
+      "LianQi_II": [
+        "aguja_acero_frio",
+        "espada_hierro_equilibrada",
+        "sable_patrulla_valle",
+        "brazales_cuero_cruzado",
+        "anillo_sello_hierro",
+        "capucha_observador_valle"
+      ],
+      "LianQi_III": [
+        "espada_vena_clara",
+        "sable_anillo_gris",
+        "brazales_aguja_plata",
+        "anillo_hilo_plata",
+        "tunica_reforzada_trama_cobre"
+      ],
+      "LianQi_IV": [
+        "hoja_seis_corrientes",
+        "brazales_relevo",
+        "anillo_relevo",
+        "anillo_marca_quieta",
+        "manto_mantenimiento"
+      ]
+    },
+    "FIELD_HEAVY": {
+      "LianQi_II": [
+        "sobretunica_patrulla",
+        "calzas_guardia_externa",
+        "botas_piedra_humeda",
+        "brazales_cuero_cruzado",
+        "bandana_cuero_reforzada",
+        "fajin_patrulla"
+      ],
+      "LianQi_III": [
+        "tunica_reforzada_trama_cobre",
+        "amuleto_meridiano_estable",
+        "anillo_tierra_profunda",
+        "calzas_paso_silencioso",
+        "fajin_respiracion_larga",
+        "calzado_nube_baja"
+      ],
+      "LianQi_IV": [
+        "manto_mantenimiento",
+        "vestidura_ala_cerrada",
+        "brazales_relevo",
+        "calzas_trama_sello",
+        "botas_voto_inmovil",
+        "amuleto_ancla_resonante",
+        "vara_relevo"
+      ]
+    }
   }
 }
