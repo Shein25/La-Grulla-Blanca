@@ -38,6 +38,43 @@ def create_species_study(
     )
 
 
+def _trial_summary(aggregate: dict) -> dict:
+    """Subset JSON-serializable suficiente para auditar un trial sin raw fights."""
+    keep=(
+        "fights",
+        "win_rate",
+        "loss_rate",
+        "timeout_rate",
+        "rounds_mean",
+        "rounds_p10",
+        "rounds_p50",
+        "rounds_p90",
+        "hp_final_pct_mean",
+        "hp_final_pct_p10",
+        "hp_final_pct_p50",
+        "hp_final_pct_p90",
+        "hp_min_pct_mean",
+        "qi_final_mean",
+        "qi_spent_mean",
+        "qi_drained_mean",
+        "player_hit_rate",
+        "monster_hit_rate",
+        "control_success_rate",
+        "defensive_activation_mean",
+        "potion_use_rate",
+        "monster_skill_use_mean",
+        "monster_basic_use_mean",
+        "monster_skipped_action_mean",
+        "forced_basic_due_to_qi_mean",
+        "monster_damage_total_mean",
+        "monster_dot_fraction",
+        "death_causes",
+        "root_breakdown",
+        "loadout_breakdown",
+    )
+    return {key:aggregate[key] for key in keep if key in aggregate}
+
+
 def run_species_study(
     species_id: str,
     *,
@@ -54,10 +91,17 @@ def run_species_study(
         except DegenerateCandidate as exc:
             trial.set_user_attr("degenerate_reason",str(exc))
             raise optuna.TrialPruned(str(exc))
+        summary=_trial_summary(aggregate)
+        trial.set_user_attr("aggregate_summary",summary)
         trial.set_user_attr("fights",int(aggregate["fights"]))
         trial.set_user_attr("win_rate_observed",float(aggregate["win_rate"]))
         trial.set_user_attr("timeout_rate",float(aggregate["timeout_rate"]))
         trial.set_user_attr("hp_final_pct_mean",float(aggregate["hp_final_pct_mean"]))
+        trial.set_user_attr("rounds_mean",float(aggregate["rounds_mean"]))
+        trial.set_user_attr(
+            "forced_basic_due_to_qi_mean",
+            float(aggregate["forced_basic_due_to_qi_mean"]),
+        )
         return objective_values(species_id,candidate,aggregate)
 
     study.optimize(objective,n_trials=int(n_trials),n_jobs=1)
