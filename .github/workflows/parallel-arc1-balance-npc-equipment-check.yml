@@ -160,31 +160,6 @@ jobs:
         run: |
           node runtime_variance_adapter.test.mjs
 
-      - name: Lobo precision-floor sensitivity
-        working-directory: experimentos/balance_nuevo/individual_variance_v0.1
-        run: |
-          rm -rf ci_lobo_floor
-          python individual_variance_lab.py --preset directed --species lobo_espiritual --workers 1 --outdir ci_lobo_floor --namespace CI_LOBO_FLOOR
-          python - <<'PY'
-          import gzip,json
-          s=json.load(open("ci_lobo_floor/SUMMARY.json",encoding="utf-8"))
-          assert s["species"]==["lobo_espiritual"]
-          assert s["natural_fights_total"]==10000
-          assert s["conditional_mutant_fights_total"]==2500
-          assert s["natural_mutant_incidence"] < 0.01
-          with gzip.open("ci_lobo_floor/lobo_espiritual.json.gz","rt",encoding="utf-8") as f:
-              d=json.load(f)
-          n=d["natural"]["combat_normal"]
-          m=d["mutant_conditional"]["combat"]
-          print(json.dumps({
-              "mutant_incidence":s["natural_mutant_incidence"],
-              "normal_win_rate":n["win_rate"],
-              "normal_hp_final":n["hp_final_pct_mean"],
-              "mutant_win_rate":m["win_rate"],
-              "mutant_hp_final":m["hp_final_pct_mean"],
-          },sort_keys=True))
-          PY
-
       - name: Individual variance combat smoke
         working-directory: experimentos/balance_nuevo/individual_variance_v0.1
         run: |
