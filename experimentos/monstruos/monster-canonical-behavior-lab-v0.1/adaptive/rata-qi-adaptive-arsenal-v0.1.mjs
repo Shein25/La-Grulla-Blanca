@@ -1,4 +1,5 @@
-export const RATA_QI_ADAPTIVE_ARSENAL_STATUS='EXPERIMENTAL_NON_CANONICAL_RATA_QI_ADAPTIVE_ARSENAL_V01';
+export const RATA_QI_ADAPTIVE_ARSENAL_STATUS='EXPERIMENTAL_NEW_ENGINE_PENDING_NUMERIC_CALIBRATION_V02';
+export const RATA_QI_T4_PARAMS_STATUS='PENDING_T0_T4_REBALANCE';
 
 export const RATA_QI_T4_ABILITY=Object.freeze({
   id:'rata_qi__mordisco_frenetico_t4',
@@ -6,7 +7,7 @@ export const RATA_QI_T4_ABILITY=Object.freeze({
   unlockTier:4,
   intentCategory:'OFENSIVA',
   tags:Object.freeze([
-    'EXPERIMENTAL_NON_CANONICAL',
+    'EXPERIMENTAL_NEW_ENGINE',
     'ADAPTIVE_T4',
     'OFENSIVA',
     'MULTIIMPACTO',
@@ -18,32 +19,22 @@ export const RATA_QI_T4_ABILITY=Object.freeze({
   }),
   effect:Object.freeze({
     kind:'MULTI_HIT_BASIC_SCALAR',
-    hits:2,
-    damageScalarPerHit:0.75,
-    independentHitRolls:true,
-    defenseAppliedPerHit:true,
-    absorptionAppliedPerHit:true,
-    ignoresDefense:false,
-    ignoresAbsorption:false,
-    qiDrain:0,
-    dot:null,
-    control:null
+    paramsStatus:RATA_QI_T4_PARAMS_STATUS
   }),
-  cooldownRounds:3,
   design:Object.freeze({
-    recoveredConcept:'Mordisco frenético ya figuraba en el kit conceptual histórico de Rata de qi, con tendencia a aparecer cuando estaba herida.',
-    newDecision:'Se reserva como candidata T4 y se concreta como ráfaga física de dos mordiscos. Los números son LAB y deben calibrarse con el balance T0 y la progresión T1-T4.',
-    identityGuard:'No añade memoria táctica, penetración, drenaje de Qi, control ni invocaciones. La Rata sigue resolviendo el peligro mediante reflejo, movilidad y mordida.',
+    identity:'Ráfaga física instintiva basada en el ataque básico nuevo de la especie.',
+    numericRule:'Ningún número de impactos, escalar, precisión, penetración, cooldown o daño queda fijado antes de cerrar T0 y recalibrar T1-T4.',
+    identityGuard:'No añade memoria táctica, drenaje de Qi, control ni invocaciones por defecto.',
     tierDecay:'Si effectiveAdaptiveTier baja de T4 a T3, la habilidad sale del effectiveKit.'
   })
 });
 
 export const RATA_QI_ADAPTIVE_PROGRESSION=Object.freeze({
-  T0:Object.freeze({abilities:Object.freeze(['BASIC_ATTACK']),note:'Base natural. El balance numérico T0 se calibra por separado.'}),
-  T1:Object.freeze({abilities:Object.freeze(['rata_qi__survival_1']),note:'Reflejo de Madriguera; ya existente en Survival Evolution.'}),
-  T2:Object.freeze({abilities:Object.freeze([]),note:'Capacidad vigente: reconocimiento persistente + defensa anticipatoria. Si se exige una habilidad activa nueva por Tier, queda PENDIENTE diseñarla.'}),
-  T3:Object.freeze({abilities:Object.freeze([]),note:'Capacidad vigente: counter específico de especie. La habilidad activa concreta queda PENDIENTE.'}),
-  T4:Object.freeze({abilities:Object.freeze([RATA_QI_T4_ABILITY.id]),note:'Segunda adaptación compatible: Mordisco Frenético.'})
+  T0:Object.freeze({abilities:Object.freeze(['BASIC_ATTACK']),note:'Base natural; parámetros exclusivamente del perfil T0 nuevo.'}),
+  T1:Object.freeze({abilities:Object.freeze(['rata_qi__survival_1']),note:'Reflejo de Madriguera; parámetros pendientes de recalibración.'}),
+  T2:Object.freeze({abilities:Object.freeze([]),note:'Reconocimiento persistente y defensa anticipatoria; habilidad activa concreta PENDIENTE.'}),
+  T3:Object.freeze({abilities:Object.freeze([]),note:'Counter específico de especie; habilidad activa concreta PENDIENTE.'}),
+  T4:Object.freeze({abilities:Object.freeze([RATA_QI_T4_ABILITY.id]),note:'Mordisco Frenético conserva identidad, con parámetros PENDIENTES.'})
 });
 
 export function rataQiAdaptiveAbilityIds(effectiveAdaptiveTier){
