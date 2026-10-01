@@ -7,6 +7,7 @@ on:
     paths:
       - "experimentos/balance_nuevo/parallel_arc1_pipeline/**"
       - "experimentos/balance_nuevo/individual_variance_v0.1/**"
+      - "experimentos/balance_nuevo/rata_t1_variance_interaction_v0.1/**"
       - "experimentos/npc_equipment_v0.1/**"
       - ".github/workflows/parallel-arc1-balance-npc-equipment-check.yml"
   workflow_dispatch:
@@ -201,6 +202,31 @@ jobs:
           assert s["t1_t4_executed"] is False
           assert s["mutant_rewards"]=={"loot_multiplier":1.5,"xp_multiplier":1.5}
           print("PASS: five-species variance combat smoke")
+          PY
+
+      - name: Rata T1 x variance interaction smoke
+        working-directory: experimentos/balance_nuevo/rata_t1_variance_interaction_v0.1
+        run: |
+          rm -rf ci_rata_t1_variance
+          python rata_t1_variance_interaction.py --preset smoke --outdir ci_rata_t1_variance --namespace CI
+          test -f ci_rata_t1_variance/RESULTADOS_RATA_T1_VARIANCE_INTERACTION_V01.zip
+          python - <<'PY'
+          import gzip,json
+          s=json.load(open("ci_rata_t1_variance/SUMMARY.json",encoding="utf-8"))
+          assert s["experiment"]=="RATA_T1_VARIANCE_INTERACTION_V01"
+          assert s["same_individual_distribution_across_arms"] is True
+          assert s["mutant_classification_precedes_t1"] is True
+          assert s["canonical_write"] is False
+          assert s["t2_t4_executed"] is False
+          with gzip.open("ci_rata_t1_variance/results.json.gz","rt",encoding="utf-8") as f:
+              rows=json.load(f)
+          assert len(rows)==9
+          assert {r["candidate"]["label"] for r in rows}=={"MODERATE","CENTRAL_PROVISIONAL","STRONG"}
+          assert {r["arm"] for r in rows}=={"EARLY","BASE","LATE"}
+          for r in rows:
+              assert r["result"]["natural_all"]["fights"]==20
+              assert r["result"]["mutant_conditional"]["fights"]==10
+          print("PASS: Rata variable T1 interaction keeps T2-T4 blocked")
           PY
 
       - name: Confirm Rata T2-T4 are structure-only
