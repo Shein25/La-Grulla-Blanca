@@ -130,15 +130,19 @@ La cadencia permanece fija.
 
 ### Mono
 
-Queda bloqueado hasta ratificar su T0. Una vez cerrado, su variación podrá
-incluir:
+T0 ratificado: `grid 43`.
 
+Su variación incluye:
+
+- DEF/EVA/PREC dentro de envolventes medidas;
 - daño básico;
-- daño directo de `Manotazo al Dantian`;
-- HP/DEF/EVA/PREC/TEN.
+- daño directo de `Manotazo al Dantian`.
 
-`QI_DRAIN=5` y cadencia 2 permanecerán como identidad del T0 propuesto hasta
-una decisión separada.
+HP=34 y TEN=12 no se elevan en v0.3 porque no existe un techo medido superior
+compatible con el piso ratificado. `QI_DRAIN=5` y cadencia 2 permanecen fijos
+como identidad. El techo de supervivencia usa grid 48 y los techos ofensivos
+usan candidatos del search amplio; sus combinaciones cruzadas son LAB-only
+hasta ser validadas por Monte Carlo.
 
 ## Separación con adaptación
 
@@ -161,5 +165,5 @@ Ser Mutante no concede T1/T2/T3/T4 ni altera `maxTierReached`.
 4. `loot_multiplier=1.5` y `xp_multiplier=1.5` sólo se aplican a Mutantes;
 5. las mecánicas identitarias no se sortean;
 6. normales y Mutantes se validan por raíz/loadout;
-7. Mono se incorpora sólo después de ratificar su T0.
+7. los cinco LianQi I se prueban conjuntamente antes de activar runtime.
 
