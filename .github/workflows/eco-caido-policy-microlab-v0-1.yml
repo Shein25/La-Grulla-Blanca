@@ -1,0 +1,35 @@
+name: Eco Caido Policy Causal Microlab v0.1
+
+on:
+  push:
+    branches:
+      - experiment/eco-caido-policy-microlab-v0.1
+    paths:
+      - "experimentos/balance_nuevo/eco_caido_policy_microlab_v0_1.py"
+      - ".github/workflows/eco-caido-policy-microlab-v0-1.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  eco:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Guard source ancestry
+        run: git merge-base --is-ancestor 823bc7a0ea89e6423cfae4835ec4c593736691dd HEAD
+      - name: Run Eco causal microlab
+        working-directory: experimentos/balance_nuevo
+        run: python eco_caido_policy_microlab_v0_1.py
+      - name: Upload result
+        uses: actions/upload-artifact@v4
+        with:
+          name: RESULTADOS_MICROLAB_ECO_CAIDO_POLICY_CAUSAL_V01
+          path: experimentos/balance_nuevo/RESULTADOS_MICROLAB_ECO_CAIDO_POLICY_CAUSAL_V01.zip
+          if-no-files-found: error
