@@ -236,6 +236,15 @@ def adaptive_runtime(*,tier,candidate,decision_seed,obs,cstate,t4,counters):
             return
 
         counters["basic_decisions"]+=1
+
+        # Frozen T3 semantics: when BASIC is selected and the monster is under
+        # skip_next_action, the authoritative engine consumes that BASIC turn.
+        # T4 may replace only a BASIC that would actually execute; it cannot
+        # bypass player Control.
+        if state.monster.skip_next_action:
+            counters["basic_skipped_before_t4"]+=1
+            return originals["execute_monster_turn"](state,rng)
+
         if (
             tier=="T4"
             and candidate is not None
