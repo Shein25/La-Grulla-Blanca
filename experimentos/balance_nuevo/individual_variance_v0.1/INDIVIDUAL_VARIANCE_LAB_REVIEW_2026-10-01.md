@@ -231,16 +231,18 @@ Esto **no invalida** el mecanismo: es la consecuencia directa de haber elegido
 - no nuevos monstruos de catálogo;
 - muestreo condicionado válido para análisis de Mutantes.
 
-### Decisión todavía abierta
+### Decisión humana posterior
 
-La única cuestión pendiente antes de runtime es la **forma de la distribución
-natural**:
+El 2026-10-01 se ratificó continuar con **UNIFORM_0_1**.
 
-A. mantener UNIFORM_0_1, haciendo que el individuo medio esté a mitad de camino
-entre T0 y techo;
+Por tanto:
 
-B. sesgar la distribución hacia T0 sin eliminar la posibilidad de extremos,
-manteniendo la cola Mutante <1%.
+- T0 permanece como piso natural;
+- cada eje defensivo/ofensivo tira independientemente en su envolvente medida;
+- el individuo medio no se fuerza artificialmente hacia T0;
+- la cola Mutante permanece clasificada por convergencia extrema <1%;
+- Mutante mantiene botín x1.5 y XP de combate x1.5.
 
-No debe activarse runtime hasta fijar esta decisión de distribución.
+Esta ratificación habilita **integración experimental**, no activación automática
+en el cliente canónico. T1-T4 siguen separados.
 
