@@ -1,4 +1,6 @@
-export const MONSTER_STAT_SOURCE_CONTRACT_STATUS='EXPERIMENTAL_BRIDGE_NEW_ENGINE_REQUIRED_V01';
+export const MONSTER_STAT_CONTRACT_STATUS='NEW_ENGINE_ONLY_V1';
+export const ENGINE_CONTRACT='NEW_COMBAT_STATS_V0_1';
+export const READY='READY';
 
 export const ARC1_MONSTER_IDS=Object.freeze([
   'rata_qi','avispa_jade','serpiente_qi','mono_pildoras','lobo_espiritual',
@@ -7,50 +9,26 @@ export const ARC1_MONSTER_IDS=Object.freeze([
   'devorador_niebla','halcon_tormenta','mantis_nube','centinela_pluma'
 ].sort());
 
-export const NEW_ENGINE_MONSTER_STAT_POLICY=Object.freeze({
-  numericSource:'NEW_ENGINE_T0_ONLY',
-  legacyNumericImport:'FORBIDDEN',
-  legacyFormulaTranslation:'FORBIDDEN',
-  ver74SnapshotUse:Object.freeze([
-    'IDENTITY',
-    'NAME',
-    'LORE',
-    'REGION',
-    'ELEMENT',
-    'TECHNIQUE_IDENTITY',
-    'MECHANIC_FAMILY'
-  ]),
-  forbiddenVer74NumericUse:Object.freeze([
-    'hp','qi','ataque','defensa','daño',
-    'technique_damage','technique_attack','technique_cadence',
-    'dot_damage','dot_duration','qi_drain'
-  ]),
-  requiredBaseStats:Object.freeze([
-    'hp','qi_max','precision','evasion','defense','tenacity','control',
-    'crit_chance','crit_damage','basic_damage'
-  ]),
-  adaptiveOrder:'NEW_ENGINE_T0 -> T1_T4_ADAPTATION -> EFFECTIVE_KIT -> MONSTER_AI -> NEW_ENGINE_RESOLVER'
-});
+export const REQUIRED_STATS=Object.freeze([
+  'hp','qi_max','precision','evasion','defense',
+  'tenacity','control','crit_chance','crit_damage','basic_damage'
+]);
 
-export function assertNewEngineMonsterBase(profile){
-  if(!profile||typeof profile!=='object')throw new TypeError('monster base profile required');
-  if(profile.engine_contract!=='NEW_COMBAT_STATS_V0_1'){
-    throw new Error('monster base must declare NEW_COMBAT_STATS_V0_1');
-  }
-  if(profile.stats_status!=='READY_NEW_ENGINE_T0'){
-    throw new Error('monster base stats are not READY_NEW_ENGINE_T0');
-  }
-  if(profile.numeric_source!=='NEW_ENGINE_ONLY'){
-    throw new Error('monster numeric source must be NEW_ENGINE_ONLY');
-  }
-  for(const legacyKey of ['ataque','defensa','daño']){
-    if(Object.hasOwn(profile,legacyKey)){
-      throw new Error('legacy numeric field forbidden in adaptive base: '+legacyKey);
+export function assertMonsterProfile(profile,{requireReady=true}={}){
+  if(!profile||typeof profile!=='object')throw new TypeError('monster profile required');
+  if(profile.engine_contract!==ENGINE_CONTRACT)throw new Error('wrong monster engine contract');
+  if(!ARC1_MONSTER_IDS.includes(profile.id))throw new Error('unknown Arc 1 monster id');
+  if(!profile.stats||typeof profile.stats!=='object')throw new Error('monster stats object required');
+
+  if(requireReady){
+    if(profile.stats_status!==READY)throw new Error('monster T0 stats are not READY');
+    for(const key of REQUIRED_STATS){
+      if(profile.stats[key]===null||profile.stats[key]===undefined){
+        throw new Error('missing monster stat: '+key);
+      }
     }
-  }
-  for(const key of NEW_ENGINE_MONSTER_STAT_POLICY.requiredBaseStats){
-    if(profile[key]===null||profile[key]===undefined){
-      throw new Error('missing new-engine monster stat: '+key);
+    if(profile.technique&&profile.technique.params_status!==READY){
+      throw new Error('monster technique params are not READY');
     }
   }
   return true;
