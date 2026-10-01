@@ -1,4 +1,4 @@
-"""Self-check del bloque de infraestructura STAGE1_INTEGRAL_T0_OPTUNA."""
+"""Self-check de STAGE1_INTEGRAL_T0_OPTUNA."""
 from __future__ import annotations
 
 import json
@@ -12,6 +12,7 @@ from candidate import (
     T0LabCandidate,
     candidate_id,
 )
+from contexts import expanded_primary_context_ids
 from guards import (
     validate_action_space,
     validate_package_sources,
@@ -19,6 +20,7 @@ from guards import (
     validate_tier,
 )
 from metrics_contract import FIGHT_REQUIRED_METRICS, AGGREGATE_REQUIRED_METRICS
+from objective_contract import objective_directions
 from search_space import LIANQI_I_T0_SEARCH_SPACES
 
 HERE=Path(__file__).resolve().parent
@@ -26,7 +28,7 @@ REGISTRY=HERE.parent/"monster_arc1_registry.json"
 
 
 def _rata_candidate() -> T0LabCandidate:
-    # Valores internos de self-check: prueban shape/guards, NO son propuesta de balance.
+    # Valores internos de self-check: prueban shape/guards, NO son balance.
     return T0LabCandidate.from_mapping({
         "species_id":"rata_qi",
         "candidate_status":LAB_CANDIDATE_STATUS,
@@ -45,6 +47,13 @@ def _rata_candidate() -> T0LabCandidate:
         },
         "technique_params":None,
     })
+
+
+def _require_source(path: Path,needles: tuple[str,...],errors: list[str]) -> None:
+    text=path.read_text(encoding="utf-8")
+    for needle in needles:
+        if needle not in text:
+            errors.append(f"SOURCE_GUARD:{path.name}:missing:{needle}")
 
 
 def run() -> dict:
@@ -87,8 +96,28 @@ def run() -> dict:
         errors.append("FIGHT_METRICS_TOO_SMALL")
     if len(AGGREGATE_REQUIRED_METRICS)<20:
         errors.append("AGG_METRICS_TOO_SMALL")
+    if len(expanded_primary_context_ids())!=10:
+        errors.append("PRIMARY_CONTEXT_COUNT")
+    if objective_directions("rata_qi")!=("maximize","minimize"):
+        errors.append("RATA_OBJECTIVE_DIRECTIONS")
 
-    # El bloque 1 no debe convertir ningún perfil canónico a READY.
+    # Optuna debe estar realmente cableado, no sólo listado como dependencia.
+    _require_source(
+        HERE/"optuna_study.py",
+        (
+            "optuna.create_study(",
+            "NSGAIISampler(seed=",
+            "study.optimize(",
+            "n_jobs=1",
+        ),
+        errors,
+    )
+    _require_source(
+        HERE/"proposal.py",
+        ("trial.suggest_int(", "trial.suggest_categorical("),
+        errors,
+    )
+
     ready=sum(
         1 for mid in LIANQI_I_IDS
         if profiles[mid]["stats_status"]=="READY"
@@ -103,8 +132,11 @@ def run() -> dict:
         "lianqi_i_profiles":len(LIANQI_I_IDS),
         "lianqi_i_ready":ready,
         "search_spaces":list(LIANQI_I_T0_SEARCH_SPACES),
+        "primary_contexts_expanded":len(expanded_primary_context_ids()),
         "fight_metric_contract_size":len(FIGHT_REQUIRED_METRICS),
         "aggregate_metric_contract_size":len(AGGREGATE_REQUIRED_METRICS),
+        "rata_objective_directions":objective_directions("rata_qi"),
+        "optuna_pipeline_implemented":True,
         "optuna_executed":False,
         "canonical_registry_modified":False,
     }
