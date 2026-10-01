@@ -48,26 +48,40 @@ jobs:
           python rata_smoke.py \
             --trials 2 \
             --fights-per-context 2 \
+            --study-name "STAGE1::rata_qi::PREFLIGHT" \
             --outdir ci_preflight \
             --storage ci_preflight/rata_qi.sqlite3
 
-      - name: Full Rata T0 smoke
+      - name: Rata T0 smoke 32x20
         working-directory: experimentos/balance_nuevo/stage1_integral_t0_optuna
         run: |
           rm -rf ci_rata_smoke
           python rata_smoke.py \
             --trials 32 \
             --fights-per-context 20 \
+            --study-name "STAGE1::rata_qi::SMOKE_32x20" \
             --outdir ci_rata_smoke \
             --storage ci_rata_smoke/rata_qi.sqlite3
 
-      - name: Upload Rata smoke artifacts
+      - name: Rata T0 search 256x40
+        working-directory: experimentos/balance_nuevo/stage1_integral_t0_optuna
+        run: |
+          rm -rf ci_rata_search
+          python rata_smoke.py \
+            --trials 256 \
+            --fights-per-context 40 \
+            --study-name "STAGE1::rata_qi::SEARCH_256x40" \
+            --outdir ci_rata_search \
+            --storage ci_rata_search/rata_qi.sqlite3
+
+      - name: Upload Rata study artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: stage1-rata-smoke
+          name: stage1-rata-search
           path: |
             experimentos/balance_nuevo/stage1_integral_t0_optuna/ci_preflight
             experimentos/balance_nuevo/stage1_integral_t0_optuna/ci_rata_smoke
+            experimentos/balance_nuevo/stage1_integral_t0_optuna/ci_rata_search
           if-no-files-found: warn
           retention-days: 14
