@@ -1,9 +1,9 @@
 # Rata de Qi — T2–T4 structural preparation
 
-**Status:** T2_CALIBRATION_OPEN / T3-T4 STRUCTURE_ONLY / NO T3-T4 NUMERIC CALIBRATION
+**Status:** T3_CALIBRATION_OPEN / T4 STRUCTURE_ONLY / NO T4 NUMERIC CALIBRATION
 
 T0 is READY (trial 4254). T1 Reflejo de Madriguera is HUMAN-RATIFIED and frozen at +40 EVA / CD5 / REACTIVO_1 / BASE signals.
-T2 calibration is now permitted. T3–T4 remain blocked until sequential closure.
+T2 R2_SHORT is HUMAN-RATIFIED and frozen (memory 2 / repeat 2 / effective-only / +8). T3 calibration is now permitted. T4 remains blocked until T3 human closure.
 
 ## T2 — recognition
 
@@ -18,7 +18,7 @@ Required before numeric calibration:
 - no hidden player-build inspection;
 - metrics for repeated-action recognition, false-positive anticipation, action diversity and survival-action displacement.
 
-No active T2 ability is selected here yet. This document now authorizes T2 LAB calibration only; it does not authorize T2 CANON promotion.
+T2 R2_SHORT is CLOSED / HUMAN-RATIFIED. Its recognition contract is immutable during T3 calibration.
 
 ## T3 — species counter
 
@@ -26,12 +26,12 @@ Preserved identity:
 - species-specific counter branch.
 
 Required:
-- T2 behavior closed;
+- T2 behavior closed — SATISFIED 2026-10-01;
 - counter trigger must derive from observable/repeated player behavior;
 - counter may not read root/build metadata directly unless exposed by combat events;
 - measure counter activation, avoided/prevented damage, player action diversity, and degenerate lock loops.
 
-No counter mechanic or number is selected here.
+No T3 counter is selected for CANON. T3 LAB calibration is authorized. Initial hypothesis: a successful T1 Reflejo under active T2 recognition may arm a physical retaliation based on the canonical Rata basic attack `2d4`.
 
 ## T4 — Mordisco Frenético
 
