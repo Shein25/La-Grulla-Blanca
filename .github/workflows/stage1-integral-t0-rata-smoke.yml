@@ -94,6 +94,26 @@ jobs:
             --seed-namespace "PARETO_1000_COMMON_V01" \
             --outdir ci_rata_pareto_1000
 
+      - name: Select five neutral Pareto coverage representatives
+        working-directory: experimentos/balance_nuevo/stage1_integral_t0_optuna
+        run: |
+          rm -rf ci_rata_coverage
+          mkdir -p ci_rata_coverage
+          python rata_select_coverage.py \
+            --source ci_rata_pareto_1000/rata_pareto_1000_front.json \
+            --count 5 \
+            --out ci_rata_coverage/rata_coverage_5.json
+
+      - name: Stress Rata representatives 1000
+        working-directory: experimentos/balance_nuevo/stage1_integral_t0_optuna
+        run: |
+          rm -rf ci_rata_stress_1000
+          python rata_stress.py \
+            --source ci_rata_coverage/rata_coverage_5.json \
+            --fights-per-context 1000 \
+            --seed-namespace "STRESS_1000_COMMON_V01" \
+            --outdir ci_rata_stress_1000
+
       - name: Upload Rata study artifacts
         if: always()
         uses: actions/upload-artifact@v4
@@ -105,5 +125,7 @@ jobs:
             experimentos/balance_nuevo/stage1_integral_t0_optuna/ci_rata_search
             experimentos/balance_nuevo/stage1_integral_t0_optuna/ci_rata_pareto_500
             experimentos/balance_nuevo/stage1_integral_t0_optuna/ci_rata_pareto_1000
+            experimentos/balance_nuevo/stage1_integral_t0_optuna/ci_rata_coverage
+            experimentos/balance_nuevo/stage1_integral_t0_optuna/ci_rata_stress_1000
           if-no-files-found: warn
           retention-days: 14
