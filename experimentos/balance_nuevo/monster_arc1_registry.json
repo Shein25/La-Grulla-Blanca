@@ -13,7 +13,10 @@
     "t0_required_before_adaptive_tiers": true,
     "definitives_in_monster_balance": false,
     "arc1_monster_resource_model": "NONE",
-    "arc1_monster_qi_semantics": "qi_max=null is authoritative N/A for Arc 1 monsters and does not block T0 READY"
+    "arc1_monster_qi_semantics": "qi_max=null is authoritative N/A for Arc 1 monsters and does not block T0 READY",
+    "ready_profiles": [
+      "rata_qi"
+    ]
   },
   "profiles": {
     "rata_qi": {
@@ -26,18 +29,18 @@
       "element": null,
       "unique": false,
       "engine_contract": "NEW_COMBAT_STATS_V0_1",
-      "stats_status": "PENDING_INTEGRAL_REBALANCE",
+      "stats_status": "READY",
       "stats": {
-        "hp": null,
+        "hp": 21,
         "qi_max": null,
-        "precision": null,
-        "evasion": null,
-        "defense": null,
-        "tenacity": null,
-        "control": null,
+        "precision": 80,
+        "evasion": 0,
+        "defense": 0,
+        "tenacity": 0,
+        "control": 0,
         "crit_chance": 5,
         "crit_damage": 1.5,
-        "basic_damage": null
+        "basic_damage": "2d4"
       },
       "technique": null,
       "ai": {
@@ -45,8 +48,8 @@
         "social": "COLONIA"
       },
       "adaptive": {
-        "status": "BLOCKED_UNTIL_T0_READY",
-        "rule": "T1-T4 are applied only after this T0 profile is READY."
+        "status": "READY_FOR_T1_RECALIBRATION",
+        "rule": "T0 is READY. T1 may be recalibrated; T2-T4 remain blocked until sequential adaptive validation."
       },
       "resource_model": "NONE"
     },
