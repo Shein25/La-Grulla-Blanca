@@ -53,6 +53,7 @@ Cuando el score supera el umbral:
 ```text
 suffix = "Mutante"
 loot_multiplier = 1.5
+xp_multiplier = 1.5
 ```
 
 No se crea un nuevo `species_id`. Por ejemplo:
@@ -65,8 +66,7 @@ display     = Lobo espiritual de tres colas Mutante
 El Mutante puede comportarse como un mini-jefe emergente. El jugador decide
 si combatir, huir, prepararse o buscar ayuda.
 
-Por ahora sólo se define el multiplicador de **botín x1.5**. No se modifica XP,
-probabilidad de objetos únicos ni otras recompensas sin una decisión separada.
+El Mutante entrega **botín x1.5 y XP x1.5** para compensar su dificultad adicional. La probabilidad de objetos únicos permanece sin cambios en v0.2.
 
 ## Techo: usar el perfil más difícil observado
 
@@ -126,6 +126,6 @@ Antes de runtime:
 1. comprobar que ninguna stat cae por debajo de la envolvente T0↔techo;
 2. comprobar que la frecuencia Mutante queda <1%;
 3. medir presión de combate de normales y Mutantes por raíz/loadout;
-4. verificar que `loot_multiplier=1.5` sólo se aplica a Mutantes;
+4. verificar que `loot_multiplier=1.5` y `xp_multiplier=1.5` sólo se aplican a Mutantes;
 5. añadir el Mono sólo después de cerrar su T0.
 
