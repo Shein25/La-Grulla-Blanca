@@ -1,0 +1,151 @@
+{
+  "schema_version": "alchemy-consumables-balance-v0.1",
+  "status": "NUMERIC_PROPOSAL_AWAITING_HUMAN_REVIEW",
+  "scope": "ARC1_LIANQI_I_IV",
+  "basis": {
+    "player_base_hp": {
+      "LianQi_I": 30,
+      "LianQi_II": 36,
+      "LianQi_III": 42,
+      "LianQi_IV": 48
+    },
+    "player_base_qi": {
+      "LianQi_I": 37,
+      "LianQi_II": 43,
+      "LianQi_III": 49,
+      "LianQi_IV": 55
+    },
+    "equipment_hp_revision": "approximately x1.5 versus prior catalog",
+    "equipment_hp_power_weight": "approximately 0.333",
+    "defense_change": "NONE",
+    "resistance_build_lianqi_iv_hp_target": "approximately 70-80",
+    "display_rule": "Consumables show absolute healing/recovery values, never percentages."
+  },
+  "calibration_reference": {
+    "expected_equipped_hp_approx": {
+      "LianQi_I": 32,
+      "LianQi_II": 41,
+      "LianQi_III": 50,
+      "LianQi_IV": 59
+    },
+    "note": "Approximate reference only, derived from the previous EXPECTED_STAGE HP bonuses scaled by the new ~x1.5 equipment HP revision. Exact gear totals remain a separate equipment authority."
+  },
+  "hp_healing_family": {
+    "stage_quality_values": {
+      "LianQi_I": {
+        "impura": 8,
+        "estable": 12,
+        "superior": 16,
+        "excepcional": 20
+      },
+      "LianQi_II": {
+        "impura": 10,
+        "estable": 15,
+        "superior": 20,
+        "excepcional": 26
+      },
+      "LianQi_III": {
+        "impura": 12,
+        "estable": 18,
+        "superior": 25,
+        "excepcional": 33
+      },
+      "LianQi_IV": {
+        "impura": 14,
+        "estable": 22,
+        "superior": 30,
+        "excepcional": 40
+      }
+    },
+    "crude_shop_potion": {
+      "stage": "LianQi_I",
+      "heal": 10,
+      "impurity": 1,
+      "role": "cheap fallback; weaker than crafted stable medicine"
+    },
+    "design_guards": [
+      "No potion is balanced to fully restore a stage-appropriate equipped character from near zero.",
+      "Stable quality remains useful at entry stage.",
+      "Superior/exceptional may heal a large amount but must be materially more expensive to craft.",
+      "Later-stage medicine requires later-stage recipe/material access; quality alone does not bypass stage progression.",
+      "Healing is absolute; percentages may be used only internally for balance diagnostics."
+    ]
+  },
+  "qi_recovery_family": {
+    "stage_quality_values": {
+      "LianQi_I": {
+        "impura": 8,
+        "estable": 12,
+        "superior": 16,
+        "excepcional": 20
+      },
+      "LianQi_II": {
+        "impura": 10,
+        "estable": 15,
+        "superior": 20,
+        "excepcional": 26
+      },
+      "LianQi_III": {
+        "impura": 12,
+        "estable": 18,
+        "superior": 25,
+        "excepcional": 33
+      },
+      "LianQi_IV": {
+        "impura": 14,
+        "estable": 22,
+        "superior": 30,
+        "excepcional": 40
+      }
+    },
+    "design_guards": [
+      "No pure Qi consumable restores 100% of naked stage Qi from zero.",
+      "Recovery should be interpretable as a finite number of technique uses, not a full resource reset.",
+      "Hybrid medicines that also purify impurities must recover less Qi than a same-tier pure Qi medicine."
+    ]
+  },
+  "stage_recipe_structure": {
+    "LianQi_I": "initial/basic ingredients",
+    "LianQi_II": "new stage material gate",
+    "LianQi_III": "new stage material gate; Novice-compatible",
+    "LianQi_IV": "rare late-Arc1 material gate; Novice-compatible",
+    "guard": "Arc1 formal Alchemy rank cap remains Novice; do not require Aprendiz for an Arc1 recipe."
+  },
+  "current_runtime_conflicts_to_replace": [
+    {
+      "id": "pocion",
+      "current": "3d6+6, impurity +1",
+      "problem": "cheap crude potion outperforms stable crafted refined potion on average"
+    },
+    {
+      "id": "pocion_refinada",
+      "current": "3d4+4 stable",
+      "problem": "no longer defines the whole Arc1 healing progression"
+    },
+    {
+      "id": "elixir_qi",
+      "current": "stable 20 / superior 28 / exceptional 36",
+      "problem": "too much early-stage recovery if treated as the initial pure-Qi family"
+    },
+    {
+      "id": "elixir_tempestad_excepcional",
+      "current": "55 Qi",
+      "problem": "can equal the full naked LianQi IV Qi pool"
+    }
+  ],
+  "deferred_until_numeric_ratification": [
+    "exact recipe names for stage II-IV vitality medicines",
+    "ingredient quantities and rarity",
+    "stone/contribution/vendor prices",
+    "Alchemy XP per recipe",
+    "quality practice thresholds",
+    "yield/efficiency extensions",
+    "runtime migration from ver74"
+  ],
+  "guards": {
+    "no_runtime_write": true,
+    "no_ver74_patch": true,
+    "no_equipment_rebalance": true,
+    "no_monster_rebalance": true
+  }
+}
