@@ -255,7 +255,7 @@ def delta(a,b):
         "win_rate_delta":float(a["win_rate"])-float(b["win_rate"]),
         "rounds_delta":float(a["rounds_mean"])-float(b["rounds_mean"]),
         "hp_pressure_delta":(1-float(a["hp_final_pct_mean"]))-(1-float(b["hp_final_pct_mean"])),
-        "qi_spent_delta":float(a["player_qi_spent_mean"])-float(b["player_qi_spent_mean"]),
+        "qi_spent_delta":float(a["qi_spent_mean"])-float(b["qi_spent_mean"]),
         "monster_damage_delta":float(a["monster_damage_total_mean"])-float(b["monster_damage_total_mean"]),
         "monster_evades_delta":float(a["monster_evades_mean"])-float(b["monster_evades_mean"]),
     }
