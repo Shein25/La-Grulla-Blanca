@@ -212,6 +212,31 @@ jobs:
           print("PASS: Rata T1 frozen; only T2 LAB gate is open")
           PY
 
-      - name: Confirm Rata T2-T4 are structure-only
+      - name: Rata T2 recognition combat smoke
+        working-directory: experimentos/balance_nuevo/rata_adaptive_tiers_v0.1
         run: |
-          grep -q "NO NUMERIC CALIBRATION / NO EXECUTION" experimentos/balance_nuevo/parallel_arc1_pipeline/RATA_T2_T4_STRUCTURAL_AUDIT.md
+          rm -rf ci_rata_t2
+          python rata_t2_recognition_lab.py --preset smoke --outdir ci_rata_t2 --namespace CI
+          test -f ci_rata_t2/RESULTADOS_RATA_T2_RECOGNITION_V01.zip
+          python - <<'PY'
+          import gzip,json
+          s=json.load(open("ci_rata_t2/SUMMARY.json",encoding="utf-8"))
+          assert s["experiment"]=="RATA_T2_RECOGNITION_V01"
+          assert s["t1_frozen"] is True
+          assert s["t1_evasion_bonus"]==40
+          assert s["t1_cooldown_rounds"]==5
+          assert s["canonical_write"] is False
+          assert s["t3_t4_executed"] is False
+          with gzip.open("ci_rata_t2/t2_results.json.gz","rt",encoding="utf-8") as f:
+              rows=json.load(f)
+          assert len(rows)==3
+          assert {r["candidate"]["label"] for r in rows}=={"R2_SHORT","R2_CENTRAL","R3_CONSERVATIVE"}
+          for r in rows:
+              assert r["result"]["natural_all"]["fights"]==20
+              assert r["result"]["mutant_conditional"]["fights"]==10
+          print("PASS: Rata T2 recognition smoke; T1 frozen and T3-T4 blocked")
+          PY
+
+      - name: Confirm Rata T3-T4 remain structure-only
+        run: |
+          grep -q "T2_CALIBRATION_OPEN / T3-T4 STRUCTURE_ONLY / NO T3-T4 NUMERIC CALIBRATION" experimentos/balance_nuevo/parallel_arc1_pipeline/RATA_T2_T4_STRUCTURAL_AUDIT.md
