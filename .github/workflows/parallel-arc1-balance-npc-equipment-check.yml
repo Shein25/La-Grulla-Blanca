@@ -1,0 +1,71 @@
+name: Parallel Arc1 Balance and NPC Equipment Check
+
+on:
+  push:
+    branches:
+      - experiment/parallel-balance-npc-equipment-v0.1
+    paths:
+      - "experimentos/balance_nuevo/parallel_arc1_pipeline/**"
+      - "experimentos/npc_equipment_v0.1/**"
+      - ".github/workflows/parallel-arc1-balance-npc-equipment-check.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Directed T0 smoke
+        working-directory: experimentos/balance_nuevo/parallel_arc1_pipeline
+        run: |
+          rm -rf ci_directed
+          python directed_t0_revalidation.py --preset smoke --outdir ci_directed
+          test -f ci_directed/RESULTADOS_T0_DIRIGIDOS_AVISPA_SERPIENTE_LOBO.zip
+
+      - name: Mono QI drain ablation smoke
+        working-directory: experimentos/balance_nuevo/parallel_arc1_pipeline
+        run: |
+          rm -rf ci_mono
+          python mono_qi_drain_ablation.py --preset smoke --outdir ci_mono
+          test -f ci_mono/RESULTADOS_MONO_QI_DRAIN_ABLATION.zip
+
+      - name: Validate extrapolation matrix
+        working-directory: experimentos/balance_nuevo/parallel_arc1_pipeline
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open("monster_extrapolation_matrix.json",encoding="utf-8"))
+          assert d["status"]=="LAB_SEARCH_SPACE_PRIOR_ONLY"
+          assert len(d["remaining"])==13
+          assert all("numeric stats" in x["do_not_transfer"] for x in d["remaining"].values())
+          print("PASS: 13 remaining monsters have methodology-only extrapolation priors")
+          PY
+
+      - name: Regenerate and validate NPC equipment
+        working-directory: experimentos/npc_equipment_v0.1
+        run: |
+          rm -f npc_equipment_assignments_proposal.generated.json
+          python npc_equipment_assignment.py
+          python - <<'PY'
+          import json
+          a=json.load(open("npc_equipment_assignments_proposal.json",encoding="utf-8"))
+          b=json.load(open("npc_equipment_assignments_proposal.generated.json",encoding="utf-8"))
+          assert a==b
+          assert len(a["actors"])==32
+          assert a["rules"]["unique_items_excluded"] is True
+          assert a["rules"]["source_npc_does_not_imply_worn"] is True
+          assert a["rules"]["combat_stats_applied"] is False
+          print("PASS: 32/32 NPC assignments reproducible and guarded")
+          PY
+
+      - name: Confirm Rata T2-T4 are structure-only
+        run: |
+          grep -q "NO NUMERIC CALIBRATION / NO EXECUTION" experimentos/balance_nuevo/parallel_arc1_pipeline/RATA_T2_T4_STRUCTURAL_AUDIT.md
