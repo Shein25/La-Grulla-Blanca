@@ -1,0 +1,73 @@
+name: Stage1 Integral T0 Rata Smoke
+
+on:
+  push:
+    branches:
+      - experiment/combat-stat-contract-v0.1
+    paths:
+      - "experimentos/balance_nuevo/**"
+      - ".github/workflows/stage1-integral-t0-rata-smoke.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rata-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout experimental branch
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install lab dependency
+        run: python -m pip install --disable-pip-version-check "optuna>=4,<5"
+
+      - name: Contract selfcheck
+        working-directory: experimentos/balance_nuevo/stage1_integral_t0_optuna
+        run: python selfcheck.py
+
+      - name: Adversarial guards
+        working-directory: experimentos/balance_nuevo/stage1_integral_t0_optuna
+        run: python test_contracts.py
+
+      - name: VETERAN policy tests
+        working-directory: experimentos/balance_nuevo/stage1_integral_t0_optuna
+        run: python test_veteran_policy.py
+
+      - name: Tiny runtime preflight
+        working-directory: experimentos/balance_nuevo/stage1_integral_t0_optuna
+        run: |
+          rm -rf ci_preflight
+          python rata_smoke.py \
+            --trials 2 \
+            --fights-per-context 2 \
+            --outdir ci_preflight \
+            --storage ci_preflight/rata_qi.sqlite3
+
+      - name: Full Rata T0 smoke
+        working-directory: experimentos/balance_nuevo/stage1_integral_t0_optuna
+        run: |
+          rm -rf ci_rata_smoke
+          python rata_smoke.py \
+            --trials 32 \
+            --fights-per-context 20 \
+            --outdir ci_rata_smoke \
+            --storage ci_rata_smoke/rata_qi.sqlite3
+
+      - name: Upload Rata smoke artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage1-rata-smoke
+          path: |
+            experimentos/balance_nuevo/stage1_integral_t0_optuna/ci_preflight
+            experimentos/balance_nuevo/stage1_integral_t0_optuna/ci_rata_smoke
+          if-no-files-found: warn
+          retention-days: 14
