@@ -1,0 +1,61 @@
+{
+  "schema_version": "alchemy-crafting-economy-policy-v0.1",
+  "status": "PROPOSAL_AWAITING_HUMAN_REVIEW",
+  "crafting": {
+    "stone_fee_per_craft": 0,
+    "contribution_spent_per_craft": 0,
+    "base_output_units": 1,
+    "time_actions": 2,
+    "failure_consumes_all_base_ingredients": true,
+    "failure_profession_xp": 0,
+    "quality_uses_same_base_ingredients": true,
+    "rationale": "Crafting cost comes from gathered/extracted resources, time and failure risk. Quality rewards mastery rather than paying a higher currency fee."
+  },
+  "contribution_policy": {
+    "role": "ACCESS_GATE_ONLY",
+    "spendable_currency": false,
+    "allowed_uses": [
+      "minimum merit/contribution history to access institution, mentor or recipe",
+      "permission gate for restricted materials or station access"
+    ],
+    "forbidden_uses": [
+      "subtract contribution when buying a consumable",
+      "subtract contribution when crafting a consumable"
+    ]
+  },
+  "vendor_policy": {
+    "common_potion": {
+      "purchasable": true,
+      "proposed_price_stones": 5,
+      "contribution_required": 0,
+      "formulation": "2d4+3 HP",
+      "role": "reliable fallback that is weaker than crafted stable LI vitality medicine"
+    },
+    "crafted_vitality": {
+      "routine_vendor_sale": false,
+      "rule": "Básica/Templada/Profunda/Condensada are primarily crafted progression items. Institutional emergency stock may exist narratively but is not a permanent unlimited shop source."
+    },
+    "pure_qi": {
+      "routine_vendor_sale": false,
+      "rule": "Pure Qi elixirs above introductory tier are primarily crafted."
+    },
+    "special_medicines": {
+      "routine_vendor_sale": false,
+      "rule": "Antidotes, burn salves, meridian repair and hybrid medicines may be unlocked by institutional services, but access and price require a separate availability pass."
+    }
+  },
+  "anti_arbitrage": {
+    "resale_not_balanced_yet": true,
+    "guard": "Do not create profitable vendor->craft->resale or ingredient->potion loops before a resale contract exists."
+  },
+  "future_extensions": {
+    "yield": "DEFERRED",
+    "efficiency": "DEFERRED",
+    "rule": "Resolve after quality and base quantity; never alter potion quality."
+  },
+  "guards": {
+    "hp_contract_unchanged": true,
+    "qi_numbers_not_ratified_here": true,
+    "no_runtime_write": true
+  }
+}
