@@ -72,14 +72,13 @@ Se conservan como arquitectura experimental:
 - Semantic Memory;
 - señales resueltas;
 - Adaptive Ecology;
-- `C_STAGGERED` como dirección de trabajo;
 - tiers T0–T4;
 - thresholds/decay/`maxTierReached`;
 - learning ceiling;
 - Survival Evolution;
 - arsenal adaptativo por especie.
 
-Los valores numéricos que afecten combate se revalidan después de cerrar cada T0.
+No existe escalado numérico global por Tier. Toda magnitud adaptativa que afecte combate permanece pendiente hasta cerrar el T0 de la especie y validarla con el resolver nuevo.
 
 ## Cadencia
 
