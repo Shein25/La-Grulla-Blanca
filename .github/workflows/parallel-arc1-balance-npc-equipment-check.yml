@@ -247,12 +247,13 @@ jobs:
           assert {x["candidate"]["label"] for x in rows}=={
               "CONTROL_1X100","FRENZY_2X050","FRENZY_2X075","FRENZY_3X050"
           }
-          control=next(x for x in rows if x["candidate"]["label"]=="CONTROL_1X100")
+          with gzip.open("ci_rata_t4_geometry/harness_instance_basic_control.json.gz","rt",encoding="utf-8") as f:
+              h=json.load(f)
           for pop in ("natural_all","natural_normal","mutant_conditional"):
-              a=b[pop];z=control["result"][pop]
+              a=b[pop];z=h[pop]
               for key in ("win_rate","rounds_mean","hp_final_pct_mean","qi_final_mean","monster_damage_total_mean"):
                   assert a[key]==z[key],(pop,key,a[key],z[key])
-          print("PASS: T4 control reproduces frozen T3 exactly; geometry lab is isolated")
+          print("PASS: T4 instance-basic harness reproduces frozen T3 exactly; geometry lab is isolated")
           PY
 
       - name: Confirm Rata T4 calibration is open
