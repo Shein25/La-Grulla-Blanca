@@ -1,6 +1,6 @@
 {
   "schema_version": "rata-adaptive-tiers-v0.1",
-  "status": "T1_HUMAN_RATIFIED_T2_LAB_ALLOWED",
+  "status": "T2_HUMAN_RATIFIED_T3_LAB_ALLOWED",
   "species_id": "rata_qi",
   "population_tier_thresholds": {
     "T0": [
@@ -78,19 +78,49 @@
     }
   },
   "t2": {
-    "status": "CALIBRATION_ALLOWED_NOT_SELECTED",
+    "status": "READY_HUMAN_RATIFIED",
+    "ratified_on": "2026-10-01",
     "identity": "RECOGNITION",
-    "requirements": [
-      "Use only observable player actions/outcomes.",
-      "Recognize repeated recent behavior; never inspect root/build metadata.",
-      "T1 ability magnitude +40 EVA and CD5 remain frozen.",
-      "T2 may change preemptive eligibility/scoring, not T1 numeric magnitude.",
-      "Compare false-positive anticipation and action displacement.",
-      "No T3/T4 execution."
-    ]
+    "candidate": "R2_SHORT",
+    "source_heavy_sha256": "a5f2b72059653cc58b78ee59f651b9bf24a8be86b5687f3aff475b2ccf7e1700",
+    "source_generalization_sha256": "5783c4fdb6b8a9c70f2d6528f43dd38a7962e9cd987e518798175ee8d32577ca",
+    "recognition": {
+      "memory_window": 2,
+      "repeated_same_category_required": 2,
+      "count_results": [
+        "EFECTIVA"
+      ],
+      "preemptive_survival_bonus": 8,
+      "observable_categories": [
+        "PLAYER_BASIC",
+        "PLAYER_UNITARGET_TECHNIQUE",
+        "PLAYER_AOE_TECHNIQUE",
+        "PLAYER_DEFENSIVE_TECHNIQUE"
+      ]
+    },
+    "interpretation": "Repeated effective observable actions can bias the already-existing T1 Reflejo. Changing the player's pattern may invalidate the prediction.",
+    "guards": {
+      "t1_numeric_contract_frozen": true,
+      "no_root_or_build_inspection": true,
+      "no_future_rng": true,
+      "individual_variance_compatible": true,
+      "mutant_classification_unchanged": true
+    }
   },
   "t3": {
-    "status": "BLOCKED_UNTIL_T2_HUMAN_CLOSURE"
+    "status": "CALIBRATION_ALLOWED_NOT_SELECTED",
+    "identity": "SPECIES_COUNTER",
+    "design_direction": "Use T2-recognized behavior to unlock a species-specific physical counter without changing T1/T2 numerics.",
+    "initial_hypothesis": "A successful Reflejo caused while a T2-recognized pattern is active may arm a physical retaliation based on the canonical 2d4 basic attack.",
+    "requirements": [
+      "Trigger must come from observable T2 recognition and real combat outcome.",
+      "No player root/build inspection.",
+      "T1 +40 EVA/CD5 remains frozen.",
+      "T2 memory=2/repeat=2/+8 remains frozen.",
+      "Counter damage must use the normal direct-damage pipeline.",
+      "Measure activation, prevented/avoided damage, extra damage, action displacement, loops and player diversity.",
+      "No T4 execution."
+    ]
   },
   "t4": {
     "status": "BLOCKED_UNTIL_T3_HUMAN_CLOSURE"
@@ -99,6 +129,8 @@
     "no_t1_recalibration_from_t2": true,
     "no_hidden_player_build_inspection": true,
     "maxTierReached_single_historical_milestone": true,
-    "t3_t4_blocked": true
+    "t3_t4_blocked": false,
+    "no_t2_recalibration_from_t3": true,
+    "t4_blocked": true
   }
 }
