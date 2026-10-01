@@ -1,8 +1,7 @@
 """Contrato multiobjetivo por especie.
 
 Declara QUÉ observará Optuna, no un target de win rate ni una función de
-selección final. Las fórmulas se conectarán cuando el agregador de métricas
-por ronda esté implementado.
+selección final.
 """
 from __future__ import annotations
 
@@ -18,34 +17,34 @@ class Objective:
 
 OBJECTIVES_BY_SPECIES={
     "rata_qi":(
-        Objective("player_hp_pressure","maximize","amenaza real sin convertirla en esponja"),
-        Objective("monster_hp","minimize","preservar cuerpo pequeño"),
-        Objective("monster_defense","minimize","evitar tanque artificial"),
-        Objective("combat_duration","minimize","amenaza simple e instintiva"),
+        Objective(
+            "player_hp_pressure","maximize",
+            "observar cuánta presión natural produce la criatura"
+        ),
+        Objective(
+            "normalized_candidate_budget","minimize",
+            "crear un Pareto presión/potencia sin empujar todas las stats al máximo"
+        ),
     ),
     "avispa_jade":(
         Objective("player_hp_pressure","maximize","la picadura debe importar"),
         Objective("monster_dot_fraction","maximize","identidad de veneno"),
-        Objective("monster_hp","minimize","movilidad antes que bulk"),
-        Objective("monster_defense","minimize","movilidad antes que armadura"),
+        Objective("normalized_candidate_budget","minimize","movilidad/veneno antes que inflación general"),
     ),
     "serpiente_qi":(
         Objective("late_pressure","maximize","alargar el combate debe empeorar la situación"),
         Objective("monster_dot_fraction","maximize","veneno como fuente identitaria"),
-        Objective("early_burst","minimize","no convertir presión sostenida en burst"),
-        Objective("monster_hp","minimize","evitar resolver identidad sólo con HP"),
+        Objective("normalized_candidate_budget","minimize","evitar resolver identidad con inflación general"),
     ),
     "mono_pildoras":(
         Objective("player_qi_pressure","maximize","presión sobre Dantian/recursos"),
         Objective("forced_basic_due_to_qi","maximize","el drenaje debe cambiar decisiones"),
-        Objective("player_hp_pressure","maximize","sigue siendo amenaza física"),
-        Objective("monster_hp","minimize","evitar bruto inflado"),
+        Objective("normalized_candidate_budget","minimize","evitar bruto inflado"),
     ),
     "lobo_espiritual":(
         Objective("player_hp_pressure","maximize","apex/puente de examen"),
         Objective("offensive_tail_risk","maximize","capacidad de castigar errores"),
-        Objective("monster_hp","minimize","evitar depender sólo de HP"),
-        Objective("monster_defense","minimize","evitar depender sólo de DEF"),
+        Objective("normalized_candidate_budget","minimize","evitar depender sólo de stats infladas"),
     ),
 }
 
