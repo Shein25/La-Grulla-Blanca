@@ -1,0 +1,63 @@
+{
+  "schema_version": "rata-t1-decision-aware-input-v0.1",
+  "status": "LAB_REVALIDATION_INPUT_NOT_CANON",
+  "source_zip_sha256": "11a1fd44d7e8f8f90d12ef374cb73fadb9d985f392dd922844f25509623da5f2",
+  "t0": {
+    "id": "rata_qi",
+    "trial": 4254,
+    "hp": 21,
+    "precision": 80,
+    "evasion": 0,
+    "defense": 0,
+    "tenacity": 0,
+    "control": 0,
+    "crit_chance": 5,
+    "crit_damage": 1.5,
+    "basic_damage": "2d4",
+    "resource_model": "NONE"
+  },
+  "ability": {
+    "name": "Reflejo de Madriguera",
+    "kind": "EVADE_NEXT"
+  },
+  "candidates": [
+    {
+      "label": "MODERATE",
+      "evasion_bonus": 25,
+      "cooldown_rounds": 5
+    },
+    {
+      "label": "CENTRAL_PROVISIONAL",
+      "evasion_bonus": 40,
+      "cooldown_rounds": 5
+    },
+    {
+      "label": "STRONG",
+      "evasion_bonus": 50,
+      "cooldown_rounds": 5
+    }
+  ],
+  "selector_contract": {
+    "base_profile": "INSTINTIVO",
+    "t1_profile": "REACTIVO_1",
+    "basic_utility_base": 40,
+    "survival_utility_base": 18,
+    "signal_weights": {
+      "SELF_LOW_HP": 22,
+      "TOOK_HEAVY_HIT": 10,
+      "PLAYER_LOW_HP": 3
+    },
+    "jitter": 3,
+    "repetition_penalty": 5,
+    "chooser": "Monster Combat AI v0.1 / chooseMonsterIntent"
+  },
+  "validation_requirements": [
+    "AI selector chooses BASIC vs SURVIVAL; do not force survival on signal presence.",
+    "Execution remains EVADE_NEXT through the new combat resolver.",
+    "Use common random numbers against T0.",
+    "Report survival choice frequency and signal composition.",
+    "Report monster damage retention, round extension, extra evades, player HP pressure and root/loadout spread.",
+    "No automatic CANON promotion.",
+    "T2 remains blocked until human closure."
+  ]
+}
