@@ -10,7 +10,7 @@ export const CANDIDATE_ASSIGNMENTS=Object.freeze({
   pez_lunar:Object.freeze({profileId:'CAZADOR_2',socialProfileId:'SOLITARIO',preferences:pref(1.05,1),rationale:'caza siguiendo el pulso del qi'}),
   sombra_ahogada:Object.freeze({profileId:'TACTICO_3',socialProfileId:'SOLITARIO',preferences:pref(0.9,1.1),rationale:'única, control por Ahogo y descripción asociada a memoria'}),
   centinela_pluma:Object.freeze({profileId:'REACTIVO_1',socialProfileId:'TERRITORIAL',preferences:pref(1.05,1),rationale:'guardián construido para custodiar'}),
-  devorador_niebla:Object.freeze({profileId:'TACTICO_3',socialProfileId:'SOLITARIO',preferences:pref(1.05,1),rationale:'depredador de qi; representante táctico heredado'}),
+  devorador_niebla:Object.freeze({profileId:'TACTICO_3',socialProfileId:'SOLITARIO',preferences:pref(1.05,1),rationale:'depredador de qi; representante táctico de alta cognición'}),
   avispa_jade:Object.freeze({profileId:'INSTINTIVO',socialProfileId:'COLONIA',preferences:pref(0.9,1.1),rationale:'insecto menor con picadura de control'}),
   mono_pildoras:Object.freeze({profileId:'CAZADOR_2',socialProfileId:'OPORTUNISTA',preferences:pref(0.9,1.15),rationale:'robo selectivo de píldoras y drenaje de qi'}),
   sapo_ceniza:Object.freeze({profileId:'INSTINTIVO',socialProfileId:'TERRITORIAL',preferences:pref(0.9,1.1),rationale:'fauna elemental de hábitat localizado'}),
@@ -20,7 +20,7 @@ export const CANDIDATE_ASSIGNMENTS=Object.freeze({
   anguila_estelar:Object.freeze({profileId:'REACTIVO_1',socialProfileId:'SOLITARIO',preferences:pref(0.9,1.1),rationale:'técnica de drenaje de qi con patrón simple'}),
   guardian_coral:Object.freeze({profileId:'TACTICO_3',socialProfileId:'TERRITORIAL',preferences:pref(0.9,1.1),rationale:'guardián memorioso con técnica de drenaje'}),
   halcon_tormenta:Object.freeze({profileId:'CAZADOR_2',socialProfileId:'SOLITARIO',preferences:pref(1.1,1),rationale:'depredador aéreo descrito como cazador'}),
-  mantis_nube:Object.freeze({profileId:'MASTER_4',socialProfileId:'SOLITARIO',preferences:pref(1.1,1),rationale:'única; precisión extrema y representante MASTER heredado'})
+  mantis_nube:Object.freeze({profileId:'MASTER_4',socialProfileId:'SOLITARIO',preferences:pref(1.1,1),rationale:'única; precisión extrema y representante MASTER de máxima cognición'})
 });
 
 export function candidateAssignment(mobId){
