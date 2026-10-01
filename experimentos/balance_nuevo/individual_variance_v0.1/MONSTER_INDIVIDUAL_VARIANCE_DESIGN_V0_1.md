@@ -1,72 +1,91 @@
-# Variabilidad intraespecie de monstruos — v0.1
+# Variabilidad intraespecie de monstruos — v0.2
 
 **Estado:** DISEÑO LAB / NO RUNTIME CANON TODAVÍA
 
 ## Objetivo
 
-Evitar inflar artificialmente el catálogo con variantes nominales como
-`rata_debil`, `rata_fuerte`, `rata_robusta`.
+Mantener un único `species_id` por criatura y permitir que dos individuos de
+la misma especie tengan estadísticas diferentes.
 
-Cada especie conserva un único `species_id`. El T0 READY representa el
-**piso normal** de la especie para generación natural, no un clon exacto.
+No se crean entradas como `rata_fuerte` o `lobo_elite`.
 
-Cada instancia obtiene una calidad individual `q ∈ [0,1]` al generarse:
+El T0 READY es el **piso natural**. La envolvente superior se toma del perfil
+más difícil observado y medido para esa especie dentro de nuestros laboratorios.
 
-- `q=0`: T0 canónico seleccionado;
-- `q=1`: techo fuerte representativo de la misma especie;
-- nunca se generan individuos por debajo del T0 mediante esta capa.
+No existe variación por debajo del T0 en esta capa.
 
-El roll se realiza una vez por instancia y persiste hasta la muerte/despawn.
+## Tiradas independientes
 
-## No usar el outlier experimental absoluto
-
-El techo natural no es necesariamente el candidato matemáticamente más brutal
-del laboratorio. Se excluyen perfiles que ya cruzaron a otra identidad o a una
-amenaza casi-boss.
-
-Ejemplos:
-- Lobo 629/1463 quedan fuera: eran casi letales;
-- Avispa 1417 queda fuera de la banda natural: supervivencia/DOT demasiado altos;
-- Serpiente 1453/1412 quedan fuera;
-- estos perfiles siguen siendo evidencia de frontera, no spawns naturales.
-
-## Distribución
-
-No hay tiers visibles ni nuevas entradas de catálogo.
-
-Propuesta inicial para `q`:
+Cada eje variable recibe su propia tirada `q_stat ∈ [0,1]` al crear la
+instancia.
 
 ```text
-70%  q ∈ [0.00, 0.50]
-25%  q ∈ (0.50, 0.80]
- 5%  q ∈ (0.80, 1.00]
+stat_instance = round(base + q_stat * (ceiling - base))
 ```
 
-Dentro de cada banda, q se sortea uniformemente.
+Por tanto pueden coincidir varias tiradas altas. Esa coincidencia **no se
+prohíbe**: es una característica del mundo.
 
-Así todos los individuos son al menos T0, la mayoría vive en la mitad inferior
-de la banda fuerte y una minoría alcanza valores cercanos al techo.
+El daño básico usa una escalera discreta entre el daño T0 y daños superiores
+ya observados en experimentos.
 
-Los porcentajes son parámetros LAB y deberán validarse con Monte Carlo.
+La instancia conserva sus valores hasta morir/desaparecer.
 
-## Variación coordinada
+## Mutante
 
-No se sortean todos los stats independientemente.
+La coincidencia excepcional de tiradas altas se convierte en contenido.
 
-Se usa el mismo `q` para mover la instancia entre base y techo:
+Se calcula:
 
 ```text
-stat_instance = round(base + q * (ceiling - base))
+individual_power_score
+= media de las q de todos los ejes que realmente varían
 ```
 
-Esto evita obtener simultáneamente el máximo independiente de HP, DEF, EVA,
-PREC y TEN por pura casualidad.
+El daño básico cuenta como un eje si su escalera tiene más de un escalón.
 
-Para dados se usa una **escalera discreta aprobada**, no interpolación de floats.
+El umbral depende del número de ejes variables y está calibrado para que,
+con tiradas uniformes independientes, la cola teórica ronde **0,75%** y quede
+por debajo de 1%.
 
-## Qué puede variar
+Cuando el score supera el umbral:
 
-Primera versión:
+```text
+suffix = "Mutante"
+loot_multiplier = 1.5
+```
+
+No se crea un nuevo `species_id`. Por ejemplo:
+
+```text
+species_id = lobo_espiritual
+display     = Lobo espiritual de tres colas Mutante
+```
+
+El Mutante puede comportarse como un mini-jefe emergente. El jugador decide
+si combatir, huir, prepararse o buscar ayuda.
+
+Por ahora sólo se define el multiplicador de **botín x1.5**. No se modifica XP,
+probabilidad de objetos únicos ni otras recompensas sin una decisión separada.
+
+## Techo: usar el perfil más difícil observado
+
+A diferencia de v0.1, no descartamos el extremo sólo porque sea muy peligroso.
+Ese extremo sirve precisamente para construir la cola rara.
+
+Techos preliminares con datos ya medidos:
+
+- Rata: trial 3325;
+- Avispa: trial 1251;
+- Serpiente: trial 1453;
+- Lobo: trial 1463;
+- Mono: pendiente del refinamiento local actual.
+
+Esto no significa que esos perfiles aparezcan completos con frecuencia. Para
+reconstruir casi todo el extremo a la vez deben coincidir muchas tiradas altas,
+lo cual cae en la cola Mutante.
+
+## Qué varía en v0.2
 
 - HP;
 - DEF;
@@ -75,47 +94,38 @@ Primera versión:
 - TEN;
 - daño básico mediante escalera discreta.
 
-Se mantienen fijos por especie:
+Se mantienen fijos en esta primera validación:
 
-- `resource_model`;
-- Control si el T0 lo fija;
-- crítico base/multiplicador;
-- tipo de técnica;
-- mecánicas de técnica;
-- cadencia;
-- DOT/QI_DRAIN/control de técnica;
+- resource_model;
+- Control;
+- crítico y multiplicador;
+- técnica y sus parámetros;
 - cognición/social AI;
-- reglas adaptativas T1–T4.
+- adaptación T1–T4.
 
-Los parámetros de técnica podrán recibir variabilidad intraespecie sólo en una
-fase posterior si los datos muestran que es segura.
+La técnica podrá recibir variación intraespecie en una fase posterior si la
+simulación demuestra que la capa base es estable.
 
 ## Separación con adaptación
 
 ```text
-species T0
-→ individual variance q
-→ instance base stats
-→ population adaptive tier T0–T4
-→ combat state / effects
+species T0 READY
+→ tiradas individuales
+→ posible sufijo Mutante
+→ stats de instancia
+→ adaptation tier T0–T4
+→ combate
 ```
 
-La variabilidad individual no concede aprendizaje adaptativo ni modifica
-`maxTierReached`.
+Ser Mutante no concede T1/T2/T3/T4 ni altera `maxTierReached`.
 
-## Regla de identidad
+## Guardia
 
-El techo debe seguir siendo reconocible como la misma especie y el mismo rol.
+Antes de runtime:
 
-Por eso se distinguen:
+1. comprobar que ninguna stat cae por debajo de la envolvente T0↔techo;
+2. comprobar que la frecuencia Mutante queda <1%;
+3. medir presión de combate de normales y Mutantes por raíz/loadout;
+4. verificar que `loot_multiplier=1.5` sólo se aplica a Mutantes;
+5. añadir el Mono sólo después de cerrar su T0.
 
-- `natural_ceiling`: permitido para spawn normal;
-- `experimental_frontier`: datos de frontera que NO se sortean naturalmente.
-
-## Estado actual
-
-Rata, Avispa, Serpiente y Lobo pueden recibir banda preliminar porque su T0 está
-READY. Mono queda bloqueado hasta terminar su refinación local T0.
-
-Antes de activar esto en runtime se hará un `INDIVIDUAL_VARIANCE_LAB` contra
-las cinco raíces y loadouts de etapa, usando el modelo empírico de LianQi I.
