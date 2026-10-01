@@ -12,6 +12,7 @@ from typing import Iterable
 
 ENGINE_CONTRACT = "NEW_COMBAT_STATS_V0_1"
 EXPECTED_PENDING = "PENDING_INTEGRAL_REBALANCE"
+ARC1_MONSTER_RESOURCE_MODEL = "NONE"
 LIANQI_I_IDS = {
     "rata_qi", "avispa_jade", "serpiente_qi", "mono_pildoras", "lobo_espiritual",
 }
@@ -48,6 +49,15 @@ def validate_registry_for_stage1(registry_path: str | Path) -> dict:
     profiles=data.get("profiles")
     if not isinstance(profiles,dict) or len(profiles)!=18:
         raise Stage1GuardError("Arc 1 registry must contain exactly 18 profiles")
+
+    rules=data.get("rules",{})
+    if rules.get("arc1_monster_resource_model")!=ARC1_MONSTER_RESOURCE_MODEL:
+        raise Stage1GuardError("Arc 1 registry must declare resource_model=NONE")
+    for monster_id,profile in profiles.items():
+        if profile.get("resource_model")!=ARC1_MONSTER_RESOURCE_MODEL:
+            raise Stage1GuardError(f"{monster_id}: resource_model must be NONE")
+        if profile.get("stats",{}).get("qi_max") is not None:
+            raise Stage1GuardError(f"{monster_id}: resource_model=NONE requires qi_max=None")
 
     native={k:v for k,v in profiles.items() if v.get("native_stage")=="LianQi_I"}
     if set(native)!=LIANQI_I_IDS:
