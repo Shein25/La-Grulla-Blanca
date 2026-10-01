@@ -325,6 +325,7 @@ def main():
     ap.add_argument("--natural-fights",type=int)
     ap.add_argument("--mutant-fights",type=int)
     ap.add_argument("--workers",type=int,default=min(5,max(1,os.cpu_count() or 1)))
+    ap.add_argument("--species",choices=SPECIES,default=None,help="optional one-species focused run")
     ap.add_argument("--outdir",default="INDIVIDUAL_VARIANCE_LAB_LIANQI_I_V01")
     ap.add_argument("--namespace",default="RUN")
     args=ap.parse_args()
@@ -340,10 +341,11 @@ def main():
     outdir=Path(args.outdir)
     outdir.mkdir(parents=True,exist_ok=True)
 
+    selected_species=(args.species,) if args.species else SPECIES
     results={}
-    workers=max(1,min(int(args.workers),len(SPECIES)))
+    workers=max(1,min(int(args.workers),len(selected_species)))
     if workers==1:
-        for species in SPECIES:
+        for species in selected_species:
             print(f"RUN {species}",flush=True)
             results[species]=evaluate_species(
                 species,cfg["natural_fights"],cfg["mutant_fights"],args.namespace
@@ -354,14 +356,14 @@ def main():
                 pool.submit(
                     evaluate_species,s,cfg["natural_fights"],cfg["mutant_fights"],args.namespace
                 ):s
-                for s in SPECIES
+                for s in selected_species
             }
             for fut in as_completed(futs):
                 species=futs[fut]
                 results[species]=fut.result()
                 print(f"DONE {species}",flush=True)
 
-    ordered={s:results[s] for s in SPECIES}
+    ordered={s:results[s] for s in selected_species}
     for species,data in ordered.items():
         write_gz(outdir/f"{species}.json.gz",data)
 
@@ -374,8 +376,8 @@ def main():
     summary={
         "experiment":"INDIVIDUAL_VARIANCE_LAB_LIANQI_I_V01",
         "status":"LAB_RESULTS_AWAITING_HUMAN_REVIEW",
-        "species":list(SPECIES),
-        "species_count":len(SPECIES),
+        "species":list(selected_species),
+        "species_count":len(selected_species),
         "expanded_contexts_per_species":len(PRIMARY_CONTEXTS)*len(ROOTS),
         "natural_fights_per_expanded_context":cfg["natural_fights"],
         "conditional_mutant_fights_per_expanded_context":cfg["mutant_fights"],
