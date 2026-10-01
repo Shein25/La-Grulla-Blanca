@@ -1,0 +1,103 @@
+{
+  "schema_version": "alchemy-qi-recovery-proposal-v0.1",
+  "status": "NUMERIC_PROPOSAL_AWAITING_HUMAN_REVIEW",
+  "scope": "ARC1_PURE_QI_RECOVERY",
+  "player_base_qi": {
+    "LianQi_I": 37,
+    "LianQi_II": 43,
+    "LianQi_III": 49,
+    "LianQi_IV": 55
+  },
+  "pure_qi_formulations": {
+    "LianQi_I": {
+      "quality": {
+        "impura": 8,
+        "estable": 12,
+        "superior": 16,
+        "excepcional": 20
+      }
+    },
+    "LianQi_II": {
+      "quality": {
+        "impura": 10,
+        "estable": 15,
+        "superior": 20,
+        "excepcional": 26
+      }
+    },
+    "LianQi_III": {
+      "quality": {
+        "impura": 12,
+        "estable": 18,
+        "superior": 25,
+        "excepcional": 33
+      }
+    },
+    "LianQi_IV": {
+      "quality": {
+        "impura": 14,
+        "estable": 22,
+        "superior": 30,
+        "excepcional": 40
+      }
+    }
+  },
+  "diagnostic": {
+    "stable_fraction_of_naked_pool": {
+      "LianQi_I": 0.32432432432432434,
+      "LianQi_II": 0.3488372093023256,
+      "LianQi_III": 0.3673469387755102,
+      "LianQi_IV": 0.4
+    },
+    "exceptional_fraction_of_naked_pool": {
+      "LianQi_I": 0.5405405405405406,
+      "LianQi_II": 0.6046511627906976,
+      "LianQi_III": 0.673469387755102,
+      "LianQi_IV": 0.7272727272727273
+    },
+    "technique_cost_reference": [
+      6,
+      7,
+      9
+    ],
+    "interpretation": "Recovery is balanced as additional technique actions. Drinking in combat already consumes an action in the runtime contract."
+  },
+  "cross_stage_overlap_examples": [
+    "LI exceptional 20 = LII superior 20",
+    "LII exceptional 26 > LIII superior 25",
+    "LIII exceptional 33 > LIV superior 30",
+    "LIV exceptional 40 < full naked LIV pool 55"
+  ],
+  "hybrid_qi_rule": {
+    "rule": "A medicine that also purifies or repairs must recover less Qi than the same-stage pure Qi formulation at comparable quality.",
+    "destilado_lunar_proposal": {
+      "stage": "LianQi_III",
+      "impura": {
+        "qi": 8,
+        "impurity": 1,
+        "purify": 0
+      },
+      "estable": {
+        "qi": 14,
+        "impurity": 0,
+        "purify": 1
+      },
+      "superior": {
+        "qi": 20,
+        "impurity": 0,
+        "purify": 2
+      },
+      "excepcional": {
+        "qi": 26,
+        "impurity": 0,
+        "purify": 2
+      }
+    }
+  },
+  "guards": {
+    "no_full_restore": true,
+    "no_hp_contract_change": true,
+    "no_runtime_write": true,
+    "no_recipe_cost_ratification_here": true
+  }
+}
