@@ -5,6 +5,7 @@ on:
     branches:
       - experiment/parallel-balance-npc-equipment-v0.1
       - experiment/ratify-six-adaptive-chains-v0.1
+      - experiment/ratify-eco-caido-t0-v0.1
     paths:
       - "experimentos/balance_nuevo/parallel_arc1_pipeline/**"
       - "experimentos/balance_nuevo/stage1_integral_t0_optuna/**"
@@ -12,6 +13,7 @@ on:
       - "experimentos/balance_nuevo/rata_t1_variance_interaction_v0.1/**"
       - "experimentos/balance_nuevo/rata_adaptive_tiers_v0.1/**"
       - "experimentos/balance_nuevo/monster_adaptive_six_v0.1/**"
+      - "experimentos/balance_nuevo/monster_unique_t0_v0.1/**"
       - "experimentos/balance_nuevo/monster_arc1_registry.json"
       - "experimentos/balance_nuevo/monster_new_engine_guard.py"
       - "experimentos/npc_equipment_v0.1/**"
@@ -68,8 +70,9 @@ jobs:
           assert d["profiles"]["rata_qi"]["adaptive"]["status"]=="ADAPTIVE_CHAIN_T0_T4_CLOSED"
           for mid in ["avispa_jade","serpiente_qi","mono_pildoras","lobo_espiritual"]:
               assert d["profiles"][mid]["adaptive"]["status"]=="READY_FOR_T1_RECALIBRATION",mid
-          assert set(d["rules"]["ready_profiles"])=={"rata_qi","avispa_jade","serpiente_qi","mono_pildoras","lobo_espiritual","sapo_ceniza","escarabajo_hierro","pez_lunar","anguila_estelar","devorador_niebla","halcon_tormenta"}
-          print("PASS: 11/18 Arc 1 T0 profiles READY; six repeatable adaptive chains frozen")
+          assert set(d["rules"]["ready_profiles"])=={"rata_qi","avispa_jade","serpiente_qi","mono_pildoras","lobo_espiritual","eco_caido","sapo_ceniza","escarabajo_hierro","pez_lunar","anguila_estelar","devorador_niebla","halcon_tormenta"}
+          assert d["profiles"]["eco_caido"]["adaptive"]["status"]=="UNIQUE_T0_CLOSED_NO_T1_T4"
+          print("PASS: 12/18 Arc 1 T0 profiles READY; Eco unique T0 frozen")
           PY
 
       - name: Validate closed LianQi-I empirical model
@@ -186,6 +189,10 @@ jobs:
           assert s["mutant_rewards"]=={"loot_multiplier":1.5,"xp_multiplier":1.5}
           print("PASS: five-species variance combat smoke")
           PY
+
+      - name: Validate Eco del Caido unique T0 closure
+        working-directory: experimentos/balance_nuevo/monster_unique_t0_v0.1
+        run: python eco_caido_t0_contract_test.py
 
       - name: Validate six closed repeatable T0-T4 chains
         working-directory: experimentos/balance_nuevo/monster_adaptive_six_v0.1
