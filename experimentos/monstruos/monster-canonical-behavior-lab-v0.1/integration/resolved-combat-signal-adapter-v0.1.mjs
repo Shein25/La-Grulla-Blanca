@@ -1,4 +1,4 @@
-export const RESOLVED_COMBAT_SIGNAL_ADAPTER_STATUS='EXPERIMENTAL_ADAPTER_V01';
+export const RESOLVED_COMBAT_SIGNAL_ADAPTER_STATUS='EXPERIMENTAL_NEW_ENGINE_ADAPTER_V02';
 
 function plainExact(input, fields, label) {
   if (!input || typeof input !== 'object' || Array.isArray(input)) {
@@ -30,9 +30,8 @@ function nonNegative(v,label){
 function freeze(x){return Object.freeze(x);}
 
 /**
- * Punto compatible con ver74:
- * respuestaEnemigos() ya recibe {absorbido,...} desde absorberGolpe().
- * El call-site sólo debe pasar round + r.absorbido; no se leen logs ni HP.
+ * Adapta un resultado estructurado ya resuelto por el motor nuevo.
+ * No calcula impacto, daño, DEF ni Absorción: sólo traduce el resultado a memoria semántica.
  */
 export function absorptionOutcomeFromResolvedHit(input) {
   const x=plainExact(input,['round','absorbido'],'absorption');
@@ -46,9 +45,8 @@ export function absorptionOutcomeFromResolvedHit(input) {
 }
 
 /**
- * Contrato preparado para recuperación estructurada.
- * ver74 todavía NO expone estos deltas desde beber(); por tanto este helper
- * no implica que la integración productiva de recuperación esté cerrada.
+ * Adapta deltas de recuperación ya resueltos por el motor nuevo.
+ * No infiere valores desde logs ni vuelve a calcular curación/Qi.
  */
 export function recoveryOutcomeFromResolvedDelta(input) {
   const x=plainExact(input,['round','vidaRecuperada','qiRecuperado'],'recovery');
