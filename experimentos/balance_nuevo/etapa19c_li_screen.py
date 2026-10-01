@@ -5,7 +5,7 @@ No toca runtime/HTML. Consume ETAPA19B como autoridad del laboratorio 1v1.
 Pipeline LI:
 A) enumera las 6.144 combinaciones estructurales de equipo;
 B) colapsa firmas mecánicas equivalentes conservando multiplicidad/loadouts;
-C) cruza 5 raíces × 5 monstruos LI × T0/T1 × políticas;
+C) cruza 5 raíces × 5 monstruos LI × T0 × políticas;
 D) permite screen Monte Carlo low-N por lotes/checkpoints;
 E) selecciona frontera/anomalías/cobertura para refinamiento high-N.
 
@@ -38,7 +38,7 @@ from etapa19_skill_buildspace import enumerate_skill_builds
 
 HERE = Path(__file__).resolve().parent
 STAGE = "LianQi_I"
-TIERS = ("T0", "T1")
+TIERS = ("T0",)
 DEFAULT_POLICIES = ("UNITARGET_FIRST", "DEFENSE_OPEN", "AOE_FIRST")
 STAGE_ORDER = {"LianQi_I":1, "LianQi_II":2, "LianQi_III":3, "LianQi_IV":4}
 
@@ -289,7 +289,7 @@ def run_signature_screen(
                 for tier in TIERS:
                     for policy in policies:
                         # Seed estable por celda, independiente del orden/chunking.
-                        token=f"{sig.signature_id}|{root}|{monster['monster_id']}|{tier}|{policy}|{seed}"
+                        token=f"{sig.signature_id}|{root}|{monster['id']}|{tier}|{policy}|{seed}"
                         cell_seed=seed+int(hashlib.sha1(token.encode()).hexdigest()[:8],16)
                         row=_screen_cell(
                             signature_row=sig,root=root,monster=monster,tier=tier,
@@ -321,7 +321,7 @@ def select_refinement_cells(
     frontier_high:float=0.70,
     per_matchup_extremes:int=3,
 ) -> pd.DataFrame:
-    """Selecciona frontera, extremos y sensibilidad T0→T1 sin elegir builds a ojo."""
+    """Selecciona frontera, extremos y cobertura sin elegir builds a ojo."""
     selected=set()
 
     # Frontera.
@@ -333,21 +333,6 @@ def select_refinement_cells(
     for _,g in screen.groupby(groups,sort=False):
         selected.update(g.nlargest(per_matchup_extremes,"win_rate").index.tolist())
         selected.update(g.nsmallest(per_matchup_extremes,"win_rate").index.tolist())
-
-    # Sensibilidad T0→T1.
-    pivot=screen.pivot_table(
-        index=["signature_id","root","monster_id","policy"],
-        columns="tier",values="win_rate",aggfunc="first"
-    ).dropna()
-    if {"T0","T1"}.issubset(pivot.columns):
-        pivot["delta_abs"]=(pivot["T1"]-pivot["T0"]).abs()
-        sensitive=pivot.nlargest(min(500,len(pivot)),"delta_abs").reset_index()
-        keys=set(tuple(x) for x in sensitive[["signature_id","root","monster_id","policy"]].itertuples(index=False,name=None))
-        mask=screen.apply(
-            lambda r:(r.signature_id,r.root,r.monster_id,r.policy) in keys,
-            axis=1
-        )
-        selected.update(screen[mask].index.tolist())
 
     # Cobertura de items/perfiles.
     sigs=screen[["signature_id"]].drop_duplicates().merge(
