@@ -42,6 +42,19 @@ T('all unresolved combat magnitudes remain null',()=>{
   }
 });
 
+
+T('retired profile fields are rejected even before READY',()=>{
+  const p=structuredClone(catalog.profiles.rata_qi);
+  p.ataque=1;
+  assert.throws(()=>assertMonsterProfile(p,{requireReady:false}),/forbidden retired field ataque/);
+});
+
+T('retired technique fields are rejected even before READY',()=>{
+  const p=structuredClone(catalog.profiles.serpiente_qi);
+  p.technique['daño']='TEST_ONLY';
+  assert.throws(()=>assertMonsterProfile(p,{requireReady:false}),/forbidden retired field daño/);
+});
+
 T('pending profiles are blocked from combat',()=>{
   for(const p of Object.values(catalog.profiles)){
     assert.throws(()=>assertMonsterProfile(p),/not READY/);
