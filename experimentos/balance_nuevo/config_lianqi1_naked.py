@@ -1,7 +1,7 @@
 """Configuración estricta para el benchmark LianQi I NAKED.
 
 Impide que una simulación seria complete parámetros ausentes con defaults
-silenciosos o cifras legacy.
+silenciosos ni cifras ajenas al contrato actual.
 
 NAKED = cultivo + raíz principal + técnica, sin equipo, injerto, Concordancias,
 consumibles ni Tramos I-III.
