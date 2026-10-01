@@ -84,6 +84,16 @@ jobs:
             --seed-namespace "PARETO_500_COMMON_V01" \
             --outdir ci_rata_pareto_500
 
+      - name: Revalidate surviving Rata Pareto 1000 with common seeds
+        working-directory: experimentos/balance_nuevo/stage1_integral_t0_optuna
+        run: |
+          rm -rf ci_rata_pareto_1000
+          python rata_validate_pareto.py \
+            --source ci_rata_pareto_500/rata_pareto_500_front.json \
+            --fights-per-context 1000 \
+            --seed-namespace "PARETO_1000_COMMON_V01" \
+            --outdir ci_rata_pareto_1000
+
       - name: Upload Rata study artifacts
         if: always()
         uses: actions/upload-artifact@v4
@@ -94,5 +104,6 @@ jobs:
             experimentos/balance_nuevo/stage1_integral_t0_optuna/ci_rata_smoke
             experimentos/balance_nuevo/stage1_integral_t0_optuna/ci_rata_search
             experimentos/balance_nuevo/stage1_integral_t0_optuna/ci_rata_pareto_500
+            experimentos/balance_nuevo/stage1_integral_t0_optuna/ci_rata_pareto_1000
           if-no-files-found: warn
           retention-days: 14
