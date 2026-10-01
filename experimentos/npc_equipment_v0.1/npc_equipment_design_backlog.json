@@ -1,0 +1,56 @@
+{
+  "schema_version": "npc-equipment-design-backlog-v0.1",
+  "status": "LAB_NEXT_DESIGN_INPUT",
+  "counts": {
+    "PERSONALIZATION_REQUIRED": 6,
+    "BESPOKE_NPC_GEAR_REQUIRED": 7,
+    "WARDROBE_OR_COMBAT_ROLE_REQUIRED": 8,
+    "AUTO_CATALOG_ROLE_GUIDED": 11
+  },
+  "rules": {
+    "no_item_names_invented_here": true,
+    "no_combat_stats_applied": true,
+    "player_unique_items_never_duplicated": true
+  },
+  "next_design_blocks": [
+    {
+      "block": "COMPANION_PERSONALIZATION",
+      "actors": [
+        "lin_yue",
+        "han_qiao",
+        "zhao_wen",
+        "mei_lian",
+        "guo_chen",
+        "luo_yan"
+      ],
+      "need": "Authorized individual combat/build identity before equipment specialization."
+    },
+    {
+      "block": "SENIOR_BESPOKE_GEAR",
+      "actors": [
+        "ji_xueying",
+        "qiao_ren",
+        "wei_jian",
+        "song_rui",
+        "lan_meihua",
+        "duan_shibo",
+        "he_zhen"
+      ],
+      "need": "NPC-owned distinctive equipment/wardrobe; do not reuse player progression gear automatically."
+    },
+    {
+      "block": "CIVIL_ADMIN_WARDROBE_OR_COMBAT_ROLE",
+      "actors": [
+        "madre_wen",
+        "tao_ming",
+        "feng_zhi",
+        "ma_qiren",
+        "pei_luo",
+        "ning_cai",
+        "yu_shun",
+        "xu_an"
+      ],
+      "need": "Separate ordinary wardrobe from any later combat loadout; occupation alone is not a combat archetype."
+    }
+  ]
+}
