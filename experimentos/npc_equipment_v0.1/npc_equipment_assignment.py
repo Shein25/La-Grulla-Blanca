@@ -15,9 +15,17 @@ STAGE_INDEX={"LianQi_I":1,"LianQi_II":2,"LianQi_III":3,"LianQi_IV":4}
 
 def load_json(path):return json.loads(Path(path).read_text(encoding="utf-8"))
 
+def catalog_items(catalog):
+    raw=catalog["items"]
+    if isinstance(raw,dict):
+        return list(raw.values())
+    if isinstance(raw,list):
+        return raw
+    raise TypeError("equipment catalog items must be list or dict")
+
 def eligible_items(catalog,stage):
     return [
-        x for x in catalog["items"].values()
+        x for x in catalog_items(catalog)
         if not x["unique"]
         and STAGE_INDEX[x["min_stage"]]<=STAGE_INDEX[stage]
         and x["availability"]!="ORIGIN_ONLY"
@@ -44,7 +52,7 @@ def assign(actor,stage,catalog,policy):
 
 def validate(assignments,actors,catalog,policy):
     assert len(actors)==32
-    item_by_id={x["item_id"]:x for x in catalog["items"].values()}
+    item_by_id={x["item_id"]:x for x in catalog_items(catalog)}
     for actor in actors:
         out=assignments["actors"][actor["actor_id"]]
         for stage,item_ids in out["by_story_stage"].items():
