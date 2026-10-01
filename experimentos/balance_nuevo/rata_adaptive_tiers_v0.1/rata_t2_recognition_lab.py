@@ -73,6 +73,7 @@ def player_observation_runtime(obs:ObservationState):
         "compile_build":engine.compile_build,
         "choose_player_action":engine.choose_player_action,
         "execute_player_technique":engine.execute_player_technique,
+        "execute_basic":engine.execute_basic,
     }
     def compile_build(root,paths,catalog=None):
         compiled=dict(originals["compile_build"](root,paths,catalog))
@@ -84,23 +85,30 @@ def player_observation_runtime(obs:ObservationState):
     def choose_action(state,policy):
         if policy!="VETERAN":return originals["choose_player_action"](state,policy)
         return choose_veteran_action(state,DEFAULT_VETERAN_CONFIG)
+    def execute_basic_observed(state,rng):
+        originals["execute_basic"](state,rng)
+        result="EFECTIVA" if state.last_player_hp_damage_to_monster>0 else "FALLIDA"
+        obs.append_action("PLAYER_BASIC",result)
+
     def execute_action(state,rng,c):
         if c.get("technique_id")==VETERAN_BASIC:
-            engine.execute_basic(state,rng)
-            result="EFECTIVA" if state.last_player_hp_damage_to_monster>0 else "FALLIDA"
-            obs.append_action("PLAYER_BASIC",result)
+            execute_basic_observed(state,rng)
             return True
         ok=originals["execute_player_technique"](state,rng,c)
+        if not ok:
+            # fight_once hará fallback al básico; registrar sólo la acción real.
+            return False
         category=classify_player_action(c)
         if c.get("role")=="DEFENSIVE":
-            result="EFECTIVA" if ok else "FALLIDA"
+            result="EFECTIVA"
         else:
-            result="EFECTIVA" if ok and state.last_player_hp_damage_to_monster>0 else "FALLIDA"
+            result="EFECTIVA" if state.last_player_hp_damage_to_monster>0 else "FALLIDA"
         obs.append_action(category,result)
-        return ok
+        return True
     engine.compile_build=compile_build
     engine.choose_player_action=choose_action
     engine.execute_player_technique=execute_action
+    engine.execute_basic=execute_basic_observed
     try:yield
     finally:
         for k,v in originals.items():setattr(engine,k,v)
@@ -179,11 +187,11 @@ def sample_mutant(ctx,root,index,namespace):
         if inst["mutant"]:return inst
     raise RuntimeError("Mutante sampler exhausted")
 
-def run_once(profile,root,items,combat_seed,tier,candidate,ai_seed):
+def run_once(profile,root,items,combat_seed,tier,candidate,ai_seed,policy="VETERAN"):
     obs=ObservationState();counters=Counter()
     kwargs=dict(
         stage="LianQi_I",root=root,item_ids=items,paths=paths_for(root),
-        monster_profile=profile,tier=tier,policy="VETERAN",seed=combat_seed,
+        monster_profile=profile,tier=tier,policy=policy,seed=combat_seed,
         technique_catalog=TECHNIQUES,equipment_catalog=EQUIPMENT,max_rounds=100,
         signal_bridge=engine.LabSignalBridge(
             low_hp_ratio=float(BASE_ARM["self_low_hp_ratio"]),
@@ -201,7 +209,7 @@ def run_once(profile,root,items,combat_seed,tier,candidate,ai_seed):
 def add_counter(dst,src):
     for k,v in src.items():dst[k]+=v
 
-def eval_tier(canonical,*,tier,candidate,natural_n,mutant_n,namespace):
+def eval_tier(canonical,*,tier,candidate,natural_n,mutant_n,namespace,policy="VETERAN"):
     natural=StreamingAggregate();normal=StreamingAggregate();observed_mut=StreamingAggregate();forced_mut=StreamingAggregate()
     c_nat=Counter();c_mut=Counter()
     for ctx in PRIMARY_CONTEXTS:
@@ -212,7 +220,7 @@ def eval_tier(canonical,*,tier,candidate,natural_n,mutant_n,namespace):
                 profile=profile_from_instance(canonical,inst)
                 combat_seed=stable_seed("RATA_T2_RECOGNITION_V01","NATURAL_COMBAT",namespace,ctx.context_id,root,i)
                 ai_seed=stable_seed("RATA_T2_RECOGNITION_V01","AI",namespace,ctx.context_id,root,i)&0xFFFFFFFF
-                row,cnt=run_once(profile,root,items,combat_seed,tier,candidate,ai_seed)
+                row,cnt=run_once(profile,root,items,combat_seed,tier,candidate,ai_seed,policy)
                 row["loadout_profile"]=ctx.loadout_profile
                 natural.add(row);add_counter(c_nat,cnt)
                 (observed_mut if inst["mutant"] else normal).add(row)
@@ -221,7 +229,7 @@ def eval_tier(canonical,*,tier,candidate,natural_n,mutant_n,namespace):
                 profile=profile_from_instance(canonical,inst)
                 combat_seed=stable_seed("RATA_T2_RECOGNITION_V01","MUTANT_COMBAT",namespace,ctx.context_id,root,i)
                 ai_seed=stable_seed("RATA_T2_RECOGNITION_V01","MUTANT_AI",namespace,ctx.context_id,root,i)&0xFFFFFFFF
-                row,cnt=run_once(profile,root,items,combat_seed,tier,candidate,ai_seed)
+                row,cnt=run_once(profile,root,items,combat_seed,tier,candidate,ai_seed,policy)
                 row["loadout_profile"]=ctx.loadout_profile
                 forced_mut.add(row);add_counter(c_mut,cnt)
 
@@ -277,6 +285,7 @@ def main():
     ap.add_argument("--mutant-fights",type=int)
     ap.add_argument("--outdir",default="RATA_T2_RECOGNITION_V01")
     ap.add_argument("--namespace",default="RUN")
+    ap.add_argument("--policy",choices=["VETERAN","UNITARGET_FIRST","AOE_FIRST","DEFENSE_OPEN","ROTATION"],default="VETERAN")
     args=ap.parse_args()
     cfg=dict(PRESETS[args.preset])
     if args.natural_fights is not None:cfg["natural_fights"]=args.natural_fights
@@ -291,14 +300,14 @@ def main():
     outdir=Path(args.outdir);outdir.mkdir(parents=True,exist_ok=True)
     neutral={"memory_window":2,"repeated_same_category_required":2,"preemptive_survival_bonus":0,"count_results":["EFECTIVA"]}
     print("Frozen T1 baseline",flush=True)
-    t1=eval_tier(canonical,tier="T1",candidate=neutral,natural_n=cfg["natural_fights"],mutant_n=cfg["mutant_fights"],namespace=args.namespace)
+    t1=eval_tier(canonical,tier="T1",candidate=neutral,natural_n=cfg["natural_fights"],mutant_n=cfg["mutant_fights"],namespace=args.namespace,policy=args.policy)
 
     rows=[]
     for cand in INPUT["candidates"]:
         cand=dict(cand)
         cand.setdefault("count_results",["EFECTIVA"])
         print(cand["label"],flush=True)
-        t2=eval_tier(canonical,tier="T2",candidate=cand,natural_n=cfg["natural_fights"],mutant_n=cfg["mutant_fights"],namespace=args.namespace)
+        t2=eval_tier(canonical,tier="T2",candidate=cand,natural_n=cfg["natural_fights"],mutant_n=cfg["mutant_fights"],namespace=args.namespace,policy=args.policy)
         rows.append({
             "candidate":cand,
             "result":t2,
@@ -316,6 +325,7 @@ def main():
         "natural_fights_per_context":cfg["natural_fights"],
         "mutant_fights_per_context":cfg["mutant_fights"],
         "contexts":10,
+        "player_policy":args.policy,
         "t1_frozen":True,
         "t1_evasion_bonus":40,
         "t1_cooldown_rounds":5,
@@ -327,6 +337,7 @@ def main():
         "observable_categories_only":True,
         "hidden_root_build_forbidden":True,
         "same_instance_distribution":True,
+        "player_policy":args.policy,
         "same_combat_rng_namespace":True,
         "separate_ai_rng":True,
         "t1_numeric_changes":False,
