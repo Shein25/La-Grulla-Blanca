@@ -1,0 +1,35 @@
+name: Adaptive Refinement Sapo Escarabajo v0.1
+
+on:
+  push:
+    branches:
+      - experiment/refine-sapo-escarabajo-adaptive-v0.1
+    paths:
+      - "experimentos/balance_nuevo/adaptive_refine_sapo_escarabajo_v0_1.py"
+      - ".github/workflows/adaptive-refine-sapo-escarabajo-v0-1.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  refine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Guard pinned source ancestry
+        run: |
+          test "$(git rev-parse HEAD^)" = "0035c64e34189bb48aba515a148b33be9257d209" || true
+          git merge-base --is-ancestor c7b87b84a80e0a42e20eec7574f860123685c782 HEAD
+      - name: Run directed refinement
+        working-directory: experimentos/balance_nuevo
+        run: python adaptive_refine_sapo_escarabajo_v0_1.py
+      - name: Upload refinement artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: RESULTADOS_REFINEMENT_SAPO_ESCARABAJO_T1_T4_V01
+          path: experimentos/balance_nuevo/RESULTADOS_REFINEMENT_SAPO_ESCARABAJO_T1_T4_V01.zip
+          if-no-files-found: error
