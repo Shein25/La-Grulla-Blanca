@@ -575,6 +575,6 @@ jobs:
           print("T4_FINAL_RESULT="+json.dumps(out,sort_keys=True))
           PY
 
-      - name: Confirm Rata T4 calibration is open
+      - name: Confirm Rata T4 awaits human ratification
         run: |
-          grep -q "T4_CALIBRATION_OPEN / T0-T3 FROZEN" experimentos/balance_nuevo/parallel_arc1_pipeline/RATA_T2_T4_STRUCTURAL_AUDIT.md
+          grep -q "T4_FINAL_CANDIDATE_AWAITING_HUMAN_RATIFICATION / T0-T3 FROZEN" experimentos/balance_nuevo/parallel_arc1_pipeline/RATA_T2_T4_STRUCTURAL_AUDIT.md
