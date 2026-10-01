@@ -1,11 +1,13 @@
 {
-  "schema_version": "npc-equipment-assignments-v0.1",
-  "status": "LAB_PROPOSAL_NOT_CANON",
+  "schema_version": "npc-equipment-assignments-v0.2",
+  "status": "LAB_PROPOSAL_GATED_NOT_CANON",
   "rules": {
     "unique_items_excluded": true,
     "source_npc_does_not_imply_worn": true,
     "combat_stats_applied": false,
-    "story_stage_gate": true
+    "story_stage_gate": true,
+    "senior_authorities_not_auto_dressed": true,
+    "companions_not_auto_specialized": true
   },
   "actors": {
     "lin_yue": {
@@ -13,42 +15,13 @@
       "role": "Compañera / par del jugador",
       "a079_group": "COMPANIONS",
       "equipment_family": "BALANCED_PEER",
+      "assignment_mode": "PERSONALIZATION_REQUIRED",
+      "assignment_reason": "A07.9 authoring does not close an individual combat/equipment archetype; do not clone a specialization.",
       "by_story_stage": {
-        "LianQi_I": [
-          "baston_fresno_practica",
-          "cinta_patio_aspirante",
-          "vendas_antebrazo_practica",
-          "pulsera_fibra_trenzada"
-        ],
-        "LianQi_II": [
-          "espada_hierro_equilibrada",
-          "cinta_patio_aspirante",
-          "botas_piedra_humeda",
-          "tunica_ruta_sauces",
-          "calzas_sendero_pinos",
-          "anillo_reserva_menor"
-        ],
-        "LianQi_III": [
-          "espada_hierro_equilibrada",
-          "calzado_nube_baja",
-          "cinta_patio_aspirante",
-          "tunica_ruta_sauces",
-          "calzas_paso_silencioso",
-          "anillo_reserva_menor",
-          "amuleto_meridiano_estable",
-          "anillo_tierra_profunda"
-        ],
-        "LianQi_IV": [
-          "espada_hierro_equilibrada",
-          "pulsera_nudo_crisis",
-          "calzado_nube_baja",
-          "velo_vigilante_nucleo",
-          "tunica_ruta_sauces",
-          "amuleto_ancla_resonante",
-          "calzas_trama_sello",
-          "anillo_reserva_menor",
-          "brazales_relevo"
-        ]
+        "LianQi_I": [],
+        "LianQi_II": [],
+        "LianQi_III": [],
+        "LianQi_IV": []
       }
     },
     "han_qiao": {
@@ -56,42 +29,13 @@
       "role": "Compañero / par del jugador",
       "a079_group": "COMPANIONS",
       "equipment_family": "BALANCED_PEER",
+      "assignment_mode": "PERSONALIZATION_REQUIRED",
+      "assignment_reason": "A07.9 authoring does not close an individual combat/equipment archetype; do not clone a specialization.",
       "by_story_stage": {
-        "LianQi_I": [
-          "baston_fresno_practica",
-          "cinta_patio_aspirante",
-          "vendas_antebrazo_practica",
-          "pulsera_fibra_trenzada"
-        ],
-        "LianQi_II": [
-          "espada_hierro_equilibrada",
-          "cinta_patio_aspirante",
-          "botas_piedra_humeda",
-          "tunica_ruta_sauces",
-          "calzas_sendero_pinos",
-          "anillo_reserva_menor"
-        ],
-        "LianQi_III": [
-          "espada_hierro_equilibrada",
-          "calzado_nube_baja",
-          "cinta_patio_aspirante",
-          "tunica_ruta_sauces",
-          "calzas_paso_silencioso",
-          "anillo_reserva_menor",
-          "amuleto_meridiano_estable",
-          "anillo_tierra_profunda"
-        ],
-        "LianQi_IV": [
-          "espada_hierro_equilibrada",
-          "pulsera_nudo_crisis",
-          "calzado_nube_baja",
-          "velo_vigilante_nucleo",
-          "tunica_ruta_sauces",
-          "amuleto_ancla_resonante",
-          "calzas_trama_sello",
-          "anillo_reserva_menor",
-          "brazales_relevo"
-        ]
+        "LianQi_I": [],
+        "LianQi_II": [],
+        "LianQi_III": [],
+        "LianQi_IV": []
       }
     },
     "zhao_wen": {
@@ -99,42 +43,13 @@
       "role": "Compañero / par del jugador",
       "a079_group": "COMPANIONS",
       "equipment_family": "BALANCED_PEER",
+      "assignment_mode": "PERSONALIZATION_REQUIRED",
+      "assignment_reason": "A07.9 authoring does not close an individual combat/equipment archetype; do not clone a specialization.",
       "by_story_stage": {
-        "LianQi_I": [
-          "baston_fresno_practica",
-          "cinta_patio_aspirante",
-          "vendas_antebrazo_practica",
-          "pulsera_fibra_trenzada"
-        ],
-        "LianQi_II": [
-          "espada_hierro_equilibrada",
-          "cinta_patio_aspirante",
-          "botas_piedra_humeda",
-          "tunica_ruta_sauces",
-          "calzas_sendero_pinos",
-          "anillo_reserva_menor"
-        ],
-        "LianQi_III": [
-          "espada_hierro_equilibrada",
-          "calzado_nube_baja",
-          "cinta_patio_aspirante",
-          "tunica_ruta_sauces",
-          "calzas_paso_silencioso",
-          "anillo_reserva_menor",
-          "amuleto_meridiano_estable",
-          "anillo_tierra_profunda"
-        ],
-        "LianQi_IV": [
-          "espada_hierro_equilibrada",
-          "pulsera_nudo_crisis",
-          "calzado_nube_baja",
-          "velo_vigilante_nucleo",
-          "tunica_ruta_sauces",
-          "amuleto_ancla_resonante",
-          "calzas_trama_sello",
-          "anillo_reserva_menor",
-          "brazales_relevo"
-        ]
+        "LianQi_I": [],
+        "LianQi_II": [],
+        "LianQi_III": [],
+        "LianQi_IV": []
       }
     },
     "mei_lian": {
@@ -142,42 +57,13 @@
       "role": "Compañera / par del jugador",
       "a079_group": "COMPANIONS",
       "equipment_family": "BALANCED_PEER",
+      "assignment_mode": "PERSONALIZATION_REQUIRED",
+      "assignment_reason": "A07.9 authoring does not close an individual combat/equipment archetype; do not clone a specialization.",
       "by_story_stage": {
-        "LianQi_I": [
-          "baston_fresno_practica",
-          "cinta_patio_aspirante",
-          "vendas_antebrazo_practica",
-          "pulsera_fibra_trenzada"
-        ],
-        "LianQi_II": [
-          "espada_hierro_equilibrada",
-          "cinta_patio_aspirante",
-          "botas_piedra_humeda",
-          "tunica_ruta_sauces",
-          "calzas_sendero_pinos",
-          "anillo_reserva_menor"
-        ],
-        "LianQi_III": [
-          "espada_hierro_equilibrada",
-          "calzado_nube_baja",
-          "cinta_patio_aspirante",
-          "tunica_ruta_sauces",
-          "calzas_paso_silencioso",
-          "anillo_reserva_menor",
-          "amuleto_meridiano_estable",
-          "anillo_tierra_profunda"
-        ],
-        "LianQi_IV": [
-          "espada_hierro_equilibrada",
-          "pulsera_nudo_crisis",
-          "calzado_nube_baja",
-          "velo_vigilante_nucleo",
-          "tunica_ruta_sauces",
-          "amuleto_ancla_resonante",
-          "calzas_trama_sello",
-          "anillo_reserva_menor",
-          "brazales_relevo"
-        ]
+        "LianQi_I": [],
+        "LianQi_II": [],
+        "LianQi_III": [],
+        "LianQi_IV": []
       }
     },
     "guo_chen": {
@@ -185,42 +71,13 @@
       "role": "Compañero / par del jugador",
       "a079_group": "COMPANIONS",
       "equipment_family": "BALANCED_PEER",
+      "assignment_mode": "PERSONALIZATION_REQUIRED",
+      "assignment_reason": "A07.9 authoring does not close an individual combat/equipment archetype; do not clone a specialization.",
       "by_story_stage": {
-        "LianQi_I": [
-          "baston_fresno_practica",
-          "cinta_patio_aspirante",
-          "vendas_antebrazo_practica",
-          "pulsera_fibra_trenzada"
-        ],
-        "LianQi_II": [
-          "espada_hierro_equilibrada",
-          "cinta_patio_aspirante",
-          "botas_piedra_humeda",
-          "tunica_ruta_sauces",
-          "calzas_sendero_pinos",
-          "anillo_reserva_menor"
-        ],
-        "LianQi_III": [
-          "espada_hierro_equilibrada",
-          "calzado_nube_baja",
-          "cinta_patio_aspirante",
-          "tunica_ruta_sauces",
-          "calzas_paso_silencioso",
-          "anillo_reserva_menor",
-          "amuleto_meridiano_estable",
-          "anillo_tierra_profunda"
-        ],
-        "LianQi_IV": [
-          "espada_hierro_equilibrada",
-          "pulsera_nudo_crisis",
-          "calzado_nube_baja",
-          "velo_vigilante_nucleo",
-          "tunica_ruta_sauces",
-          "amuleto_ancla_resonante",
-          "calzas_trama_sello",
-          "anillo_reserva_menor",
-          "brazales_relevo"
-        ]
+        "LianQi_I": [],
+        "LianQi_II": [],
+        "LianQi_III": [],
+        "LianQi_IV": []
       }
     },
     "luo_yan": {
@@ -228,42 +85,13 @@
       "role": "Compañero / par del jugador",
       "a079_group": "COMPANIONS",
       "equipment_family": "BALANCED_PEER",
+      "assignment_mode": "PERSONALIZATION_REQUIRED",
+      "assignment_reason": "A07.9 authoring does not close an individual combat/equipment archetype; do not clone a specialization.",
       "by_story_stage": {
-        "LianQi_I": [
-          "baston_fresno_practica",
-          "cinta_patio_aspirante",
-          "vendas_antebrazo_practica",
-          "pulsera_fibra_trenzada"
-        ],
-        "LianQi_II": [
-          "espada_hierro_equilibrada",
-          "cinta_patio_aspirante",
-          "botas_piedra_humeda",
-          "tunica_ruta_sauces",
-          "calzas_sendero_pinos",
-          "anillo_reserva_menor"
-        ],
-        "LianQi_III": [
-          "espada_hierro_equilibrada",
-          "calzado_nube_baja",
-          "cinta_patio_aspirante",
-          "tunica_ruta_sauces",
-          "calzas_paso_silencioso",
-          "anillo_reserva_menor",
-          "amuleto_meridiano_estable",
-          "anillo_tierra_profunda"
-        ],
-        "LianQi_IV": [
-          "espada_hierro_equilibrada",
-          "pulsera_nudo_crisis",
-          "calzado_nube_baja",
-          "velo_vigilante_nucleo",
-          "tunica_ruta_sauces",
-          "amuleto_ancla_resonante",
-          "calzas_trama_sello",
-          "anillo_reserva_menor",
-          "brazales_relevo"
-        ]
+        "LianQi_I": [],
+        "LianQi_II": [],
+        "LianQi_III": [],
+        "LianQi_IV": []
       }
     },
     "ji_xueying": {
@@ -271,38 +99,13 @@
       "role": "Maestra de Secta",
       "a079_group": "AUTHORITIES",
       "equipment_family": "LEADER",
+      "assignment_mode": "BESPOKE_NPC_GEAR_REQUIRED",
+      "assignment_reason": "Senior authority should not be auto-dressed from player progression gear.",
       "by_story_stage": {
-        "LianQi_I": [
-          "anillo_cobre_sin_sello",
-          "cinta_patio_aspirante",
-          "pulsera_fibra_trenzada"
-        ],
-        "LianQi_II": [
-          "brazales_pulso_firme",
-          "anillo_corriente_clara",
-          "amuleto_sauce_sereno",
-          "anillo_cobre_sin_sello",
-          "cinta_patio_aspirante"
-        ],
-        "LianQi_III": [
-          "brazales_pulso_medico",
-          "vara_dos_corrientes",
-          "tocado_hilo_formacion",
-          "anillo_corriente_clara",
-          "pulsera_nudo_formacion",
-          "amuleto_sauce_sereno",
-          "anillo_cobre_sin_sello"
-        ],
-        "LianQi_IV": [
-          "vara_relevo",
-          "amuleto_ancla_resonante",
-          "brazales_pulso_medico",
-          "tocado_hilo_formacion",
-          "anillo_corriente_clara",
-          "pulsera_meridiano_profundo",
-          "anillo_cobre_sin_sello",
-          "manto_mantenimiento"
-        ]
+        "LianQi_I": [],
+        "LianQi_II": [],
+        "LianQi_III": [],
+        "LianQi_IV": []
       }
     },
     "qiao_ren": {
@@ -310,38 +113,13 @@
       "role": "Disciplina y Administración",
       "a079_group": "AUTHORITIES",
       "equipment_family": "ADMIN",
+      "assignment_mode": "BESPOKE_NPC_GEAR_REQUIRED",
+      "assignment_reason": "Senior authority should not be auto-dressed from player progression gear.",
       "by_story_stage": {
-        "LianQi_I": [
-          "cinta_patio_aspirante",
-          "pulsera_fibra_trenzada",
-          "anillo_cobre_sin_sello"
-        ],
-        "LianQi_II": [
-          "brazales_pulso_firme",
-          "cinta_patio_aspirante",
-          "fajin_patrulla",
-          "anillo_corriente_clara",
-          "pulsera_fibra_trenzada"
-        ],
-        "LianQi_III": [
-          "brazales_pulso_medico",
-          "vara_dos_corrientes",
-          "cinta_patio_aspirante",
-          "fajin_patrulla",
-          "anillo_corriente_clara",
-          "pulsera_fibra_trenzada",
-          "amuleto_meridiano_estable"
-        ],
-        "LianQi_IV": [
-          "vara_relevo",
-          "amuleto_ancla_resonante",
-          "brazales_pulso_medico",
-          "velo_vigilante_nucleo",
-          "manto_mantenimiento",
-          "pulsera_nudo_crisis",
-          "fajin_patrulla",
-          "anillo_corriente_clara"
-        ]
+        "LianQi_I": [],
+        "LianQi_II": [],
+        "LianQi_III": [],
+        "LianQi_IV": []
       }
     },
     "wei_jian": {
@@ -349,38 +127,13 @@
       "role": "Responsable marcial / Pabellón Marcial",
       "a079_group": "AUTHORITIES",
       "equipment_family": "MARTIAL",
+      "assignment_mode": "BESPOKE_NPC_GEAR_REQUIRED",
+      "assignment_reason": "Senior authority should not be auto-dressed from player progression gear.",
       "by_story_stage": {
-        "LianQi_I": [
-          "cinta_patio_aspirante",
-          "vendas_antebrazo_practica",
-          "baston_fresno_practica"
-        ],
-        "LianQi_II": [
-          "espada_hierro_equilibrada",
-          "cinta_patio_aspirante",
-          "calzas_guardia_externa",
-          "sobretunica_patrulla",
-          "botas_piedra_humeda"
-        ],
-        "LianQi_III": [
-          "espada_vena_clara",
-          "cinta_patio_aspirante",
-          "amuleto_meridiano_estable",
-          "anillo_tierra_profunda",
-          "calzas_guardia_externa",
-          "calzado_nube_baja",
-          "sobretunica_patrulla"
-        ],
-        "LianQi_IV": [
-          "espada_vena_clara",
-          "vestidura_ala_cerrada",
-          "brazales_relevo",
-          "velo_vigilante_nucleo",
-          "amuleto_ancla_resonante",
-          "anillo_tierra_profunda",
-          "calzas_guardia_externa",
-          "calzado_nube_baja"
-        ]
+        "LianQi_I": [],
+        "LianQi_II": [],
+        "LianQi_III": [],
+        "LianQi_IV": []
       }
     },
     "song_rui": {
@@ -388,38 +141,13 @@
       "role": "Responsable de Archivos",
       "a079_group": "AUTHORITIES",
       "equipment_family": "ADMIN",
+      "assignment_mode": "BESPOKE_NPC_GEAR_REQUIRED",
+      "assignment_reason": "Senior authority should not be auto-dressed from player progression gear.",
       "by_story_stage": {
-        "LianQi_I": [
-          "cinta_patio_aspirante",
-          "pulsera_fibra_trenzada",
-          "anillo_cobre_sin_sello"
-        ],
-        "LianQi_II": [
-          "brazales_pulso_firme",
-          "cinta_patio_aspirante",
-          "fajin_patrulla",
-          "anillo_corriente_clara",
-          "pulsera_fibra_trenzada"
-        ],
-        "LianQi_III": [
-          "brazales_pulso_medico",
-          "vara_dos_corrientes",
-          "cinta_patio_aspirante",
-          "fajin_patrulla",
-          "anillo_corriente_clara",
-          "pulsera_fibra_trenzada",
-          "amuleto_meridiano_estable"
-        ],
-        "LianQi_IV": [
-          "vara_relevo",
-          "amuleto_ancla_resonante",
-          "brazales_pulso_medico",
-          "velo_vigilante_nucleo",
-          "manto_mantenimiento",
-          "pulsera_nudo_crisis",
-          "fajin_patrulla",
-          "anillo_corriente_clara"
-        ]
+        "LianQi_I": [],
+        "LianQi_II": [],
+        "LianQi_III": [],
+        "LianQi_IV": []
       }
     },
     "lan_meihua": {
@@ -427,38 +155,13 @@
       "role": "Medicina / Alquimia",
       "a079_group": "AUTHORITIES",
       "equipment_family": "MEDICAL",
+      "assignment_mode": "BESPOKE_NPC_GEAR_REQUIRED",
+      "assignment_reason": "Senior authority should not be auto-dressed from player progression gear.",
       "by_story_stage": {
-        "LianQi_I": [
-          "anillo_cobre_sin_sello",
-          "pulsera_fibra_trenzada",
-          "cinta_patio_aspirante"
-        ],
-        "LianQi_II": [
-          "brazales_pulso_firme",
-          "amuleto_sauce_sereno",
-          "anillo_cobre_sin_sello",
-          "fajin_patrulla",
-          "pulsera_fibra_trenzada"
-        ],
-        "LianQi_III": [
-          "brazales_pulso_medico",
-          "vara_dos_corrientes",
-          "pulsera_nudo_formacion",
-          "amuleto_sauce_sereno",
-          "anillo_cobre_sin_sello",
-          "velo_archivo_sereno",
-          "fajin_patrulla"
-        ],
-        "LianQi_IV": [
-          "vara_relevo",
-          "amuleto_ancla_resonante",
-          "brazales_pulso_medico",
-          "pulsera_nudo_crisis",
-          "anillo_cobre_sin_sello",
-          "manto_mantenimiento",
-          "velo_archivo_sereno",
-          "fajin_patrulla"
-        ]
+        "LianQi_I": [],
+        "LianQi_II": [],
+        "LianQi_III": [],
+        "LianQi_IV": []
       }
     },
     "duan_shibo": {
@@ -466,38 +169,13 @@
       "role": "Recursos / Producción",
       "a079_group": "AUTHORITIES",
       "equipment_family": "LOGISTICS",
+      "assignment_mode": "BESPOKE_NPC_GEAR_REQUIRED",
+      "assignment_reason": "Senior authority should not be auto-dressed from player progression gear.",
       "by_story_stage": {
-        "LianQi_I": [
-          "pulsera_fibra_trenzada",
-          "cinta_patio_aspirante",
-          "anillo_cobre_sin_sello"
-        ],
-        "LianQi_II": [
-          "calzas_guardia_externa",
-          "bandana_cuero_reforzada",
-          "brazales_pulso_firme",
-          "fajin_patrulla",
-          "pulsera_fibra_trenzada"
-        ],
-        "LianQi_III": [
-          "amuleto_meridiano_estable",
-          "anillo_tierra_profunda",
-          "calzas_guardia_externa",
-          "bandana_cuero_reforzada",
-          "brazales_pulso_medico",
-          "vara_dos_corrientes",
-          "fajin_patrulla"
-        ],
-        "LianQi_IV": [
-          "amuleto_ancla_resonante",
-          "vara_relevo",
-          "vestidura_ala_cerrada",
-          "brazales_relevo",
-          "anillo_tierra_profunda",
-          "calzas_guardia_externa",
-          "bandana_cuero_reforzada",
-          "pulsera_nudo_crisis"
-        ]
+        "LianQi_I": [],
+        "LianQi_II": [],
+        "LianQi_III": [],
+        "LianQi_IV": []
       }
     },
     "he_zhen": {
@@ -505,38 +183,13 @@
       "role": "Formaciones / Territorio",
       "a079_group": "AUTHORITIES",
       "equipment_family": "FORMATION",
+      "assignment_mode": "BESPOKE_NPC_GEAR_REQUIRED",
+      "assignment_reason": "Senior authority should not be auto-dressed from player progression gear.",
       "by_story_stage": {
-        "LianQi_I": [
-          "anillo_cobre_sin_sello",
-          "pulsera_fibra_trenzada",
-          "cinta_patio_aspirante"
-        ],
-        "LianQi_II": [
-          "amuleto_sauce_sereno",
-          "anillo_cobre_sin_sello",
-          "anillo_corriente_clara",
-          "brazales_pulso_firme",
-          "fajin_patrulla"
-        ],
-        "LianQi_III": [
-          "pulsera_nudo_formacion",
-          "amuleto_sauce_sereno",
-          "anillo_cobre_sin_sello",
-          "tocado_hilo_formacion",
-          "anillo_corriente_clara",
-          "brazales_pulso_medico",
-          "vara_dos_corrientes"
-        ],
-        "LianQi_IV": [
-          "vara_relevo",
-          "pulsera_meridiano_profundo",
-          "amuleto_sauce_sereno",
-          "anillo_cobre_sin_sello",
-          "tocado_hilo_formacion",
-          "anillo_corriente_clara",
-          "brazales_pulso_medico",
-          "manto_mantenimiento"
-        ]
+        "LianQi_I": [],
+        "LianQi_II": [],
+        "LianQi_III": [],
+        "LianQi_IV": []
       }
     },
     "shen_baojun": {
@@ -544,6 +197,8 @@
       "role": "Instructor marcial externo",
       "a079_group": "INTERMEDIATE",
       "equipment_family": "MARTIAL",
+      "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
+      "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment.",
       "by_story_stage": {
         "LianQi_I": [
           "cinta_patio_aspirante",
@@ -581,36 +236,13 @@
       "role": "Responsable de vida cotidiana de externos",
       "a079_group": "INTERMEDIATE",
       "equipment_family": "CIVILIAN_SUPPORT",
+      "assignment_mode": "WARDROBE_OR_COMBAT_ROLE_REQUIRED",
+      "assignment_reason": "Role is primarily civil/administrative/logistical; combat gear must not be inferred from occupation.",
       "by_story_stage": {
-        "LianQi_I": [
-          "pantalon_viaje_gris",
-          "pulsera_fibra_trenzada",
-          "cinta_patio_aspirante"
-        ],
-        "LianQi_II": [
-          "calzas_guardia_externa",
-          "bandana_cuero_reforzada",
-          "tunica_ruta_sauces",
-          "botas_piedra_humeda",
-          "fajin_patrulla"
-        ],
-        "LianQi_III": [
-          "amuleto_meridiano_estable",
-          "anillo_tierra_profunda",
-          "calzas_guardia_externa",
-          "bandana_cuero_reforzada",
-          "tunica_ruta_sauces",
-          "botas_piedra_humeda"
-        ],
-        "LianQi_IV": [
-          "vestidura_ala_cerrada",
-          "amuleto_ancla_resonante",
-          "brazales_relevo",
-          "anillo_tierra_profunda",
-          "calzas_guardia_externa",
-          "bandana_cuero_reforzada",
-          "pulsera_nudo_crisis"
-        ]
+        "LianQi_I": [],
+        "LianQi_II": [],
+        "LianQi_III": [],
+        "LianQi_IV": []
       }
     },
     "tao_ming": {
@@ -618,36 +250,13 @@
       "role": "Registro de Servicios",
       "a079_group": "INTERMEDIATE",
       "equipment_family": "ADMIN",
+      "assignment_mode": "WARDROBE_OR_COMBAT_ROLE_REQUIRED",
+      "assignment_reason": "Role is primarily civil/administrative/logistical; combat gear must not be inferred from occupation.",
       "by_story_stage": {
-        "LianQi_I": [
-          "cinta_patio_aspirante",
-          "pulsera_fibra_trenzada",
-          "anillo_cobre_sin_sello"
-        ],
-        "LianQi_II": [
-          "brazales_pulso_firme",
-          "cinta_patio_aspirante",
-          "fajin_patrulla",
-          "anillo_corriente_clara",
-          "pulsera_fibra_trenzada"
-        ],
-        "LianQi_III": [
-          "brazales_pulso_medico",
-          "vara_dos_corrientes",
-          "cinta_patio_aspirante",
-          "fajin_patrulla",
-          "anillo_corriente_clara",
-          "pulsera_fibra_trenzada"
-        ],
-        "LianQi_IV": [
-          "vara_relevo",
-          "amuleto_ancla_resonante",
-          "brazales_pulso_medico",
-          "velo_vigilante_nucleo",
-          "manto_mantenimiento",
-          "pulsera_nudo_crisis",
-          "fajin_patrulla"
-        ]
+        "LianQi_I": [],
+        "LianQi_II": [],
+        "LianQi_III": [],
+        "LianQi_IV": []
       }
     },
     "jiang_rui": {
@@ -655,6 +264,8 @@
       "role": "Capitán de patrulla",
       "a079_group": "INTERMEDIATE",
       "equipment_family": "MARTIAL",
+      "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
+      "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment.",
       "by_story_stage": {
         "LianQi_I": [
           "cinta_patio_aspirante",
@@ -692,6 +303,8 @@
       "role": "Maestra de Herboristería",
       "a079_group": "INTERMEDIATE",
       "equipment_family": "MEDICAL_FIELD",
+      "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
+      "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment.",
       "by_story_stage": {
         "LianQi_I": [
           "anillo_cobre_sin_sello",
@@ -707,20 +320,20 @@
         ],
         "LianQi_III": [
           "brazales_pulso_medico",
-          "vara_dos_corrientes",
           "botas_piedra_humeda",
           "amuleto_meridiano_estable",
           "anillo_tierra_profunda",
-          "pulsera_nudo_formacion"
+          "pulsera_nudo_formacion",
+          "calzas_guardia_externa"
         ],
         "LianQi_IV": [
           "amuleto_ancla_resonante",
-          "vara_relevo",
           "brazales_pulso_medico",
           "pulsera_nudo_crisis",
           "botas_voto_inmovil",
           "vestidura_ala_cerrada",
-          "anillo_tierra_profunda"
+          "anillo_tierra_profunda",
+          "calzas_guardia_externa"
         ]
       }
     },
@@ -729,6 +342,8 @@
       "role": "Instructor de Examen / Anatomía-Medicina",
       "a079_group": "INTERMEDIATE",
       "equipment_family": "MEDICAL",
+      "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
+      "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment.",
       "by_story_stage": {
         "LianQi_I": [
           "anillo_cobre_sin_sello",
@@ -744,20 +359,20 @@
         ],
         "LianQi_III": [
           "brazales_pulso_medico",
-          "vara_dos_corrientes",
           "pulsera_nudo_formacion",
           "amuleto_sauce_sereno",
           "anillo_cobre_sin_sello",
-          "velo_archivo_sereno"
+          "velo_archivo_sereno",
+          "fajin_patrulla"
         ],
         "LianQi_IV": [
-          "vara_relevo",
           "amuleto_ancla_resonante",
           "brazales_pulso_medico",
           "pulsera_nudo_crisis",
           "anillo_cobre_sin_sello",
           "manto_mantenimiento",
-          "velo_archivo_sereno"
+          "velo_archivo_sereno",
+          "fajin_patrulla"
         ]
       }
     },
@@ -766,6 +381,8 @@
       "role": "Instructora de Alquimia / Botica",
       "a079_group": "INTERMEDIATE",
       "equipment_family": "MEDICAL",
+      "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
+      "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment.",
       "by_story_stage": {
         "LianQi_I": [
           "anillo_cobre_sin_sello",
@@ -781,20 +398,20 @@
         ],
         "LianQi_III": [
           "brazales_pulso_medico",
-          "vara_dos_corrientes",
           "pulsera_nudo_formacion",
           "amuleto_sauce_sereno",
           "anillo_cobre_sin_sello",
-          "velo_archivo_sereno"
+          "velo_archivo_sereno",
+          "fajin_patrulla"
         ],
         "LianQi_IV": [
-          "vara_relevo",
           "amuleto_ancla_resonante",
           "brazales_pulso_medico",
           "pulsera_nudo_crisis",
           "anillo_cobre_sin_sello",
           "manto_mantenimiento",
-          "velo_archivo_sereno"
+          "velo_archivo_sereno",
+          "fajin_patrulla"
         ]
       }
     },
@@ -803,6 +420,8 @@
       "role": "Guardia de la Puerta Roja",
       "a079_group": "FUNCTIONAL_SUPPORT",
       "equipment_family": "MARTIAL",
+      "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
+      "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment.",
       "by_story_stage": {
         "LianQi_I": [
           "cinta_patio_aspirante",
@@ -836,32 +455,13 @@
       "role": "Asistente de Disciplina",
       "a079_group": "FUNCTIONAL_SUPPORT",
       "equipment_family": "ADMIN",
+      "assignment_mode": "WARDROBE_OR_COMBAT_ROLE_REQUIRED",
+      "assignment_reason": "Role is primarily civil/administrative/logistical; combat gear must not be inferred from occupation.",
       "by_story_stage": {
-        "LianQi_I": [
-          "cinta_patio_aspirante",
-          "pulsera_fibra_trenzada"
-        ],
-        "LianQi_II": [
-          "brazales_pulso_firme",
-          "cinta_patio_aspirante",
-          "fajin_patrulla",
-          "anillo_corriente_clara"
-        ],
-        "LianQi_III": [
-          "brazales_pulso_medico",
-          "vara_dos_corrientes",
-          "cinta_patio_aspirante",
-          "fajin_patrulla",
-          "anillo_corriente_clara"
-        ],
-        "LianQi_IV": [
-          "vara_relevo",
-          "amuleto_ancla_resonante",
-          "brazales_pulso_medico",
-          "velo_vigilante_nucleo",
-          "manto_mantenimiento",
-          "pulsera_nudo_crisis"
-        ]
+        "LianQi_I": [],
+        "LianQi_II": [],
+        "LianQi_III": [],
+        "LianQi_IV": []
       }
     },
     "ma_qiren": {
@@ -869,32 +469,13 @@
       "role": "Responsable de Almacenes",
       "a079_group": "FUNCTIONAL_SUPPORT",
       "equipment_family": "LOGISTICS",
+      "assignment_mode": "WARDROBE_OR_COMBAT_ROLE_REQUIRED",
+      "assignment_reason": "Role is primarily civil/administrative/logistical; combat gear must not be inferred from occupation.",
       "by_story_stage": {
-        "LianQi_I": [
-          "pulsera_fibra_trenzada",
-          "cinta_patio_aspirante"
-        ],
-        "LianQi_II": [
-          "calzas_guardia_externa",
-          "bandana_cuero_reforzada",
-          "brazales_pulso_firme",
-          "fajin_patrulla"
-        ],
-        "LianQi_III": [
-          "amuleto_meridiano_estable",
-          "anillo_tierra_profunda",
-          "calzas_guardia_externa",
-          "bandana_cuero_reforzada",
-          "brazales_pulso_medico"
-        ],
-        "LianQi_IV": [
-          "amuleto_ancla_resonante",
-          "vara_relevo",
-          "vestidura_ala_cerrada",
-          "brazales_relevo",
-          "anillo_tierra_profunda",
-          "calzas_guardia_externa"
-        ]
+        "LianQi_I": [],
+        "LianQi_II": [],
+        "LianQi_III": [],
+        "LianQi_IV": []
       }
     },
     "pei_luo": {
@@ -902,32 +483,13 @@
       "role": "Responsable de Cocina/Comedor",
       "a079_group": "FUNCTIONAL_SUPPORT",
       "equipment_family": "CIVILIAN_SUPPORT",
+      "assignment_mode": "WARDROBE_OR_COMBAT_ROLE_REQUIRED",
+      "assignment_reason": "Role is primarily civil/administrative/logistical; combat gear must not be inferred from occupation.",
       "by_story_stage": {
-        "LianQi_I": [
-          "pantalon_viaje_gris",
-          "pulsera_fibra_trenzada"
-        ],
-        "LianQi_II": [
-          "calzas_guardia_externa",
-          "bandana_cuero_reforzada",
-          "tunica_ruta_sauces",
-          "botas_piedra_humeda"
-        ],
-        "LianQi_III": [
-          "amuleto_meridiano_estable",
-          "anillo_tierra_profunda",
-          "calzas_guardia_externa",
-          "bandana_cuero_reforzada",
-          "tunica_ruta_sauces"
-        ],
-        "LianQi_IV": [
-          "vestidura_ala_cerrada",
-          "amuleto_ancla_resonante",
-          "brazales_relevo",
-          "anillo_tierra_profunda",
-          "calzas_guardia_externa",
-          "bandana_cuero_reforzada"
-        ]
+        "LianQi_I": [],
+        "LianQi_II": [],
+        "LianQi_III": [],
+        "LianQi_IV": []
       }
     },
     "lu_cheng": {
@@ -935,6 +497,8 @@
       "role": "Taller de armas / Reparaciones",
       "a079_group": "FUNCTIONAL_SUPPORT",
       "equipment_family": "CRAFT_MARTIAL",
+      "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
+      "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment.",
       "by_story_stage": {
         "LianQi_I": [
           "cinta_patio_aspirante",
@@ -968,32 +532,13 @@
       "role": "Textiles y cuero",
       "a079_group": "FUNCTIONAL_SUPPORT",
       "equipment_family": "CRAFT_SUPPORT",
+      "assignment_mode": "WARDROBE_OR_COMBAT_ROLE_REQUIRED",
+      "assignment_reason": "Role is primarily civil/administrative/logistical; combat gear must not be inferred from occupation.",
       "by_story_stage": {
-        "LianQi_I": [
-          "pulsera_fibra_trenzada",
-          "pantalon_viaje_gris"
-        ],
-        "LianQi_II": [
-          "calzas_guardia_externa",
-          "bandana_cuero_reforzada",
-          "tunica_ruta_sauces",
-          "botas_piedra_humeda"
-        ],
-        "LianQi_III": [
-          "amuleto_meridiano_estable",
-          "anillo_tierra_profunda",
-          "calzas_guardia_externa",
-          "bandana_cuero_reforzada",
-          "tunica_ruta_sauces"
-        ],
-        "LianQi_IV": [
-          "amuleto_ancla_resonante",
-          "vestidura_ala_cerrada",
-          "brazales_relevo",
-          "pulsera_nudo_crisis",
-          "anillo_tierra_profunda",
-          "calzas_guardia_externa"
-        ]
+        "LianQi_I": [],
+        "LianQi_II": [],
+        "LianQi_III": [],
+        "LianQi_IV": []
       }
     },
     "wen_tao": {
@@ -1001,6 +546,8 @@
       "role": "Técnico de Formaciones",
       "a079_group": "FUNCTIONAL_SUPPORT",
       "equipment_family": "FORMATION",
+      "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
+      "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment.",
       "by_story_stage": {
         "LianQi_I": [
           "anillo_cobre_sin_sello",
@@ -1034,32 +581,13 @@
       "role": "Copista",
       "a079_group": "FUNCTIONAL_SUPPORT",
       "equipment_family": "ADMIN",
+      "assignment_mode": "WARDROBE_OR_COMBAT_ROLE_REQUIRED",
+      "assignment_reason": "Role is primarily civil/administrative/logistical; combat gear must not be inferred from occupation.",
       "by_story_stage": {
-        "LianQi_I": [
-          "cinta_patio_aspirante",
-          "pulsera_fibra_trenzada"
-        ],
-        "LianQi_II": [
-          "brazales_pulso_firme",
-          "cinta_patio_aspirante",
-          "fajin_patrulla",
-          "anillo_corriente_clara"
-        ],
-        "LianQi_III": [
-          "brazales_pulso_medico",
-          "vara_dos_corrientes",
-          "cinta_patio_aspirante",
-          "fajin_patrulla",
-          "anillo_corriente_clara"
-        ],
-        "LianQi_IV": [
-          "vara_relevo",
-          "amuleto_ancla_resonante",
-          "brazales_pulso_medico",
-          "velo_vigilante_nucleo",
-          "manto_mantenimiento",
-          "pulsera_nudo_crisis"
-        ]
+        "LianQi_I": [],
+        "LianQi_II": [],
+        "LianQi_III": [],
+        "LianQi_IV": []
       }
     },
     "ma_gu": {
@@ -1067,6 +595,8 @@
       "role": "Capataz de Cantera",
       "a079_group": "FUNCTIONAL_SUPPORT",
       "equipment_family": "FIELD_HEAVY",
+      "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
+      "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment.",
       "by_story_stage": {
         "LianQi_I": [
           "pantalon_viaje_gris",
@@ -1079,19 +609,19 @@
           "fajin_patrulla"
         ],
         "LianQi_III": [
-          "amuleto_meridiano_estable",
           "anillo_tierra_profunda",
           "calzas_guardia_externa",
           "bandana_cuero_reforzada",
-          "sobretunica_patrulla"
+          "sobretunica_patrulla",
+          "brazales_pulso_medico"
         ],
         "LianQi_IV": [
           "vestidura_ala_cerrada",
           "brazales_relevo",
-          "amuleto_ancla_resonante",
           "anillo_tierra_profunda",
           "calzas_guardia_externa",
-          "bandana_cuero_reforzada"
+          "bandana_cuero_reforzada",
+          "vara_relevo"
         ]
       }
     },
@@ -1100,6 +630,8 @@
       "role": "Patrullero veterano",
       "a079_group": "FUNCTIONAL_SUPPORT",
       "equipment_family": "MARTIAL",
+      "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
+      "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment.",
       "by_story_stage": {
         "LianQi_I": [
           "cinta_patio_aspirante",
@@ -1133,32 +665,13 @@
       "role": "Representante de Sauces",
       "a079_group": "FUNCTIONAL_SUPPORT",
       "equipment_family": "CIVILIAN_SUPPORT",
+      "assignment_mode": "WARDROBE_OR_COMBAT_ROLE_REQUIRED",
+      "assignment_reason": "Role is primarily civil/administrative/logistical; combat gear must not be inferred from occupation.",
       "by_story_stage": {
-        "LianQi_I": [
-          "pantalon_viaje_gris",
-          "pulsera_fibra_trenzada"
-        ],
-        "LianQi_II": [
-          "calzas_guardia_externa",
-          "bandana_cuero_reforzada",
-          "tunica_ruta_sauces",
-          "botas_piedra_humeda"
-        ],
-        "LianQi_III": [
-          "amuleto_meridiano_estable",
-          "anillo_tierra_profunda",
-          "calzas_guardia_externa",
-          "bandana_cuero_reforzada",
-          "tunica_ruta_sauces"
-        ],
-        "LianQi_IV": [
-          "vestidura_ala_cerrada",
-          "amuleto_ancla_resonante",
-          "brazales_relevo",
-          "anillo_tierra_profunda",
-          "calzas_guardia_externa",
-          "bandana_cuero_reforzada"
-        ]
+        "LianQi_I": [],
+        "LianQi_II": [],
+        "LianQi_III": [],
+        "LianQi_IV": []
       }
     },
     "mei_shufen": {
@@ -1166,6 +679,8 @@
       "role": "Herbolaria local de Sauces",
       "a079_group": "FUNCTIONAL_SUPPORT",
       "equipment_family": "MEDICAL_FIELD",
+      "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
+      "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment.",
       "by_story_stage": {
         "LianQi_I": [
           "anillo_cobre_sin_sello",
@@ -1179,18 +694,18 @@
         ],
         "LianQi_III": [
           "brazales_pulso_medico",
-          "vara_dos_corrientes",
           "botas_piedra_humeda",
           "amuleto_meridiano_estable",
-          "anillo_tierra_profunda"
+          "anillo_tierra_profunda",
+          "pulsera_nudo_formacion"
         ],
         "LianQi_IV": [
           "amuleto_ancla_resonante",
-          "vara_relevo",
           "brazales_pulso_medico",
           "pulsera_nudo_crisis",
           "botas_voto_inmovil",
-          "vestidura_ala_cerrada"
+          "vestidura_ala_cerrada",
+          "anillo_tierra_profunda"
         ]
       }
     }
