@@ -1,0 +1,76 @@
+{
+  "schema_version": "monster-unique-t0-v0.1",
+  "status": "ECO_CAIDO_T0_HUMAN_RATIFIED_CLOSED",
+  "ratified_on": "2026-10-01",
+  "source_head": "823bc7a0ea89e6423cfae4835ec4c593736691dd",
+  "species": {
+    "eco_caido": {
+      "unique": true,
+      "adaptive_tiers_allowed": false,
+      "t0": {
+        "status": "READY_HUMAN_RATIFIED",
+        "source_candidate": "eco_caido-b06-a11ec42a75",
+        "stats": {
+          "hp": 51,
+          "qi_max": null,
+          "precision": 102,
+          "evasion": 24,
+          "defense": 1,
+          "tenacity": 24,
+          "control": 0,
+          "crit_chance": 5,
+          "crit_damage": 1.5,
+          "basic_damage": "1d3+6"
+        },
+        "technique": null
+      },
+      "evidence": {
+        "broad_batch_result_sha256": "bcba2b003fa2d03d0447fb13bb0c45ccc85aa6f7a3de22115bbb94c1dda32c9f",
+        "causal_microlab": {
+          "fights": 81000,
+          "workflow_run_id": 36942024983,
+          "github_artifact_sha256": "6bb86d0a86becad66ed8919aed38cc434cb033d8465c094330446b4a8d3a9ae9",
+          "result_zip_sha256": "b24b02debf4d6ebcfa23fa9121dd2358699f0a60308a605128ccfda365db65b6"
+        }
+      }
+    }
+  },
+  "strict_1v1_policy_gate": {
+    "status": "HUMAN_RATIFIED_METHOD_RULE",
+    "scope": "STRICT_ONE_VS_ONE_ENCOUNTERS_WHERE_AOE_SINGLE_TARGET_SCALAR_IS_BELOW_1",
+    "observed_engine_scalar": 0.65,
+    "hard_policy_gate": [
+      "VETERAN",
+      "UNITARGET_FIRST",
+      "DEFENSE_OPEN"
+    ],
+    "diagnostic_stress_only": [
+      "ROTATION",
+      "AOE_FIRST"
+    ],
+    "rationale": "AOE_FIRST repeatedly selects an intentionally penalized multi-target action in a single-target duel. It remains valuable as diagnostic stress but cannot by itself invalidate the monster T0.",
+    "still_hard_gates": [
+      "TIMEOUT",
+      "ROOT_POLARIZATION",
+      "LOADOUT_POLARIZATION",
+      "IDENTITY_FAILURE"
+    ],
+    "no_target_win_rate": true
+  },
+  "evidence_interpretation": {
+    "baseline_policy_spread_pp": 75.37,
+    "baseline_aoe_first_player_win_rate": 0.1026,
+    "baseline_veteran_player_win_rate": 0.8563,
+    "scalar_1_policy_spread_pp": 54.19,
+    "scalar_1_aoe_first_player_win_rate": 0.3144,
+    "conclusion": "POLICY_OUTLIER_CAUSED_BY_SINGLE_TARGET_AOE_PENALTY_NOT_ECO_T0_STATS"
+  },
+  "guards": {
+    "no_t1_t4_for_unique": true,
+    "no_t5": true,
+    "no_main": true,
+    "no_merge": true,
+    "no_target_win_rate_objective": true,
+    "reopen_requires_explicit_human_decision": true
+  }
+}
