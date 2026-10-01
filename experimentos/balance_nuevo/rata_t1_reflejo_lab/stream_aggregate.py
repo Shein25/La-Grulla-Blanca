@@ -24,7 +24,7 @@ class StreamingFightAggregate:
         for k in ("player_qi_spent","player_qi_drained","defensive_activations","potion_uses","monster_skill_uses","monster_basic_uses","monster_skipped_actions","forced_basic_due_to_qi","monster_dot_damage","monster_basic_damage","monster_skill_direct_damage"):
             self.sum[k]+=float(r[k])
         m=r["metrics"]
-        for k in ("player_attempts","player_hits","monster_attempts","monster_hits","control_attempts","control_successes"):
+        for k in ("player_attempts","player_hits","monster_attempts","monster_hits","monster_evades","control_attempts","control_successes"):
             self.sum[k]+=float(m.get(k,0))
         total=float(r["monster_dot_damage"])+float(r["monster_basic_damage"])+float(r["monster_skill_direct_damage"])
         self.monster_damage.append(total)
@@ -47,6 +47,7 @@ class StreamingFightAggregate:
             "qi_spent_mean":s["player_qi_spent"]/n,"qi_drained_mean":s["player_qi_drained"]/n,
             "player_hit_rate":s["player_hits"]/s["player_attempts"] if s["player_attempts"] else 0.0,
             "monster_hit_rate":s["monster_hits"]/s["monster_attempts"] if s["monster_attempts"] else 0.0,
+            "monster_evades_per_fight":s["monster_evades"]/n,
             "control_success_rate":s["control_successes"]/s["control_attempts"] if s["control_attempts"] else 0.0,
             "defensive_activation_mean":s["defensive_activations"]/n,"potion_use_rate":s["potion_uses"]/n,
             "monster_skill_use_mean":s["monster_skill_uses"]/n,"monster_basic_use_mean":s["monster_basic_uses"]/n,
