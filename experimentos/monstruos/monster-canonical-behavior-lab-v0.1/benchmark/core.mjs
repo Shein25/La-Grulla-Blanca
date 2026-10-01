@@ -2,7 +2,7 @@ import {chooseMonsterIntent} from '../vendor/monster-engine.mjs';
 import {PROFILES} from '../vendor/profiles.mjs';
 import {CANDIDATE_ASSIGNMENTS} from '../profiles/candidate-assignments.mjs';
 import {buildCandidateMonsterInput} from '../adapter/candidate-assignment-adapter.mjs';
-import {buildCanonicalAbilityCatalog,canonicalAbilityIds,baseCombat,seededRng} from '../adapter/canonical-combat-adapter.mjs';
+import {buildCanonicalAbilityCatalog,canonicalAbilityIds,baseCombat,seededRng,assertMonsterCombatReady} from '../adapter/canonical-combat-adapter.mjs';
 import {applyTacticalOverlay} from '../tactics/tactical-overlay-v0.1.mjs';
 
 export const TIERS=Object.freeze({
@@ -38,7 +38,7 @@ function fnv64Hex(h){return h.toString(16).padStart(16,'0');}
 function inc(obj,key){obj[key]=(obj[key]||0)+1;}
 
 function scenario(def,random){
-  const techEvery=def.tecnica?.cada||1;
+  const techEvery=def.technique?.params?.cadence||1;
   const dueRound=techEvery;
   const randomRound=1+Math.floor(random()*Math.max(4,techEvery));
   const techniqueId=null; // set by caller
@@ -106,6 +106,7 @@ export function runMonsterBenchmark(M,{tier='smoke',runs=null,seed=1337,mob='all
     ? Object.keys(CANDIDATE_ASSIGNMENTS).sort()
     : [mob];
   for(const id of ids) if(!CANDIDATE_ASSIGNMENTS[id]||!M[id])throw new RangeError(`mob desconocido/no asignado: ${id}`);
+  for(const id of ids) assertMonsterCombatReady(id,M[id]);
 
   let digest=fnv64Init();
   const results={};
@@ -139,13 +140,13 @@ export function runMonsterBenchmark(M,{tier='smoke',runs=null,seed=1337,mob='all
       if(full.abilityId!==noSocial.abilityId)metrics.socialChangedDecision++;
       if(full.abilityId!==neutral.abilityId)metrics.combinedChangedVsNeutral++;
 
-      const allowed=new Set([idsCanon.basic,...(def.tecnica?[idsCanon.technique]:[])]);
+      const allowed=new Set([idsCanon.basic,...(def.technique?[idsCanon.technique]:[])]);
       if(!allowed.has(full.abilityId))metrics.invalidSelections++;
 
       if(i%10===0){
         metrics.cadenceChecks++;
         const cadence=decision(M,id,s,{seed:decisionSeed,mode:'CADENCE_COMPAT'});
-        const expected=def.tecnica&&s.randomRound%def.tecnica.cada===0?idsCanon.technique:idsCanon.basic;
+        const expected=def.technique&&s.randomRound%def.technique.params.cadence===0?idsCanon.technique:idsCanon.basic;
         if(cadence.abilityId!==expected)metrics.cadenceViolations++;
       }
 
