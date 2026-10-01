@@ -1,6 +1,8 @@
-import {canonicalAbilityIds,techniqueDue,techniqueWarning} from '../adapter/canonical-combat-adapter.mjs';
+import {
+  canonicalAbilityIds,techniqueDue,techniqueWarning,assertMonsterCombatReady
+} from '../adapter/canonical-combat-adapter.mjs';
 
-export const BRIDGE_STATUS='EXPERIMENTAL_INTEGRATION_CONTRACT_V01';
+export const BRIDGE_STATUS='EXPERIMENTAL_NEW_ENGINE_INTEGRATION_V1';
 
 function clone(value){
   return value===undefined?undefined:JSON.parse(JSON.stringify(value));
@@ -11,30 +13,30 @@ function freeze(value){
   return Object.freeze(value);
 }
 function assertDef(mobId,def){
-  if(typeof mobId!=='string'||!mobId)throw new TypeError('mobId inválido');
-  if(!def||typeof def!=='object'||typeof def.daño!=='string')throw new TypeError('def canónica inválida');
+  if(typeof mobId!=='string'||!mobId)throw new TypeError('invalid mobId');
+  assertMonsterCombatReady(mobId,def);
 }
 function assertRound(round){
-  if(!Number.isInteger(round)||round<0)throw new TypeError('round debe ser entero >= 0');
+  if(!Number.isInteger(round)||round<0)throw new TypeError('round must be integer >= 0');
 }
 
 export function canonicalTelegraph({mobId,def,round}){
   assertDef(mobId,def);assertRound(round);
-  if(!def.tecnica||!techniqueWarning(def,round))return null;
+  if(!def.technique||!techniqueWarning(def,round))return null;
   return freeze({
     kind:'TECHNIQUE_WARNING',
     mobId,
     round,
     executesOnRound:round+1,
-    techniqueName:def.tecnica.name,
-    cadence:def.tecnica.cada
+    techniqueName:def.technique.name,
+    cadence:def.technique.params.cadence
   });
 }
 
 export function bindMonsterIntent({mobId,def,round,decision}){
   assertDef(mobId,def);assertRound(round);
   if(!decision||decision.status!=='INTENT_SELECTED'||typeof decision.abilityId!=='string'){
-    throw new TypeError('decision INTENT_SELECTED inválida');
+    throw new TypeError('invalid INTENT_SELECTED decision');
   }
   const ids=canonicalAbilityIds(mobId);
 
@@ -44,18 +46,20 @@ export function bindMonsterIntent({mobId,def,round,decision}){
       mobId,
       round,
       abilityId:decision.abilityId,
-      canonical:{
-        ataque:def.ataque??0,
-        daño:def.daño,
-        elemento:def.elemento??null
+      combat:{
+        precision:def.stats.precision,
+        damage:def.stats.basic_damage,
+        critChance:def.stats.crit_chance,
+        critDamage:def.stats.crit_damage,
+        element:def.element??null
       }
     });
   }
 
   if(decision.abilityId===ids.technique){
-    if(!def.tecnica)throw new RangeError(`${mobId} no posee técnica canónica`);
+    if(!def.technique)throw new RangeError(`${mobId} has no monster technique`);
     if(!techniqueDue(def,round)){
-      const err=new RangeError(`CADENCE_VIOLATION: técnica de ${mobId} fuera de ronda ${round}`);
+      const err=new RangeError(`CADENCE_VIOLATION: ${mobId} technique outside round ${round}`);
       err.code='CADENCE_VIOLATION';
       throw err;
     }
@@ -64,9 +68,9 @@ export function bindMonsterIntent({mobId,def,round,decision}){
       mobId,
       round,
       abilityId:decision.abilityId,
-      canonical:clone(def.tecnica)
+      combat:clone(def.technique)
     });
   }
 
-  throw new RangeError(`UNKNOWN_CANONICAL_ABILITY: ${decision.abilityId}`);
+  throw new RangeError(`UNKNOWN_MONSTER_ABILITY: ${decision.abilityId}`);
 }
