@@ -1,0 +1,84 @@
+{
+  "schema_version": "rata-t4-mordisco-frenetico-input-v0.1",
+  "status": "LAB_INPUT_NOT_CANON",
+  "species_id": "rata_qi",
+  "prerequisite": "T3_READY_HUMAN_RATIFIED",
+  "frozen_chain": {
+    "t1": "Reflejo de Madriguera +40 EVA / CD5 / REACTIVO_1 / BASE",
+    "t2": "R2_SHORT memory2/repeat2/EFECTIVA/+8",
+    "t3": "CONFIRMED_PATTERN_REFLEJO_MISS + INSTANCE_BASIC"
+  },
+  "identity": {
+    "name": "Mordisco Frenético",
+    "tier": "T4",
+    "family": "PHYSICAL_MULTI_HIT",
+    "instinctive": true,
+    "source_damage": "canonical T0 basic 2d4",
+    "activation_rule": "REPLACE_BASIC_WHEN_READY",
+    "note": "T4 never displaces a T1/T2 survival decision; it upgrades an ordinary BASIC decision when off cooldown."
+  },
+  "phase_a_geometry": {
+    "fixed_axes": {
+      "precision_rule": "INDEPENDENT_PER_HIT",
+      "critical_rule": "INDEPENDENT_PER_HIT",
+      "cooldown_rounds": 5,
+      "dice": "2d4",
+      "direct_pipeline_per_hit": true
+    },
+    "candidates": [
+      {
+        "label": "CONTROL_1X100",
+        "hit_count": 1,
+        "scalar_per_hit": 1,
+        "raw_expected_total_multiplier": 1
+      },
+      {
+        "label": "FRENZY_2X050",
+        "hit_count": 2,
+        "scalar_per_hit": 0.5,
+        "raw_expected_total_multiplier": 1
+      },
+      {
+        "label": "FRENZY_2X075",
+        "hit_count": 2,
+        "scalar_per_hit": 0.75,
+        "raw_expected_total_multiplier": 1.5
+      },
+      {
+        "label": "FRENZY_3X050",
+        "hit_count": 3,
+        "scalar_per_hit": 0.5,
+        "raw_expected_total_multiplier": 1.5
+      }
+    ],
+    "interpretation": [
+      "CONTROL_1X100 validates the lab against a normal canonical 2d4 packet.",
+      "FRENZY_2X050 keeps the same raw expectation before per-hit DEF/absorption.",
+      "FRENZY_2X075 and FRENZY_3X050 share 1.5x raw expectation but different packet counts.",
+      "Comparing the two 1.5x candidates isolates multi-hit packetization under flat DEF and absorption."
+    ]
+  },
+  "later_phases": {
+    "phase_b": [
+      "precision_rule",
+      "critical_interaction"
+    ],
+    "phase_c": [
+      "cooldown_rounds"
+    ],
+    "rule": "Do not tune later axes until Phase A geometry is reviewed."
+  },
+  "guards": {
+    "t1_t3_frozen": true,
+    "canonical_t0_2d4_only_in_phase_a": true,
+    "no_instance_basic_for_t4_phase_a": true,
+    "no_qi_drain": true,
+    "no_dot": true,
+    "no_control": true,
+    "no_root_build_inspection": true,
+    "flat_def_per_hit": true,
+    "absorption_per_hit": true,
+    "no_canonical_write": true,
+    "no_tier_above_t4": true
+  }
+}
