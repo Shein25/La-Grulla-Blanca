@@ -24,7 +24,9 @@ FORBIDDEN_IMPORT_MODULES = {
 }
 
 FORBIDDEN_SOURCE_MARKERS = {
-    "target_win_rate",
+    # Bloquea la forma operativa del antiguo objetivo centrado en win rate.
+    # La frase "target_win_rate_objective_forbidden" puede aparecer legalmente
+    # en manifests/tests como una aserción de seguridad.
     "abs(win_rate",
     "Mordisco Frenético",
     "Reflejo de Madriguera",
