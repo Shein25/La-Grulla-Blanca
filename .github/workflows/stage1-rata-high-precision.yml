@@ -1,0 +1,43 @@
+name: Stage1 Rata T0 High Precision
+
+on:
+  push:
+    branches:
+      - experiment/combat-stat-contract-v0.1
+    paths:
+      - "experimentos/balance_nuevo/stage1_integral_t0_optuna/rata_high_precision_input_v0.1.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  high-precision:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Quick safety checks
+        working-directory: experimentos/balance_nuevo/stage1_integral_t0_optuna
+        run: |
+          python selfcheck.py
+          python test_contracts.py
+          python test_veteran_policy.py
+      - name: Validate three neutral internal representatives at 3000
+        working-directory: experimentos/balance_nuevo/stage1_integral_t0_optuna
+        run: |
+          rm -rf ci_rata_high_precision_3000
+          python rata_validate_pareto.py \
+            --source rata_high_precision_input_v0.1.json \
+            --fights-per-context 3000 \
+            --seed-namespace "PARETO_3000_COMMON_V01" \
+            --outdir ci_rata_high_precision_3000
+      - name: Upload high-precision artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage1-rata-high-precision-3000
+          path: experimentos/balance_nuevo/stage1_integral_t0_optuna/ci_rata_high_precision_3000
+          retention-days: 14
