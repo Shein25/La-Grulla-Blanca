@@ -1,6 +1,6 @@
 {
   "schema_version": "rata-adaptive-tiers-v0.1",
-  "status": "T3_HUMAN_RATIFIED_T4_LAB_ALLOWED",
+  "status": "ADAPTIVE_CHAIN_T0_T4_HUMAN_RATIFIED_CLOSED",
   "species_id": "rata_qi",
   "population_tier_thresholds": {
     "T0": [
@@ -140,7 +140,7 @@
     }
   },
   "t4": {
-    "status": "FULL_CANDIDATE_AWAITING_HUMAN_RATIFICATION",
+    "status": "READY_HUMAN_RATIFIED",
     "identity": "MORDISCO_FRENETICO",
     "preserved_identity": [
       "physical",
@@ -181,7 +181,23 @@
       "workflow_run_id": 36910325458,
       "workflow_conclusion": "success",
       "canonical_write": false,
-      "no_t5": true
+      "no_t5": true,
+      "human_ratified": true,
+      "ratified_on": "2026-10-01"
+    },
+    "ratified_on": "2026-10-01",
+    "human_ratified_candidate": {
+      "name": "Mordisco Frenético",
+      "identity": "PHYSICAL_INSTINCTIVE_MULTI_HIT",
+      "activation": "REPLACE_BASIC_WHEN_READY",
+      "opening": "INSTANCE_BASIC x1.0",
+      "followup": "1 x CANONICAL_T0_BASIC_2D4 x0.50",
+      "precision_rule": "INDEPENDENT_PER_HIT",
+      "critical_rule": "NORMAL_INDEPENDENT_CRIT",
+      "cooldown_rounds": 5,
+      "direct_damage_pipeline_per_packet": true,
+      "flat_defense_per_packet": true,
+      "absorption_per_packet": true
     }
   },
   "guards": {
@@ -191,6 +207,9 @@
     "t3_t4_blocked": false,
     "no_t2_recalibration_from_t3": true,
     "t4_blocked": false,
-    "no_t3_recalibration_from_t4": true
+    "no_t3_recalibration_from_t4": true,
+    "no_t4_recalibration_without_explicit_human_reopen": true,
+    "adaptive_chain_closed": true,
+    "no_t5": true
   }
 }
