@@ -1,10 +1,11 @@
 {
   "schema_version": "arc1-balance-empirical-anchors-v0.1",
-  "status": "PARTIAL_EMPIRICAL_MODEL_AWAITING_HUMAN_RATIFICATION",
+  "status": "PARTIAL_EMPIRICAL_MODEL_4_OF_5_LIANQI_I_READY",
   "generated_from": {
     "rata_t0": "RATA_T0_HEAVY / trial 4254",
     "directed_zip_sha256": "858bc4ef969c76863813e2c6bb227c19c8fdfe2bc21dc95a285980ce7a2b06d5",
-    "mono": "QI_DRAIN identity anchor trial 1068; local survival refinement pending"
+    "mono": "QI_DRAIN identity anchor trial 1068; local survival refinement pending",
+    "human_ratification": "Avispa 872 / Serpiente 1484 / Lobo 1425 ratified in chat on 2026-10-01"
   },
   "anchors": {
     "rata_qi": {
@@ -33,7 +34,7 @@
       ]
     },
     "avispa_jade": {
-      "canonical_status": "AWAITING_HUMAN_RATIFICATION",
+      "canonical_status": "READY",
       "trial": 872,
       "role": "NORMAL",
       "mechanic_family": [
@@ -63,10 +64,11 @@
         "short DOT can carry most damage without high base damage",
         "moderate evasion is enough; EVA55 candidates over-expanded survival",
         "technique must occur often enough to preserve poison identity"
-      ]
+      ],
+      "human_ratified_on": "2026-10-01"
     },
     "serpiente_qi": {
-      "canonical_status": "AWAITING_HUMAN_RATIFICATION",
+      "canonical_status": "READY",
       "trial": 1484,
       "role": "NORMAL",
       "mechanic_family": [
@@ -95,10 +97,11 @@
         "sustained DOT identity can dominate damage without high DEF/EVA",
         "high poison magnitude plus extra survival causes strong root polarization",
         "duration and cadence matter more than brute direct damage"
-      ]
+      ],
+      "human_ratified_on": "2026-10-01"
     },
     "lobo_espiritual": {
-      "canonical_status": "AWAITING_HUMAN_RATIFICATION",
+      "canonical_status": "READY",
       "trial": 1425,
       "role": "APEX_BRIDGE",
       "mechanic_family": [
@@ -125,7 +128,8 @@
         "APEX_BRIDGE needs a distinct danger envelope above NORMAL without approaching near-certain death",
         "direct threat can be expressed with low DEF/EVA and higher HP/damage",
         "root sensitivity can be acceptable when equipment sensitivity remains small and identity calls for a dangerous encounter"
-      ]
+      ],
+      "human_ratified_on": "2026-10-01"
     },
     "mono_pildoras": {
       "canonical_status": "LOCAL_REFINEMENT_PENDING",
