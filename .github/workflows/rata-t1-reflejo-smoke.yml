@@ -15,13 +15,19 @@ permissions:
 jobs:
   smoke:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Rata T1 compact smoke
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Original forced-magnitude smoke
         working-directory: experimentos/balance_nuevo/rata_t1_reflejo_lab
         run: |
           rm -rf ci_rata_t1_smoke
@@ -34,5 +40,34 @@ jobs:
           assert s["canonical_t1_selected"] is False
           assert s["t2_t4_executed"] is False
           assert s["high_precision_configs"]>=1
-          print("PASS: Rata T1 Reflejo smoke complete")
+          print("PASS: forced-magnitude lab still reproducible")
+          PY
+
+      - name: Parity with original Monster Combat AI JS kernel
+        working-directory: experimentos/balance_nuevo/rata_t1_reflejo_lab
+        run: |
+          python decision_kernel_mirror.py --parity-out /tmp/rata_t1_python_parity.json
+          git fetch origin experiment/monster-adaptive-survival-lab-v0.1
+          rm -rf /tmp/grulla-adaptive
+          git worktree add --detach /tmp/grulla-adaptive FETCH_HEAD
+          node decision_kernel_js_reference.mjs /tmp/rata_t1_python_parity.json /tmp/grulla-adaptive
+
+      - name: Decision-aware compact smoke
+        working-directory: experimentos/balance_nuevo/rata_t1_reflejo_lab
+        run: |
+          rm -rf ci_rata_t1_decision
+          python rata_t1_decision_aware.py --preset smoke --outdir ci_rata_t1_decision
+          test -f ci_rata_t1_decision/RESULTADOS_RATA_T1_DECISION_AWARE.zip
+          python - <<'PY'
+          import gzip,json
+          s=json.load(open("ci_rata_t1_decision/SUMMARY.json",encoding="utf-8"))
+          assert s["experiment"]=="RATA_T1_DECISION_AWARE_V01"
+          assert s["selector"]["profile"]=="REACTIVO_1"
+          assert s["canonical_t1_selected"] is False
+          assert s["t2_t4_executed"] is False
+          with gzip.open("ci_rata_t1_decision/decision_aware_results.json.gz","rt",encoding="utf-8") as f:
+              rows=json.load(f)
+          assert len(rows)==9
+          assert all(0 <= r["aggregate"]["survival_choice_rate_per_decision"] <= 1 for r in rows)
+          print("PASS: decision-aware Rata T1 smoke complete")
           PY
