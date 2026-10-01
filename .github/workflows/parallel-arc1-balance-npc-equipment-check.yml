@@ -243,6 +243,60 @@ jobs:
           print("PASS: Rata T3 counter uses causal Reflejo misses; T4 stays blocked")
           PY
 
+      - name: Rata T3 directed trigger study
+        if: contains(github.event.head_commit.message, '[T3_DIRECTED]')
+        working-directory: experimentos/balance_nuevo/rata_adaptive_tiers_v0.1
+        run: |
+          rm -rf ci_rata_t3_directed
+          python rata_t3_counter_lab.py --preset directed --outdir ci_rata_t3_directed --namespace CI_T3_DIRECTED
+          python - <<'PY'
+          import gzip,json
+          with gzip.open("ci_rata_t3_directed/frozen_t2_baseline.json.gz","rt",encoding="utf-8") as f:
+              baseline=json.load(f)
+          with gzip.open("ci_rata_t3_directed/t3_results.json.gz","rt",encoding="utf-8") as f:
+              rows=json.load(f)
+          out={
+              "baseline":{
+                  "normal_win":baseline["natural_normal"]["win_rate"],
+                  "normal_hp":baseline["natural_normal"]["hp_final_pct_mean"],
+                  "mutant_win":baseline["mutant_conditional"]["win_rate"],
+                  "mutant_hp":baseline["mutant_conditional"]["hp_final_pct_mean"],
+              },
+              "candidates":[]
+          }
+          for r in rows:
+              n=r["result"]["natural_normal"]
+              m=r["result"]["mutant_conditional"]
+              out["candidates"].append({
+                  "label":r["candidate"]["label"],
+                  "normal":{
+                      "win":n["win_rate"],
+                      "hp":n["hp_final_pct_mean"],
+                      "counter_per_fight":n["t3"]["counter_activation_per_fight"],
+                      "counter_damage":n["t3"]["counter_damage_per_fight"],
+                      "false_counter_rate":n["t3"]["false_counter_rate"],
+                      "confirmed_at_miss":n["t3"]["prediction_confirmed_rate_at_recognition_miss"],
+                      "multi_counter_fight_rate":n["t3"]["multi_counter_fight_rate"],
+                      "max_counters":n["t3"]["max_counters_in_one_fight"],
+                      "degenerate_loops":n["t3"]["degenerate_counter_loop_count"],
+                  },
+                  "mutant":{
+                      "win":m["win_rate"],
+                      "hp":m["hp_final_pct_mean"],
+                      "counter_per_fight":m["t3"]["counter_activation_per_fight"],
+                      "counter_damage":m["t3"]["counter_damage_per_fight"],
+                      "false_counter_rate":m["t3"]["false_counter_rate"],
+                      "confirmed_at_miss":m["t3"]["prediction_confirmed_rate_at_recognition_miss"],
+                      "multi_counter_fight_rate":m["t3"]["multi_counter_fight_rate"],
+                      "max_counters":m["t3"]["max_counters_in_one_fight"],
+                      "degenerate_loops":m["t3"]["degenerate_counter_loop_count"],
+                  },
+                  "delta_normal":r["delta_vs_frozen_t2"]["natural_normal"],
+                  "delta_mutant":r["delta_vs_frozen_t2"]["mutant_conditional"],
+              })
+          print("T3_DIRECTED_RESULT="+json.dumps(out,sort_keys=True))
+          PY
+
       - name: Confirm Rata T4 remains blocked
         run: |
           grep -q "T3_CALIBRATION_OPEN / T4 STRUCTURE_ONLY / NO T4 NUMERIC CALIBRATION" experimentos/balance_nuevo/parallel_arc1_pipeline/RATA_T2_T4_STRUCTURAL_AUDIT.md
