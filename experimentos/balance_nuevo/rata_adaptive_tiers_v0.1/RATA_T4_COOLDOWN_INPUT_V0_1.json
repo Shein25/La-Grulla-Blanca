@@ -1,0 +1,52 @@
+{
+  "schema_version": "rata-t4-mordisco-cooldown-input-v0.1",
+  "status": "LAB_INPUT_NOT_CANON",
+  "species_id": "rata_qi",
+  "prerequisite": "T4_PHASE_B_INDEPENDENT_PRECISION_CRIT_PROVISIONAL",
+  "frozen_mechanics": {
+    "opening_instance_basic": true,
+    "followup_hit_count": 1,
+    "followup_scalar_per_hit": 0.5,
+    "followup_dice": "2d4",
+    "precision_rule": "INDEPENDENT_PER_HIT",
+    "critical_rule": "INDEPENDENT_PER_HIT",
+    "activation_rule": "REPLACE_BASIC_WHEN_READY"
+  },
+  "candidates": [
+    {
+      "label": "CD3",
+      "cooldown_rounds": 3
+    },
+    {
+      "label": "CD5",
+      "cooldown_rounds": 5
+    },
+    {
+      "label": "CD7",
+      "cooldown_rounds": 7
+    }
+  ],
+  "required_metrics": [
+    "uses_per_fight",
+    "multi_use_fight_rate",
+    "max_uses_one_fight",
+    "damage_per_fight",
+    "player_hp_pressure_delta_vs_T3",
+    "win_rate_delta_vs_T3",
+    "survival_choices_delta",
+    "t3_counter_delta",
+    "policy_spread",
+    "normal_vs_mutant_split"
+  ],
+  "guards": {
+    "t1_t3_frozen": true,
+    "geometry_frozen": true,
+    "precision_crit_frozen": true,
+    "no_other_axis_changes": true,
+    "no_qi_drain": true,
+    "no_dot": true,
+    "no_control": true,
+    "no_canonical_write": true,
+    "no_tier_above_t4": true
+  }
+}
