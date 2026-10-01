@@ -31,6 +31,7 @@ from player_policy_veteran import (
 from telemetry import fight_once_observed
 
 RUNTIME_QI_SENTINEL="UNRESOLVED_QI_NAN_SENTINEL"
+BASIC_PROXY_SENTINEL_COST=10**9
 
 
 def _lab_profile(candidate: T0LabCandidate, canonical_profile: dict) -> dict:
@@ -94,7 +95,10 @@ def _stage1_runtime(
             "root":root,
             "role":"BASIC_PROXY",
             "targeting":"UNITARGET",
-            "qi_cost":0,
+            # No se paga: el runner intercepta el proxy. El coste sentinel alto
+            # evita contaminar los cálculos del motor que buscan el mínimo coste
+            # ofensivo para detectar agotamiento real de Qi.
+            "qi_cost":BASIC_PROXY_SENTINEL_COST,
         }
         return compiled
 
