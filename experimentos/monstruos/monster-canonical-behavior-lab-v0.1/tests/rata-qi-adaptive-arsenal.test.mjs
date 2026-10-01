@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {
   RATA_QI_ADAPTIVE_ARSENAL_STATUS,
+  RATA_QI_T4_PARAMS_STATUS,
   RATA_QI_T4_ABILITY,
   RATA_QI_ADAPTIVE_PROGRESSION,
   rataQiAdaptiveAbilityIds
@@ -9,21 +10,22 @@ import {
 let pass=0,fail=0;
 const T=(name,fn)=>{try{fn();pass++;console.log('PASS',name)}catch(e){fail++;console.error('FAIL',name);console.error(e.stack||e)}};
 
-T('status is explicitly experimental and non-canonical',()=>{
-  assert.equal(RATA_QI_ADAPTIVE_ARSENAL_STATUS,'EXPERIMENTAL_NON_CANONICAL_RATA_QI_ADAPTIVE_ARSENAL_V01');
+T('Rata T4 is new-engine identity with numeric calibration pending',()=>{
+  assert.equal(RATA_QI_ADAPTIVE_ARSENAL_STATUS,'EXPERIMENTAL_NEW_ENGINE_PENDING_NUMERIC_CALIBRATION_V02');
+  assert.equal(RATA_QI_T4_PARAMS_STATUS,'PENDING_T0_T4_REBALANCE');
 });
 
-T('Mordisco Frenético is T4 only and keeps physical rat identity',()=>{
+T('Mordisco Frenético keeps identity but no pre-T0 combat numbers',()=>{
   assert.equal(RATA_QI_T4_ABILITY.unlockTier,4);
   assert.equal(RATA_QI_T4_ABILITY.name,'Mordisco Frenético');
-  assert.equal(RATA_QI_T4_ABILITY.effect.kind,'MULTI_HIT_BASIC_SCALAR');
-  assert.equal(RATA_QI_T4_ABILITY.effect.hits,2);
-  assert.equal(RATA_QI_T4_ABILITY.effect.damageScalarPerHit,0.75);
-  assert.equal(RATA_QI_T4_ABILITY.effect.ignoresDefense,false);
-  assert.equal(RATA_QI_T4_ABILITY.effect.ignoresAbsorption,false);
-  assert.equal(RATA_QI_T4_ABILITY.effect.qiDrain,0);
-  assert.equal(RATA_QI_T4_ABILITY.effect.dot,null);
-  assert.equal(RATA_QI_T4_ABILITY.effect.control,null);
+  assert.deepEqual(
+    RATA_QI_T4_ABILITY.effect,
+    {kind:'MULTI_HIT_BASIC_SCALAR',paramsStatus:'PENDING_T0_T4_REBALANCE'}
+  );
+  for(const forbidden of [
+    'hits','damageScalarPerHit','independentHitRolls','defenseAppliedPerHit',
+    'absorptionAppliedPerHit','ignoresDefense','ignoresAbsorption','qiDrain','dot','control'
+  ])assert.equal(Object.hasOwn(RATA_QI_T4_ABILITY.effect,forbidden),false,forbidden);
 });
 
 T('T4 ability is reversible with adaptive tier decay',()=>{
@@ -34,9 +36,11 @@ T('T4 ability is reversible with adaptive tier decay',()=>{
   assert.deepEqual(rataQiAdaptiveAbilityIds(4),['rata_qi__mordisco_frenetico_t4','rata_qi__survival_1']);
 });
 
-T('T2 and T3 active abilities remain explicit pending work',()=>{
+T('T1-T4 notes keep pending numeric work explicit',()=>{
+  assert.ok(RATA_QI_ADAPTIVE_PROGRESSION.T1.note.includes('pendientes'));
   assert.ok(RATA_QI_ADAPTIVE_PROGRESSION.T2.note.includes('PENDIENTE'));
   assert.ok(RATA_QI_ADAPTIVE_PROGRESSION.T3.note.includes('PENDIENTE'));
+  assert.ok(RATA_QI_ADAPTIVE_PROGRESSION.T4.note.includes('PENDIENTES'));
 });
 
 console.log(`\nPASS: ${pass}`);
