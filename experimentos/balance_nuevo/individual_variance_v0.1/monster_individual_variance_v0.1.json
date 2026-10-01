@@ -32,7 +32,7 @@
       "5": 0.8035,
       "6": 0.7794
     },
-    "xp_multiplier": 1,
+    "xp_multiplier": 1.5,
     "unique_drop_probability_multiplier": 1
   },
   "fixed_fields": [
@@ -163,6 +163,7 @@
     "mutant_incidence_below_one_percent": true,
     "mutant_loot_multiplier_exactly_1_5": true,
     "no_adaptive_tier_grant_from_mutant": true,
-    "no_automatic_runtime_activation": true
+    "no_automatic_runtime_activation": true,
+    "mutant_xp_multiplier_exactly_1_5": true
   }
 }
