@@ -37,6 +37,30 @@ jobs:
           python mono_qi_drain_ablation.py --preset smoke --outdir ci_mono
           test -f ci_mono/RESULTADOS_MONO_QI_DRAIN_ABLATION.zip
 
+      - name: Mono local T0 refinement smoke
+        working-directory: experimentos/balance_nuevo/parallel_arc1_pipeline
+        run: |
+          rm -rf ci_mono_refinement
+          python mono_t0_local_refinement.py --preset smoke --outdir ci_mono_refinement
+          test -f ci_mono_refinement/RESULTADOS_MONO_T0_LOCAL_REFINEMENT.zip
+          python - <<'PY'
+          import gzip,json
+          s=json.load(open("ci_mono_refinement/SUMMARY.json",encoding="utf-8"))
+          assert s["experiment"]=="MONO_T0_LOCAL_REFINEMENT_V01"
+          assert s["grid_size"]==48
+          assert s["automatic_selection"] is False
+          assert s["canonical_write"] is False
+          with gzip.open("ci_mono_refinement/search_grid.json.gz","rt",encoding="utf-8") as f:
+              rows=json.load(f)
+          assert len(rows)==48
+          for r in rows:
+              p=r["params"]
+              assert p["qi_drain"]==5 and p["technique_cadence"]==2
+              assert p["basic_damage"]=="1d2+3"
+              assert p["technique_direct_damage"]=="1d2+3"
+          print("PASS: Mono local refinement explores survival only")
+          PY
+
       - name: Validate extrapolation matrix
         working-directory: experimentos/balance_nuevo/parallel_arc1_pipeline
         run: |
