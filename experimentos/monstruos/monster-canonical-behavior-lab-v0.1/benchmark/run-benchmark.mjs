@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import {runMonsterBenchmark} from './core.mjs';
 
-const data=JSON.parse(fs.readFileSync(new URL('../canonical/MOBS_ver74.snapshot.json',import.meta.url),'utf8'));
+const data=JSON.parse(fs.readFileSync(new URL('../canonical/monsters.json',import.meta.url),'utf8'));
 const args=process.argv.slice(2);
 const opt={tier:'smoke',runs:null,seed:1337,mob:'all',out:null};
 for(let i=0;i<args.length;i++){
@@ -16,7 +16,7 @@ for(let i=0;i<args.length;i++){
     process.exit(0);
   }else throw new Error(`argumento desconocido: ${a}`);
 }
-const result=runMonsterBenchmark(data.mobs,opt);
+const result=runMonsterBenchmark(data.profiles,opt);
 const json=JSON.stringify(result,null,2);
 if(opt.out){fs.writeFileSync(opt.out,json+'\n','utf8');console.log('WROTE '+opt.out);}
 console.log(json);
