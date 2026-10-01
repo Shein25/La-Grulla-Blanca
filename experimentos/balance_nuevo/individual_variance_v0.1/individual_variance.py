@@ -20,6 +20,9 @@ def discrete_ladder(ladder,q):
     return ladder[idx]
 
 def _axis_count(spec):
+    for k in CONFIG["variable_stats"]:
+        if spec["upper_envelope"][k] < spec["base"][k]:
+            raise AssertionError(f"{k}: upper envelope below T0 floor")
     n=sum(1 for k in CONFIG["variable_stats"] if spec["base"][k]!=spec["upper_envelope"][k])
     n+=sum(1 for a in spec["attacks"].values() if len(a["ladder"])>1)
     return n
@@ -105,6 +108,9 @@ def selfcheck(samples=50000):
     assert len(CONFIG["species"]["mono_pildoras"]["attacks"]["basic_damage"]["ladder"])>1
     assert len(CONFIG["species"]["mono_pildoras"]["attacks"]["technique_direct_damage"]["ladder"])>1
     assert CONFIG["species"]["mono_pildoras"]["fixed_technique"]["qi_drain"]==5
+    for sid,spec in CONFIG["species"].items():
+        for key in CONFIG["variable_stats"]:
+            assert spec["upper_envelope"][key] >= spec["base"][key],(sid,key)
 
     print("PASS: defensive and offensive individual variance stays inside measured envelopes")
     print("PASS: Mutante incidence <1%; loot and XP multipliers are exactly 1.5")
