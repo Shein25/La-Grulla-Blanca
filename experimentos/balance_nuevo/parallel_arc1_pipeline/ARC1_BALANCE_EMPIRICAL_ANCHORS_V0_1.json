@@ -1,0 +1,168 @@
+{
+  "schema_version": "arc1-balance-empirical-anchors-v0.1",
+  "status": "PARTIAL_EMPIRICAL_MODEL_AWAITING_HUMAN_RATIFICATION",
+  "generated_from": {
+    "rata_t0": "RATA_T0_HEAVY / trial 4254",
+    "directed_zip_sha256": "858bc4ef969c76863813e2c6bb227c19c8fdfe2bc21dc95a285980ce7a2b06d5",
+    "mono": "QI_DRAIN identity anchor trial 1068; local survival refinement pending"
+  },
+  "anchors": {
+    "rata_qi": {
+      "canonical_status": "READY",
+      "trial": 4254,
+      "role": "NORMAL",
+      "mechanic_family": [
+        "BASIC_DIRECT"
+      ],
+      "stats": {
+        "hp": 21,
+        "defense": 0,
+        "evasion": 0,
+        "precision": 80,
+        "tenacity": 0,
+        "control": 0,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": "2d4"
+      },
+      "technique": null,
+      "empirical_lessons": [
+        "lowest supernatural threat can be expressed without artificial DEF/EVA/TEN",
+        "HP plus moderate basic damage is enough for a short readable encounter",
+        "loadout sensitivity should remain small at entry"
+      ]
+    },
+    "avispa_jade": {
+      "canonical_status": "AWAITING_HUMAN_RATIFICATION",
+      "trial": 872,
+      "role": "NORMAL",
+      "mechanic_family": [
+        "EVASION",
+        "POISON_DOT_SHORT"
+      ],
+      "stats": {
+        "hp": 17,
+        "defense": 0,
+        "evasion": 22,
+        "precision": 90,
+        "tenacity": 7,
+        "control": 0,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": "1d2+1"
+      },
+      "technique": {
+        "name": "Picadura de Esmeralda",
+        "cadence": 2,
+        "poison": {
+          "damage": "1d3+2",
+          "ticks": 2
+        }
+      },
+      "empirical_lessons": [
+        "short DOT can carry most damage without high base damage",
+        "moderate evasion is enough; EVA55 candidates over-expanded survival",
+        "technique must occur often enough to preserve poison identity"
+      ]
+    },
+    "serpiente_qi": {
+      "canonical_status": "AWAITING_HUMAN_RATIFICATION",
+      "trial": 1484,
+      "role": "NORMAL",
+      "mechanic_family": [
+        "POISON_DOT_SUSTAINED"
+      ],
+      "stats": {
+        "hp": 27,
+        "defense": 0,
+        "evasion": 5,
+        "precision": 86,
+        "tenacity": 5,
+        "control": 0,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": "1d2+2"
+      },
+      "technique": {
+        "name": "Colmillos Venenosos",
+        "cadence": 2,
+        "poison": {
+          "damage": "1d2+2",
+          "ticks": 3
+        }
+      },
+      "empirical_lessons": [
+        "sustained DOT identity can dominate damage without high DEF/EVA",
+        "high poison magnitude plus extra survival causes strong root polarization",
+        "duration and cadence matter more than brute direct damage"
+      ]
+    },
+    "lobo_espiritual": {
+      "canonical_status": "AWAITING_HUMAN_RATIFICATION",
+      "trial": 1425,
+      "role": "APEX_BRIDGE",
+      "mechanic_family": [
+        "DIRECT_DAMAGE",
+        "PREDATOR"
+      ],
+      "stats": {
+        "hp": 41,
+        "defense": 1,
+        "evasion": 12,
+        "precision": 97,
+        "tenacity": 20,
+        "control": 0,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": "2d4+2"
+      },
+      "technique": {
+        "name": "Emboscada de las Tres Colas",
+        "cadence": 5,
+        "direct_damage": "2d6+1"
+      },
+      "empirical_lessons": [
+        "APEX_BRIDGE needs a distinct danger envelope above NORMAL without approaching near-certain death",
+        "direct threat can be expressed with low DEF/EVA and higher HP/damage",
+        "root sensitivity can be acceptable when equipment sensitivity remains small and identity calls for a dangerous encounter"
+      ]
+    },
+    "mono_pildoras": {
+      "canonical_status": "LOCAL_REFINEMENT_PENDING",
+      "identity_anchor_trial": 1068,
+      "role": "SKIRMISHER",
+      "mechanic_family": [
+        "DIRECT_DAMAGE",
+        "QI_DRAIN"
+      ],
+      "fixed_identity": {
+        "precision": 91,
+        "tenacity": 12,
+        "basic_damage": "1d2+3",
+        "technique_direct_damage": "1d2+3",
+        "qi_drain": 5,
+        "technique_cadence": 2
+      },
+      "empirical_lessons": [
+        "QI_DRAIN must be measured causally against an identical no-drain arm",
+        "final Qi alone understates resource denial because players stop spending Qi",
+        "forced-basic delta is a direct behavioral metric of resource denial",
+        "survival must be tuned separately so QI_DRAIN, not tankiness, explains identity"
+      ]
+    }
+  },
+  "extrapolation_contract": {
+    "allowed": [
+      "use role/mechanic anchors to narrow search ranges",
+      "reuse causal metrics and telemetry",
+      "reuse cadence and survival lessons as priors",
+      "validate against the player/equipment of the target native stage"
+    ],
+    "forbidden": [
+      "copy final numeric stats between species",
+      "multiply LianQi-I numbers by a global stage scalar",
+      "auto-promote a derived candidate",
+      "replace novel mechanic testing with an unrelated anchor"
+    ]
+  }
+}
