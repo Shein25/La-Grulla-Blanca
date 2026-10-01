@@ -20,7 +20,7 @@ La adaptación no usa future-read.
 
 ## 1. Técnicas relevantes al cierre de LianQi
 
-En ver74, las herramientas Mortales relevantes para el examen del Arco 1 pertenecen a estas familias:
+En el contrato nuevo, las herramientas relevantes para el examen del Arco 1 pertenecen a estas familias:
 
 - `palma` — ofensiva;
 - `filo` — ofensiva;
@@ -335,4 +335,4 @@ Implementado en laboratorio:
 - announcement/telegraph exportable;
 - contrato declarativo para todas las intenciones de la Grulla.
 
-Todavía falta conectar esto al executor real de ver74 y simular las tres fases completas con builds reales de LianQi IV.
+La ejecución numérica queda pendiente del resolver nuevo. El cerebro y los counters no autorizan cifras de combate por sí mismos.
