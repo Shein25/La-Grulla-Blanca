@@ -4,8 +4,8 @@ LAB ONLY. No toca runtime/HTML.
 
 Objetivo:
 - interpretar las 15 técnicas y sus ramas desde techniques_arc1_catalog.json;
-- aplicar raíces, progresión, equipo y monstruos traducidos al contrato nuevo;
-- resolver T0/T1 (y dejar stats T2-T4 legibles) con CADENCE_COMPAT;
+- aplicar raíces, progresión, equipo y perfiles de monstruo del contrato nuevo;
+- resolver T0 con CADENCE_COMPAT; T1-T4 se conectan sólo después de cerrar T0;
 - producir métricas reproducibles para el screen masivo posterior.
 
 No declara números nuevos como CANON. Los dos umbrales que el laboratorio de IA
@@ -26,7 +26,7 @@ import statistics
 
 HERE = Path(__file__).resolve().parent
 TECHNIQUE_CATALOG_PATH = HERE / "techniques_arc1_catalog.json"
-MONSTER_CATALOG_PATH = HERE / "monster_arc1_new_contract_lab.json"
+MONSTER_CATALOG_PATH = HERE / "monster_arc1_registry.json"
 EQUIPMENT_CATALOG_PATH = HERE / "equipment_arc1_catalog.json"
 
 STAGES = {
@@ -516,10 +516,35 @@ def build_player(stage: str, root: str, item_ids: Sequence[str], equipment_catal
     return a,{"equipment_stats":stats,"equipment_effects":effects}
 
 
+def _require_monster_ready(profile: dict, tier: str) -> None:
+    if tier != "T0":
+        raise ValueError("T1-T4 requieren la capa adaptativa recalibrada sobre un T0 READY")
+    if profile.get("engine_contract") != "NEW_COMBAT_STATS_V0_1":
+        raise ValueError("perfil de monstruo fuera del contrato NEW_COMBAT_STATS_V0_1")
+    if profile.get("stats_status") != "READY":
+        raise ValueError(f"{profile.get('id','?')}: T0 stats are not READY")
+    stats = profile.get("stats") or {}
+    required = ("hp","qi_max","precision","evasion","defense","tenacity","control","crit_chance","crit_damage","basic_damage")
+    missing = [key for key in required if stats.get(key) is None]
+    if missing:
+        raise ValueError(f"{profile.get('id','?')}: stats pendientes: {', '.join(missing)}")
+    tech = profile.get("technique")
+    if tech and tech.get("params_status") != "READY":
+        raise ValueError(f"{profile.get('id','?')}: technique params are not READY")
+
+
 def build_monster(profile: dict, tier: str) -> Actor:
-    n=profile["new_contract_lab"]; ad=profile["adaptive_c_staggered"][tier]
-    hp=float(n["hp"])*float(ad["hp_mult"])
-    return Actor(hp_max=hp,hp=hp,precision=float(n["precision"])+float(ad.get("precision_bonus",0)),evasion=float(n["evasion"])+float(ad.get("evasion_bonus",0)),defense=float(n["defense"]),tenacity=float(n["tenacity"]),control=float(n.get("control",0)),crit_chance=float(ad.get("crit_chance",n.get("crit_chance",5))),crit_damage=float(n.get("crit_damage",1.5)))
+    _require_monster_ready(profile, tier)
+    s=profile["stats"]
+    hp=float(s["hp"])
+    qi=float(s.get("qi_max",0))
+    return Actor(
+        hp_max=hp,hp=hp,qi_max=qi,qi=qi,
+        precision=float(s["precision"]),evasion=float(s["evasion"]),
+        defense=float(s["defense"]),tenacity=float(s["tenacity"]),
+        control=float(s["control"]),crit_chance=float(s["crit_chance"]),
+        crit_damage=float(s["crit_damage"])
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -695,8 +720,7 @@ def resolve_monster_direct(state: FightState, rng: random.Random, dice: str) -> 
             state.player_next_wind={"precision":ds["response_precision"],"crit_pp":ds["response_crit_pp"]};ds["response_created"]=True;met.defense_procs+=1
         return {"hit":False,"actual_hp_damage":0}
     met.monster_hits+=1
-    mult=float(state.monster_profile["adaptive_c_staggered"][state.tier]["damage_mult"])
-    dmg=roll_dice(rng,dice)*mult
+    dmg=roll_dice(rng,dice)
     crit=rng.random()<m.crit_chance/100
     if crit:met.monster_crits+=1;dmg*=m.crit_damage
     target_def=_player_dynamic_defense(state); after_decimal=max(0,dmg-target_def);after=round_half_up(after_decimal)
@@ -828,59 +852,56 @@ def choose_player_action(state: FightState, policy: str) -> str:
 
 
 # ---------------------------------------------------------------------------
-# Monster T0/T1 behavior
+# Monster T0 behavior
 # ---------------------------------------------------------------------------
 
-def _survival_choice(state: FightState, rng: random.Random) -> bool:
-    if state.tier!="T1" or state.monster_survival_cd>0:return False
-    policy=state.monster_profile["ai"].get("survival_t1")
-    if not policy:return False
-    b=state.signal_bridge;m=state.monster;p=state.player
-    low=m.hp/m.hp_max<=b.low_hp_ratio
-    heavy=state.last_player_hp_damage_to_monster>=b.heavy_hit_ratio*m.hp_max
-    player_low=p.hp/p.hp_max<=b.low_hp_ratio
-    if not low:return False
-    cog=PROFILE_NEXT.get(state.monster_profile["ai"].get("cognition","INSTINTIVO"),"REACTIVO_1");par=PROFILE_PARAMS[cog];pref=OFFENSE_PREFS.get(state.monster_profile["monster_id"],1.0);mod=(pref-1)*20
-    recent=list(state.monster_recent_actions)
-    basic_id="BASIC";surv_id="SURVIVAL"
-    bscore=40+mod+(5 if player_low else 0)-recent.count(basic_id)*par["repetition"]+(rng.random()*2-1)*par["jitter"]
-    sscore=18+mod+22+(10 if heavy else 0)+(3 if player_low else 0)-recent.count(surv_id)*par["repetition"]+(rng.random()*2-1)*par["jitter"]
-    return sscore>=bscore
-
-
-def _activate_monster_survival(state: FightState) -> None:
-    p=dict(state.monster_profile["ai"]["survival_t1"]);kind=p["kind"]
-    if kind=="ABSORB_RESERVE": state.monster.absorption=float(p["reserve"]);state.monster.absorption_max=float(p["reserve"])
-    state.monster_survival=p;state.monster_survival_cd=2;state.metrics.adaptation_procs+=1;state.metrics.defense_procs+=1;state.monster_recent_actions.append("SURVIVAL")
-
-
 def execute_monster_turn(state: FightState, rng: random.Random) -> None:
-    m=state.monster_profile["new_contract_lab"];tech=m.get("technique");r=state.round_no
+    profile=state.monster_profile
+    stats=profile["stats"]
+    tech=profile.get("technique")
+    params=(tech or {}).get("params") or {}
+    r=state.round_no
     if state.monster.skip_next_action:
-        state.monster.skip_next_action=False;return
-    due=bool(tech and r%int(tech["cada"])==0)
-    if not due and _survival_choice(state,rng):_activate_monster_survival(state);return
-    # CADENCE_COMPAT: due technique is mandatory; otherwise basic.
+        state.monster.skip_next_action=False
+        return
+
+    due=bool(tech and r % int(params["cadence"]) == 0)
     if due:
         connected=True
-        if tech.get("daño"):
-            rr=resolve_monster_direct(state,rng,tech["daño"]);connected=rr["hit"]
+        direct=params.get("direct_damage")
+        if direct:
+            rr=resolve_monster_direct(state,rng,direct)
+            connected=rr["hit"]
         else:
-            state.metrics.monster_attempts+=1;connected=rng.random()<clamp(state.monster.effective("precision")- _player_dynamic_evasion(state),5,100)/100
-            if connected:state.metrics.monster_hits+=1
-            else:state.metrics.player_evades+=1
+            state.metrics.monster_attempts+=1
+            precision=state.monster.effective("precision")+float(params.get("precision_mod",0))
+            connected=rng.random()<clamp(precision-_player_dynamic_evasion(state),5,100)/100
+            if connected: state.metrics.monster_hits+=1
+            else: state.metrics.player_evades+=1
+
         if connected and state.player.alive():
-            mult=float(state.monster_profile["adaptive_c_staggered"][state.tier]["damage_mult"])
-            dot=tech.get("veneno") or tech.get("quemadura")
-            if dot:state.player.dots.append({"family":"MONSTER_DOT","source":state.monster_profile["monster_id"],"dice":dot["daño"],"mult":mult,"ticks_left":int(dot["turnos"])})
-            if tech.get("drenaQi"):
-                amt=min(state.player.qi,float(tech["drenaQi"]));state.player.qi-=amt;state.metrics.qi_drained+=amt
+            dot=params.get("poison") or params.get("burn")
+            if dot:
+                state.player.dots.append({
+                    "family":"MONSTER_DOT",
+                    "source":profile["id"],
+                    "dice":dot["damage"],
+                    "mult":1.0,
+                    "ticks_left":int(dot["ticks"])
+                })
+            qi_drain=float(params.get("qi_drain",0))
+            if qi_drain>0:
+                amt=min(state.player.qi,qi_drain)
+                state.player.qi-=amt
+                state.metrics.qi_drained+=amt
         state.monster_recent_actions.append("TECHNIQUE")
     else:
-        resolve_monster_direct(state,rng,m["damage"]);state.monster_recent_actions.append("BASIC")
-    # Completing a normal action releases Arrastre anti-lock and its precision debuff.
+        resolve_monster_direct(state,rng,stats["basic_damage"])
+        state.monster_recent_actions.append("BASIC")
+
     if state.arrastre_locked:
-        state.arrastre_locked=False;state.arrastre_precision_debuff=0.0
+        state.arrastre_locked=False
+        state.arrastre_precision_debuff=0.0
 
 
 # ---------------------------------------------------------------------------
@@ -955,7 +976,7 @@ def fight_once(*,stage: str,root: str,item_ids: Sequence[str],paths: Mapping[str
         "win":win,"timeout":state.round_no>=max_rounds and player.alive() and monster.alive(),"rounds":state.round_no,
         "player_hp_final":max(0.0,player.hp),"player_hp_final_pct":max(0.0,player.hp)/player.hp_max,
         "player_qi_final":max(0.0,player.qi),"player_qi_spent":state.metrics.qi_spent,"monster_hp_final":max(0.0,monster.hp),"monster_hp_final_pct":max(0.0,monster.hp)/monster.hp_max,
-        "root":root,"stage":stage,"tier":tier,"monster_id":monster_profile["monster_id"],"policy":policy,
+        "root":root,"stage":stage,"tier":tier,"monster_id":monster_profile["id"],"policy":policy,
         "signal_low_hp_ratio_lab":signal_bridge.low_hp_ratio,"signal_heavy_hit_ratio_lab":signal_bridge.heavy_hit_ratio,
         "qi_exhaustion_loss":bool((not win) and state.loss_used_basic_after_qi_exhaustion),
         "damage_per_qi":((state.metrics.player_damage_direct+state.metrics.player_damage_dot)/state.metrics.qi_spent if state.metrics.qi_spent else 0.0),
