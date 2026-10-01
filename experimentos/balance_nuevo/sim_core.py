@@ -1,6 +1,6 @@
 """Motor mínimo reproducible para balance del NUEVO contrato de combate.
 
-No contiene cifras de ver74. Los valores viven en configs de laboratorio/canon.
+No contiene cifras de contenido. Los valores viven en configs explícitas de laboratorio/canon.
 Diseñado para ejecutarse localmente o en Google Colab.
 """
 from __future__ import annotations
