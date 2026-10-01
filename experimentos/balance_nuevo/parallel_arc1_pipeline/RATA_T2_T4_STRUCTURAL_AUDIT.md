@@ -1,6 +1,6 @@
 # Rata de Qi — T2–T4 structural preparation
 
-**Status:** STRUCTURE_ONLY / NO NUMERIC CALIBRATION / NO EXECUTION
+**Status:** T2_CALIBRATION_OPEN / T3-T4 STRUCTURE_ONLY / NO T3-T4 NUMERIC CALIBRATION
 
 T0 is READY (trial 4254). T1 Reflejo de Madriguera is HUMAN-RATIFIED and frozen at +40 EVA / CD5 / REACTIVO_1 / BASE signals.
 T2 calibration is now permitted. T3–T4 remain blocked until sequential closure.
