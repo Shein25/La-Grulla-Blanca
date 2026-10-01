@@ -143,14 +143,19 @@ jobs:
           assert d["semantics"]["below_t0_variance"] is False
           assert d["guards"]["no_new_species_ids"] is True
           assert d["guards"]["independent_high_rolls_allowed"] is True
+          assert d["guards"]["offensive_axes_must_vary_when_measured"] is True
+          assert d["guards"]["identity_mechanics_fixed"] is True
           assert d["guards"]["mutant_incidence_below_one_percent"] is True
           assert d["mutant"]["suffix"]=="Mutante"
           assert d["mutant"]["loot_multiplier"]==1.5
           assert d["mutant"]["xp_multiplier"]==1.5
           assert d["guards"]["mutant_xp_multiplier_exactly_1_5"] is True
           assert d["mutant"]["maximum_incidence"]==0.01
-          assert d["species"]["mono_pildoras"]["status"]=="BLOCKED_UNTIL_T0_LOCAL_REFINEMENT_READY"
-          print("PASS: independent variance allows rare Mutantes with x1.5 loot and XP")
+          assert d["species"]["mono_pildoras"]["status"]=="BLOCKED_UNTIL_T0_HUMAN_RATIFICATION"
+          assert len(d["species"]["avispa_jade"]["attacks"]["basic_damage"]["ladder"])>1
+          assert len(d["species"]["serpiente_qi"]["attacks"]["poison_damage"]["ladder"])>1
+          assert len(d["species"]["lobo_espiritual"]["attacks"]["technique_direct_damage"]["ladder"])>1
+          print("PASS: defensive + offensive variance allows rare Mutantes with x1.5 loot and XP")
           PY
 
       - name: Confirm Rata T2-T4 are structure-only
