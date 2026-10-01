@@ -297,6 +297,37 @@ jobs:
           print("T3_DIRECTED_RESULT="+json.dumps(out,sort_keys=True))
           PY
 
+      - name: Rata T3 policy generalization study
+        if: contains(github.event.head_commit.message, '[T3_POLICY]')
+        working-directory: experimentos/balance_nuevo/rata_adaptive_tiers_v0.1
+        run: |
+          rm -rf ci_rata_t3_policy
+          python rata_t3_policy_generalization.py --natural-fights 200 --mutant-fights 50 --outdir ci_rata_t3_policy --namespace CI_T3_POLICY
+          python - <<'PY'
+          import gzip,json
+          with gzip.open("ci_rata_t3_policy/policy_generalization_results.json.gz","rt",encoding="utf-8") as f:
+              rows=json.load(f)
+          out=[]
+          for r in rows:
+              n=r["t3"]["natural_normal"]["t3"]
+              m=r["t3"]["mutant_conditional"]["t3"]
+              out.append({
+                  "policy":r["policy"],
+                  "candidate":r["candidate"]["label"],
+                  "normal_counter_per_fight":n["counter_activation_per_fight"],
+                  "normal_false_counter_rate":n["false_counter_rate"],
+                  "normal_confirmed_at_miss":n["prediction_confirmed_rate_at_recognition_miss"],
+                  "normal_multi_counter_rate":n["multi_counter_fight_rate"],
+                  "mutant_counter_per_fight":m["counter_activation_per_fight"],
+                  "mutant_false_counter_rate":m["false_counter_rate"],
+                  "mutant_confirmed_at_miss":m["prediction_confirmed_rate_at_recognition_miss"],
+                  "mutant_multi_counter_rate":m["multi_counter_fight_rate"],
+                  "delta_normal":r["delta_vs_frozen_t2"]["natural_normal"],
+                  "delta_mutant":r["delta_vs_frozen_t2"]["mutant_conditional"],
+              })
+          print("T3_POLICY_RESULT="+json.dumps(out,sort_keys=True))
+          PY
+
       - name: Confirm Rata T4 remains blocked
         run: |
           grep -q "T3_CALIBRATION_OPEN / T4 STRUCTURE_ONLY / NO T4 NUMERIC CALIBRATION" experimentos/balance_nuevo/parallel_arc1_pipeline/RATA_T2_T4_STRUCTURAL_AUDIT.md
