@@ -1,16 +1,13 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {fileURLToPath} from 'node:url';
-import {dirname,resolve} from 'node:path';
 
 import {
-  MONSTER_STAGE_PROGRESSION_STATUS,STAGE_STAT_SCALING_STATUS,STAGE_STAT_SCALING,stageStatScaling,scaledNativeStats,STAGE_ROLES,STAGE_BANDS,
+  MONSTER_STAGE_PROGRESSION_STATUS,STAGE_ROLES,STAGE_BANDS,
   NATIVE_STAGE_BY_MOB,nativeStageOf,stageRelation,adaptiveCapabilityCeiling
 } from '../adaptive/stage-progression-v0.1.mjs';
 
-const here=dirname(fileURLToPath(import.meta.url));
-const snapshot=JSON.parse(readFileSync(resolve(here,'../canonical/MOBS_ver74.snapshot.json'),'utf8'));
-const combatants=Object.keys(snapshot.mobs).filter(id=>id!=='muneco_practica').sort();
+const catalog=JSON.parse(readFileSync(new URL('../canonical/monsters.json',import.meta.url),'utf8'));
+const combatants=Object.keys(catalog.profiles).sort();
 
 let pass=0,fail=0;
 const T=(name,fn)=>{try{fn();pass++;console.log('PASS',name)}catch(err){fail++;console.error('FAIL',name);console.error(err.stack||err)}};
@@ -50,14 +47,14 @@ T('player below native stage receives base-only behavior, no adaptive tier',()=>
   }
 });
 
-T('outgrowing native stage raises capability ceiling without stats',()=>{
+T('outgrowing native stage raises capability ceiling without synthesizing stats',()=>{
   const c1=adaptiveCapabilityCeiling('rata_qi',1);
   const c4=adaptiveCapabilityCeiling('rata_qi',4);
   assert.equal(c1.tier,1);
   assert.equal(c4.tier,4);
   assert.ok(c4.capabilities.includes('SECONDARY_ADAPTATION_ELIGIBLE'));
   assert.equal('hp' in c4,false);
-  assert.equal('attack' in c4,false);
+  assert.equal('precision' in c4,false);
   assert.equal('defense' in c4,false);
 });
 
@@ -66,27 +63,10 @@ T('stageRelation distinguishes native match and outgrown band',()=>{
   assert.equal(stageRelation('pez_lunar',4).relation,'PLAYER_OUTGREW_NATIVE_STAGE');
 });
 
-
-T('proportional stage scaling is 100/105/110/115 percent on HP and damage only',()=>{
-  assert.deepEqual(
-    [1,2,3,4].map(stage=>stageStatScaling(stage)),
-    [
-      {hpMultiplier:1,damageMultiplier:1,attackBonus:0,defenseBonus:0},
-      {hpMultiplier:1.05,damageMultiplier:1.05,attackBonus:0,defenseBonus:0},
-      {hpMultiplier:1.1,damageMultiplier:1.1,attackBonus:0,defenseBonus:0},
-      {hpMultiplier:1.15,damageMultiplier:1.15,attackBonus:0,defenseBonus:0}
-    ]
-  );
-  assert.equal(STAGE_STAT_SCALING_STATUS,'EXPERIMENTAL_NON_CANONICAL_HP_DAMAGE_5PCT_PER_STAGE_V01');
-});
-
-T('stage scaling never changes attack or defense breakpoints',()=>{
-  const base={hp:46,ataque:6,defensa:15};
-  const x=scaledNativeStats(base,4);
-  assert.equal(x.hp,53);
-  assert.equal(x.ataque,6);
-  assert.equal(x.defensa,15);
-  assert.equal(x.damageMultiplier,1.15);
+T('native stage progression does not contain a stat-scaling table',async()=>{
+  const source=readFileSync(new URL('../adaptive/stage-progression-v0.1.mjs',import.meta.url),'utf8');
+  assert.equal(source.includes('STAGE_STAT_SCALING'),false);
+  assert.equal(source.includes('scaledNativeStats'),false);
 });
 
 console.log(`\nPASS: ${pass}`);
