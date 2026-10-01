@@ -16,6 +16,18 @@ ARC1_MONSTER_RESOURCE_MODEL = "NONE"
 LIANQI_I_IDS = {
     "rata_qi", "avispa_jade", "serpiente_qi", "mono_pildoras", "lobo_espiritual",
 }
+RATA_T0_READY_STATS = {
+    "hp":21,
+    "qi_max":None,
+    "precision":80,
+    "evasion":0,
+    "defense":0,
+    "tenacity":0,
+    "control":0,
+    "crit_chance":5,
+    "crit_damage":1.5,
+    "basic_damage":"2d4",
+}
 
 FORBIDDEN_IMPORT_MODULES = {
     "config_lianqi1_naked",
@@ -69,6 +81,18 @@ def validate_registry_for_stage1(registry_path: str | Path) -> dict:
             raise Stage1GuardError(f"{monster_id}: id mismatch")
         if profile.get("engine_contract")!=ENGINE_CONTRACT:
             raise Stage1GuardError(f"{monster_id}: wrong contract")
+
+        if monster_id=="rata_qi":
+            if profile.get("stats_status")!="READY":
+                raise Stage1GuardError("rata_qi: selected T0 must be READY")
+            if profile.get("stats")!=RATA_T0_READY_STATS:
+                raise Stage1GuardError("rata_qi: READY stats drifted from selected trial 4254")
+            if profile.get("technique") is not None:
+                raise Stage1GuardError("rata_qi: T0 must remain technique-free")
+            if profile.get("adaptive",{}).get("status")!="READY_FOR_T1_RECALIBRATION":
+                raise Stage1GuardError("rata_qi: adaptive status must allow only T1 recalibration")
+            continue
+
         if profile.get("stats_status")!=EXPECTED_PENDING:
             raise Stage1GuardError(f"{monster_id}: T0 must remain pending")
         if profile.get("adaptive",{}).get("status")!="BLOCKED_UNTIL_T0_READY":
