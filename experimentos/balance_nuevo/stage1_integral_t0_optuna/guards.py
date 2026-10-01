@@ -28,6 +28,48 @@ RATA_T0_READY_STATS = {
     "crit_damage":1.5,
     "basic_damage":"2d4",
 }
+READY_T0_PROFILES = {
+    "rata_qi": {
+        "stats": RATA_T0_READY_STATS,
+        "technique": None,
+    },
+    "avispa_jade": {
+        "stats": {
+            "hp":17,"qi_max":None,"precision":90,"evasion":22,"defense":0,
+            "tenacity":7,"control":0,"crit_chance":5,"crit_damage":1.5,
+            "basic_damage":"1d2+1",
+        },
+        "technique": {
+            "name":"Picadura de Esmeralda","mechanics":["POISON_DOT"],
+            "params_status":"READY",
+            "params":{"cadence":2,"poison":{"damage":"1d3+2","ticks":2}},
+        },
+    },
+    "serpiente_qi": {
+        "stats": {
+            "hp":27,"qi_max":None,"precision":86,"evasion":5,"defense":0,
+            "tenacity":5,"control":0,"crit_chance":5,"crit_damage":1.5,
+            "basic_damage":"1d2+2",
+        },
+        "technique": {
+            "name":"Colmillos Venenosos","mechanics":["POISON_DOT"],
+            "params_status":"READY",
+            "params":{"cadence":2,"poison":{"damage":"1d2+2","ticks":3}},
+        },
+    },
+    "lobo_espiritual": {
+        "stats": {
+            "hp":41,"qi_max":None,"precision":97,"evasion":12,"defense":1,
+            "tenacity":20,"control":0,"crit_chance":5,"crit_damage":1.5,
+            "basic_damage":"2d4+2",
+        },
+        "technique": {
+            "name":"Emboscada de las Tres Colas","mechanics":["DIRECT_DAMAGE"],
+            "params_status":"READY",
+            "params":{"cadence":5,"direct_damage":"2d6+1"},
+        },
+    },
+}
 
 FORBIDDEN_IMPORT_MODULES = {
     "config_lianqi1_naked",
@@ -82,15 +124,16 @@ def validate_registry_for_stage1(registry_path: str | Path) -> dict:
         if profile.get("engine_contract")!=ENGINE_CONTRACT:
             raise Stage1GuardError(f"{monster_id}: wrong contract")
 
-        if monster_id=="rata_qi":
+        if monster_id in READY_T0_PROFILES:
+            expected=READY_T0_PROFILES[monster_id]
             if profile.get("stats_status")!="READY":
-                raise Stage1GuardError("rata_qi: selected T0 must be READY")
-            if profile.get("stats")!=RATA_T0_READY_STATS:
-                raise Stage1GuardError("rata_qi: READY stats drifted from selected trial 4254")
-            if profile.get("technique") is not None:
-                raise Stage1GuardError("rata_qi: T0 must remain technique-free")
+                raise Stage1GuardError(f"{monster_id}: selected T0 must be READY")
+            if profile.get("stats")!=expected["stats"]:
+                raise Stage1GuardError(f"{monster_id}: READY stats drifted from ratified T0")
+            if profile.get("technique")!=expected["technique"]:
+                raise Stage1GuardError(f"{monster_id}: READY technique drifted from ratified T0")
             if profile.get("adaptive",{}).get("status")!="READY_FOR_T1_RECALIBRATION":
-                raise Stage1GuardError("rata_qi: adaptive status must allow only T1 recalibration")
+                raise Stage1GuardError(f"{monster_id}: adaptive status must allow only T1 recalibration")
             continue
 
         if profile.get("stats_status")!=EXPECTED_PENDING:
