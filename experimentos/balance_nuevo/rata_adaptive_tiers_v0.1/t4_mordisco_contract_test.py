@@ -8,7 +8,7 @@ assert a["status"]=="T3_HUMAN_RATIFIED_T4_LAB_ALLOWED"
 assert a["t3"]["status"]=="READY_HUMAN_RATIFIED"
 assert a["t3"]["trigger"]["label"]=="CONFIRMED_PATTERN_REFLEJO_MISS"
 assert a["t3"]["damage"]["mode"]=="INSTANCE_BASIC"
-assert a["t4"]["status"]=="CALIBRATION_ALLOWED_NOT_SELECTED"
+assert a["t4"]["status"]=="FULL_CANDIDATE_AWAITING_HUMAN_RATIFICATION"
 assert a["t4"]["identity"]=="MORDISCO_FRENETICO"
 
 assert d["identity"]["source_damage"]=="canonical T0 basic 2d4"
