@@ -1,6 +1,6 @@
 {
-  "schema_version": "npc-equipment-assignments-v0.2",
-  "status": "LAB_PROPOSAL_GATED_NOT_CANON",
+  "schema_version": "npc-equipment-assignments-v0.3",
+  "status": "LAB_PROPOSAL_CURATED_GATED_NOT_CANON",
   "rules": {
     "unique_items_excluded": true,
     "source_npc_does_not_imply_worn": true,
@@ -9,7 +9,8 @@
     "senior_authorities_not_auto_dressed": true,
     "companions_not_auto_specialized": true,
     "auto_catalog_first_stage": "LianQi_II",
-    "auto_catalog_exact_stage_only": true
+    "auto_catalog_exact_stage_only": true,
+    "thematic_family_pools_required": true
   },
   "actors": {
     "lin_yue": {
@@ -304,17 +305,17 @@
         "LianQi_II": [
           "brazales_pulso_firme",
           "botas_piedra_humeda",
-          "calzas_guardia_externa",
-          "bandana_cuero_reforzada",
-          "amuleto_sauce_sereno"
+          "amuleto_sauce_sereno",
+          "tunica_ruta_sauces",
+          "calzas_sendero_pinos"
         ],
         "LianQi_III": [
           "brazales_pulso_medico",
           "amuleto_meridiano_estable",
           "anillo_tierra_profunda",
-          "pulsera_nudo_formacion",
           "calzas_paso_silencioso",
-          "velo_archivo_sereno"
+          "vestidura_flujo_ligero",
+          "fajin_respiracion_larga"
         ],
         "LianQi_IV": [
           "amuleto_ancla_resonante",
@@ -322,8 +323,7 @@
           "botas_voto_inmovil",
           "vestidura_ala_cerrada",
           "brazales_relevo",
-          "calzas_trama_sello",
-          "velo_vigilante_nucleo"
+          "calzas_trama_sello"
         ]
       }
     },
@@ -339,26 +339,25 @@
         "LianQi_II": [
           "brazales_pulso_firme",
           "amuleto_sauce_sereno",
-          "fajin_patrulla",
           "bandana_cuero_reforzada",
-          "anillo_corriente_clara"
+          "anillo_corriente_clara",
+          "tunica_ruta_sauces"
         ],
         "LianQi_III": [
           "brazales_pulso_medico",
-          "pulsera_nudo_formacion",
-          "velo_archivo_sereno",
           "amuleto_meridiano_estable",
           "anillo_tierra_profunda",
-          "vestidura_flujo_ligero"
+          "vestidura_flujo_ligero",
+          "fajin_respiracion_larga",
+          "calzas_paso_silencioso"
         ],
         "LianQi_IV": [
           "amuleto_ancla_resonante",
           "pulsera_nudo_crisis",
-          "manto_mantenimiento",
+          "vestidura_ala_cerrada",
           "brazales_relevo",
           "botas_voto_inmovil",
-          "velo_vigilante_nucleo",
-          "anillo_marca_quieta"
+          "calzas_trama_sello"
         ]
       }
     },
@@ -374,26 +373,25 @@
         "LianQi_II": [
           "brazales_pulso_firme",
           "amuleto_sauce_sereno",
-          "fajin_patrulla",
           "bandana_cuero_reforzada",
-          "anillo_corriente_clara"
+          "anillo_corriente_clara",
+          "tunica_ruta_sauces"
         ],
         "LianQi_III": [
           "brazales_pulso_medico",
-          "pulsera_nudo_formacion",
-          "velo_archivo_sereno",
           "amuleto_meridiano_estable",
           "anillo_tierra_profunda",
-          "vestidura_flujo_ligero"
+          "vestidura_flujo_ligero",
+          "fajin_respiracion_larga",
+          "calzas_paso_silencioso"
         ],
         "LianQi_IV": [
           "amuleto_ancla_resonante",
           "pulsera_nudo_crisis",
-          "manto_mantenimiento",
+          "vestidura_ala_cerrada",
           "brazales_relevo",
           "botas_voto_inmovil",
-          "velo_vigilante_nucleo",
-          "anillo_marca_quieta"
+          "calzas_trama_sello"
         ]
       }
     },
@@ -482,24 +480,22 @@
         "LianQi_I": [],
         "LianQi_II": [
           "aguja_acero_frio",
-          "anillo_corriente_clara",
-          "anillo_reserva_menor",
-          "capucha_observador_valle"
+          "capucha_observador_valle",
+          "anillo_sello_hierro",
+          "brazales_cuero_cruzado"
         ],
         "LianQi_III": [
           "espada_vena_clara",
           "brazales_aguja_plata",
-          "calzado_nube_baja",
           "anillo_hilo_plata",
-          "tocado_hilo_formacion"
+          "tunica_reforzada_trama_cobre"
         ],
         "LianQi_IV": [
           "anillo_marca_quieta",
           "hoja_seis_corrientes",
-          "velo_vigilante_nucleo",
-          "vestidura_ala_cerrada",
           "brazales_relevo",
-          "botas_voto_inmovil"
+          "manto_mantenimiento",
+          "anillo_relevo"
         ]
       }
     },
@@ -535,9 +531,9 @@
         "LianQi_III": [
           "pulsera_nudo_formacion",
           "tocado_hilo_formacion",
-          "brazales_pulso_medico",
           "vara_dos_corrientes",
-          "amuleto_flujo_contenido"
+          "amuleto_flujo_contenido",
+          "vestidura_flujo_ligero"
         ],
         "LianQi_IV": [
           "vara_relevo",
@@ -579,17 +575,17 @@
           "fajin_patrulla"
         ],
         "LianQi_III": [
+          "amuleto_meridiano_estable",
           "anillo_tierra_profunda",
           "tunica_reforzada_trama_cobre",
           "calzas_paso_silencioso",
-          "velo_archivo_sereno",
-          "brazales_pulso_medico"
+          "calzado_nube_baja"
         ],
         "LianQi_IV": [
           "vestidura_ala_cerrada",
           "brazales_relevo",
+          "amuleto_ancla_resonante",
           "calzas_trama_sello",
-          "velo_vigilante_nucleo",
           "vara_relevo",
           "botas_voto_inmovil"
         ]
@@ -653,15 +649,15 @@
         "LianQi_II": [
           "brazales_pulso_firme",
           "botas_piedra_humeda",
-          "calzas_guardia_externa",
-          "bandana_cuero_reforzada"
+          "amuleto_sauce_sereno",
+          "tunica_ruta_sauces"
         ],
         "LianQi_III": [
           "brazales_pulso_medico",
           "amuleto_meridiano_estable",
           "anillo_tierra_profunda",
-          "pulsera_nudo_formacion",
-          "calzas_paso_silencioso"
+          "calzas_paso_silencioso",
+          "vestidura_flujo_ligero"
         ],
         "LianQi_IV": [
           "amuleto_ancla_resonante",
