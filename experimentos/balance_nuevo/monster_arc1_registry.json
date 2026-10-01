@@ -11,7 +11,9 @@
     "profile_count": 18,
     "pending_profiles_must_not_run": true,
     "t0_required_before_adaptive_tiers": true,
-    "definitives_in_monster_balance": false
+    "definitives_in_monster_balance": false,
+    "arc1_monster_resource_model": "NONE",
+    "arc1_monster_qi_semantics": "qi_max=null is authoritative N/A for Arc 1 monsters and does not block T0 READY"
   },
   "profiles": {
     "rata_qi": {
@@ -45,7 +47,8 @@
       "adaptive": {
         "status": "BLOCKED_UNTIL_T0_READY",
         "rule": "T1-T4 are applied only after this T0 profile is READY."
-      }
+      },
+      "resource_model": "NONE"
     },
     "serpiente_qi": {
       "id": "serpiente_qi",
@@ -85,7 +88,8 @@
       "adaptive": {
         "status": "BLOCKED_UNTIL_T0_READY",
         "rule": "T1-T4 are applied only after this T0 profile is READY."
-      }
+      },
+      "resource_model": "NONE"
     },
     "lobo_espiritual": {
       "id": "lobo_espiritual",
@@ -125,7 +129,8 @@
       "adaptive": {
         "status": "BLOCKED_UNTIL_T0_READY",
         "rule": "T1-T4 are applied only after this T0 profile is READY."
-      }
+      },
+      "resource_model": "NONE"
     },
     "eco_caido": {
       "id": "eco_caido",
@@ -158,7 +163,8 @@
       "adaptive": {
         "status": "BLOCKED_UNTIL_T0_READY",
         "rule": "T1-T4 are applied only after this T0 profile is READY."
-      }
+      },
+      "resource_model": "NONE"
     },
     "pez_lunar": {
       "id": "pez_lunar",
@@ -198,7 +204,8 @@
       "adaptive": {
         "status": "BLOCKED_UNTIL_T0_READY",
         "rule": "T1-T4 are applied only after this T0 profile is READY."
-      }
+      },
+      "resource_model": "NONE"
     },
     "sombra_ahogada": {
       "id": "sombra_ahogada",
@@ -238,7 +245,8 @@
       "adaptive": {
         "status": "BLOCKED_UNTIL_T0_READY",
         "rule": "T1-T4 are applied only after this T0 profile is READY."
-      }
+      },
+      "resource_model": "NONE"
     },
     "centinela_pluma": {
       "id": "centinela_pluma",
@@ -278,7 +286,8 @@
       "adaptive": {
         "status": "BLOCKED_UNTIL_T0_READY",
         "rule": "T1-T4 are applied only after this T0 profile is READY."
-      }
+      },
+      "resource_model": "NONE"
     },
     "devorador_niebla": {
       "id": "devorador_niebla",
@@ -318,7 +327,8 @@
       "adaptive": {
         "status": "BLOCKED_UNTIL_T0_READY",
         "rule": "T1-T4 are applied only after this T0 profile is READY."
-      }
+      },
+      "resource_model": "NONE"
     },
     "avispa_jade": {
       "id": "avispa_jade",
@@ -358,7 +368,8 @@
       "adaptive": {
         "status": "BLOCKED_UNTIL_T0_READY",
         "rule": "T1-T4 are applied only after this T0 profile is READY."
-      }
+      },
+      "resource_model": "NONE"
     },
     "mono_pildoras": {
       "id": "mono_pildoras",
@@ -399,7 +410,8 @@
       "adaptive": {
         "status": "BLOCKED_UNTIL_T0_READY",
         "rule": "T1-T4 are applied only after this T0 profile is READY."
-      }
+      },
+      "resource_model": "NONE"
     },
     "sapo_ceniza": {
       "id": "sapo_ceniza",
@@ -440,7 +452,8 @@
       "adaptive": {
         "status": "BLOCKED_UNTIL_T0_READY",
         "rule": "T1-T4 are applied only after this T0 profile is READY."
-      }
+      },
+      "resource_model": "NONE"
     },
     "sapo_caldera": {
       "id": "sapo_caldera",
@@ -481,7 +494,8 @@
       "adaptive": {
         "status": "BLOCKED_UNTIL_T0_READY",
         "rule": "T1-T4 are applied only after this T0 profile is READY."
-      }
+      },
+      "resource_model": "NONE"
     },
     "escarabajo_hierro": {
       "id": "escarabajo_hierro",
@@ -521,7 +535,8 @@
       "adaptive": {
         "status": "BLOCKED_UNTIL_T0_READY",
         "rule": "T1-T4 are applied only after this T0 profile is READY."
-      }
+      },
+      "resource_model": "NONE"
     },
     "rey_escarabajo": {
       "id": "rey_escarabajo",
@@ -561,7 +576,8 @@
       "adaptive": {
         "status": "BLOCKED_UNTIL_T0_READY",
         "rule": "T1-T4 are applied only after this T0 profile is READY."
-      }
+      },
+      "resource_model": "NONE"
     },
     "anguila_estelar": {
       "id": "anguila_estelar",
@@ -602,7 +618,8 @@
       "adaptive": {
         "status": "BLOCKED_UNTIL_T0_READY",
         "rule": "T1-T4 are applied only after this T0 profile is READY."
-      }
+      },
+      "resource_model": "NONE"
     },
     "guardian_coral": {
       "id": "guardian_coral",
@@ -643,7 +660,8 @@
       "adaptive": {
         "status": "BLOCKED_UNTIL_T0_READY",
         "rule": "T1-T4 are applied only after this T0 profile is READY."
-      }
+      },
+      "resource_model": "NONE"
     },
     "halcon_tormenta": {
       "id": "halcon_tormenta",
@@ -683,7 +701,8 @@
       "adaptive": {
         "status": "BLOCKED_UNTIL_T0_READY",
         "rule": "T1-T4 are applied only after this T0 profile is READY."
-      }
+      },
+      "resource_model": "NONE"
     },
     "mantis_nube": {
       "id": "mantis_nube",
@@ -723,7 +742,8 @@
       "adaptive": {
         "status": "BLOCKED_UNTIL_T0_READY",
         "rule": "T1-T4 are applied only after this T0 profile is READY."
-      }
+      },
+      "resource_model": "NONE"
     }
   }
 }
