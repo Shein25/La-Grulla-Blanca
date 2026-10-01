@@ -247,7 +247,7 @@ El candidato cumple la identidad T4:
 
 ## Estado recomendado
 
-`T4_FULL_CANDIDATE_SELECTED_AWAITING_HUMAN_RATIFICATION`
+`T4_READY_HUMAN_RATIFIED`
 
 Candidato:
 
@@ -265,4 +265,7 @@ CD5
 ```
 
 No existe T5 en este contrato.
-No promover a CANON sin ratificación humana.
+
+Ratificación humana: 2026-10-01.
+
+La cadena adaptativa de la Rata queda cerrada en T4. Reabrir T1–T4 o añadir un tier superior requiere una nueva decisión humana explícita.
