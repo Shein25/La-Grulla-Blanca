@@ -32,6 +32,13 @@ from telemetry import fight_once_observed
 
 RUNTIME_QI_SENTINEL="UNRESOLVED_QI_NAN_SENTINEL"
 BASIC_PROXY_SENTINEL_COST=10**9
+ALLOWED_PLAYER_POLICIES={
+    "VETERAN",
+    "UNITARGET_FIRST",
+    "AOE_FIRST",
+    "DEFENSE_OPEN",
+    "ROTATION",
+}
 
 
 def _lab_profile(candidate: T0LabCandidate, canonical_profile: dict) -> dict:
@@ -71,7 +78,11 @@ def _stage1_runtime(
     candidate: T0LabCandidate,
     canonical_profile: dict,
     policy_config: VeteranPolicyConfig,
+    player_policy: str,
 ):
+    if player_policy not in ALLOWED_PLAYER_POLICIES:
+        raise ValueError(f"unsupported player policy: {player_policy}")
+
     lab_profile=_lab_profile(candidate,canonical_profile)
     originals={
         "build_monster":engine.build_monster,
@@ -89,17 +100,18 @@ def _stage1_runtime(
     def compile_build(root,paths,catalog=None):
         compiled=originals["compile_build"](root,paths,catalog)
         compiled=dict(compiled)
-        compiled[VETERAN_BASIC]={
-            "technique_id":VETERAN_BASIC,
-            "name":"Ataque básico",
-            "root":root,
-            "role":"BASIC_PROXY",
-            "targeting":"UNITARGET",
-            # No se paga: el runner intercepta el proxy. El coste sentinel alto
-            # evita contaminar los cálculos del motor que buscan el mínimo coste
-            # ofensivo para detectar agotamiento real de Qi.
-            "qi_cost":BASIC_PROXY_SENTINEL_COST,
-        }
+        if player_policy=="VETERAN":
+            compiled[VETERAN_BASIC]={
+                "technique_id":VETERAN_BASIC,
+                "name":"Ataque básico",
+                "root":root,
+                "role":"BASIC_PROXY",
+                "targeting":"UNITARGET",
+                # No se paga: el runner intercepta el proxy. El coste sentinel alto
+                # evita contaminar los cálculos del motor que buscan el mínimo coste
+                # ofensivo para detectar agotamiento real de Qi.
+                "qi_cost":BASIC_PROXY_SENTINEL_COST,
+            }
         return compiled
 
     def choose_player_action(state,policy):
@@ -135,6 +147,7 @@ def fight_candidate_once(
     item_ids,
     paths,
     seed: int,
+    policy: str="VETERAN",
     policy_config: VeteranPolicyConfig=DEFAULT_VETERAN_CONFIG,
     technique_catalog: dict|None=None,
     equipment_catalog: dict|None=None,
@@ -142,9 +155,16 @@ def fight_candidate_once(
 ) -> dict[str,Any]:
     candidate.validate_against_pending_profile(canonical_profile)
     validate_tier("T0")
+    if policy not in ALLOWED_PLAYER_POLICIES:
+        raise ValueError(f"unsupported player policy: {policy}")
     cid=candidate_id(candidate,trial_number)
 
-    with _stage1_runtime(candidate,canonical_profile,policy_config) as lab_profile:
+    with _stage1_runtime(
+        candidate,
+        canonical_profile,
+        policy_config,
+        policy,
+    ) as lab_profile:
         row=fight_once_observed(
             stage="LianQi_I",
             root=root,
@@ -152,7 +172,7 @@ def fight_candidate_once(
             paths=paths,
             monster_profile=lab_profile,
             tier="T0",
-            policy="VETERAN",
+            policy=policy,
             seed=seed,
             technique_catalog=technique_catalog,
             equipment_catalog=equipment_catalog,
@@ -165,5 +185,6 @@ def fight_candidate_once(
         "candidate_status":LAB_CANDIDATE_STATUS,
         "canonical_profile_status":canonical_profile["stats_status"],
         "runtime_qi_policy":RUNTIME_QI_SENTINEL,
-        "veteran_policy":policy_config.__dict__,
+        "player_policy":policy,
+        "veteran_policy":policy_config.__dict__ if policy=="VETERAN" else None,
     }
