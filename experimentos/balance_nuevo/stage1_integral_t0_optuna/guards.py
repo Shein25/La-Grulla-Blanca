@@ -144,8 +144,16 @@ def validate_registry_for_stage1(registry_path: str | Path) -> dict:
                 raise Stage1GuardError(f"{monster_id}: READY stats drifted from ratified T0")
             if profile.get("technique")!=expected["technique"]:
                 raise Stage1GuardError(f"{monster_id}: READY technique drifted from ratified T0")
-            if profile.get("adaptive",{}).get("status")!="READY_FOR_T1_RECALIBRATION":
-                raise Stage1GuardError(f"{monster_id}: adaptive status must allow only T1 recalibration")
+            adaptive_status=profile.get("adaptive",{}).get("status")
+            expected_adaptive=(
+                "T1_READY_FOR_T2_CALIBRATION"
+                if monster_id=="rata_qi"
+                else "READY_FOR_T1_RECALIBRATION"
+            )
+            if adaptive_status!=expected_adaptive:
+                raise Stage1GuardError(
+                    f"{monster_id}: adaptive status {adaptive_status!r} != {expected_adaptive!r}"
+                )
             continue
 
         if profile.get("stats_status")!=EXPECTED_PENDING:
