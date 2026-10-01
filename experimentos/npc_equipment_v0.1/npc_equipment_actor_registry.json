@@ -1,6 +1,6 @@
 {
-  "schema_version": "npc-equipment-actors-v0.1",
-  "status": "A079_ROLE_BINDINGS_WITH_EQUIPMENT_FAMILY_PROPOSAL",
+  "schema_version": "npc-equipment-actors-v0.2",
+  "status": "A079_ROLE_BINDINGS_WITH_ASSIGNMENT_GATES",
   "actors": [
     {
       "actor_id": "lin_yue",
@@ -9,7 +9,9 @@
       "role": "Compañera / par del jugador",
       "equipment_family": "BALANCED_PEER",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "PERSONALIZATION_REQUIRED",
+      "assignment_reason": "A07.9 authoring does not close an individual combat/equipment archetype; do not clone a specialization."
     },
     {
       "actor_id": "han_qiao",
@@ -18,7 +20,9 @@
       "role": "Compañero / par del jugador",
       "equipment_family": "BALANCED_PEER",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "PERSONALIZATION_REQUIRED",
+      "assignment_reason": "A07.9 authoring does not close an individual combat/equipment archetype; do not clone a specialization."
     },
     {
       "actor_id": "zhao_wen",
@@ -27,7 +31,9 @@
       "role": "Compañero / par del jugador",
       "equipment_family": "BALANCED_PEER",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "PERSONALIZATION_REQUIRED",
+      "assignment_reason": "A07.9 authoring does not close an individual combat/equipment archetype; do not clone a specialization."
     },
     {
       "actor_id": "mei_lian",
@@ -36,7 +42,9 @@
       "role": "Compañera / par del jugador",
       "equipment_family": "BALANCED_PEER",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "PERSONALIZATION_REQUIRED",
+      "assignment_reason": "A07.9 authoring does not close an individual combat/equipment archetype; do not clone a specialization."
     },
     {
       "actor_id": "guo_chen",
@@ -45,7 +53,9 @@
       "role": "Compañero / par del jugador",
       "equipment_family": "BALANCED_PEER",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "PERSONALIZATION_REQUIRED",
+      "assignment_reason": "A07.9 authoring does not close an individual combat/equipment archetype; do not clone a specialization."
     },
     {
       "actor_id": "luo_yan",
@@ -54,7 +64,9 @@
       "role": "Compañero / par del jugador",
       "equipment_family": "BALANCED_PEER",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "PERSONALIZATION_REQUIRED",
+      "assignment_reason": "A07.9 authoring does not close an individual combat/equipment archetype; do not clone a specialization."
     },
     {
       "actor_id": "ji_xueying",
@@ -63,7 +75,9 @@
       "role": "Maestra de Secta",
       "equipment_family": "LEADER",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "BESPOKE_NPC_GEAR_REQUIRED",
+      "assignment_reason": "Senior authority should not be auto-dressed from player progression gear."
     },
     {
       "actor_id": "qiao_ren",
@@ -72,7 +86,9 @@
       "role": "Disciplina y Administración",
       "equipment_family": "ADMIN",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "BESPOKE_NPC_GEAR_REQUIRED",
+      "assignment_reason": "Senior authority should not be auto-dressed from player progression gear."
     },
     {
       "actor_id": "wei_jian",
@@ -81,7 +97,9 @@
       "role": "Responsable marcial / Pabellón Marcial",
       "equipment_family": "MARTIAL",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "BESPOKE_NPC_GEAR_REQUIRED",
+      "assignment_reason": "Senior authority should not be auto-dressed from player progression gear."
     },
     {
       "actor_id": "song_rui",
@@ -90,7 +108,9 @@
       "role": "Responsable de Archivos",
       "equipment_family": "ADMIN",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "BESPOKE_NPC_GEAR_REQUIRED",
+      "assignment_reason": "Senior authority should not be auto-dressed from player progression gear."
     },
     {
       "actor_id": "lan_meihua",
@@ -99,7 +119,9 @@
       "role": "Medicina / Alquimia",
       "equipment_family": "MEDICAL",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "BESPOKE_NPC_GEAR_REQUIRED",
+      "assignment_reason": "Senior authority should not be auto-dressed from player progression gear."
     },
     {
       "actor_id": "duan_shibo",
@@ -108,7 +130,9 @@
       "role": "Recursos / Producción",
       "equipment_family": "LOGISTICS",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "BESPOKE_NPC_GEAR_REQUIRED",
+      "assignment_reason": "Senior authority should not be auto-dressed from player progression gear."
     },
     {
       "actor_id": "he_zhen",
@@ -117,7 +141,9 @@
       "role": "Formaciones / Territorio",
       "equipment_family": "FORMATION",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "BESPOKE_NPC_GEAR_REQUIRED",
+      "assignment_reason": "Senior authority should not be auto-dressed from player progression gear."
     },
     {
       "actor_id": "shen_baojun",
@@ -126,7 +152,9 @@
       "role": "Instructor marcial externo",
       "equipment_family": "MARTIAL",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
+      "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment."
     },
     {
       "actor_id": "madre_wen",
@@ -135,7 +163,9 @@
       "role": "Responsable de vida cotidiana de externos",
       "equipment_family": "CIVILIAN_SUPPORT",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "WARDROBE_OR_COMBAT_ROLE_REQUIRED",
+      "assignment_reason": "Role is primarily civil/administrative/logistical; combat gear must not be inferred from occupation."
     },
     {
       "actor_id": "tao_ming",
@@ -144,7 +174,9 @@
       "role": "Registro de Servicios",
       "equipment_family": "ADMIN",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "WARDROBE_OR_COMBAT_ROLE_REQUIRED",
+      "assignment_reason": "Role is primarily civil/administrative/logistical; combat gear must not be inferred from occupation."
     },
     {
       "actor_id": "jiang_rui",
@@ -153,7 +185,9 @@
       "role": "Capitán de patrulla",
       "equipment_family": "MARTIAL",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
+      "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment."
     },
     {
       "actor_id": "su_lian",
@@ -162,7 +196,9 @@
       "role": "Maestra de Herboristería",
       "equipment_family": "MEDICAL_FIELD",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
+      "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment."
     },
     {
       "actor_id": "chen_bo",
@@ -171,7 +207,9 @@
       "role": "Instructor de Examen / Anatomía-Medicina",
       "equipment_family": "MEDICAL",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
+      "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment."
     },
     {
       "actor_id": "yao_fen",
@@ -180,7 +218,9 @@
       "role": "Instructora de Alquimia / Botica",
       "equipment_family": "MEDICAL",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
+      "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment."
     },
     {
       "actor_id": "gao_shun",
@@ -189,7 +229,9 @@
       "role": "Guardia de la Puerta Roja",
       "equipment_family": "MARTIAL",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
+      "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment."
     },
     {
       "actor_id": "feng_zhi",
@@ -198,7 +240,9 @@
       "role": "Asistente de Disciplina",
       "equipment_family": "ADMIN",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "WARDROBE_OR_COMBAT_ROLE_REQUIRED",
+      "assignment_reason": "Role is primarily civil/administrative/logistical; combat gear must not be inferred from occupation."
     },
     {
       "actor_id": "ma_qiren",
@@ -207,7 +251,9 @@
       "role": "Responsable de Almacenes",
       "equipment_family": "LOGISTICS",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "WARDROBE_OR_COMBAT_ROLE_REQUIRED",
+      "assignment_reason": "Role is primarily civil/administrative/logistical; combat gear must not be inferred from occupation."
     },
     {
       "actor_id": "pei_luo",
@@ -216,7 +262,9 @@
       "role": "Responsable de Cocina/Comedor",
       "equipment_family": "CIVILIAN_SUPPORT",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "WARDROBE_OR_COMBAT_ROLE_REQUIRED",
+      "assignment_reason": "Role is primarily civil/administrative/logistical; combat gear must not be inferred from occupation."
     },
     {
       "actor_id": "lu_cheng",
@@ -225,7 +273,9 @@
       "role": "Taller de armas / Reparaciones",
       "equipment_family": "CRAFT_MARTIAL",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
+      "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment."
     },
     {
       "actor_id": "ning_cai",
@@ -234,7 +284,9 @@
       "role": "Textiles y cuero",
       "equipment_family": "CRAFT_SUPPORT",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "WARDROBE_OR_COMBAT_ROLE_REQUIRED",
+      "assignment_reason": "Role is primarily civil/administrative/logistical; combat gear must not be inferred from occupation."
     },
     {
       "actor_id": "wen_tao",
@@ -243,7 +295,9 @@
       "role": "Técnico de Formaciones",
       "equipment_family": "FORMATION",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
+      "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment."
     },
     {
       "actor_id": "yu_shun",
@@ -252,7 +306,9 @@
       "role": "Copista",
       "equipment_family": "ADMIN",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "WARDROBE_OR_COMBAT_ROLE_REQUIRED",
+      "assignment_reason": "Role is primarily civil/administrative/logistical; combat gear must not be inferred from occupation."
     },
     {
       "actor_id": "ma_gu",
@@ -261,7 +317,9 @@
       "role": "Capataz de Cantera",
       "equipment_family": "FIELD_HEAVY",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
+      "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment."
     },
     {
       "actor_id": "ren_bo",
@@ -270,7 +328,9 @@
       "role": "Patrullero veterano",
       "equipment_family": "MARTIAL",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
+      "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment."
     },
     {
       "actor_id": "xu_an",
@@ -279,7 +339,9 @@
       "role": "Representante de Sauces",
       "equipment_family": "CIVILIAN_SUPPORT",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "WARDROBE_OR_COMBAT_ROLE_REQUIRED",
+      "assignment_reason": "Role is primarily civil/administrative/logistical; combat gear must not be inferred from occupation."
     },
     {
       "actor_id": "mei_shufen",
@@ -288,7 +350,9 @@
       "role": "Herbolaria local de Sauces",
       "equipment_family": "MEDICAL_FIELD",
       "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
-      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT",
+      "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
+      "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment."
     }
   ]
 }
