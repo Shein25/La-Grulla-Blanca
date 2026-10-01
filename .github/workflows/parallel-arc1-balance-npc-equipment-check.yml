@@ -191,6 +191,7 @@ jobs:
           python t3_damage_contract_test.py
           python t3_final_candidate_test.py
           python t4_mordisco_contract_test.py
+          python t4_followup_contract_test.py
           python - <<'PY'
           import json
           d=json.load(open("RATA_ADAPTIVE_TIER_CONTRACT_V0_1.json",encoding="utf-8"))
@@ -323,6 +324,89 @@ jobs:
                   "delta_mutant":r["delta_vs_frozen_t3"]["mutant_conditional"],
               })
           print("T4_GEOMETRY_RESULT="+json.dumps(out,sort_keys=True))
+          PY
+
+      - name: Rata T4 Mordisco followup smoke
+        working-directory: experimentos/balance_nuevo/rata_adaptive_tiers_v0.1
+        run: |
+          rm -rf ci_rata_t4_followup
+          python rata_t4_mordisco_followup_lab.py --preset smoke --outdir ci_rata_t4_followup --namespace CI_T4_FOLLOWUP
+          test -f ci_rata_t4_followup/RESULTADOS_RATA_T4_MORDISCO_FOLLOWUP_V01.zip
+          python - <<'PY'
+          import gzip,json
+          s=json.load(open("ci_rata_t4_followup/SUMMARY.json",encoding="utf-8"))
+          assert s["experiment"]=="RATA_T4_MORDISCO_FOLLOWUP_V01"
+          assert s["model"]=="INSTANCE_BASIC_OPENING_PLUS_CANONICAL_2D4_FOLLOWUPS"
+          assert s["t1_t3_frozen"] is True
+          assert s["canonical_write"] is False
+          assert s["tier_above_t4_executed"] is False
+          with gzip.open("ci_rata_t4_followup/followup_results.json.gz","rt",encoding="utf-8") as f:
+              rows=json.load(f)
+          assert len(rows)==4
+          assert {x["candidate"]["label"] for x in rows}=={
+              "FOLLOWUP_1X025","FOLLOWUP_1X050","FOLLOWUP_2X025","FOLLOWUP_1X075"
+          }
+          print("PASS: T4 followup geometry smoke")
+          PY
+
+      - name: Rata T4 Mordisco followup directed study
+        if: contains(github.event.head_commit.message, '[T4_FOLLOWUP]')
+        working-directory: experimentos/balance_nuevo/rata_adaptive_tiers_v0.1
+        run: |
+          rm -rf ci_rata_t4_followup_directed
+          python rata_t4_mordisco_followup_lab.py --preset directed --outdir ci_rata_t4_followup_directed --namespace CI_T4_FOLLOWUP_DIRECTED
+          python - <<'PY'
+          import gzip,json
+          with gzip.open("ci_rata_t4_followup_directed/frozen_t3_baseline.json.gz","rt",encoding="utf-8") as f:
+              b=json.load(f)
+          with gzip.open("ci_rata_t4_followup_directed/followup_results.json.gz","rt",encoding="utf-8") as f:
+              rows=json.load(f)
+          out={
+              "baseline":{
+                  "normal_win":b["natural_normal"]["win_rate"],
+                  "normal_hp":b["natural_normal"]["hp_final_pct_mean"],
+                  "normal_damage":b["natural_normal"]["monster_damage_total_mean"],
+                  "mutant_win":b["mutant_conditional"]["win_rate"],
+                  "mutant_hp":b["mutant_conditional"]["hp_final_pct_mean"],
+                  "mutant_damage":b["mutant_conditional"]["monster_damage_total_mean"],
+              },
+              "candidates":[]
+          }
+          for r in rows:
+              n=r["result"]["natural_normal"]
+              m=r["result"]["mutant_conditional"]
+              out["candidates"].append({
+                  "label":r["candidate"]["label"],
+                  "normal":{
+                      "win":n["win_rate"],
+                      "hp":n["hp_final_pct_mean"],
+                      "monster_damage":n["monster_damage_total_mean"],
+                      "uses":n["t4"]["uses_per_fight"],
+                      "packets_per_use":n["t4"]["packets_per_use"],
+                      "packet_hit_rate":n["t4"]["packet_hit_rate"],
+                      "damage_per_use":n["t4"]["damage_per_use"],
+                      "damage_p90":n["t4"]["damage_p90_per_use"],
+                      "multi_use_rate":n["t4"]["multi_use_fight_rate"],
+                      "survival_choices":n["t4"]["survival_choices_per_fight"],
+                      "t3_counter":n["t4"]["t3_counter_per_fight"],
+                  },
+                  "mutant":{
+                      "win":m["win_rate"],
+                      "hp":m["hp_final_pct_mean"],
+                      "monster_damage":m["monster_damage_total_mean"],
+                      "uses":m["t4"]["uses_per_fight"],
+                      "packets_per_use":m["t4"]["packets_per_use"],
+                      "packet_hit_rate":m["t4"]["packet_hit_rate"],
+                      "damage_per_use":m["t4"]["damage_per_use"],
+                      "damage_p90":m["t4"]["damage_p90_per_use"],
+                      "multi_use_rate":m["t4"]["multi_use_fight_rate"],
+                      "survival_choices":m["t4"]["survival_choices_per_fight"],
+                      "t3_counter":m["t4"]["t3_counter_per_fight"],
+                  },
+                  "delta_normal":r["delta_vs_frozen_t3"]["natural_normal"],
+                  "delta_mutant":r["delta_vs_frozen_t3"]["mutant_conditional"],
+              })
+          print("T4_FOLLOWUP_RESULT="+json.dumps(out,sort_keys=True))
           PY
 
       - name: Confirm Rata T4 calibration is open
