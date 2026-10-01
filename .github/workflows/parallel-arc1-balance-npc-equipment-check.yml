@@ -190,6 +190,7 @@ jobs:
           python t3_counter_contract_test.py
           python t3_damage_contract_test.py
           python t3_final_candidate_test.py
+          python t4_mordisco_contract_test.py
           python - <<'PY'
           import json
           d=json.load(open("RATA_ADAPTIVE_TIER_CONTRACT_V0_1.json",encoding="utf-8"))
@@ -218,6 +219,40 @@ jobs:
           assert d["t4"]["status"]=="CALIBRATION_ALLOWED_NOT_SELECTED"
           assert d["t4"]["identity"]=="MORDISCO_FRENETICO"
           print("PASS: Rata T1-T3 frozen; only T4 LAB gate is open")
+          PY
+
+      - name: Rata T4 Mordisco geometry smoke
+        working-directory: experimentos/balance_nuevo/rata_adaptive_tiers_v0.1
+        run: |
+          rm -rf ci_rata_t4_geometry
+          python rata_t4_mordisco_geometry_lab.py --preset smoke --outdir ci_rata_t4_geometry --namespace CI_T4_GEOMETRY
+          test -f ci_rata_t4_geometry/RESULTADOS_RATA_T4_MORDISCO_GEOMETRY_V01.zip
+          python - <<'PY'
+          import gzip,json
+          s=json.load(open("ci_rata_t4_geometry/SUMMARY.json",encoding="utf-8"))
+          assert s["experiment"]=="RATA_T4_MORDISCO_GEOMETRY_V01"
+          assert s["t1_t3_frozen"] is True
+          assert s["activation_rule"]=="REPLACE_BASIC_WHEN_READY"
+          assert s["canonical_dice"]=="2d4"
+          assert s["precision_rule"]=="INDEPENDENT_PER_HIT"
+          assert s["critical_rule"]=="INDEPENDENT_PER_HIT"
+          assert s["cooldown_rounds"]==5
+          assert s["canonical_write"] is False
+          assert s["tier_above_t4_executed"] is False
+          with gzip.open("ci_rata_t4_geometry/frozen_t3_baseline.json.gz","rt",encoding="utf-8") as f:
+              b=json.load(f)
+          with gzip.open("ci_rata_t4_geometry/t4_geometry_results.json.gz","rt",encoding="utf-8") as f:
+              rows=json.load(f)
+          assert len(rows)==4
+          assert {x["candidate"]["label"] for x in rows}=={
+              "CONTROL_1X100","FRENZY_2X050","FRENZY_2X075","FRENZY_3X050"
+          }
+          control=next(x for x in rows if x["candidate"]["label"]=="CONTROL_1X100")
+          for pop in ("natural_all","natural_normal","mutant_conditional"):
+              a=b[pop];z=control["result"][pop]
+              for key in ("win_rate","rounds_mean","hp_final_pct_mean","qi_final_mean","monster_damage_total_mean"):
+                  assert a[key]==z[key],(pop,key,a[key],z[key])
+          print("PASS: T4 control reproduces frozen T3 exactly; geometry lab is isolated")
           PY
 
       - name: Confirm Rata T4 calibration is open
