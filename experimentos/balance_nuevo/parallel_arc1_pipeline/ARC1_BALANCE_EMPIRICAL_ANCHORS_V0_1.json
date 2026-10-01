@@ -1,11 +1,12 @@
 {
   "schema_version": "arc1-balance-empirical-anchors-v0.1",
-  "status": "PARTIAL_EMPIRICAL_MODEL_4_OF_5_LIANQI_I_READY",
+  "status": "COMPLETE_EMPIRICAL_MODEL_5_OF_5_LIANQI_I_READY",
   "generated_from": {
     "rata_t0": "RATA_T0_HEAVY / trial 4254",
     "directed_zip_sha256": "858bc4ef969c76863813e2c6bb227c19c8fdfe2bc21dc95a285980ce7a2b06d5",
-    "mono": "QI_DRAIN identity anchor trial 1068; local survival refinement pending",
-    "human_ratification": "Avispa 872 / Serpiente 1484 / Lobo 1425 ratified in chat on 2026-10-01"
+    "mono": "MONO_T0_LOCAL_REFINEMENT_V01 / grid 43",
+    "human_ratification": "Avispa 872 / Serpiente 1484 / Lobo 1425 ratified in chat on 2026-10-01; Mono grid 43 ratified in chat on 2026-10-01",
+    "mono_result_sha256": "5d1b0106f2420ba009c4c34ea9631a2beb00fa8e250751c2ad168c9b84644947"
   },
   "anchors": {
     "rata_qi": {
@@ -132,27 +133,44 @@
       "human_ratified_on": "2026-10-01"
     },
     "mono_pildoras": {
-      "canonical_status": "LOCAL_REFINEMENT_PENDING",
+      "canonical_status": "READY",
+      "grid_id": 43,
       "identity_anchor_trial": 1068,
       "role": "SKIRMISHER",
       "mechanic_family": [
         "DIRECT_DAMAGE",
         "QI_DRAIN"
       ],
-      "fixed_identity": {
+      "stats": {
+        "hp": 34,
+        "defense": 2,
+        "evasion": 24,
         "precision": 91,
         "tenacity": 12,
-        "basic_damage": "1d2+3",
-        "technique_direct_damage": "1d2+3",
-        "qi_drain": 5,
-        "technique_cadence": 2
+        "control": 0,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": "1d2+3"
+      },
+      "technique": {
+        "name": "Manotazo al Dantian",
+        "cadence": 2,
+        "direct_damage": "1d2+3",
+        "qi_drain": 5
+      },
+      "causal_validation": {
+        "forced_basic_delta": 1.6698,
+        "qi_drained_mean": 9.30658,
+        "no_drain_player_hp_pressure": 0.3693,
+        "with_drain_player_hp_pressure": 0.41199
       },
       "empirical_lessons": [
         "QI_DRAIN must be measured causally against an identical no-drain arm",
         "final Qi alone understates resource denial because players stop spending Qi",
-        "forced-basic delta is a direct behavioral metric of resource denial",
-        "survival must be tuned separately so QI_DRAIN, not tankiness, explains identity"
-      ]
+        "grid 43 is the survival knee: meaningful resource denial without survival dominating the identity",
+        "stronger survival configurations remain useful as individual-variance upper references"
+      ],
+      "human_ratified_on": "2026-10-01"
     }
   },
   "extrapolation_contract": {
