@@ -84,3 +84,40 @@ El notebook `COLAB_BALANCE_NUEVO.ipynb` está pensado para:
 5. exportar resultados.
 
 La semilla queda fija por escenario para reproducibilidad.
+
+## Guardia de monstruos — migración v0.2 (2026-09-30)
+
+La Regla cero se aplica también a **todos los monstruos**.
+
+Fuente de entrada obligatoria para nuevo balance:
+
+`monster_arc1_new_engine_registry_v0_2.json`
+
+El archivo `monster_arc1_new_contract_lab.json` queda **DEPRECATED / LEGACY_CONTAMINATED / DIAGNOSTIC_ONLY**.
+
+Prohibido para los 18 monstruos:
+
+- heredar HP, daño o magnitudes de técnicas desde ver74;
+- convertir `legacy_attack` en Precisión;
+- convertir `legacy_defense` en Evasión o DEF;
+- usar una cifra legacy porque "se parece" a la escala nueva;
+- aplicar T1–T4 sobre un T0 todavía pendiente de migración.
+
+Todo runner nuevo de balance debe abortar si `stats_status` sigue en
+`PENDING_INTEGRAL_REBALANCE_NEW_ENGINE`.
+
+Orden:
+
+```text
+identidad del monstruo
+→ stats T0 expresadas directamente en unidades del motor nuevo
+→ validación integral
+→ adaptación T1–T4
+→ IA
+→ resolver nuevo
+```
+
+Auditoría completa:
+
+`docs/experimentos/AUDITORIA_MIGRACION_ESTADISTICAS_18_MONSTRUOS_NUEVO_MOTOR_2026-09-30.md`
+
