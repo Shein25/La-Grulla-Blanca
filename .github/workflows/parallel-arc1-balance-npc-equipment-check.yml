@@ -183,7 +183,7 @@ jobs:
           print("PASS: five-species variance combat smoke")
           PY
 
-      - name: Validate frozen Rata T1-T3 and T4 gate
+      - name: Validate closed Rata T1-T4 chain
         working-directory: experimentos/balance_nuevo/rata_adaptive_tiers_v0.1
         run: |
           python recognition_kernel_test.py
@@ -198,7 +198,7 @@ jobs:
           python - <<'PY'
           import json
           d=json.load(open("RATA_ADAPTIVE_TIER_CONTRACT_V0_1.json",encoding="utf-8"))
-          assert d["status"]=="T3_HUMAN_RATIFIED_T4_LAB_ALLOWED"
+          assert d["status"]=="ADAPTIVE_CHAIN_T0_T4_HUMAN_RATIFIED_CLOSED"
 
           assert d["t1"]["status"]=="READY_HUMAN_RATIFIED"
           assert d["t1"]["ability"]["evasion_bonus"]==40
@@ -220,7 +220,7 @@ jobs:
           assert d["t3"]["evidence"]["false_counter_rate"]==0
           assert d["t3"]["evidence"]["degenerate_counter_loops"]==0
 
-          assert d["t4"]["status"]=="FULL_CANDIDATE_AWAITING_HUMAN_RATIFICATION"
+          assert d["t4"]["status"]=="READY_HUMAN_RATIFIED"
           assert d["t4"]["identity"]=="MORDISCO_FRENETICO"
           assert d["t4"]["candidate"]["name"]=="Mordisco Frenético"
           assert d["t4"]["candidate"]["opening"]=="INSTANCE_BASIC x1.0"
@@ -229,352 +229,39 @@ jobs:
           assert d["t4"]["evidence"]["final_validation_fights"]==125000
           assert d["t4"]["evidence"]["workflow_conclusion"]=="success"
           assert d["t4"]["evidence"]["no_t5"] is True
-          print("PASS: Rata T1-T3 frozen; T4 candidate validated and awaits human ratification")
+          assert d["t4"]["evidence"]["human_ratified"] is True
+          assert d["guards"]["adaptive_chain_closed"] is True
+          assert d["guards"]["no_t5"] is True
+          print("PASS: Rata T0-T4 adaptive chain is human-ratified and closed")
           PY
 
-      - name: Rata T4 Mordisco geometry smoke
+      - name: Closed Rata adaptive chain regression
         working-directory: experimentos/balance_nuevo/rata_adaptive_tiers_v0.1
         run: |
-          rm -rf ci_rata_t4_geometry
-          python rata_t4_mordisco_geometry_lab.py --preset smoke --outdir ci_rata_t4_geometry --namespace CI_T4_GEOMETRY
-          test -f ci_rata_t4_geometry/RESULTADOS_RATA_T4_MORDISCO_GEOMETRY_V01.zip
+          python t4_final_candidate_test.py
           python - <<'PY'
-          import gzip,json
-          s=json.load(open("ci_rata_t4_geometry/SUMMARY.json",encoding="utf-8"))
-          assert s["experiment"]=="RATA_T4_MORDISCO_GEOMETRY_V01"
-          assert s["t1_t3_frozen"] is True
-          assert s["activation_rule"]=="REPLACE_BASIC_WHEN_READY"
-          assert s["canonical_dice"]=="2d4"
-          assert s["precision_rule"]=="INDEPENDENT_PER_HIT"
-          assert s["critical_rule"]=="INDEPENDENT_PER_HIT"
-          assert s["cooldown_rounds"]==5
-          assert s["canonical_write"] is False
-          assert s["tier_above_t4_executed"] is False
-          with gzip.open("ci_rata_t4_geometry/frozen_t3_baseline.json.gz","rt",encoding="utf-8") as f:
-              b=json.load(f)
-          with gzip.open("ci_rata_t4_geometry/t4_geometry_results.json.gz","rt",encoding="utf-8") as f:
-              rows=json.load(f)
-          assert len(rows)==4
-          assert {x["candidate"]["label"] for x in rows}=={
-              "CONTROL_1X100","FRENZY_2X050","FRENZY_2X075","FRENZY_3X050"
+          import json
+          a=json.load(open("RATA_ADAPTIVE_TIER_CONTRACT_V0_1.json",encoding="utf-8"))
+          f=json.load(open("RATA_T4_FINAL_CANDIDATE_V0_1.json",encoding="utf-8"))
+          assert a["status"]=="ADAPTIVE_CHAIN_T0_T4_HUMAN_RATIFIED_CLOSED"
+          assert a["t4"]["status"]=="READY_HUMAN_RATIFIED"
+          assert a["t4"]["candidate"]["name"]=="Mordisco Frenético"
+          assert a["t4"]["candidate"]["opening"]=="INSTANCE_BASIC x1.0"
+          assert a["t4"]["candidate"]["followup"]=="1 x CANONICAL_T0_BASIC_2D4 x0.50"
+          assert a["t4"]["candidate"]["precision_rule"]=="INDEPENDENT_PER_HIT"
+          assert a["t4"]["candidate"]["critical_rule"]=="NORMAL_INDEPENDENT_CRIT"
+          assert a["t4"]["candidate"]["cooldown_rounds"]==5
+          assert a["guards"]["adaptive_chain_closed"] is True
+          assert a["guards"]["no_t5"] is True
+          assert f["status"]=="READY_HUMAN_RATIFIED"
+          assert f["closure"]=={
+              "adaptive_chain_closed":True,
+              "highest_tier":"T4",
+              "t5_exists":False,
           }
-          with gzip.open("ci_rata_t4_geometry/harness_instance_basic_control.json.gz","rt",encoding="utf-8") as f:
-              h=json.load(f)
-          for pop in ("natural_all","natural_normal","mutant_conditional"):
-              a=b[pop];z=h[pop]
-              for key in ("win_rate","rounds_mean","hp_final_pct_mean","qi_final_mean","monster_damage_total_mean"):
-                  assert a[key]==z[key],(pop,key,a[key],z[key])
-          print("PASS: T4 instance-basic harness reproduces frozen T3 exactly; geometry lab is isolated")
+          print("PASS: closed Rata chain regression")
           PY
 
-      - name: Rata T4 Mordisco geometry directed study
-        if: contains(github.event.head_commit.message, '[T4_GEOMETRY]')
-        working-directory: experimentos/balance_nuevo/rata_adaptive_tiers_v0.1
+      - name: Confirm Rata adaptive chain is closed
         run: |
-          rm -rf ci_rata_t4_geometry_directed
-          python rata_t4_mordisco_geometry_lab.py --preset directed --outdir ci_rata_t4_geometry_directed --namespace CI_T4_GEOMETRY_DIRECTED
-          python - <<'PY'
-          import gzip,json
-          with gzip.open("ci_rata_t4_geometry_directed/frozen_t3_baseline.json.gz","rt",encoding="utf-8") as f:
-              b=json.load(f)
-          with gzip.open("ci_rata_t4_geometry_directed/harness_instance_basic_control.json.gz","rt",encoding="utf-8") as f:
-              h=json.load(f)
-          with gzip.open("ci_rata_t4_geometry_directed/t4_geometry_results.json.gz","rt",encoding="utf-8") as f:
-              rows=json.load(f)
-
-          for pop in ("natural_all","natural_normal","mutant_conditional"):
-              for key in ("win_rate","rounds_mean","hp_final_pct_mean","qi_final_mean","monster_damage_total_mean"):
-                  assert b[pop][key]==h[pop][key],(pop,key,b[pop][key],h[pop][key])
-
-          out={
-              "baseline":{
-                  "normal_win":b["natural_normal"]["win_rate"],
-                  "normal_hp":b["natural_normal"]["hp_final_pct_mean"],
-                  "normal_damage":b["natural_normal"]["monster_damage_total_mean"],
-                  "mutant_win":b["mutant_conditional"]["win_rate"],
-                  "mutant_hp":b["mutant_conditional"]["hp_final_pct_mean"],
-                  "mutant_damage":b["mutant_conditional"]["monster_damage_total_mean"],
-              },
-              "candidates":[]
-          }
-          for r in rows:
-              n=r["result"]["natural_normal"]
-              m=r["result"]["mutant_conditional"]
-              out["candidates"].append({
-                  "label":r["candidate"]["label"],
-                  "normal":{
-                      "win":n["win_rate"],
-                      "hp":n["hp_final_pct_mean"],
-                      "monster_damage":n["monster_damage_total_mean"],
-                      "uses":n["t4"]["uses_per_fight"],
-                      "packets_per_use":n["t4"]["packets_per_use"],
-                      "packet_hit_rate":n["t4"]["packet_hit_rate"],
-                      "crit_per_hit":n["t4"]["crit_per_connected_hit"],
-                      "damage_per_use":n["t4"]["damage_per_use"],
-                      "damage_p90":n["t4"]["damage_p90_per_use"],
-                      "multi_use_rate":n["t4"]["multi_use_fight_rate"],
-                      "survival_choices":n["t4"]["survival_choices_per_fight"],
-                      "t3_counter":n["t4"]["t3_counter_per_fight"],
-                  },
-                  "mutant":{
-                      "win":m["win_rate"],
-                      "hp":m["hp_final_pct_mean"],
-                      "monster_damage":m["monster_damage_total_mean"],
-                      "uses":m["t4"]["uses_per_fight"],
-                      "packets_per_use":m["t4"]["packets_per_use"],
-                      "packet_hit_rate":m["t4"]["packet_hit_rate"],
-                      "crit_per_hit":m["t4"]["crit_per_connected_hit"],
-                      "damage_per_use":m["t4"]["damage_per_use"],
-                      "damage_p90":m["t4"]["damage_p90_per_use"],
-                      "multi_use_rate":m["t4"]["multi_use_fight_rate"],
-                      "survival_choices":m["t4"]["survival_choices_per_fight"],
-                      "t3_counter":m["t4"]["t3_counter_per_fight"],
-                  },
-                  "delta_normal":r["delta_vs_frozen_t3"]["natural_normal"],
-                  "delta_mutant":r["delta_vs_frozen_t3"]["mutant_conditional"],
-              })
-          print("T4_GEOMETRY_RESULT="+json.dumps(out,sort_keys=True))
-          PY
-
-      - name: Rata T4 Mordisco followup smoke
-        working-directory: experimentos/balance_nuevo/rata_adaptive_tiers_v0.1
-        run: |
-          rm -rf ci_rata_t4_followup
-          python rata_t4_mordisco_followup_lab.py --preset smoke --outdir ci_rata_t4_followup --namespace CI_T4_FOLLOWUP
-          test -f ci_rata_t4_followup/RESULTADOS_RATA_T4_MORDISCO_FOLLOWUP_V01.zip
-          python - <<'PY'
-          import gzip,json
-          s=json.load(open("ci_rata_t4_followup/SUMMARY.json",encoding="utf-8"))
-          assert s["experiment"]=="RATA_T4_MORDISCO_FOLLOWUP_V01"
-          assert s["model"]=="INSTANCE_BASIC_OPENING_PLUS_CANONICAL_2D4_FOLLOWUPS"
-          assert s["t1_t3_frozen"] is True
-          assert s["canonical_write"] is False
-          assert s["tier_above_t4_executed"] is False
-          with gzip.open("ci_rata_t4_followup/followup_results.json.gz","rt",encoding="utf-8") as f:
-              rows=json.load(f)
-          assert len(rows)==4
-          assert {x["candidate"]["label"] for x in rows}=={
-              "FOLLOWUP_1X025","FOLLOWUP_1X050","FOLLOWUP_2X025","FOLLOWUP_1X075"
-          }
-          print("PASS: T4 followup geometry smoke")
-          PY
-
-      - name: Rata T4 Mordisco followup directed study
-        if: contains(github.event.head_commit.message, '[T4_FOLLOWUP]')
-        working-directory: experimentos/balance_nuevo/rata_adaptive_tiers_v0.1
-        run: |
-          rm -rf ci_rata_t4_followup_directed
-          python rata_t4_mordisco_followup_lab.py --preset directed --outdir ci_rata_t4_followup_directed --namespace CI_T4_FOLLOWUP_DIRECTED
-          python - <<'PY'
-          import gzip,json
-          with gzip.open("ci_rata_t4_followup_directed/frozen_t3_baseline.json.gz","rt",encoding="utf-8") as f:
-              b=json.load(f)
-          with gzip.open("ci_rata_t4_followup_directed/followup_results.json.gz","rt",encoding="utf-8") as f:
-              rows=json.load(f)
-          out={
-              "baseline":{
-                  "normal_win":b["natural_normal"]["win_rate"],
-                  "normal_hp":b["natural_normal"]["hp_final_pct_mean"],
-                  "normal_damage":b["natural_normal"]["monster_damage_total_mean"],
-                  "mutant_win":b["mutant_conditional"]["win_rate"],
-                  "mutant_hp":b["mutant_conditional"]["hp_final_pct_mean"],
-                  "mutant_damage":b["mutant_conditional"]["monster_damage_total_mean"],
-              },
-              "candidates":[]
-          }
-          for r in rows:
-              n=r["result"]["natural_normal"]
-              m=r["result"]["mutant_conditional"]
-              out["candidates"].append({
-                  "label":r["candidate"]["label"],
-                  "normal":{
-                      "win":n["win_rate"],
-                      "hp":n["hp_final_pct_mean"],
-                      "monster_damage":n["monster_damage_total_mean"],
-                      "uses":n["t4"]["uses_per_fight"],
-                      "packets_per_use":n["t4"]["packets_per_use"],
-                      "packet_hit_rate":n["t4"]["packet_hit_rate"],
-                      "damage_per_use":n["t4"]["damage_per_use"],
-                      "damage_p90":n["t4"]["damage_p90_per_use"],
-                      "multi_use_rate":n["t4"]["multi_use_fight_rate"],
-                      "survival_choices":n["t4"]["survival_choices_per_fight"],
-                      "t3_counter":n["t4"]["t3_counter_per_fight"],
-                  },
-                  "mutant":{
-                      "win":m["win_rate"],
-                      "hp":m["hp_final_pct_mean"],
-                      "monster_damage":m["monster_damage_total_mean"],
-                      "uses":m["t4"]["uses_per_fight"],
-                      "packets_per_use":m["t4"]["packets_per_use"],
-                      "packet_hit_rate":m["t4"]["packet_hit_rate"],
-                      "damage_per_use":m["t4"]["damage_per_use"],
-                      "damage_p90":m["t4"]["damage_p90_per_use"],
-                      "multi_use_rate":m["t4"]["multi_use_fight_rate"],
-                      "survival_choices":m["t4"]["survival_choices_per_fight"],
-                      "t3_counter":m["t4"]["t3_counter_per_fight"],
-                  },
-                  "delta_normal":r["delta_vs_frozen_t3"]["natural_normal"],
-                  "delta_mutant":r["delta_vs_frozen_t3"]["mutant_conditional"],
-              })
-          print("T4_FOLLOWUP_RESULT="+json.dumps(out,sort_keys=True))
-          PY
-
-      - name: Rata T4 precision-critical study
-        if: contains(github.event.head_commit.message, '[T4_PHASE_B]')
-        working-directory: experimentos/balance_nuevo/rata_adaptive_tiers_v0.1
-        run: |
-          rm -rf ci_rata_t4_phase_b
-          python rata_t4_precision_crit_lab.py --natural-fights 200 --mutant-fights 50 --outdir ci_rata_t4_phase_b --namespace CI_T4_PHASE_B
-          python - <<'PY'
-          import gzip,json
-          with gzip.open("ci_rata_t4_phase_b/precision_crit_results.json.gz","rt",encoding="utf-8") as f:
-              rows=json.load(f)
-          out=[]
-          for r in rows:
-              n=r["result"]["natural_normal"]
-              m=r["result"]["mutant_conditional"]
-              out.append({
-                  "policy":r["policy"],
-                  "candidate":r["candidate"]["label"],
-                  "precision_rule":r["candidate"]["precision_rule"],
-                  "critical_rule":r["candidate"]["critical_rule"],
-                  "normal":{
-                      "win":n["win_rate"],
-                      "hp":n["hp_final_pct_mean"],
-                      "damage":n["monster_damage_total_mean"],
-                      "uses":n["t4"]["uses_per_fight"],
-                      "packets_per_use":n["t4"]["packets_per_use"],
-                      "packet_hit_rate":n["t4"]["packet_hit_rate"],
-                      "crit_per_hit":n["t4"]["crit_per_connected_hit"],
-                      "damage_per_use":n["t4"]["damage_per_use"],
-                      "damage_p90":n["t4"]["damage_p90_per_use"],
-                      "survival":n["t4"]["survival_choices_per_fight"],
-                      "t3_counter":n["t4"]["t3_counter_per_fight"],
-                  },
-                  "mutant":{
-                      "win":m["win_rate"],
-                      "hp":m["hp_final_pct_mean"],
-                      "damage":m["monster_damage_total_mean"],
-                      "uses":m["t4"]["uses_per_fight"],
-                      "packets_per_use":m["t4"]["packets_per_use"],
-                      "packet_hit_rate":m["t4"]["packet_hit_rate"],
-                      "crit_per_hit":m["t4"]["crit_per_connected_hit"],
-                      "damage_per_use":m["t4"]["damage_per_use"],
-                      "damage_p90":m["t4"]["damage_p90_per_use"],
-                  },
-                  "delta_normal":r["delta_vs_frozen_t3"]["natural_normal"],
-                  "delta_mutant":r["delta_vs_frozen_t3"]["mutant_conditional"],
-              })
-          print("T4_PHASE_B_RESULT="+json.dumps(out,sort_keys=True))
-          PY
-
-      - name: Rata T4 cooldown study
-        if: contains(github.event.head_commit.message, '[T4_PHASE_C]')
-        working-directory: experimentos/balance_nuevo/rata_adaptive_tiers_v0.1
-        run: |
-          rm -rf ci_rata_t4_phase_c
-          python rata_t4_cooldown_lab.py --natural-fights 200 --mutant-fights 50 --outdir ci_rata_t4_phase_c --namespace CI_T4_PHASE_C
-          python - <<'PY'
-          import gzip,json
-          with gzip.open("ci_rata_t4_phase_c/cooldown_results.json.gz","rt",encoding="utf-8") as f:
-              rows=json.load(f)
-          out=[]
-          for r in rows:
-              n=r["result"]["natural_normal"]
-              m=r["result"]["mutant_conditional"]
-              out.append({
-                  "policy":r["policy"],
-                  "candidate":r["candidate"]["label"],
-                  "cooldown":r["candidate"]["cooldown_rounds"],
-                  "normal":{
-                      "win":n["win_rate"],
-                      "hp":n["hp_final_pct_mean"],
-                      "damage":n["monster_damage_total_mean"],
-                      "uses":n["t4"]["uses_per_fight"],
-                      "multi_use_rate":n["t4"]["multi_use_fight_rate"],
-                      "max_uses":n["t4"]["max_uses_one_fight"],
-                      "damage_per_use":n["t4"]["damage_per_use"],
-                      "damage_p90":n["t4"]["damage_p90_per_use"],
-                      "survival":n["t4"]["survival_choices_per_fight"],
-                      "t3_counter":n["t4"]["t3_counter_per_fight"],
-                  },
-                  "mutant":{
-                      "win":m["win_rate"],
-                      "hp":m["hp_final_pct_mean"],
-                      "damage":m["monster_damage_total_mean"],
-                      "uses":m["t4"]["uses_per_fight"],
-                      "multi_use_rate":m["t4"]["multi_use_fight_rate"],
-                      "max_uses":m["t4"]["max_uses_one_fight"],
-                      "damage_per_use":m["t4"]["damage_per_use"],
-                      "damage_p90":m["t4"]["damage_p90_per_use"],
-                  },
-                  "delta_normal":r["delta_vs_frozen_t3"]["natural_normal"],
-                  "delta_mutant":r["delta_vs_frozen_t3"]["mutant_conditional"],
-              })
-          print("T4_PHASE_C_RESULT="+json.dumps(out,sort_keys=True))
-          PY
-
-      - name: Rata T4 final candidate validation
-        if: contains(github.event.head_commit.message, '[T4_FINAL]')
-        working-directory: experimentos/balance_nuevo/rata_adaptive_tiers_v0.1
-        run: |
-          rm -rf ci_rata_t4_final
-          python rata_t4_final_validation.py --natural-fights 1000 --mutant-fights 250 --outdir ci_rata_t4_final --namespace CI_T4_FINAL
-          python - <<'PY'
-          import gzip,json
-          s=json.load(open("ci_rata_t4_final/SUMMARY.json",encoding="utf-8"))
-          assert s["experiment"]=="RATA_T4_FINAL_VALIDATION_V01"
-          assert s["status"]=="T4_FULL_CANDIDATE_AWAITING_HUMAN_RATIFICATION"
-          assert s["total_fights"]==125000
-          assert s["effective_tier_required"]=="T4"
-          assert s["decay_below_t4_disables"] is True
-          assert s["canonical_write"] is False
-          assert s["tier_above_t4_executed"] is False
-
-          with gzip.open("ci_rata_t4_final/final_validation_results.json.gz","rt",encoding="utf-8") as f:
-              rows=json.load(f)
-          assert len(rows)==5
-          assert {x["policy"] for x in rows}=={
-              "VETERAN","UNITARGET_FIRST","AOE_FIRST","DEFENSE_OPEN","ROTATION"
-          }
-          out=[]
-          for r in rows:
-              n=r["t4"]["natural_normal"]
-              m=r["t4"]["mutant_conditional"]
-              out.append({
-                  "policy":r["policy"],
-                  "normal":{
-                      "win":n["win_rate"],
-                      "hp":n["hp_final_pct_mean"],
-                      "damage":n["monster_damage_total_mean"],
-                      "uses":n["t4"]["uses_per_fight"],
-                      "multi_use_rate":n["t4"]["multi_use_fight_rate"],
-                      "max_uses":n["t4"]["max_uses_one_fight"],
-                      "packet_hit_rate":n["t4"]["packet_hit_rate"],
-                      "crit_per_hit":n["t4"]["crit_per_connected_hit"],
-                      "damage_per_use":n["t4"]["damage_per_use"],
-                      "damage_p90":n["t4"]["damage_p90_per_use"],
-                      "survival":n["t4"]["survival_choices_per_fight"],
-                      "t3_counter":n["t4"]["t3_counter_per_fight"],
-                  },
-                  "mutant":{
-                      "win":m["win_rate"],
-                      "hp":m["hp_final_pct_mean"],
-                      "damage":m["monster_damage_total_mean"],
-                      "uses":m["t4"]["uses_per_fight"],
-                      "multi_use_rate":m["t4"]["multi_use_fight_rate"],
-                      "max_uses":m["t4"]["max_uses_one_fight"],
-                      "packet_hit_rate":m["t4"]["packet_hit_rate"],
-                      "crit_per_hit":m["t4"]["crit_per_connected_hit"],
-                      "damage_per_use":m["t4"]["damage_per_use"],
-                      "damage_p90":m["t4"]["damage_p90_per_use"],
-                  },
-                  "delta_normal":r["delta_vs_frozen_t3"]["natural_normal"],
-                  "delta_mutant":r["delta_vs_frozen_t3"]["mutant_conditional"],
-              })
-          print("T4_FINAL_RESULT="+json.dumps(out,sort_keys=True))
-          PY
-
-      - name: Confirm Rata T4 awaits human ratification
-        run: |
-          grep -q "T4_FINAL_CANDIDATE_AWAITING_HUMAN_RATIFICATION / T0-T3 FROZEN" experimentos/balance_nuevo/parallel_arc1_pipeline/RATA_T2_T4_STRUCTURAL_AUDIT.md
+          grep -q "ADAPTIVE_CHAIN_T0_T4_HUMAN_RATIFIED_CLOSED" experimentos/balance_nuevo/parallel_arc1_pipeline/RATA_T2_T4_STRUCTURAL_AUDIT.md
