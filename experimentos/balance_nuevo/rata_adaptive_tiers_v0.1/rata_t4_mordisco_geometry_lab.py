@@ -110,16 +110,16 @@ class T4FightState:
         }
 
 
-def _scaled_direct_packet(state,rng,scalar:float)->dict:
-    """Use the authoritative direct resolver while scaling only the 2d4 roll."""
+def _scaled_direct_packet(state,rng,scalar:float,dice_expr:str)->dict:
+    """Use the authoritative direct resolver while scaling only the chosen roll."""
     original_roll=engine.roll_dice
     def scaled_roll(inner_rng,dice):
-        if dice!="2d4":
-            raise AssertionError(f"T4 Phase A may roll only canonical 2d4, got {dice}")
+        if dice!=dice_expr:
+            raise AssertionError(f"T4 packet expected {dice_expr}, got {dice}")
         return original_roll(inner_rng,dice)*float(scalar)
     engine.roll_dice=scaled_roll
     try:
-        return engine.resolve_monster_direct(state,rng,"2d4")
+        return engine.resolve_monster_direct(state,rng,dice_expr)
     finally:
         engine.roll_dice=original_roll
 
@@ -127,6 +127,13 @@ def _scaled_direct_packet(state,rng,scalar:float)->dict:
 def _execute_mordisco(state,rng,candidate,t4:T4FightState):
     hit_count=int(candidate["hit_count"])
     scalar=float(candidate["scalar_per_hit"])
+    source_mode=candidate.get("source_mode","CANONICAL_2D4")
+    if source_mode=="CANONICAL_2D4":
+        dice_expr="2d4"
+    elif source_mode=="INSTANCE_BASIC":
+        dice_expr=str(state.monster_profile["stats"]["basic_damage"])
+    else:
+        raise ValueError(f"unsupported T4 source_mode: {source_mode}")
     if hit_count<1 or scalar<=0:
         raise ValueError("invalid T4 geometry")
 
@@ -137,7 +144,7 @@ def _execute_mordisco(state,rng,candidate,t4:T4FightState):
     for _ in range(hit_count):
         if not state.player.alive():
             break
-        out=_scaled_direct_packet(state,rng,scalar)
+        out=_scaled_direct_packet(state,rng,scalar,dice_expr)
         packets+=1
         t4.packets+=1
         t4.hits+=int(bool(out.get("hit")))
@@ -478,6 +485,19 @@ def main():
         namespace=args.namespace,policy=args.policy,
     )
 
+    harness_candidate={
+        "label":"HARNESS_INSTANCE_BASIC_1X100",
+        "hit_count":1,
+        "scalar_per_hit":1.0,
+        "source_mode":"INSTANCE_BASIC",
+    }
+    print("T4 harness control",flush=True)
+    harness=evaluate(
+        canonical,tier="T4",candidate=harness_candidate,
+        natural_n=cfg["natural_fights"],mutant_n=cfg["mutant_fights"],
+        namespace=args.namespace,policy=args.policy,
+    )
+
     rows=[]
     for candidate in INPUT["phase_a_geometry"]["candidates"]:
         print("T4",candidate["label"],flush=True)
@@ -497,6 +517,7 @@ def main():
         })
 
     write_gz(outdir/"frozen_t3_baseline.json.gz",baseline)
+    write_gz(outdir/"harness_instance_basic_control.json.gz",harness)
     write_gz(outdir/"t4_geometry_results.json.gz",rows)
     write_json(outdir/"SUMMARY.json",{
         "experiment":"RATA_T4_MORDISCO_GEOMETRY_V01",
@@ -506,6 +527,7 @@ def main():
         "natural_fights_per_context":cfg["natural_fights"],
         "mutant_fights_per_context":cfg["mutant_fights"],
         "candidate_count":len(rows),
+        "harness_control":"HARNESS_INSTANCE_BASIC_1X100",
         "t1_t3_frozen":True,
         "activation_rule":"REPLACE_BASIC_WHEN_READY",
         "canonical_dice":"2d4",
