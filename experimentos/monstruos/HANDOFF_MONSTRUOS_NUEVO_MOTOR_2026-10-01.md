@@ -10,8 +10,6 @@ Todos los monstruos se adaptan a:
 
 `NEW_COMBAT_STATS_V0_1`
 
-No existe capa de compatibilidad, conversión ni fallback numérico.
-
 Fuente de balance:
 
 `experimentos/balance_nuevo/monster_arc1_registry.json`
@@ -31,22 +29,8 @@ Ambos usan el mismo esquema nuevo.
 - T1–T4 conservan arquitectura/identidad, pero sus magnitudes de combate se recalibran después de T0;
 - Definitivas del jugador: prohibidas en balance de monstruos.
 
-## Eliminado
+## Arquitectura activa
 
-Se retiraron del laboratorio:
-
-- snapshots y catálogos de estadísticas anteriores;
-- conversores de estadísticas;
-- benchmarks con resolver de impacto propio;
-- scripts que simulaban combate con otro sistema;
-- runtime numérico antiguo de la Grulla;
-- tests que extraían y ejecutaban un Combat Engine anterior;
-- resultados/checkpoints numéricos ligados a ese resolver;
-- tablas universales de escalado T1–T4.
-
-No se mantiene una copia deprecated dentro del subsistema.
-
-## Se conserva
 
 - identidad de especies;
 - roles y bandas ecológicas;
@@ -57,7 +41,8 @@ No se mantiene una copia deprecated dentro del subsistema.
 - Adaptive Ecology;
 - thresholds/decay/learning ceiling;
 - cerebro y counterplay cualitativo de la Grulla;
-- pipeline de señales resueltas.
+- pipeline de señales resueltas;
+- validación estricta del esquema `NEW_COMBAT_STATS_V0_1`.
 
 ## Orden de trabajo
 
@@ -70,4 +55,4 @@ No se mantiene una copia deprecated dentro del subsistema.
 
 ## Regla operativa
 
-Si una integración futura no entiende el esquema nuevo, **debe fallar**. Se corrige esa integración; no se reintroduce compatibilidad hacia atrás.
+Si una integración futura no entiende `NEW_COMBAT_STATS_V0_1`, **debe fallar**. Se corrige esa integración para consumir el contrato activo.
