@@ -170,7 +170,18 @@ jugador que cambie de patrón puede romper esa predicción.
 
 Estado recomendado:
 
-`T2_NUMERIC_CANDIDATE_SELECTED_AWAITING_HUMAN_RATIFICATION`
+`T2_READY_HUMAN_RATIFIED`
 
-T3 permanece bloqueado hasta ratificación humana.
-T4 permanece bloqueado.
+Ratificación humana: 2026-10-01.
+
+Contrato congelado:
+
+```text
+R2_SHORT
+memory_window = 2
+repeated_same_category_required = 2
+count_results = EFECTIVA
+preemptive_survival_bonus = +8
+```
+
+T3 queda habilitado sólo para calibración experimental. T4 permanece bloqueado.
