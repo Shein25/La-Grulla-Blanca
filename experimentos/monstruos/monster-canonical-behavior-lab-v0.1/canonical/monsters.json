@@ -1,0 +1,724 @@
+{
+  "schema_version": "arc1-monsters-v1",
+  "status": "NEW_ENGINE_ONLY",
+  "engine_contract": "NEW_COMBAT_STATS_V0_1",
+  "rules": {
+    "profile_count": 18,
+    "pending_profiles_must_not_run": true,
+    "t0_required_before_adaptive_tiers": true,
+    "definitives_in_monster_balance": false
+  },
+  "profiles": {
+    "rata_qi": {
+      "id": "rata_qi",
+      "name": "rata de qi",
+      "native_stage": "LianQi_I",
+      "native_stage_index": 1,
+      "role": "NORMAL",
+      "region": "secta_exterior",
+      "element": null,
+      "unique": false,
+      "engine_contract": "NEW_COMBAT_STATS_V0_1",
+      "stats_status": "PENDING_INTEGRAL_REBALANCE",
+      "stats": {
+        "hp": null,
+        "qi_max": null,
+        "precision": null,
+        "evasion": null,
+        "defense": null,
+        "tenacity": null,
+        "control": null,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": null
+      },
+      "technique": null,
+      "ai": {
+        "cognition": "INSTINTIVO",
+        "social": "COLONIA"
+      },
+      "adaptive": {
+        "status": "BLOCKED_UNTIL_T0_READY",
+        "rule": "T1-T4 are applied only after this T0 profile is READY."
+      }
+    },
+    "serpiente_qi": {
+      "id": "serpiente_qi",
+      "name": "serpiente de qi verdosa",
+      "native_stage": "LianQi_I",
+      "native_stage_index": 1,
+      "role": "NORMAL",
+      "region": "bosques",
+      "element": "agua",
+      "unique": false,
+      "engine_contract": "NEW_COMBAT_STATS_V0_1",
+      "stats_status": "PENDING_INTEGRAL_REBALANCE",
+      "stats": {
+        "hp": null,
+        "qi_max": null,
+        "precision": null,
+        "evasion": null,
+        "defense": null,
+        "tenacity": null,
+        "control": null,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": null
+      },
+      "technique": {
+        "name": "Colmillos Venenosos",
+        "mechanics": [
+          "POISON_DOT"
+        ],
+        "params_status": "PENDING_INTEGRAL_REBALANCE",
+        "params": null
+      },
+      "ai": {
+        "cognition": "REACTIVO_1",
+        "social": "SOLITARIO"
+      },
+      "adaptive": {
+        "status": "BLOCKED_UNTIL_T0_READY",
+        "rule": "T1-T4 are applied only after this T0 profile is READY."
+      }
+    },
+    "lobo_espiritual": {
+      "id": "lobo_espiritual",
+      "name": "lobo espiritual de tres colas",
+      "native_stage": "LianQi_I",
+      "native_stage_index": 1,
+      "role": "APEX_BRIDGE",
+      "region": "bosques",
+      "element": null,
+      "unique": false,
+      "engine_contract": "NEW_COMBAT_STATS_V0_1",
+      "stats_status": "PENDING_INTEGRAL_REBALANCE",
+      "stats": {
+        "hp": null,
+        "qi_max": null,
+        "precision": null,
+        "evasion": null,
+        "defense": null,
+        "tenacity": null,
+        "control": null,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": null
+      },
+      "technique": {
+        "name": "Emboscada de las Tres Colas",
+        "mechanics": [
+          "DIRECT_DAMAGE"
+        ],
+        "params_status": "PENDING_INTEGRAL_REBALANCE",
+        "params": null
+      },
+      "ai": {
+        "cognition": "CAZADOR_2",
+        "social": "MANADA"
+      },
+      "adaptive": {
+        "status": "BLOCKED_UNTIL_T0_READY",
+        "rule": "T1-T4 are applied only after this T0 profile is READY."
+      }
+    },
+    "eco_caido": {
+      "id": "eco_caido",
+      "name": "Eco del Caído",
+      "native_stage": "LianQi_II",
+      "native_stage_index": 2,
+      "role": "ELITE",
+      "region": "cantera_vetas",
+      "element": null,
+      "unique": true,
+      "engine_contract": "NEW_COMBAT_STATS_V0_1",
+      "stats_status": "PENDING_INTEGRAL_REBALANCE",
+      "stats": {
+        "hp": null,
+        "qi_max": null,
+        "precision": null,
+        "evasion": null,
+        "defense": null,
+        "tenacity": null,
+        "control": null,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": null
+      },
+      "technique": null,
+      "ai": {
+        "cognition": "REACTIVO_1",
+        "social": "SOLITARIO"
+      },
+      "adaptive": {
+        "status": "BLOCKED_UNTIL_T0_READY",
+        "rule": "T1-T4 are applied only after this T0 profile is READY."
+      }
+    },
+    "pez_lunar": {
+      "id": "pez_lunar",
+      "name": "pez de luna sin ojos",
+      "native_stage": "LianQi_III",
+      "native_stage_index": 3,
+      "role": "NORMAL",
+      "region": "aguas_barrancos",
+      "element": "agua",
+      "unique": false,
+      "engine_contract": "NEW_COMBAT_STATS_V0_1",
+      "stats_status": "PENDING_INTEGRAL_REBALANCE",
+      "stats": {
+        "hp": null,
+        "qi_max": null,
+        "precision": null,
+        "evasion": null,
+        "defense": null,
+        "tenacity": null,
+        "control": null,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": null
+      },
+      "technique": {
+        "name": "Mordida de Corriente",
+        "mechanics": [
+          "DIRECT_DAMAGE"
+        ],
+        "params_status": "PENDING_INTEGRAL_REBALANCE",
+        "params": null
+      },
+      "ai": {
+        "cognition": "CAZADOR_2",
+        "social": "SOLITARIO"
+      },
+      "adaptive": {
+        "status": "BLOCKED_UNTIL_T0_READY",
+        "rule": "T1-T4 are applied only after this T0 profile is READY."
+      }
+    },
+    "sombra_ahogada": {
+      "id": "sombra_ahogada",
+      "name": "sombra ahogada del estanque",
+      "native_stage": "LianQi_III",
+      "native_stage_index": 3,
+      "role": "ELITE",
+      "region": "aguas_barrancos",
+      "element": "agua",
+      "unique": true,
+      "engine_contract": "NEW_COMBAT_STATS_V0_1",
+      "stats_status": "PENDING_INTEGRAL_REBALANCE",
+      "stats": {
+        "hp": null,
+        "qi_max": null,
+        "precision": null,
+        "evasion": null,
+        "defense": null,
+        "tenacity": null,
+        "control": null,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": null
+      },
+      "technique": {
+        "name": "Velo de Ahogo",
+        "mechanics": [
+          "POISON_DOT"
+        ],
+        "params_status": "PENDING_INTEGRAL_REBALANCE",
+        "params": null
+      },
+      "ai": {
+        "cognition": "TACTICO_3",
+        "social": "SOLITARIO"
+      },
+      "adaptive": {
+        "status": "BLOCKED_UNTIL_T0_READY",
+        "rule": "T1-T4 are applied only after this T0 profile is READY."
+      }
+    },
+    "centinela_pluma": {
+      "id": "centinela_pluma",
+      "name": "centinela de plumas petrificadas",
+      "native_stage": "LianQi_IV",
+      "native_stage_index": 4,
+      "role": "BOSS",
+      "region": "alturas",
+      "element": "metal",
+      "unique": true,
+      "engine_contract": "NEW_COMBAT_STATS_V0_1",
+      "stats_status": "PENDING_INTEGRAL_REBALANCE",
+      "stats": {
+        "hp": null,
+        "qi_max": null,
+        "precision": null,
+        "evasion": null,
+        "defense": null,
+        "tenacity": null,
+        "control": null,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": null
+      },
+      "technique": {
+        "name": "Aleteo de Cuchillas",
+        "mechanics": [
+          "DIRECT_DAMAGE"
+        ],
+        "params_status": "PENDING_INTEGRAL_REBALANCE",
+        "params": null
+      },
+      "ai": {
+        "cognition": "REACTIVO_1",
+        "social": "TERRITORIAL"
+      },
+      "adaptive": {
+        "status": "BLOCKED_UNTIL_T0_READY",
+        "rule": "T1-T4 are applied only after this T0 profile is READY."
+      }
+    },
+    "devorador_niebla": {
+      "id": "devorador_niebla",
+      "name": "devorador de niebla",
+      "native_stage": "LianQi_IV",
+      "native_stage_index": 4,
+      "role": "NORMAL",
+      "region": "alturas",
+      "element": "viento",
+      "unique": false,
+      "engine_contract": "NEW_COMBAT_STATS_V0_1",
+      "stats_status": "PENDING_INTEGRAL_REBALANCE",
+      "stats": {
+        "hp": null,
+        "qi_max": null,
+        "precision": null,
+        "evasion": null,
+        "defense": null,
+        "tenacity": null,
+        "control": null,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": null
+      },
+      "technique": {
+        "name": "Exhalación Vacía",
+        "mechanics": [
+          "DIRECT_DAMAGE"
+        ],
+        "params_status": "PENDING_INTEGRAL_REBALANCE",
+        "params": null
+      },
+      "ai": {
+        "cognition": "TACTICO_3",
+        "social": "SOLITARIO"
+      },
+      "adaptive": {
+        "status": "BLOCKED_UNTIL_T0_READY",
+        "rule": "T1-T4 are applied only after this T0 profile is READY."
+      }
+    },
+    "avispa_jade": {
+      "id": "avispa_jade",
+      "name": "avispa de jade dentado",
+      "native_stage": "LianQi_I",
+      "native_stage_index": 1,
+      "role": "NORMAL",
+      "region": "bosques",
+      "element": "viento",
+      "unique": false,
+      "engine_contract": "NEW_COMBAT_STATS_V0_1",
+      "stats_status": "PENDING_INTEGRAL_REBALANCE",
+      "stats": {
+        "hp": null,
+        "qi_max": null,
+        "precision": null,
+        "evasion": null,
+        "defense": null,
+        "tenacity": null,
+        "control": null,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": null
+      },
+      "technique": {
+        "name": "Picadura de Esmeralda",
+        "mechanics": [
+          "POISON_DOT"
+        ],
+        "params_status": "PENDING_INTEGRAL_REBALANCE",
+        "params": null
+      },
+      "ai": {
+        "cognition": "INSTINTIVO",
+        "social": "COLONIA"
+      },
+      "adaptive": {
+        "status": "BLOCKED_UNTIL_T0_READY",
+        "rule": "T1-T4 are applied only after this T0 profile is READY."
+      }
+    },
+    "mono_pildoras": {
+      "id": "mono_pildoras",
+      "name": "macaco ladrón de píldoras",
+      "native_stage": "LianQi_I",
+      "native_stage_index": 1,
+      "role": "SKIRMISHER",
+      "region": "bosques",
+      "element": null,
+      "unique": false,
+      "engine_contract": "NEW_COMBAT_STATS_V0_1",
+      "stats_status": "PENDING_INTEGRAL_REBALANCE",
+      "stats": {
+        "hp": null,
+        "qi_max": null,
+        "precision": null,
+        "evasion": null,
+        "defense": null,
+        "tenacity": null,
+        "control": null,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": null
+      },
+      "technique": {
+        "name": "Manotazo al Dantian",
+        "mechanics": [
+          "DIRECT_DAMAGE",
+          "QI_DRAIN"
+        ],
+        "params_status": "PENDING_INTEGRAL_REBALANCE",
+        "params": null
+      },
+      "ai": {
+        "cognition": "CAZADOR_2",
+        "social": "OPORTUNISTA"
+      },
+      "adaptive": {
+        "status": "BLOCKED_UNTIL_T0_READY",
+        "rule": "T1-T4 are applied only after this T0 profile is READY."
+      }
+    },
+    "sapo_ceniza": {
+      "id": "sapo_ceniza",
+      "name": "sapo de ceniza caliente",
+      "native_stage": "LianQi_II",
+      "native_stage_index": 2,
+      "role": "NORMAL",
+      "region": "cantera_vetas",
+      "element": "fuego",
+      "unique": false,
+      "engine_contract": "NEW_COMBAT_STATS_V0_1",
+      "stats_status": "PENDING_INTEGRAL_REBALANCE",
+      "stats": {
+        "hp": null,
+        "qi_max": null,
+        "precision": null,
+        "evasion": null,
+        "defense": null,
+        "tenacity": null,
+        "control": null,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": null
+      },
+      "technique": {
+        "name": "Nube de Hollín",
+        "mechanics": [
+          "DIRECT_DAMAGE",
+          "BURN_DOT"
+        ],
+        "params_status": "PENDING_INTEGRAL_REBALANCE",
+        "params": null
+      },
+      "ai": {
+        "cognition": "INSTINTIVO",
+        "social": "TERRITORIAL"
+      },
+      "adaptive": {
+        "status": "BLOCKED_UNTIL_T0_READY",
+        "rule": "T1-T4 are applied only after this T0 profile is READY."
+      }
+    },
+    "sapo_caldera": {
+      "id": "sapo_caldera",
+      "name": "Sapo Caldera de Tres Gargantas",
+      "native_stage": "LianQi_II",
+      "native_stage_index": 2,
+      "role": "BOSS",
+      "region": "cantera_vetas",
+      "element": "fuego",
+      "unique": true,
+      "engine_contract": "NEW_COMBAT_STATS_V0_1",
+      "stats_status": "PENDING_INTEGRAL_REBALANCE",
+      "stats": {
+        "hp": null,
+        "qi_max": null,
+        "precision": null,
+        "evasion": null,
+        "defense": null,
+        "tenacity": null,
+        "control": null,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": null
+      },
+      "technique": {
+        "name": "Eructo del Horno Hundido",
+        "mechanics": [
+          "DIRECT_DAMAGE",
+          "BURN_DOT"
+        ],
+        "params_status": "PENDING_INTEGRAL_REBALANCE",
+        "params": null
+      },
+      "ai": {
+        "cognition": "REACTIVO_1",
+        "social": "TERRITORIAL"
+      },
+      "adaptive": {
+        "status": "BLOCKED_UNTIL_T0_READY",
+        "rule": "T1-T4 are applied only after this T0 profile is READY."
+      }
+    },
+    "escarabajo_hierro": {
+      "id": "escarabajo_hierro",
+      "name": "escarabajo de hierro espiritual",
+      "native_stage": "LianQi_II",
+      "native_stage_index": 2,
+      "role": "TANK",
+      "region": "cantera_vetas",
+      "element": "metal",
+      "unique": false,
+      "engine_contract": "NEW_COMBAT_STATS_V0_1",
+      "stats_status": "PENDING_INTEGRAL_REBALANCE",
+      "stats": {
+        "hp": null,
+        "qi_max": null,
+        "precision": null,
+        "evasion": null,
+        "defense": null,
+        "tenacity": null,
+        "control": null,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": null
+      },
+      "technique": {
+        "name": "Carga de Caparazón",
+        "mechanics": [
+          "DIRECT_DAMAGE"
+        ],
+        "params_status": "PENDING_INTEGRAL_REBALANCE",
+        "params": null
+      },
+      "ai": {
+        "cognition": "INSTINTIVO",
+        "social": "COLONIA"
+      },
+      "adaptive": {
+        "status": "BLOCKED_UNTIL_T0_READY",
+        "rule": "T1-T4 are applied only after this T0 profile is READY."
+      }
+    },
+    "rey_escarabajo": {
+      "id": "rey_escarabajo",
+      "name": "Rey Escarabajo de la Veta Negra",
+      "native_stage": "LianQi_II",
+      "native_stage_index": 2,
+      "role": "BOSS",
+      "region": "cantera_vetas",
+      "element": "metal",
+      "unique": true,
+      "engine_contract": "NEW_COMBAT_STATS_V0_1",
+      "stats_status": "PENDING_INTEGRAL_REBALANCE",
+      "stats": {
+        "hp": null,
+        "qi_max": null,
+        "precision": null,
+        "evasion": null,
+        "defense": null,
+        "tenacity": null,
+        "control": null,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": null
+      },
+      "technique": {
+        "name": "Mandíbula de Yunque",
+        "mechanics": [
+          "DIRECT_DAMAGE"
+        ],
+        "params_status": "PENDING_INTEGRAL_REBALANCE",
+        "params": null
+      },
+      "ai": {
+        "cognition": "CAZADOR_2",
+        "social": "COLONIA"
+      },
+      "adaptive": {
+        "status": "BLOCKED_UNTIL_T0_READY",
+        "rule": "T1-T4 are applied only after this T0 profile is READY."
+      }
+    },
+    "anguila_estelar": {
+      "id": "anguila_estelar",
+      "name": "anguila de constelación rota",
+      "native_stage": "LianQi_III",
+      "native_stage_index": 3,
+      "role": "SKIRMISHER",
+      "region": "aguas_barrancos",
+      "element": "agua",
+      "unique": false,
+      "engine_contract": "NEW_COMBAT_STATS_V0_1",
+      "stats_status": "PENDING_INTEGRAL_REBALANCE",
+      "stats": {
+        "hp": null,
+        "qi_max": null,
+        "precision": null,
+        "evasion": null,
+        "defense": null,
+        "tenacity": null,
+        "control": null,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": null
+      },
+      "technique": {
+        "name": "Mordida del Meridiano Azul",
+        "mechanics": [
+          "DIRECT_DAMAGE",
+          "QI_DRAIN"
+        ],
+        "params_status": "PENDING_INTEGRAL_REBALANCE",
+        "params": null
+      },
+      "ai": {
+        "cognition": "REACTIVO_1",
+        "social": "SOLITARIO"
+      },
+      "adaptive": {
+        "status": "BLOCKED_UNTIL_T0_READY",
+        "rule": "T1-T4 are applied only after this T0 profile is READY."
+      }
+    },
+    "guardian_coral": {
+      "id": "guardian_coral",
+      "name": "guardián de coral memorioso",
+      "native_stage": "LianQi_III",
+      "native_stage_index": 3,
+      "role": "BOSS",
+      "region": "aguas_barrancos",
+      "element": "agua",
+      "unique": true,
+      "engine_contract": "NEW_COMBAT_STATS_V0_1",
+      "stats_status": "PENDING_INTEGRAL_REBALANCE",
+      "stats": {
+        "hp": null,
+        "qi_max": null,
+        "precision": null,
+        "evasion": null,
+        "defense": null,
+        "tenacity": null,
+        "control": null,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": null
+      },
+      "technique": {
+        "name": "Marea de los Nombres Hundidos",
+        "mechanics": [
+          "DIRECT_DAMAGE",
+          "QI_DRAIN"
+        ],
+        "params_status": "PENDING_INTEGRAL_REBALANCE",
+        "params": null
+      },
+      "ai": {
+        "cognition": "TACTICO_3",
+        "social": "TERRITORIAL"
+      },
+      "adaptive": {
+        "status": "BLOCKED_UNTIL_T0_READY",
+        "rule": "T1-T4 are applied only after this T0 profile is READY."
+      }
+    },
+    "halcon_tormenta": {
+      "id": "halcon_tormenta",
+      "name": "halcón de tormenta joven",
+      "native_stage": "LianQi_IV",
+      "native_stage_index": 4,
+      "role": "SKIRMISHER",
+      "region": "alturas",
+      "element": "viento",
+      "unique": false,
+      "engine_contract": "NEW_COMBAT_STATS_V0_1",
+      "stats_status": "PENDING_INTEGRAL_REBALANCE",
+      "stats": {
+        "hp": null,
+        "qi_max": null,
+        "precision": null,
+        "evasion": null,
+        "defense": null,
+        "tenacity": null,
+        "control": null,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": null
+      },
+      "technique": {
+        "name": "Picado del Relámpago",
+        "mechanics": [
+          "DIRECT_DAMAGE"
+        ],
+        "params_status": "PENDING_INTEGRAL_REBALANCE",
+        "params": null
+      },
+      "ai": {
+        "cognition": "CAZADOR_2",
+        "social": "SOLITARIO"
+      },
+      "adaptive": {
+        "status": "BLOCKED_UNTIL_T0_READY",
+        "rule": "T1-T4 are applied only after this T0 profile is READY."
+      }
+    },
+    "mantis_nube": {
+      "id": "mantis_nube",
+      "name": "mantis de nube cortante",
+      "native_stage": "LianQi_IV",
+      "native_stage_index": 4,
+      "role": "BOSS",
+      "region": "alturas",
+      "element": "viento",
+      "unique": true,
+      "engine_contract": "NEW_COMBAT_STATS_V0_1",
+      "stats_status": "PENDING_INTEGRAL_REBALANCE",
+      "stats": {
+        "hp": null,
+        "qi_max": null,
+        "precision": null,
+        "evasion": null,
+        "defense": null,
+        "tenacity": null,
+        "control": null,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": null
+      },
+      "technique": {
+        "name": "Tijera del Horizonte",
+        "mechanics": [
+          "DIRECT_DAMAGE"
+        ],
+        "params_status": "PENDING_INTEGRAL_REBALANCE",
+        "params": null
+      },
+      "ai": {
+        "cognition": "MASTER_4",
+        "social": "SOLITARIO"
+      },
+      "adaptive": {
+        "status": "BLOCKED_UNTIL_T0_READY",
+        "rule": "T1-T4 are applied only after this T0 profile is READY."
+      }
+    }
+  }
+}
