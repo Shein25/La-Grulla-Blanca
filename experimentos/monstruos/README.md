@@ -4,7 +4,8 @@ Esta carpeta agrupa experimentos cuyo dominio principal son los monstruos.
 
 ## Familias actuales
 
-- `monster-ai/` — Monster Combat AI.
+- `monster-ai/` — kernel de decisión de Monster Combat AI.
+- `monster-canonical-behavior-lab-v0.1/` — catálogo, adaptación, memoria, señales e integración de los 18 monstruos.
 
 ## Regla
 
@@ -20,4 +21,4 @@ Handoff actual:
 
 `HANDOFF_MONSTRUOS_NUEVO_MOTOR_2026-10-01.md`
 
-No se mantienen conversores ni fallbacks a formatos anteriores.
+Todo consumidor debe usar ese contrato directamente y validar su esquema exacto.
