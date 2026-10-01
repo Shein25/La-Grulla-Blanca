@@ -17,7 +17,7 @@ REGISTRY_FIELDS = {
 }
 PROFILE_FIELDS = {
     "id", "name", "native_stage", "native_stage_index", "role", "region",
-    "element", "unique", "engine_contract", "stats_status", "stats",
+    "element", "unique", "engine_contract", "resource_model", "stats_status", "stats",
     "technique", "ai", "adaptive",
 }
 REQUIRED_STATS = {
@@ -56,6 +56,10 @@ def validate_profile(profile: dict, *, require_ready: bool = True) -> dict:
     if profile["engine_contract"] != "NEW_COMBAT_STATS_V0_1":
         raise AssertionError(f"{monster_id}: wrong engine contract")
 
+    resource_model=profile["resource_model"]
+    if resource_model not in {"NONE","QI"}:
+        raise AssertionError(f"{monster_id}: unsupported resource_model {resource_model!r}")
+
     stats = profile["stats"]
     if not isinstance(stats, dict):
         raise AssertionError(f"{monster_id}: stats object required")
@@ -82,10 +86,21 @@ def validate_profile(profile: dict, *, require_ready: bool = True) -> dict:
     if require_ready:
         if profile["stats_status"] != READY:
             raise MonsterStatsNotReady(f"{monster_id}: T0 stats are not READY")
-        unresolved = [key for key in REQUIRED_STATS if stats[key] is None]
+        unresolved = [
+            key for key in REQUIRED_STATS
+            if stats[key] is None and not (key=="qi_max" and resource_model=="NONE")
+        ]
         if unresolved:
             raise MonsterStatsNotReady(
                 f"{monster_id}: unresolved stats: {', '.join(sorted(unresolved))}"
+            )
+        if resource_model=="NONE" and stats["qi_max"] is not None:
+            raise MonsterStatsNotReady(
+                f"{monster_id}: resource_model=NONE requires qi_max=null"
+            )
+        if resource_model=="QI" and stats["qi_max"] is None:
+            raise MonsterStatsNotReady(
+                f"{monster_id}: resource_model=QI requires numeric qi_max"
             )
         if technique:
             if technique["params_status"] != READY:
@@ -135,11 +150,14 @@ def selfcheck() -> None:
             require_ready_profile(monster_id, data)
         except MonsterStatsNotReady:
             blocked += 1
-    if blocked != 18:
-        raise AssertionError(f"expected 18 pending profiles, got {blocked}")
+    if blocked != 17:
+        raise AssertionError(f"expected 17 pending profiles after Rata T0 closure, got {blocked}")
+    ready=[mid for mid,p in data["profiles"].items() if p["stats_status"]==READY]
+    if ready!=["rata_qi"]:
+        raise AssertionError(f"expected only rata_qi READY, got {ready}")
     print("PASS: 18/18 monsters use NEW_COMBAT_STATS_V0_1.")
     print("PASS: monster registry/profile schemas are exact.")
-    print("PASS: 18/18 remain blocked until their T0 profile is READY.")
+    print("PASS: rata_qi is T0 READY; 17/18 remain blocked.")
 
 
 if __name__ == "__main__":
