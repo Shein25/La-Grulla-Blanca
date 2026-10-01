@@ -71,7 +71,7 @@ def run() -> dict:
 
     try:
         candidate=_rata_candidate()
-        candidate.validate_against_pending_profile(profiles["rata_qi"])
+        candidate.validate_shape()
         cid=candidate_id(candidate,0)
         if not cid.startswith("rata_qi-t000000-"):
             errors.append("CANDIDATE_ID")
@@ -122,8 +122,8 @@ def run() -> dict:
         1 for mid in LIANQI_I_IDS
         if profiles[mid]["stats_status"]=="READY"
     )
-    if ready:
-        errors.append(f"UNEXPECTED_READY_LIANQI_I:{ready}")
+    if ready!=1 or profiles["rata_qi"]["stats_status"]!="READY":
+        errors.append(f"READY_LIANQI_I_MISMATCH:{ready}")
 
     return {
         "status":"PASS" if not errors else "FAIL",
@@ -138,7 +138,8 @@ def run() -> dict:
         "rata_objective_directions":objective_directions("rata_qi"),
         "optuna_pipeline_implemented":True,
         "optuna_executed":False,
-        "canonical_registry_modified":False,
+        "canonical_registry_modified":True,
+        "ready_profile":"rata_qi",
     }
 
 
