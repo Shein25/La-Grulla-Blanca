@@ -1,0 +1,38 @@
+name: Rata T1 Reflejo Smoke
+
+on:
+  push:
+    branches:
+      - experiment/rata-t1-reflejo-calibration-v0.1
+    paths:
+      - "experimentos/balance_nuevo/rata_t1_reflejo_lab/**"
+      - ".github/workflows/rata-t1-reflejo-smoke.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Rata T1 compact smoke
+        working-directory: experimentos/balance_nuevo/rata_t1_reflejo_lab
+        run: |
+          rm -rf ci_rata_t1_smoke
+          python rata_t1_reflejo_lab.py --preset smoke --outdir ci_rata_t1_smoke
+          test -f ci_rata_t1_smoke/RESULTADOS_RATA_T1_REFLEJO_HEAVY.zip
+          python - <<'PY'
+          import json
+          s=json.load(open("ci_rata_t1_smoke/SUMMARY.json",encoding="utf-8"))
+          assert s["search_configs"]==50
+          assert s["canonical_t1_selected"] is False
+          assert s["t2_t4_executed"] is False
+          assert s["high_precision_configs"]>=1
+          print("PASS: Rata T1 Reflejo smoke complete")
+          PY
