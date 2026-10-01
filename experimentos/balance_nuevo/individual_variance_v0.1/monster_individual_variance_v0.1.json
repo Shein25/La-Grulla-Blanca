@@ -1,6 +1,6 @@
 {
   "schema_version": "monster-individual-variance-v0.3",
-  "status": "LAB_PROPOSAL_NOT_RUNTIME_CANON",
+  "status": "LAB_READY_FOR_5_SPECIES_VARIANCE_TEST",
   "semantics": {
     "canonical_t0": "natural_floor",
     "upper_envelope": "per-axis upper values come from measured experimental candidates; axes may use different source trials",
@@ -28,14 +28,14 @@
     "score": "mean of independent q values for every non-constant defensive/offensive axis",
     "threshold_by_variable_axis_count": {
       "1": 0.9925,
-      "2": 0.9389,
-      "3": 0.8812,
-      "4": 0.8376,
-      "5": 0.8039,
-      "6": 0.7792,
-      "7": 0.7592,
-      "8": 0.7438,
-      "9": 0.7306
+      "2": 0.9387627564,
+      "3": 0.8814368899,
+      "4": 0.8371611094,
+      "5": 0.8041703275,
+      "6": 0.779195057,
+      "7": 0.7595352057,
+      "8": 0.7434948144,
+      "9": 0.73008977
     }
   },
   "fixed_fields": [
@@ -255,26 +255,61 @@
       }
     },
     "mono_pildoras": {
-      "status": "BLOCKED_UNTIL_T0_HUMAN_RATIFICATION",
-      "proposed_base": {
+      "base": {
         "source_grid": 43,
         "hp": 34,
         "defense": 2,
         "evasion": 24,
         "precision": 91,
-        "tenacity": 12,
-        "basic_damage": "1d2+3",
-        "technique_direct_damage": "1d2+3",
-        "qi_drain": 5,
-        "cadence": 2
+        "tenacity": 12
       },
-      "planned_offensive_reference": {
-        "source_trial": 1274,
-        "basic_damage": "2d3+3",
-        "technique_direct_damage": "2d3+5",
-        "precision": 108
+      "upper_envelope": {
+        "source_survival_grid": 48,
+        "source_precision_trial": 1179,
+        "hp": 34,
+        "defense": 3,
+        "evasion": 44,
+        "precision": 111,
+        "tenacity": 12
       },
-      "note": "Do not activate or generate instances until grid 43 is human-ratified."
+      "attacks": {
+        "basic_damage": {
+          "ladder": [
+            "1d2+3",
+            "2d4",
+            "1d3+4",
+            "2d3+3"
+          ],
+          "sources": [
+            "grid43",
+            1211,
+            1179,
+            1274
+          ]
+        },
+        "technique_direct_damage": {
+          "ladder": [
+            "1d2+3",
+            "1d4+2",
+            "2d3+5"
+          ],
+          "sources": [
+            "grid43",
+            1179,
+            1274
+          ]
+        }
+      },
+      "fixed_technique": {
+        "name": "Manotazo al Dantian",
+        "mechanics": [
+          "DIRECT_DAMAGE",
+          "QI_DRAIN"
+        ],
+        "cadence": 2,
+        "qi_drain": 5
+      },
+      "source_note": "T0 floor is ratified grid 43. Survival ceiling comes from grid 48; offensive axes use measured overnight candidates. Cross-axis combinations remain LAB-only until variance validation."
     }
   },
   "guards": {
