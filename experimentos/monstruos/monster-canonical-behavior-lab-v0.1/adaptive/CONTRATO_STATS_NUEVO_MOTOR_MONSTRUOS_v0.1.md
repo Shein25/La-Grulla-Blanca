@@ -80,9 +80,9 @@ La estructura de aprendizaje puede conservarse, pero ningún multiplicador o hab
 
 ## Rata de Qi
 
-`rata_qi__mordisco_frenetico_t4` escala sobre `stats.basic_damage` del perfil T0 `READY`.
+`rata_qi__mordisco_frenetico_t4` conserva únicamente su identidad mecánica hasta cerrar T0.
 
-Su escalar actual continúa siendo LAB hasta la calibración T1–T4.
+Número de impactos, escalar, precisión, cooldown y daño permanecen `PENDING_T0_T4_REBALANCE`. No existe un valor numérico de compatibilidad.
 
 ## Guardia ejecutable
 
