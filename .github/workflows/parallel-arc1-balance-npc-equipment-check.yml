@@ -136,13 +136,52 @@ jobs:
           assert d["mutant"]["xp_multiplier"]==1.5
           assert d["guards"]["mutant_xp_multiplier_exactly_1_5"] is True
           assert d["mutant"]["maximum_incidence"]==0.01
-          assert d["status"]=="LAB_READY_FOR_5_SPECIES_VARIANCE_TEST"
+          assert d["status"]=="HUMAN_RATIFIED_FOR_EXPERIMENTAL_RUNTIME_INTEGRATION"
+          assert d["semantics"]["distribution_status"]=="HUMAN_RATIFIED"
+          assert d["axis_distribution"]=="UNIFORM_0_1"
           assert "base" in d["species"]["mono_pildoras"]
           assert d["species"]["mono_pildoras"]["fixed_technique"]["qi_drain"]==5
+          assert d["guards"]["runtime_adapter_must_not_mutate_canonical"] is True
+          assert d["guards"]["profession_xp_must_not_receive_mutant_multiplier"] is True
+          assert d["guards"]["loot_probability_must_not_be_scaled_by_adapter"] is True
+          assert d["guards"]["every_upper_stat_must_be_gte_t0"] is True
+          for sid,spec in d["species"].items():
+              for key in d["variable_stats"]:
+                  assert spec["upper_envelope"][key] >= spec["base"][key],(sid,key)
           assert len(d["species"]["avispa_jade"]["attacks"]["basic_damage"]["ladder"])>1
           assert len(d["species"]["serpiente_qi"]["attacks"]["poison_damage"]["ladder"])>1
           assert len(d["species"]["lobo_espiritual"]["attacks"]["technique_direct_damage"]["ladder"])>1
           print("PASS: defensive + offensive variance allows rare Mutantes with x1.5 loot and XP")
+          PY
+
+      - name: Runtime variance adapter contract
+        working-directory: experimentos/balance_nuevo/individual_variance_v0.1
+        run: |
+          node runtime_variance_adapter.test.mjs
+
+      - name: Lobo precision-floor sensitivity
+        working-directory: experimentos/balance_nuevo/individual_variance_v0.1
+        run: |
+          rm -rf ci_lobo_floor
+          python individual_variance_lab.py --preset directed --species lobo_espiritual --workers 1 --outdir ci_lobo_floor --namespace CI_LOBO_FLOOR
+          python - <<'PY'
+          import gzip,json
+          s=json.load(open("ci_lobo_floor/SUMMARY.json",encoding="utf-8"))
+          assert s["species"]==["lobo_espiritual"]
+          assert s["natural_fights_total"]==10000
+          assert s["conditional_mutant_fights_total"]==2500
+          assert s["natural_mutant_incidence"] < 0.01
+          with gzip.open("ci_lobo_floor/lobo_espiritual.json.gz","rt",encoding="utf-8") as f:
+              d=json.load(f)
+          n=d["natural"]["combat_normal"]
+          m=d["mutant_conditional"]["combat"]
+          print(json.dumps({
+              "mutant_incidence":s["natural_mutant_incidence"],
+              "normal_win_rate":n["win_rate"],
+              "normal_hp_final":n["hp_final_pct_mean"],
+              "mutant_win_rate":m["win_rate"],
+              "mutant_hp_final":m["hp_final_pct_mean"],
+          },sort_keys=True))
           PY
 
       - name: Individual variance combat smoke
