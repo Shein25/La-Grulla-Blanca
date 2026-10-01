@@ -1,0 +1,32 @@
+name: Stage1 Integral T0 Quick Check
+
+on:
+  push:
+    branches:
+      - experiment/combat-stat-contract-v0.1
+    paths:
+      - "experimentos/balance_nuevo/stage1_integral_t0_optuna/**/*.py"
+      - ".github/workflows/stage1-integral-t0-quick-check.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  quick-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Contract selfcheck
+        working-directory: experimentos/balance_nuevo/stage1_integral_t0_optuna
+        run: python selfcheck.py
+      - name: Adversarial guards
+        working-directory: experimentos/balance_nuevo/stage1_integral_t0_optuna
+        run: python test_contracts.py
+      - name: VETERAN policy tests
+        working-directory: experimentos/balance_nuevo/stage1_integral_t0_optuna
+        run: python test_veteran_policy.py
