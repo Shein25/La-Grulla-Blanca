@@ -140,7 +140,7 @@
     }
   },
   "t4": {
-    "status": "CALIBRATION_ALLOWED_NOT_SELECTED",
+    "status": "FULL_CANDIDATE_AWAITING_HUMAN_RATIFICATION",
     "identity": "MORDISCO_FRENETICO",
     "preserved_identity": [
       "physical",
@@ -162,7 +162,27 @@
       "Tier decay removes T4 ability below effective T4.",
       "No hidden player root/build inspection.",
       "Use measured or canonical Rata offense only."
-    ]
+    ],
+    "candidate": {
+      "name": "Mordisco Frenético",
+      "identity": "PHYSICAL_INSTINCTIVE_MULTI_HIT",
+      "activation": "REPLACE_BASIC_WHEN_READY",
+      "opening": "INSTANCE_BASIC x1.0",
+      "followup": "1 x CANONICAL_T0_BASIC_2D4 x0.50",
+      "precision_rule": "INDEPENDENT_PER_HIT",
+      "critical_rule": "NORMAL_INDEPENDENT_CRIT",
+      "cooldown_rounds": 5,
+      "direct_damage_pipeline_per_packet": true,
+      "flat_defense_per_packet": true,
+      "absorption_per_packet": true
+    },
+    "evidence": {
+      "final_validation_fights": 125000,
+      "workflow_run_id": 36910325458,
+      "workflow_conclusion": "success",
+      "canonical_write": false,
+      "no_t5": true
+    }
   },
   "guards": {
     "no_t1_recalibration_from_t2": true,
