@@ -3,7 +3,7 @@ from pathlib import Path
 HERE=Path(__file__).resolve().parent
 d=json.loads((HERE/"RATA_T4_FINAL_CANDIDATE_V0_1.json").read_text(encoding="utf-8"))
 
-assert d["status"]=="FINAL_VALIDATION_PENDING"
+assert d["status"]=="T4_FULL_CANDIDATE_AWAITING_HUMAN_RATIFICATION"
 assert d["name"]=="Mordisco Frenético"
 assert d["activation"]["rule"]=="REPLACE_BASIC_WHEN_READY"
 assert d["activation"]["effective_tier_required"]=="T4"
@@ -23,4 +23,7 @@ assert d["damage_pipeline"]["absorption_per_packet"] is True
 assert d["human_ratification_required"] is True
 assert d["canonical_write"] is False
 assert "T5" in d["forbidden"]
-print("PASS: complete T4 candidate is frozen for final validation only")
+assert d["final_validation"]["fights"]==125000
+assert d["final_validation"]["conclusion"]=="success"
+assert d["final_validation"]["tier_above_t4_executed"] is False
+print("PASS: complete T4 candidate is validated and awaiting human ratification")
