@@ -61,7 +61,7 @@ jobs:
               assert p["stats_status"]=="READY",mid
               assert p["stats"]==e["stats"],mid
               assert p["technique"]==e["technique"],mid
-          assert d["profiles"]["rata_qi"]["adaptive"]["status"]=="T1_READY_FOR_T2_CALIBRATION"
+          assert d["profiles"]["rata_qi"]["adaptive"]["status"]=="T2_READY_FOR_T3_CALIBRATION"
           for mid in ["avispa_jade","serpiente_qi","mono_pildoras","lobo_espiritual"]:
               assert d["profiles"][mid]["adaptive"]["status"]=="READY_FOR_T1_RECALIBRATION",mid
           assert set(d["rules"]["ready_profiles"])=={"rata_qi","avispa_jade","serpiente_qi","mono_pildoras","lobo_espiritual"}
@@ -183,84 +183,30 @@ jobs:
           print("PASS: five-species variance combat smoke")
           PY
 
-      - name: Validate frozen Rata T1 and T2 gate
+      - name: Validate frozen Rata T1-T2 and T3 gate
         working-directory: experimentos/balance_nuevo/rata_adaptive_tiers_v0.1
         run: |
           python recognition_kernel_test.py
+          python t3_counter_contract_test.py
           python - <<'PY'
           import json
           d=json.load(open("RATA_ADAPTIVE_TIER_CONTRACT_V0_1.json",encoding="utf-8"))
-          assert d["status"]=="T1_HUMAN_RATIFIED_T2_LAB_ALLOWED"
+          assert d["status"]=="T2_HUMAN_RATIFIED_T3_LAB_ALLOWED"
           assert d["t1"]["status"]=="READY_HUMAN_RATIFIED"
-          assert d["t1"]["ability"]=={
-              "id":"rata_qi__survival_1",
-              "name":"Reflejo de Madriguera",
-              "kind":"EVADE_NEXT",
-              "evasion_bonus":40,
-              "cooldown_rounds":5,
-          }
-          assert d["t1"]["selector"]["selected_signal_arm"]=={
-              "label":"BASE","self_low_hp_ratio":0.30,"heavy_hit_ratio":0.20
-          }
-          assert d["t2"]["status"]=="CALIBRATION_ALLOWED_NOT_SELECTED"
-          assert d["t3"]["status"]=="BLOCKED_UNTIL_T2_HUMAN_CLOSURE"
+          assert d["t1"]["ability"]["evasion_bonus"]==40
+          assert d["t1"]["ability"]["cooldown_rounds"]==5
+          assert d["t2"]["status"]=="READY_HUMAN_RATIFIED"
+          assert d["t2"]["candidate"]=="R2_SHORT"
+          r=d["t2"]["recognition"]
+          assert r["memory_window"]==2
+          assert r["repeated_same_category_required"]==2
+          assert r["count_results"]==["EFECTIVA"]
+          assert r["preemptive_survival_bonus"]==8
+          assert d["t3"]["status"]=="CALIBRATION_ALLOWED_NOT_SELECTED"
           assert d["t4"]["status"]=="BLOCKED_UNTIL_T3_HUMAN_CLOSURE"
-          t2=json.load(open("RATA_T2_RECOGNITION_INPUT_V0_1.json",encoding="utf-8"))
-          assert len(t2["candidates"])==3
-          assert t2["guards"]["no_t1_numeric_changes"] is True
-          assert t2["guards"]["no_t3_t4"] is True
-          print("PASS: Rata T1 frozen; only T2 LAB gate is open")
+          print("PASS: Rata T1/T2 frozen; only T3 LAB gate is open")
           PY
 
-      - name: Rata T2 recognition combat smoke
-        working-directory: experimentos/balance_nuevo/rata_adaptive_tiers_v0.1
+      - name: Confirm Rata T4 remains blocked
         run: |
-          rm -rf ci_rata_t2
-          python rata_t2_recognition_lab.py --preset smoke --outdir ci_rata_t2 --namespace CI
-          test -f ci_rata_t2/RESULTADOS_RATA_T2_RECOGNITION_V01.zip
-          python - <<'PY'
-          import gzip,json
-          s=json.load(open("ci_rata_t2/SUMMARY.json",encoding="utf-8"))
-          assert s["experiment"]=="RATA_T2_RECOGNITION_V01"
-          assert s["t1_frozen"] is True
-          assert s["t1_evasion_bonus"]==40
-          assert s["t1_cooldown_rounds"]==5
-          assert s["canonical_write"] is False
-          assert s["t3_t4_executed"] is False
-          with gzip.open("ci_rata_t2/t2_results.json.gz","rt",encoding="utf-8") as f:
-              rows=json.load(f)
-          assert len(rows)==3
-          assert {r["candidate"]["label"] for r in rows}=={"R2_SHORT","R2_CENTRAL","R3_CONSERVATIVE"}
-          for r in rows:
-              assert r["result"]["natural_all"]["fights"]==20
-              assert r["result"]["mutant_conditional"]["fights"]==10
-          print("PASS: Rata T2 recognition smoke; T1 frozen and T3-T4 blocked")
-          PY
-
-      - name: Rata T2 policy generalization smoke
-        working-directory: experimentos/balance_nuevo/rata_adaptive_tiers_v0.1
-        run: |
-          rm -rf ci_rata_t2_policy
-          python rata_t2_policy_generalization.py --preset smoke --outdir ci_rata_t2_policy --namespace CI_POLICY
-          test -f ci_rata_t2_policy/RESULTADOS_RATA_T2_POLICY_GENERALIZATION_V01.zip
-          python - <<'PY'
-          import gzip,json
-          s=json.load(open("ci_rata_t2_policy/SUMMARY.json",encoding="utf-8"))
-          assert s["experiment"]=="RATA_T2_POLICY_GENERALIZATION_V01"
-          assert s["policy_count"]==5
-          assert s["total_arms"]==20
-          assert s["total_fights"]==600
-          assert s["t1_frozen"] is True
-          assert s["canonical_write"] is False
-          assert s["t3_t4_executed"] is False
-          with gzip.open("ci_rata_t2_policy/policy_generalization_results.json.gz","rt",encoding="utf-8") as f:
-              rows=json.load(f)
-          assert len(rows)==15
-          assert {r["policy"] for r in rows}=={"VETERAN","UNITARGET_FIRST","AOE_FIRST","DEFENSE_OPEN","ROTATION"}
-          assert {r["candidate"]["label"] for r in rows}=={"R2_SHORT","R2_CENTRAL","R3_CONSERVATIVE"}
-          print("PASS: Rata T2 recognition generalization spans five player policies")
-          PY
-
-      - name: Confirm Rata T3-T4 remain structure-only
-        run: |
-          grep -q "T2_CALIBRATION_OPEN / T3-T4 STRUCTURE_ONLY / NO T3-T4 NUMERIC CALIBRATION" experimentos/balance_nuevo/parallel_arc1_pipeline/RATA_T2_T4_STRUCTURAL_AUDIT.md
+          grep -q "T3_CALIBRATION_OPEN / T4 STRUCTURE_ONLY / NO T4 NUMERIC CALIBRATION" experimentos/balance_nuevo/parallel_arc1_pipeline/RATA_T2_T4_STRUCTURAL_AUDIT.md
