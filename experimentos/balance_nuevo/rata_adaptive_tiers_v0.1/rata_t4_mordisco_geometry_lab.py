@@ -125,23 +125,33 @@ def _scaled_direct_packet(state,rng,scalar:float,dice_expr:str)->dict:
 
 
 def _execute_mordisco(state,rng,candidate,t4:T4FightState):
-    hit_count=int(candidate["hit_count"])
-    scalar=float(candidate["scalar_per_hit"])
-    source_mode=candidate.get("source_mode","CANONICAL_2D4")
-    if source_mode=="CANONICAL_2D4":
-        dice_expr="2d4"
-    elif source_mode=="INSTANCE_BASIC":
-        dice_expr=str(state.monster_profile["stats"]["basic_damage"])
+    packet_plan=[]
+    if candidate.get("opening_instance_basic",False):
+        packet_plan.append((str(state.monster_profile["stats"]["basic_damage"]),1.0))
+        followups=int(candidate["followup_hit_count"])
+        followup_scalar=float(candidate["followup_scalar_per_hit"])
+        if followups<1 or followup_scalar<=0:
+            raise ValueError("invalid T4 followup geometry")
+        packet_plan.extend([("2d4",followup_scalar)]*followups)
     else:
-        raise ValueError(f"unsupported T4 source_mode: {source_mode}")
-    if hit_count<1 or scalar<=0:
-        raise ValueError("invalid T4 geometry")
+        hit_count=int(candidate["hit_count"])
+        scalar=float(candidate["scalar_per_hit"])
+        source_mode=candidate.get("source_mode","CANONICAL_2D4")
+        if source_mode=="CANONICAL_2D4":
+            dice_expr="2d4"
+        elif source_mode=="INSTANCE_BASIC":
+            dice_expr=str(state.monster_profile["stats"]["basic_damage"])
+        else:
+            raise ValueError(f"unsupported T4 source_mode: {source_mode}")
+        if hit_count<1 or scalar<=0:
+            raise ValueError("invalid T4 geometry")
+        packet_plan.extend([(dice_expr,scalar)]*hit_count)
 
     t4.uses+=1
     t4.next_ready_round=int(state.round_no)+int(FIXED["cooldown_rounds"])
     before=float(state.player.hp)
     packets=0
-    for _ in range(hit_count):
+    for dice_expr,scalar in packet_plan:
         if not state.player.alive():
             break
         out=_scaled_direct_packet(state,rng,scalar,dice_expr)
