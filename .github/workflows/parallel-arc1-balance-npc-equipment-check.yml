@@ -188,6 +188,7 @@ jobs:
         run: |
           python recognition_kernel_test.py
           python t3_counter_contract_test.py
+          python t3_damage_contract_test.py
           python - <<'PY'
           import json
           d=json.load(open("RATA_ADAPTIVE_TIER_CONTRACT_V0_1.json",encoding="utf-8"))
@@ -326,6 +327,41 @@ jobs:
                   "delta_mutant":r["delta_vs_frozen_t2"]["mutant_conditional"],
               })
           print("T3_POLICY_RESULT="+json.dumps(out,sort_keys=True))
+          PY
+
+      - name: Rata T3 damage calibration study
+        if: contains(github.event.head_commit.message, '[T3_DAMAGE]')
+        working-directory: experimentos/balance_nuevo/rata_adaptive_tiers_v0.1
+        run: |
+          rm -rf ci_rata_t3_damage
+          python rata_t3_damage_calibration.py --natural-fights 200 --mutant-fights 50 --outdir ci_rata_t3_damage --namespace CI_T3_DAMAGE
+          python - <<'PY'
+          import gzip,json
+          with gzip.open("ci_rata_t3_damage/damage_calibration_results.json.gz","rt",encoding="utf-8") as f:
+              rows=json.load(f)
+          out=[]
+          for r in rows:
+              n=r["t3"]["natural_normal"]
+              m=r["t3"]["mutant_conditional"]
+              out.append({
+                  "policy":r["policy"],
+                  "damage":r["damage_candidate"]["label"],
+                  "normal_counter_per_fight":n["t3"]["counter_activation_per_fight"],
+                  "normal_damage_per_fight":n["t3"]["counter_damage_per_fight"],
+                  "normal_damage_per_activation":n["t3"]["counter_damage_per_activation"],
+                  "normal_damage_p90":n["t3"]["counter_damage_p90_per_activation"],
+                  "normal_hp_pressure_delta":r["delta_vs_frozen_t2"]["natural_normal"]["hp_pressure_delta"],
+                  "normal_win_delta":r["delta_vs_frozen_t2"]["natural_normal"]["win_rate_delta"],
+                  "mutant_counter_per_fight":m["t3"]["counter_activation_per_fight"],
+                  "mutant_damage_per_fight":m["t3"]["counter_damage_per_fight"],
+                  "mutant_damage_per_activation":m["t3"]["counter_damage_per_activation"],
+                  "mutant_damage_p90":m["t3"]["counter_damage_p90_per_activation"],
+                  "mutant_hp_pressure_delta":r["delta_vs_frozen_t2"]["mutant_conditional"]["hp_pressure_delta"],
+                  "mutant_win_delta":r["delta_vs_frozen_t2"]["mutant_conditional"]["win_rate_delta"],
+                  "loops_normal":n["t3"]["degenerate_counter_loop_count"],
+                  "loops_mutant":m["t3"]["degenerate_counter_loop_count"],
+              })
+          print("T3_DAMAGE_RESULT="+json.dumps(out,sort_keys=True))
           PY
 
       - name: Confirm Rata T4 remains blocked
