@@ -5,8 +5,7 @@ on:
     branches:
       - experiment/combat-stat-contract-v0.1
     paths:
-      - "experimentos/balance_nuevo/**"
-      - ".github/workflows/stage1-integral-t0-rata-smoke.yml"
+      - "experimentos/balance_nuevo/stage1_integral_t0_optuna/RUN_FULL_RATA_PIPELINE"
   workflow_dispatch:
 
 permissions:
