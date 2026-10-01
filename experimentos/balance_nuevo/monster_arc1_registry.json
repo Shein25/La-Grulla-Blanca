@@ -18,6 +18,7 @@
       "rata_qi",
       "serpiente_qi",
       "lobo_espiritual",
+      "eco_caido",
       "pez_lunar",
       "devorador_niebla",
       "avispa_jade",
@@ -164,18 +165,18 @@
       "element": null,
       "unique": true,
       "engine_contract": "NEW_COMBAT_STATS_V0_1",
-      "stats_status": "PENDING_INTEGRAL_REBALANCE",
+      "stats_status": "READY",
       "stats": {
-        "hp": null,
+        "hp": 51,
         "qi_max": null,
-        "precision": null,
-        "evasion": null,
-        "defense": null,
-        "tenacity": null,
-        "control": null,
+        "precision": 102,
+        "evasion": 24,
+        "defense": 1,
+        "tenacity": 24,
+        "control": 0,
         "crit_chance": 5,
         "crit_damage": 1.5,
-        "basic_damage": null
+        "basic_damage": "1d3+6"
       },
       "technique": null,
       "ai": {
@@ -183,8 +184,8 @@
         "social": "SOLITARIO"
       },
       "adaptive": {
-        "status": "BLOCKED_UNTIL_T0_READY",
-        "rule": "T1-T4 are applied only after this T0 profile is READY."
+        "status": "UNIQUE_T0_CLOSED_NO_T1_T4",
+        "rule": "Unique encounter. T0 is human-ratified and frozen; persistent T1-T4 do not apply."
       },
       "resource_model": "NONE"
     },
