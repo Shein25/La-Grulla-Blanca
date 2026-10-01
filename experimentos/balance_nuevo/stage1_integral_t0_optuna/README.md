@@ -69,8 +69,7 @@ Esos artefactos conservan sólo valor histórico/metodológico.
 `dice_space.py` genera notaciones explícitas de dados dentro de las bandas de
 media y `proposal.py` las entrega a Optuna mediante `suggest_categorical()`.
 
-`qi_max` de monstruos permanece deliberadamente sin resolver. No participa
-del search space. Durante el runtime LAB se usa un sentinel `NaN`, de modo
+`qi_max` de monstruos queda cerrado para Arco 1 como `null` autoritativo bajo `resource_model=NONE`. No participa en el combate y no bloquea `READY`; una reserva de Qi monstruosa requerirá un contrato futuro explícito.
 que una futura ruta que intente usar ese recurso no pueda recibir
 silenciosamente un número inventado.
 
