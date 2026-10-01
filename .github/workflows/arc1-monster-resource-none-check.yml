@@ -1,0 +1,48 @@
+name: Arc1 Monster Resource NONE Check
+
+on:
+  push:
+    branches:
+      - experiment/arc1-monster-resource-none-v0.1
+    paths:
+      - "experimentos/balance_nuevo/monster_arc1_registry.json"
+      - "docs/experimentos/CONTRATO_COMBATE_ESTADISTICAS_DOT_V0_1.md"
+      - "docs/experimentos/REGISTRO_UNIVERSAL_ESTADISTICAS_PROPIEDADES_COMBATE_V0_1.md"
+      - "experimentos/balance_nuevo/stage1_integral_t0_optuna/**/*.py"
+      - ".github/workflows/arc1-monster-resource-none-check.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contract-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Contract selfcheck
+        working-directory: experimentos/balance_nuevo/stage1_integral_t0_optuna
+        run: python selfcheck.py
+      - name: Adversarial guards
+        working-directory: experimentos/balance_nuevo/stage1_integral_t0_optuna
+        run: python test_contracts.py
+      - name: Veteran policy tests
+        working-directory: experimentos/balance_nuevo/stage1_integral_t0_optuna
+        run: python test_veteran_policy.py
+      - name: Verify all 18 Arc1 monster resource contracts
+        run: |
+          python - <<'PY'
+          import json
+          p="experimentos/balance_nuevo/monster_arc1_registry.json"
+          d=json.load(open(p,encoding="utf-8"))
+          assert len(d["profiles"])==18
+          assert d["rules"]["arc1_monster_resource_model"]=="NONE"
+          for mid,profile in d["profiles"].items():
+              assert profile["resource_model"]=="NONE", mid
+              assert profile["stats"]["qi_max"] is None, mid
+          print("PASS: 18/18 resource_model=NONE and qi_max=null")
+          PY
