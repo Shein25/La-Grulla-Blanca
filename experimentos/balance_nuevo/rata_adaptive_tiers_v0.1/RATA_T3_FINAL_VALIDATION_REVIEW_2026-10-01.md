@@ -210,9 +210,21 @@ En 125.000 peleas:
 
 ## Estado recomendado
 
-`T3_FULL_CANDIDATE_SELECTED_AWAITING_HUMAN_RATIFICATION`
+`T3_READY_HUMAN_RATIFIED`
 
-Candidato:
+Ratificación humana: 2026-10-01.
+
+Contrato congelado:
+
+```text
+Trigger: CONFIRMED_PATTERN_REFLEJO_MISS
+Damage: INSTANCE_BASIC
+Pipeline: normal direct damage
+```
+
+T4 Mordisco Frenético queda habilitado sólo para calibración experimental.
+
+Candidato ratificado:
 
 ```text
 CONFIRMED_PATTERN_REFLEJO_MISS
@@ -220,4 +232,4 @@ CONFIRMED_PATTERN_REFLEJO_MISS
 INSTANCE_BASIC
 ```
 
-No abrir T4 hasta ratificación humana.
+T4 puede abrirse ahora para LAB. T1-T3 no pueden recalibrarse desde T4.
