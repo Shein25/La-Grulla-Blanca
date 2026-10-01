@@ -528,7 +528,10 @@ def build_monster(profile: dict, tier: str) -> Actor:
     _require_monster_ready(profile, tier)
     s=profile["stats"]
     hp=float(s["hp"])
-    qi=float(s.get("qi_max",0))
+    if profile.get("resource_model")=="NONE":
+        qi=0.0
+    else:
+        qi=float(s["qi_max"])
     return Actor(
         hp_max=hp,hp=hp,qi_max=qi,qi=qi,
         precision=float(s["precision"]),evasion=float(s["evasion"]),
