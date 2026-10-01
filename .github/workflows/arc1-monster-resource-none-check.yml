@@ -46,3 +46,40 @@ jobs:
               assert profile["stats"]["qi_max"] is None, mid
           print("PASS: 18/18 resource_model=NONE and qi_max=null")
           PY
+      - name: Verify Rata T0 READY and adaptive gate
+        working-directory: experimentos/balance_nuevo
+        run: |
+          python - <<'PY'
+          from monster_new_engine_guard import load_registry, require_ready_profile, MonsterStatsNotReady
+          import etapa19b_combat_engine as engine
+
+          data=load_registry()
+          rata=require_ready_profile("rata_qi",data)
+          assert rata["resource_model"]=="NONE"
+          assert rata["stats_status"]=="READY"
+          assert rata["stats"]=={
+              "hp":21,"qi_max":None,"precision":80,"evasion":0,"defense":0,
+              "tenacity":0,"control":0,"crit_chance":5,"crit_damage":1.5,
+              "basic_damage":"2d4",
+          }
+          assert rata["adaptive"]["status"]=="READY_FOR_T1_RECALIBRATION"
+          actor=engine.build_monster(rata,"T0")
+          assert actor.hp_max==21
+          assert actor.qi_max==0 and actor.qi==0
+
+          try:
+              engine.build_monster(rata,"T1")
+          except ValueError:
+              pass
+          else:
+              raise AssertionError("T1 entered resolver before recalibration")
+
+          try:
+              require_ready_profile("avispa_jade",data)
+          except MonsterStatsNotReady:
+              pass
+          else:
+              raise AssertionError("avispa_jade must remain pending")
+
+          print("PASS: Rata T0 READY is executable; T1 still gated; peers remain pending")
+          PY
