@@ -48,6 +48,10 @@ jobs:
                   "stats":{"hp":41,"qi_max":None,"precision":97,"evasion":12,"defense":1,"tenacity":20,"control":0,"crit_chance":5,"crit_damage":1.5,"basic_damage":"2d4+2"},
                   "technique":{"name":"Emboscada de las Tres Colas","mechanics":["DIRECT_DAMAGE"],"params_status":"READY","params":{"cadence":5,"direct_damage":"2d6+1"}},
               },
+              "mono_pildoras":{
+                  "stats":{"hp":34,"qi_max":None,"precision":91,"evasion":24,"defense":2,"tenacity":12,"control":0,"crit_chance":5,"crit_damage":1.5,"basic_damage":"1d2+3"},
+                  "technique":{"name":"Manotazo al Dantian","mechanics":["DIRECT_DAMAGE","QI_DRAIN"],"params_status":"READY","params":{"cadence":2,"direct_damage":"1d2+3","qi_drain":5}},
+              },
           }
           for mid,e in expected.items():
               p=d["profiles"][mid]
@@ -55,40 +59,21 @@ jobs:
               assert p["stats"]==e["stats"],mid
               assert p["technique"]==e["technique"],mid
               assert p["adaptive"]["status"]=="READY_FOR_T1_RECALIBRATION",mid
-          assert d["profiles"]["mono_pildoras"]["stats_status"]=="PENDING_INTEGRAL_REBALANCE"
-          assert d["profiles"]["mono_pildoras"]["adaptive"]["status"]=="BLOCKED_UNTIL_T0_READY"
-          print("PASS: 4/5 LianQi-I T0 READY; Mono remains pending")
+          assert set(d["rules"]["ready_profiles"])=={"rata_qi","avispa_jade","serpiente_qi","mono_pildoras","lobo_espiritual"}
+          print("PASS: 5/5 LianQi-I T0 READY and frozen")
           PY
 
-      - name: Mono QI drain ablation smoke
-        working-directory: experimentos/balance_nuevo/parallel_arc1_pipeline
+      - name: Validate closed LianQi-I empirical model
+        working-directory: experimentos/balance_nuevo
         run: |
-          rm -rf ci_mono
-          python mono_qi_drain_ablation.py --preset smoke --outdir ci_mono
-          test -f ci_mono/RESULTADOS_MONO_QI_DRAIN_ABLATION.zip
-
-      - name: Mono local T0 refinement smoke
-        working-directory: experimentos/balance_nuevo/parallel_arc1_pipeline
-        run: |
-          rm -rf ci_mono_refinement
-          python mono_t0_local_refinement.py --preset smoke --outdir ci_mono_refinement
-          test -f ci_mono_refinement/RESULTADOS_MONO_T0_LOCAL_REFINEMENT.zip
+          python stage1_integral_t0_optuna/selfcheck.py
           python - <<'PY'
-          import gzip,json
-          s=json.load(open("ci_mono_refinement/SUMMARY.json",encoding="utf-8"))
-          assert s["experiment"]=="MONO_T0_LOCAL_REFINEMENT_V01"
-          assert s["grid_size"]==48
-          assert s["automatic_selection"] is False
-          assert s["canonical_write"] is False
-          with gzip.open("ci_mono_refinement/search_grid.json.gz","rt",encoding="utf-8") as f:
-              rows=json.load(f)
-          assert len(rows)==48
-          for r in rows:
-              p=r["params"]
-              assert p["qi_drain"]==5 and p["technique_cadence"]==2
-              assert p["basic_damage"]=="1d2+3"
-              assert p["technique_direct_damage"]=="1d2+3"
-          print("PASS: Mono local refinement explores survival only")
+          import json
+          d=json.load(open("parallel_arc1_pipeline/ARC1_BALANCE_EMPIRICAL_ANCHORS_V0_1.json",encoding="utf-8"))
+          assert d["status"]=="COMPLETE_EMPIRICAL_MODEL_5_OF_5_LIANQI_I_READY"
+          assert d["anchors"]["mono_pildoras"]["canonical_status"]=="READY"
+          assert d["anchors"]["mono_pildoras"]["grid_id"]==43
+          print("PASS: empirical LianQi-I model closed at 5/5")
           PY
 
       - name: Validate extrapolation matrix
@@ -151,11 +136,32 @@ jobs:
           assert d["mutant"]["xp_multiplier"]==1.5
           assert d["guards"]["mutant_xp_multiplier_exactly_1_5"] is True
           assert d["mutant"]["maximum_incidence"]==0.01
-          assert d["species"]["mono_pildoras"]["status"]=="BLOCKED_UNTIL_T0_HUMAN_RATIFICATION"
+          assert d["status"]=="LAB_READY_FOR_5_SPECIES_VARIANCE_TEST"
+          assert "base" in d["species"]["mono_pildoras"]
+          assert d["species"]["mono_pildoras"]["fixed_technique"]["qi_drain"]==5
           assert len(d["species"]["avispa_jade"]["attacks"]["basic_damage"]["ladder"])>1
           assert len(d["species"]["serpiente_qi"]["attacks"]["poison_damage"]["ladder"])>1
           assert len(d["species"]["lobo_espiritual"]["attacks"]["technique_direct_damage"]["ladder"])>1
           print("PASS: defensive + offensive variance allows rare Mutantes with x1.5 loot and XP")
+          PY
+
+      - name: Individual variance combat smoke
+        working-directory: experimentos/balance_nuevo/individual_variance_v0.1
+        run: |
+          rm -rf ci_variance
+          python individual_variance_lab.py --preset smoke --workers 1 --outdir ci_variance --namespace CI
+          test -f ci_variance/RESULTADOS_INDIVIDUAL_VARIANCE_LAB_LIANQI_I_V01.zip
+          python - <<'PY'
+          import json
+          s=json.load(open("ci_variance/SUMMARY.json",encoding="utf-8"))
+          assert s["experiment"]=="INDIVIDUAL_VARIANCE_LAB_LIANQI_I_V01"
+          assert s["species_count"]==5
+          assert s["natural_fights_total"]==100
+          assert s["conditional_mutant_fights_total"]==50
+          assert s["canonical_write"] is False
+          assert s["t1_t4_executed"] is False
+          assert s["mutant_rewards"]=={"loot_multiplier":1.5,"xp_multiplier":1.5}
+          print("PASS: five-species variance combat smoke")
           PY
 
       - name: Confirm Rata T2-T4 are structure-only
