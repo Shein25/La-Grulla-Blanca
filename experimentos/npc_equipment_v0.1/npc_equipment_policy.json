@@ -1,6 +1,6 @@
 {
-  "schema_version": "npc-equipment-policy-v0.1",
-  "status": "LAB_PROPOSAL_NOT_CANON",
+  "schema_version": "npc-equipment-policy-v0.2",
+  "status": "LAB_PROPOSAL_GATED_NOT_CANON",
   "stage_semantics": "Story/player progression visibility gate, not NPC cultivation rank.",
   "unique_policy": "Player-catalog items with unique=true are never assigned to NPCs by this layer.",
   "source_policy": "source_npc/source_type never implies the NPC wears the item; no source-affinity score is applied.",
@@ -135,6 +135,76 @@
       "DEFENSE",
       "BASIC_ATTACK",
       "PRECISION"
+    ]
+  },
+  "assignment_modes": {
+    "BESPOKE_NPC_GEAR_REQUIRED": "No automatic player-catalog assignment; design NPC-owned distinctive gear separately.",
+    "PERSONALIZATION_REQUIRED": "No automatic combat specialization; wait for an authorized companion combat/equipment archetype.",
+    "AUTO_CATALOG_ROLE_GUIDED": "May use non-unique player-catalog item types filtered by role and slots.",
+    "WARDROBE_OR_COMBAT_ROLE_REQUIRED": "Do not confuse civilian wardrobe with combat gear; leave combat equipment unassigned until authorized."
+  },
+  "family_allowed_slots": {
+    "MARTIAL": [
+      "ARMA",
+      "TOCADO",
+      "VESTIDURA",
+      "BRAZALES",
+      "FAJIN",
+      "PIERNAS",
+      "CALZADO",
+      "AMULETO",
+      "PULSERA",
+      "ANILLO"
+    ],
+    "MEDICAL": [
+      "TOCADO",
+      "VESTIDURA",
+      "BRAZALES",
+      "FAJIN",
+      "CALZADO",
+      "AMULETO",
+      "PULSERA",
+      "ANILLO"
+    ],
+    "MEDICAL_FIELD": [
+      "TOCADO",
+      "VESTIDURA",
+      "BRAZALES",
+      "FAJIN",
+      "PIERNAS",
+      "CALZADO",
+      "AMULETO",
+      "PULSERA",
+      "ANILLO"
+    ],
+    "FORMATION": [
+      "ARMA",
+      "TOCADO",
+      "VESTIDURA",
+      "BRAZALES",
+      "FAJIN",
+      "CALZADO",
+      "AMULETO",
+      "PULSERA",
+      "ANILLO"
+    ],
+    "CRAFT_MARTIAL": [
+      "ARMA",
+      "TOCADO",
+      "VESTIDURA",
+      "BRAZALES",
+      "CALZADO",
+      "ANILLO"
+    ],
+    "FIELD_HEAVY": [
+      "ARMA",
+      "TOCADO",
+      "VESTIDURA",
+      "BRAZALES",
+      "FAJIN",
+      "PIERNAS",
+      "CALZADO",
+      "ANILLO"
     ]
   }
 }
