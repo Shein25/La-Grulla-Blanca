@@ -217,3 +217,26 @@ Siguiente hueco real:
 - hook productivo mínimo para absorción;
 - instrumentación estructurada de recuperación en `beber()`;
 - luego pruebas de integración sobre una copia de ver74, no sobre producción.
+
+## Guardia de estadísticas — motor nuevo
+
+Desde 2026-09-30, `canonical/MOBS_ver74.snapshot.json` es **sólo fuente histórica/de identidad** para monstruos. No es fuente numérica de balance.
+
+Todo benchmark adaptativo nuevo debe recibir un T0 `READY_NEW_ENGINE_T0` procedente del registro del motor nuevo y pasar `assertNewEngineMonsterBase()`.
+
+Contrato:
+
+`adaptive/CONTRATO_STATS_NUEVO_MOTOR_MONSTRUOS_v0.1.md`
+
+Guard ejecutable:
+
+`adaptive/monster-stat-source-contract-v0.1.mjs`
+
+Orden obligatorio:
+
+```text
+NEW_ENGINE_T0 → T1–T4 → effectiveKit → Monster AI → NEW_ENGINE_RESOLVER
+```
+
+Los benchmarks históricos que usan números de ver74 quedan como evidencia de arquitectura/sensibilidad, no como autoridad de balance.
+
