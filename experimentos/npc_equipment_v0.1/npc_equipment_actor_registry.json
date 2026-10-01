@@ -1,0 +1,294 @@
+{
+  "schema_version": "npc-equipment-actors-v0.1",
+  "status": "A079_ROLE_BINDINGS_WITH_EQUIPMENT_FAMILY_PROPOSAL",
+  "actors": [
+    {
+      "actor_id": "lin_yue",
+      "display_name": "Lin Yue",
+      "a079_group": "COMPANIONS",
+      "role": "Compañera / par del jugador",
+      "equipment_family": "BALANCED_PEER",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "han_qiao",
+      "display_name": "Han Qiao",
+      "a079_group": "COMPANIONS",
+      "role": "Compañero / par del jugador",
+      "equipment_family": "BALANCED_PEER",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "zhao_wen",
+      "display_name": "Zhao Wen",
+      "a079_group": "COMPANIONS",
+      "role": "Compañero / par del jugador",
+      "equipment_family": "BALANCED_PEER",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "mei_lian",
+      "display_name": "Mei Lian",
+      "a079_group": "COMPANIONS",
+      "role": "Compañera / par del jugador",
+      "equipment_family": "BALANCED_PEER",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "guo_chen",
+      "display_name": "Guo Chen",
+      "a079_group": "COMPANIONS",
+      "role": "Compañero / par del jugador",
+      "equipment_family": "BALANCED_PEER",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "luo_yan",
+      "display_name": "Luo Yan",
+      "a079_group": "COMPANIONS",
+      "role": "Compañero / par del jugador",
+      "equipment_family": "BALANCED_PEER",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "ji_xueying",
+      "display_name": "Ji Xueying",
+      "a079_group": "AUTHORITIES",
+      "role": "Maestra de Secta",
+      "equipment_family": "LEADER",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "qiao_ren",
+      "display_name": "Qiao Ren",
+      "a079_group": "AUTHORITIES",
+      "role": "Disciplina y Administración",
+      "equipment_family": "ADMIN",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "wei_jian",
+      "display_name": "Wei Jian",
+      "a079_group": "AUTHORITIES",
+      "role": "Responsable marcial / Pabellón Marcial",
+      "equipment_family": "MARTIAL",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "song_rui",
+      "display_name": "Song Rui",
+      "a079_group": "AUTHORITIES",
+      "role": "Responsable de Archivos",
+      "equipment_family": "ADMIN",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "lan_meihua",
+      "display_name": "Lan Meihua",
+      "a079_group": "AUTHORITIES",
+      "role": "Medicina / Alquimia",
+      "equipment_family": "MEDICAL",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "duan_shibo",
+      "display_name": "Duan Shibo",
+      "a079_group": "AUTHORITIES",
+      "role": "Recursos / Producción",
+      "equipment_family": "LOGISTICS",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "he_zhen",
+      "display_name": "He Zhen",
+      "a079_group": "AUTHORITIES",
+      "role": "Formaciones / Territorio",
+      "equipment_family": "FORMATION",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "shen_baojun",
+      "display_name": "Shen Baojun",
+      "a079_group": "INTERMEDIATE",
+      "role": "Instructor marcial externo",
+      "equipment_family": "MARTIAL",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "madre_wen",
+      "display_name": "Madre Wen",
+      "a079_group": "INTERMEDIATE",
+      "role": "Responsable de vida cotidiana de externos",
+      "equipment_family": "CIVILIAN_SUPPORT",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "tao_ming",
+      "display_name": "Tao Ming",
+      "a079_group": "INTERMEDIATE",
+      "role": "Registro de Servicios",
+      "equipment_family": "ADMIN",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "jiang_rui",
+      "display_name": "Jiang Rui",
+      "a079_group": "INTERMEDIATE",
+      "role": "Capitán de patrulla",
+      "equipment_family": "MARTIAL",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "su_lian",
+      "display_name": "Su Lian",
+      "a079_group": "INTERMEDIATE",
+      "role": "Maestra de Herboristería",
+      "equipment_family": "MEDICAL_FIELD",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "chen_bo",
+      "display_name": "Chen Bo",
+      "a079_group": "INTERMEDIATE",
+      "role": "Instructor de Examen / Anatomía-Medicina",
+      "equipment_family": "MEDICAL",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "yao_fen",
+      "display_name": "Yao Fen",
+      "a079_group": "INTERMEDIATE",
+      "role": "Instructora de Alquimia / Botica",
+      "equipment_family": "MEDICAL",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "gao_shun",
+      "display_name": "Gao Shun",
+      "a079_group": "FUNCTIONAL_SUPPORT",
+      "role": "Guardia de la Puerta Roja",
+      "equipment_family": "MARTIAL",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "feng_zhi",
+      "display_name": "Feng Zhi",
+      "a079_group": "FUNCTIONAL_SUPPORT",
+      "role": "Asistente de Disciplina",
+      "equipment_family": "ADMIN",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "ma_qiren",
+      "display_name": "Ma Qiren",
+      "a079_group": "FUNCTIONAL_SUPPORT",
+      "role": "Responsable de Almacenes",
+      "equipment_family": "LOGISTICS",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "pei_luo",
+      "display_name": "Pei Luo",
+      "a079_group": "FUNCTIONAL_SUPPORT",
+      "role": "Responsable de Cocina/Comedor",
+      "equipment_family": "CIVILIAN_SUPPORT",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "lu_cheng",
+      "display_name": "Lu Cheng",
+      "a079_group": "FUNCTIONAL_SUPPORT",
+      "role": "Taller de armas / Reparaciones",
+      "equipment_family": "CRAFT_MARTIAL",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "ning_cai",
+      "display_name": "Ning Cai",
+      "a079_group": "FUNCTIONAL_SUPPORT",
+      "role": "Textiles y cuero",
+      "equipment_family": "CRAFT_SUPPORT",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "wen_tao",
+      "display_name": "Wen Tao",
+      "a079_group": "FUNCTIONAL_SUPPORT",
+      "role": "Técnico de Formaciones",
+      "equipment_family": "FORMATION",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "yu_shun",
+      "display_name": "Yu Shun",
+      "a079_group": "FUNCTIONAL_SUPPORT",
+      "role": "Copista",
+      "equipment_family": "ADMIN",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "ma_gu",
+      "display_name": "Ma Gu",
+      "a079_group": "FUNCTIONAL_SUPPORT",
+      "role": "Capataz de Cantera",
+      "equipment_family": "FIELD_HEAVY",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "ren_bo",
+      "display_name": "Ren Bo",
+      "a079_group": "FUNCTIONAL_SUPPORT",
+      "role": "Patrullero veterano",
+      "equipment_family": "MARTIAL",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "xu_an",
+      "display_name": "Xu An",
+      "a079_group": "FUNCTIONAL_SUPPORT",
+      "role": "Representante de Sauces",
+      "equipment_family": "CIVILIAN_SUPPORT",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    },
+    {
+      "actor_id": "mei_shufen",
+      "display_name": "Mei Shufen",
+      "a079_group": "FUNCTIONAL_SUPPORT",
+      "role": "Herbolaria local de Sauces",
+      "equipment_family": "MEDICAL_FIELD",
+      "source": "A07.9 AUTHORING 32 FINAL CLOSE / role metadata only",
+      "combat_equipment_application": "DEFERRED_UNTIL_NPC_COMBAT_STAT_CONTRACT"
+    }
+  ]
+}
