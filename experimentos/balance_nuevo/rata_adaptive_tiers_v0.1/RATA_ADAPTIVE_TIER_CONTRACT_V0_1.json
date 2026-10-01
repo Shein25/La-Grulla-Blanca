@@ -1,0 +1,104 @@
+{
+  "schema_version": "rata-adaptive-tiers-v0.1",
+  "status": "T1_HUMAN_RATIFIED_T2_LAB_ALLOWED",
+  "species_id": "rata_qi",
+  "population_tier_thresholds": {
+    "T0": [
+      0,
+      19
+    ],
+    "T1": [
+      20,
+      44
+    ],
+    "T2": [
+      45,
+      69
+    ],
+    "T3": [
+      70,
+      89
+    ],
+    "T4": [
+      90,
+      100
+    ]
+  },
+  "t0": {
+    "status": "READY",
+    "source_trial": 4254,
+    "stats": {
+      "hp": 21,
+      "precision": 80,
+      "evasion": 0,
+      "defense": 0,
+      "tenacity": 0,
+      "control": 0,
+      "crit_chance": 5,
+      "crit_damage": 1.5,
+      "basic_damage": "2d4"
+    }
+  },
+  "t1": {
+    "status": "READY_HUMAN_RATIFIED",
+    "ratified_on": "2026-10-01",
+    "source_results_sha256": "8165e7f98bc0cbc696dfbc9c8f86d92ade2465bf2c1d8998206dfddf0d88c5dc",
+    "cognition_transition": {
+      "from": "INSTINTIVO",
+      "to": "REACTIVO_1"
+    },
+    "ability": {
+      "id": "rata_qi__survival_1",
+      "name": "Reflejo de Madriguera",
+      "kind": "EVADE_NEXT",
+      "evasion_bonus": 40,
+      "cooldown_rounds": 5
+    },
+    "selector": {
+      "profile": "REACTIVO_1",
+      "basic_utility_base": 40,
+      "survival_utility_base": 18,
+      "signal_weights": {
+        "SELF_LOW_HP": 22,
+        "TOOK_HEAVY_HIT": 10,
+        "PLAYER_LOW_HP": 3
+      },
+      "selected_signal_arm": {
+        "label": "BASE",
+        "self_low_hp_ratio": 0.3,
+        "heavy_hit_ratio": 0.2
+      },
+      "jitter": 3,
+      "repetition_penalty": 5
+    },
+    "interaction_guards": {
+      "individual_variance_compatible": true,
+      "mutant_classification_precedes_t1": true,
+      "mutant_rewards_unchanged_by_t1": true
+    }
+  },
+  "t2": {
+    "status": "CALIBRATION_ALLOWED_NOT_SELECTED",
+    "identity": "RECOGNITION",
+    "requirements": [
+      "Use only observable player actions/outcomes.",
+      "Recognize repeated recent behavior; never inspect root/build metadata.",
+      "T1 ability magnitude +40 EVA and CD5 remain frozen.",
+      "T2 may change preemptive eligibility/scoring, not T1 numeric magnitude.",
+      "Compare false-positive anticipation and action displacement.",
+      "No T3/T4 execution."
+    ]
+  },
+  "t3": {
+    "status": "BLOCKED_UNTIL_T2_HUMAN_CLOSURE"
+  },
+  "t4": {
+    "status": "BLOCKED_UNTIL_T3_HUMAN_CLOSURE"
+  },
+  "guards": {
+    "no_t1_recalibration_from_t2": true,
+    "no_hidden_player_build_inspection": true,
+    "maxTierReached_single_historical_milestone": true,
+    "t3_t4_blocked": true
+  }
+}
