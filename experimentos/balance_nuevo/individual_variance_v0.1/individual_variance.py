@@ -1,7 +1,7 @@
 """Intra-species monster variance v0.2 — LAB prototype.
 
 Independent per-axis rolls are allowed. Rare convergence of high rolls is
-classified as Mutante and receives loot_multiplier=1.5.
+classified as Mutante and receives loot_multiplier=1.5 and xp_multiplier=1.5.
 
 No new species ids, no adaptive tier grant, no runtime activation here.
 """
@@ -94,7 +94,7 @@ def selfcheck(samples=50000):
                 mutants+=1
                 assert x["suffix"]=="Mutante"
                 assert x["loot_multiplier"]==1.5
-                assert x["xp_multiplier"]==1.0
+                assert x["xp_multiplier"]==1.5
             else:
                 assert x["suffix"] is None
                 assert x["loot_multiplier"]==1.0
@@ -102,7 +102,7 @@ def selfcheck(samples=50000):
         rates[species_id]=rate
         assert rate < CONFIG["mutant"]["maximum_incidence"],(species_id,rate)
     print("PASS: independent intra-species rolls stay inside tested envelopes")
-    print("PASS: Mutante incidence <1% and loot multiplier is exactly 1.5")
+    print("PASS: Mutante incidence <1%; loot and XP multipliers are exactly 1.5")
     print(json.dumps(rates,ensure_ascii=False,sort_keys=True))
 
 if __name__=="__main__":
