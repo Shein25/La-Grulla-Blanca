@@ -1,7 +1,7 @@
-"""Hard guard for Arc 1 monster balance after the 2026-09-30 migration audit.
+"""Arc 1 monster-stat guard.
 
-New balance runners must consume monster_arc1_new_engine_registry_v0_2.json.
-They must never silently fall back to monster_arc1_new_contract_lab.json.
+There is one source of monster combat stats: monster_arc1_registry.json.
+Pending T0 profiles cannot enter balance simulations.
 """
 from __future__ import annotations
 
@@ -9,23 +9,25 @@ import json
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-REGISTRY = HERE / "monster_arc1_new_engine_registry_v0_2.json"
-DEPRECATED = HERE / "monster_arc1_new_contract_lab.json"
+REGISTRY = HERE / "monster_arc1_registry.json"
+PENDING = "PENDING_INTEGRAL_REBALANCE"
+READY = "READY"
 
-PENDING = "PENDING_INTEGRAL_REBALANCE_NEW_ENGINE"
 
-
-class MonsterStatsNotMigrated(RuntimeError):
+class MonsterStatsNotReady(RuntimeError):
     pass
 
 
 def load_registry(path: Path = REGISTRY) -> dict:
     data = json.loads(path.read_text(encoding="utf-8"))
-    if data.get("hard_rules", {}).get("legacy_numeric_import") != "FORBIDDEN":
-        raise AssertionError("legacy_numeric_import guard missing")
-    if data.get("hard_rules", {}).get("legacy_stat_formula_translation") != "FORBIDDEN":
-        raise AssertionError("legacy formula translation guard missing")
-    if data.get("profile_count") != 18 or len(data.get("profiles", {})) != 18:
+    if data.get("schema_version") != "arc1-monsters-v1":
+        raise AssertionError("unexpected monster registry schema")
+    if data.get("status") != "NEW_ENGINE_ONLY":
+        raise AssertionError("monster registry must be NEW_ENGINE_ONLY")
+    if data.get("engine_contract") != "NEW_COMBAT_STATS_V0_1":
+        raise AssertionError("wrong combat-stat contract")
+    profiles = data.get("profiles", {})
+    if len(profiles) != 18:
         raise AssertionError("Arc 1 registry must contain exactly 18 monsters")
     return data
 
@@ -35,53 +37,42 @@ def require_ready_profile(monster_id: str, registry: dict | None = None) -> dict
     try:
         profile = data["profiles"][monster_id]
     except KeyError as exc:
-        raise KeyError(f"monster not registered in new-engine registry: {monster_id}") from exc
+        raise KeyError(f"monster not registered: {monster_id}") from exc
 
-    if profile.get("stats_status") == PENDING:
-        raise MonsterStatsNotMigrated(
-            f"{monster_id}: T0 stats are still pending new-engine integral rebalance; "
-            "legacy fallback is forbidden"
-        )
+    if profile.get("engine_contract") != "NEW_COMBAT_STATS_V0_1":
+        raise AssertionError(f"{monster_id}: wrong engine contract")
+    if profile.get("stats_status") != READY:
+        raise MonsterStatsNotReady(f"{monster_id}: T0 stats are not READY")
 
-    policy = profile.get("source_policy", {})
-    if policy.get("numeric_source") != "NEW_ENGINE_ONLY":
-        raise AssertionError(f"{monster_id}: numeric_source must be NEW_ENGINE_ONLY")
-    if policy.get("legacy_numeric_values_allowed") is not False:
-        raise AssertionError(f"{monster_id}: legacy numeric values must be forbidden")
-    if policy.get("legacy_formula_translation_allowed") is not False:
-        raise AssertionError(f"{monster_id}: legacy formula translation must be forbidden")
-
-    stats = profile.get("new_engine_stats", {})
-    unresolved = [k for k, v in stats.items() if v is None]
+    stats = profile.get("stats", {})
+    required = (
+        "hp", "qi_max", "precision", "evasion", "defense",
+        "tenacity", "control", "crit_chance", "crit_damage", "basic_damage"
+    )
+    unresolved = [key for key in required if stats.get(key) is None]
     if unresolved:
-        raise MonsterStatsNotMigrated(
-            f"{monster_id}: unresolved new-engine stats: {', '.join(unresolved)}"
+        raise MonsterStatsNotReady(
+            f"{monster_id}: unresolved stats: {', '.join(unresolved)}"
         )
+
+    technique = profile.get("technique")
+    if technique and technique.get("params_status") != READY:
+        raise MonsterStatsNotReady(f"{monster_id}: technique params are not READY")
     return profile
-
-
-def assert_deprecated_source_is_diagnostic_only(path: Path = DEPRECATED) -> None:
-    data = json.loads(path.read_text(encoding="utf-8"))
-    if data.get("status") != "DEPRECATED_LEGACY_CONTAMINATED_DIAGNOSTIC_ONLY":
-        raise AssertionError("legacy-contaminated source is not explicitly deprecated")
-    if data.get("deprecation", {}).get("hard_guard") != "DO_NOT_USE_FOR_NEW_MONSTER_BALANCE":
-        raise AssertionError("deprecated source hard guard missing")
 
 
 def selfcheck() -> None:
     data = load_registry()
-    assert_deprecated_source_is_diagnostic_only()
-    assert len(data["profiles"]) == 18
     blocked = 0
     for monster_id in data["profiles"]:
         try:
             require_ready_profile(monster_id, data)
-        except MonsterStatsNotMigrated:
+        except MonsterStatsNotReady:
             blocked += 1
     if blocked != 18:
-        raise AssertionError(f"expected 18 pending profiles to be blocked, got {blocked}")
-    print("PASS: 18/18 monster profiles are registered and blocked until new-engine T0 rebalance.")
-    print("PASS: legacy-contaminated translation is diagnostic-only.")
+        raise AssertionError(f"expected 18 pending profiles, got {blocked}")
+    print("PASS: 18/18 monsters use the new registry.")
+    print("PASS: 18/18 remain blocked until their T0 profile is READY.")
 
 
 if __name__ == "__main__":
