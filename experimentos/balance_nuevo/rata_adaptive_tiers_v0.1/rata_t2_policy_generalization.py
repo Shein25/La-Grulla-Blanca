@@ -6,8 +6,17 @@ This is a recognition-generalization test, not a player-balance target.
 No canonical write. T1 numerics frozen. T3-T4 forbidden.
 """
 from __future__ import annotations
-import argparse,gzip,json,zipfile
+import argparse,gzip,json,zipfile,sys
 from pathlib import Path
+
+HERE=Path(__file__).resolve().parent
+BALANCE=HERE.parent
+STAGE1=BALANCE/"stage1_integral_t0_optuna"
+VARIANCE=BALANCE/"individual_variance_v0.1"
+T1LAB=BALANCE/"rata_t1_variance_interaction_v0.1"
+PARALLEL=BALANCE/"parallel_arc1_pipeline"
+for p in (HERE,BALANCE,STAGE1,VARIANCE,T1LAB,PARALLEL):
+    if str(p) not in sys.path:sys.path.insert(0,str(p))
 
 from monster_new_engine_guard import load_registry,require_ready_profile
 from rata_t2_recognition_lab import INPUT,RATA_ID,eval_tier,delta
