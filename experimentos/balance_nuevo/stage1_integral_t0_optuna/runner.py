@@ -30,7 +30,7 @@ from player_policy_veteran import (
 )
 from telemetry import fight_once_observed
 
-RUNTIME_QI_SENTINEL="UNRESOLVED_QI_NAN_SENTINEL"
+RUNTIME_QI_SENTINEL="RESOURCE_MODEL_NONE_NAN_SENTINEL"
 BASIC_PROXY_SENTINEL_COST=10**9
 ALLOWED_PLAYER_POLICIES={
     "VETERAN",
@@ -55,9 +55,9 @@ def _lab_profile(candidate: T0LabCandidate, canonical_profile: dict) -> dict:
 
 def _candidate_actor(candidate: T0LabCandidate) -> engine.Actor:
     s=candidate.stats
-    # qi_max no participa todavía en ninguna mecánica T0 de estos monstruos.
-    # NaN es un sentinel deliberado: si una futura ruta intenta usarlo, debe
-    # contaminar/fallar en vez de introducir silenciosamente un número ficticio.
+    # resource_model=NONE: los monstruos del Arco 1 no poseen reserva de Qi.
+    # El LAB usa NaN como sentinel deliberado para detectar cualquier acceso
+    # accidental al recurso inexistente durante una búsqueda pendiente.
     return engine.Actor(
         hp_max=float(s["hp"]),
         hp=float(s["hp"]),
