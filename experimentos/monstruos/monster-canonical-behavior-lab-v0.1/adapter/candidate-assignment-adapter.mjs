@@ -8,7 +8,7 @@ export function buildCandidateMonsterInput({mobId,def,round,mode='DECISION_EXPER
   const ids=canonicalAbilityIds(mobId);
   const due=techniqueDue(def,round);
   let effectiveKit;
-  if(!def.tecnica) effectiveKit=[ids.basic];
+  if(!def.technique) effectiveKit=[ids.basic];
   else if(mode==='CADENCE_COMPAT') effectiveKit=due?[ids.technique]:[ids.basic];
   else if(mode==='DECISION_EXPERIMENTAL') effectiveKit=due?[ids.basic,ids.technique]:[ids.basic];
   else throw new RangeError(`mode desconocido: ${mode}`);
