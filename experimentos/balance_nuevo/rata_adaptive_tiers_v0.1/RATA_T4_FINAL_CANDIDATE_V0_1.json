@@ -1,0 +1,56 @@
+{
+  "schema_version": "rata-t4-final-candidate-v0.1",
+  "status": "FINAL_VALIDATION_PENDING",
+  "species_id": "rata_qi",
+  "name": "Mordisco Frenético",
+  "identity": "PHYSICAL_INSTINCTIVE_MULTI_HIT",
+  "activation": {
+    "rule": "REPLACE_BASIC_WHEN_READY",
+    "effective_tier_required": "T4",
+    "decay_below_t4_disables": true,
+    "respects_skip_next_action": true,
+    "never_displaces_survival_choice": true
+  },
+  "packets": [
+    {
+      "order": 1,
+      "role": "OPENING",
+      "damage_source": "INSTANCE_BASIC",
+      "scalar": 1,
+      "precision_rule": "INDEPENDENT_ROLL",
+      "critical_rule": "NORMAL_INDEPENDENT_CRIT"
+    },
+    {
+      "order": 2,
+      "role": "FRENZY_FOLLOWUP",
+      "damage_source": "CANONICAL_T0_BASIC_2D4",
+      "scalar": 0.5,
+      "precision_rule": "INDEPENDENT_ROLL",
+      "critical_rule": "NORMAL_INDEPENDENT_CRIT"
+    }
+  ],
+  "cooldown_rounds": 5,
+  "damage_pipeline": {
+    "per_packet": true,
+    "flat_defense_per_packet": true,
+    "absorption_per_packet": true,
+    "normal_direct_damage_pipeline": true
+  },
+  "frozen_prior_tiers": {
+    "t1": "+40 EVA / CD5 / REACTIVO_1 / BASE",
+    "t2": "R2_SHORT memory2 repeat2 EFECTIVA +8",
+    "t3": "CONFIRMED_PATTERN_REFLEJO_MISS + INSTANCE_BASIC"
+  },
+  "forbidden": [
+    "QI_DRAIN",
+    "DOT",
+    "Control",
+    "root/build inspection",
+    "precision bonus",
+    "crit bonus",
+    "shared guaranteed hit",
+    "T5"
+  ],
+  "human_ratification_required": true,
+  "canonical_write": false
+}
