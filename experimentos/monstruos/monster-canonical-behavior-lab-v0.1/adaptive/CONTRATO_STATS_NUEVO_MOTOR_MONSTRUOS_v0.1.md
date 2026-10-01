@@ -1,136 +1,93 @@
-# Contrato — estadísticas de monstruos bajo motor nuevo v0.1
+# Contrato — estadísticas de monstruos bajo motor nuevo v1
 
-**Estado:** GUARDIA EXPERIMENTAL ACTIVA  
+**Estado:** ACTIVO  
 **Rama:** `experiment/monster-adaptive-survival-lab-v0.1`
 
-## Decisión
+## Autoridad única
 
-Los 18 monstruos del Arco 1 se rigen por el **nuevo motor universal de estadísticas**.
+Los 18 monstruos del Arco 1 usan exclusivamente:
 
-El snapshot `canonical/MOBS_ver74.snapshot.json` deja de ser una fuente numérica válida para balance nuevo.
+`NEW_COMBAT_STATS_V0_1`
 
-Puede conservar:
+Catálogo del laboratorio:
 
-- identidad;
-- nombre/lore;
-- región/elemento;
-- nombre de técnica;
-- familia mecánica cualitativa.
+`canonical/monsters.json`
 
-No puede suministrar al combate nuevo:
+Fuente de balance:
 
-- HP/Qi;
-- `ataque` o `defensa` legacy;
-- daño básico;
-- daño/ataque/cadencia numérica de técnica;
-- potencia/duración de DOT;
-- drenaje de Qi;
-- ninguna conversión matemática desde stats legacy.
+`experiment/combat-stat-contract-v0.1/experimentos/balance_nuevo/monster_arc1_registry.json`
 
-## Fuente numérica
+No existe una segunda fuente de estadísticas ni una capa de compatibilidad.
 
-La fuente de trabajo se construye en:
+## Perfil T0
 
-`experiment/combat-stat-contract-v0.1`
-
-Registro:
-
-`experimentos/balance_nuevo/monster_arc1_new_engine_registry_v0_2.json`
-
-Un monstruo sólo puede entrar a un nuevo benchmark adaptativo cuando su T0 declare:
+Un monstruo sólo puede entrar a combate o benchmark cuando declare:
 
 ```text
 engine_contract = NEW_COMBAT_STATS_V0_1
-stats_status    = READY_NEW_ENGINE_T0
-numeric_source  = NEW_ENGINE_ONLY
+stats_status    = READY
 ```
 
-y tenga explícitos:
+y tenga resueltos:
 
 ```text
-HP
-Qi max
-Precisión
-Evasión
-DEF
-Tenacidad
-Control
-Crítico
-Daño crítico
-Ataque básico
+hp
+qi_max
+precision
+evasion
+defense
+tenacity
+control
+crit_chance
+crit_damage
+basic_damage
 ```
 
-Las técnicas deben declarar sus propios parámetros nuevos.
+Si posee técnica, ésta debe declarar:
+
+```text
+params_status = READY
+params.cadence
++ todos los parámetros numéricos que exijan sus mechanics
+```
+
+Un perfil pendiente provoca error. No se rellena automáticamente.
 
 ## Orden obligatorio
 
 ```text
-T0 NUEVO
-→ adaptación poblacional T1–T4
+T0 READY
+→ adaptación T1–T4
 → abilities adaptativas
 → effectiveKit
 → Monster Combat AI
 → resolver del motor nuevo
 ```
 
-No:
+La adaptación no sintetiza el T0.
 
-```text
-MOBS_ver74
-→ conversión de ataque/defensa
-→ adaptación
-```
+## Etapas
 
-## Consecuencia sobre trabajos anteriores
+La etapa nativa define banda ecológica, rol y techo de aprendizaje. No genera estadísticas mediante una tabla global.
 
-Los tests que leen `MOBS_ver74.snapshot.json` siguen siendo válidos para:
+Cada criatura recibe sus estadísticas T0 directamente durante su balance integral.
 
-- recuperación de contenido;
-- asignación de perfiles;
-- smoke tests de decisión;
-- arquitectura de IA;
-- historia de los experimentos.
+## T1–T4
 
-No son autoridad numérica para balance futuro.
+Las capas adaptativas se recalibran sobre el T0 final de cada especie.
 
-Los benchmarks adaptativos nuevos deberán migrarse al bridge de stats nuevo antes de producir cifras de balance.
+La estructura de aprendizaje puede conservarse, pero ningún multiplicador o habilidad adaptativa se considera numéricamente validado hasta probarse con el perfil T0 `READY`.
 
-## C_STAGGERED
+## Rata de Qi
 
-Se conserva como **dirección seleccionada de adaptación poblacional**, pero sus números deben revalidarse después de cerrar los T0 nuevos.
+`rata_qi__mordisco_frenetico_t4` escala sobre `stats.basic_damage` del perfil T0 `READY`.
 
-T0 define la criatura natural.  
-T1–T4 modifican esa criatura; no reparan una ficha legacy.
-
-## Rata de Qi / Mordisco Frenético
-
-`rata_qi__mordisco_frenetico_t4` usa un escalar del **ataque básico T0 nuevo**.
-
-Nunca debe resolver:
-
-```text
-0.75 × 1d4 legacy
-```
-
-por el solo hecho de que ver74 tuviera `daño: 1d4`.
-
-Debe resolver:
-
-```text
-0.75 × basic_damage del perfil READY_NEW_ENGINE_T0
-```
-
-El escalar 0.75 sigue siendo LAB y será recalibrado en la simulación T1–T4.
+Su escalar actual continúa siendo LAB hasta la calibración T1–T4.
 
 ## Guardia ejecutable
 
 `adaptive/monster-stat-source-contract-v0.1.mjs`
 
-expone `assertNewEngineMonsterBase()`, que rechaza:
+expone `assertMonsterProfile()`.
 
-- perfiles pendientes;
-- fuentes numéricas que no sean `NEW_ENGINE_ONLY`;
-- campos legacy `ataque/defensa/daño`;
-- perfiles incompletos.
-
-La regla cubre los 18 monstruos.
+Los perfiles incompletos quedan fuera de combate por diseño.
