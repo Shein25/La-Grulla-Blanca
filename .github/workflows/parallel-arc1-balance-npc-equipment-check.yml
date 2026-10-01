@@ -131,6 +131,21 @@ jobs:
           print("PASS: 32/32 NPC assignments reproducible, gated and stage-clean")
           PY
 
+      - name: Validate intra-species variance prototype
+        working-directory: experimentos/balance_nuevo/individual_variance_v0.1
+        run: |
+          python individual_variance.py
+          python - <<'PY'
+          import json
+          d=json.load(open("monster_individual_variance_v0.1.json",encoding="utf-8"))
+          assert d["semantics"]["canonical_t0"]=="natural_floor"
+          assert d["semantics"]["below_t0_variance"] is False
+          assert d["guards"]["no_new_species_ids"] is True
+          assert d["guards"]["no_independent_stat_max_rolls"] is True
+          assert d["species"]["mono_pildoras"]["status"]=="BLOCKED_UNTIL_T0_LOCAL_REFINEMENT_READY"
+          print("PASS: individual variance stays between T0 floor and tested upper envelope")
+          PY
+
       - name: Confirm Rata T2-T4 are structure-only
         run: |
           grep -q "NO NUMERIC CALIBRATION / NO EXECUTION" experimentos/balance_nuevo/parallel_arc1_pipeline/RATA_T2_T4_STRUCTURAL_AUDIT.md
