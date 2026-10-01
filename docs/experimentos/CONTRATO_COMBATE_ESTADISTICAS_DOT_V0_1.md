@@ -1090,6 +1090,31 @@ qi_recompensa
 
 `qi_recompensa` no es Qi utilizable en combate.
 
+### Alcance de Qi por tipo de actor — Arco 1
+
+La existencia de la estadística universal Qi **no obliga a todos los actores a poseer una reserva de Qi**.
+
+Para los **18 monstruos del Arco 1** queda cerrado:
+
+```text
+resource_model = NONE
+qi_max = null
+```
+
+Semántica autoritativa:
+
+- `qi_max = null` significa **N/A**, no “valor numérico pendiente”;
+- los monstruos del Arco 1 no poseen `qi_actual` ni reserva propia de Qi;
+- sus técnicas se habilitan mediante IA, condiciones y/o cadencia, no mediante coste de Qi;
+- no consumen Qi al ejecutar técnicas;
+- no regeneran Qi;
+- un monstruo `resource_model=NONE` no puede ser objetivo válido de robo/drenaje de Qi;
+- efectos como `QI_DRAIN` del monstruo pueden seguir drenando el Qi de un objetivo que sí use `resource_model=QI`, por ejemplo el jugador;
+- `qi_max = null` **no bloquea** la promoción de un T0 de monstruo a `READY`.
+
+Esta regla es específica del elenco de monstruos del Arco 1. Un actor futuro podrá declarar explícitamente `resource_model=QI`; en ese caso deberá definir `qi_actual`, `qi_max`, costes, recuperación y todas las interacciones correspondientes antes de considerarse listo.
+
+
 ## Fuentes válidas de recuperación de Qi
 
 **No existe regeneración pasiva de Qi por turno.**
