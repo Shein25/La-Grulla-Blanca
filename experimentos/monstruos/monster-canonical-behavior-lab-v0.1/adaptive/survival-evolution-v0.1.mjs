@@ -59,7 +59,7 @@ export function adaptationXpGain({rounds,reachedLowHp=false,heavyHitObserved=fal
 
 export function survivalUnlockXp(def){
   if(!def||typeof def!=='object')throw new TypeError('def inválida');
-  return def.unico?4:6;
+  return def.unique?4:6;
 }
 
 export function survivalEvolutionStage({mobId,def,survivalXp}){
@@ -124,12 +124,12 @@ export function buildSurvivalMonsterInput({
   const due=techniqueDue(def,round);
   let effectiveKit;
 
-  if(mode==='CADENCE_COMPAT'&&def.tecnica&&due){
+  if(mode==='CADENCE_COMPAT'&&def.technique&&due){
     // La técnica canónica sigue siendo obligatoria en su ronda.
     effectiveKit=[canonicalAbilityIds(mobId).technique];
   }else{
     effectiveKit=[canonicalAbilityIds(mobId).basic,survivalId];
-    if(mode==='DECISION_EXPERIMENTAL'&&def.tecnica&&due){
+    if(mode==='DECISION_EXPERIMENTAL'&&def.technique&&due){
       effectiveKit.splice(1,0,canonicalAbilityIds(mobId).technique);
     }
   }
