@@ -150,9 +150,9 @@ def selfcheck() -> None:
             require_ready_profile(monster_id, data)
         except MonsterStatsNotReady:
             blocked += 1
-    if blocked != 7:
+    if blocked != 6:
         raise AssertionError(
-            f"expected 7 pending unique profiles after 11 T0 closures, got {blocked}"
+            f"expected 6 pending unique profiles after 12 T0 closures, got {blocked}"
         )
     ready=[
         mid for mid,p in data["profiles"].items()
@@ -162,6 +162,7 @@ def selfcheck() -> None:
         "rata_qi",
         "serpiente_qi",
         "lobo_espiritual",
+        "eco_caido",
         "pez_lunar",
         "devorador_niebla",
         "avispa_jade",
@@ -181,7 +182,7 @@ def selfcheck() -> None:
         )
     print("PASS: 18/18 monsters use NEW_COMBAT_STATS_V0_1.")
     print("PASS: monster registry/profile schemas are exact.")
-    print("PASS: 11/18 Arc 1 monsters are T0 READY; 7 unique encounters remain pending.")
+    print("PASS: 12/18 Arc 1 monsters are T0 READY; 6 unique encounters remain pending.")
 
 
 if __name__ == "__main__":
