@@ -1,0 +1,65 @@
+{
+  "schema_version": "mono-t0-local-refinement-v0.1",
+  "status": "LAB_INPUT_NOT_CANON",
+  "source_ablation_sha256": "dd8fe1e839e1469045814565bd12fc30f42bf43ff45f40cb6487b0369d927c2e",
+  "identity_anchor": {
+    "source_trial": 1068,
+    "fixed": {
+      "precision": 91,
+      "tenacity": 12,
+      "basic_damage": "1d2+3",
+      "technique_direct_damage": "1d2+3",
+      "qi_drain": 5,
+      "technique_cadence": 2
+    }
+  },
+  "survival_grid": {
+    "hp": [
+      22,
+      26,
+      30,
+      34
+    ],
+    "defense": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "evasion": [
+      24,
+      34,
+      44
+    ]
+  },
+  "grid_size": 48,
+  "objectives": [
+    {
+      "metric": "forced_basic_delta",
+      "direction": "maximize",
+      "meaning": "causal extra forced basics attributable to QI_DRAIN"
+    },
+    {
+      "metric": "no_drain_player_hp_pressure",
+      "direction": "minimize",
+      "meaning": "non-QI baseline pressure"
+    }
+  ],
+  "descriptive": [
+    "qi_drained_mean",
+    "win_rate_delta",
+    "hp_pressure_delta",
+    "rounds_delta",
+    "root_breakdown",
+    "loadout_breakdown"
+  ],
+  "guards": {
+    "target_win_rate": false,
+    "automatic_selection": false,
+    "canonical_write": false,
+    "t1_t4": false,
+    "damage_reopened": false,
+    "qi_drain_reopened": false,
+    "cadence_reopened": false
+  }
+}
