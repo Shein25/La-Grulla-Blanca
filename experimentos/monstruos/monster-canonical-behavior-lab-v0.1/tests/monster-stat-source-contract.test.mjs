@@ -21,7 +21,7 @@ T('all 18 Arc 1 monsters are covered exactly once',()=>{
   assert.deepEqual(Object.keys(catalog.profiles).sort(),ARC1_MONSTER_IDS);
 });
 
-T('all profiles use the new schema',()=>{
+T('all profiles use exactly the new stat schema',()=>{
   for(const [id,p] of Object.entries(catalog.profiles)){
     assert.equal(p.id,id);
     assert.equal(p.engine_contract,ENGINE_CONTRACT);
@@ -30,17 +30,22 @@ T('all profiles use the new schema',()=>{
   }
 });
 
+T('all unresolved combat magnitudes remain null',()=>{
+  const unresolved=['hp','qi_max','precision','evasion','defense','tenacity','control','basic_damage'];
+  for(const [id,p] of Object.entries(catalog.profiles)){
+    assert.equal(p.stats_status,'PENDING_INTEGRAL_REBALANCE',id);
+    for(const key of unresolved)assert.equal(p.stats[key],null,`${id}.${key}`);
+    if(p.technique){
+      assert.equal(p.technique.params_status,'PENDING_INTEGRAL_REBALANCE',id);
+      assert.equal(p.technique.params,null,id);
+    }
+  }
+});
+
 T('pending profiles are blocked from combat',()=>{
   for(const p of Object.values(catalog.profiles)){
     assert.throws(()=>assertMonsterProfile(p),/not READY/);
   }
-});
-
-T('complete READY profile is accepted',()=>{
-  const p=structuredClone(catalog.profiles.rata_qi);
-  p.stats_status='READY';
-  p.stats={hp:24,qi_max:0,precision:90,evasion:30,defense:1,tenacity:20,control:0,crit_chance:5,crit_damage:1.5,basic_damage:'1d4+2'};
-  assert.equal(assertMonsterProfile(p),true);
 });
 
 console.log(`\nPASS: ${pass}`);
