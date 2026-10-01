@@ -189,6 +189,7 @@ jobs:
           python recognition_kernel_test.py
           python t3_counter_contract_test.py
           python t3_damage_contract_test.py
+          python t3_final_candidate_test.py
           python - <<'PY'
           import json
           d=json.load(open("RATA_ADAPTIVE_TIER_CONTRACT_V0_1.json",encoding="utf-8"))
@@ -362,6 +363,61 @@ jobs:
                   "loops_mutant":m["t3"]["degenerate_counter_loop_count"],
               })
           print("T3_DAMAGE_RESULT="+json.dumps(out,sort_keys=True))
+          PY
+
+      - name: Rata T3 final candidate validation
+        if: contains(github.event.head_commit.message, '[T3_FINAL]')
+        working-directory: experimentos/balance_nuevo/rata_adaptive_tiers_v0.1
+        run: |
+          rm -rf ci_rata_t3_final
+          python rata_t3_final_validation.py --natural-fights 1000 --mutant-fights 250 --outdir ci_rata_t3_final --namespace CI_T3_FINAL
+          python - <<'PY'
+          import gzip,json
+          s=json.load(open("ci_rata_t3_final/SUMMARY.json",encoding="utf-8"))
+          assert s["experiment"]=="RATA_T3_FINAL_VALIDATION_V01"
+          assert s["total_fights"]==125000
+          assert s["canonical_write"] is False
+          assert s["t4_executed"] is False
+          with gzip.open("ci_rata_t3_final/final_validation_results.json.gz","rt",encoding="utf-8") as f:
+              rows=json.load(f)
+          out=[]
+          for r in rows:
+              n=r["t3"]["natural_normal"]
+              m=r["t3"]["mutant_conditional"]
+              out.append({
+                  "policy":r["policy"],
+                  "normal":{
+                      "win":n["win_rate"],
+                      "hp":n["hp_final_pct_mean"],
+                      "counter_per_fight":n["t3"]["counter_activation_per_fight"],
+                      "damage_per_fight":n["t3"]["counter_damage_per_fight"],
+                      "damage_per_activation":n["t3"]["counter_damage_per_activation"],
+                      "damage_p90":n["t3"]["counter_damage_p90_per_activation"],
+                      "false_counter_rate":n["t3"]["false_counter_rate"],
+                      "multi_counter_rate":n["t3"]["multi_counter_fight_rate"],
+                      "max_counters":n["t3"]["max_counters_in_one_fight"],
+                      "loops":n["t3"]["degenerate_counter_loop_count"],
+                  },
+                  "mutant":{
+                      "win":m["win_rate"],
+                      "hp":m["hp_final_pct_mean"],
+                      "counter_per_fight":m["t3"]["counter_activation_per_fight"],
+                      "damage_per_fight":m["t3"]["counter_damage_per_fight"],
+                      "damage_per_activation":m["t3"]["counter_damage_per_activation"],
+                      "damage_p90":m["t3"]["counter_damage_p90_per_activation"],
+                      "false_counter_rate":m["t3"]["false_counter_rate"],
+                      "multi_counter_rate":m["t3"]["multi_counter_fight_rate"],
+                      "max_counters":m["t3"]["max_counters_in_one_fight"],
+                      "loops":m["t3"]["degenerate_counter_loop_count"],
+                  },
+                  "delta_normal":r["delta_vs_frozen_t2"]["natural_normal"],
+                  "delta_mutant":r["delta_vs_frozen_t2"]["mutant_conditional"],
+              })
+          assert all(x["normal"]["false_counter_rate"]==0 for x in out)
+          assert all(x["mutant"]["false_counter_rate"]==0 for x in out)
+          assert all(x["normal"]["loops"]==0 for x in out)
+          assert all(x["mutant"]["loops"]==0 for x in out)
+          print("T3_FINAL_RESULT="+json.dumps(out,sort_keys=True))
           PY
 
       - name: Confirm Rata T4 remains blocked
