@@ -1,0 +1,47 @@
+[
+  {
+    "number": 245,
+    "candidate_id": "rata_qi-t000245-ed11c144ac59",
+    "candidate_hash": "ed11c144ac590650c77f789fa2ee7851f072c056987b3c8cd1e33115364cb2ef",
+    "coverage_fraction": 0.25,
+    "values": [0.10720351906158354, 0.2742857142857143],
+    "params": {
+      "basic_damage": "1d4+2",
+      "defense": 0,
+      "evasion": 4,
+      "hp": 22,
+      "precision": 84,
+      "tenacity": 0
+    }
+  },
+  {
+    "number": 251,
+    "candidate_id": "rata_qi-t000251-03d76cbd94e6",
+    "candidate_hash": "03d76cbd94e63f474bbec66fecf3be9ef22734bad03ad575d90f884a5e90d6a9",
+    "coverage_fraction": 0.5,
+    "values": [0.1783255718475073, 0.40214285714285714],
+    "params": {
+      "basic_damage": "2d4+1",
+      "defense": 0,
+      "evasion": 8,
+      "hp": 21,
+      "precision": 88,
+      "tenacity": 1
+    }
+  },
+  {
+    "number": 192,
+    "candidate_id": "rata_qi-t000192-585fe6ea6193",
+    "candidate_hash": "585fe6ea6193c007bfff060d277922d5c394538c05777f90f4c8c2e1543fbc15",
+    "coverage_fraction": 0.75,
+    "values": [0.2730288504398827, 0.5266666666666667],
+    "params": {
+      "basic_damage": "2d3+3",
+      "defense": 0,
+      "evasion": 4,
+      "hp": 22,
+      "precision": 104,
+      "tenacity": 0
+    }
+  }
+]
