@@ -1,9 +1,9 @@
 # Rata de Qi — T2–T4 structural preparation
 
-**Status:** T3_CALIBRATION_OPEN / T4 STRUCTURE_ONLY / NO T4 NUMERIC CALIBRATION
+**Status:** T4_CALIBRATION_OPEN / T0-T3 FROZEN
 
 T0 is READY (trial 4254). T1 Reflejo de Madriguera is HUMAN-RATIFIED and frozen at +40 EVA / CD5 / REACTIVO_1 / BASE signals.
-T2 R2_SHORT is HUMAN-RATIFIED and frozen (memory 2 / repeat 2 / effective-only / +8). T3 calibration is now permitted. T4 remains blocked until T3 human closure.
+T2 R2_SHORT is HUMAN-RATIFIED and frozen (memory 2 / repeat 2 / effective-only / +8). T3 CONFIRMED_PATTERN_REFLEJO_MISS + INSTANCE_BASIC is HUMAN-RATIFIED and frozen. T4 Mordisco Frenético calibration is now permitted.
 
 ## T2 — recognition
 
@@ -31,7 +31,7 @@ Required:
 - counter may not read root/build metadata directly unless exposed by combat events;
 - measure counter activation, avoided/prevented damage, player action diversity, and degenerate lock loops.
 
-No T3 counter is selected for CANON. T3 LAB calibration is authorized. Initial hypothesis: a successful T1 Reflejo under active T2 recognition may arm a physical retaliation based on the canonical Rata basic attack `2d4`.
+T3 is CLOSED / HUMAN-RATIFIED: CONFIRMED_PATTERN_REFLEJO_MISS + INSTANCE_BASIC. Its trigger and damage source are immutable during T4 calibration.
 
 ## T4 — Mordisco Frenético
 
@@ -42,7 +42,7 @@ Preserved identity:
 - multi-hit is a candidate mechanical family.
 
 Required:
-- T3 closed;
+- T3 closed — SATISFIED 2026-10-01;
 - parameters to calibrate: hit count, scalar/hit, precision rule, cooldown, critical interaction;
 - flat DEF and absorption must resolve through the new-engine direct-damage pipeline;
 - no QI_DRAIN, DOT or Control is added by default;
