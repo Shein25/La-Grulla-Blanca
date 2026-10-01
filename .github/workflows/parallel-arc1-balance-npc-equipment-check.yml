@@ -61,7 +61,7 @@ jobs:
               assert p["stats_status"]=="READY",mid
               assert p["stats"]==e["stats"],mid
               assert p["technique"]==e["technique"],mid
-          assert d["profiles"]["rata_qi"]["adaptive"]["status"]=="T3_READY_FOR_T4_CALIBRATION"
+          assert d["profiles"]["rata_qi"]["adaptive"]["status"]=="ADAPTIVE_CHAIN_T0_T4_CLOSED"
           for mid in ["avispa_jade","serpiente_qi","mono_pildoras","lobo_espiritual"]:
               assert d["profiles"][mid]["adaptive"]["status"]=="READY_FOR_T1_RECALIBRATION",mid
           assert set(d["rules"]["ready_profiles"])=={"rata_qi","avispa_jade","serpiente_qi","mono_pildoras","lobo_espiritual"}
