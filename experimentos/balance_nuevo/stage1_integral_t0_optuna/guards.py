@@ -69,6 +69,18 @@ READY_T0_PROFILES = {
             "params":{"cadence":5,"direct_damage":"2d6+1"},
         },
     },
+    "mono_pildoras": {
+        "stats": {
+            "hp":34,"qi_max":None,"precision":91,"evasion":24,"defense":2,
+            "tenacity":12,"control":0,"crit_chance":5,"crit_damage":1.5,
+            "basic_damage":"1d2+3",
+        },
+        "technique": {
+            "name":"Manotazo al Dantian","mechanics":["DIRECT_DAMAGE","QI_DRAIN"],
+            "params_status":"READY",
+            "params":{"cadence":2,"direct_damage":"1d2+3","qi_drain":5},
+        },
+    },
 }
 
 FORBIDDEN_IMPORT_MODULES = {
