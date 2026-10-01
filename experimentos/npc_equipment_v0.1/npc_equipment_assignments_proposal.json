@@ -7,7 +7,9 @@
     "combat_stats_applied": false,
     "story_stage_gate": true,
     "senior_authorities_not_auto_dressed": true,
-    "companions_not_auto_specialized": true
+    "companions_not_auto_specialized": true,
+    "auto_catalog_first_stage": "LianQi_II",
+    "auto_catalog_exact_stage_only": true
   },
   "actors": {
     "lin_yue": {
@@ -200,34 +202,30 @@
       "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
       "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment.",
       "by_story_stage": {
-        "LianQi_I": [
-          "cinta_patio_aspirante",
-          "vendas_antebrazo_practica",
-          "baston_fresno_practica"
-        ],
+        "LianQi_I": [],
         "LianQi_II": [
           "espada_hierro_equilibrada",
-          "cinta_patio_aspirante",
           "calzas_guardia_externa",
+          "bandana_cuero_reforzada",
           "sobretunica_patrulla",
           "botas_piedra_humeda"
         ],
         "LianQi_III": [
           "espada_vena_clara",
-          "cinta_patio_aspirante",
           "amuleto_meridiano_estable",
           "anillo_tierra_profunda",
-          "calzas_guardia_externa",
-          "calzado_nube_baja"
+          "calzado_nube_baja",
+          "tunica_reforzada_trama_cobre",
+          "brazales_aguja_plata"
         ],
         "LianQi_IV": [
-          "espada_vena_clara",
           "vestidura_ala_cerrada",
           "brazales_relevo",
+          "hoja_seis_corrientes",
           "velo_vigilante_nucleo",
           "amuleto_ancla_resonante",
-          "anillo_tierra_profunda",
-          "calzas_guardia_externa"
+          "pulsera_nudo_crisis",
+          "botas_voto_inmovil"
         ]
       }
     },
@@ -267,34 +265,30 @@
       "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
       "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment.",
       "by_story_stage": {
-        "LianQi_I": [
-          "cinta_patio_aspirante",
-          "vendas_antebrazo_practica",
-          "baston_fresno_practica"
-        ],
+        "LianQi_I": [],
         "LianQi_II": [
           "espada_hierro_equilibrada",
-          "cinta_patio_aspirante",
           "calzas_guardia_externa",
+          "bandana_cuero_reforzada",
           "sobretunica_patrulla",
           "botas_piedra_humeda"
         ],
         "LianQi_III": [
           "espada_vena_clara",
-          "cinta_patio_aspirante",
           "amuleto_meridiano_estable",
           "anillo_tierra_profunda",
-          "calzas_guardia_externa",
-          "calzado_nube_baja"
+          "calzado_nube_baja",
+          "tunica_reforzada_trama_cobre",
+          "brazales_aguja_plata"
         ],
         "LianQi_IV": [
-          "espada_vena_clara",
           "vestidura_ala_cerrada",
           "brazales_relevo",
+          "hoja_seis_corrientes",
           "velo_vigilante_nucleo",
           "amuleto_ancla_resonante",
-          "anillo_tierra_profunda",
-          "calzas_guardia_externa"
+          "pulsera_nudo_crisis",
+          "botas_voto_inmovil"
         ]
       }
     },
@@ -306,11 +300,7 @@
       "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
       "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment.",
       "by_story_stage": {
-        "LianQi_I": [
-          "anillo_cobre_sin_sello",
-          "pulsera_fibra_trenzada",
-          "cinta_patio_aspirante"
-        ],
+        "LianQi_I": [],
         "LianQi_II": [
           "brazales_pulso_firme",
           "botas_piedra_humeda",
@@ -320,20 +310,20 @@
         ],
         "LianQi_III": [
           "brazales_pulso_medico",
-          "botas_piedra_humeda",
           "amuleto_meridiano_estable",
           "anillo_tierra_profunda",
           "pulsera_nudo_formacion",
-          "calzas_guardia_externa"
+          "calzas_paso_silencioso",
+          "velo_archivo_sereno"
         ],
         "LianQi_IV": [
           "amuleto_ancla_resonante",
-          "brazales_pulso_medico",
           "pulsera_nudo_crisis",
           "botas_voto_inmovil",
           "vestidura_ala_cerrada",
-          "anillo_tierra_profunda",
-          "calzas_guardia_externa"
+          "brazales_relevo",
+          "calzas_trama_sello",
+          "velo_vigilante_nucleo"
         ]
       }
     },
@@ -345,34 +335,30 @@
       "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
       "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment.",
       "by_story_stage": {
-        "LianQi_I": [
-          "anillo_cobre_sin_sello",
-          "pulsera_fibra_trenzada",
-          "cinta_patio_aspirante"
-        ],
+        "LianQi_I": [],
         "LianQi_II": [
           "brazales_pulso_firme",
           "amuleto_sauce_sereno",
-          "anillo_cobre_sin_sello",
           "fajin_patrulla",
-          "pulsera_fibra_trenzada"
+          "bandana_cuero_reforzada",
+          "anillo_corriente_clara"
         ],
         "LianQi_III": [
           "brazales_pulso_medico",
           "pulsera_nudo_formacion",
-          "amuleto_sauce_sereno",
-          "anillo_cobre_sin_sello",
           "velo_archivo_sereno",
-          "fajin_patrulla"
+          "amuleto_meridiano_estable",
+          "anillo_tierra_profunda",
+          "vestidura_flujo_ligero"
         ],
         "LianQi_IV": [
           "amuleto_ancla_resonante",
-          "brazales_pulso_medico",
           "pulsera_nudo_crisis",
-          "anillo_cobre_sin_sello",
           "manto_mantenimiento",
-          "velo_archivo_sereno",
-          "fajin_patrulla"
+          "brazales_relevo",
+          "botas_voto_inmovil",
+          "velo_vigilante_nucleo",
+          "anillo_marca_quieta"
         ]
       }
     },
@@ -384,34 +370,30 @@
       "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
       "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment.",
       "by_story_stage": {
-        "LianQi_I": [
-          "anillo_cobre_sin_sello",
-          "pulsera_fibra_trenzada",
-          "cinta_patio_aspirante"
-        ],
+        "LianQi_I": [],
         "LianQi_II": [
           "brazales_pulso_firme",
           "amuleto_sauce_sereno",
-          "anillo_cobre_sin_sello",
           "fajin_patrulla",
-          "pulsera_fibra_trenzada"
+          "bandana_cuero_reforzada",
+          "anillo_corriente_clara"
         ],
         "LianQi_III": [
           "brazales_pulso_medico",
           "pulsera_nudo_formacion",
-          "amuleto_sauce_sereno",
-          "anillo_cobre_sin_sello",
           "velo_archivo_sereno",
-          "fajin_patrulla"
+          "amuleto_meridiano_estable",
+          "anillo_tierra_profunda",
+          "vestidura_flujo_ligero"
         ],
         "LianQi_IV": [
           "amuleto_ancla_resonante",
-          "brazales_pulso_medico",
           "pulsera_nudo_crisis",
-          "anillo_cobre_sin_sello",
           "manto_mantenimiento",
-          "velo_archivo_sereno",
-          "fajin_patrulla"
+          "brazales_relevo",
+          "botas_voto_inmovil",
+          "velo_vigilante_nucleo",
+          "anillo_marca_quieta"
         ]
       }
     },
@@ -423,30 +405,27 @@
       "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
       "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment.",
       "by_story_stage": {
-        "LianQi_I": [
-          "cinta_patio_aspirante",
-          "vendas_antebrazo_practica"
-        ],
+        "LianQi_I": [],
         "LianQi_II": [
           "espada_hierro_equilibrada",
-          "cinta_patio_aspirante",
           "calzas_guardia_externa",
+          "bandana_cuero_reforzada",
           "sobretunica_patrulla"
         ],
         "LianQi_III": [
           "espada_vena_clara",
-          "cinta_patio_aspirante",
           "amuleto_meridiano_estable",
           "anillo_tierra_profunda",
-          "calzas_guardia_externa"
+          "calzado_nube_baja",
+          "tunica_reforzada_trama_cobre"
         ],
         "LianQi_IV": [
-          "espada_vena_clara",
           "vestidura_ala_cerrada",
           "brazales_relevo",
+          "hoja_seis_corrientes",
           "velo_vigilante_nucleo",
           "amuleto_ancla_resonante",
-          "anillo_tierra_profunda"
+          "pulsera_nudo_crisis"
         ]
       }
     },
@@ -500,30 +479,27 @@
       "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
       "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment.",
       "by_story_stage": {
-        "LianQi_I": [
-          "cinta_patio_aspirante",
-          "vendas_antebrazo_practica"
-        ],
+        "LianQi_I": [],
         "LianQi_II": [
           "aguja_acero_frio",
-          "cinta_patio_aspirante",
           "anillo_corriente_clara",
-          "anillo_reserva_menor"
+          "anillo_reserva_menor",
+          "capucha_observador_valle"
         ],
         "LianQi_III": [
           "espada_vena_clara",
           "brazales_aguja_plata",
-          "cinta_patio_aspirante",
           "calzado_nube_baja",
-          "anillo_hilo_plata"
+          "anillo_hilo_plata",
+          "tocado_hilo_formacion"
         ],
         "LianQi_IV": [
-          "espada_vena_clara",
           "anillo_marca_quieta",
-          "brazales_aguja_plata",
+          "hoja_seis_corrientes",
           "velo_vigilante_nucleo",
           "vestidura_ala_cerrada",
-          "calzado_nube_baja"
+          "brazales_relevo",
+          "botas_voto_inmovil"
         ]
       }
     },
@@ -549,30 +525,27 @@
       "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
       "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment.",
       "by_story_stage": {
-        "LianQi_I": [
-          "anillo_cobre_sin_sello",
-          "pulsera_fibra_trenzada"
-        ],
+        "LianQi_I": [],
         "LianQi_II": [
           "amuleto_sauce_sereno",
-          "anillo_cobre_sin_sello",
           "anillo_corriente_clara",
+          "anillo_reserva_menor",
           "brazales_pulso_firme"
         ],
         "LianQi_III": [
           "pulsera_nudo_formacion",
-          "amuleto_sauce_sereno",
-          "anillo_cobre_sin_sello",
           "tocado_hilo_formacion",
-          "anillo_corriente_clara"
+          "brazales_pulso_medico",
+          "vara_dos_corrientes",
+          "amuleto_flujo_contenido"
         ],
         "LianQi_IV": [
           "vara_relevo",
           "pulsera_meridiano_profundo",
-          "amuleto_sauce_sereno",
-          "anillo_cobre_sin_sello",
-          "tocado_hilo_formacion",
-          "anillo_corriente_clara"
+          "amuleto_ancla_resonante",
+          "manto_mantenimiento",
+          "velo_vigilante_nucleo",
+          "anillo_marca_quieta"
         ]
       }
     },
@@ -598,10 +571,7 @@
       "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
       "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment.",
       "by_story_stage": {
-        "LianQi_I": [
-          "pantalon_viaje_gris",
-          "cinta_patio_aspirante"
-        ],
+        "LianQi_I": [],
         "LianQi_II": [
           "calzas_guardia_externa",
           "bandana_cuero_reforzada",
@@ -610,18 +580,18 @@
         ],
         "LianQi_III": [
           "anillo_tierra_profunda",
-          "calzas_guardia_externa",
-          "bandana_cuero_reforzada",
-          "sobretunica_patrulla",
+          "tunica_reforzada_trama_cobre",
+          "calzas_paso_silencioso",
+          "velo_archivo_sereno",
           "brazales_pulso_medico"
         ],
         "LianQi_IV": [
           "vestidura_ala_cerrada",
           "brazales_relevo",
-          "anillo_tierra_profunda",
-          "calzas_guardia_externa",
-          "bandana_cuero_reforzada",
-          "vara_relevo"
+          "calzas_trama_sello",
+          "velo_vigilante_nucleo",
+          "vara_relevo",
+          "botas_voto_inmovil"
         ]
       }
     },
@@ -633,30 +603,27 @@
       "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
       "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment.",
       "by_story_stage": {
-        "LianQi_I": [
-          "cinta_patio_aspirante",
-          "vendas_antebrazo_practica"
-        ],
+        "LianQi_I": [],
         "LianQi_II": [
           "espada_hierro_equilibrada",
-          "cinta_patio_aspirante",
           "calzas_guardia_externa",
+          "bandana_cuero_reforzada",
           "sobretunica_patrulla"
         ],
         "LianQi_III": [
           "espada_vena_clara",
-          "cinta_patio_aspirante",
           "amuleto_meridiano_estable",
           "anillo_tierra_profunda",
-          "calzas_guardia_externa"
+          "calzado_nube_baja",
+          "tunica_reforzada_trama_cobre"
         ],
         "LianQi_IV": [
-          "espada_vena_clara",
           "vestidura_ala_cerrada",
           "brazales_relevo",
+          "hoja_seis_corrientes",
           "velo_vigilante_nucleo",
           "amuleto_ancla_resonante",
-          "anillo_tierra_profunda"
+          "pulsera_nudo_crisis"
         ]
       }
     },
@@ -682,10 +649,7 @@
       "assignment_mode": "AUTO_CATALOG_ROLE_GUIDED",
       "assignment_reason": "Role supports a grounded subset of existing non-unique combat equipment.",
       "by_story_stage": {
-        "LianQi_I": [
-          "anillo_cobre_sin_sello",
-          "pulsera_fibra_trenzada"
-        ],
+        "LianQi_I": [],
         "LianQi_II": [
           "brazales_pulso_firme",
           "botas_piedra_humeda",
@@ -694,18 +658,18 @@
         ],
         "LianQi_III": [
           "brazales_pulso_medico",
-          "botas_piedra_humeda",
           "amuleto_meridiano_estable",
           "anillo_tierra_profunda",
-          "pulsera_nudo_formacion"
+          "pulsera_nudo_formacion",
+          "calzas_paso_silencioso"
         ],
         "LianQi_IV": [
           "amuleto_ancla_resonante",
-          "brazales_pulso_medico",
           "pulsera_nudo_crisis",
           "botas_voto_inmovil",
           "vestidura_ala_cerrada",
-          "anillo_tierra_profunda"
+          "brazales_relevo",
+          "calzas_trama_sello"
         ]
       }
     }
