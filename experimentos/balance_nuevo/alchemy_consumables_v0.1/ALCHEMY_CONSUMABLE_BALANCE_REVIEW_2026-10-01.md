@@ -2,7 +2,7 @@
 
 Fecha: 2026-10-01
 
-Estado: **PROPUESTA NUMÉRICA / SIN CAMBIO DE RUNTIME**
+Estado: **CURACIÓN HP RATIFICADA / QI Y ECONOMÍA PENDIENTES / SIN CAMBIO DE RUNTIME**
 
 ## Nueva base
 
@@ -57,44 +57,27 @@ Esto permite que una medicina estable ronde un tercio largo del HP esperado y
 que una excepcional ronde aproximadamente dos tercios, mientras una build LIV
 de 70–80 HP recibe proporcionalmente menos.
 
-## Propuesta de curación absoluta
+## Curación HP ratificada
 
-| Etapa | Impura | Estable | Superior | Excepcional |
-|---|---:|---:|---:|---:|
-| LianQi I | 8 | 12 | 16 | 20 |
-| LianQi II | 10 | 15 | 20 | 26 |
-| LianQi III | 12 | 18 | 25 | 33 |
-| LianQi IV | 14 | 22 | 30 | 40 |
+La propuesta provisional anterior queda reemplazada por:
 
-La poción básica de almacén pasa conceptualmente a:
+`ALCHEMY_VITALITY_HP_CONTRACT_V0_1.json`
 
-```text
-cura 10
-impureza +1
-```
+Formulaciones cerradas:
 
-Así sigue siendo útil al principio pero no supera la medicina estable fabricada.
+| Etapa | Formulación | Impura | Estable | Superior | Excepcional |
+|---|---|---:|---:|---:|---:|
+| LI | Básica | 2d4+4 | 2d4+7 | 3d4+7 | 4d4+7 |
+| LII | Templada | 3d4+5 | 3d4+9 | 4d4+10 | 5d4+11 |
+| LIII | Profunda | 4d4+6 | 4d6+8 | 5d6+10 | 6d6+12 |
+| LIV | Condensada | 5d4+10 | 5d6+12 | 6d6+16 | 7d6+20 |
 
-### Lectura sobre HP esperado aproximado
+Poción común:
 
-Estable:
+`2d4+3` (mín. 5 / media 8 / máx. 11).
 
-- LI: 12/32 ≈ 37,5%;
-- LII: 15/41 ≈ 36,6%;
-- LIII: 18/50 = 36%;
-- LIV: 22/59 ≈ 37,3%.
-
-Excepcional:
-
-- LI: 20/32 ≈ 62,5%;
-- LII: 26/41 ≈ 63,4%;
-- LIII: 33/50 = 66%;
-- LIV: 40/59 ≈ 67,8%.
-
-En una build de resistencia LIV de 75 HP, la excepcional de 40 representa
-aproximadamente 53%. Es potente, pero no resetea el combate.
-
-Los porcentajes son sólo diagnóstico: el jugador verá números absolutos.
+Estos valores están HUMAN-RATIFIED. No recalibrarlos durante el trabajo de Qi,
+ingredientes, XP o costes salvo reapertura humana explícita.
 
 ## Propuesta de recuperación de Qi pura
 
