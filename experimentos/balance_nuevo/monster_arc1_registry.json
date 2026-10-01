@@ -15,7 +15,10 @@
     "arc1_monster_resource_model": "NONE",
     "arc1_monster_qi_semantics": "qi_max=null is authoritative N/A for Arc 1 monsters and does not block T0 READY",
     "ready_profiles": [
-      "rata_qi"
+      "rata_qi",
+      "avispa_jade",
+      "serpiente_qi",
+      "lobo_espiritual"
     ]
   },
   "profiles": {
@@ -63,34 +66,40 @@
       "element": "agua",
       "unique": false,
       "engine_contract": "NEW_COMBAT_STATS_V0_1",
-      "stats_status": "PENDING_INTEGRAL_REBALANCE",
+      "stats_status": "READY",
       "stats": {
-        "hp": null,
+        "hp": 27,
+        "precision": 86,
+        "evasion": 5,
+        "defense": 0,
+        "tenacity": 5,
+        "basic_damage": "1d2+2",
         "qi_max": null,
-        "precision": null,
-        "evasion": null,
-        "defense": null,
-        "tenacity": null,
-        "control": null,
+        "control": 0,
         "crit_chance": 5,
-        "crit_damage": 1.5,
-        "basic_damage": null
+        "crit_damage": 1.5
       },
       "technique": {
         "name": "Colmillos Venenosos",
         "mechanics": [
           "POISON_DOT"
         ],
-        "params_status": "PENDING_INTEGRAL_REBALANCE",
-        "params": null
+        "params_status": "READY",
+        "params": {
+          "cadence": 2,
+          "poison": {
+            "damage": "1d2+2",
+            "ticks": 3
+          }
+        }
       },
       "ai": {
         "cognition": "REACTIVO_1",
         "social": "SOLITARIO"
       },
       "adaptive": {
-        "status": "BLOCKED_UNTIL_T0_READY",
-        "rule": "T1-T4 are applied only after this T0 profile is READY."
+        "status": "READY_FOR_T1_RECALIBRATION",
+        "rule": "T0 is READY. T1 may be recalibrated; T2-T4 remain blocked until sequential adaptive validation."
       },
       "resource_model": "NONE"
     },
@@ -104,34 +113,37 @@
       "element": null,
       "unique": false,
       "engine_contract": "NEW_COMBAT_STATS_V0_1",
-      "stats_status": "PENDING_INTEGRAL_REBALANCE",
+      "stats_status": "READY",
       "stats": {
-        "hp": null,
+        "hp": 41,
+        "precision": 97,
+        "evasion": 12,
+        "defense": 1,
+        "tenacity": 20,
+        "basic_damage": "2d4+2",
         "qi_max": null,
-        "precision": null,
-        "evasion": null,
-        "defense": null,
-        "tenacity": null,
-        "control": null,
+        "control": 0,
         "crit_chance": 5,
-        "crit_damage": 1.5,
-        "basic_damage": null
+        "crit_damage": 1.5
       },
       "technique": {
         "name": "Emboscada de las Tres Colas",
         "mechanics": [
           "DIRECT_DAMAGE"
         ],
-        "params_status": "PENDING_INTEGRAL_REBALANCE",
-        "params": null
+        "params_status": "READY",
+        "params": {
+          "cadence": 5,
+          "direct_damage": "2d6+1"
+        }
       },
       "ai": {
         "cognition": "CAZADOR_2",
         "social": "MANADA"
       },
       "adaptive": {
-        "status": "BLOCKED_UNTIL_T0_READY",
-        "rule": "T1-T4 are applied only after this T0 profile is READY."
+        "status": "READY_FOR_T1_RECALIBRATION",
+        "rule": "T0 is READY. T1 may be recalibrated; T2-T4 remain blocked until sequential adaptive validation."
       },
       "resource_model": "NONE"
     },
@@ -343,34 +355,40 @@
       "element": "viento",
       "unique": false,
       "engine_contract": "NEW_COMBAT_STATS_V0_1",
-      "stats_status": "PENDING_INTEGRAL_REBALANCE",
+      "stats_status": "READY",
       "stats": {
-        "hp": null,
+        "hp": 17,
+        "precision": 90,
+        "evasion": 22,
+        "defense": 0,
+        "tenacity": 7,
+        "basic_damage": "1d2+1",
         "qi_max": null,
-        "precision": null,
-        "evasion": null,
-        "defense": null,
-        "tenacity": null,
-        "control": null,
+        "control": 0,
         "crit_chance": 5,
-        "crit_damage": 1.5,
-        "basic_damage": null
+        "crit_damage": 1.5
       },
       "technique": {
         "name": "Picadura de Esmeralda",
         "mechanics": [
           "POISON_DOT"
         ],
-        "params_status": "PENDING_INTEGRAL_REBALANCE",
-        "params": null
+        "params_status": "READY",
+        "params": {
+          "cadence": 2,
+          "poison": {
+            "damage": "1d3+2",
+            "ticks": 2
+          }
+        }
       },
       "ai": {
         "cognition": "INSTINTIVO",
         "social": "COLONIA"
       },
       "adaptive": {
-        "status": "BLOCKED_UNTIL_T0_READY",
-        "rule": "T1-T4 are applied only after this T0 profile is READY."
+        "status": "READY_FOR_T1_RECALIBRATION",
+        "rule": "T0 is READY. T1 may be recalibrated; T2-T4 remain blocked until sequential adaptive validation."
       },
       "resource_model": "NONE"
     },
