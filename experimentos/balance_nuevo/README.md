@@ -55,9 +55,7 @@ Cambiar un test significa modificar CONFIG/SCENARIO, no reescribir el motor.
 
 ## Perfiles por etapa
 
-No hay valores heredados.
-
-Cada etapa deberá declarar explícitamente:
+Cada etapa declara explícitamente:
 
 ```python
 StageProfile(
@@ -110,4 +108,4 @@ perfil T0 del motor nuevo
 → resolver nuevo
 ```
 
-No existe capa de compatibilidad ni fallback de estadísticas.
+Todo consumidor debe validar el contrato y el esquema activo de forma estricta.
