@@ -1,6 +1,6 @@
 {
   "schema_version": "rata-t4-final-candidate-v0.1",
-  "status": "T4_FULL_CANDIDATE_AWAITING_HUMAN_RATIFICATION",
+  "status": "READY_HUMAN_RATIFIED",
   "species_id": "rata_qi",
   "name": "Mordisco Frenético",
   "identity": "PHYSICAL_INSTINCTIVE_MULTI_HIT",
@@ -51,7 +51,7 @@
     "shared guaranteed hit",
     "T5"
   ],
-  "human_ratification_required": true,
+  "human_ratification_required": false,
   "canonical_write": false,
   "final_validation": {
     "fights": 125000,
@@ -66,5 +66,11 @@
     "conclusion": "success",
     "false_mechanics_detected": false,
     "tier_above_t4_executed": false
+  },
+  "ratified_on": "2026-10-01",
+  "closure": {
+    "adaptive_chain_closed": true,
+    "highest_tier": "T4",
+    "t5_exists": false
   }
 }
