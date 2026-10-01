@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {
-  MONSTER_STAT_CONTRACT_STATUS,ENGINE_CONTRACT,ARC1_MONSTER_IDS,REQUIRED_STATS,
+  MONSTER_STAT_CONTRACT_STATUS,ENGINE_CONTRACT,ARC1_MONSTER_IDS,
+  PROFILE_FIELDS,REQUIRED_STATS,TECHNIQUE_FIELDS,AI_FIELDS,ADAPTIVE_FIELDS,
   assertMonsterProfile
 } from '../adaptive/monster-stat-source-contract-v0.1.mjs';
 
@@ -21,12 +22,16 @@ T('all 18 Arc 1 monsters are covered exactly once',()=>{
   assert.deepEqual(Object.keys(catalog.profiles).sort(),ARC1_MONSTER_IDS);
 });
 
-T('all profiles use exactly the new stat schema',()=>{
+T('all profiles match the exact active schema',()=>{
   for(const [id,p] of Object.entries(catalog.profiles)){
     assert.equal(p.id,id);
     assert.equal(p.engine_contract,ENGINE_CONTRACT);
     assert.equal(assertMonsterProfile(p,{requireReady:false}),true);
-    assert.deepEqual(Object.keys(p.stats).sort(),[...REQUIRED_STATS].sort());
+    assert.deepEqual(Object.keys(p).sort(),PROFILE_FIELDS);
+    assert.deepEqual(Object.keys(p.stats).sort(),REQUIRED_STATS);
+    assert.deepEqual(Object.keys(p.ai).sort(),AI_FIELDS);
+    assert.deepEqual(Object.keys(p.adaptive).sort(),ADAPTIVE_FIELDS);
+    if(p.technique)assert.deepEqual(Object.keys(p.technique).sort(),TECHNIQUE_FIELDS);
   }
 });
 
@@ -42,17 +47,16 @@ T('all unresolved combat magnitudes remain null',()=>{
   }
 });
 
-
-T('retired profile fields are rejected even before READY',()=>{
+T('unknown profile fields fail schema validation',()=>{
   const p=structuredClone(catalog.profiles.rata_qi);
-  p.ataque=1;
-  assert.throws(()=>assertMonsterProfile(p,{requireReady:false}),/forbidden retired field ataque/);
+  p.unexpected_field=true;
+  assert.throws(()=>assertMonsterProfile(p,{requireReady:false}),/schema mismatch/);
 });
 
-T('retired technique fields are rejected even before READY',()=>{
+T('unknown technique fields fail schema validation',()=>{
   const p=structuredClone(catalog.profiles.serpiente_qi);
-  p.technique['daño']='TEST_ONLY';
-  assert.throws(()=>assertMonsterProfile(p,{requireReady:false}),/forbidden retired field daño/);
+  p.technique.unexpected_field=true;
+  assert.throws(()=>assertMonsterProfile(p,{requireReady:false}),/schema mismatch/);
 });
 
 T('pending profiles are blocked from combat',()=>{
