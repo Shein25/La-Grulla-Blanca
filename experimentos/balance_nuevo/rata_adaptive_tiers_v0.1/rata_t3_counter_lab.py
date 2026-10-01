@@ -166,6 +166,17 @@ def _player_precision_for_action(state,c,basic:bool)->float:
     return float(p.effective("precision"))+precision_mod
 
 
+def _counter_damage_dice(state,candidate:dict|None)->str:
+    if candidate is None:
+        return COUNTER_DICE
+    mode=candidate.get("counter_damage_mode","FIXED")
+    if mode=="INSTANCE_BASIC":
+        return str(state.monster_profile["stats"]["basic_damage"])
+    if mode=="FIXED":
+        return str(candidate.get("counter_damage_expression",COUNTER_DICE))
+    raise ValueError(f"unsupported counter_damage_mode: {mode}")
+
+
 def _candidate_allows(candidate:dict,*,recognition:bool,confirmed:bool,
                       caused_miss:bool,counter_used:bool)->bool:
     if not caused_miss:
@@ -312,7 +323,7 @@ def player_runtime(obs:ObservationState,cstate:CounterFightState,candidate:dict|
 
 
 @contextmanager
-def adaptive_runtime(*,tier:str,decision_seed:int,obs:ObservationState,
+def adaptive_runtime(*,tier:str,candidate:dict|None,decision_seed:int,obs:ObservationState,
                      cstate:CounterFightState,counters:Counter):
     originals={
         "build_monster":engine.build_monster,
@@ -331,7 +342,9 @@ def adaptive_runtime(*,tier:str,decision_seed:int,obs:ObservationState,
             q=cstate.queued
             cstate.queued=None
             cstate.counter_rounds.add(int(state.round_no))
-            out=engine.resolve_monster_direct(state,rng,COUNTER_DICE)
+            counter_dice=_counter_damage_dice(state,candidate)
+            out=engine.resolve_monster_direct(state,rng,counter_dice)
+            counters[f"counter_dice:{counter_dice}"]+=1
             damage=float(out.get("actual_hp_damage",0))
             cstate.counter_activations+=1
             cstate.counter_damage_events.append(damage)
@@ -443,6 +456,7 @@ def run_once(profile,root,items,combat_seed,tier,candidate,ai_seed,policy="VETER
     with player_runtime(obs,cstate,candidate if tier=="T3" else None):
         with adaptive_runtime(
             tier=tier,
+            candidate=candidate if tier=="T3" else None,
             decision_seed=ai_seed,
             obs=obs,
             cstate=cstate,
