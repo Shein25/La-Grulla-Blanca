@@ -1,64 +1,69 @@
-# NPC equipment assignment v0.1
+# NPC equipment assignment v0.2
 
-**Status:** LAB PROPOSAL / NOT CANON / COMBAT APPLICATION DEFERRED
+**Status:** LAB PROPOSAL / GATED / NOT CANON / COMBAT APPLICATION DEFERRED
 
-This layer answers a narrower question than NPC combat balance:
+This layer separates four questions that must not be collapsed:
 
-> Which already-existing Arc 1 equipment pieces are plausible for each of the
-> 32 A07.9 actors to visibly carry/wear as story progression advances?
+1. can an existing player-catalog item type plausibly appear on an NPC?
+2. does this NPC have enough role authority to auto-select combat gear?
+3. does a senior/distinctive NPC require bespoke NPC-owned equipment?
+4. when, if ever, do equipment stats modify NPC combat?
 
-It does **not** yet add those item stats to NPC combat.
+## Assignment modes
+
+### AUTO_CATALOG_ROLE_GUIDED
+
+Allowed only when the accepted NPC role supplies enough evidence for a combat/
+field equipment family. Existing non-unique item types may be proposed, filtered
+by stage, role tags and allowed slots.
+
+### BESPOKE_NPC_GEAR_REQUIRED
+
+Used for senior authorities. They are deliberately left without automatic
+player-catalog loadouts. A Sect Master must not end up wearing “aspirant” gear
+just because it is the only early-stage player item available.
+
+### PERSONALIZATION_REQUIRED
+
+Used for the six A07.9 companion/peer actors. Their accepted authoring corpus
+does not close an individual combat profession. They therefore do not receive
+six cloned specializations. Their equipment waits for an authorized combat/
+build identity.
+
+### WARDROBE_OR_COMBAT_ROLE_REQUIRED
+
+Used for civil, administrative and logistical roles. Their occupation alone is
+not evidence that they carry combat equipment. Wardrobe design and combat
+loadout are separate decisions.
 
 ## Source boundaries
 
-- Actor identity/role comes from the accepted A07.9 32-actor authoring corpus.
-- Item IDs, slots, stages and tags come only from `equipment_arc1_catalog.json`.
-- No new item is invented by this layer.
-- `source_npc` means acquisition source for the player. It does **not** mean
-  the source NPC automatically wears that item.
+- Actor identity/role comes from the accepted A07.9 32-actor corpus.
+- Item IDs, slots, stage and tags come only from `equipment_arc1_catalog.json`.
+- No new equipment item is invented by the automatic assignment layer.
+- `source_npc` describes player acquisition. It never means the NPC wears it.
 
 ## Unique-item guard
 
-Any player-catalog item with `unique=true` is excluded from automatic NPC
-assignment. This prevents an NPC loadout from silently duplicating a unique
-player reward/exploration object.
+`unique=true` player items are excluded from automatic NPC assignment.
 
-If a named NPC later needs a unique personal object, it must receive a distinct
-NPC-owned item/identity through a separate design decision.
+If a named NPC later receives a personal unique object, it must be a separate
+NPC-owned design entry rather than a silent duplicate of the player's unique
+reward/exploration item.
 
 ## Story-stage gate
 
-`LianQi_I ... LianQi_IV` in this assignment means the current story/player
-progression visibility band. It does **not** assert the NPC's cultivation realm.
+LianQi I–IV means story/player progression visibility, not the NPC's cultivation
+rank. It prevents automatic early spoilers of later player equipment.
 
-Later-stage catalog pieces are not shown early by default. Explicit narrative
-exceptions can be added only with human approval.
+## Sparse slots
 
-## Sparse loadouts
-
-NPCs are not MMO mannequins. The policy deliberately leaves slots empty.
-
-Four A07.9 groups receive different maximum visible item counts and every
-selection still obeys the 13-slot architecture/capacity.
-
-## Role families
-
-The role text is mapped to broad equipment preferences such as MARTIAL,
-MEDICAL, FORMATION, ADMIN or LOGISTICS. These preferences rank existing
-`build_tags`; they do not change item stats.
-
-The six Batch-1 companions use `BALANCED_PEER` because their accepted
-authoring corpus does not supply a combat profession in the role field. No
-specialization is invented for them here.
+NPCs are not MMO mannequins. Empty slots are valid and expected.
 
 ## Combat boundary
 
-Until an NPC combat-stat contract is closed:
+All assignments remain visual/inventory/loadout proposals. Item stats are not
+added to NPC HP/Qi/DEF/etc. until an explicit NPC combat-stat/equipment adapter
+is closed.
 
-- item stats are not added to NPC HP/Qi/DEF/etc.;
-- these assignments may drive appearance, inspect text, inventory or later
-  combat loadout preparation;
-- a future combat integration must decide whether NPCs share the player
-  equipment formulas or use an adapter.
-
-This prevents equipment work from silently becoming a second combat engine.
+This avoids creating a second hidden combat engine.
