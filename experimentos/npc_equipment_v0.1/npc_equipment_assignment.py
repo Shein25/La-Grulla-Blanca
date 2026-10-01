@@ -32,9 +32,11 @@ def eligible_items(actor,catalog,stage,policy):
     if STAGE_INDEX[stage]<STAGE_INDEX[stage_policy["first_story_stage"]]:
         return []
     allowed=set(policy["family_allowed_slots"].get(actor["equipment_family"],[]))
+    pool=set(policy["family_stage_item_pools"].get(actor["equipment_family"],{}).get(stage,[]))
     return [
         x for x in catalog_items(catalog)
-        if not x["unique"]
+        if x["item_id"] in pool
+        and not x["unique"]
         and x["min_stage"]==stage
         and x["availability"]!="ORIGIN_ONLY"
         and x["source_type"]!="STARTING_ISSUE"
@@ -62,6 +64,12 @@ def assign(actor,stage,catalog,policy):
 def validate(result,actors,catalog,policy):
     assert len(actors)==32
     item_by_id={x["item_id"]:x for x in catalog_items(catalog)}
+    for family,stages in policy["family_stage_item_pools"].items():
+        for stage,item_ids in stages.items():
+            for item_id in item_ids:
+                assert item_id in item_by_id,(family,stage,item_id,"missing")
+                assert item_by_id[item_id]["min_stage"]==stage,(family,stage,item_id,"stage")
+                assert not item_by_id[item_id]["unique"],(family,stage,item_id,"unique")
     modes=set(policy["assignment_modes"])
     for actor in actors:
         assert actor["assignment_mode"] in modes
@@ -85,8 +93,8 @@ def build():
     policy=load_json(HERE/"npc_equipment_policy.json")
     catalog=load_json(CATALOG)
     result={
-        "schema_version":"npc-equipment-assignments-v0.2",
-        "status":"LAB_PROPOSAL_GATED_NOT_CANON",
+        "schema_version":"npc-equipment-assignments-v0.3",
+        "status":"LAB_PROPOSAL_CURATED_GATED_NOT_CANON",
         "rules":{
             "unique_items_excluded":True,
             "source_npc_does_not_imply_worn":True,
@@ -96,6 +104,7 @@ def build():
             "companions_not_auto_specialized":True,
             "auto_catalog_first_stage":"LianQi_II",
             "auto_catalog_exact_stage_only":True,
+            "thematic_family_pools_required":True,
         },
         "actors":{}
     }
