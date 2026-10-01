@@ -1,6 +1,6 @@
 {
   "schema_version": "alchemy-consumables-balance-v0.1",
-  "status": "NUMERIC_PROPOSAL_AWAITING_HUMAN_REVIEW",
+  "status": "HP_HEALING_RATIFIED_QI_AND_ECONOMY_PENDING",
   "scope": "ARC1_LIANQI_I_IV",
   "basis": {
     "player_base_hp": {
@@ -31,45 +31,8 @@
     "note": "Approximate reference only, derived from the previous EXPECTED_STAGE HP bonuses scaled by the new ~x1.5 equipment HP revision. Exact gear totals remain a separate equipment authority."
   },
   "hp_healing_family": {
-    "stage_quality_values": {
-      "LianQi_I": {
-        "impura": 8,
-        "estable": 12,
-        "superior": 16,
-        "excepcional": 20
-      },
-      "LianQi_II": {
-        "impura": 10,
-        "estable": 15,
-        "superior": 20,
-        "excepcional": 26
-      },
-      "LianQi_III": {
-        "impura": 12,
-        "estable": 18,
-        "superior": 25,
-        "excepcional": 33
-      },
-      "LianQi_IV": {
-        "impura": 14,
-        "estable": 22,
-        "superior": 30,
-        "excepcional": 40
-      }
-    },
-    "crude_shop_potion": {
-      "stage": "LianQi_I",
-      "heal": 10,
-      "impurity": 1,
-      "role": "cheap fallback; weaker than crafted stable medicine"
-    },
-    "design_guards": [
-      "No potion is balanced to fully restore a stage-appropriate equipped character from near zero.",
-      "Stable quality remains useful at entry stage.",
-      "Superior/exceptional may heal a large amount but must be materially more expensive to craft.",
-      "Later-stage medicine requires later-stage recipe/material access; quality alone does not bypass stage progression.",
-      "Healing is absolute; percentages may be used only internally for balance diagnostics."
-    ]
+    "status": "SUPERSEDED_BY_RATIFIED_CONTRACT",
+    "authority": "ALCHEMY_VITALITY_HP_CONTRACT_V0_1.json"
   },
   "qi_recovery_family": {
     "stage_quality_values": {
@@ -134,7 +97,7 @@
     }
   ],
   "deferred_until_numeric_ratification": [
-    "exact recipe names for stage II-IV vitality medicines",
+    "Qi recovery values",
     "ingredient quantities and rarity",
     "stone/contribution/vendor prices",
     "Alchemy XP per recipe",
