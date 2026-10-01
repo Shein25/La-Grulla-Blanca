@@ -150,11 +150,12 @@ def main():
     front=sorted(pareto_front(out),key=lambda x:(x["values"][1],-x["values"][0]))
     outdir=Path(args.outdir)
     outdir.mkdir(parents=True,exist_ok=True)
-    (outdir/"rata_pareto_500_all.json").write_text(
+    tag=f"rata_pareto_{args.fights_per_context}"
+    (outdir/f"{tag}_all.json").write_text(
         json.dumps(out,ensure_ascii=False,indent=2,sort_keys=True)+"\n",
         encoding="utf-8",
     )
-    (outdir/"rata_pareto_500_front.json").write_text(
+    (outdir/f"{tag}_front.json").write_text(
         json.dumps(front,ensure_ascii=False,indent=2,sort_keys=True)+"\n",
         encoding="utf-8",
     )
@@ -172,7 +173,7 @@ def main():
         "selection_performed":False,
         "canonical_promotion_performed":False,
     }
-    (outdir/"rata_pareto_500_report.json").write_text(
+    (outdir/f"{tag}_report.json").write_text(
         json.dumps(report,ensure_ascii=False,indent=2,sort_keys=True)+"\n",
         encoding="utf-8",
     )
