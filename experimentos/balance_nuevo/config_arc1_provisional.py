@@ -1,7 +1,7 @@
 """Configuración del rediseño Arco 1.
 
 Sólo contiene datos del contrato NUEVO.
-Nada de este archivo se deriva de ver74.
+Este archivo usa únicamente el contrato actual del motor.
 
 Etiquetas:
 - CANON: cerrado por contrato.
