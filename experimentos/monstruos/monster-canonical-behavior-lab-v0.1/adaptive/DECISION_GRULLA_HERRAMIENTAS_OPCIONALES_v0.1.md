@@ -115,4 +115,4 @@ CONTROL → filamento
 
 La siguiente calibración numérica debe medir cuánto aumenta la victoria un buen uso de cada técnica, si alguna trivializa el encuentro, si abusarla activa correctamente su counter y si el toolkit mínimo conserva sus tasas originales.
 
-Hasta completar esa medición, no se suben HP/ATQ/DEF de la Grulla.
+Hasta completar la calibración con el motor nuevo, ninguna estadística ni magnitud de habilidad de la Grulla se considera autorizada por este documento.
