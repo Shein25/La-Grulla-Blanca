@@ -193,6 +193,7 @@ jobs:
           python t4_mordisco_contract_test.py
           python t4_followup_contract_test.py
           python t4_precision_crit_contract_test.py
+          python t4_cooldown_contract_test.py
           python - <<'PY'
           import json
           d=json.load(open("RATA_ADAPTIVE_TIER_CONTRACT_V0_1.json",encoding="utf-8"))
@@ -457,6 +458,52 @@ jobs:
                   "delta_mutant":r["delta_vs_frozen_t3"]["mutant_conditional"],
               })
           print("T4_PHASE_B_RESULT="+json.dumps(out,sort_keys=True))
+          PY
+
+      - name: Rata T4 cooldown study
+        if: contains(github.event.head_commit.message, '[T4_PHASE_C]')
+        working-directory: experimentos/balance_nuevo/rata_adaptive_tiers_v0.1
+        run: |
+          rm -rf ci_rata_t4_phase_c
+          python rata_t4_cooldown_lab.py --natural-fights 200 --mutant-fights 50 --outdir ci_rata_t4_phase_c --namespace CI_T4_PHASE_C
+          python - <<'PY'
+          import gzip,json
+          with gzip.open("ci_rata_t4_phase_c/cooldown_results.json.gz","rt",encoding="utf-8") as f:
+              rows=json.load(f)
+          out=[]
+          for r in rows:
+              n=r["result"]["natural_normal"]
+              m=r["result"]["mutant_conditional"]
+              out.append({
+                  "policy":r["policy"],
+                  "candidate":r["candidate"]["label"],
+                  "cooldown":r["candidate"]["cooldown_rounds"],
+                  "normal":{
+                      "win":n["win_rate"],
+                      "hp":n["hp_final_pct_mean"],
+                      "damage":n["monster_damage_total_mean"],
+                      "uses":n["t4"]["uses_per_fight"],
+                      "multi_use_rate":n["t4"]["multi_use_fight_rate"],
+                      "max_uses":n["t4"]["max_uses_one_fight"],
+                      "damage_per_use":n["t4"]["damage_per_use"],
+                      "damage_p90":n["t4"]["damage_p90_per_use"],
+                      "survival":n["t4"]["survival_choices_per_fight"],
+                      "t3_counter":n["t4"]["t3_counter_per_fight"],
+                  },
+                  "mutant":{
+                      "win":m["win_rate"],
+                      "hp":m["hp_final_pct_mean"],
+                      "damage":m["monster_damage_total_mean"],
+                      "uses":m["t4"]["uses_per_fight"],
+                      "multi_use_rate":m["t4"]["multi_use_fight_rate"],
+                      "max_uses":m["t4"]["max_uses_one_fight"],
+                      "damage_per_use":m["t4"]["damage_per_use"],
+                      "damage_p90":m["t4"]["damage_p90_per_use"],
+                  },
+                  "delta_normal":r["delta_vs_frozen_t3"]["natural_normal"],
+                  "delta_mutant":r["delta_vs_frozen_t3"]["mutant_conditional"],
+              })
+          print("T4_PHASE_C_RESULT="+json.dumps(out,sort_keys=True))
           PY
 
       - name: Confirm Rata T4 calibration is open
