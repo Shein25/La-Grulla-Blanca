@@ -3,7 +3,8 @@ import {buildCandidateMonsterInput} from '../adapter/candidate-assignment-adapte
 import {buildCanonicalAbilityCatalog,canonicalAbilityIds,techniqueDue} from '../adapter/canonical-combat-adapter.mjs';
 import {applyTacticalOverlay} from '../tactics/tactical-overlay-v0.1.mjs';
 
-export const SURVIVAL_EVOLUTION_STATUS='EXPERIMENTAL_NON_CANONICAL_SURVIVAL_V01_FINAL_CANDIDATE';
+export const SURVIVAL_EVOLUTION_STATUS='EXPERIMENTAL_NEW_ENGINE_PENDING_NUMERIC_CALIBRATION_V02';
+export const ADAPTIVE_PARAMS_STATUS='PENDING_T0_T4_REBALANCE';
 
 const nextProfile=Object.freeze({
   INSTINTIVO:'REACTIVO_1',
@@ -13,39 +14,39 @@ const nextProfile=Object.freeze({
   MASTER_4:'MASTER_4'
 });
 
-const p=(name,effect,extra={})=>Object.freeze({
+const p=(name,kind)=>Object.freeze({
   name,
-  effect:Object.freeze(effect),
-  ...extra
+  effect:Object.freeze({
+    kind,
+    paramsStatus:ADAPTIVE_PARAMS_STATUS
+  })
 });
 
+// Sólo conserva identidad mecánica. Ninguna magnitud de combate adaptativa
+// queda autorizada hasta que el T0 de la especie sea READY en el motor nuevo.
 export const SURVIVAL_POLICIES=Object.freeze({
-  // Movilidad: evita que el golpe conecte.
-  rata_qi:p('Reflejo de Madriguera',{kind:'EVADE_NEXT',evasionBonus:25,durationActions:1,cooldownRounds:2}),
-  serpiente_qi:p('Muda del Cauce',{kind:'EVADE_NEXT',evasionBonus:20,durationActions:1,cooldownRounds:2}),
-  pez_lunar:p('Giro de Corriente Ciega',{kind:'EVADE_NEXT',evasionBonus:25,durationActions:1,cooldownRounds:2}),
-  avispa_jade:p('Quiebro de Jade',{kind:'EVADE_NEXT',evasionBonus:25,durationActions:1,cooldownRounds:2}),
-  mono_pildoras:p('Salto del Ladrón',{kind:'EVADE_NEXT',evasionBonus:20,durationActions:1,cooldownRounds:2}),
-  anguila_estelar:p('Desliz de Meridiano',{kind:'EVADE_NEXT',evasionBonus:25,durationActions:1,cooldownRounds:2}),
-  halcon_tormenta:p('Ascenso Contraviento',{kind:'EVADE_NEXT',evasionBonus:30,durationActions:1,cooldownRounds:2}),
+  rata_qi:p('Reflejo de Madriguera','EVADE_NEXT'),
+  serpiente_qi:p('Muda del Cauce','EVADE_NEXT'),
+  pez_lunar:p('Giro de Corriente Ciega','EVADE_NEXT'),
+  avispa_jade:p('Quiebro de Jade','EVADE_NEXT'),
+  mono_pildoras:p('Salto del Ladrón','EVADE_NEXT'),
+  anguila_estelar:p('Desliz de Meridiano','EVADE_NEXT'),
+  halcon_tormenta:p('Ascenso Contraviento','EVADE_NEXT'),
 
-  // Postura/armadura: sube DEFENSA; no absorbe daño una vez que el golpe entra.
-  lobo_espiritual:p('Paso de la Cola Vigilante',{kind:'DEFENSE_UP',defenseBonus:3,durationActions:1,cooldownRounds:2}),
-  centinela_pluma:p('Cierre de Plumas Pétreas',{kind:'DEFENSE_UP',defenseBonus:5,durationActions:1,cooldownRounds:2}),
-  mantis_nube:p('Guardia de las Dos Hojas',{kind:'DEFENSE_UP',defenseBonus:5,durationActions:1,cooldownRounds:2}),
+  lobo_espiritual:p('Paso de la Cola Vigilante','DEFENSE_UP'),
+  centinela_pluma:p('Cierre de Plumas Pétreas','DEFENSE_UP'),
+  mantis_nube:p('Guardia de las Dos Hojas','DEFENSE_UP'),
 
-  // Mitigación: acepta el impacto, pero reduce porcentualmente el siguiente golpe.
-  eco_caido:p('Guardia del Último Ensayo',{kind:'MITIGATE_NEXT',damageReductionPct:40,durationHits:1,cooldownRounds:2}),
-  sombra_ahogada:p('Disolverse en Marea',{kind:'MITIGATE_NEXT',damageReductionPct:40,durationHits:1,cooldownRounds:2}),
-  sapo_ceniza:p('Piel de Brasa Muerta',{kind:'MITIGATE_NEXT',damageReductionPct:35,durationHits:1,cooldownRounds:2}),
+  eco_caido:p('Guardia del Último Ensayo','MITIGATE_NEXT'),
+  sombra_ahogada:p('Disolverse en Marea','MITIGATE_NEXT'),
+  sapo_ceniza:p('Piel de Brasa Muerta','MITIGATE_NEXT'),
 
-  // Absorción: reserva finita con tope por golpe, igual al modelo de guardia ya existente.
-  devorador_niebla:p('Cuerpo de Bruma Replegada',{kind:'ABSORB_RESERVE',absorbPerHit:4,reserve:8,cooldownRounds:2}),
-  sapo_caldera:p('Cierre de las Tres Gargantas',{kind:'ABSORB_RESERVE',absorbPerHit:4,reserve:8,cooldownRounds:2}),
-  escarabajo_hierro:p('Cierre de Caparazón',{kind:'ABSORB_RESERVE',absorbPerHit:4,reserve:8,cooldownRounds:2}),
-  rey_escarabajo:p('Diagrama de Placas',{kind:'ABSORB_RESERVE',absorbPerHit:5,reserve:10,cooldownRounds:2}),
-  guardian_coral:p('Arrecife Replegado',{kind:'ABSORB_RESERVE',absorbPerHit:5,reserve:10,cooldownRounds:2})
-})
+  devorador_niebla:p('Cuerpo de Bruma Replegada','ABSORB_RESERVE'),
+  sapo_caldera:p('Cierre de las Tres Gargantas','ABSORB_RESERVE'),
+  escarabajo_hierro:p('Cierre de Caparazón','ABSORB_RESERVE'),
+  rey_escarabajo:p('Diagrama de Placas','ABSORB_RESERVE'),
+  guardian_coral:p('Arrecife Replegado','ABSORB_RESERVE')
+});
 
 export function survivalAbilityId(mobId){
   return `${mobId}__survival_1`;
@@ -76,13 +77,11 @@ export function buildSurvivalAbilityCatalog({mobId,def,stage}){
   if(stage===0)return out;
 
   const policy=SURVIVAL_POLICIES[mobId];
-  const id=survivalAbilityId(mobId);
+  if(policy.effect.paramsStatus!==ADAPTIVE_PARAMS_STATUS){
+    throw new Error(`${mobId}: adaptive survival params must remain pending until T0-T4 rebalance`);
+  }
 
-  // Calibración de etapa I:
-  // a SELF_LOW_HP queremos un empate aproximado entre atacar y sobrevivir.
-  // El ataque básico ya hereda la preferencia OFENSIVA candidata, así que la
-  // base defensiva compensa exactamente ese modificador en vez de imponer el
-  // mismo número a especies con sesgos ofensivos distintos.
+  const id=survivalAbilityId(mobId);
   const probe=buildCandidateMonsterInput({mobId,def,round:1,mode:'DECISION_EXPERIMENTAL'});
   const offensivePreference=Number.isFinite(probe.preferences?.OFENSIVA)?probe.preferences.OFENSIVA:1;
   const survivalBase=18 + (offensivePreference-1)*20;
@@ -90,10 +89,14 @@ export function buildSurvivalAbilityCatalog({mobId,def,stage}){
   out[id]={
     id,
     intentCategory:'DEFENSA',
-    tags:['EXPERIMENTAL_NON_CANONICAL','SURVIVAL_EVOLUTION_1',policy.effect.kind],
+    tags:['EXPERIMENTAL_NEW_ENGINE','SURVIVAL_EVOLUTION_1',policy.effect.kind],
     telegraph:`${policy.name}.`,
     cooldownKey:`${id}__cooldown`,
     requirements:{signalsAll:[]},
+    execution:{
+      kind:policy.effect.kind,
+      paramsStatus:ADAPTIVE_PARAMS_STATUS
+    },
     utility:{
       base:survivalBase,
       signalWeights:{
@@ -125,7 +128,6 @@ export function buildSurvivalMonsterInput({
   let effectiveKit;
 
   if(mode==='CADENCE_COMPAT'&&def.technique&&due){
-    // La técnica canónica sigue siendo obligatoria en su ronda.
     effectiveKit=[canonicalAbilityIds(mobId).technique];
   }else{
     effectiveKit=[canonicalAbilityIds(mobId).basic,survivalId];
