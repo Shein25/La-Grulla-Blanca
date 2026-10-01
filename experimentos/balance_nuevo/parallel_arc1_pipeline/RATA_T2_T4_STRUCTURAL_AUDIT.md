@@ -1,9 +1,9 @@
 # Rata de Qi — T2–T4 structural preparation
 
-**Status:** T4_CALIBRATION_OPEN / T0-T3 FROZEN
+**Status:** T4_FINAL_CANDIDATE_AWAITING_HUMAN_RATIFICATION / T0-T3 FROZEN
 
 T0 is READY (trial 4254). T1 Reflejo de Madriguera is HUMAN-RATIFIED and frozen at +40 EVA / CD5 / REACTIVO_1 / BASE signals.
-T2 R2_SHORT is HUMAN-RATIFIED and frozen (memory 2 / repeat 2 / effective-only / +8). T3 CONFIRMED_PATTERN_REFLEJO_MISS + INSTANCE_BASIC is HUMAN-RATIFIED and frozen. T4 Mordisco Frenético calibration is now permitted.
+T2 R2_SHORT is HUMAN-RATIFIED and frozen (memory 2 / repeat 2 / effective-only / +8). T3 CONFIRMED_PATTERN_REFLEJO_MISS + INSTANCE_BASIC is HUMAN-RATIFIED and frozen. T4 Mordisco Frenético completed final validation and now awaits human ratification.
 
 ## T2 — recognition
 
@@ -35,11 +35,13 @@ T3 is CLOSED / HUMAN-RATIFIED: CONFIRMED_PATTERN_REFLEJO_MISS + INSTANCE_BASIC. 
 
 ## T4 — Mordisco Frenético
 
-Preserved identity:
+Validated candidate identity:
 - physical;
 - instinctive;
-- based on canonical T0 basic attack `2d4`;
-- multi-hit is a candidate mechanical family.
+- opening uses INSTANCE_BASIC ×1.0;
+- one canonical `2d4 ×0.50` follow-up;
+- independent precision and critical rolls per hit;
+- CD5.
 
 Required:
 - T3 closed — SATISFIED 2026-10-01;
@@ -57,4 +59,4 @@ Keep the existing adaptive decisions:
 - decay floors: T0→T0, T1→T1, T2→T1, T3→T2, T4→T3;
 - advancing player stage alone never grants a higher adaptive tier.
 
-These identities/threshold structures are retained for later recalibration. This file authorizes no combat-number promotion.
+These identities/threshold structures are retained. T4 combat numbers are validated experimentally but are not promoted without human ratification. No T5 exists in this contract.
