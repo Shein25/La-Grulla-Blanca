@@ -5,7 +5,7 @@ on:
     branches:
       - experiment/refine-sapo-escarabajo-adaptive-v0.1
     paths:
-      - "experimentos/balance_nuevo/adaptive_refine_sapo_escarabajo_v0_1.py"
+      - "experimentos/balance_nuevo/adaptive_policy_baseline_sapo_escarabajo_v0_1.py"
       - ".github/workflows/adaptive-refine-sapo-escarabajo-v0-1.yml"
 
 permissions:
@@ -27,10 +27,10 @@ jobs:
           git merge-base --is-ancestor c7b87b84a80e0a42e20eec7574f860123685c782 HEAD
       - name: Run directed refinement
         working-directory: experimentos/balance_nuevo
-        run: python adaptive_refine_sapo_escarabajo_v0_1.py
+        run: python adaptive_policy_baseline_sapo_escarabajo_v0_1.py
       - name: Upload refinement artifact
         uses: actions/upload-artifact@v4
         with:
-          name: RESULTADOS_REFINEMENT_SAPO_ESCARABAJO_T1_T4_V01
-          path: experimentos/balance_nuevo/RESULTADOS_REFINEMENT_SAPO_ESCARABAJO_T1_T4_V01.zip
+          name: RESULTADOS_POLICY_BASELINE_SAPO_ESCARABAJO_T0_V01
+          path: experimentos/balance_nuevo/RESULTADOS_POLICY_BASELINE_SAPO_ESCARABAJO_T0_V01.zip
           if-no-files-found: error
