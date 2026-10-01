@@ -1,54 +1,89 @@
-# Variabilidad intraespecie de monstruos — v0.2
+# Variabilidad intraespecie de monstruos — v0.3
 
 **Estado:** DISEÑO LAB / NO RUNTIME CANON TODAVÍA
 
 ## Objetivo
 
 Mantener un único `species_id` por criatura y permitir que dos individuos de
-la misma especie tengan estadísticas diferentes.
+la misma especie tengan estadísticas distintas sin inflar el catálogo.
 
-No se crean entradas como `rata_fuerte` o `lobo_elite`.
+El T0 READY es el **piso natural**. No existe variación por debajo del T0 en
+esta capa.
 
-El T0 READY es el **piso natural**. La envolvente superior se toma del perfil
-más difícil observado y medido para esa especie dentro de nuestros laboratorios.
-
-No existe variación por debajo del T0 en esta capa.
+La variación individual incluye tanto ejes defensivos como **ofensivos**.
 
 ## Tiradas independientes
 
-Cada eje variable recibe su propia tirada `q_stat ∈ [0,1]` al crear la
-instancia.
+Cada eje variable recibe su propia tirada `q_axis ∈ [0,1]` una sola vez al
+crear la instancia.
+
+Ejes físicos/estadísticos:
 
 ```text
-stat_instance = round(base + q_stat * (ceiling - base))
+HP
+DEF
+EVA
+PREC
+TEN
 ```
 
-Por tanto pueden coincidir varias tiradas altas. Esa coincidencia **no se
-prohíbe**: es una característica del mundo.
+Ejes ofensivos:
 
-El daño básico usa una escalera discreta entre el daño T0 y daños superiores
-ya observados en experimentos.
+```text
+daño básico
+daño directo de técnica, cuando exista
+daño DOT, cuando exista
+duración/ticks del DOT, cuando exista evidencia experimental
+```
 
-La instancia conserva sus valores hasta morir/desaparecer.
+Para stats enteros:
+
+```text
+stat_instance = round(base + q_axis * (ceiling - base))
+```
+
+Para expresiones de dados se usan **escaleras discretas formadas únicamente
+por expresiones ya observadas en los experimentos**.
+
+Por tanto un individuo puede ser más resistente sin pegar más, pegar más sin
+ser más resistente, o reunir ambas condiciones.
+
+## Qué NO varía por azar
+
+La variación individual no cambia la identidad mecánica de la especie.
+
+Se mantienen fijos:
+
+- `resource_model`;
+- Control base;
+- crítico y multiplicador base;
+- nombre/tipo de técnica;
+- mecánicas de técnica;
+- cadencia;
+- QI_DRAIN;
+- probabilidades de control;
+- cognición/social AI;
+- adaptación T1–T4.
+
+Ejemplo: un Mono puede pegar más fuerte, pero no recibe aleatoriamente más
+`QI_DRAIN` ni una cadencia distinta sólo por ser un individuo fuerte.
 
 ## Mutante
 
-La coincidencia excepcional de tiradas altas se convierte en contenido.
-
-Se calcula:
+La coincidencia excepcional de tiradas altas es contenido emergente, no un
+error a prevenir.
 
 ```text
 individual_power_score
-= media de las q de todos los ejes que realmente varían
+= media de q de todos los ejes que realmente varían
 ```
 
-El daño básico cuenta como un eje si su escalera tiene más de un escalón.
+Esto incluye ejes ofensivos.
 
-El umbral depende del número de ejes variables y está calibrado para que,
-con tiradas uniformes independientes, la cola teórica ronde **0,75%** y quede
-por debajo de 1%.
+El umbral depende de la cantidad de ejes variables y se calibra para una cola
+teórica de aproximadamente **0,75%**, siempre con guardia de **<1%**.
 
-Cuando el score supera el umbral:
+Cuando cruza el umbral:
 
 ```text
 suffix = "Mutante"
@@ -56,76 +91,75 @@ loot_multiplier = 1.5
 xp_multiplier = 1.5
 ```
 
-No se crea un nuevo `species_id`. Por ejemplo:
+No se crea un nuevo `species_id`.
 
-```text
-species_id = lobo_espiritual
-display     = Lobo espiritual de tres colas Mutante
-```
+## Fuentes ofensivas ya medidas
 
-El Mutante puede comportarse como un mini-jefe emergente. El jugador decide
-si combatir, huir, prepararse o buscar ayuda.
+### Rata
 
-El Mutante entrega **botín x1.5 y XP x1.5** para compensar su dificultad adicional. La probabilidad de objetos únicos permanece sin cambios en v0.2.
+No tiene técnica. Varía el daño básico dentro de expresiones ya observadas.
 
-## Techo: usar el perfil más difícil observado
+### Avispa
 
-A diferencia de v0.1, no descartamos el extremo sólo porque sea muy peligroso.
-Ese extremo sirve precisamente para construir la cola rara.
+Puede variar:
 
-Techos preliminares con datos ya medidos:
+- daño básico;
+- daño de veneno;
+- ticks del veneno.
 
-- Rata: trial 3325;
-- Avispa: trial 1251;
-- Serpiente: trial 1453;
-- Lobo: trial 1463;
-- Mono: pendiente del refinamiento local actual.
+La cadencia y la mecánica `POISON_DOT` permanecen fijas.
 
-Esto no significa que esos perfiles aparezcan completos con frecuencia. Para
-reconstruir casi todo el extremo a la vez deben coincidir muchas tiradas altas,
-lo cual cae en la cola Mutante.
+### Serpiente
 
-## Qué varía en v0.2
+Puede variar:
 
-- HP;
-- DEF;
-- EVA;
-- PREC;
-- TEN;
-- daño básico mediante escalera discreta.
+- daño básico si existen expresiones distintas medidas;
+- daño de veneno;
+- ticks del veneno.
 
-Se mantienen fijos en esta primera validación:
+La cadencia y `POISON_DOT` permanecen fijas.
 
-- resource_model;
-- Control;
-- crítico y multiplicador;
-- técnica y sus parámetros;
-- cognición/social AI;
-- adaptación T1–T4.
+### Lobo
 
-La técnica podrá recibir variación intraespecie en una fase posterior si la
-simulación demuestra que la capa base es estable.
+Puede variar:
+
+- daño básico;
+- daño directo de `Emboscada de las Tres Colas`.
+
+La cadencia permanece fija.
+
+### Mono
+
+Queda bloqueado hasta ratificar su T0. Una vez cerrado, su variación podrá
+incluir:
+
+- daño básico;
+- daño directo de `Manotazo al Dantian`;
+- HP/DEF/EVA/PREC/TEN.
+
+`QI_DRAIN=5` y cadencia 2 permanecerán como identidad del T0 propuesto hasta
+una decisión separada.
 
 ## Separación con adaptación
 
 ```text
 species T0 READY
-→ tiradas individuales
+→ tiradas individuales defensivas + ofensivas
 → posible sufijo Mutante
-→ stats de instancia
+→ stats/ataques de instancia
 → adaptation tier T0–T4
 → combate
 ```
 
 Ser Mutante no concede T1/T2/T3/T4 ni altera `maxTierReached`.
 
-## Guardia
+## Guardia antes de runtime
 
-Antes de runtime:
-
-1. comprobar que ninguna stat cae por debajo de la envolvente T0↔techo;
-2. comprobar que la frecuencia Mutante queda <1%;
-3. medir presión de combate de normales y Mutantes por raíz/loadout;
-4. verificar que `loot_multiplier=1.5` y `xp_multiplier=1.5` sólo se aplican a Mutantes;
-5. añadir el Mono sólo después de cerrar su T0.
+1. ninguna stat o ataque cae por debajo del T0;
+2. ningún valor supera una envolvente experimental declarada;
+3. la incidencia Mutante permanece <1%;
+4. `loot_multiplier=1.5` y `xp_multiplier=1.5` sólo se aplican a Mutantes;
+5. las mecánicas identitarias no se sortean;
+6. normales y Mutantes se validan por raíz/loadout;
+7. Mono se incorpora sólo después de ratificar su T0.
 
