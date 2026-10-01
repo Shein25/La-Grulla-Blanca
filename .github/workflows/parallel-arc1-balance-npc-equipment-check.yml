@@ -63,7 +63,19 @@ jobs:
           assert a["rules"]["unique_items_excluded"] is True
           assert a["rules"]["source_npc_does_not_imply_worn"] is True
           assert a["rules"]["combat_stats_applied"] is False
-          print("PASS: 32/32 NPC assignments reproducible and guarded")
+          assert a["rules"]["auto_catalog_first_stage"]=="LianQi_II"
+          assert a["rules"]["auto_catalog_exact_stage_only"] is True
+          modes={}
+          for actor in a["actors"].values():
+              modes[actor["assignment_mode"]]=modes.get(actor["assignment_mode"],0)+1
+              assert actor["by_story_stage"]["LianQi_I"]==[]
+          assert modes=={
+              "PERSONALIZATION_REQUIRED":6,
+              "BESPOKE_NPC_GEAR_REQUIRED":7,
+              "AUTO_CATALOG_ROLE_GUIDED":11,
+              "WARDROBE_OR_COMBAT_ROLE_REQUIRED":8,
+          },modes
+          print("PASS: 32/32 NPC assignments reproducible, gated and stage-clean")
           PY
 
       - name: Confirm Rata T2-T4 are structure-only
