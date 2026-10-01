@@ -1,0 +1,62 @@
+{
+  "schema_version": "rata-t4-mordisco-followup-input-v0.1",
+  "status": "LAB_INPUT_NOT_CANON",
+  "species_id": "rata_qi",
+  "prerequisite": "T3_READY_HUMAN_RATIFIED",
+  "model": "INSTANCE_BASIC_OPENING_PLUS_CANONICAL_2D4_FOLLOWUPS",
+  "fixed_axes": {
+    "opening": "resolved individual basic_damage at scalar 1.0",
+    "followup_dice": "2d4",
+    "precision_rule": "INDEPENDENT_PER_HIT",
+    "critical_rule": "INDEPENDENT_PER_HIT",
+    "cooldown_rounds": 5,
+    "activation_rule": "REPLACE_BASIC_WHEN_READY",
+    "direct_pipeline_per_hit": true
+  },
+  "candidates": [
+    {
+      "label": "FOLLOWUP_1X025",
+      "opening_instance_basic": true,
+      "followup_hit_count": 1,
+      "followup_scalar_per_hit": 0.25,
+      "extra_raw_expected_multiplier_vs_canonical": 0.25
+    },
+    {
+      "label": "FOLLOWUP_1X050",
+      "opening_instance_basic": true,
+      "followup_hit_count": 1,
+      "followup_scalar_per_hit": 0.5,
+      "extra_raw_expected_multiplier_vs_canonical": 0.5
+    },
+    {
+      "label": "FOLLOWUP_2X025",
+      "opening_instance_basic": true,
+      "followup_hit_count": 2,
+      "followup_scalar_per_hit": 0.25,
+      "extra_raw_expected_multiplier_vs_canonical": 0.5
+    },
+    {
+      "label": "FOLLOWUP_1X075",
+      "opening_instance_basic": true,
+      "followup_hit_count": 1,
+      "followup_scalar_per_hit": 0.75,
+      "extra_raw_expected_multiplier_vs_canonical": 0.75
+    }
+  ],
+  "interpretation": [
+    "The individual basic opening prevents T4 from erasing ratified offensive variance.",
+    "FOLLOWUP_1X050 vs FOLLOWUP_2X025 isolates packetization at the same raw expected followup.",
+    "Flat DEF and absorption still apply independently to every followup."
+  ],
+  "guards": {
+    "t1_t3_frozen": true,
+    "opening_uses_instance_basic": true,
+    "followups_use_canonical_2d4": true,
+    "no_qi_drain": true,
+    "no_dot": true,
+    "no_control": true,
+    "no_root_build_inspection": true,
+    "no_canonical_write": true,
+    "no_tier_above_t4": true
+  }
+}
