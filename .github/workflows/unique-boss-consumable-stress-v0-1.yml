@@ -1,0 +1,42 @@
+name: Unique Boss Consumable Stress v0.1
+
+on:
+  push:
+    branches:
+      - experiment/boss-consumable-stress-v0.1
+    paths:
+      - "experimentos/balance_nuevo/unique_boss_consumable_stress_v0_1.py"
+      - "experimentos/balance_nuevo/alchemy_consumables_v0.1/ALCHEMY_QI_RECOVERY_CONTRACT_V0_2.json"
+      - "experimentos/balance_nuevo/alchemy_consumables_v0.1/qi_recovery_contract_v0_2_test.py"
+      - ".github/workflows/unique-boss-consumable-stress-v0-1.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  stress:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Guard source ancestry
+        run: git merge-base --is-ancestor dba512b77daeb88401197a221a16bdeca00553ce HEAD
+      - name: Validate HP and Qi consumable contracts
+        working-directory: experimentos/balance_nuevo/alchemy_consumables_v0.1
+        run: |
+          python vitality_hp_contract_test.py
+          python qi_recovery_contract_v0_2_test.py
+      - name: Run prepared boss stress
+        working-directory: experimentos/balance_nuevo
+        run: python unique_boss_consumable_stress_v0_1.py
+      - name: Upload result
+        uses: actions/upload-artifact@v4
+        with:
+          name: RESULTADOS_UNIQUE_BOSSES_PREPARED_CONSUMABLE_STRESS_V01
+          path: experimentos/balance_nuevo/RESULTADOS_UNIQUE_BOSSES_PREPARED_CONSUMABLE_STRESS_V01.zip
+          if-no-files-found: error
