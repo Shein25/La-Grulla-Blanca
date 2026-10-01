@@ -167,3 +167,9 @@ Ejecutar primero:
 
 y sólo si los tres pasan, ejecutar `rata_smoke.py`. El resultado será LAB y
 no modificará `monster_arc1_registry.json`.
+
+## CI experimental
+
+El workflow `.github/workflows/stage1-integral-t0-rata-smoke.yml` ejecuta selfcheck,
+pruebas adversariales, preflight y smoke completo exclusivamente en esta rama.
+No realiza commits ni modifica el registro canónico.
