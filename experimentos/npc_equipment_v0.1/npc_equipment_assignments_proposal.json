@@ -1,0 +1,1198 @@
+{
+  "schema_version": "npc-equipment-assignments-v0.1",
+  "status": "LAB_PROPOSAL_NOT_CANON",
+  "rules": {
+    "unique_items_excluded": true,
+    "source_npc_does_not_imply_worn": true,
+    "combat_stats_applied": false,
+    "story_stage_gate": true
+  },
+  "actors": {
+    "lin_yue": {
+      "display_name": "Lin Yue",
+      "role": "Compañera / par del jugador",
+      "a079_group": "COMPANIONS",
+      "equipment_family": "BALANCED_PEER",
+      "by_story_stage": {
+        "LianQi_I": [
+          "baston_fresno_practica",
+          "cinta_patio_aspirante",
+          "vendas_antebrazo_practica",
+          "pulsera_fibra_trenzada"
+        ],
+        "LianQi_II": [
+          "espada_hierro_equilibrada",
+          "cinta_patio_aspirante",
+          "botas_piedra_humeda",
+          "tunica_ruta_sauces",
+          "calzas_sendero_pinos",
+          "anillo_reserva_menor"
+        ],
+        "LianQi_III": [
+          "espada_hierro_equilibrada",
+          "calzado_nube_baja",
+          "cinta_patio_aspirante",
+          "tunica_ruta_sauces",
+          "calzas_paso_silencioso",
+          "anillo_reserva_menor",
+          "amuleto_meridiano_estable",
+          "anillo_tierra_profunda"
+        ],
+        "LianQi_IV": [
+          "espada_hierro_equilibrada",
+          "pulsera_nudo_crisis",
+          "calzado_nube_baja",
+          "velo_vigilante_nucleo",
+          "tunica_ruta_sauces",
+          "amuleto_ancla_resonante",
+          "calzas_trama_sello",
+          "anillo_reserva_menor",
+          "brazales_relevo"
+        ]
+      }
+    },
+    "han_qiao": {
+      "display_name": "Han Qiao",
+      "role": "Compañero / par del jugador",
+      "a079_group": "COMPANIONS",
+      "equipment_family": "BALANCED_PEER",
+      "by_story_stage": {
+        "LianQi_I": [
+          "baston_fresno_practica",
+          "cinta_patio_aspirante",
+          "vendas_antebrazo_practica",
+          "pulsera_fibra_trenzada"
+        ],
+        "LianQi_II": [
+          "espada_hierro_equilibrada",
+          "cinta_patio_aspirante",
+          "botas_piedra_humeda",
+          "tunica_ruta_sauces",
+          "calzas_sendero_pinos",
+          "anillo_reserva_menor"
+        ],
+        "LianQi_III": [
+          "espada_hierro_equilibrada",
+          "calzado_nube_baja",
+          "cinta_patio_aspirante",
+          "tunica_ruta_sauces",
+          "calzas_paso_silencioso",
+          "anillo_reserva_menor",
+          "amuleto_meridiano_estable",
+          "anillo_tierra_profunda"
+        ],
+        "LianQi_IV": [
+          "espada_hierro_equilibrada",
+          "pulsera_nudo_crisis",
+          "calzado_nube_baja",
+          "velo_vigilante_nucleo",
+          "tunica_ruta_sauces",
+          "amuleto_ancla_resonante",
+          "calzas_trama_sello",
+          "anillo_reserva_menor",
+          "brazales_relevo"
+        ]
+      }
+    },
+    "zhao_wen": {
+      "display_name": "Zhao Wen",
+      "role": "Compañero / par del jugador",
+      "a079_group": "COMPANIONS",
+      "equipment_family": "BALANCED_PEER",
+      "by_story_stage": {
+        "LianQi_I": [
+          "baston_fresno_practica",
+          "cinta_patio_aspirante",
+          "vendas_antebrazo_practica",
+          "pulsera_fibra_trenzada"
+        ],
+        "LianQi_II": [
+          "espada_hierro_equilibrada",
+          "cinta_patio_aspirante",
+          "botas_piedra_humeda",
+          "tunica_ruta_sauces",
+          "calzas_sendero_pinos",
+          "anillo_reserva_menor"
+        ],
+        "LianQi_III": [
+          "espada_hierro_equilibrada",
+          "calzado_nube_baja",
+          "cinta_patio_aspirante",
+          "tunica_ruta_sauces",
+          "calzas_paso_silencioso",
+          "anillo_reserva_menor",
+          "amuleto_meridiano_estable",
+          "anillo_tierra_profunda"
+        ],
+        "LianQi_IV": [
+          "espada_hierro_equilibrada",
+          "pulsera_nudo_crisis",
+          "calzado_nube_baja",
+          "velo_vigilante_nucleo",
+          "tunica_ruta_sauces",
+          "amuleto_ancla_resonante",
+          "calzas_trama_sello",
+          "anillo_reserva_menor",
+          "brazales_relevo"
+        ]
+      }
+    },
+    "mei_lian": {
+      "display_name": "Mei Lian",
+      "role": "Compañera / par del jugador",
+      "a079_group": "COMPANIONS",
+      "equipment_family": "BALANCED_PEER",
+      "by_story_stage": {
+        "LianQi_I": [
+          "baston_fresno_practica",
+          "cinta_patio_aspirante",
+          "vendas_antebrazo_practica",
+          "pulsera_fibra_trenzada"
+        ],
+        "LianQi_II": [
+          "espada_hierro_equilibrada",
+          "cinta_patio_aspirante",
+          "botas_piedra_humeda",
+          "tunica_ruta_sauces",
+          "calzas_sendero_pinos",
+          "anillo_reserva_menor"
+        ],
+        "LianQi_III": [
+          "espada_hierro_equilibrada",
+          "calzado_nube_baja",
+          "cinta_patio_aspirante",
+          "tunica_ruta_sauces",
+          "calzas_paso_silencioso",
+          "anillo_reserva_menor",
+          "amuleto_meridiano_estable",
+          "anillo_tierra_profunda"
+        ],
+        "LianQi_IV": [
+          "espada_hierro_equilibrada",
+          "pulsera_nudo_crisis",
+          "calzado_nube_baja",
+          "velo_vigilante_nucleo",
+          "tunica_ruta_sauces",
+          "amuleto_ancla_resonante",
+          "calzas_trama_sello",
+          "anillo_reserva_menor",
+          "brazales_relevo"
+        ]
+      }
+    },
+    "guo_chen": {
+      "display_name": "Guo Chen",
+      "role": "Compañero / par del jugador",
+      "a079_group": "COMPANIONS",
+      "equipment_family": "BALANCED_PEER",
+      "by_story_stage": {
+        "LianQi_I": [
+          "baston_fresno_practica",
+          "cinta_patio_aspirante",
+          "vendas_antebrazo_practica",
+          "pulsera_fibra_trenzada"
+        ],
+        "LianQi_II": [
+          "espada_hierro_equilibrada",
+          "cinta_patio_aspirante",
+          "botas_piedra_humeda",
+          "tunica_ruta_sauces",
+          "calzas_sendero_pinos",
+          "anillo_reserva_menor"
+        ],
+        "LianQi_III": [
+          "espada_hierro_equilibrada",
+          "calzado_nube_baja",
+          "cinta_patio_aspirante",
+          "tunica_ruta_sauces",
+          "calzas_paso_silencioso",
+          "anillo_reserva_menor",
+          "amuleto_meridiano_estable",
+          "anillo_tierra_profunda"
+        ],
+        "LianQi_IV": [
+          "espada_hierro_equilibrada",
+          "pulsera_nudo_crisis",
+          "calzado_nube_baja",
+          "velo_vigilante_nucleo",
+          "tunica_ruta_sauces",
+          "amuleto_ancla_resonante",
+          "calzas_trama_sello",
+          "anillo_reserva_menor",
+          "brazales_relevo"
+        ]
+      }
+    },
+    "luo_yan": {
+      "display_name": "Luo Yan",
+      "role": "Compañero / par del jugador",
+      "a079_group": "COMPANIONS",
+      "equipment_family": "BALANCED_PEER",
+      "by_story_stage": {
+        "LianQi_I": [
+          "baston_fresno_practica",
+          "cinta_patio_aspirante",
+          "vendas_antebrazo_practica",
+          "pulsera_fibra_trenzada"
+        ],
+        "LianQi_II": [
+          "espada_hierro_equilibrada",
+          "cinta_patio_aspirante",
+          "botas_piedra_humeda",
+          "tunica_ruta_sauces",
+          "calzas_sendero_pinos",
+          "anillo_reserva_menor"
+        ],
+        "LianQi_III": [
+          "espada_hierro_equilibrada",
+          "calzado_nube_baja",
+          "cinta_patio_aspirante",
+          "tunica_ruta_sauces",
+          "calzas_paso_silencioso",
+          "anillo_reserva_menor",
+          "amuleto_meridiano_estable",
+          "anillo_tierra_profunda"
+        ],
+        "LianQi_IV": [
+          "espada_hierro_equilibrada",
+          "pulsera_nudo_crisis",
+          "calzado_nube_baja",
+          "velo_vigilante_nucleo",
+          "tunica_ruta_sauces",
+          "amuleto_ancla_resonante",
+          "calzas_trama_sello",
+          "anillo_reserva_menor",
+          "brazales_relevo"
+        ]
+      }
+    },
+    "ji_xueying": {
+      "display_name": "Ji Xueying",
+      "role": "Maestra de Secta",
+      "a079_group": "AUTHORITIES",
+      "equipment_family": "LEADER",
+      "by_story_stage": {
+        "LianQi_I": [
+          "anillo_cobre_sin_sello",
+          "cinta_patio_aspirante",
+          "pulsera_fibra_trenzada"
+        ],
+        "LianQi_II": [
+          "brazales_pulso_firme",
+          "anillo_corriente_clara",
+          "amuleto_sauce_sereno",
+          "anillo_cobre_sin_sello",
+          "cinta_patio_aspirante"
+        ],
+        "LianQi_III": [
+          "brazales_pulso_medico",
+          "vara_dos_corrientes",
+          "tocado_hilo_formacion",
+          "anillo_corriente_clara",
+          "pulsera_nudo_formacion",
+          "amuleto_sauce_sereno",
+          "anillo_cobre_sin_sello"
+        ],
+        "LianQi_IV": [
+          "vara_relevo",
+          "amuleto_ancla_resonante",
+          "brazales_pulso_medico",
+          "tocado_hilo_formacion",
+          "anillo_corriente_clara",
+          "pulsera_meridiano_profundo",
+          "anillo_cobre_sin_sello",
+          "manto_mantenimiento"
+        ]
+      }
+    },
+    "qiao_ren": {
+      "display_name": "Qiao Ren",
+      "role": "Disciplina y Administración",
+      "a079_group": "AUTHORITIES",
+      "equipment_family": "ADMIN",
+      "by_story_stage": {
+        "LianQi_I": [
+          "cinta_patio_aspirante",
+          "pulsera_fibra_trenzada",
+          "anillo_cobre_sin_sello"
+        ],
+        "LianQi_II": [
+          "brazales_pulso_firme",
+          "cinta_patio_aspirante",
+          "fajin_patrulla",
+          "anillo_corriente_clara",
+          "pulsera_fibra_trenzada"
+        ],
+        "LianQi_III": [
+          "brazales_pulso_medico",
+          "vara_dos_corrientes",
+          "cinta_patio_aspirante",
+          "fajin_patrulla",
+          "anillo_corriente_clara",
+          "pulsera_fibra_trenzada",
+          "amuleto_meridiano_estable"
+        ],
+        "LianQi_IV": [
+          "vara_relevo",
+          "amuleto_ancla_resonante",
+          "brazales_pulso_medico",
+          "velo_vigilante_nucleo",
+          "manto_mantenimiento",
+          "pulsera_nudo_crisis",
+          "fajin_patrulla",
+          "anillo_corriente_clara"
+        ]
+      }
+    },
+    "wei_jian": {
+      "display_name": "Wei Jian",
+      "role": "Responsable marcial / Pabellón Marcial",
+      "a079_group": "AUTHORITIES",
+      "equipment_family": "MARTIAL",
+      "by_story_stage": {
+        "LianQi_I": [
+          "cinta_patio_aspirante",
+          "vendas_antebrazo_practica",
+          "baston_fresno_practica"
+        ],
+        "LianQi_II": [
+          "espada_hierro_equilibrada",
+          "cinta_patio_aspirante",
+          "calzas_guardia_externa",
+          "sobretunica_patrulla",
+          "botas_piedra_humeda"
+        ],
+        "LianQi_III": [
+          "espada_vena_clara",
+          "cinta_patio_aspirante",
+          "amuleto_meridiano_estable",
+          "anillo_tierra_profunda",
+          "calzas_guardia_externa",
+          "calzado_nube_baja",
+          "sobretunica_patrulla"
+        ],
+        "LianQi_IV": [
+          "espada_vena_clara",
+          "vestidura_ala_cerrada",
+          "brazales_relevo",
+          "velo_vigilante_nucleo",
+          "amuleto_ancla_resonante",
+          "anillo_tierra_profunda",
+          "calzas_guardia_externa",
+          "calzado_nube_baja"
+        ]
+      }
+    },
+    "song_rui": {
+      "display_name": "Song Rui",
+      "role": "Responsable de Archivos",
+      "a079_group": "AUTHORITIES",
+      "equipment_family": "ADMIN",
+      "by_story_stage": {
+        "LianQi_I": [
+          "cinta_patio_aspirante",
+          "pulsera_fibra_trenzada",
+          "anillo_cobre_sin_sello"
+        ],
+        "LianQi_II": [
+          "brazales_pulso_firme",
+          "cinta_patio_aspirante",
+          "fajin_patrulla",
+          "anillo_corriente_clara",
+          "pulsera_fibra_trenzada"
+        ],
+        "LianQi_III": [
+          "brazales_pulso_medico",
+          "vara_dos_corrientes",
+          "cinta_patio_aspirante",
+          "fajin_patrulla",
+          "anillo_corriente_clara",
+          "pulsera_fibra_trenzada",
+          "amuleto_meridiano_estable"
+        ],
+        "LianQi_IV": [
+          "vara_relevo",
+          "amuleto_ancla_resonante",
+          "brazales_pulso_medico",
+          "velo_vigilante_nucleo",
+          "manto_mantenimiento",
+          "pulsera_nudo_crisis",
+          "fajin_patrulla",
+          "anillo_corriente_clara"
+        ]
+      }
+    },
+    "lan_meihua": {
+      "display_name": "Lan Meihua",
+      "role": "Medicina / Alquimia",
+      "a079_group": "AUTHORITIES",
+      "equipment_family": "MEDICAL",
+      "by_story_stage": {
+        "LianQi_I": [
+          "anillo_cobre_sin_sello",
+          "pulsera_fibra_trenzada",
+          "cinta_patio_aspirante"
+        ],
+        "LianQi_II": [
+          "brazales_pulso_firme",
+          "amuleto_sauce_sereno",
+          "anillo_cobre_sin_sello",
+          "fajin_patrulla",
+          "pulsera_fibra_trenzada"
+        ],
+        "LianQi_III": [
+          "brazales_pulso_medico",
+          "vara_dos_corrientes",
+          "pulsera_nudo_formacion",
+          "amuleto_sauce_sereno",
+          "anillo_cobre_sin_sello",
+          "velo_archivo_sereno",
+          "fajin_patrulla"
+        ],
+        "LianQi_IV": [
+          "vara_relevo",
+          "amuleto_ancla_resonante",
+          "brazales_pulso_medico",
+          "pulsera_nudo_crisis",
+          "anillo_cobre_sin_sello",
+          "manto_mantenimiento",
+          "velo_archivo_sereno",
+          "fajin_patrulla"
+        ]
+      }
+    },
+    "duan_shibo": {
+      "display_name": "Duan Shibo",
+      "role": "Recursos / Producción",
+      "a079_group": "AUTHORITIES",
+      "equipment_family": "LOGISTICS",
+      "by_story_stage": {
+        "LianQi_I": [
+          "pulsera_fibra_trenzada",
+          "cinta_patio_aspirante",
+          "anillo_cobre_sin_sello"
+        ],
+        "LianQi_II": [
+          "calzas_guardia_externa",
+          "bandana_cuero_reforzada",
+          "brazales_pulso_firme",
+          "fajin_patrulla",
+          "pulsera_fibra_trenzada"
+        ],
+        "LianQi_III": [
+          "amuleto_meridiano_estable",
+          "anillo_tierra_profunda",
+          "calzas_guardia_externa",
+          "bandana_cuero_reforzada",
+          "brazales_pulso_medico",
+          "vara_dos_corrientes",
+          "fajin_patrulla"
+        ],
+        "LianQi_IV": [
+          "amuleto_ancla_resonante",
+          "vara_relevo",
+          "vestidura_ala_cerrada",
+          "brazales_relevo",
+          "anillo_tierra_profunda",
+          "calzas_guardia_externa",
+          "bandana_cuero_reforzada",
+          "pulsera_nudo_crisis"
+        ]
+      }
+    },
+    "he_zhen": {
+      "display_name": "He Zhen",
+      "role": "Formaciones / Territorio",
+      "a079_group": "AUTHORITIES",
+      "equipment_family": "FORMATION",
+      "by_story_stage": {
+        "LianQi_I": [
+          "anillo_cobre_sin_sello",
+          "pulsera_fibra_trenzada",
+          "cinta_patio_aspirante"
+        ],
+        "LianQi_II": [
+          "amuleto_sauce_sereno",
+          "anillo_cobre_sin_sello",
+          "anillo_corriente_clara",
+          "brazales_pulso_firme",
+          "fajin_patrulla"
+        ],
+        "LianQi_III": [
+          "pulsera_nudo_formacion",
+          "amuleto_sauce_sereno",
+          "anillo_cobre_sin_sello",
+          "tocado_hilo_formacion",
+          "anillo_corriente_clara",
+          "brazales_pulso_medico",
+          "vara_dos_corrientes"
+        ],
+        "LianQi_IV": [
+          "vara_relevo",
+          "pulsera_meridiano_profundo",
+          "amuleto_sauce_sereno",
+          "anillo_cobre_sin_sello",
+          "tocado_hilo_formacion",
+          "anillo_corriente_clara",
+          "brazales_pulso_medico",
+          "manto_mantenimiento"
+        ]
+      }
+    },
+    "shen_baojun": {
+      "display_name": "Shen Baojun",
+      "role": "Instructor marcial externo",
+      "a079_group": "INTERMEDIATE",
+      "equipment_family": "MARTIAL",
+      "by_story_stage": {
+        "LianQi_I": [
+          "cinta_patio_aspirante",
+          "vendas_antebrazo_practica",
+          "baston_fresno_practica"
+        ],
+        "LianQi_II": [
+          "espada_hierro_equilibrada",
+          "cinta_patio_aspirante",
+          "calzas_guardia_externa",
+          "sobretunica_patrulla",
+          "botas_piedra_humeda"
+        ],
+        "LianQi_III": [
+          "espada_vena_clara",
+          "cinta_patio_aspirante",
+          "amuleto_meridiano_estable",
+          "anillo_tierra_profunda",
+          "calzas_guardia_externa",
+          "calzado_nube_baja"
+        ],
+        "LianQi_IV": [
+          "espada_vena_clara",
+          "vestidura_ala_cerrada",
+          "brazales_relevo",
+          "velo_vigilante_nucleo",
+          "amuleto_ancla_resonante",
+          "anillo_tierra_profunda",
+          "calzas_guardia_externa"
+        ]
+      }
+    },
+    "madre_wen": {
+      "display_name": "Madre Wen",
+      "role": "Responsable de vida cotidiana de externos",
+      "a079_group": "INTERMEDIATE",
+      "equipment_family": "CIVILIAN_SUPPORT",
+      "by_story_stage": {
+        "LianQi_I": [
+          "pantalon_viaje_gris",
+          "pulsera_fibra_trenzada",
+          "cinta_patio_aspirante"
+        ],
+        "LianQi_II": [
+          "calzas_guardia_externa",
+          "bandana_cuero_reforzada",
+          "tunica_ruta_sauces",
+          "botas_piedra_humeda",
+          "fajin_patrulla"
+        ],
+        "LianQi_III": [
+          "amuleto_meridiano_estable",
+          "anillo_tierra_profunda",
+          "calzas_guardia_externa",
+          "bandana_cuero_reforzada",
+          "tunica_ruta_sauces",
+          "botas_piedra_humeda"
+        ],
+        "LianQi_IV": [
+          "vestidura_ala_cerrada",
+          "amuleto_ancla_resonante",
+          "brazales_relevo",
+          "anillo_tierra_profunda",
+          "calzas_guardia_externa",
+          "bandana_cuero_reforzada",
+          "pulsera_nudo_crisis"
+        ]
+      }
+    },
+    "tao_ming": {
+      "display_name": "Tao Ming",
+      "role": "Registro de Servicios",
+      "a079_group": "INTERMEDIATE",
+      "equipment_family": "ADMIN",
+      "by_story_stage": {
+        "LianQi_I": [
+          "cinta_patio_aspirante",
+          "pulsera_fibra_trenzada",
+          "anillo_cobre_sin_sello"
+        ],
+        "LianQi_II": [
+          "brazales_pulso_firme",
+          "cinta_patio_aspirante",
+          "fajin_patrulla",
+          "anillo_corriente_clara",
+          "pulsera_fibra_trenzada"
+        ],
+        "LianQi_III": [
+          "brazales_pulso_medico",
+          "vara_dos_corrientes",
+          "cinta_patio_aspirante",
+          "fajin_patrulla",
+          "anillo_corriente_clara",
+          "pulsera_fibra_trenzada"
+        ],
+        "LianQi_IV": [
+          "vara_relevo",
+          "amuleto_ancla_resonante",
+          "brazales_pulso_medico",
+          "velo_vigilante_nucleo",
+          "manto_mantenimiento",
+          "pulsera_nudo_crisis",
+          "fajin_patrulla"
+        ]
+      }
+    },
+    "jiang_rui": {
+      "display_name": "Jiang Rui",
+      "role": "Capitán de patrulla",
+      "a079_group": "INTERMEDIATE",
+      "equipment_family": "MARTIAL",
+      "by_story_stage": {
+        "LianQi_I": [
+          "cinta_patio_aspirante",
+          "vendas_antebrazo_practica",
+          "baston_fresno_practica"
+        ],
+        "LianQi_II": [
+          "espada_hierro_equilibrada",
+          "cinta_patio_aspirante",
+          "calzas_guardia_externa",
+          "sobretunica_patrulla",
+          "botas_piedra_humeda"
+        ],
+        "LianQi_III": [
+          "espada_vena_clara",
+          "cinta_patio_aspirante",
+          "amuleto_meridiano_estable",
+          "anillo_tierra_profunda",
+          "calzas_guardia_externa",
+          "calzado_nube_baja"
+        ],
+        "LianQi_IV": [
+          "espada_vena_clara",
+          "vestidura_ala_cerrada",
+          "brazales_relevo",
+          "velo_vigilante_nucleo",
+          "amuleto_ancla_resonante",
+          "anillo_tierra_profunda",
+          "calzas_guardia_externa"
+        ]
+      }
+    },
+    "su_lian": {
+      "display_name": "Su Lian",
+      "role": "Maestra de Herboristería",
+      "a079_group": "INTERMEDIATE",
+      "equipment_family": "MEDICAL_FIELD",
+      "by_story_stage": {
+        "LianQi_I": [
+          "anillo_cobre_sin_sello",
+          "pulsera_fibra_trenzada",
+          "cinta_patio_aspirante"
+        ],
+        "LianQi_II": [
+          "brazales_pulso_firme",
+          "botas_piedra_humeda",
+          "calzas_guardia_externa",
+          "bandana_cuero_reforzada",
+          "amuleto_sauce_sereno"
+        ],
+        "LianQi_III": [
+          "brazales_pulso_medico",
+          "vara_dos_corrientes",
+          "botas_piedra_humeda",
+          "amuleto_meridiano_estable",
+          "anillo_tierra_profunda",
+          "pulsera_nudo_formacion"
+        ],
+        "LianQi_IV": [
+          "amuleto_ancla_resonante",
+          "vara_relevo",
+          "brazales_pulso_medico",
+          "pulsera_nudo_crisis",
+          "botas_voto_inmovil",
+          "vestidura_ala_cerrada",
+          "anillo_tierra_profunda"
+        ]
+      }
+    },
+    "chen_bo": {
+      "display_name": "Chen Bo",
+      "role": "Instructor de Examen / Anatomía-Medicina",
+      "a079_group": "INTERMEDIATE",
+      "equipment_family": "MEDICAL",
+      "by_story_stage": {
+        "LianQi_I": [
+          "anillo_cobre_sin_sello",
+          "pulsera_fibra_trenzada",
+          "cinta_patio_aspirante"
+        ],
+        "LianQi_II": [
+          "brazales_pulso_firme",
+          "amuleto_sauce_sereno",
+          "anillo_cobre_sin_sello",
+          "fajin_patrulla",
+          "pulsera_fibra_trenzada"
+        ],
+        "LianQi_III": [
+          "brazales_pulso_medico",
+          "vara_dos_corrientes",
+          "pulsera_nudo_formacion",
+          "amuleto_sauce_sereno",
+          "anillo_cobre_sin_sello",
+          "velo_archivo_sereno"
+        ],
+        "LianQi_IV": [
+          "vara_relevo",
+          "amuleto_ancla_resonante",
+          "brazales_pulso_medico",
+          "pulsera_nudo_crisis",
+          "anillo_cobre_sin_sello",
+          "manto_mantenimiento",
+          "velo_archivo_sereno"
+        ]
+      }
+    },
+    "yao_fen": {
+      "display_name": "Yao Fen",
+      "role": "Instructora de Alquimia / Botica",
+      "a079_group": "INTERMEDIATE",
+      "equipment_family": "MEDICAL",
+      "by_story_stage": {
+        "LianQi_I": [
+          "anillo_cobre_sin_sello",
+          "pulsera_fibra_trenzada",
+          "cinta_patio_aspirante"
+        ],
+        "LianQi_II": [
+          "brazales_pulso_firme",
+          "amuleto_sauce_sereno",
+          "anillo_cobre_sin_sello",
+          "fajin_patrulla",
+          "pulsera_fibra_trenzada"
+        ],
+        "LianQi_III": [
+          "brazales_pulso_medico",
+          "vara_dos_corrientes",
+          "pulsera_nudo_formacion",
+          "amuleto_sauce_sereno",
+          "anillo_cobre_sin_sello",
+          "velo_archivo_sereno"
+        ],
+        "LianQi_IV": [
+          "vara_relevo",
+          "amuleto_ancla_resonante",
+          "brazales_pulso_medico",
+          "pulsera_nudo_crisis",
+          "anillo_cobre_sin_sello",
+          "manto_mantenimiento",
+          "velo_archivo_sereno"
+        ]
+      }
+    },
+    "gao_shun": {
+      "display_name": "Gao Shun",
+      "role": "Guardia de la Puerta Roja",
+      "a079_group": "FUNCTIONAL_SUPPORT",
+      "equipment_family": "MARTIAL",
+      "by_story_stage": {
+        "LianQi_I": [
+          "cinta_patio_aspirante",
+          "vendas_antebrazo_practica"
+        ],
+        "LianQi_II": [
+          "espada_hierro_equilibrada",
+          "cinta_patio_aspirante",
+          "calzas_guardia_externa",
+          "sobretunica_patrulla"
+        ],
+        "LianQi_III": [
+          "espada_vena_clara",
+          "cinta_patio_aspirante",
+          "amuleto_meridiano_estable",
+          "anillo_tierra_profunda",
+          "calzas_guardia_externa"
+        ],
+        "LianQi_IV": [
+          "espada_vena_clara",
+          "vestidura_ala_cerrada",
+          "brazales_relevo",
+          "velo_vigilante_nucleo",
+          "amuleto_ancla_resonante",
+          "anillo_tierra_profunda"
+        ]
+      }
+    },
+    "feng_zhi": {
+      "display_name": "Feng Zhi",
+      "role": "Asistente de Disciplina",
+      "a079_group": "FUNCTIONAL_SUPPORT",
+      "equipment_family": "ADMIN",
+      "by_story_stage": {
+        "LianQi_I": [
+          "cinta_patio_aspirante",
+          "pulsera_fibra_trenzada"
+        ],
+        "LianQi_II": [
+          "brazales_pulso_firme",
+          "cinta_patio_aspirante",
+          "fajin_patrulla",
+          "anillo_corriente_clara"
+        ],
+        "LianQi_III": [
+          "brazales_pulso_medico",
+          "vara_dos_corrientes",
+          "cinta_patio_aspirante",
+          "fajin_patrulla",
+          "anillo_corriente_clara"
+        ],
+        "LianQi_IV": [
+          "vara_relevo",
+          "amuleto_ancla_resonante",
+          "brazales_pulso_medico",
+          "velo_vigilante_nucleo",
+          "manto_mantenimiento",
+          "pulsera_nudo_crisis"
+        ]
+      }
+    },
+    "ma_qiren": {
+      "display_name": "Ma Qiren",
+      "role": "Responsable de Almacenes",
+      "a079_group": "FUNCTIONAL_SUPPORT",
+      "equipment_family": "LOGISTICS",
+      "by_story_stage": {
+        "LianQi_I": [
+          "pulsera_fibra_trenzada",
+          "cinta_patio_aspirante"
+        ],
+        "LianQi_II": [
+          "calzas_guardia_externa",
+          "bandana_cuero_reforzada",
+          "brazales_pulso_firme",
+          "fajin_patrulla"
+        ],
+        "LianQi_III": [
+          "amuleto_meridiano_estable",
+          "anillo_tierra_profunda",
+          "calzas_guardia_externa",
+          "bandana_cuero_reforzada",
+          "brazales_pulso_medico"
+        ],
+        "LianQi_IV": [
+          "amuleto_ancla_resonante",
+          "vara_relevo",
+          "vestidura_ala_cerrada",
+          "brazales_relevo",
+          "anillo_tierra_profunda",
+          "calzas_guardia_externa"
+        ]
+      }
+    },
+    "pei_luo": {
+      "display_name": "Pei Luo",
+      "role": "Responsable de Cocina/Comedor",
+      "a079_group": "FUNCTIONAL_SUPPORT",
+      "equipment_family": "CIVILIAN_SUPPORT",
+      "by_story_stage": {
+        "LianQi_I": [
+          "pantalon_viaje_gris",
+          "pulsera_fibra_trenzada"
+        ],
+        "LianQi_II": [
+          "calzas_guardia_externa",
+          "bandana_cuero_reforzada",
+          "tunica_ruta_sauces",
+          "botas_piedra_humeda"
+        ],
+        "LianQi_III": [
+          "amuleto_meridiano_estable",
+          "anillo_tierra_profunda",
+          "calzas_guardia_externa",
+          "bandana_cuero_reforzada",
+          "tunica_ruta_sauces"
+        ],
+        "LianQi_IV": [
+          "vestidura_ala_cerrada",
+          "amuleto_ancla_resonante",
+          "brazales_relevo",
+          "anillo_tierra_profunda",
+          "calzas_guardia_externa",
+          "bandana_cuero_reforzada"
+        ]
+      }
+    },
+    "lu_cheng": {
+      "display_name": "Lu Cheng",
+      "role": "Taller de armas / Reparaciones",
+      "a079_group": "FUNCTIONAL_SUPPORT",
+      "equipment_family": "CRAFT_MARTIAL",
+      "by_story_stage": {
+        "LianQi_I": [
+          "cinta_patio_aspirante",
+          "vendas_antebrazo_practica"
+        ],
+        "LianQi_II": [
+          "aguja_acero_frio",
+          "cinta_patio_aspirante",
+          "anillo_corriente_clara",
+          "anillo_reserva_menor"
+        ],
+        "LianQi_III": [
+          "espada_vena_clara",
+          "brazales_aguja_plata",
+          "cinta_patio_aspirante",
+          "calzado_nube_baja",
+          "anillo_hilo_plata"
+        ],
+        "LianQi_IV": [
+          "espada_vena_clara",
+          "anillo_marca_quieta",
+          "brazales_aguja_plata",
+          "velo_vigilante_nucleo",
+          "vestidura_ala_cerrada",
+          "calzado_nube_baja"
+        ]
+      }
+    },
+    "ning_cai": {
+      "display_name": "Ning Cai",
+      "role": "Textiles y cuero",
+      "a079_group": "FUNCTIONAL_SUPPORT",
+      "equipment_family": "CRAFT_SUPPORT",
+      "by_story_stage": {
+        "LianQi_I": [
+          "pulsera_fibra_trenzada",
+          "pantalon_viaje_gris"
+        ],
+        "LianQi_II": [
+          "calzas_guardia_externa",
+          "bandana_cuero_reforzada",
+          "tunica_ruta_sauces",
+          "botas_piedra_humeda"
+        ],
+        "LianQi_III": [
+          "amuleto_meridiano_estable",
+          "anillo_tierra_profunda",
+          "calzas_guardia_externa",
+          "bandana_cuero_reforzada",
+          "tunica_ruta_sauces"
+        ],
+        "LianQi_IV": [
+          "amuleto_ancla_resonante",
+          "vestidura_ala_cerrada",
+          "brazales_relevo",
+          "pulsera_nudo_crisis",
+          "anillo_tierra_profunda",
+          "calzas_guardia_externa"
+        ]
+      }
+    },
+    "wen_tao": {
+      "display_name": "Wen Tao",
+      "role": "Técnico de Formaciones",
+      "a079_group": "FUNCTIONAL_SUPPORT",
+      "equipment_family": "FORMATION",
+      "by_story_stage": {
+        "LianQi_I": [
+          "anillo_cobre_sin_sello",
+          "pulsera_fibra_trenzada"
+        ],
+        "LianQi_II": [
+          "amuleto_sauce_sereno",
+          "anillo_cobre_sin_sello",
+          "anillo_corriente_clara",
+          "brazales_pulso_firme"
+        ],
+        "LianQi_III": [
+          "pulsera_nudo_formacion",
+          "amuleto_sauce_sereno",
+          "anillo_cobre_sin_sello",
+          "tocado_hilo_formacion",
+          "anillo_corriente_clara"
+        ],
+        "LianQi_IV": [
+          "vara_relevo",
+          "pulsera_meridiano_profundo",
+          "amuleto_sauce_sereno",
+          "anillo_cobre_sin_sello",
+          "tocado_hilo_formacion",
+          "anillo_corriente_clara"
+        ]
+      }
+    },
+    "yu_shun": {
+      "display_name": "Yu Shun",
+      "role": "Copista",
+      "a079_group": "FUNCTIONAL_SUPPORT",
+      "equipment_family": "ADMIN",
+      "by_story_stage": {
+        "LianQi_I": [
+          "cinta_patio_aspirante",
+          "pulsera_fibra_trenzada"
+        ],
+        "LianQi_II": [
+          "brazales_pulso_firme",
+          "cinta_patio_aspirante",
+          "fajin_patrulla",
+          "anillo_corriente_clara"
+        ],
+        "LianQi_III": [
+          "brazales_pulso_medico",
+          "vara_dos_corrientes",
+          "cinta_patio_aspirante",
+          "fajin_patrulla",
+          "anillo_corriente_clara"
+        ],
+        "LianQi_IV": [
+          "vara_relevo",
+          "amuleto_ancla_resonante",
+          "brazales_pulso_medico",
+          "velo_vigilante_nucleo",
+          "manto_mantenimiento",
+          "pulsera_nudo_crisis"
+        ]
+      }
+    },
+    "ma_gu": {
+      "display_name": "Ma Gu",
+      "role": "Capataz de Cantera",
+      "a079_group": "FUNCTIONAL_SUPPORT",
+      "equipment_family": "FIELD_HEAVY",
+      "by_story_stage": {
+        "LianQi_I": [
+          "pantalon_viaje_gris",
+          "cinta_patio_aspirante"
+        ],
+        "LianQi_II": [
+          "calzas_guardia_externa",
+          "bandana_cuero_reforzada",
+          "sobretunica_patrulla",
+          "fajin_patrulla"
+        ],
+        "LianQi_III": [
+          "amuleto_meridiano_estable",
+          "anillo_tierra_profunda",
+          "calzas_guardia_externa",
+          "bandana_cuero_reforzada",
+          "sobretunica_patrulla"
+        ],
+        "LianQi_IV": [
+          "vestidura_ala_cerrada",
+          "brazales_relevo",
+          "amuleto_ancla_resonante",
+          "anillo_tierra_profunda",
+          "calzas_guardia_externa",
+          "bandana_cuero_reforzada"
+        ]
+      }
+    },
+    "ren_bo": {
+      "display_name": "Ren Bo",
+      "role": "Patrullero veterano",
+      "a079_group": "FUNCTIONAL_SUPPORT",
+      "equipment_family": "MARTIAL",
+      "by_story_stage": {
+        "LianQi_I": [
+          "cinta_patio_aspirante",
+          "vendas_antebrazo_practica"
+        ],
+        "LianQi_II": [
+          "espada_hierro_equilibrada",
+          "cinta_patio_aspirante",
+          "calzas_guardia_externa",
+          "sobretunica_patrulla"
+        ],
+        "LianQi_III": [
+          "espada_vena_clara",
+          "cinta_patio_aspirante",
+          "amuleto_meridiano_estable",
+          "anillo_tierra_profunda",
+          "calzas_guardia_externa"
+        ],
+        "LianQi_IV": [
+          "espada_vena_clara",
+          "vestidura_ala_cerrada",
+          "brazales_relevo",
+          "velo_vigilante_nucleo",
+          "amuleto_ancla_resonante",
+          "anillo_tierra_profunda"
+        ]
+      }
+    },
+    "xu_an": {
+      "display_name": "Xu An",
+      "role": "Representante de Sauces",
+      "a079_group": "FUNCTIONAL_SUPPORT",
+      "equipment_family": "CIVILIAN_SUPPORT",
+      "by_story_stage": {
+        "LianQi_I": [
+          "pantalon_viaje_gris",
+          "pulsera_fibra_trenzada"
+        ],
+        "LianQi_II": [
+          "calzas_guardia_externa",
+          "bandana_cuero_reforzada",
+          "tunica_ruta_sauces",
+          "botas_piedra_humeda"
+        ],
+        "LianQi_III": [
+          "amuleto_meridiano_estable",
+          "anillo_tierra_profunda",
+          "calzas_guardia_externa",
+          "bandana_cuero_reforzada",
+          "tunica_ruta_sauces"
+        ],
+        "LianQi_IV": [
+          "vestidura_ala_cerrada",
+          "amuleto_ancla_resonante",
+          "brazales_relevo",
+          "anillo_tierra_profunda",
+          "calzas_guardia_externa",
+          "bandana_cuero_reforzada"
+        ]
+      }
+    },
+    "mei_shufen": {
+      "display_name": "Mei Shufen",
+      "role": "Herbolaria local de Sauces",
+      "a079_group": "FUNCTIONAL_SUPPORT",
+      "equipment_family": "MEDICAL_FIELD",
+      "by_story_stage": {
+        "LianQi_I": [
+          "anillo_cobre_sin_sello",
+          "pulsera_fibra_trenzada"
+        ],
+        "LianQi_II": [
+          "brazales_pulso_firme",
+          "botas_piedra_humeda",
+          "calzas_guardia_externa",
+          "bandana_cuero_reforzada"
+        ],
+        "LianQi_III": [
+          "brazales_pulso_medico",
+          "vara_dos_corrientes",
+          "botas_piedra_humeda",
+          "amuleto_meridiano_estable",
+          "anillo_tierra_profunda"
+        ],
+        "LianQi_IV": [
+          "amuleto_ancla_resonante",
+          "vara_relevo",
+          "brazales_pulso_medico",
+          "pulsera_nudo_crisis",
+          "botas_voto_inmovil",
+          "vestidura_ala_cerrada"
+        ]
+      }
+    }
+  }
+}
