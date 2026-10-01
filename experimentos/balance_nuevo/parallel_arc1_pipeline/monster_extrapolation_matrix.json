@@ -1,0 +1,274 @@
+{
+  "schema_version": "arc1-monster-extrapolation-v0.1",
+  "status": "LAB_SEARCH_SPACE_PRIOR_ONLY",
+  "rule": "Anchors reduce future search spaces. They never copy final numeric stats or promote profiles.",
+  "anchors": {
+    "rata_qi": {
+      "identity": "simple NORMAL, no T0 technique",
+      "usable_for": [
+        "natural basic pressure",
+        "low-complexity baseline"
+      ]
+    },
+    "avispa_jade": {
+      "identity": "NORMAL evasive poison",
+      "usable_for": [
+        "DOT application",
+        "fragile/evasive pressure"
+      ]
+    },
+    "serpiente_qi": {
+      "identity": "NORMAL sustained poison",
+      "usable_for": [
+        "DOT duration",
+        "late pressure"
+      ]
+    },
+    "mono_pildoras": {
+      "identity": "SKIRMISHER direct + QI_DRAIN",
+      "usable_for": [
+        "resource pressure",
+        "skirmisher cadence"
+      ]
+    },
+    "lobo_espiritual": {
+      "identity": "APEX_BRIDGE direct damage",
+      "usable_for": [
+        "direct-threat envelope",
+        "upper LianQi-I predator"
+      ]
+    }
+  },
+  "remaining": {
+    "eco_caido": {
+      "primary": [
+        "rata_qi"
+      ],
+      "secondary": [
+        "lobo_espiritual"
+      ],
+      "new_role_work": [
+        "ELITE"
+      ],
+      "transfer": [
+        "basic-pressure methodology",
+        "threat-envelope methodology"
+      ],
+      "do_not_transfer": [
+        "numeric stats",
+        "technique"
+      ]
+    },
+    "sapo_ceniza": {
+      "primary": [
+        "serpiente_qi",
+        "avispa_jade"
+      ],
+      "secondary": [
+        "lobo_espiritual"
+      ],
+      "new_role_work": [],
+      "transfer": [
+        "DOT telemetry",
+        "cadence methodology",
+        "direct+DOT decomposition"
+      ],
+      "do_not_transfer": [
+        "poison identity",
+        "numeric stats"
+      ]
+    },
+    "sapo_caldera": {
+      "primary": [
+        "serpiente_qi",
+        "lobo_espiritual"
+      ],
+      "secondary": [
+        "sapo_ceniza after T0 closure"
+      ],
+      "new_role_work": [
+        "BOSS"
+      ],
+      "transfer": [
+        "DOT telemetry",
+        "direct-threat envelope"
+      ],
+      "do_not_transfer": [
+        "numeric stats"
+      ]
+    },
+    "escarabajo_hierro": {
+      "primary": [
+        "lobo_espiritual"
+      ],
+      "secondary": [
+        "rata_qi"
+      ],
+      "new_role_work": [
+        "TANK"
+      ],
+      "transfer": [
+        "direct-damage telemetry"
+      ],
+      "do_not_transfer": [
+        "APEX identity",
+        "numeric stats"
+      ],
+      "note": "Tank role needs a new HP/DEF survival search axis; no LianQi-I tank anchor exists."
+    },
+    "rey_escarabajo": {
+      "primary": [
+        "lobo_espiritual"
+      ],
+      "secondary": [
+        "escarabajo_hierro after T0 closure"
+      ],
+      "new_role_work": [
+        "BOSS",
+        "COLONY_BOSS"
+      ],
+      "transfer": [
+        "direct-threat envelope"
+      ],
+      "do_not_transfer": [
+        "numeric stats"
+      ]
+    },
+    "pez_lunar": {
+      "primary": [
+        "rata_qi",
+        "lobo_espiritual"
+      ],
+      "secondary": [],
+      "new_role_work": [],
+      "transfer": [
+        "NORMAL envelope",
+        "direct technique decomposition"
+      ],
+      "do_not_transfer": [
+        "numeric stats"
+      ]
+    },
+    "sombra_ahogada": {
+      "primary": [
+        "serpiente_qi"
+      ],
+      "secondary": [
+        "lobo_espiritual"
+      ],
+      "new_role_work": [
+        "ELITE"
+      ],
+      "transfer": [
+        "sustained DOT telemetry",
+        "threat envelope"
+      ],
+      "do_not_transfer": [
+        "numeric stats"
+      ]
+    },
+    "anguila_estelar": {
+      "primary": [
+        "mono_pildoras"
+      ],
+      "secondary": [
+        "lobo_espiritual"
+      ],
+      "new_role_work": [],
+      "transfer": [
+        "QI_DRAIN ablation",
+        "skirmisher cadence",
+        "direct technique telemetry"
+      ],
+      "do_not_transfer": [
+        "numeric stats"
+      ]
+    },
+    "guardian_coral": {
+      "primary": [
+        "mono_pildoras"
+      ],
+      "secondary": [
+        "lobo_espiritual"
+      ],
+      "new_role_work": [
+        "BOSS"
+      ],
+      "transfer": [
+        "QI_DRAIN ablation",
+        "resource pressure",
+        "direct-threat envelope"
+      ],
+      "do_not_transfer": [
+        "numeric stats"
+      ]
+    },
+    "devorador_niebla": {
+      "primary": [
+        "rata_qi",
+        "lobo_espiritual"
+      ],
+      "secondary": [],
+      "new_role_work": [],
+      "transfer": [
+        "NORMAL/direct methodology"
+      ],
+      "do_not_transfer": [
+        "numeric stats",
+        "TACTICO cognition numbers"
+      ]
+    },
+    "halcon_tormenta": {
+      "primary": [
+        "mono_pildoras",
+        "lobo_espiritual"
+      ],
+      "secondary": [],
+      "new_role_work": [],
+      "transfer": [
+        "skirmisher methodology",
+        "direct-threat telemetry"
+      ],
+      "do_not_transfer": [
+        "QI_DRAIN identity",
+        "numeric stats"
+      ]
+    },
+    "mantis_nube": {
+      "primary": [
+        "lobo_espiritual"
+      ],
+      "secondary": [],
+      "new_role_work": [
+        "BOSS",
+        "MASTER_4"
+      ],
+      "transfer": [
+        "direct-threat telemetry"
+      ],
+      "do_not_transfer": [
+        "numeric stats",
+        "adaptive cognition numbers"
+      ]
+    },
+    "centinela_pluma": {
+      "primary": [
+        "lobo_espiritual"
+      ],
+      "secondary": [
+        "escarabajo_hierro after T0 closure"
+      ],
+      "new_role_work": [
+        "BOSS"
+      ],
+      "transfer": [
+        "direct-threat telemetry",
+        "defensive-envelope methodology"
+      ],
+      "do_not_transfer": [
+        "numeric stats"
+      ]
+    }
+  },
+  "stage_rule": "Player progression/equipment for the target native stage must be simulated directly; no global LianQi multiplier is allowed."
+}
