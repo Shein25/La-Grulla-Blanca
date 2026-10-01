@@ -262,6 +262,11 @@ jobs:
           print("PASS: closed Rata chain regression")
           PY
 
+      - name: Validate ratified Alchemy HP potion contract
+        working-directory: experimentos/balance_nuevo/alchemy_consumables_v0.1
+        run: |
+          python vitality_hp_contract_test.py
+
       - name: Confirm Rata adaptive chain is closed
         run: |
           grep -q "ADAPTIVE_CHAIN_T0_T4_HUMAN_RATIFIED_CLOSED" experimentos/balance_nuevo/parallel_arc1_pipeline/RATA_T2_T4_STRUCTURAL_AUDIT.md
