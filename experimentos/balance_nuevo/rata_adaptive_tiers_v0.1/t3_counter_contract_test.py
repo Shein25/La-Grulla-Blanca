@@ -21,7 +21,7 @@ assert r["preemptive_survival_bonus"]==8
 assert adaptive["t3"]["status"]=="READY_HUMAN_RATIFIED"
 assert adaptive["t3"]["trigger"]["label"]=="CONFIRMED_PATTERN_REFLEJO_MISS"
 assert adaptive["t3"]["damage"]["mode"]=="INSTANCE_BASIC"
-assert adaptive["t4"]["status"]=="CALIBRATION_ALLOWED_NOT_SELECTED"
+assert adaptive["t4"]["status"]=="FULL_CANDIDATE_AWAITING_HUMAN_RATIFICATION"
 
 assert t3["prerequisite"]=="T2_READY_HUMAN_RATIFIED"
 assert t3["damage_reference"]=={
@@ -47,4 +47,4 @@ for hidden in ("player.root","player.build_id","future RNG","hidden player stats
     assert hidden in t3["observable_contract"]["forbidden"]
 
 print("PASS: historical T3 trigger lab input is preserved")
-print("PASS: T1-T3 are frozen and T4 calibration is open")
+print("PASS: T1-T3 are frozen and T4 awaits human ratification")
