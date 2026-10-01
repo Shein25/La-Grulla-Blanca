@@ -1,0 +1,178 @@
+{
+  "schema_version": "alchemy-vitality-hp-contract-v0.1",
+  "status": "READY_HUMAN_RATIFIED",
+  "ratified_on": "2026-10-01",
+  "scope": "ARC1_LIANQI_I_IV_HP_HEALING",
+  "common_potion": {
+    "name": "Poción común",
+    "formula": "2d4+3",
+    "min": 5,
+    "mean": 8,
+    "max": 11,
+    "stage": null,
+    "quality": null
+  },
+  "formulations": {
+    "LianQi_I": {
+      "name": "Básica",
+      "qualities": {
+        "impura": {
+          "formula": "2d4+4",
+          "min": 6,
+          "mean": 9,
+          "max": 12
+        },
+        "estable": {
+          "formula": "2d4+7",
+          "min": 9,
+          "mean": 12,
+          "max": 15
+        },
+        "superior": {
+          "formula": "3d4+7",
+          "min": 10,
+          "mean": 14.5,
+          "max": 19
+        },
+        "excepcional": {
+          "formula": "4d4+7",
+          "min": 11,
+          "mean": 17,
+          "max": 23
+        }
+      }
+    },
+    "LianQi_II": {
+      "name": "Templada",
+      "qualities": {
+        "impura": {
+          "formula": "3d4+5",
+          "min": 8,
+          "mean": 12.5,
+          "max": 17
+        },
+        "estable": {
+          "formula": "3d4+9",
+          "min": 12,
+          "mean": 16.5,
+          "max": 21
+        },
+        "superior": {
+          "formula": "4d4+10",
+          "min": 14,
+          "mean": 20,
+          "max": 26
+        },
+        "excepcional": {
+          "formula": "5d4+11",
+          "min": 16,
+          "mean": 23.5,
+          "max": 31
+        }
+      }
+    },
+    "LianQi_III": {
+      "name": "Profunda",
+      "qualities": {
+        "impura": {
+          "formula": "4d4+6",
+          "min": 10,
+          "mean": 16,
+          "max": 22
+        },
+        "estable": {
+          "formula": "4d6+8",
+          "min": 12,
+          "mean": 22,
+          "max": 32
+        },
+        "superior": {
+          "formula": "5d6+10",
+          "min": 15,
+          "mean": 27.5,
+          "max": 40
+        },
+        "excepcional": {
+          "formula": "6d6+12",
+          "min": 18,
+          "mean": 33,
+          "max": 48
+        }
+      }
+    },
+    "LianQi_IV": {
+      "name": "Condensada",
+      "qualities": {
+        "impura": {
+          "formula": "5d4+10",
+          "min": 15,
+          "mean": 22.5,
+          "max": 30
+        },
+        "estable": {
+          "formula": "5d6+12",
+          "min": 17,
+          "mean": 29.5,
+          "max": 42
+        },
+        "superior": {
+          "formula": "6d6+16",
+          "min": 22,
+          "mean": 37,
+          "max": 52
+        },
+        "excepcional": {
+          "formula": "7d6+20",
+          "min": 27,
+          "mean": 44.5,
+          "max": 62
+        }
+      }
+    }
+  },
+  "progression_mean_table": {
+    "LianQi_I": {
+      "impura": 9,
+      "estable": 12,
+      "superior": 14.5,
+      "excepcional": 17
+    },
+    "LianQi_II": {
+      "impura": 12.5,
+      "estable": 16.5,
+      "superior": 20,
+      "excepcional": 23.5
+    },
+    "LianQi_III": {
+      "impura": 16,
+      "estable": 22,
+      "superior": 27.5,
+      "excepcional": 33
+    },
+    "LianQi_IV": {
+      "impura": 22.5,
+      "estable": 29.5,
+      "superior": 37,
+      "excepcional": 44.5
+    }
+  },
+  "design_intent": {
+    "cross_stage_overlap": true,
+    "rule": "A mastered prior-stage formulation may remain competitive with low or medium quality of the newly learned formulation.",
+    "examples": [
+      "Profunda Excepcional mean 33 > Condensada Impura mean 22.5",
+      "Profunda Excepcional mean 33 > Condensada Estable mean 29.5",
+      "Condensada Superior mean 37 > Profunda Excepcional mean 33"
+    ],
+    "absolute_healing_only": true
+  },
+  "guards": {
+    "hp_healing_numbers_frozen": true,
+    "qi_recovery_not_ratified_here": true,
+    "ingredients_not_ratified_here": true,
+    "alchemy_xp_not_ratified_here": true,
+    "crafting_costs_not_ratified_here": true,
+    "runtime_write": false,
+    "ver74_patch": false
+  }
+}
