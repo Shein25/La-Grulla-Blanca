@@ -92,12 +92,11 @@ Mientras `params_status != READY`, no se permite resolver ni simular esa técnic
 
 - 18/18 monstruos presentes en el esquema nuevo.
 - 18/18 T0 pendientes de balance integral.
-- Benchmarks numéricos antiguos retirados.
 - Tests estructurales pueden ejecutarse.
-- Benchmarks de combate quedan bloqueados hasta disponer de perfiles T0 `READY`.
+- Los benchmarks de combate quedan bloqueados hasta disponer de perfiles T0 `READY`.
 
 ## Guardia
 
 `adaptive/monster-stat-source-contract-v0.1.mjs`
 
-Todo perfil incompleto debe fallar de forma explícita. No hay fallback.
+Todo perfil incompleto o fuera del esquema exacto debe fallar de forma explícita.
