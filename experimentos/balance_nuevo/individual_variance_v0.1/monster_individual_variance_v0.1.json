@@ -1,6 +1,6 @@
 {
   "schema_version": "monster-individual-variance-v0.3",
-  "status": "LAB_READY_FOR_5_SPECIES_VARIANCE_TEST",
+  "status": "HUMAN_RATIFIED_FOR_EXPERIMENTAL_RUNTIME_INTEGRATION",
   "semantics": {
     "canonical_t0": "natural_floor",
     "upper_envelope": "per-axis upper values come from measured experimental candidates; axes may use different source trials",
@@ -8,7 +8,15 @@
     "below_t0_variance": false,
     "independent_axis_rolls": true,
     "offensive_variance": true,
-    "adaptive_tiers_separate": true
+    "adaptive_tiers_separate": true,
+    "distribution_status": "HUMAN_RATIFIED",
+    "distribution_ratified_on": "2026-10-01",
+    "heavy_validation": {
+      "results_sha256": "5e077b9513aedc36502a214b37c7f8e8a3f5ce2ed7577e5bc8811c35039f8aae",
+      "natural_fights": 250000,
+      "conditional_mutant_fights": 50000,
+      "observed_mutant_incidence": 0.007556
+    }
   },
   "axis_distribution": "UNIFORM_0_1",
   "variable_stats": [
@@ -330,6 +338,9 @@
     "mutant_loot_multiplier_exactly_1_5": true,
     "mutant_xp_multiplier_exactly_1_5": true,
     "no_adaptive_tier_grant_from_mutant": true,
-    "no_automatic_runtime_activation": true
+    "no_automatic_runtime_activation": true,
+    "runtime_adapter_must_not_mutate_canonical": true,
+    "profession_xp_must_not_receive_mutant_multiplier": true,
+    "loot_probability_must_not_be_scaled_by_adapter": true
   }
 }
