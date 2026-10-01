@@ -42,9 +42,8 @@ def _observed_pressure(state) -> float:
 
 
 def choose_veteran_action(state,config: VeteranPolicyConfig=DEFAULT_VETERAN_CONFIG) -> str:
-    unitarget,defensive,aoe=state.compiled.keys() if False else (None,None,None)
-    # La fuente de verdad del orden de técnicas ya vive en el Combat Engine.
-    # Se obtiene por rol/targeting para no duplicar ROOT_TECHNIQUES aquí.
+    # Se deriva el kit por propiedades declaradas de las técnicas propias,
+    # evitando duplicar aquí tablas de monstruos o lógica del resolver.
     offensive=[
         c for c in state.compiled.values()
         if c.get("role")!="DEFENSIVE" and c.get("technique_id")!=VETERAN_BASIC
