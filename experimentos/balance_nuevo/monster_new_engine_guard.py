@@ -153,12 +153,12 @@ def selfcheck() -> None:
     if blocked != 13:
         raise AssertionError(f"expected 13 pending profiles after all five LianQi-I T0 closures, got {blocked}")
     ready=[mid for mid,p in data["profiles"].items() if p["stats_status"]==READY]
-    expected_ready=["rata_qi","serpiente_qi","lobo_espiritual","avispa_jade","mono_pildoras"]
+    expected_ready=["rata_qi","serpiente_qi","lobo_espiritual","pez_lunar","devorador_niebla","avispa_jade","mono_pildoras","sapo_ceniza","escarabajo_hierro","anguila_estelar","halcon_tormenta"]
     if ready!=expected_ready:
         raise AssertionError(f"expected READY profiles {expected_ready}, got {ready}")
     print("PASS: 18/18 monsters use NEW_COMBAT_STATS_V0_1.")
     print("PASS: monster registry/profile schemas are exact.")
-    print("PASS: all 5 LianQi-I monsters are T0 READY; 13/18 remain blocked.")
+    if set(data["rules"]["ready_profiles"]) != set(expected_ready):\n        raise AssertionError("rules.ready_profiles does not match actual READY profiles")\n    print("PASS: 11/18 Arc 1 monsters are T0 READY; 7 unique encounters remain pending.")
 
 
 if __name__ == "__main__":
