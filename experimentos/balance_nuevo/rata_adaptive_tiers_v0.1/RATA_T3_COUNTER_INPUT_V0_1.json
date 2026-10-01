@@ -1,0 +1,98 @@
+{
+  "schema_version": "rata-t3-species-counter-input-v0.1",
+  "status": "LAB_INPUT_NOT_CANON",
+  "species_id": "rata_qi",
+  "prerequisite": "T2_READY_HUMAN_RATIFIED",
+  "frozen_t1": {
+    "ability": "Reflejo de Madriguera",
+    "kind": "EVADE_NEXT",
+    "evasion_bonus": 40,
+    "cooldown_rounds": 5,
+    "cognition": "REACTIVO_1",
+    "signal_arm": "BASE"
+  },
+  "frozen_t2": {
+    "identity": "RECOGNITION",
+    "candidate": "R2_SHORT",
+    "memory_window": 2,
+    "repeated_same_category_required": 2,
+    "count_results": [
+      "EFECTIVA"
+    ],
+    "preemptive_survival_bonus": 8
+  },
+  "t3_identity": "SPECIES_COUNTER",
+  "counter_family": "PHYSICAL_RETALIATION",
+  "damage_reference": {
+    "source": "canonical_t0_basic",
+    "expression": "2d4",
+    "note": "Trigger semantics are tested before any T3 damage scaling is introduced."
+  },
+  "candidate_triggers": [
+    {
+      "label": "RECOGNIZED_REFLEJO_MISS",
+      "requires_t2_recognition_active": true,
+      "requires_prediction_confirmed": false,
+      "requires_t1_reflejo_active": true,
+      "requires_player_attack_miss": true,
+      "counter_limit": "NO_EXTRA_LIMIT_BEYOND_T1_GATE"
+    },
+    {
+      "label": "CONFIRMED_PATTERN_REFLEJO_MISS",
+      "requires_t2_recognition_active": true,
+      "requires_prediction_confirmed": true,
+      "requires_t1_reflejo_active": true,
+      "requires_player_attack_miss": true,
+      "counter_limit": "NO_EXTRA_LIMIT_BEYOND_T1_GATE"
+    },
+    {
+      "label": "CONFIRMED_PATTERN_ONCE_PER_FIGHT",
+      "requires_t2_recognition_active": true,
+      "requires_prediction_confirmed": true,
+      "requires_t1_reflejo_active": true,
+      "requires_player_attack_miss": true,
+      "counter_limit": "ONCE_PER_FIGHT"
+    }
+  ],
+  "observable_contract": {
+    "allowed": [
+      "T2 recognized category",
+      "actual observable player action category",
+      "whether T1 Reflejo was active",
+      "whether the player's attack connected",
+      "round number",
+      "counter already used in this fight"
+    ],
+    "forbidden": [
+      "player.root",
+      "player.build_id",
+      "future RNG",
+      "hidden player stats",
+      "unrevealed technique metadata"
+    ]
+  },
+  "required_metrics": [
+    "counter_eligibility_rate",
+    "counter_activation_rate",
+    "counter_damage_mean",
+    "counter_damage_p90",
+    "prediction_confirmed_rate",
+    "false_counter_rate",
+    "player_action_diversity",
+    "rounds_delta_vs_T2",
+    "player_hp_pressure_delta_vs_T2",
+    "player_qi_spent_delta_vs_T2",
+    "normal_vs_mutant_split",
+    "degenerate_counter_loop_count"
+  ],
+  "guards": {
+    "no_canonical_write": true,
+    "no_t1_numeric_changes": true,
+    "no_t2_numeric_or_memory_changes": true,
+    "direct_damage_pipeline_required": true,
+    "no_qi_drain": true,
+    "no_dot": true,
+    "no_control": true,
+    "t4_blocked": true
+  }
+}
