@@ -52,8 +52,8 @@
         "social": "COLONIA"
       },
       "adaptive": {
-        "status": "READY_FOR_T1_RECALIBRATION",
-        "rule": "T0 is READY. T1 may be recalibrated; T2-T4 remain blocked until sequential adaptive validation."
+        "status": "T1_READY_FOR_T2_CALIBRATION",
+        "rule": "T0 and T1 are human-ratified. T2 calibration is allowed; T3-T4 remain blocked until sequential human closure."
       },
       "resource_model": "NONE"
     },
