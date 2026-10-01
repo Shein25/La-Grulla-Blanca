@@ -62,26 +62,36 @@
         "tenacity": 0
       },
       "upper_envelope": {
-        "source_trial": 3325,
+        "source_trials": [
+          240,
+          192,
+          251,
+          245
+        ],
         "hp": 22,
-        "defense": 2,
-        "evasion": 20,
-        "precision": 105,
-        "tenacity": 0
+        "defense": 1,
+        "evasion": 19,
+        "precision": 104,
+        "tenacity": 1
       },
       "attacks": {
         "basic_damage": {
           "ladder": [
             "2d4",
-            "2d6"
+            "2d4+1",
+            "2d3+3",
+            "2d4+2"
           ],
           "sources": [
             4254,
-            3325
+            251,
+            192,
+            240
           ]
         }
       },
-      "technique_variance": null
+      "technique_variance": null,
+      "source_note": "Upper axes use only reproducible measured Rata finalists from RATA_T0_LAB_VALIDATION_2026-10-01.md; no provisional trial identifiers."
     },
     "avispa_jade": {
       "base": {
@@ -290,12 +300,10 @@
         "technique_direct_damage": {
           "ladder": [
             "1d2+3",
-            "1d4+2",
             "2d3+5"
           ],
           "sources": [
             "grid43",
-            1179,
             1274
           ]
         }
