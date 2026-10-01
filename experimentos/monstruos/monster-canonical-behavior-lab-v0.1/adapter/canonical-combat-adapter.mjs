@@ -1,3 +1,5 @@
+import {assertMonsterProfile} from '../adaptive/monster-stat-source-contract-v0.1.mjs';
+
 export const ADAPTER_STATUS='EXPERIMENTAL_NEW_ENGINE_ONLY';
 export const ENGINE_CONTRACT='NEW_COMBAT_STATS_V0_1';
 export const READY='READY';
@@ -15,20 +17,15 @@ export const PROFILE_ASSIGNMENTS=Object.freeze({
 export function assertMonsterDefinition(id,def){
   if(!id||!def||typeof def!=='object')throw new TypeError('monster definition invalid');
   if(def.id!==id)throw new TypeError(`${id}.id mismatch`);
-  if(def.engine_contract!==ENGINE_CONTRACT)throw new TypeError(`${id}.engine_contract invalid`);
+  assertMonsterProfile(def,{requireReady:false});
   if(typeof def.name!=='string'||!def.name)throw new TypeError(`${id}.name invalid`);
   return true;
 }
 
 export function assertMonsterCombatReady(id,def){
   assertMonsterDefinition(id,def);
-  if(def.stats_status!==READY)throw new Error(`${id}: T0 stats are not READY`);
-  const required=['hp','qi_max','precision','evasion','defense','tenacity','control','crit_chance','crit_damage','basic_damage'];
-  for(const key of required){
-    if(def.stats?.[key]===null||def.stats?.[key]===undefined)throw new Error(`${id}.stats.${key} unresolved`);
-  }
+  assertMonsterProfile(def,{requireReady:true});
   if(def.technique){
-    if(def.technique.params_status!==READY)throw new Error(`${id}: technique params are not READY`);
     if(!Number.isInteger(def.technique.params?.cadence)||def.technique.params.cadence<1){
       throw new Error(`${id}: technique cadence unresolved`);
     }
