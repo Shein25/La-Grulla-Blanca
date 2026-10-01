@@ -40,6 +40,8 @@ class SpeciesSearchSpace:
 
 
 COMMON_FIXED = {
+    "resource_model": "NONE",
+    "qi_max": None,
     "control": 0.0,
     "crit_chance": 5.0,
     "crit_damage": 1.50,
@@ -63,7 +65,7 @@ LIANQI_I_T0_SEARCH_SPACES = {
             "cognition": "INSTINTIVO",
             "social": "COLONIA",
         },
-        unresolved={"qi_max": "semantic decision required before canonical READY"},
+        unresolved={},
         identity="amenaza sobrenatural más baja; sencilla e instintiva; sin técnica T0 inventada",
     ),
     "avispa_jade": SpeciesSearchSpace(
@@ -84,7 +86,7 @@ LIANQI_I_T0_SEARCH_SPACES = {
             "cognition": "INSTINTIVO",
             "social": "COLONIA",
         },
-        unresolved={"qi_max": "semantic decision required before canonical READY"},
+        unresolved={},
         identity="movilidad/evasión + picadura + veneno; no convertirla en tanque",
     ),
     "serpiente_qi": SpeciesSearchSpace(
@@ -105,7 +107,7 @@ LIANQI_I_T0_SEARCH_SPACES = {
             "cognition": "REACTIVO_1",
             "social": "SOLITARIO",
         },
-        unresolved={"qi_max": "semantic decision required before canonical READY"},
+        unresolved={},
         identity="presión sostenida por veneno; prolongar el combate debe ser peligroso",
     ),
     "mono_pildoras": SpeciesSearchSpace(
@@ -126,7 +128,7 @@ LIANQI_I_T0_SEARCH_SPACES = {
             "cognition": "CAZADOR_2",
             "social": "OPORTUNISTA",
         },
-        unresolved={"qi_max": "semantic decision required before canonical READY"},
+        unresolved={},
         identity="presión sobre Qi/Dantian y oportunismo; no balancear como bruto de daño",
     ),
     "lobo_espiritual": SpeciesSearchSpace(
@@ -146,7 +148,7 @@ LIANQI_I_T0_SEARCH_SPACES = {
             "cognition": "CAZADOR_2",
             "social": "MANADA",
         },
-        unresolved={"qi_max": "semantic decision required before canonical READY"},
+        unresolved={},
         identity="APEX_BRIDGE; enfrentarlo puede ser una mala decisión aunque aparezca",
     ),
 }
