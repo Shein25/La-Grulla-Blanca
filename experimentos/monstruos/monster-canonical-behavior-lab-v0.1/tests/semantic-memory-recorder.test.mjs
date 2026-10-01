@@ -1,7 +1,6 @@
 import assert from 'node:assert/strict';
 import {semanticEventFromOutcome,recordSemanticOutcome} from '../integration/semantic-memory-recorder-v0.1.mjs';
 
-const M=JSON.parse(fs.readFileSync(new URL('../canonical/MOBS_ver74.snapshot.json',import.meta.url),'utf8')).mobs;
 let pass=0,fail=0;
 const T=(n,fn)=>{try{fn();pass++;console.log('PASS',n)}catch(e){fail++;console.error('FAIL',n);console.error(e.stack||e)}};
 
