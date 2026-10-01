@@ -23,12 +23,41 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Directed T0 smoke
-        working-directory: experimentos/balance_nuevo/parallel_arc1_pipeline
+      - name: Validate ratified T0 READY profiles
+        working-directory: experimentos/balance_nuevo
         run: |
-          rm -rf ci_directed
-          python directed_t0_revalidation.py --preset smoke --outdir ci_directed
-          test -f ci_directed/RESULTADOS_T0_DIRIGIDOS_AVISPA_SERPIENTE_LOBO.zip
+          python monster_new_engine_guard.py
+          python - <<'PY'
+          import json
+          d=json.load(open("monster_arc1_registry.json",encoding="utf-8"))
+          expected={
+              "rata_qi":{
+                  "stats":{"hp":21,"qi_max":None,"precision":80,"evasion":0,"defense":0,"tenacity":0,"control":0,"crit_chance":5,"crit_damage":1.5,"basic_damage":"2d4"},
+                  "technique":None,
+              },
+              "avispa_jade":{
+                  "stats":{"hp":17,"qi_max":None,"precision":90,"evasion":22,"defense":0,"tenacity":7,"control":0,"crit_chance":5,"crit_damage":1.5,"basic_damage":"1d2+1"},
+                  "technique":{"name":"Picadura de Esmeralda","mechanics":["POISON_DOT"],"params_status":"READY","params":{"cadence":2,"poison":{"damage":"1d3+2","ticks":2}}},
+              },
+              "serpiente_qi":{
+                  "stats":{"hp":27,"qi_max":None,"precision":86,"evasion":5,"defense":0,"tenacity":5,"control":0,"crit_chance":5,"crit_damage":1.5,"basic_damage":"1d2+2"},
+                  "technique":{"name":"Colmillos Venenosos","mechanics":["POISON_DOT"],"params_status":"READY","params":{"cadence":2,"poison":{"damage":"1d2+2","ticks":3}}},
+              },
+              "lobo_espiritual":{
+                  "stats":{"hp":41,"qi_max":None,"precision":97,"evasion":12,"defense":1,"tenacity":20,"control":0,"crit_chance":5,"crit_damage":1.5,"basic_damage":"2d4+2"},
+                  "technique":{"name":"Emboscada de las Tres Colas","mechanics":["DIRECT_DAMAGE"],"params_status":"READY","params":{"cadence":5,"direct_damage":"2d6+1"}},
+              },
+          }
+          for mid,e in expected.items():
+              p=d["profiles"][mid]
+              assert p["stats_status"]=="READY",mid
+              assert p["stats"]==e["stats"],mid
+              assert p["technique"]==e["technique"],mid
+              assert p["adaptive"]["status"]=="READY_FOR_T1_RECALIBRATION",mid
+          assert d["profiles"]["mono_pildoras"]["stats_status"]=="PENDING_INTEGRAL_REBALANCE"
+          assert d["profiles"]["mono_pildoras"]["adaptive"]["status"]=="BLOCKED_UNTIL_T0_READY"
+          print("PASS: 4/5 LianQi-I T0 READY; Mono remains pending")
+          PY
 
       - name: Mono QI drain ablation smoke
         working-directory: experimentos/balance_nuevo/parallel_arc1_pipeline
