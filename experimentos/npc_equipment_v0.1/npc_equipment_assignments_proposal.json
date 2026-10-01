@@ -349,15 +349,14 @@
           "anillo_tierra_profunda",
           "vestidura_flujo_ligero",
           "fajin_respiracion_larga",
-          "calzas_paso_silencioso"
+          "calzado_nube_baja"
         ],
         "LianQi_IV": [
           "amuleto_ancla_resonante",
           "pulsera_nudo_crisis",
           "vestidura_ala_cerrada",
           "brazales_relevo",
-          "botas_voto_inmovil",
-          "calzas_trama_sello"
+          "botas_voto_inmovil"
         ]
       }
     },
@@ -383,15 +382,14 @@
           "anillo_tierra_profunda",
           "vestidura_flujo_ligero",
           "fajin_respiracion_larga",
-          "calzas_paso_silencioso"
+          "calzado_nube_baja"
         ],
         "LianQi_IV": [
           "amuleto_ancla_resonante",
           "pulsera_nudo_crisis",
           "vestidura_ala_cerrada",
           "brazales_relevo",
-          "botas_voto_inmovil",
-          "calzas_trama_sello"
+          "botas_voto_inmovil"
         ]
       }
     },
@@ -575,16 +573,15 @@
           "fajin_patrulla"
         ],
         "LianQi_III": [
-          "amuleto_meridiano_estable",
           "anillo_tierra_profunda",
           "tunica_reforzada_trama_cobre",
           "calzas_paso_silencioso",
-          "calzado_nube_baja"
+          "calzado_nube_baja",
+          "fajin_respiracion_larga"
         ],
         "LianQi_IV": [
           "vestidura_ala_cerrada",
           "brazales_relevo",
-          "amuleto_ancla_resonante",
           "calzas_trama_sello",
           "vara_relevo",
           "botas_voto_inmovil"
