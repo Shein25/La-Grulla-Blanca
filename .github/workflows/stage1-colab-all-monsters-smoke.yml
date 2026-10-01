@@ -1,0 +1,35 @@
+name: Stage1 Colab All Monsters Smoke
+
+on:
+  push:
+    branches:
+      - experiment/stage1-integral-t0-colab-all-v0.1
+    paths:
+      - "experimentos/balance_nuevo/stage1_integral_t0_optuna/colab_all_monsters.py"
+      - "experimentos/balance_nuevo/stage1_integral_t0_optuna/stream_aggregate.py"
+      - "experimentos/balance_nuevo/stage1_integral_t0_optuna/objective_*.py"
+      - ".github/workflows/stage1-colab-all-monsters-smoke.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install --disable-pip-version-check "optuna>=4,<5"
+      - name: Five-species compact smoke only
+        working-directory: experimentos/balance_nuevo/stage1_integral_t0_optuna
+        run: |
+          python selfcheck.py
+          python test_contracts.py
+          python test_veteran_policy.py
+          rm -rf ci_colab_all_smoke
+          python colab_all_monsters.py --preset smoke --outdir ci_colab_all_smoke
+          test -f ci_colab_all_smoke/RESULTADOS_PARA_ANALIZAR.zip
