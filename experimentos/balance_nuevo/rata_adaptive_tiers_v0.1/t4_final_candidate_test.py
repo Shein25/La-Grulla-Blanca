@@ -3,7 +3,7 @@ from pathlib import Path
 HERE=Path(__file__).resolve().parent
 d=json.loads((HERE/"RATA_T4_FINAL_CANDIDATE_V0_1.json").read_text(encoding="utf-8"))
 
-assert d["status"]=="T4_FULL_CANDIDATE_AWAITING_HUMAN_RATIFICATION"
+assert d["status"]=="READY_HUMAN_RATIFIED"
 assert d["name"]=="Mordisco Frenético"
 assert d["activation"]["rule"]=="REPLACE_BASIC_WHEN_READY"
 assert d["activation"]["effective_tier_required"]=="T4"
@@ -20,10 +20,13 @@ assert all(x["critical_rule"]=="NORMAL_INDEPENDENT_CRIT" for x in d["packets"])
 assert d["cooldown_rounds"]==5
 assert d["damage_pipeline"]["flat_defense_per_packet"] is True
 assert d["damage_pipeline"]["absorption_per_packet"] is True
-assert d["human_ratification_required"] is True
+assert d["human_ratification_required"] is False
 assert d["canonical_write"] is False
 assert "T5" in d["forbidden"]
 assert d["final_validation"]["fights"]==125000
 assert d["final_validation"]["conclusion"]=="success"
 assert d["final_validation"]["tier_above_t4_executed"] is False
-print("PASS: complete T4 candidate is validated and awaiting human ratification")
+assert d["closure"]["adaptive_chain_closed"] is True
+assert d["closure"]["highest_tier"]=="T4"
+assert d["closure"]["t5_exists"] is False
+print("PASS: complete T4 candidate is human-ratified and closes the adaptive chain")
