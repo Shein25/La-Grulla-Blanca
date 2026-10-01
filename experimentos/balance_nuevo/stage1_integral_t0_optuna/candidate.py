@@ -14,6 +14,7 @@ from typing import Any, Mapping
 ENGINE_CONTRACT = "NEW_COMBAT_STATS_V0_1"
 LAB_CANDIDATE_STATUS = "LAB_CANDIDATE"
 CANON_PENDING_STATUS = "PENDING_INTEGRAL_REBALANCE"
+ARC1_MONSTER_RESOURCE_MODEL = "NONE"
 
 LIANQI_I_IDS = (
     "rata_qi",
@@ -128,10 +129,10 @@ class T0LabCandidate:
         _exact_keys(self.stats, set(STAT_FIELDS), f"{self.species_id}.stats")
 
         _finite_number(self.stats["hp"], "hp", minimum=1)
-        # qi_max permanece semánticamente pendiente en este bloque.
+        # Arco 1: resource_model=NONE; qi_max=None es N/A autoritativo.
         if self.stats["qi_max"] is not None:
             raise CandidateContractError(
-                "qi_max must remain None until its T0 monster semantics are closed"
+                "Arc 1 monsters use resource_model=NONE and require qi_max=None"
             )
         for key in ("precision", "evasion", "defense", "tenacity", "control"):
             _finite_number(self.stats[key], key, minimum=0)
@@ -189,6 +190,10 @@ class T0LabCandidate:
             raise CandidateContractError("candidate/profile id mismatch")
         if profile.get("engine_contract") != ENGINE_CONTRACT:
             raise CandidateContractError("canonical profile uses wrong engine contract")
+        if profile.get("resource_model") != ARC1_MONSTER_RESOURCE_MODEL:
+            raise CandidateContractError("Arc 1 monster profile must use resource_model=NONE")
+        if profile.get("stats",{}).get("qi_max") is not None:
+            raise CandidateContractError("Arc 1 resource_model=NONE requires qi_max=None")
         if profile.get("stats_status") != CANON_PENDING_STATUS:
             raise CandidateContractError(
                 "study input must remain PENDING_INTEGRAL_REBALANCE"
