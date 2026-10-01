@@ -203,7 +203,7 @@ def add_counter(dst,src):
 
 def eval_tier(canonical,*,tier,candidate,natural_n,mutant_n,namespace):
     natural=StreamingAggregate();normal=StreamingAggregate();observed_mut=StreamingAggregate();forced_mut=StreamingAggregate()
-    cn=Counter();cm=Counter()
+    c_nat=Counter();c_mut=Counter()
     for ctx in PRIMARY_CONTEXTS:
         items=EQUIPMENT["simulation_loadouts"][ctx.loadout_profile]["LianQi_I"]
         for root in ROOTS:
@@ -214,7 +214,7 @@ def eval_tier(canonical,*,tier,candidate,natural_n,mutant_n,namespace):
                 ai_seed=stable_seed("RATA_T2_RECOGNITION_V01","AI",namespace,ctx.context_id,root,i)&0xFFFFFFFF
                 row,cnt=run_once(profile,root,items,combat_seed,tier,candidate,ai_seed)
                 row["loadout_profile"]=ctx.loadout_profile
-                natural.add(row);add_counter(cn,cnt)
+                natural.add(row);add_counter(c_nat,cnt)
                 (observed_mut if inst["mutant"] else normal).add(row)
             for i in range(mutant_n):
                 inst=sample_mutant(ctx.context_id,root,i,namespace)
@@ -223,10 +223,10 @@ def eval_tier(canonical,*,tier,candidate,natural_n,mutant_n,namespace):
                 ai_seed=stable_seed("RATA_T2_RECOGNITION_V01","MUTANT_AI",namespace,ctx.context_id,root,i)&0xFFFFFFFF
                 row,cnt=run_once(profile,root,items,combat_seed,tier,candidate,ai_seed)
                 row["loadout_profile"]=ctx.loadout_profile
-                forced_mut.add(row);add_counter(cm,cnt)
+                forced_mut.add(row);add_counter(c_mut,cnt)
 
     def done(a):return a.finish() if a.n else None
-    def cm(c,fights):
+    def counter_metrics(c,fights):
         checks=float(c["recognition_checks"])
         preds=float(c["predictions"])
         decisions=float(c["decisions"])
@@ -247,7 +247,7 @@ def eval_tier(canonical,*,tier,candidate,natural_n,mutant_n,namespace):
     return {
         "natural_all":done(natural),"natural_normal":done(normal),
         "natural_mutant_observed":done(observed_mut),"mutant_conditional":done(forced_mut),
-        "decision_natural":cm(cn,natural.n),"decision_mutant":cm(cm,forced_mut.n),
+        "decision_natural":counter_metrics(c_nat,natural.n),"decision_mutant":counter_metrics(c_mut,forced_mut.n),
     }
 
 def delta(a,b):
