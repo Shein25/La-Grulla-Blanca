@@ -6,6 +6,7 @@ on:
       - experiment/parallel-balance-npc-equipment-v0.1
     paths:
       - "experimentos/balance_nuevo/parallel_arc1_pipeline/**"
+      - "experimentos/balance_nuevo/individual_variance_v0.1/**"
       - "experimentos/npc_equipment_v0.1/**"
       - ".github/workflows/parallel-arc1-balance-npc-equipment-check.yml"
   workflow_dispatch:
@@ -141,9 +142,13 @@ jobs:
           assert d["semantics"]["canonical_t0"]=="natural_floor"
           assert d["semantics"]["below_t0_variance"] is False
           assert d["guards"]["no_new_species_ids"] is True
-          assert d["guards"]["no_independent_stat_max_rolls"] is True
+          assert d["guards"]["independent_high_rolls_allowed"] is True
+          assert d["guards"]["mutant_incidence_below_one_percent"] is True
+          assert d["mutant"]["suffix"]=="Mutante"
+          assert d["mutant"]["loot_multiplier"]==1.5
+          assert d["mutant"]["maximum_incidence"]==0.01
           assert d["species"]["mono_pildoras"]["status"]=="BLOCKED_UNTIL_T0_LOCAL_REFINEMENT_READY"
-          print("PASS: individual variance stays between T0 floor and tested upper envelope")
+          print("PASS: independent variance allows rare Mutantes with x1.5 loot")
           PY
 
       - name: Confirm Rata T2-T4 are structure-only
