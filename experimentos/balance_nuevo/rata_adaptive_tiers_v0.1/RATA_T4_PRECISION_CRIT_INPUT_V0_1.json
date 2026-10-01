@@ -1,0 +1,54 @@
+{
+  "schema_version": "rata-t4-mordisco-precision-crit-input-v0.1",
+  "status": "LAB_INPUT_NOT_CANON",
+  "species_id": "rata_qi",
+  "prerequisite": "T4_PHASE_A2_FOLLOWUP_1X050_PROVISIONAL",
+  "frozen_geometry": {
+    "opening_instance_basic": true,
+    "followup_hit_count": 1,
+    "followup_scalar_per_hit": 0.5,
+    "followup_dice": "2d4",
+    "cooldown_rounds": 5,
+    "activation_rule": "REPLACE_BASIC_WHEN_READY"
+  },
+  "candidates": [
+    {
+      "label": "P_INDEPENDENT__C_INDEPENDENT",
+      "precision_rule": "INDEPENDENT_PER_HIT",
+      "critical_rule": "INDEPENDENT_PER_HIT"
+    },
+    {
+      "label": "P_OPENING_GATE__C_INDEPENDENT",
+      "precision_rule": "FOLLOWUP_REQUIRES_OPENING_HIT",
+      "critical_rule": "INDEPENDENT_PER_HIT"
+    },
+    {
+      "label": "P_INDEPENDENT__C_OPENING_ONLY",
+      "precision_rule": "INDEPENDENT_PER_HIT",
+      "critical_rule": "OPENING_ONLY"
+    },
+    {
+      "label": "P_OPENING_GATE__C_OPENING_ONLY",
+      "precision_rule": "FOLLOWUP_REQUIRES_OPENING_HIT",
+      "critical_rule": "OPENING_ONLY"
+    }
+  ],
+  "interpretation": [
+    "INDEPENDENT_PER_HIT lets the frenzy follow-up connect even when the opening bite misses.",
+    "FOLLOWUP_REQUIRES_OPENING_HIT makes the frenzy a chained bite sequence.",
+    "INDEPENDENT_PER_HIT critical allows each connected packet to crit normally.",
+    "OPENING_ONLY prevents the canonical follow-up from critting while preserving individual opening crits."
+  ],
+  "guards": {
+    "t1_t3_frozen": true,
+    "geometry_frozen": true,
+    "cooldown_frozen_at_5": true,
+    "no_precision_bonus_or_penalty": true,
+    "no_crit_bonus": true,
+    "no_qi_drain": true,
+    "no_dot": true,
+    "no_control": true,
+    "no_canonical_write": true,
+    "no_tier_above_t4": true
+  }
+}
