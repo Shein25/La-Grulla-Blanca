@@ -303,7 +303,7 @@ Antes de convertirlo en boss jugable falta:
 - probar control y Tenacidad reales;
 - probar concordancias;
 - probar afinidades elementales;
-- fijar HP/ATQ/DEF/daño;
+- fijar estadísticas o magnitudes de daño del combate;
 - simular las tres fases consecutivas;
 - definir tasa de victoria objetivo.
 
