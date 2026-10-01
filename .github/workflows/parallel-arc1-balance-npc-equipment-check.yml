@@ -207,6 +207,42 @@ jobs:
           print("PASS: Rata T1/T2 frozen; only T3 LAB gate is open")
           PY
 
+      - name: Rata T3 causal counter smoke
+        working-directory: experimentos/balance_nuevo/rata_adaptive_tiers_v0.1
+        run: |
+          rm -rf ci_rata_t3
+          python rata_t3_counter_lab.py --preset smoke --outdir ci_rata_t3 --namespace CI_T3
+          test -f ci_rata_t3/RESULTADOS_RATA_T3_COUNTER_V01.zip
+          python - <<'PY'
+          import gzip,json
+          s=json.load(open("ci_rata_t3/SUMMARY.json",encoding="utf-8"))
+          assert s["experiment"]=="RATA_T3_COUNTER_V01"
+          assert s["t1_frozen"] is True
+          assert s["t2_frozen"] is True
+          assert s["counter_damage_reference"]=="2d4"
+          assert s["reflejo_causal_miss_detection"] is True
+          assert s["canonical_write"] is False
+          assert s["t4_executed"] is False
+          with gzip.open("ci_rata_t3/t3_results.json.gz","rt",encoding="utf-8") as f:
+              rows=json.load(f)
+          assert len(rows)==3
+          assert {r["candidate"]["label"] for r in rows}=={
+              "RECOGNIZED_REFLEJO_MISS",
+              "CONFIRMED_PATTERN_REFLEJO_MISS",
+              "CONFIRMED_PATTERN_ONCE_PER_FIGHT",
+          }
+          for r in rows:
+              assert r["result"]["natural_all"]["fights"]==20
+              assert r["result"]["mutant_conditional"]["fights"]==10
+              assert r["result"]["natural_all"]["t3"]["degenerate_counter_loop_count"]==0
+              assert r["result"]["mutant_conditional"]["t3"]["degenerate_counter_loop_count"]==0
+          for r in rows:
+              if r["candidate"]["requires_prediction_confirmed"]:
+                  assert r["result"]["natural_all"]["t3"]["false_counter_rate"]==0
+                  assert r["result"]["mutant_conditional"]["t3"]["false_counter_rate"]==0
+          print("PASS: Rata T3 counter uses causal Reflejo misses; T4 stays blocked")
+          PY
+
       - name: Confirm Rata T4 remains blocked
         run: |
           grep -q "T3_CALIBRATION_OPEN / T4 STRUCTURE_ONLY / NO T4 NUMERIC CALIBRATION" experimentos/balance_nuevo/parallel_arc1_pipeline/RATA_T2_T4_STRUCTURAL_AUDIT.md
