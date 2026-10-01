@@ -9,42 +9,49 @@ export const ARC1_MONSTER_IDS=Object.freeze([
   'devorador_niebla','halcon_tormenta','mantis_nube','centinela_pluma'
 ].sort());
 
+export const PROFILE_FIELDS=Object.freeze([
+  'id','name','native_stage','native_stage_index','role','region','element','unique',
+  'engine_contract','stats_status','stats','technique','ai','adaptive'
+].sort());
+
 export const REQUIRED_STATS=Object.freeze([
   'hp','qi_max','precision','evasion','defense',
   'tenacity','control','crit_chance','crit_damage','basic_damage'
-]);
+].sort());
 
-const FORBIDDEN_PROFILE_FIELDS=Object.freeze([
-  'legacy','legacy_attack','legacy_defense','attack','ataque','daño','damage'
-]);
+export const TECHNIQUE_FIELDS=Object.freeze([
+  'name','mechanics','params_status','params'
+].sort());
 
-const FORBIDDEN_TECHNIQUE_FIELDS=Object.freeze([
-  'cada','daño','drenaQi','veneno','quemadura',
-  'attack','ataque','defense','defensa','attackBonus'
-]);
+export const AI_FIELDS=Object.freeze(['cognition','social'].sort());
+export const ADAPTIVE_FIELDS=Object.freeze(['status','rule'].sort());
 
-function rejectFields(obj,fields,label){
-  for(const key of fields){
-    if(Object.hasOwn(obj,key))throw new Error(`${label}: forbidden retired field ${key}`);
+function assertExactKeys(obj,expected,label){
+  const actual=Object.keys(obj).sort();
+  if(JSON.stringify(actual)!==JSON.stringify(expected)){
+    throw new Error(`${label}: schema mismatch`);
   }
 }
 
 export function assertMonsterProfile(profile,{requireReady=true}={}){
   if(!profile||typeof profile!=='object')throw new TypeError('monster profile required');
-  rejectFields(profile,FORBIDDEN_PROFILE_FIELDS,'monster profile');
+  assertExactKeys(profile,PROFILE_FIELDS,'monster profile');
 
   if(profile.engine_contract!==ENGINE_CONTRACT)throw new Error('wrong monster engine contract');
   if(!ARC1_MONSTER_IDS.includes(profile.id))throw new Error('unknown Arc 1 monster id');
+
   if(!profile.stats||typeof profile.stats!=='object')throw new Error('monster stats object required');
+  assertExactKeys(profile.stats,REQUIRED_STATS,`${profile.id}.stats`);
 
-  const statKeys=Object.keys(profile.stats).sort();
-  if(JSON.stringify(statKeys)!==JSON.stringify([...REQUIRED_STATS].sort())){
-    throw new Error('monster stats schema must match NEW_COMBAT_STATS_V0_1 exactly');
-  }
+  if(!profile.ai||typeof profile.ai!=='object')throw new Error('monster ai object required');
+  assertExactKeys(profile.ai,AI_FIELDS,`${profile.id}.ai`);
 
-  if(profile.technique){
-    if(typeof profile.technique!=='object')throw new Error('monster technique must be object');
-    rejectFields(profile.technique,FORBIDDEN_TECHNIQUE_FIELDS,'monster technique');
+  if(!profile.adaptive||typeof profile.adaptive!=='object')throw new Error('monster adaptive object required');
+  assertExactKeys(profile.adaptive,ADAPTIVE_FIELDS,`${profile.id}.adaptive`);
+
+  if(profile.technique!==null){
+    if(typeof profile.technique!=='object')throw new Error('monster technique must be object or null');
+    assertExactKeys(profile.technique,TECHNIQUE_FIELDS,`${profile.id}.technique`);
     if(!Array.isArray(profile.technique.mechanics))throw new Error('monster technique mechanics required');
   }
 
