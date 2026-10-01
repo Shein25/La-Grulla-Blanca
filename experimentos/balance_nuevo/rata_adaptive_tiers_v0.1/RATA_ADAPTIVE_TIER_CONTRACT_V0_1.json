@@ -1,6 +1,6 @@
 {
   "schema_version": "rata-adaptive-tiers-v0.1",
-  "status": "T2_HUMAN_RATIFIED_T3_LAB_ALLOWED",
+  "status": "T3_HUMAN_RATIFIED_T4_LAB_ALLOWED",
   "species_id": "rata_qi",
   "population_tier_thresholds": {
     "T0": [
@@ -108,22 +108,61 @@
     }
   },
   "t3": {
-    "status": "CALIBRATION_ALLOWED_NOT_SELECTED",
+    "status": "READY_HUMAN_RATIFIED",
+    "ratified_on": "2026-10-01",
     "identity": "SPECIES_COUNTER",
-    "design_direction": "Use T2-recognized behavior to unlock a species-specific physical counter without changing T1/T2 numerics.",
-    "initial_hypothesis": "A successful Reflejo caused while a T2-recognized pattern is active may arm a physical retaliation based on the canonical 2d4 basic attack.",
-    "requirements": [
-      "Trigger must come from observable T2 recognition and real combat outcome.",
-      "No player root/build inspection.",
-      "T1 +40 EVA/CD5 remains frozen.",
-      "T2 memory=2/repeat=2/+8 remains frozen.",
-      "Counter damage must use the normal direct-damage pipeline.",
-      "Measure activation, prevented/avoided damage, extra damage, action displacement, loops and player diversity.",
-      "No T4 execution."
-    ]
+    "name": "Contraataque de Reflejo",
+    "trigger": {
+      "label": "CONFIRMED_PATTERN_REFLEJO_MISS",
+      "requires_t2_recognition_active": true,
+      "requires_prediction_confirmed": true,
+      "requires_t1_reflejo_active": true,
+      "requires_player_attack_miss": true,
+      "causal_reflejo_miss_required": true
+    },
+    "damage": {
+      "mode": "INSTANCE_BASIC",
+      "source": "resolved individual basic_damage",
+      "direct_damage_pipeline": true
+    },
+    "guards": {
+      "no_qi_drain": true,
+      "no_dot": true,
+      "no_control": true,
+      "no_root_build_inspection": true,
+      "no_artificial_once_per_fight_limit": true
+    },
+    "evidence": {
+      "final_validation_fights": 125000,
+      "false_counter_rate": 0,
+      "degenerate_counter_loops": 0,
+      "max_counters_observed_per_fight": 1
+    }
   },
   "t4": {
-    "status": "BLOCKED_UNTIL_T3_HUMAN_CLOSURE"
+    "status": "CALIBRATION_ALLOWED_NOT_SELECTED",
+    "identity": "MORDISCO_FRENETICO",
+    "preserved_identity": [
+      "physical",
+      "instinctive",
+      "based on canonical T0 basic attack 2d4",
+      "multi-hit candidate mechanical family"
+    ],
+    "calibration_axes": [
+      "hit_count",
+      "scalar_per_hit",
+      "precision_rule",
+      "cooldown",
+      "critical_interaction"
+    ],
+    "requirements": [
+      "T1-T3 remain frozen.",
+      "Flat DEF and absorption resolve through the new-engine direct-damage pipeline.",
+      "No QI_DRAIN, DOT or Control by default.",
+      "Tier decay removes T4 ability below effective T4.",
+      "No hidden player root/build inspection.",
+      "Use measured or canonical Rata offense only."
+    ]
   },
   "guards": {
     "no_t1_recalibration_from_t2": true,
@@ -131,6 +170,7 @@
     "maxTierReached_single_historical_milestone": true,
     "t3_t4_blocked": false,
     "no_t2_recalibration_from_t3": true,
-    "t4_blocked": true
+    "t4_blocked": false,
+    "no_t3_recalibration_from_t4": true
   }
 }
