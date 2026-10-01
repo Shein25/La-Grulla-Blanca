@@ -52,8 +52,8 @@
         "social": "COLONIA"
       },
       "adaptive": {
-        "status": "T3_READY_FOR_T4_CALIBRATION",
-        "rule": "T0-T3 are human-ratified. T4 Mordisco Frenético calibration is allowed. No higher adaptive tier exists in this contract."
+        "status": "ADAPTIVE_CHAIN_T0_T4_CLOSED",
+        "rule": "T0-T4 are human-ratified and frozen. T4 is Mordisco Frenético. No T5 exists in this contract."
       },
       "resource_model": "NONE"
     },
