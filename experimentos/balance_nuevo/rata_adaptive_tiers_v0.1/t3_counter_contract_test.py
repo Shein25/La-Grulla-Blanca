@@ -5,7 +5,7 @@ HERE=Path(__file__).resolve().parent
 adaptive=json.loads((HERE/"RATA_ADAPTIVE_TIER_CONTRACT_V0_1.json").read_text(encoding="utf-8"))
 t3=json.loads((HERE/"RATA_T3_COUNTER_INPUT_V0_1.json").read_text(encoding="utf-8"))
 
-assert adaptive["status"]=="T2_HUMAN_RATIFIED_T3_LAB_ALLOWED"
+assert adaptive["status"]=="T3_HUMAN_RATIFIED_T4_LAB_ALLOWED"
 assert adaptive["t1"]["status"]=="READY_HUMAN_RATIFIED"
 assert adaptive["t1"]["ability"]["evasion_bonus"]==40
 assert adaptive["t1"]["ability"]["cooldown_rounds"]==5
@@ -18,8 +18,10 @@ assert r["repeated_same_category_required"]==2
 assert r["count_results"]==["EFECTIVA"]
 assert r["preemptive_survival_bonus"]==8
 
-assert adaptive["t3"]["status"]=="CALIBRATION_ALLOWED_NOT_SELECTED"
-assert adaptive["t4"]["status"]=="BLOCKED_UNTIL_T3_HUMAN_CLOSURE"
+assert adaptive["t3"]["status"]=="READY_HUMAN_RATIFIED"
+assert adaptive["t3"]["trigger"]["label"]=="CONFIRMED_PATTERN_REFLEJO_MISS"
+assert adaptive["t3"]["damage"]["mode"]=="INSTANCE_BASIC"
+assert adaptive["t4"]["status"]=="CALIBRATION_ALLOWED_NOT_SELECTED"
 
 assert t3["prerequisite"]=="T2_READY_HUMAN_RATIFIED"
 assert t3["damage_reference"]=={
@@ -44,5 +46,5 @@ assert t3["guards"]["t4_blocked"] is True
 for hidden in ("player.root","player.build_id","future RNG","hidden player stats"):
     assert hidden in t3["observable_contract"]["forbidden"]
 
-print("PASS: Rata T1 and T2 are frozen; T3 trigger lab is open")
-print("PASS: T3 uses canonical 2d4 reference only; T4 remains blocked")
+print("PASS: historical T3 trigger lab input is preserved")
+print("PASS: T1-T3 are frozen and T4 calibration is open")
