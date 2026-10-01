@@ -1,4 +1,6 @@
-export const ADAPTER_STATUS='EXPERIMENTAL_NON_CANONICAL';
+export const ADAPTER_STATUS='EXPERIMENTAL_NEW_ENGINE_ONLY';
+export const ENGINE_CONTRACT='NEW_COMBAT_STATS_V0_1';
+export const READY='READY';
 
 export const HARNESS_DEFAULT_ASSIGNMENT=Object.freeze({profileId:'INSTINTIVO',socialProfileId:'SOLITARIO',preferences:Object.freeze({OFENSIVA:1.0,CONTROL:1.0})});
 
@@ -10,20 +12,40 @@ export const PROFILE_ASSIGNMENTS=Object.freeze({
   mantis_nube:Object.freeze({profileId:'MASTER_4',socialProfileId:'SOLITARIO',preferences:Object.freeze({OFENSIVA:1.1,CONTROL:1.0})})
 });
 
-function assertMob(id,def){
-  if(!id||!def||typeof def!=='object')throw new TypeError('mob canónico inválido');
-  if(typeof def.daño!=='string')throw new TypeError(`${id}.daño inválido`);
-  if(def.tecnica&&(!Number.isInteger(def.tecnica.cada)||def.tecnica.cada<1))throw new TypeError(`${id}.tecnica.cada inválido`);
+export function assertMonsterDefinition(id,def){
+  if(!id||!def||typeof def!=='object')throw new TypeError('monster definition invalid');
+  if(def.id!==id)throw new TypeError(`${id}.id mismatch`);
+  if(def.engine_contract!==ENGINE_CONTRACT)throw new TypeError(`${id}.engine_contract invalid`);
+  if(typeof def.name!=='string'||!def.name)throw new TypeError(`${id}.name invalid`);
+  return true;
+}
+
+export function assertMonsterCombatReady(id,def){
+  assertMonsterDefinition(id,def);
+  if(def.stats_status!==READY)throw new Error(`${id}: T0 stats are not READY`);
+  const required=['hp','qi_max','precision','evasion','defense','tenacity','control','crit_chance','crit_damage','basic_damage'];
+  for(const key of required){
+    if(def.stats?.[key]===null||def.stats?.[key]===undefined)throw new Error(`${id}.stats.${key} unresolved`);
+  }
+  if(def.technique){
+    if(def.technique.params_status!==READY)throw new Error(`${id}: technique params are not READY`);
+    if(!Number.isInteger(def.technique.params?.cadence)||def.technique.params.cadence<1){
+      throw new Error(`${id}: technique cadence unresolved`);
+    }
+  }
+  return true;
 }
 
 export function techniqueDue(def,round){
-  if(!Number.isInteger(round)||round<0)throw new TypeError('round debe ser entero >= 0');
-  return !!(def.tecnica && round % def.tecnica.cada===0);
+  if(!Number.isInteger(round)||round<0)throw new TypeError('round must be integer >= 0');
+  assertMonsterCombatReady(def.id,def);
+  return !!(def.technique && round % def.technique.params.cadence===0);
 }
 
 export function techniqueWarning(def,round){
-  if(!Number.isInteger(round)||round<0)throw new TypeError('round debe ser entero >= 0');
-  return !!(def.tecnica && (round+1)%def.tecnica.cada===0);
+  if(!Number.isInteger(round)||round<0)throw new TypeError('round must be integer >= 0');
+  assertMonsterCombatReady(def.id,def);
+  return !!(def.technique && (round+1)%def.technique.params.cadence===0);
 }
 
 export function canonicalAbilityIds(mobId){
@@ -31,32 +53,34 @@ export function canonicalAbilityIds(mobId){
 }
 
 function techniqueCategory(t){
-  return t&&(t.veneno||t.quemadura||t.drenaQi)?'CONTROL':'OFENSIVA';
+  const mechanics=new Set(t?.mechanics||[]);
+  return mechanics.has('POISON_DOT')||mechanics.has('BURN_DOT')||mechanics.has('QI_DRAIN')?'CONTROL':'OFENSIVA';
 }
 
 export function buildCanonicalAbilityCatalog(mobId,def){
-  assertMob(mobId,def);
+  assertMonsterDefinition(mobId,def);
   const ids=canonicalAbilityIds(mobId);
   const out={
     [ids.basic]:{
       id:ids.basic,
       intentCategory:'OFENSIVA',
-      tags:['CANON_BASE_ATTACK'],
-      telegraph:`Ataque básico de ${def.name} (${def.daño}).`,
+      tags:['BASE_ATTACK'],
+      telegraph:`Ataque básico de ${def.name}.`,
       requirements:{signalsAll:[]},
       utility:{base:40,signalWeights:{},memoryWeights:{},socialWeights:{}}
     }
   };
-  if(def.tecnica){
+  if(def.technique){
     const effects=[];
-    if(def.tecnica.veneno)effects.push('VENENO');
-    if(def.tecnica.quemadura)effects.push('QUEMADURA');
-    if(def.tecnica.drenaQi)effects.push('DRENA_QI');
+    const mechanics=new Set(def.technique.mechanics||[]);
+    if(mechanics.has('POISON_DOT'))effects.push('VENENO');
+    if(mechanics.has('BURN_DOT'))effects.push('QUEMADURA');
+    if(mechanics.has('QI_DRAIN'))effects.push('DRENA_QI');
     out[ids.technique]={
       id:ids.technique,
-      intentCategory:techniqueCategory(def.tecnica),
-      tags:['CANON_TECHNIQUE',...effects],
-      telegraph:`${def.tecnica.name}.`,
+      intentCategory:techniqueCategory(def.technique),
+      tags:['MONSTER_TECHNIQUE',...effects],
+      telegraph:`${def.technique.name}.`,
       requirements:{signalsAll:[]},
       utility:{base:60,signalWeights:{},memoryWeights:{},socialWeights:{}}
     };
@@ -65,16 +89,16 @@ export function buildCanonicalAbilityCatalog(mobId,def){
 }
 
 export function buildMonsterInput({mobId,def,round,mode='CADENCE_COMPAT',recentAbilityIds=[]}){
-  assertMob(mobId,def);
+  assertMonsterCombatReady(mobId,def);
   const assignment=PROFILE_ASSIGNMENTS[mobId] || (mode==='CADENCE_COMPAT' ? HARNESS_DEFAULT_ASSIGNMENT : null);
-  if(!assignment)throw new RangeError(`sin perfil experimental para ${mobId}`);
+  if(!assignment)throw new RangeError(`no experimental profile for ${mobId}`);
   const ids=canonicalAbilityIds(mobId);
   const due=techniqueDue(def,round);
   let effectiveKit;
-  if(!def.tecnica) effectiveKit=[ids.basic];
+  if(!def.technique) effectiveKit=[ids.basic];
   else if(mode==='CADENCE_COMPAT') effectiveKit=due?[ids.technique]:[ids.basic];
   else if(mode==='DECISION_EXPERIMENTAL') effectiveKit=due?[ids.basic,ids.technique]:[ids.basic];
-  else throw new RangeError(`mode desconocido: ${mode}`);
+  else throw new RangeError(`unknown mode: ${mode}`);
 
   return {
     id:mobId,
