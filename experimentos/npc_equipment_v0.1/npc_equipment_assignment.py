@@ -28,11 +28,14 @@ def catalog_items(catalog):
     raise TypeError("equipment catalog items must be list or dict")
 
 def eligible_items(actor,catalog,stage,policy):
+    stage_policy=policy["auto_catalog_stage_policy"]
+    if STAGE_INDEX[stage]<STAGE_INDEX[stage_policy["first_story_stage"]]:
+        return []
     allowed=set(policy["family_allowed_slots"].get(actor["equipment_family"],[]))
     return [
         x for x in catalog_items(catalog)
         if not x["unique"]
-        and STAGE_INDEX[x["min_stage"]]<=STAGE_INDEX[stage]
+        and x["min_stage"]==stage
         and x["availability"]!="ORIGIN_ONLY"
         and x["source_type"]!="STARTING_ISSUE"
         and x["slot"] in allowed
@@ -71,7 +74,7 @@ def validate(result,actors,catalog,policy):
             for item_id in item_ids:
                 item=item_by_id[item_id]
                 assert not item["unique"],(actor["actor_id"],item_id,"unique")
-                assert STAGE_INDEX[item["min_stage"]]<=STAGE_INDEX[stage]
+                assert item["min_stage"]==stage
                 assert item["slot"] in policy["family_allowed_slots"][actor["equipment_family"]]
                 slot=item["slot"];used[slot]=used.get(slot,0)+1
                 assert used[slot]<=policy["slot_caps"][slot]
@@ -91,6 +94,8 @@ def build():
             "story_stage_gate":True,
             "senior_authorities_not_auto_dressed":True,
             "companions_not_auto_specialized":True,
+            "auto_catalog_first_stage":"LianQi_II",
+            "auto_catalog_exact_stage_only":True,
         },
         "actors":{}
     }
