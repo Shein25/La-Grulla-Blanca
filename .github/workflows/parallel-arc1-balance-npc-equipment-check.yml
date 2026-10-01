@@ -146,9 +146,11 @@ jobs:
           assert d["guards"]["mutant_incidence_below_one_percent"] is True
           assert d["mutant"]["suffix"]=="Mutante"
           assert d["mutant"]["loot_multiplier"]==1.5
+          assert d["mutant"]["xp_multiplier"]==1.5
+          assert d["guards"]["mutant_xp_multiplier_exactly_1_5"] is True
           assert d["mutant"]["maximum_incidence"]==0.01
           assert d["species"]["mono_pildoras"]["status"]=="BLOCKED_UNTIL_T0_LOCAL_REFINEMENT_READY"
-          print("PASS: independent variance allows rare Mutantes with x1.5 loot")
+          print("PASS: independent variance allows rare Mutantes with x1.5 loot and XP")
           PY
 
       - name: Confirm Rata T2-T4 are structure-only
