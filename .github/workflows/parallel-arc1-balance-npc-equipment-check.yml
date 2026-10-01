@@ -6,6 +6,7 @@ on:
       - experiment/parallel-balance-npc-equipment-v0.1
     paths:
       - "experimentos/balance_nuevo/parallel_arc1_pipeline/**"
+      - "experimentos/balance_nuevo/stage1_integral_t0_optuna/**"
       - "experimentos/balance_nuevo/individual_variance_v0.1/**"
       - "experimentos/balance_nuevo/rata_t1_variance_interaction_v0.1/**"
       - "experimentos/balance_nuevo/rata_adaptive_tiers_v0.1/**"
