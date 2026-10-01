@@ -118,12 +118,16 @@ def run() -> dict:
         errors,
     )
 
-    ready=sum(
-        1 for mid in LIANQI_I_IDS
+    ready_ids=[
+        mid for mid in LIANQI_I_IDS
         if profiles[mid]["stats_status"]=="READY"
-    )
-    if ready!=1 or profiles["rata_qi"]["stats_status"]!="READY":
-        errors.append(f"READY_LIANQI_I_MISMATCH:{ready}")
+    ]
+    expected_ready={"rata_qi","avispa_jade","serpiente_qi","lobo_espiritual"}
+    if set(ready_ids)!=expected_ready:
+        errors.append(f"READY_LIANQI_I_MISMATCH:{sorted(ready_ids)}")
+    if profiles["mono_pildoras"]["stats_status"]!="PENDING_INTEGRAL_REBALANCE":
+        errors.append("MONO_MUST_REMAIN_PENDING")
+    ready=len(ready_ids)
 
     return {
         "status":"PASS" if not errors else "FAIL",
@@ -139,7 +143,8 @@ def run() -> dict:
         "optuna_pipeline_implemented":True,
         "optuna_executed":False,
         "canonical_registry_modified":True,
-        "ready_profile":"rata_qi",
+        "ready_profiles":["rata_qi","avispa_jade","serpiente_qi","lobo_espiritual"],
+        "pending_lianqi_i_profile":"mono_pildoras",
     }
 
 
