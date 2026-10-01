@@ -1,0 +1,64 @@
+{
+  "schema_version": "alchemy-qi-recovery-contract-v0.2",
+  "status": "READY_HUMAN_RATIFIED",
+  "ratified_on": "2026-10-01",
+  "scope": "ARC1_PURE_QI_RECOVERY",
+  "player_base_qi": {
+    "LianQi_I": 37,
+    "LianQi_II": 43,
+    "LianQi_III": 49,
+    "LianQi_IV": 55
+  },
+  "formulations": {
+    "LianQi_I": {
+      "name": "Menor",
+      "qualities": {
+        "impura": 8,
+        "estable": 12,
+        "superior": 16,
+        "excepcional": 20
+      }
+    },
+    "LianQi_II": {
+      "name": "Circulación",
+      "qualities": {
+        "impura": 20,
+        "estable": 22,
+        "superior": 24,
+        "excepcional": 26
+      }
+    },
+    "LianQi_III": {
+      "name": "Cauce Profundo",
+      "qualities": {
+        "impura": 26,
+        "estable": 28,
+        "superior": 30,
+        "excepcional": 32
+      }
+    },
+    "LianQi_IV": {
+      "name": "Tempestad",
+      "qualities": {
+        "impura": 32,
+        "estable": 34,
+        "superior": 36,
+        "excepcional": 38
+      }
+    }
+  },
+  "continuity_rule": "EXCEPTIONAL_PREVIOUS_STAGE_EQUALS_IMPURE_CURRENT_STAGE",
+  "combat_use": {
+    "consumes_full_action": true,
+    "restore_mode": "ABSOLUTE_QI",
+    "cap_at_qi_max": true,
+    "no_artificial_potion_cooldown": true
+  },
+  "guards": {
+    "no_full_restore_from_zero": true,
+    "hp_contract_unchanged": true,
+    "no_monster_rebalance": true,
+    "no_main": true,
+    "no_merge": true
+  }
+}
