@@ -1,12 +1,13 @@
 {
-  "schema_version": "monster-individual-variance-v0.2",
+  "schema_version": "monster-individual-variance-v0.3",
   "status": "LAB_PROPOSAL_NOT_RUNTIME_CANON",
   "semantics": {
     "canonical_t0": "natural_floor",
-    "upper_envelope": "hardest measured candidate retained as rare statistical ceiling",
+    "upper_envelope": "per-axis upper values come from measured experimental candidates; axes may use different source trials",
     "roll_once_per_instance": true,
     "below_t0_variance": false,
     "independent_axis_rolls": true,
+    "offensive_variance": true,
     "adaptive_tiers_separate": true
   },
   "axis_distribution": "UNIFORM_0_1",
@@ -17,30 +18,35 @@
     "precision",
     "tenacity"
   ],
-  "discrete_basic_damage": true,
   "mutant": {
     "suffix": "Mutante",
     "target_incidence": 0.0075,
     "maximum_incidence": 0.01,
     "loot_multiplier": 1.5,
-    "score": "mean of independent q values for axes with non-zero range; basic_damage q included when ladder has >1 item",
+    "xp_multiplier": 1.5,
+    "unique_drop_probability_multiplier": 1,
+    "score": "mean of independent q values for every non-constant defensive/offensive axis",
     "threshold_by_variable_axis_count": {
       "1": 0.9925,
-      "2": 0.9391,
+      "2": 0.9389,
       "3": 0.8812,
-      "4": 0.8374,
-      "5": 0.8035,
-      "6": 0.7794
-    },
-    "xp_multiplier": 1.5,
-    "unique_drop_probability_multiplier": 1
+      "4": 0.8376,
+      "5": 0.8039,
+      "6": 0.7792,
+      "7": 0.7592,
+      "8": 0.7438,
+      "9": 0.7306
+    }
   },
   "fixed_fields": [
     "resource_model",
     "control",
     "crit_chance",
     "crit_damage",
-    "technique",
+    "technique.name",
+    "technique.mechanics",
+    "technique.params.cadence",
+    "technique QI_DRAIN/control chance",
     "ai.cognition",
     "ai.social",
     "adaptive"
@@ -53,8 +59,7 @@
         "defense": 0,
         "evasion": 0,
         "precision": 80,
-        "tenacity": 0,
-        "basic_damage": "2d4"
+        "tenacity": 0
       },
       "upper_envelope": {
         "source_trial": 3325,
@@ -62,14 +67,21 @@
         "defense": 2,
         "evasion": 20,
         "precision": 105,
-        "tenacity": 0,
-        "basic_damage": "2d6"
+        "tenacity": 0
       },
-      "basic_damage_ladder": [
-        "2d4",
-        "2d6"
-      ],
-      "source_note": "Strongest Rata high-precision finalist measured: trial 3325."
+      "attacks": {
+        "basic_damage": {
+          "ladder": [
+            "2d4",
+            "2d6"
+          ],
+          "sources": [
+            4254,
+            3325
+          ]
+        }
+      },
+      "technique_variance": null
     },
     "avispa_jade": {
       "base": {
@@ -78,8 +90,7 @@
         "defense": 0,
         "evasion": 22,
         "precision": 90,
-        "tenacity": 7,
-        "basic_damage": "1d2+1"
+        "tenacity": 7
       },
       "upper_envelope": {
         "source_trial": 1251,
@@ -87,16 +98,51 @@
         "defense": 2,
         "evasion": 55,
         "precision": 103,
-        "tenacity": 8,
-        "basic_damage": "1d3+4"
+        "tenacity": 8
       },
-      "basic_damage_ladder": [
-        "1d2+1",
-        "2d2",
-        "2d2+3",
-        "1d3+4"
-      ],
-      "source_note": "Hardest directed finalist by player defeat/HP pressure: trial 1251."
+      "attacks": {
+        "basic_damage": {
+          "ladder": [
+            "1d2+1",
+            "2d2",
+            "2d2+3",
+            "1d3+4"
+          ],
+          "sources": [
+            872,
+            1119,
+            1468,
+            1251
+          ]
+        },
+        "poison_damage": {
+          "ladder": [
+            "1d3+2",
+            "2d2+1"
+          ],
+          "sources": [
+            872,
+            1417
+          ]
+        },
+        "poison_ticks": {
+          "ladder": [
+            2,
+            4
+          ],
+          "sources": [
+            872,
+            1417
+          ]
+        }
+      },
+      "fixed_technique": {
+        "name": "Picadura de Esmeralda",
+        "mechanics": [
+          "POISON_DOT"
+        ],
+        "cadence": 2
+      }
     },
     "serpiente_qi": {
       "base": {
@@ -105,8 +151,7 @@
         "defense": 0,
         "evasion": 5,
         "precision": 86,
-        "tenacity": 5,
-        "basic_damage": "1d2+2"
+        "tenacity": 5
       },
       "upper_envelope": {
         "source_trial": 1453,
@@ -114,13 +159,49 @@
         "defense": 3,
         "evasion": 30,
         "precision": 106,
-        "tenacity": 32,
-        "basic_damage": "1d2+2"
+        "tenacity": 32
       },
-      "basic_damage_ladder": [
-        "1d2+2"
-      ],
-      "source_note": "Hardest directed finalist by player defeat/HP pressure: trial 1453."
+      "attacks": {
+        "basic_damage": {
+          "ladder": [
+            "1d2+2"
+          ],
+          "sources": [
+            1484
+          ]
+        },
+        "poison_damage": {
+          "ladder": [
+            "1d2+2",
+            "1d6+2",
+            "2d2+3",
+            "2d3+2"
+          ],
+          "sources": [
+            1484,
+            1453,
+            1013,
+            1412
+          ]
+        },
+        "poison_ticks": {
+          "ladder": [
+            3,
+            4
+          ],
+          "sources": [
+            1484,
+            1453
+          ]
+        }
+      },
+      "fixed_technique": {
+        "name": "Colmillos Venenosos",
+        "mechanics": [
+          "POISON_DOT"
+        ],
+        "cadence": 2
+      }
     },
     "lobo_espiritual": {
       "base": {
@@ -129,8 +210,7 @@
         "defense": 1,
         "evasion": 12,
         "precision": 97,
-        "tenacity": 20,
-        "basic_damage": "2d4+2"
+        "tenacity": 20
       },
       "upper_envelope": {
         "source_trial": 1463,
@@ -138,32 +218,75 @@
         "defense": 5,
         "evasion": 12,
         "precision": 96,
-        "tenacity": 20,
-        "basic_damage": "1d2+6"
+        "tenacity": 20
       },
-      "basic_damage_ladder": [
-        "2d4+2",
-        "1d6+4",
-        "1d2+6"
-      ],
-      "source_note": "Hardest directed finalist by player win rate: trial 1463."
+      "attacks": {
+        "basic_damage": {
+          "ladder": [
+            "2d4+2",
+            "2d6",
+            "1d6+4",
+            "1d2+6"
+          ],
+          "sources": [
+            1425,
+            1429,
+            1194,
+            1463
+          ]
+        },
+        "technique_direct_damage": {
+          "ladder": [
+            "2d6+1",
+            "1d4+6"
+          ],
+          "sources": [
+            1425,
+            1429
+          ]
+        }
+      },
+      "fixed_technique": {
+        "name": "Emboscada de las Tres Colas",
+        "mechanics": [
+          "DIRECT_DAMAGE"
+        ],
+        "cadence": 5
+      }
     },
     "mono_pildoras": {
-      "status": "BLOCKED_UNTIL_T0_LOCAL_REFINEMENT_READY",
-      "base": null,
-      "upper_envelope": null,
-      "basic_damage_ladder": null,
-      "source_note": "Populate after current Mono local refinement is human-selected."
+      "status": "BLOCKED_UNTIL_T0_HUMAN_RATIFICATION",
+      "proposed_base": {
+        "source_grid": 43,
+        "hp": 34,
+        "defense": 2,
+        "evasion": 24,
+        "precision": 91,
+        "tenacity": 12,
+        "basic_damage": "1d2+3",
+        "technique_direct_damage": "1d2+3",
+        "qi_drain": 5,
+        "cadence": 2
+      },
+      "planned_offensive_reference": {
+        "source_trial": 1274,
+        "basic_damage": "2d3+3",
+        "technique_direct_damage": "2d3+5",
+        "precision": 108
+      },
+      "note": "Do not activate or generate instances until grid 43 is human-ratified."
     }
   },
   "guards": {
     "no_new_species_ids": true,
     "no_below_t0_spawn": true,
     "independent_high_rolls_allowed": true,
+    "offensive_axes_must_vary_when_measured": true,
+    "identity_mechanics_fixed": true,
     "mutant_incidence_below_one_percent": true,
     "mutant_loot_multiplier_exactly_1_5": true,
+    "mutant_xp_multiplier_exactly_1_5": true,
     "no_adaptive_tier_grant_from_mutant": true,
-    "no_automatic_runtime_activation": true,
-    "mutant_xp_multiplier_exactly_1_5": true
+    "no_automatic_runtime_activation": true
   }
 }
