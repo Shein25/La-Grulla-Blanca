@@ -81,7 +81,10 @@ export function instantiateMonsterVariance({
   if (canonicalProfile.stats_status !== "READY") {
     throw new Error(`${speciesId}: canonical T0 must be READY`);
   }
-  if (canonicalProfile.unique === true || varianceConfig.guards?.unique_species_variance_forbidden !== true) {
+  if (varianceConfig.guards?.unique_species_variance_forbidden !== true) {
+    throw new Error("variance config must forbid unique species");
+  }
+  if (canonicalProfile.unique === true) {
     throw new Error(`${speciesId}: unique species variance forbidden`);
   }
 
