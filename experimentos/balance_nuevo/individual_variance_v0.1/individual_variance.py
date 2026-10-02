@@ -108,6 +108,14 @@ def selfcheck(samples=50000):
     assert len(CONFIG["species"]["mono_pildoras"]["attacks"]["basic_damage"]["ladder"])>1
     assert len(CONFIG["species"]["mono_pildoras"]["attacks"]["technique_direct_damage"]["ladder"])>1
     assert CONFIG["species"]["mono_pildoras"]["fixed_technique"]["qi_drain"]==5
+
+    for sid in ["sapo_ceniza","escarabajo_hierro","pez_lunar","anguila_estelar","devorador_niebla","halcon_tormenta"]:
+        assert len(CONFIG["species"][sid]["attacks"]["basic_damage"]["ladder"])>1,(sid,"basic variance missing")
+    for sid in ["sapo_ceniza","escarabajo_hierro","halcon_tormenta"]:
+        assert len(CONFIG["species"][sid]["attacks"]["technique_direct_damage"]["ladder"])>1,(sid,"technique variance missing")
+    assert CONFIG["species"]["anguila_estelar"]["fixed_technique"]["qi_drain"]==6
+    assert CONFIG["guards"]["unique_species_variance_forbidden"] is True
+
     for sid,spec in CONFIG["species"].items():
         for key in CONFIG["variable_stats"]:
             assert spec["upper_envelope"][key] >= spec["base"][key],(sid,key)
