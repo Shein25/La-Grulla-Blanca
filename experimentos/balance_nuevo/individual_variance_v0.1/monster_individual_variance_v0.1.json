@@ -16,6 +16,31 @@
       "natural_fights": 250000,
       "conditional_mutant_fights": 50000,
       "observed_mutant_incidence": 0.007556
+    },
+    "extension_validation": {
+      "six_repeatables_2026_10_01": {
+        "results_sha256": "b704247806382792d513181dc55efe8ea7deeb81963636e7c9be88494feb763b",
+        "github_artifact_sha256": "59b9315820cd6dfa78346c2808d6c03b0aa19452195ceb91c5ea34f04eff412b",
+        "workflow_run_id": 36946408937,
+        "total_fights": 420000,
+        "floor_t0_per_species": 5000,
+        "floor_t4_per_species": 5000,
+        "natural_t0_per_species": 25000,
+        "natural_t4_per_species": 25000,
+        "conditional_mutant_t0_per_species": 5000,
+        "conditional_mutant_t4_per_species": 5000,
+        "observed_natural_mutant_incidence": {
+          "sapo_ceniza": 0.00752,
+          "escarabajo_hierro": 0.00836,
+          "pez_lunar": 0.00728,
+          "anguila_estelar": 0.008,
+          "devorador_niebla": 0.00752,
+          "halcon_tormenta": 0.00744
+        },
+        "timeout_rate_all_arms": 0,
+        "hard_polarization_over_75pp": false,
+        "t1_t4_interaction_status": "PASS_NO_EXPLOSIVE_INTERACTION"
+      }
     }
   },
   "axis_distribution": "UNIFORM_0_1",
@@ -326,6 +351,353 @@
         "qi_drain": 5
       },
       "source_note": "T0 floor is ratified grid 43. Survival ceiling comes from grid 48; offensive axes use measured overnight candidates. Cross-axis combinations remain LAB-only until variance validation."
+    },
+    "sapo_ceniza": {
+      "base": {
+        "source_candidate": "sapo_ceniza-b01-cf7f63c920",
+        "hp": 49,
+        "defense": 0,
+        "evasion": 11,
+        "precision": 97,
+        "tenacity": 5
+      },
+      "upper_envelope": {
+        "source_axes": {
+          "hp": "sapo_ceniza-b10-f851070241",
+          "defense": "sapo_ceniza-b03-0151582d7e",
+          "evasion": "sapo_ceniza-b07-4e68c838f4",
+          "precision": "sapo_ceniza-b10-f851070241",
+          "tenacity": "sapo_ceniza-b07-4e68c838f4"
+        },
+        "hp": 52,
+        "defense": 3,
+        "evasion": 33,
+        "precision": 100,
+        "tenacity": 19
+      },
+      "attacks": {
+        "basic_damage": {
+          "ladder": [
+            "1d2+5",
+            "1d3+5",
+            "1d3+6",
+            "1d2+7"
+          ],
+          "sources": [
+            "sapo_ceniza-b00-878c225026",
+            "sapo_ceniza-b10-f851070241",
+            "sapo_ceniza-b04-29a65445b7",
+            "sapo_ceniza-b02-55ce04b200"
+          ]
+        },
+        "technique_direct_damage": {
+          "ladder": [
+            "1d2+4",
+            "1d2+5",
+            "1d2+8"
+          ],
+          "sources": [
+            "sapo_ceniza-b01-cf7f63c920",
+            "sapo_ceniza-b00-878c225026",
+            "sapo_ceniza-b09-7dc3aa8399"
+          ]
+        }
+      },
+      "fixed_technique": {
+        "name": "Nube de Hollín",
+        "mechanics": [
+          "DIRECT_DAMAGE",
+          "BURN_DOT"
+        ],
+        "cadence": 3
+      },
+      "source_note": "CLEAN-only per-axis envelope. Burn 1d2+2 x3 remains fixed at ratified T0 because no stronger CLEAN same-cadence burn axis was measured."
+    },
+    "escarabajo_hierro": {
+      "base": {
+        "source_candidate": "escarabajo_hierro-m14-6996f62d4a",
+        "hp": 75,
+        "defense": 2,
+        "evasion": 14,
+        "precision": 90,
+        "tenacity": 24
+      },
+      "upper_envelope": {
+        "source_axes": {
+          "hp": "escarabajo_hierro-b04-d2b395945f",
+          "defense": "escarabajo_hierro-b04-d2b395945f",
+          "evasion": "escarabajo_hierro-b03-28afd52077",
+          "precision": "escarabajo_hierro-b05-4dea609a12",
+          "tenacity": "escarabajo_hierro-b03-28afd52077"
+        },
+        "hp": 82,
+        "defense": 5,
+        "evasion": 22,
+        "precision": 98,
+        "tenacity": 34
+      },
+      "attacks": {
+        "basic_damage": {
+          "ladder": [
+            "1d2+3",
+            "1d2+4",
+            "1d2+6"
+          ],
+          "sources": [
+            "escarabajo_hierro-m10-50f2acebee",
+            "escarabajo_hierro-b03-28afd52077",
+            "escarabajo_hierro-b04-d2b395945f"
+          ]
+        },
+        "technique_direct_damage": {
+          "ladder": [
+            "1d2+8",
+            "1d4+9"
+          ],
+          "sources": [
+            "escarabajo_hierro-m10-50f2acebee",
+            "escarabajo_hierro-b04-d2b395945f"
+          ]
+        }
+      },
+      "fixed_technique": {
+        "name": "Carga de Caparazón",
+        "mechanics": [
+          "DIRECT_DAMAGE"
+        ],
+        "cadence": 3
+      },
+      "source_note": "CLEAN-only envelope combines broad T0 and focused micro-lab evidence; cross-axis/T4 interaction validated in 420k heavy run."
+    },
+    "pez_lunar": {
+      "base": {
+        "source_candidate": "pez_lunar-b00-8a7474198a",
+        "hp": 42,
+        "defense": 2,
+        "evasion": 29,
+        "precision": 90,
+        "tenacity": 13
+      },
+      "upper_envelope": {
+        "source_axes": {
+          "hp": "pez_lunar-b09-3ab2de73ee",
+          "defense": "pez_lunar-b11-b9b698a11a",
+          "evasion": "pez_lunar-b09-3ab2de73ee",
+          "precision": "pez_lunar-b09-3ab2de73ee",
+          "tenacity": "pez_lunar-b04-06d07824c6"
+        },
+        "hp": 44,
+        "defense": 3,
+        "evasion": 32,
+        "precision": 98,
+        "tenacity": 25
+      },
+      "attacks": {
+        "basic_damage": {
+          "ladder": [
+            "1d2+8",
+            "1d4+9",
+            "1d5+9"
+          ],
+          "sources": [
+            "pez_lunar-b00-8a7474198a",
+            "pez_lunar-b08-6da7bf1260",
+            "pez_lunar-b06-046b84b3cd"
+          ]
+        },
+        "technique_direct_damage": {
+          "ladder": [
+            "2d4+9"
+          ],
+          "sources": [
+            "pez_lunar-b00-8a7474198a"
+          ]
+        }
+      },
+      "fixed_technique": {
+        "name": "Mordida de Corriente",
+        "mechanics": [
+          "DIRECT_DAMAGE"
+        ],
+        "cadence": 4
+      },
+      "source_note": "Technique damage remains fixed; only measured CLEAN basic-damage variance is enabled offensively."
+    },
+    "anguila_estelar": {
+      "base": {
+        "source_candidate": "anguila_estelar-b09-4f1d8e046c",
+        "hp": 37,
+        "defense": 1,
+        "evasion": 36,
+        "precision": 92,
+        "tenacity": 16
+      },
+      "upper_envelope": {
+        "source_axes": {
+          "hp": "anguila_estelar-b09-4f1d8e046c",
+          "defense": "anguila_estelar-b06-b4069c35a1",
+          "evasion": "anguila_estelar-b00-5d0b938a1d",
+          "precision": "anguila_estelar-b06-b4069c35a1",
+          "tenacity": "anguila_estelar-b09-4f1d8e046c"
+        },
+        "hp": 37,
+        "defense": 3,
+        "evasion": 39,
+        "precision": 107,
+        "tenacity": 16
+      },
+      "attacks": {
+        "basic_damage": {
+          "ladder": [
+            "1d3+6",
+            "1d3+7",
+            "1d3+9"
+          ],
+          "sources": [
+            "anguila_estelar-b09-4f1d8e046c",
+            "anguila_estelar-b00-5d0b938a1d",
+            "anguila_estelar-b06-b4069c35a1"
+          ]
+        },
+        "technique_direct_damage": {
+          "ladder": [
+            "2d6+9"
+          ],
+          "sources": [
+            "anguila_estelar-b09-4f1d8e046c"
+          ]
+        }
+      },
+      "fixed_technique": {
+        "name": "Mordida del Meridiano Azul",
+        "mechanics": [
+          "DIRECT_DAMAGE",
+          "QI_DRAIN"
+        ],
+        "cadence": 4,
+        "qi_drain": 6
+      },
+      "source_note": "HP and TEN remain fixed because no stronger CLEAN T0-compatible ceiling was measured; QI_DRAIN 6 is identity-fixed."
+    },
+    "devorador_niebla": {
+      "base": {
+        "source_candidate": "devorador_niebla-b00-6f4bffd772",
+        "hp": 46,
+        "defense": 2,
+        "evasion": 28,
+        "precision": 93,
+        "tenacity": 14
+      },
+      "upper_envelope": {
+        "source_axes": {
+          "hp": "devorador_niebla-b10-9f78bb9154",
+          "defense": "devorador_niebla-b09-a0b98e82bb",
+          "evasion": "devorador_niebla-b02-11f4b8fea7",
+          "precision": "devorador_niebla-b09-a0b98e82bb",
+          "tenacity": "devorador_niebla-b07-fcaae7da3a"
+        },
+        "hp": 52,
+        "defense": 4,
+        "evasion": 42,
+        "precision": 107,
+        "tenacity": 26
+      },
+      "attacks": {
+        "basic_damage": {
+          "ladder": [
+            "1d2+9",
+            "1d3+9",
+            "1d4+9"
+          ],
+          "sources": [
+            "devorador_niebla-b00-6f4bffd772",
+            "devorador_niebla-b01-1a19d77359",
+            "devorador_niebla-b10-9f78bb9154"
+          ]
+        },
+        "technique_direct_damage": {
+          "ladder": [
+            "3d4+8"
+          ],
+          "sources": [
+            "devorador_niebla-b00-6f4bffd772"
+          ]
+        }
+      },
+      "fixed_technique": {
+        "name": "Exhalación Vacía",
+        "mechanics": [
+          "DIRECT_DAMAGE"
+        ],
+        "cadence": 4
+      },
+      "source_note": "Technique damage remains fixed; survival/basic axes use CLEAN measured ceilings."
+    },
+    "halcon_tormenta": {
+      "base": {
+        "source_candidate": "halcon_tormenta-b03-27f18b5b64",
+        "hp": 43,
+        "defense": 2,
+        "evasion": 30,
+        "precision": 89,
+        "tenacity": 22
+      },
+      "upper_envelope": {
+        "source_axes": {
+          "hp": "halcon_tormenta-b08-9110a266eb",
+          "defense": "halcon_tormenta-b04-91ab45bf6d",
+          "evasion": "halcon_tormenta-b09-75c2c800ba",
+          "precision": "halcon_tormenta-b05-8fe0e7e408",
+          "tenacity": "halcon_tormenta-b08-9110a266eb"
+        },
+        "hp": 51,
+        "defense": 3,
+        "evasion": 52,
+        "precision": 110,
+        "tenacity": 31
+      },
+      "attacks": {
+        "basic_damage": {
+          "ladder": [
+            "1d3+6",
+            "1d2+7",
+            "1d3+7",
+            "1d2+8",
+            "1d3+8",
+            "1d2+9",
+            "1d3+9",
+            "1d4+9"
+          ],
+          "sources": [
+            "halcon_tormenta-b03-27f18b5b64",
+            "halcon_tormenta-b01-eec52a9ca0",
+            "halcon_tormenta-b08-9110a266eb",
+            "halcon_tormenta-b00-7d59ea6c94",
+            "halcon_tormenta-b04-91ab45bf6d",
+            "halcon_tormenta-b02-9329dbc763",
+            "halcon_tormenta-b11-f3042d7dbb",
+            "halcon_tormenta-b07-0c4c6898a5"
+          ]
+        },
+        "technique_direct_damage": {
+          "ladder": [
+            "3d6+8",
+            "2d10+9"
+          ],
+          "sources": [
+            "halcon_tormenta-b03-27f18b5b64",
+            "halcon_tormenta-b01-eec52a9ca0"
+          ]
+        }
+      },
+      "fixed_technique": {
+        "name": "Picado del Relámpago",
+        "mechanics": [
+          "DIRECT_DAMAGE"
+        ],
+        "cadence": 3
+      },
+      "source_note": "CLEAN-only envelope; high EVA/PREC convergence was explicitly exercised with T4 in heavy validation."
     }
   },
   "guards": {
@@ -342,6 +714,9 @@
     "runtime_adapter_must_not_mutate_canonical": true,
     "profession_xp_must_not_receive_mutant_multiplier": true,
     "loot_probability_must_not_be_scaled_by_adapter": true,
-    "every_upper_stat_must_be_gte_t0": true
+    "every_upper_stat_must_be_gte_t0": true,
+    "unique_species_variance_forbidden": true,
+    "repeatable_extension_requires_ready_t0": true,
+    "repeatable_extension_requires_closed_adaptive_chain": true
   }
 }
