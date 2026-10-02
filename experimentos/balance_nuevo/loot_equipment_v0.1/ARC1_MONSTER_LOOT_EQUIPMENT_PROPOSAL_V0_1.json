@@ -1,6 +1,6 @@
 {
   "schema_version": "arc1-monster-loot-equipment-v0.1",
-  "status": "LAB_PROPOSAL_AWAITING_HUMAN_RATIFICATION",
+  "status": "HUMAN_APPROVED_BASE_LOOT_PENDING_MISSION_AND_PRICE_VALIDATION",
   "created_on": "2026-10-01",
   "source_head": "17c16f66dc929a91d3ebab5e5c4bb9ac17b92e5e",
   "principles": [
@@ -454,5 +454,232 @@
     "no_profession_xp_from_superficial_loot": true,
     "automatic_loot_rolls_independent": true,
     "macaco_rare_pill_note": "Pildora de consolidacion remains a rare stolen-object drop at 1.5% only; it is not required by any equipment route."
+  },
+  "human_approval": {
+    "date": "2026-10-01",
+    "scope": "Base automatic-loot identities, probabilities, equipment-material routes and mutant quantity semantics approved as basis; mission hooks and resale values require validation before final closure."
+  },
+  "resale_policy": {
+    "mode": "SPECIALIST_BUYBACK_NOT_UNIVERSAL_VENDOR",
+    "rule": "Each superficial automatic-loot item has a small reference stone buyback at a plausible specialist. There is no universal sell-all command implied by this contract.",
+    "automatic_loot_values": {
+      "diente_qi_desgastado": {
+        "price_stones": 1,
+        "buyer": "Tao Ming / Puestos de suministros",
+        "stage": "LianQi_I"
+      },
+      "escama_qi_desprendida": {
+        "price_stones": 1,
+        "buyer": "Ning Cai",
+        "stage": "LianQi_I"
+      },
+      "colmillo_lobo_legitimo": {
+        "price_stones": 1,
+        "buyer": "Ning Cai",
+        "stage": "LianQi_I"
+      },
+      "fragmento_caparazon_jade": {
+        "price_stones": 1,
+        "buyer": "Lu Cheng",
+        "stage": "LianQi_I"
+      },
+      "herraje_robado": {
+        "price_stones": 1,
+        "buyer": "Lu Cheng",
+        "stage": "LianQi_I"
+      },
+      "pildora_consolidacion": {
+        "price_stones": 2,
+        "buyer": "Yao Fen / Medicina",
+        "stage": "LianQi_I",
+        "note": "Rare stolen finished item; not an equipment material."
+      },
+      "costra_ceniza_vitrificada": {
+        "price_stones": 2,
+        "buyer": "Lu Cheng",
+        "stage": "LianQi_II"
+      },
+      "esquirla_coraza_ferrea": {
+        "price_stones": 2,
+        "buyer": "Lu Cheng",
+        "stage": "LianQi_II"
+      },
+      "escama_lunar_desprendida": {
+        "price_stones": 3,
+        "buyer": "Lan Meihua",
+        "stage": "LianQi_III"
+      },
+      "escama_estelar_conductiva": {
+        "price_stones": 3,
+        "buyer": "Wen Tao / Lu Cheng",
+        "stage": "LianQi_III"
+      },
+      "cristal_bruma_superficial": {
+        "price_stones": 4,
+        "buyer": "He Zhen / Wen Tao",
+        "stage": "LianQi_IV"
+      },
+      "pluma_exterior_estatica": {
+        "price_stones": 4,
+        "buyer": "Lu Cheng / He Zhen",
+        "stage": "LianQi_IV"
+      }
+    },
+    "extraction_material_general_resale": false,
+    "extraction_rule": "Extraction materials are primarily consumed by workshops, Alchemy and requisitions. Any future direct buyback requires its own economy pass.",
+    "anti_arbitrage": [
+      "buyback value must remain well below stage equipment prices",
+      "equipment material route always gives better functional value than liquidating the required material",
+      "rare medicine buyback must remain below ordinary finished-medicine purchase value",
+      "mutant quantity bonus may increase sellable quantity but never drop probability"
+    ]
+  },
+  "mission_requisition_hooks": [
+    {
+      "id": "REQ_M04_SUMINISTROS_PATRULLA",
+      "window": "M04_M05",
+      "stage": "LianQi_II",
+      "npc": "Jiang Rui",
+      "materials": {
+        "diente_qi_desgastado": 1,
+        "colmillo_lobo_legitimo": 1
+      },
+      "reward": {
+        "contribution": 1
+      },
+      "mandatory_for_main_mission": false,
+      "repeatable": false,
+      "purpose": "Introduce that field loot can be turned into useful patrol supplies without making M04 depend on RNG."
+    },
+    {
+      "id": "REQ_M05_TALLER_RUTA",
+      "window": "M05_M07",
+      "stage": "LianQi_II",
+      "npc": "Lu Cheng",
+      "materials": {
+        "fragmento_caparazon_jade": 1,
+        "herraje_robado": 1
+      },
+      "reward": {
+        "contribution": 2
+      },
+      "mandatory_for_main_mission": false,
+      "repeatable": false,
+      "purpose": "Workshop requisition tied to territorial service and route maintenance."
+    },
+    {
+      "id": "REQ_M06_MUESTRAS_ANOMALAS",
+      "window": "M06_M07",
+      "stage": "LianQi_II",
+      "npc": "Jiang Rui / He Zhen",
+      "any_of": [
+        {
+          "costra_ceniza_vitrificada": 1
+        },
+        {
+          "esquirla_coraza_ferrea": 1
+        }
+      ],
+      "reward": {
+        "contribution": 1,
+        "evidence_bonus": "MINOR"
+      },
+      "mandatory_for_main_mission": false,
+      "repeatable": false,
+      "evidence_bonus_cannot_replace_required_m06_evidence": true,
+      "purpose": "Optional physical sample supporting the anomaly investigation."
+    },
+    {
+      "id": "REQ_M08_CONDUCTIVIDAD",
+      "window": "M08_M11",
+      "stage": "LianQi_III",
+      "npc": "Wen Tao",
+      "materials": {
+        "escama_estelar_conductiva": 1
+      },
+      "reward": {
+        "contribution": 2
+      },
+      "mandatory_for_main_mission": false,
+      "repeatable": false,
+      "purpose": "Formation research can use a superficial conductive sample without consuming the internal Conducto Estelar required elsewhere."
+    },
+    {
+      "id": "REQ_M10_MUESTRA_LUNAR",
+      "window": "M10_M11",
+      "stage": "LianQi_III",
+      "npc": "Lan Meihua",
+      "materials": {
+        "escama_lunar_desprendida": 1
+      },
+      "reward": {
+        "contribution": 2
+      },
+      "mandatory_for_main_mission": false,
+      "repeatable": false,
+      "purpose": "Medical observation request aligned with M10 without replacing Examen or Alchemy materials."
+    },
+    {
+      "id": "REQ_M13_ANCLA_BRUMA",
+      "window": "M13_M15",
+      "stage": "LianQi_IV",
+      "npc": "He Zhen",
+      "materials": {
+        "cristal_bruma_superficial": 1
+      },
+      "reward": {
+        "contribution": 3
+      },
+      "mandatory_for_main_mission": false,
+      "repeatable": false,
+      "purpose": "Maintenance/Formations test material for old infrastructure."
+    },
+    {
+      "id": "REQ_M13_CONDUCTOR_TORMENTA",
+      "window": "M13_M15",
+      "stage": "LianQi_IV",
+      "npc": "Lu Cheng",
+      "materials": {
+        "pluma_exterior_estatica": 1
+      },
+      "reward": {
+        "contribution": 3
+      },
+      "mandatory_for_main_mission": false,
+      "repeatable": false,
+      "purpose": "Workshop request for a disposable conductive guide."
+    },
+    {
+      "id": "REQ_M16_EMERGENCIA_MATERIALES",
+      "window": "M16",
+      "stage": "LianQi_IV",
+      "npc": "He Zhen / Duan Shibo / Lu Cheng",
+      "any_of": [
+        {
+          "cristal_bruma_superficial": 1
+        },
+        {
+          "pluma_exterior_estatica": 1
+        },
+        {
+          "esquirla_coraza_ferrea": 1
+        }
+      ],
+      "reward": {
+        "crisis_support": "REDUCES_RESOURCE_COST_ONE_FRONT"
+      },
+      "mandatory_for_main_mission": false,
+      "repeatable": false,
+      "cannot_gate_m17": true,
+      "purpose": "Emergency optional turn-in can reduce institutional resource cost but never block crisis completion."
+    }
+  ],
+  "mission_design_guard": {
+    "no_rng_drop_as_required_main_objective": true,
+    "no_requisition_may_gate_cultivation": true,
+    "no_requisition_may_gate_mission_chain": true,
+    "m02_examen_tutorial_unchanged": true,
+    "m06_evidence_core_unchanged": true,
+    "m16_all_fronts_rule_unchanged": true
   }
 }
