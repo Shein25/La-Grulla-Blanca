@@ -23,6 +23,9 @@ jobs:
       - name: Simulate loot and equipment material routes
         working-directory: experimentos/balance_nuevo/loot_equipment_v0.1
         run: python simulate_loot_equipment_v0_1.py
+      - name: Validate mission hooks and specialist buyback
+        working-directory: experimentos/balance_nuevo/loot_equipment_v0.1
+        run: python simulate_mission_buyback_v0_1.py
       - name: Upload simulation
         uses: actions/upload-artifact@v4
         with:
@@ -30,4 +33,5 @@ jobs:
           path: |
             experimentos/balance_nuevo/loot_equipment_v0.1/LOOT_EQUIPMENT_SIMULATION_V0_1.json
             experimentos/balance_nuevo/loot_equipment_v0.1/LOOT_EQUIPMENT_SIMULATION_V0_1.md
+            experimentos/balance_nuevo/loot_equipment_v0.1/MISSION_BUYBACK_VALIDATION_V0_1.json
           if-no-files-found: error
