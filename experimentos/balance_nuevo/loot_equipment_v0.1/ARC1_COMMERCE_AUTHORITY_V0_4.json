@@ -2162,5 +2162,17 @@
     "stat_authority": "NEW_COMBAT_STATS_V0_1",
     "legacy_stat_bridge": false,
     "save_schema_version": 3
+  },
+  "slice1_a07_authority": {
+    "file": "ARC1_COMMERCE_SLICE1_A07_PREFLIGHT_V0_1.json",
+    "status": "HUMAN_RATIFIED_DESIGN_AUTHORITY__PRE_IMPLEMENTATION",
+    "actor": "ning_cai",
+    "offer": "calzas_sendero_pinos",
+    "price_stones": 8,
+    "source_mission": "M04",
+    "entry": "A07 authenticated DOMAIN:COMMERCE option after canonical-handler priority",
+    "return": "new A07 capability; never rerun cmd_hablar()/mission handler merely to resume",
+    "hp_semantics": "equip max_hp +3 without healing; unequip clamps current HP to new max",
+    "runtime_modified_here": false
   }
 }
