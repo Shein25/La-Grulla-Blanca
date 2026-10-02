@@ -1,0 +1,33 @@
+name: Monster Loot Equipment Economy v0.1
+
+on:
+  push:
+    branches:
+      - experiment/monster-loot-equipment-economy-v0.1
+    paths:
+      - "experimentos/balance_nuevo/loot_equipment_v0.1/**"
+      - ".github/workflows/monster-loot-equipment-economy-v0-1.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  simulate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Simulate loot and equipment material routes
+        working-directory: experimentos/balance_nuevo/loot_equipment_v0.1
+        run: python simulate_loot_equipment_v0_1.py
+      - name: Upload simulation
+        uses: actions/upload-artifact@v4
+        with:
+          name: RESULTADOS_LOOT_EQUIPMENT_V01
+          path: |
+            experimentos/balance_nuevo/loot_equipment_v0.1/LOOT_EQUIPMENT_SIMULATION_V0_1.json
+            experimentos/balance_nuevo/loot_equipment_v0.1/LOOT_EQUIPMENT_SIMULATION_V0_1.md
+          if-no-files-found: error
