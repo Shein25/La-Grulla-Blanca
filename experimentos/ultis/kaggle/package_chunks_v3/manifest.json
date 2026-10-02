@@ -1,0 +1,20 @@
+{
+  "package": "ULTI_3F_KAGGLE_PACKAGE_2026-10-02_V02.zip",
+  "revision": "v0.2-followup-chains",
+  "sha256": "2fbaafd40367f1104b6bd5a479601b1b64f09e0849d04700735e4618fcd52775",
+  "decoded_size_bytes": 29438,
+  "base64_length": 39252,
+  "parts": [
+    "chunk_00.b64",
+    "chunk_01.b64",
+    "chunk_02.b64",
+    "chunk_03.b64",
+    "chunk_04.b64",
+    "chunk_05.b64",
+    "chunk_06.b64",
+    "chunk_07.b64"
+  ],
+  "authority": "NEW_COMBAT_STATS_V0_1",
+  "branch": "experiment/ultis-kaggle-3familias-v0.1",
+  "path": "experimentos/ultis/kaggle/package_chunks_v3"
+}
