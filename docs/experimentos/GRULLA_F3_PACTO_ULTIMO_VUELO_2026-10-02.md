@@ -85,13 +85,30 @@ Una Fase III válida debe contener al menos una acción/intención real de la Gr
 
 El benchmark puede medir cuántas veces una Ulti **habría** saltado la fase, pero el encuentro no lo permite.
 
-## Fuente pendiente de integración
+## Fuente recuperada e integración LAB
 
-La rama `experiment/grulla-v2-final-boss-lab-v0.1` en su HEAD actual expone el monolito `grulla-blanca_ver74.html`, pero no contiene una implementación identificable de la Grulla F1–F3 sobre la cual aplicar el hook sin inventar identificadores o rutas.
+Se recuperó de la Library el prototipo más reciente disponible del jefe:
 
-Por lo tanto:
+- `BOSS_UI_B12_INTENCION_REGISTRO_REAL.html`
+- F1/F2/F3 visibles;
+- HP por fase 150 / 100 / 50;
+- transición real de UI;
+- intención y registro;
+- marcado explícitamente como prototipo aislado **SIN MOTOR**.
 
-- esta decisión queda cerrada;
-- el helper LAB queda implementado y probado;
-- **la inserción en runtime productivo queda DEFER hasta disponer del source real del jefe**;
-- no se parchea a ciegas el monolito.
+A partir de él se creó en esta rama:
+
+- `experimentos/boss-bench/BOSS_UI_B13_GRULLA_PACTO_ULTIMO_VUELO.html`
+
+B13 implementa en el prototipo:
+
+- activación automática del Pacto al entrar en F3;
+- floor de Vida a 1 ante daño letal;
+- protección reiterada frente a multi-hit mientras no haya primera acción F3 resuelta;
+- telemetría de letal prevenido / overkill;
+- liberación LAB explícita de la primera acción real F3;
+- muerte normal después de la liberación.
+
+La sintaxis JavaScript fue validada y no usa `Date.now()`.
+
+**Importante:** B12/B13 siguen siendo prototipos sin motor. La integración al runtime productivo continúa DEFER hasta conectar el hook al commit autoritativo de daño a Vida y al evento real de resolución de intención F3. No se inventa ese punto de integración.
