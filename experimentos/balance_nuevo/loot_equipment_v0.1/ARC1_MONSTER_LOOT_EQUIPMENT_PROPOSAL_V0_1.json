@@ -1,0 +1,394 @@
+{
+  "schema_version": "arc1-monster-loot-equipment-v0.1",
+  "status": "LAB_PROPOSAL_AWAITING_HUMAN_RATIFICATION",
+  "created_on": "2026-10-01",
+  "source_head": "17c16f66dc929a91d3ebab5e5c4bb9ac17b92e5e",
+  "principles": [
+    "Automatic loot and Spiritual Extraction are separate systems.",
+    "Automatic loot is incidental/superficial/stolen; Extraction is specialized anatomy.",
+    "No automatic loot item may duplicate an Extraction item from the same species.",
+    "Automatic loot used by equipment must remain optional because stones/contribution acquisition paths stay valid.",
+    "Equipment stats and power budgets are not changed by this contract.",
+    "Unique encounters do not use this recurrent automatic-loot table.",
+    "Boss rewards remain designed victory rewards, not recurrent RNG.",
+    "Rare consumable drops are never mandatory equipment ingredients."
+  ],
+  "probability_bands": {
+    "superficial_common": [
+      0.08,
+      0.15
+    ],
+    "incidental_useful": [
+      0.02,
+      0.05
+    ],
+    "rare": [
+      0.005,
+      0.02
+    ],
+    "exceptional": [
+      0.001,
+      0.01
+    ]
+  },
+  "extraction_reference": {
+    "base_probabilities": {
+      "simple": 0.6,
+      "normal": 0.45,
+      "dificil": 0.3,
+      "muy_dificil": 0.18
+    },
+    "novice_bonus_pp": 5,
+    "global_cap": 0.9,
+    "unique_species_excluded": true
+  },
+  "recurrent_species": {
+    "rata_qi": {
+      "automatic_loot": [
+        {
+          "item_id": "diente_qi_desgastado",
+          "name": "diente de qi desgastado",
+          "probability": 0.15,
+          "quantity": 1,
+          "category": "SUPERFICIAL_COMMON",
+          "equipment_required": true
+        }
+      ],
+      "extraction": [
+        "grasa_qi_roida"
+      ]
+    },
+    "serpiente_qi": {
+      "automatic_loot": [
+        {
+          "item_id": "escama_qi_desprendida",
+          "name": "escama de qi desprendida",
+          "probability": 0.12,
+          "quantity": 1,
+          "category": "SUPERFICIAL_COMMON",
+          "equipment_required": true
+        }
+      ],
+      "extraction": [
+        "aguijon_jade",
+        "membrana_serpentina"
+      ]
+    },
+    "lobo_espiritual": {
+      "automatic_loot": [
+        {
+          "item_id": "colmillo_lobo_legitimo",
+          "name": "colmillo de lobo espiritual intacto",
+          "probability": 0.1,
+          "quantity": 1,
+          "category": "SUPERFICIAL_COMMON",
+          "equipment_required": true
+        }
+      ],
+      "extraction": [
+        "medula_viento",
+        "tendon_tres_colas"
+      ]
+    },
+    "avispa_jade": {
+      "automatic_loot": [
+        {
+          "item_id": "fragmento_caparazon_jade",
+          "name": "fragmento de caparazón de jade",
+          "probability": 0.15,
+          "quantity": 1,
+          "category": "SUPERFICIAL_COMMON",
+          "equipment_required": true
+        }
+      ],
+      "extraction": [
+        "aguijon_jade",
+        "camara_jade"
+      ]
+    },
+    "mono_pildoras": {
+      "automatic_loot": [
+        {
+          "item_id": "herraje_robado",
+          "name": "herraje robado",
+          "probability": 0.12,
+          "quantity": 1,
+          "category": "SUPERFICIAL_COMMON",
+          "equipment_required": true
+        },
+        {
+          "item_id": "pildora_consolidacion",
+          "name": "píldora de consolidación robada",
+          "probability": 0.015,
+          "quantity": 1,
+          "category": "RARE",
+          "equipment_required": false
+        }
+      ],
+      "extraction": [
+        "vesicula_medicinal"
+      ]
+    },
+    "sapo_ceniza": {
+      "automatic_loot": [
+        {
+          "item_id": "costra_ceniza_vitrificada",
+          "name": "costra de ceniza vitrificada",
+          "probability": 0.12,
+          "quantity": 1,
+          "category": "SUPERFICIAL_COMMON",
+          "equipment_required": true
+        }
+      ],
+      "extraction": [
+        "glandula_termica",
+        "saco_hollin"
+      ]
+    },
+    "escarabajo_hierro": {
+      "automatic_loot": [
+        {
+          "item_id": "esquirla_coraza_ferrea",
+          "name": "esquirla de coraza férrea",
+          "probability": 0.1,
+          "quantity": 1,
+          "category": "SUPERFICIAL_COMMON",
+          "equipment_required": true
+        }
+      ],
+      "extraction": [
+        "caparazon_hierro",
+        "membrana_ferrea"
+      ]
+    },
+    "pez_lunar": {
+      "automatic_loot": [
+        {
+          "item_id": "escama_lunar_desprendida",
+          "name": "escama lunar desprendida",
+          "probability": 0.12,
+          "quantity": 1,
+          "category": "SUPERFICIAL_COMMON",
+          "equipment_required": true
+        }
+      ],
+      "extraction": [
+        "fluido_lunar",
+        "branquia_lunar"
+      ]
+    },
+    "anguila_estelar": {
+      "automatic_loot": [
+        {
+          "item_id": "escama_estelar_conductiva",
+          "name": "escama estelar conductiva",
+          "probability": 0.1,
+          "quantity": 1,
+          "category": "SUPERFICIAL_COMMON",
+          "equipment_required": true
+        }
+      ],
+      "extraction": [
+        "conducto_estelar",
+        "saco_residual_estelar"
+      ]
+    },
+    "devorador_niebla": {
+      "automatic_loot": [
+        {
+          "item_id": "cristal_bruma_superficial",
+          "name": "cristal de bruma superficial",
+          "probability": 0.08,
+          "quantity": 1,
+          "category": "SUPERFICIAL_COMMON",
+          "equipment_required": true
+        }
+      ],
+      "extraction": [
+        "bolsa_niebla",
+        "sedimento_niebla"
+      ]
+    },
+    "halcon_tormenta": {
+      "automatic_loot": [
+        {
+          "item_id": "pluma_exterior_estatica",
+          "name": "pluma exterior estática",
+          "probability": 0.08,
+          "quantity": 1,
+          "category": "SUPERFICIAL_COMMON",
+          "equipment_required": true
+        }
+      ],
+      "extraction": [
+        "fibra_tempestad",
+        "saco_pulmonar_tormenta"
+      ]
+    }
+  },
+  "equipment_material_routes": [
+    {
+      "equipment_id": "anillo_reserva_menor",
+      "workshop": "Puestos del Mercado del Valle",
+      "stage": "LianQi_II",
+      "materials": {
+        "diente_qi_desgastado": 1
+      },
+      "extra_cost": {
+        "stones": 4
+      },
+      "existing_route_preserved": true
+    },
+    {
+      "equipment_id": "pulsera_tension_meridiana",
+      "workshop": "Lan Meihua",
+      "stage": "LianQi_II",
+      "materials": {
+        "escama_qi_desprendida": 1,
+        "membrana_serpentina": 1
+      },
+      "extra_cost": {
+        "contribution": 1
+      },
+      "existing_route_preserved": true
+    },
+    {
+      "equipment_id": "amuleto_colmillo_montado",
+      "workshop": "Ning Cai",
+      "stage": "LianQi_II",
+      "materials": {
+        "colmillo_lobo_legitimo": 1,
+        "tendon_tres_colas": 1
+      },
+      "extra_cost": {
+        "stones": 2
+      },
+      "existing_route_preserved": true
+    },
+    {
+      "equipment_id": "aguja_acero_frio",
+      "workshop": "Lu Cheng",
+      "stage": "LianQi_II",
+      "materials": {
+        "fragmento_caparazon_jade": 1,
+        "camara_jade": 1
+      },
+      "extra_cost": {
+        "contribution": 2
+      },
+      "existing_route_preserved": true
+    },
+    {
+      "equipment_id": "bandana_cuero_reforzada",
+      "workshop": "Ning Cai",
+      "stage": "LianQi_II",
+      "materials": {
+        "herraje_robado": 1
+      },
+      "extra_cost": {
+        "stones": 3
+      },
+      "existing_route_preserved": true
+    },
+    {
+      "equipment_id": "brazales_pulso_firme",
+      "workshop": "Chen Bo",
+      "stage": "LianQi_II",
+      "materials": {
+        "costra_ceniza_vitrificada": 1,
+        "glandula_termica": 1
+      },
+      "extra_cost": {
+        "contribution": 1
+      },
+      "existing_route_preserved": true
+    },
+    {
+      "equipment_id": "anillo_sello_hierro",
+      "workshop": "Lu Cheng",
+      "stage": "LianQi_II",
+      "materials": {
+        "esquirla_coraza_ferrea": 1,
+        "membrana_ferrea": 1
+      },
+      "extra_cost": {
+        "contribution": 1
+      },
+      "existing_route_preserved": true
+    },
+    {
+      "equipment_id": "amuleto_meridiano_estable",
+      "workshop": "Lan Meihua",
+      "stage": "LianQi_III",
+      "materials": {
+        "escama_lunar_desprendida": 1,
+        "fluido_lunar": 1
+      },
+      "extra_cost": {
+        "contribution": 3
+      },
+      "existing_route_preserved": true
+    },
+    {
+      "equipment_id": "espada_vena_clara",
+      "workshop": "Lu Cheng",
+      "stage": "LianQi_III",
+      "materials": {
+        "escama_estelar_conductiva": 1,
+        "conducto_estelar": 1
+      },
+      "extra_cost": {
+        "stones": 8
+      },
+      "existing_route_preserved": true
+    },
+    {
+      "equipment_id": "amuleto_ancla_resonante",
+      "workshop": "He Zhen",
+      "stage": "LianQi_IV",
+      "materials": {
+        "cristal_bruma_superficial": 1,
+        "bolsa_niebla": 1
+      },
+      "extra_cost": {
+        "contribution": 3
+      },
+      "existing_route_preserved": true
+    },
+    {
+      "equipment_id": "hoja_seis_corrientes",
+      "workshop": "Lu Cheng",
+      "stage": "LianQi_IV",
+      "materials": {
+        "pluma_exterior_estatica": 1,
+        "fibra_tempestad": 1
+      },
+      "extra_cost": {
+        "contribution": 4
+      },
+      "existing_route_preserved": true
+    }
+  ],
+  "mutant_loot": {
+    "probability_scaling": false,
+    "unique_drop_probability_multiplier": 1,
+    "expected_quantity_multiplier": 1.5,
+    "implementation": "STOCHASTIC_QUANTITY_ROUNDING_AFTER_SUCCESS",
+    "quantity_rule": "For each successful non-unique automatic-loot stack, output floor(q*1.5) plus one additional unit with probability equal to the fractional remainder.",
+    "extraction_affected": false,
+    "profession_xp_affected": false
+  },
+  "guards": {
+    "no_equipment_stat_change": true,
+    "no_equipment_power_budget_change": true,
+    "no_extraction_probability_change": true,
+    "no_profession_xp_from_auto_loot": true,
+    "no_same_species_auto_loot_extraction_duplicate": true,
+    "rare_drop_not_required_for_equipment": true,
+    "equipment_material_route_optional": true,
+    "existing_stone_contribution_routes_preserved": true,
+    "no_unique_species_rng_table": true,
+    "no_main": true,
+    "no_merge": true
+  }
+}
