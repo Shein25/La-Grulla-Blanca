@@ -1,0 +1,9 @@
+{
+  "package": "ULTI_3F_FOLLOWUP_OVERRIDE_V02.zip",
+  "encoding": "base64-concat",
+  "parts": ["chunk_00.b64","chunk_01.b64","chunk_02.b64","chunk_03.b64","chunk_04.b64","chunk_05.b64"],
+  "base64_length": 24648,
+  "decoded_size_bytes": 18486,
+  "sha256": "3d7c011b5ca5f6433ebf952d617c5f8d99017f30733a378e67ce3c3941181abf",
+  "status": "LAB_OVERRIDE_V0_2_FOLLOWUP_CHAINS"
+}
