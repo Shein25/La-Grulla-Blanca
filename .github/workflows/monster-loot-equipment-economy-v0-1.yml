@@ -29,6 +29,9 @@ jobs:
       - name: Validate Commerce balance v0.2
         working-directory: experimentos/balance_nuevo/loot_equipment_v0.1
         run: python commerce_balance_v0_2_test.py
+      - name: Validate material economy v0.3
+        working-directory: experimentos/balance_nuevo/loot_equipment_v0.1
+        run: python simulate_material_economy_v0_3.py
       - name: Upload simulation
         uses: actions/upload-artifact@v4
         with:
@@ -37,4 +40,5 @@ jobs:
             experimentos/balance_nuevo/loot_equipment_v0.1/LOOT_EQUIPMENT_SIMULATION_V0_1.json
             experimentos/balance_nuevo/loot_equipment_v0.1/LOOT_EQUIPMENT_SIMULATION_V0_1.md
             experimentos/balance_nuevo/loot_equipment_v0.1/MISSION_BUYBACK_VALIDATION_V0_1.json
+            experimentos/balance_nuevo/loot_equipment_v0.1/MATERIAL_ECONOMY_V0_3_VALIDATION.json
           if-no-files-found: error
