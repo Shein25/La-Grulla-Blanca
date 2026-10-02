@@ -2013,13 +2013,18 @@
         "decrement contribution on commerce/service redemption",
         "treat current spendable balance as final institutional-progress authority"
       ],
-      "migration_required": true,
-      "migration_note": "Astra must audit how to introduce/read cumulative Contribution without silently corrupting legacy saves. No schema bump without explicit human approval."
+      "migration_required": false,
+      "migration_note": "No player-save migration is required because the game has never entered production. Development saves using spendable Contribution may be invalidated/reset. Runtime must adopt only the new non-spendable cumulative semantics."
     },
     "legacy_replacement": {
-      "authority": "NEW_ARC1_CATALOGS_ONLY",
-      "rule": "For Arc1 commerce integration, new equipment/items/material/extraction contracts replace conflicting legacy definitions. Do not preserve legacy catalog entries as parallel alternate authority.",
-      "no_silent_coexistence": true
+      "authority": "PURGE_LEGACY_NO_COMPATIBILITY",
+      "rule": "All conflicting Arc1 legacy commerce/equipment/items/contribution/extraction semantics must disappear from the target runtime. Do not preserve aliases, migration shims, dual catalogs, legacy save compatibility, legacy commands or fallback behavior.",
+      "no_silent_coexistence": true,
+      "save_compatibility_required": false,
+      "old_development_saves_supported": false,
+      "aliases_allowed_in_final_runtime": false,
+      "migration_shims_allowed_in_final_runtime": false,
+      "historical_files_may_remain_outside_runtime": true
     },
     "dialogue_entry": {
       "authority": "DIALOGUE_ONLY",
@@ -2058,24 +2063,31 @@
     "legacy_values_forbidden": true
   },
   "legacy_policy": {
-    "runtime_integration": "REPLACE_NOT_MERGE",
-    "forbidden": [
-      "legacy spendable Contribution commerce",
+    "runtime_integration": "PURGE_AND_REPLACE",
+    "final_runtime_must_not_contain": [
+      "legacy spendable Contribution purchase/canje semantics",
+      "legacy Contribution decrement paths used as active authority",
       "legacy extraction 75/60/40/25",
       "legacy branquia_lunar quantity 1",
       "legacy sedimento_niebla quantity 1",
-      "legacy equipment catalog entries that conflict with the 68-item Arc1 catalog",
-      "legacy monster automatic loot tables that conflict with approved low-drop tables",
-      "legacy direct public BUY/SELL command authority"
+      "legacy equipment catalog entries conflicting with the 68-item Arc1 catalog",
+      "legacy monster automatic loot tables conflicting with approved low-drop tables",
+      "legacy public BUY/SELL/COMMERCE parser command authority",
+      "legacy item aliases kept for save compatibility",
+      "legacy save migration shims",
+      "parallel old/new catalogs or fallback branches"
     ],
-    "historical_files": "May remain only as historical/audit evidence; they are not runtime authority."
+    "save_compatibility_required": false,
+    "old_development_saves": "INVALIDATE_OR_RESET",
+    "aliases_in_runtime": "FORBIDDEN",
+    "historical_artifacts": "May remain only in docs/experimentos/backup or audit history; never imported/executed by runtime."
   },
   "readiness": {
     "economic_design": "RATIFIED_FOR_PREFLIGHT",
     "runtime_implementation": "BLOCKED_UNTIL_ASTRA_REQUIRED_CHANGES_RESOLVED",
     "blockers": [
+      "purge legacy runtime semantics and ensure no old/new coexistence",
       "safe dialogue -> commerce entrypoint and safe return",
-      "cumulative non-spendable Contribution migration/save semantics",
       "new ITEMS/material definitions replacing legacy without coexistence",
       "merchant capability registry based only on canonical evidence/human approval",
       "atomic deterministic transaction domain",
