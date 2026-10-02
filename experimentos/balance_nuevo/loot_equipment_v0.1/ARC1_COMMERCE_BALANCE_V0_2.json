@@ -65,7 +65,13 @@
         30
       ]
     },
-    "purpose": "Contribution controls access; stones preserve economic opportunity cost and prevent unlocked institutional stock from becoming free."
+    "purpose": "Contribution controls access; stones preserve economic opportunity cost and prevent unlocked institutional stock from becoming free.",
+    "classification_priority": [
+      "NO_SALE source types first",
+      "existing local public permission HUESPED_SAUCES -> PUBLIC_CONTEXTUAL_STONES",
+      "any existing sect/institutional permission -> INSTITUTIONAL_STONES_GATE regardless of historical currency field",
+      "remaining sellable items -> PUBLIC_OPEN_STONES"
+    ]
   },
   "stage_summary": {
     "LianQi_I": {
@@ -73,18 +79,18 @@
       "INSTITUTIONAL_STONES_GATE": 8
     },
     "LianQi_II": {
-      "PUBLIC_STONES": 13,
-      "INSTITUTIONAL_STONES_GATE": 8
+      "INSTITUTIONAL_STONES_GATE": 11,
+      "PUBLIC_OPEN_STONES": 6,
+      "PUBLIC_CONTEXTUAL_STONES": 4
     },
     "LianQi_III": {
-      "INSTITUTIONAL_STONES_GATE": 12,
-      "PUBLIC_STONES": 5,
-      "NO_SALE": 2
+      "INSTITUTIONAL_STONES_GATE": 16,
+      "NO_SALE": 2,
+      "PUBLIC_OPEN_STONES": 1
     },
     "LianQi_IV": {
-      "INSTITUTIONAL_STONES_GATE": 12,
-      "NO_SALE": 1,
-      "PUBLIC_STONES": 1
+      "INSTITUTIONAL_STONES_GATE": 13,
+      "NO_SALE": 1
     }
   },
   "equipment": [
@@ -105,7 +111,7 @@
       "source_npc_evidence": "Tao Ming",
       "materials": [],
       "merchant_authority_status": "NONE",
-      "notes": "Not sold: preserve issue/origin/mission/exploration acquisition."
+      "notes": "Preserve unique/origin/mission/issue acquisition; not commercial stock."
     },
     {
       "item_id": "cuchillo_hueso_callejero",
@@ -124,7 +130,7 @@
       "source_npc_evidence": null,
       "materials": [],
       "merchant_authority_status": "NONE",
-      "notes": "Not sold: preserve issue/origin/mission/exploration acquisition."
+      "notes": "Preserve unique/origin/mission/issue acquisition; not commercial stock."
     },
     {
       "item_id": "baston_fresno_practica",
@@ -142,8 +148,8 @@
       "source_location": "pabellon_marcial",
       "source_npc_evidence": "Wei Jian",
       "materials": [],
-      "merchant_authority_status": "AUTHORIZER_OR_SOURCE_NOT_AUTOMATICALLY_VENDOR",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "uniforme_gris_aspirante",
@@ -162,7 +168,7 @@
       "source_npc_evidence": "Tao Ming",
       "materials": [],
       "merchant_authority_status": "NONE",
-      "notes": "Not sold: preserve issue/origin/mission/exploration acquisition."
+      "notes": "Preserve unique/origin/mission/issue acquisition; not commercial stock."
     },
     {
       "item_id": "bandana_lino_simple",
@@ -180,8 +186,8 @@
       "source_location": "taller_textiles_cuero",
       "source_npc_evidence": "Ning Cai",
       "materials": [],
-      "merchant_authority_status": "SPECIALIST_FULFILLMENT_CANDIDATE_ASTRA_AUDIT",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "vendas_antebrazo_practica",
@@ -199,8 +205,8 @@
       "source_location": "pabellon_marcial",
       "source_npc_evidence": "Wei Jian",
       "materials": [],
-      "merchant_authority_status": "AUTHORIZER_OR_SOURCE_NOT_AUTOMATICALLY_VENDOR",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "fajin_discipulo_externo",
@@ -219,7 +225,7 @@
       "source_npc_evidence": "Qiao Ren",
       "materials": [],
       "merchant_authority_status": "NONE",
-      "notes": "Not sold: preserve issue/origin/mission/exploration acquisition."
+      "notes": "Preserve unique/origin/mission/issue acquisition; not commercial stock."
     },
     {
       "item_id": "pantalon_viaje_gris",
@@ -237,8 +243,8 @@
       "source_location": "taller_textiles_cuero",
       "source_npc_evidence": "Ning Cai",
       "materials": [],
-      "merchant_authority_status": "SPECIALIST_FULFILLMENT_CANDIDATE_ASTRA_AUDIT",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "zapatos_suela_blanda",
@@ -256,8 +262,8 @@
       "source_location": "taller_textiles_cuero",
       "source_npc_evidence": "Ning Cai",
       "materials": [],
-      "merchant_authority_status": "SPECIALIST_FULFILLMENT_CANDIDATE_ASTRA_AUDIT",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "colgante_fragmento_jade",
@@ -276,7 +282,7 @@
       "source_npc_evidence": null,
       "materials": [],
       "merchant_authority_status": "NONE",
-      "notes": "Not sold: preserve issue/origin/mission/exploration acquisition."
+      "notes": "Preserve unique/origin/mission/issue acquisition; not commercial stock."
     },
     {
       "item_id": "pulsera_fibra_trenzada",
@@ -294,8 +300,8 @@
       "source_location": "taller_textiles_cuero",
       "source_npc_evidence": "Ning Cai",
       "materials": [],
-      "merchant_authority_status": "SPECIALIST_FULFILLMENT_CANDIDATE_ASTRA_AUDIT",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "anillo_hierro_oxidado",
@@ -314,7 +320,7 @@
       "source_npc_evidence": null,
       "materials": [],
       "merchant_authority_status": "NONE",
-      "notes": "Not sold: preserve issue/origin/mission/exploration acquisition."
+      "notes": "Preserve unique/origin/mission/issue acquisition; not commercial stock."
     },
     {
       "item_id": "espada_hierro_equilibrada",
@@ -323,17 +329,17 @@
       "slot": "ARMA",
       "grade": "TRABAJO_ESPIRITUAL_MENOR",
       "power_budget": 1.67,
-      "commerce_channel": "PUBLIC_STONES",
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
       "stone_price": 12,
-      "contribution_required": 0,
+      "contribution_required": 3,
       "contribution_spent": false,
       "source_mission": "M04",
       "required_permission": "PATRULLA_TERRITORIAL",
       "source_location": "taller_armas",
       "source_npc_evidence": "Lu Cheng",
       "materials": [],
-      "merchant_authority_status": "NPC_SERVICE_PROVIDER_CANDIDATE_ASTRA_AUDIT",
-      "notes": "No Contribution threshold. Existing mission/location/permission gates remain if already present."
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "sable_patrulla_valle",
@@ -351,8 +357,8 @@
       "source_location": "taller_armas",
       "source_npc_evidence": "Lu Cheng",
       "materials": [],
-      "merchant_authority_status": "SPECIALIST_FULFILLMENT_CANDIDATE_ASTRA_AUDIT",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "aguja_acero_frio",
@@ -370,8 +376,8 @@
       "source_location": "taller_armas",
       "source_npc_evidence": "Lu Cheng",
       "materials": [],
-      "merchant_authority_status": "SPECIALIST_FULFILLMENT_CANDIDATE_ASTRA_AUDIT",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "bandana_cuero_reforzada",
@@ -380,17 +386,17 @@
       "slot": "TOCADO",
       "grade": "TRABAJO_ESPIRITUAL_MENOR",
       "power_budget": 1.25,
-      "commerce_channel": "PUBLIC_STONES",
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
       "stone_price": 7,
-      "contribution_required": 0,
+      "contribution_required": 3,
       "contribution_spent": false,
       "source_mission": "M04",
       "required_permission": "DISCIPULO_EXTERNO",
       "source_location": "taller_textiles_cuero",
       "source_npc_evidence": "Ning Cai",
       "materials": [],
-      "merchant_authority_status": "NPC_SERVICE_PROVIDER_CANDIDATE_ASTRA_AUDIT",
-      "notes": "No Contribution threshold. Existing mission/location/permission gates remain if already present."
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "capucha_observador_valle",
@@ -399,7 +405,7 @@
       "slot": "TOCADO",
       "grade": "TRABAJO_ESPIRITUAL_MENOR",
       "power_budget": 1,
-      "commerce_channel": "PUBLIC_STONES",
+      "commerce_channel": "PUBLIC_OPEN_STONES",
       "stone_price": 7,
       "contribution_required": 0,
       "contribution_spent": false,
@@ -408,8 +414,8 @@
       "source_location": "mercado_valle",
       "source_npc_evidence": "Puestos del Mercado del Valle",
       "materials": [],
-      "merchant_authority_status": "PUBLIC_OUTLET_ALREADY_IN_CATALOG",
-      "notes": "No Contribution threshold. Existing mission/location/permission gates remain if already present."
+      "merchant_authority_status": "PUBLIC_OUTLET_EVIDENCED",
+      "notes": "Open personal commerce once its existing location/mission availability is reachable; no Contribution check."
     },
     {
       "item_id": "sobretunica_patrulla",
@@ -427,8 +433,8 @@
       "source_location": "puesto_valle",
       "source_npc_evidence": "Jiang Rui",
       "materials": [],
-      "merchant_authority_status": "AUTHORIZER_OR_SOURCE_NOT_AUTOMATICALLY_VENDOR",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "tunica_ruta_sauces",
@@ -437,7 +443,7 @@
       "slot": "VESTIDURA",
       "grade": "TRABAJO_ESPIRITUAL_MENOR",
       "power_budget": 4,
-      "commerce_channel": "PUBLIC_STONES",
+      "commerce_channel": "PUBLIC_CONTEXTUAL_STONES",
       "stone_price": 10,
       "contribution_required": 0,
       "contribution_spent": false,
@@ -446,8 +452,8 @@
       "source_location": "sauces_plaza",
       "source_npc_evidence": "Artesanos de Sauces",
       "materials": [],
-      "merchant_authority_status": "PUBLIC_OUTLET_ALREADY_IN_CATALOG",
-      "notes": "No Contribution threshold. Existing mission/location/permission gates remain if already present."
+      "merchant_authority_status": "PUBLIC_OUTLET_EVIDENCED",
+      "notes": "Civil/local public commerce using stones; preserves the existing local permission but no Contribution check."
     },
     {
       "item_id": "brazales_cuero_cruzado",
@@ -456,17 +462,17 @@
       "slot": "BRAZALES",
       "grade": "TRABAJO_ESPIRITUAL_MENOR",
       "power_budget": 1.5,
-      "commerce_channel": "PUBLIC_STONES",
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
       "stone_price": 9,
-      "contribution_required": 0,
+      "contribution_required": 3,
       "contribution_spent": false,
       "source_mission": "M04",
       "required_permission": "DISCIPULO_EXTERNO",
       "source_location": "taller_textiles_cuero",
       "source_npc_evidence": "Ning Cai",
       "materials": [],
-      "merchant_authority_status": "NPC_SERVICE_PROVIDER_CANDIDATE_ASTRA_AUDIT",
-      "notes": "No Contribution threshold. Existing mission/location/permission gates remain if already present."
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "brazales_pulso_firme",
@@ -484,8 +490,8 @@
       "source_location": "sala_anatomica",
       "source_npc_evidence": "Chen Bo",
       "materials": [],
-      "merchant_authority_status": "MEDICINA_AUTHORIZATION_FULFILLMENT_TO_AUDIT",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "fajin_patrulla",
@@ -503,8 +509,8 @@
       "source_location": "puesto_valle",
       "source_npc_evidence": "Jiang Rui",
       "materials": [],
-      "merchant_authority_status": "AUTHORIZER_OR_SOURCE_NOT_AUTOMATICALLY_VENDOR",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "calzas_sendero_pinos",
@@ -513,7 +519,7 @@
       "slot": "PIERNAS",
       "grade": "TRABAJO_ESPIRITUAL_MENOR",
       "power_budget": 1.83,
-      "commerce_channel": "PUBLIC_STONES",
+      "commerce_channel": "PUBLIC_OPEN_STONES",
       "stone_price": 8,
       "contribution_required": 0,
       "contribution_spent": false,
@@ -522,8 +528,8 @@
       "source_location": "taller_textiles_cuero",
       "source_npc_evidence": "Ning Cai",
       "materials": [],
-      "merchant_authority_status": "NPC_SERVICE_PROVIDER_CANDIDATE_ASTRA_AUDIT",
-      "notes": "No Contribution threshold. Existing mission/location/permission gates remain if already present."
+      "merchant_authority_status": "SERVICE_ROLE_EVIDENCED__COMMERCE_CAPABILITY_REQUIRES_ASTRA_AUDIT",
+      "notes": "Open personal commerce once its existing location/mission availability is reachable; no Contribution check."
     },
     {
       "item_id": "sandalias_corriente_ligera",
@@ -532,7 +538,7 @@
       "slot": "CALZADO",
       "grade": "TRABAJO_ESPIRITUAL_MENOR",
       "power_budget": 1.33,
-      "commerce_channel": "PUBLIC_STONES",
+      "commerce_channel": "PUBLIC_CONTEXTUAL_STONES",
       "stone_price": 11,
       "contribution_required": 0,
       "contribution_spent": false,
@@ -541,8 +547,8 @@
       "source_location": "sauces_plaza",
       "source_npc_evidence": "Artesanos de Sauces",
       "materials": [],
-      "merchant_authority_status": "PUBLIC_OUTLET_ALREADY_IN_CATALOG",
-      "notes": "No Contribution threshold. Existing mission/location/permission gates remain if already present."
+      "merchant_authority_status": "PUBLIC_OUTLET_EVIDENCED",
+      "notes": "Civil/local public commerce using stones; preserves the existing local permission but no Contribution check."
     },
     {
       "item_id": "botas_piedra_humeda",
@@ -551,7 +557,7 @@
       "slot": "CALZADO",
       "grade": "TRABAJO_ESPIRITUAL_MENOR",
       "power_budget": 1.08,
-      "commerce_channel": "PUBLIC_STONES",
+      "commerce_channel": "PUBLIC_OPEN_STONES",
       "stone_price": 9,
       "contribution_required": 0,
       "contribution_spent": false,
@@ -560,8 +566,8 @@
       "source_location": "mercado_valle",
       "source_npc_evidence": "Puestos del Mercado del Valle",
       "materials": [],
-      "merchant_authority_status": "PUBLIC_OUTLET_ALREADY_IN_CATALOG",
-      "notes": "No Contribution threshold. Existing mission/location/permission gates remain if already present."
+      "merchant_authority_status": "PUBLIC_OUTLET_EVIDENCED",
+      "notes": "Open personal commerce once its existing location/mission availability is reachable; no Contribution check."
     },
     {
       "item_id": "amuleto_colmillo_montado",
@@ -570,7 +576,7 @@
       "slot": "AMULETO",
       "grade": "TRABAJO_ESPIRITUAL_MENOR",
       "power_budget": 1,
-      "commerce_channel": "PUBLIC_STONES",
+      "commerce_channel": "PUBLIC_OPEN_STONES",
       "stone_price": 4,
       "contribution_required": 0,
       "contribution_spent": false,
@@ -581,8 +587,8 @@
       "materials": [
         "colmillo_lobo_legitimo"
       ],
-      "merchant_authority_status": "NPC_SERVICE_PROVIDER_CANDIDATE_ASTRA_AUDIT",
-      "notes": "No Contribution threshold. Existing mission/location/permission gates remain if already present."
+      "merchant_authority_status": "SERVICE_ROLE_EVIDENCED__COMMERCE_CAPABILITY_REQUIRES_ASTRA_AUDIT",
+      "notes": "Open personal commerce once its existing location/mission availability is reachable; no Contribution check."
     },
     {
       "item_id": "amuleto_sauce_sereno",
@@ -591,7 +597,7 @@
       "slot": "AMULETO",
       "grade": "TRABAJO_ESPIRITUAL_MENOR",
       "power_budget": 1.08,
-      "commerce_channel": "PUBLIC_STONES",
+      "commerce_channel": "PUBLIC_CONTEXTUAL_STONES",
       "stone_price": 10,
       "contribution_required": 0,
       "contribution_spent": false,
@@ -600,8 +606,8 @@
       "source_location": "sauces_plaza",
       "source_npc_evidence": "Artesanos de Sauces",
       "materials": [],
-      "merchant_authority_status": "PUBLIC_OUTLET_ALREADY_IN_CATALOG",
-      "notes": "No Contribution threshold. Existing mission/location/permission gates remain if already present."
+      "merchant_authority_status": "PUBLIC_OUTLET_EVIDENCED",
+      "notes": "Civil/local public commerce using stones; preserves the existing local permission but no Contribution check."
     },
     {
       "item_id": "pulsera_cauce_trenzado",
@@ -610,7 +616,7 @@
       "slot": "PULSERA",
       "grade": "TRABAJO_ESPIRITUAL_MENOR",
       "power_budget": 1,
-      "commerce_channel": "PUBLIC_STONES",
+      "commerce_channel": "PUBLIC_CONTEXTUAL_STONES",
       "stone_price": 8,
       "contribution_required": 0,
       "contribution_spent": false,
@@ -619,8 +625,8 @@
       "source_location": "sauces_plaza",
       "source_npc_evidence": "Artesanos de Sauces",
       "materials": [],
-      "merchant_authority_status": "PUBLIC_OUTLET_ALREADY_IN_CATALOG",
-      "notes": "No Contribution threshold. Existing mission/location/permission gates remain if already present."
+      "merchant_authority_status": "PUBLIC_OUTLET_EVIDENCED",
+      "notes": "Civil/local public commerce using stones; preserves the existing local permission but no Contribution check."
     },
     {
       "item_id": "anillo_sello_hierro",
@@ -638,8 +644,8 @@
       "source_location": "taller_armas",
       "source_npc_evidence": "Lu Cheng",
       "materials": [],
-      "merchant_authority_status": "SPECIALIST_FULFILLMENT_CANDIDATE_ASTRA_AUDIT",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "anillo_corriente_clara",
@@ -648,7 +654,7 @@
       "slot": "ANILLO",
       "grade": "TRABAJO_ESPIRITUAL_MENOR",
       "power_budget": 1.17,
-      "commerce_channel": "PUBLIC_STONES",
+      "commerce_channel": "PUBLIC_OPEN_STONES",
       "stone_price": 10,
       "contribution_required": 0,
       "contribution_spent": false,
@@ -657,8 +663,8 @@
       "source_location": "mercado_valle",
       "source_npc_evidence": "Puestos del Mercado del Valle",
       "materials": [],
-      "merchant_authority_status": "PUBLIC_OUTLET_ALREADY_IN_CATALOG",
-      "notes": "No Contribution threshold. Existing mission/location/permission gates remain if already present."
+      "merchant_authority_status": "PUBLIC_OUTLET_EVIDENCED",
+      "notes": "Open personal commerce once its existing location/mission availability is reachable; no Contribution check."
     },
     {
       "item_id": "espada_vena_clara",
@@ -676,8 +682,8 @@
       "source_location": "taller_armas",
       "source_npc_evidence": "Lu Cheng",
       "materials": [],
-      "merchant_authority_status": "SPECIALIST_FULFILLMENT_CANDIDATE_ASTRA_AUDIT",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "vara_dos_corrientes",
@@ -695,8 +701,8 @@
       "source_location": "formaciones",
       "source_npc_evidence": "He Zhen",
       "materials": [],
-      "merchant_authority_status": "AUTHORIZER_OR_SOURCE_NOT_AUTOMATICALLY_VENDOR",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "sable_anillo_gris",
@@ -705,17 +711,17 @@
       "slot": "ARMA",
       "grade": "REFINADO_MENOR",
       "power_budget": 3,
-      "commerce_channel": "PUBLIC_STONES",
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
       "stone_price": 18,
-      "contribution_required": 0,
+      "contribution_required": 16,
       "contribution_spent": false,
       "source_mission": "M08",
       "required_permission": "SECTA_INTERIOR",
       "source_location": "taller_armas",
       "source_npc_evidence": "Lu Cheng",
       "materials": [],
-      "merchant_authority_status": "NPC_SERVICE_PROVIDER_CANDIDATE_ASTRA_AUDIT",
-      "notes": "No Contribution threshold. Existing mission/location/permission gates remain if already present."
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "tocado_hilo_formacion",
@@ -733,8 +739,8 @@
       "source_location": "taller_formaciones",
       "source_npc_evidence": "Wen Tao",
       "materials": [],
-      "merchant_authority_status": "SPECIALIST_FULFILLMENT_CANDIDATE_ASTRA_AUDIT",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "velo_archivo_sereno",
@@ -752,8 +758,8 @@
       "source_location": "archivos",
       "source_npc_evidence": "Song Rui",
       "materials": [],
-      "merchant_authority_status": "AUTHORIZER_OR_SOURCE_NOT_AUTOMATICALLY_VENDOR",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "tunica_reforzada_trama_cobre",
@@ -771,8 +777,8 @@
       "source_location": "taller_textiles_cuero",
       "source_npc_evidence": "Ning Cai",
       "materials": [],
-      "merchant_authority_status": "SPECIALIST_FULFILLMENT_CANDIDATE_ASTRA_AUDIT",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "vestidura_flujo_ligero",
@@ -781,17 +787,17 @@
       "slot": "VESTIDURA",
       "grade": "REFINADO_MENOR",
       "power_budget": 4.5,
-      "commerce_channel": "PUBLIC_STONES",
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
       "stone_price": 20,
-      "contribution_required": 0,
+      "contribution_required": 16,
       "contribution_spent": false,
       "source_mission": "M08",
       "required_permission": "SECTA_INTERIOR",
       "source_location": "taller_textiles_cuero",
       "source_npc_evidence": "Ning Cai",
       "materials": [],
-      "merchant_authority_status": "NPC_SERVICE_PROVIDER_CANDIDATE_ASTRA_AUDIT",
-      "notes": "No Contribution threshold. Existing mission/location/permission gates remain if already present."
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "brazales_pulso_medico",
@@ -809,8 +815,8 @@
       "source_location": "medicina",
       "source_npc_evidence": "Lan Meihua",
       "materials": [],
-      "merchant_authority_status": "MEDICINA_AUTHORIZATION_FULFILLMENT_TO_AUDIT",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "fajin_dos_alas",
@@ -829,7 +835,7 @@
       "source_npc_evidence": "He Zhen",
       "materials": [],
       "merchant_authority_status": "NONE",
-      "notes": "Not sold: preserve issue/origin/mission/exploration acquisition."
+      "notes": "Preserve unique/origin/mission/issue acquisition; not commercial stock."
     },
     {
       "item_id": "calzas_paso_silencioso",
@@ -838,7 +844,7 @@
       "slot": "PIERNAS",
       "grade": "REFINADO_MENOR",
       "power_budget": 2.5,
-      "commerce_channel": "PUBLIC_STONES",
+      "commerce_channel": "PUBLIC_OPEN_STONES",
       "stone_price": 16,
       "contribution_required": 0,
       "contribution_spent": false,
@@ -847,8 +853,8 @@
       "source_location": "taller_textiles_cuero",
       "source_npc_evidence": "Ning Cai",
       "materials": [],
-      "merchant_authority_status": "NPC_SERVICE_PROVIDER_CANDIDATE_ASTRA_AUDIT",
-      "notes": "No Contribution threshold. Existing mission/location/permission gates remain if already present."
+      "merchant_authority_status": "SERVICE_ROLE_EVIDENCED__COMMERCE_CAPABILITY_REQUIRES_ASTRA_AUDIT",
+      "notes": "Open personal commerce once its existing location/mission availability is reachable; no Contribution check."
     },
     {
       "item_id": "calzado_nube_baja",
@@ -866,8 +872,8 @@
       "source_location": "taller_textiles_cuero",
       "source_npc_evidence": "Ning Cai",
       "materials": [],
-      "merchant_authority_status": "SPECIALIST_FULFILLMENT_CANDIDATE_ASTRA_AUDIT",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "amuleto_meridiano_estable",
@@ -885,8 +891,8 @@
       "source_location": "medicina",
       "source_npc_evidence": "Lan Meihua",
       "materials": [],
-      "merchant_authority_status": "MEDICINA_AUTHORIZATION_FULFILLMENT_TO_AUDIT",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "pulsera_nudo_formacion",
@@ -904,8 +910,8 @@
       "source_location": "taller_formaciones",
       "source_npc_evidence": "Wen Tao",
       "materials": [],
-      "merchant_authority_status": "SPECIALIST_FULFILLMENT_CANDIDATE_ASTRA_AUDIT",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "anillo_hilo_plata",
@@ -914,17 +920,17 @@
       "slot": "ANILLO",
       "grade": "REFINADO_MENOR",
       "power_budget": 1.67,
-      "commerce_channel": "PUBLIC_STONES",
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
       "stone_price": 18,
-      "contribution_required": 0,
+      "contribution_required": 18,
       "contribution_spent": false,
       "source_mission": "M09",
       "required_permission": "SECTA_INTERIOR",
       "source_location": "taller_armas",
       "source_npc_evidence": "Lu Cheng",
       "materials": [],
-      "merchant_authority_status": "NPC_SERVICE_PROVIDER_CANDIDATE_ASTRA_AUDIT",
-      "notes": "No Contribution threshold. Existing mission/location/permission gates remain if already present."
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "anillo_tierra_profunda",
@@ -942,8 +948,8 @@
       "source_location": "taller_textiles_cuero",
       "source_npc_evidence": "Ning Cai",
       "materials": [],
-      "merchant_authority_status": "SPECIALIST_FULFILLMENT_CANDIDATE_ASTRA_AUDIT",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "espejo_pulso_velado",
@@ -962,7 +968,7 @@
       "source_npc_evidence": null,
       "materials": [],
       "merchant_authority_status": "NONE",
-      "notes": "Not sold: preserve issue/origin/mission/exploration acquisition."
+      "notes": "Preserve unique/origin/mission/issue acquisition; not commercial stock."
     },
     {
       "item_id": "hoja_seis_corrientes",
@@ -980,8 +986,8 @@
       "source_location": "taller_armas",
       "source_npc_evidence": "Lu Cheng",
       "materials": [],
-      "merchant_authority_status": "SPECIALIST_FULFILLMENT_CANDIDATE_ASTRA_AUDIT",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "vara_relevo",
@@ -999,8 +1005,8 @@
       "source_location": "oficina_logistica",
       "source_npc_evidence": "Duan Shibo",
       "materials": [],
-      "merchant_authority_status": "AUTHORIZER_OR_SOURCE_NOT_AUTOMATICALLY_VENDOR",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "velo_vigilante_nucleo",
@@ -1018,8 +1024,8 @@
       "source_location": "pabellon_disciplina",
       "source_npc_evidence": "Qiao Ren",
       "materials": [],
-      "merchant_authority_status": "AUTHORIZER_OR_SOURCE_NOT_AUTOMATICALLY_VENDOR",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "manto_mantenimiento",
@@ -1037,8 +1043,8 @@
       "source_location": "oficina_logistica",
       "source_npc_evidence": "Duan Shibo",
       "materials": [],
-      "merchant_authority_status": "AUTHORIZER_OR_SOURCE_NOT_AUTOMATICALLY_VENDOR",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "brazales_relevo",
@@ -1056,8 +1062,8 @@
       "source_location": "taller_armas",
       "source_npc_evidence": "Lu Cheng",
       "materials": [],
-      "merchant_authority_status": "SPECIALIST_FULFILLMENT_CANDIDATE_ASTRA_AUDIT",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "fajin_nucleo_profundo",
@@ -1076,7 +1082,7 @@
       "source_npc_evidence": "Ji Xueying",
       "materials": [],
       "merchant_authority_status": "NONE",
-      "notes": "Not sold: preserve issue/origin/mission/exploration acquisition."
+      "notes": "Preserve unique/origin/mission/issue acquisition; not commercial stock."
     },
     {
       "item_id": "calzas_trama_sello",
@@ -1085,17 +1091,17 @@
       "slot": "PIERNAS",
       "grade": "REFINADO_DE_SECTA",
       "power_budget": 3,
-      "commerce_channel": "PUBLIC_STONES",
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
       "stone_price": 27,
-      "contribution_required": 0,
+      "contribution_required": 34,
       "contribution_spent": false,
       "source_mission": "M13",
       "required_permission": "LIV_REVELACION",
       "source_location": "taller_textiles_cuero",
       "source_npc_evidence": "Ning Cai",
       "materials": [],
-      "merchant_authority_status": "NPC_SERVICE_PROVIDER_CANDIDATE_ASTRA_AUDIT",
-      "notes": "No Contribution threshold. Existing mission/location/permission gates remain if already present."
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "botas_voto_inmovil",
@@ -1113,8 +1119,8 @@
       "source_location": "taller_textiles_cuero",
       "source_npc_evidence": "Ning Cai",
       "materials": [],
-      "merchant_authority_status": "SPECIALIST_FULFILLMENT_CANDIDATE_ASTRA_AUDIT",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "amuleto_ancla_resonante",
@@ -1132,8 +1138,8 @@
       "source_location": "formaciones",
       "source_npc_evidence": "He Zhen",
       "materials": [],
-      "merchant_authority_status": "AUTHORIZER_OR_SOURCE_NOT_AUTOMATICALLY_VENDOR",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "pulsera_nudo_crisis",
@@ -1151,8 +1157,8 @@
       "source_location": "medicina",
       "source_npc_evidence": "Lan Meihua",
       "materials": [],
-      "merchant_authority_status": "MEDICINA_AUTHORIZATION_FULFILLMENT_TO_AUDIT",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "anillo_relevo",
@@ -1170,8 +1176,8 @@
       "source_location": "taller_armas",
       "source_npc_evidence": "Lu Cheng",
       "materials": [],
-      "merchant_authority_status": "SPECIALIST_FULFILLMENT_CANDIDATE_ASTRA_AUDIT",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "anillo_marca_quieta",
@@ -1189,8 +1195,8 @@
       "source_location": "taller_formaciones",
       "source_npc_evidence": "Wen Tao",
       "materials": [],
-      "merchant_authority_status": "SPECIALIST_FULFILLMENT_CANDIDATE_ASTRA_AUDIT",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "cinta_patio_aspirante",
@@ -1208,8 +1214,8 @@
       "source_location": "oficina_servicios",
       "source_npc_evidence": "Tao Ming",
       "materials": [],
-      "merchant_authority_status": "AUTHORIZER_OR_SOURCE_NOT_AUTOMATICALLY_VENDOR",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "anillo_cobre_sin_sello",
@@ -1227,8 +1233,8 @@
       "source_location": "oficina_servicios",
       "source_npc_evidence": "Tao Ming",
       "materials": [],
-      "merchant_authority_status": "AUTHORIZER_OR_SOURCE_NOT_AUTOMATICALLY_VENDOR",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "pulsera_tension_meridiana",
@@ -1246,8 +1252,8 @@
       "source_location": "medicina",
       "source_npc_evidence": "Lan Meihua",
       "materials": [],
-      "merchant_authority_status": "MEDICINA_AUTHORIZATION_FULFILLMENT_TO_AUDIT",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "calzas_guardia_externa",
@@ -1265,8 +1271,8 @@
       "source_location": "puesto_valle",
       "source_npc_evidence": "Jiang Rui",
       "materials": [],
-      "merchant_authority_status": "AUTHORIZER_OR_SOURCE_NOT_AUTOMATICALLY_VENDOR",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "anillo_reserva_menor",
@@ -1275,7 +1281,7 @@
       "slot": "ANILLO",
       "grade": "TRABAJO_ESPIRITUAL_MENOR",
       "power_budget": 1,
-      "commerce_channel": "PUBLIC_STONES",
+      "commerce_channel": "PUBLIC_OPEN_STONES",
       "stone_price": 8,
       "contribution_required": 0,
       "contribution_spent": false,
@@ -1284,8 +1290,8 @@
       "source_location": "mercado_valle",
       "source_npc_evidence": "Puestos del Mercado del Valle",
       "materials": [],
-      "merchant_authority_status": "PUBLIC_OUTLET_ALREADY_IN_CATALOG",
-      "notes": "No Contribution threshold. Existing mission/location/permission gates remain if already present."
+      "merchant_authority_status": "PUBLIC_OUTLET_EVIDENCED",
+      "notes": "Open personal commerce once its existing location/mission availability is reachable; no Contribution check."
     },
     {
       "item_id": "fajin_respiracion_larga",
@@ -1294,17 +1300,17 @@
       "slot": "FAJIN",
       "grade": "REFINADO_MENOR",
       "power_budget": 1.67,
-      "commerce_channel": "PUBLIC_STONES",
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
       "stone_price": 16,
-      "contribution_required": 0,
+      "contribution_required": 16,
       "contribution_spent": false,
       "source_mission": "M08",
       "required_permission": "SECTA_INTERIOR",
       "source_location": "taller_textiles_cuero",
       "source_npc_evidence": "Ning Cai",
       "materials": [],
-      "merchant_authority_status": "NPC_SERVICE_PROVIDER_CANDIDATE_ASTRA_AUDIT",
-      "notes": "No Contribution threshold. Existing mission/location/permission gates remain if already present."
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "brazales_aguja_plata",
@@ -1322,8 +1328,8 @@
       "source_location": "taller_armas",
       "source_npc_evidence": "Lu Cheng",
       "materials": [],
-      "merchant_authority_status": "SPECIALIST_FULFILLMENT_CANDIDATE_ASTRA_AUDIT",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "amuleto_flujo_contenido",
@@ -1341,8 +1347,8 @@
       "source_location": "taller_formaciones",
       "source_npc_evidence": "Wen Tao",
       "materials": [],
-      "merchant_authority_status": "SPECIALIST_FULFILLMENT_CANDIDATE_ASTRA_AUDIT",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "vestidura_ala_cerrada",
@@ -1360,8 +1366,8 @@
       "source_location": "pabellon_disciplina",
       "source_npc_evidence": "Qiao Ren",
       "materials": [],
-      "merchant_authority_status": "AUTHORIZER_OR_SOURCE_NOT_AUTOMATICALLY_VENDOR",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     },
     {
       "item_id": "pulsera_meridiano_profundo",
@@ -1379,35 +1385,18 @@
       "source_location": "medicina",
       "source_npc_evidence": "Lan Meihua",
       "materials": [],
-      "merchant_authority_status": "MEDICINA_AUTHORIZATION_FULFILLMENT_TO_AUDIT",
-      "notes": "Contribution is a cumulative access gate only. Price is paid in spirit stones. Existing permission/mission/material gates remain conjunctive."
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
     }
   ],
   "reclassifications": {
-    "espada_hierro_equilibrada": {
-      "to": "PUBLIC_STONES",
-      "reason": "Generic LII baseline weapon; Contribution should not be required for a standard personal weapon."
-    },
-    "bandana_cuero_reforzada": {
-      "to": "PUBLIC_STONES",
-      "reason": "Generic textile sidegrade; no sensitive institutional identity."
-    },
-    "brazales_cuero_cruzado": {
-      "to": "PUBLIC_STONES",
-      "reason": "Generic leather sidegrade; appropriate paid workshop/public service."
-    },
-    "sable_patrulla_valle": {
-      "to": "INSTITUTIONAL_STONES_GATE",
-      "reason": "Patrol-specific identity and PATRULLA_TERRITORIAL permission make it institutional."
-    },
-    "espada_vena_clara": {
-      "to": "INSTITUTIONAL_STONES_GATE",
-      "reason": "Advanced sect-interior precision/penetration specialization."
-    },
-    "tunica_reforzada_trama_cobre": {
-      "to": "INSTITUTIONAL_STONES_GATE",
-      "reason": "High-end LIII protective sect workshop piece."
-    }
+    "note": "v0.2 correction: classification is permission-aware. Historical STONES does not mean public if the item already requires a sect permission.",
+    "examples": [
+      "sable_anillo_gris: STONES historically, but SECTA_INTERIOR => institutional",
+      "vestidura_flujo_ligero: STONES historically, but SECTA_INTERIOR => institutional",
+      "calzas_trama_sello: STONES historically, but LIV_REVELACION => institutional",
+      "tunica_ruta_sauces: HUESPED_SAUCES => contextual public, no Contribution"
+    ]
   },
   "non_equipment_balance": {
     "consumables": {
