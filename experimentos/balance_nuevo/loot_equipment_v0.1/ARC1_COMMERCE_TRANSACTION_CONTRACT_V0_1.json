@@ -1,0 +1,207 @@
+{
+  "schema_version": "arc1-commerce-transaction-contract-v0.1",
+  "status": "HUMAN_RATIFIED_DESIGN_AUTHORITY__PRE_IMPLEMENTATION",
+  "created_on": "2026-10-02",
+  "principles": {
+    "engine_separate_from_a07": true,
+    "engine_separate_from_ui": true,
+    "ui_is_never_authority": true,
+    "npc_role_is_never_economic_authority": true,
+    "synchronous_deterministic_transactions": true,
+    "no_runtime_legacy_compatibility": true,
+    "no_public_buy_sell_commands": true,
+    "ai_never_mutates_inventory_currency_stock_or_gates": true
+  },
+  "request_contract": {
+    "allowed_types": [
+      "BUY",
+      "SELL",
+      "SERVICE"
+    ],
+    "fields": [
+      "type",
+      "npcId",
+      "itemId_or_serviceId",
+      "quantity",
+      "requestId"
+    ],
+    "forbidden_client_authority_fields": [
+      "price",
+      "contributionRequired",
+      "requiredPermission",
+      "stock",
+      "materials",
+      "buybackValue",
+      "availability",
+      "discount",
+      "currencyBalance"
+    ],
+    "rule": "UI submits identity + intent only. Engine reloads all economic authority."
+  },
+  "pipeline": [
+    {
+      "phase": "EVALUATE",
+      "mutates": false,
+      "purpose": "Build display quote from current authoritative state.",
+      "checks": [
+        "canonical NPC exists",
+        "NPC is co-present and eligible",
+        "explicit merchant capability exists",
+        "offer/buyInterest/service is bound to merchant",
+        "item/service exists in new Arc1 authority",
+        "availability/gates",
+        "authoritative price or buyback",
+        "player resources/inventory",
+        "stock policy"
+      ]
+    },
+    {
+      "phase": "CONFIRM",
+      "mutates": false,
+      "purpose": "Player explicitly confirms from catalog detail."
+    },
+    {
+      "phase": "REVALIDATE",
+      "mutates": false,
+      "purpose": "Repeat every mutable/precondition check immediately before commit.",
+      "rule": "Never trust the previous quote."
+    },
+    {
+      "phase": "BUILD_DELTA",
+      "mutates": false,
+      "purpose": "Construct complete all-or-nothing economic delta."
+    },
+    {
+      "phase": "COMMIT",
+      "mutates": true,
+      "purpose": "Apply validated delta synchronously.",
+      "rule": "No observable partial success."
+    },
+    {
+      "phase": "RECEIPT",
+      "mutates": false,
+      "purpose": "Return deterministic result to UI/log/tests."
+    }
+  ],
+  "atomicity": {
+    "strategy": "VALIDATE_ALL_BEFORE_FIRST_MUTATION",
+    "rollback_model": "NO_PARTIAL_MUTATION_ALLOWED",
+    "request_id_scope": "ACTIVE_COMMERCE_SESSION",
+    "duplicate_request_result": "ALREADY_COMMITTED_OR_INVALID_REQUEST",
+    "ui_double_click_guard": true,
+    "engine_duplicate_guard": true
+  },
+  "delta_models": {
+    "BUY": {
+      "example": {
+        "npcId": "ning_cai",
+        "itemId": "calzas_sendero_pinos",
+        "quantity": 1,
+        "stonesDelta": -8,
+        "inventoryAdd": [
+          {
+            "itemId": "calzas_sendero_pinos",
+            "qty": 1
+          }
+        ],
+        "inventoryRemove": [],
+        "stockDelta": []
+      }
+    },
+    "SELL": {
+      "rule": "Merchant BUY is a sink by default. Sold materials/items do not automatically become SELL stock.",
+      "example": {
+        "inventoryRemove": [
+          {
+            "itemId": "escama_qi_desprendida",
+            "qty": 1
+          }
+        ],
+        "stonesDelta": 1,
+        "merchantStockAdd": []
+      }
+    },
+    "SERVICE": {
+      "rule": "Contribution/permissions are checked but never placed in the economic delta.",
+      "example": {
+        "serviceId": "aguja_acero_frio",
+        "stonesDelta": -4,
+        "inventoryRemove": [
+          {
+            "itemId": "fragmento_caparazon_jade",
+            "qty": 1
+          },
+          {
+            "itemId": "camara_jade",
+            "qty": 1
+          }
+        ],
+        "inventoryAdd": [
+          {
+            "itemId": "aguja_acero_frio",
+            "qty": 1
+          }
+        ],
+        "contributionDelta": 0
+      }
+    }
+  },
+  "stock_policy": {
+    "ROUTINE_UNLIMITED": "Instantiate authoritative item on successful BUY; no persistent count.",
+    "SERVICE_RECIPE": "No shelf stock; output created only after consuming validated recipe inputs/service fee.",
+    "FINITE_PERSISTENT": "Deferred beyond Slice 1.",
+    "ONE_TIME": "Deferred beyond Slice 1.",
+    "NARRATIVE_REFRESH": "Deferred beyond Slice 1."
+  },
+  "buy_interests": {
+    "default": "EXPLICIT_OR_AUTHORIZED_RECIPE_INPUT",
+    "universal_buy": false,
+    "sold_goods_feed_sell_stock": false,
+    "extraction_bulk_rule": "Consume complete approved lots only; remainder stays in player inventory.",
+    "quest_items_forbidden": true,
+    "no_sale_items_forbidden": true
+  },
+  "turn_contract": {
+    "slice1": {
+      "open": 0,
+      "navigate": 0,
+      "buy": 0,
+      "sell": 0,
+      "service": 0,
+      "close": 0
+    },
+    "note": "HABLAR retains its existing native behavior. No commerce timer/clock/scheduler."
+  },
+  "dialogue_exit": {
+    "options": [
+      "RETURN_TO_CONVERSATION",
+      "CLOSE"
+    ],
+    "return_to_conversation": "Revalidate same NPC and rebuild conversational options without re-running cmd_hablar() or canonical mission handlers.",
+    "close": "Destroy commerce context and return to normal game.",
+    "movement": "Movement closes/invalidates commerce context before normal movement resolution."
+  },
+  "slice1": {
+    "npcId": "ning_cai",
+    "action": "BUY",
+    "itemId": "calzas_sendero_pinos",
+    "priceStones": 8,
+    "contributionRequired": 0,
+    "stockPolicy": "ROUTINE_UNLIMITED",
+    "expected_delta": {
+      "stones": -8,
+      "item_add": {
+        "itemId": "calzas_sendero_pinos",
+        "qty": 1
+      }
+    },
+    "negative_tests": [
+      "7 stones -> reject with zero mutation",
+      "NPC absent -> reject",
+      "offer removed/unbound -> reject",
+      "UI displays forged price -> engine ignores it",
+      "duplicate request/double click -> one commit maximum",
+      "movement before confirm -> context invalid, zero mutation"
+    ]
+  }
+}
