@@ -1,0 +1,20 @@
+{
+  "package": "METAL_RETEST_KAGGLE_PACKAGE_V01.zip",
+  "revision": "metal-retest-v0.1",
+  "sha256": "01350244699edefa904e42713e1e5b24f901ba5dc985b829219ffcf60e45f178",
+  "decoded_size_bytes": 25717,
+  "base64_length": 34292,
+  "parts": [
+    "chunk_00.b64",
+    "chunk_01.b64",
+    "chunk_02.b64",
+    "chunk_03.b64",
+    "chunk_04.b64",
+    "chunk_05.b64",
+    "chunk_06.b64"
+  ],
+  "authority": "NEW_COMBAT_STATS_V0_1",
+  "scenario_count": 69,
+  "heavy_runs_per_scenario": 100000,
+  "total_heavy_simulations": 6900000
+}
