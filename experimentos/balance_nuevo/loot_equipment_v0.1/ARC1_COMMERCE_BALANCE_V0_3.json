@@ -1,0 +1,1959 @@
+{
+  "schema_version": "arc1-commerce-balance-v0.3",
+  "status": "LAB_BALANCED_AWAITING_HUMAN_RATIFICATION_AND_ASTRA_COMMERCE_AUDIT",
+  "created_on": "2026-10-01",
+  "supersedes": "ARC1_COMMERCE_BALANCE_V0_2.json",
+  "hard_economic_decisions": {
+    "currency": "SPIRIT_STONES",
+    "contribution": "NON_SPENDABLE_CUMULATIVE_INSTITUTIONAL_ACCESS_GATE",
+    "reputation": "OPTIONAL_ACCESS_GATE_ONLY_WHERE_ALREADY_AUTHORIZED",
+    "affinity": "MAY_MODULATE_SOCIAL_BEHAVIOR_ONLY_NOT_NUMERIC_PRICE_BY_DEFAULT",
+    "no_universal_vendor": true,
+    "no_public_buy_sell_command_assumed": true
+  },
+  "a07_boundary": {
+    "runtime_authority_sha256": "b0966fe6d4d263519e5c88d2f93cdd29dc0d3a595c3d63a0f6b3b4426eac12cd",
+    "historical_obsolete_sentinel_sha256": "b41c12431f076790b2e2fb0e9e485fb35d3b8c7a834d7b1222e9105518eb270a",
+    "freeAiText": false,
+    "principle": "AI may offer/decline trade conversationally; motor must own stock, price, gates, inventory, stones, persistence and transaction results.",
+    "commerce_status": "NOT_IMPLEMENTED_HERE"
+  },
+  "contribution_working_curve": {
+    "status": "M02_M07_CANON_EARLY__M08_M17_PROPOSED_WORKING_BALANCE",
+    "cumulative_by_mission": {
+      "P": 0,
+      "M01": 0,
+      "M02": 1,
+      "M03": 1,
+      "M04": 3,
+      "M05": 6,
+      "M06": 8,
+      "M07": 12,
+      "M08": 16,
+      "M09": 18,
+      "M10": 21,
+      "M11": 24,
+      "M12": 30,
+      "M13": 34,
+      "M14": 37,
+      "M15": 38,
+      "M16": 44,
+      "M17": 49,
+      "M18": 49
+    },
+    "rule": "Institutional item threshold equals the working cumulative Contribution reachable at its catalog source_mission. Contribution is checked, never decremented."
+  },
+  "pricing_method": {
+    "public_items": "Preserve existing stone prices where already catalogued.",
+    "institutional_items_with_existing_stone_price": "Preserve existing stone price after reclassification.",
+    "institutional_items_without_stone_price": "Assign within stage band by relative power_budget rank among institutional items lacking a stone price.",
+    "stage_bands": {
+      "LianQi_I": [
+        2,
+        4
+      ],
+      "LianQi_II": [
+        7,
+        12
+      ],
+      "LianQi_III": [
+        16,
+        22
+      ],
+      "LianQi_IV": [
+        24,
+        30
+      ]
+    },
+    "purpose": "Contribution controls access; stones preserve economic opportunity cost and prevent unlocked institutional stock from becoming free.",
+    "classification_priority": [
+      "NO_SALE source types first",
+      "existing local public permission HUESPED_SAUCES -> PUBLIC_CONTEXTUAL_STONES",
+      "any existing sect/institutional permission -> INSTITUTIONAL_STONES_GATE regardless of historical currency field",
+      "remaining sellable items -> PUBLIC_OPEN_STONES"
+    ]
+  },
+  "stage_summary": {
+    "LianQi_I": {
+      "NO_SALE": 6,
+      "INSTITUTIONAL_STONES_GATE": 8
+    },
+    "LianQi_II": {
+      "INSTITUTIONAL_STONES_GATE": 11,
+      "PUBLIC_OPEN_STONES": 6,
+      "PUBLIC_CONTEXTUAL_STONES": 4
+    },
+    "LianQi_III": {
+      "INSTITUTIONAL_STONES_GATE": 16,
+      "NO_SALE": 2,
+      "PUBLIC_OPEN_STONES": 1
+    },
+    "LianQi_IV": {
+      "INSTITUTIONAL_STONES_GATE": 13,
+      "NO_SALE": 1
+    }
+  },
+  "equipment": [
+    {
+      "item_id": "espada_madera_entrenamiento",
+      "name": "Espada de madera de entrenamiento",
+      "stage": "LianQi_I",
+      "slot": "ARMA",
+      "grade": "MUNDANO_TRABAJADO",
+      "power_budget": 0.33,
+      "commerce_channel": "NO_SALE",
+      "stone_price": null,
+      "contribution_required": 0,
+      "contribution_spent": false,
+      "source_mission": "P",
+      "required_permission": null,
+      "source_location": "descansillo",
+      "source_npc_evidence": "Tao Ming",
+      "materials": [],
+      "merchant_authority_status": "NONE",
+      "notes": "Preserve unique/origin/mission/issue acquisition; not commercial stock."
+    },
+    {
+      "item_id": "cuchillo_hueso_callejero",
+      "name": "Cuchillo de hueso pulido",
+      "stage": "LianQi_I",
+      "slot": "ARMA",
+      "grade": "MUNDANO_TRABAJADO",
+      "power_budget": 1.33,
+      "commerce_channel": "NO_SALE",
+      "stone_price": null,
+      "contribution_required": 0,
+      "contribution_spent": false,
+      "source_mission": "P",
+      "required_permission": null,
+      "source_location": null,
+      "source_npc_evidence": null,
+      "materials": [],
+      "merchant_authority_status": "NONE",
+      "notes": "Preserve unique/origin/mission/issue acquisition; not commercial stock."
+    },
+    {
+      "item_id": "baston_fresno_practica",
+      "name": "Bastón de fresno de práctica",
+      "stage": "LianQi_I",
+      "slot": "ARMA",
+      "grade": "MUNDANO_TRABAJADO",
+      "power_budget": 0.5,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 2,
+      "contribution_required": 1,
+      "contribution_spent": false,
+      "source_mission": "M03",
+      "required_permission": "DISCIPULO_EXTERNO",
+      "source_location": "pabellon_marcial",
+      "source_npc_evidence": "Wei Jian",
+      "materials": [],
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "uniforme_gris_aspirante",
+      "name": "Uniforme gris de aspirante",
+      "stage": "LianQi_I",
+      "slot": "VESTIDURA",
+      "grade": "MUNDANO_TRABAJADO",
+      "power_budget": 3,
+      "commerce_channel": "NO_SALE",
+      "stone_price": null,
+      "contribution_required": 0,
+      "contribution_spent": false,
+      "source_mission": "P",
+      "required_permission": null,
+      "source_location": "descansillo",
+      "source_npc_evidence": "Tao Ming",
+      "materials": [],
+      "merchant_authority_status": "NONE",
+      "notes": "Preserve unique/origin/mission/issue acquisition; not commercial stock."
+    },
+    {
+      "item_id": "bandana_lino_simple",
+      "name": "Bandana de lino simple",
+      "stage": "LianQi_I",
+      "slot": "TOCADO",
+      "grade": "MUNDANO_TRABAJADO",
+      "power_budget": 0.5,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 2,
+      "contribution_required": 1,
+      "contribution_spent": false,
+      "source_mission": "M02",
+      "required_permission": "ASPIRANTE",
+      "source_location": "taller_textiles_cuero",
+      "source_npc_evidence": "Ning Cai",
+      "materials": [],
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "vendas_antebrazo_practica",
+      "name": "Vendas de antebrazo de práctica",
+      "stage": "LianQi_I",
+      "slot": "BRAZALES",
+      "grade": "MUNDANO_TRABAJADO",
+      "power_budget": 0.67,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 3,
+      "contribution_required": 1,
+      "contribution_spent": false,
+      "source_mission": "M03",
+      "required_permission": "DISCIPULO_EXTERNO",
+      "source_location": "pabellon_marcial",
+      "source_npc_evidence": "Wei Jian",
+      "materials": [],
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "fajin_discipulo_externo",
+      "name": "Fajín de discípulo externo",
+      "stage": "LianQi_I",
+      "slot": "FAJIN",
+      "grade": "MUNDANO_TRABAJADO",
+      "power_budget": 0.67,
+      "commerce_channel": "NO_SALE",
+      "stone_price": null,
+      "contribution_required": 0,
+      "contribution_spent": false,
+      "source_mission": "M03",
+      "required_permission": null,
+      "source_location": "pabellon_disciplina",
+      "source_npc_evidence": "Qiao Ren",
+      "materials": [],
+      "merchant_authority_status": "NONE",
+      "notes": "Preserve unique/origin/mission/issue acquisition; not commercial stock."
+    },
+    {
+      "item_id": "pantalon_viaje_gris",
+      "name": "Pantalón de viaje gris",
+      "stage": "LianQi_I",
+      "slot": "PIERNAS",
+      "grade": "MUNDANO_TRABAJADO",
+      "power_budget": 1,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 4,
+      "contribution_required": 1,
+      "contribution_spent": false,
+      "source_mission": "M02",
+      "required_permission": "ASPIRANTE",
+      "source_location": "taller_textiles_cuero",
+      "source_npc_evidence": "Ning Cai",
+      "materials": [],
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "zapatos_suela_blanda",
+      "name": "Zapatos de suela blanda",
+      "stage": "LianQi_I",
+      "slot": "CALZADO",
+      "grade": "MUNDANO_TRABAJADO",
+      "power_budget": 0.67,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 4,
+      "contribution_required": 1,
+      "contribution_spent": false,
+      "source_mission": "M02",
+      "required_permission": "ASPIRANTE",
+      "source_location": "taller_textiles_cuero",
+      "source_npc_evidence": "Ning Cai",
+      "materials": [],
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "colgante_fragmento_jade",
+      "name": "Colgante de fragmento de jade",
+      "stage": "LianQi_I",
+      "slot": "AMULETO",
+      "grade": "MUNDANO_TRABAJADO",
+      "power_budget": 0.5,
+      "commerce_channel": "NO_SALE",
+      "stone_price": null,
+      "contribution_required": 0,
+      "contribution_spent": false,
+      "source_mission": null,
+      "required_permission": null,
+      "source_location": "camino_montana",
+      "source_npc_evidence": null,
+      "materials": [],
+      "merchant_authority_status": "NONE",
+      "notes": "Preserve unique/origin/mission/issue acquisition; not commercial stock."
+    },
+    {
+      "item_id": "pulsera_fibra_trenzada",
+      "name": "Pulsera de fibra trenzada",
+      "stage": "LianQi_I",
+      "slot": "PULSERA",
+      "grade": "MUNDANO_TRABAJADO",
+      "power_budget": 0.58,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 3,
+      "contribution_required": 1,
+      "contribution_spent": false,
+      "source_mission": "M02",
+      "required_permission": "ASPIRANTE",
+      "source_location": "taller_textiles_cuero",
+      "source_npc_evidence": "Ning Cai",
+      "materials": [],
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "anillo_hierro_oxidado",
+      "name": "Anillo de hierro oxidado",
+      "stage": "LianQi_I",
+      "slot": "ANILLO",
+      "grade": "MUNDANO_TRABAJADO",
+      "power_budget": 0.33,
+      "commerce_channel": "NO_SALE",
+      "stone_price": null,
+      "contribution_required": 0,
+      "contribution_spent": false,
+      "source_mission": null,
+      "required_permission": null,
+      "source_location": "camino_montana",
+      "source_npc_evidence": null,
+      "materials": [],
+      "merchant_authority_status": "NONE",
+      "notes": "Preserve unique/origin/mission/issue acquisition; not commercial stock."
+    },
+    {
+      "item_id": "espada_hierro_equilibrada",
+      "name": "Espada de hierro equilibrada",
+      "stage": "LianQi_II",
+      "slot": "ARMA",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "power_budget": 1.67,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 12,
+      "contribution_required": 3,
+      "contribution_spent": false,
+      "source_mission": "M04",
+      "required_permission": "PATRULLA_TERRITORIAL",
+      "source_location": "taller_armas",
+      "source_npc_evidence": "Lu Cheng",
+      "materials": [],
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "sable_patrulla_valle",
+      "name": "Sable de patrulla del valle",
+      "stage": "LianQi_II",
+      "slot": "ARMA",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "power_budget": 2.33,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 10,
+      "contribution_required": 3,
+      "contribution_spent": false,
+      "source_mission": "M04",
+      "required_permission": "PATRULLA_TERRITORIAL",
+      "source_location": "taller_armas",
+      "source_npc_evidence": "Lu Cheng",
+      "materials": [],
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "aguja_acero_frio",
+      "name": "Aguja de acero frío",
+      "stage": "LianQi_II",
+      "slot": "ARMA",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "power_budget": 1.6,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 11,
+      "contribution_required": 8,
+      "contribution_spent": false,
+      "source_mission": "M06",
+      "required_permission": "DISCIPULO_EXTERNO",
+      "source_location": "taller_armas",
+      "source_npc_evidence": "Lu Cheng",
+      "materials": [],
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "bandana_cuero_reforzada",
+      "name": "Bandana de cuero reforzada",
+      "stage": "LianQi_II",
+      "slot": "TOCADO",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "power_budget": 1.25,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 7,
+      "contribution_required": 3,
+      "contribution_spent": false,
+      "source_mission": "M04",
+      "required_permission": "DISCIPULO_EXTERNO",
+      "source_location": "taller_textiles_cuero",
+      "source_npc_evidence": "Ning Cai",
+      "materials": [],
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "capucha_observador_valle",
+      "name": "Capucha del observador del valle",
+      "stage": "LianQi_II",
+      "slot": "TOCADO",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "power_budget": 1,
+      "commerce_channel": "PUBLIC_OPEN_STONES",
+      "stone_price": 7,
+      "contribution_required": 0,
+      "contribution_spent": false,
+      "source_mission": "M05",
+      "required_permission": null,
+      "source_location": "mercado_valle",
+      "source_npc_evidence": "Puestos del Mercado del Valle",
+      "materials": [],
+      "merchant_authority_status": "PUBLIC_OUTLET_EVIDENCED",
+      "notes": "Open personal commerce once its existing location/mission availability is reachable; no Contribution check."
+    },
+    {
+      "item_id": "sobretunica_patrulla",
+      "name": "Sobretúnica de patrulla",
+      "stage": "LianQi_II",
+      "slot": "VESTIDURA",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "power_budget": 6,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 12,
+      "contribution_required": 3,
+      "contribution_spent": false,
+      "source_mission": "M04",
+      "required_permission": "PATRULLA_TERRITORIAL",
+      "source_location": "puesto_valle",
+      "source_npc_evidence": "Jiang Rui",
+      "materials": [],
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "tunica_ruta_sauces",
+      "name": "Túnica de ruta de Sauces",
+      "stage": "LianQi_II",
+      "slot": "VESTIDURA",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "power_budget": 4,
+      "commerce_channel": "PUBLIC_CONTEXTUAL_STONES",
+      "stone_price": 10,
+      "contribution_required": 0,
+      "contribution_spent": false,
+      "source_mission": "M05",
+      "required_permission": "HUESPED_SAUCES",
+      "source_location": "sauces_plaza",
+      "source_npc_evidence": "Artesanos de Sauces",
+      "materials": [],
+      "merchant_authority_status": "PUBLIC_OUTLET_EVIDENCED",
+      "notes": "Civil/local public commerce using stones; preserves the existing local permission but no Contribution check."
+    },
+    {
+      "item_id": "brazales_cuero_cruzado",
+      "name": "Brazales de cuero cruzado",
+      "stage": "LianQi_II",
+      "slot": "BRAZALES",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "power_budget": 1.5,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 9,
+      "contribution_required": 3,
+      "contribution_spent": false,
+      "source_mission": "M04",
+      "required_permission": "DISCIPULO_EXTERNO",
+      "source_location": "taller_textiles_cuero",
+      "source_npc_evidence": "Ning Cai",
+      "materials": [],
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "brazales_pulso_firme",
+      "name": "Brazales de pulso firme",
+      "stage": "LianQi_II",
+      "slot": "BRAZALES",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "power_budget": 1,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 9,
+      "contribution_required": 8,
+      "contribution_spent": false,
+      "source_mission": "M06",
+      "required_permission": "DISCIPULO_EXTERNO",
+      "source_location": "sala_anatomica",
+      "source_npc_evidence": "Chen Bo",
+      "materials": [],
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "fajin_patrulla",
+      "name": "Fajín de patrulla",
+      "stage": "LianQi_II",
+      "slot": "FAJIN",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "power_budget": 1.25,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 10,
+      "contribution_required": 3,
+      "contribution_spent": false,
+      "source_mission": "M04",
+      "required_permission": "PATRULLA_TERRITORIAL",
+      "source_location": "puesto_valle",
+      "source_npc_evidence": "Jiang Rui",
+      "materials": [],
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "calzas_sendero_pinos",
+      "name": "Calzas de sendero de pinos",
+      "stage": "LianQi_II",
+      "slot": "PIERNAS",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "power_budget": 1.83,
+      "commerce_channel": "PUBLIC_OPEN_STONES",
+      "stone_price": 8,
+      "contribution_required": 0,
+      "contribution_spent": false,
+      "source_mission": "M04",
+      "required_permission": null,
+      "source_location": "taller_textiles_cuero",
+      "source_npc_evidence": "Ning Cai",
+      "materials": [],
+      "merchant_authority_status": "SERVICE_ROLE_EVIDENCED__COMMERCE_CAPABILITY_REQUIRES_ASTRA_AUDIT",
+      "notes": "Open personal commerce once its existing location/mission availability is reachable; no Contribution check."
+    },
+    {
+      "item_id": "sandalias_corriente_ligera",
+      "name": "Sandalias de corriente ligera",
+      "stage": "LianQi_II",
+      "slot": "CALZADO",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "power_budget": 1.33,
+      "commerce_channel": "PUBLIC_CONTEXTUAL_STONES",
+      "stone_price": 11,
+      "contribution_required": 0,
+      "contribution_spent": false,
+      "source_mission": "M05",
+      "required_permission": "HUESPED_SAUCES",
+      "source_location": "sauces_plaza",
+      "source_npc_evidence": "Artesanos de Sauces",
+      "materials": [],
+      "merchant_authority_status": "PUBLIC_OUTLET_EVIDENCED",
+      "notes": "Civil/local public commerce using stones; preserves the existing local permission but no Contribution check."
+    },
+    {
+      "item_id": "botas_piedra_humeda",
+      "name": "Botas de piedra húmeda",
+      "stage": "LianQi_II",
+      "slot": "CALZADO",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "power_budget": 1.08,
+      "commerce_channel": "PUBLIC_OPEN_STONES",
+      "stone_price": 9,
+      "contribution_required": 0,
+      "contribution_spent": false,
+      "source_mission": "M05",
+      "required_permission": null,
+      "source_location": "mercado_valle",
+      "source_npc_evidence": "Puestos del Mercado del Valle",
+      "materials": [],
+      "merchant_authority_status": "PUBLIC_OUTLET_EVIDENCED",
+      "notes": "Open personal commerce once its existing location/mission availability is reachable; no Contribution check."
+    },
+    {
+      "item_id": "amuleto_colmillo_montado",
+      "name": "Amuleto de colmillo montado",
+      "stage": "LianQi_II",
+      "slot": "AMULETO",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "power_budget": 1,
+      "commerce_channel": "PUBLIC_OPEN_STONES",
+      "stone_price": 4,
+      "contribution_required": 0,
+      "contribution_spent": false,
+      "source_mission": "M05",
+      "required_permission": null,
+      "source_location": "taller_textiles_cuero",
+      "source_npc_evidence": "Ning Cai",
+      "materials": [
+        "colmillo_lobo_legitimo"
+      ],
+      "merchant_authority_status": "SERVICE_ROLE_EVIDENCED__COMMERCE_CAPABILITY_REQUIRES_ASTRA_AUDIT",
+      "notes": "Open personal commerce once its existing location/mission availability is reachable; no Contribution check."
+    },
+    {
+      "item_id": "amuleto_sauce_sereno",
+      "name": "Amuleto de sauce sereno",
+      "stage": "LianQi_II",
+      "slot": "AMULETO",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "power_budget": 1.08,
+      "commerce_channel": "PUBLIC_CONTEXTUAL_STONES",
+      "stone_price": 10,
+      "contribution_required": 0,
+      "contribution_spent": false,
+      "source_mission": "M05",
+      "required_permission": "HUESPED_SAUCES",
+      "source_location": "sauces_plaza",
+      "source_npc_evidence": "Artesanos de Sauces",
+      "materials": [],
+      "merchant_authority_status": "PUBLIC_OUTLET_EVIDENCED",
+      "notes": "Civil/local public commerce using stones; preserves the existing local permission but no Contribution check."
+    },
+    {
+      "item_id": "pulsera_cauce_trenzado",
+      "name": "Pulsera de cauce trenzado",
+      "stage": "LianQi_II",
+      "slot": "PULSERA",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "power_budget": 1,
+      "commerce_channel": "PUBLIC_CONTEXTUAL_STONES",
+      "stone_price": 8,
+      "contribution_required": 0,
+      "contribution_spent": false,
+      "source_mission": "M05",
+      "required_permission": "HUESPED_SAUCES",
+      "source_location": "sauces_plaza",
+      "source_npc_evidence": "Artesanos de Sauces",
+      "materials": [],
+      "merchant_authority_status": "PUBLIC_OUTLET_EVIDENCED",
+      "notes": "Civil/local public commerce using stones; preserves the existing local permission but no Contribution check."
+    },
+    {
+      "item_id": "anillo_sello_hierro",
+      "name": "Anillo del sello de hierro",
+      "stage": "LianQi_II",
+      "slot": "ANILLO",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "power_budget": 0.8,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 8,
+      "contribution_required": 8,
+      "contribution_spent": false,
+      "source_mission": "M06",
+      "required_permission": "DISCIPULO_EXTERNO",
+      "source_location": "taller_armas",
+      "source_npc_evidence": "Lu Cheng",
+      "materials": [],
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "anillo_corriente_clara",
+      "name": "Anillo de corriente clara",
+      "stage": "LianQi_II",
+      "slot": "ANILLO",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "power_budget": 1.17,
+      "commerce_channel": "PUBLIC_OPEN_STONES",
+      "stone_price": 10,
+      "contribution_required": 0,
+      "contribution_spent": false,
+      "source_mission": "M05",
+      "required_permission": null,
+      "source_location": "mercado_valle",
+      "source_npc_evidence": "Puestos del Mercado del Valle",
+      "materials": [],
+      "merchant_authority_status": "PUBLIC_OUTLET_EVIDENCED",
+      "notes": "Open personal commerce once its existing location/mission availability is reachable; no Contribution check."
+    },
+    {
+      "item_id": "espada_vena_clara",
+      "name": "Espada de vena clara",
+      "stage": "LianQi_III",
+      "slot": "ARMA",
+      "grade": "REFINADO_MENOR",
+      "power_budget": 2.6,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 20,
+      "contribution_required": 16,
+      "contribution_spent": false,
+      "source_mission": "M08",
+      "required_permission": "SECTA_INTERIOR",
+      "source_location": "taller_armas",
+      "source_npc_evidence": "Lu Cheng",
+      "materials": [],
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "vara_dos_corrientes",
+      "name": "Vara de dos corrientes",
+      "stage": "LianQi_III",
+      "slot": "ARMA",
+      "grade": "REFINADO_MENOR",
+      "power_budget": 1.5,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 19,
+      "contribution_required": 24,
+      "contribution_spent": false,
+      "source_mission": "M11",
+      "required_permission": "DOS_ALAS_PRINCIPIO",
+      "source_location": "formaciones",
+      "source_npc_evidence": "He Zhen",
+      "materials": [],
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "sable_anillo_gris",
+      "name": "Sable de anillo gris",
+      "stage": "LianQi_III",
+      "slot": "ARMA",
+      "grade": "REFINADO_MENOR",
+      "power_budget": 3,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 18,
+      "contribution_required": 16,
+      "contribution_spent": false,
+      "source_mission": "M08",
+      "required_permission": "SECTA_INTERIOR",
+      "source_location": "taller_armas",
+      "source_npc_evidence": "Lu Cheng",
+      "materials": [],
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "tocado_hilo_formacion",
+      "name": "Tocado de hilo de formación",
+      "stage": "LianQi_III",
+      "slot": "TOCADO",
+      "grade": "REFINADO_MENOR",
+      "power_budget": 1.5,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 18,
+      "contribution_required": 16,
+      "contribution_spent": false,
+      "source_mission": "M08",
+      "required_permission": "FORMACIONES_INVESTIGACION",
+      "source_location": "taller_formaciones",
+      "source_npc_evidence": "Wen Tao",
+      "materials": [],
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "velo_archivo_sereno",
+      "name": "Velo del archivo sereno",
+      "stage": "LianQi_III",
+      "slot": "TOCADO",
+      "grade": "REFINADO_MENOR",
+      "power_budget": 1.67,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 19,
+      "contribution_required": 18,
+      "contribution_spent": false,
+      "source_mission": "M09",
+      "required_permission": "ARCHIVO_RESTRINGIDO",
+      "source_location": "archivos",
+      "source_npc_evidence": "Song Rui",
+      "materials": [],
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "tunica_reforzada_trama_cobre",
+      "name": "Túnica reforzada de trama de cobre",
+      "stage": "LianQi_III",
+      "slot": "VESTIDURA",
+      "grade": "REFINADO_MENOR",
+      "power_budget": 8.5,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 22,
+      "contribution_required": 16,
+      "contribution_spent": false,
+      "source_mission": "M08",
+      "required_permission": "SECTA_INTERIOR",
+      "source_location": "taller_textiles_cuero",
+      "source_npc_evidence": "Ning Cai",
+      "materials": [],
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "vestidura_flujo_ligero",
+      "name": "Vestidura de flujo ligero",
+      "stage": "LianQi_III",
+      "slot": "VESTIDURA",
+      "grade": "REFINADO_MENOR",
+      "power_budget": 4.5,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 20,
+      "contribution_required": 16,
+      "contribution_spent": false,
+      "source_mission": "M08",
+      "required_permission": "SECTA_INTERIOR",
+      "source_location": "taller_textiles_cuero",
+      "source_npc_evidence": "Ning Cai",
+      "materials": [],
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "brazales_pulso_medico",
+      "name": "Brazales de pulso médico",
+      "stage": "LianQi_III",
+      "slot": "BRAZALES",
+      "grade": "REFINADO_MENOR",
+      "power_budget": 1.5,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 17,
+      "contribution_required": 21,
+      "contribution_spent": false,
+      "source_mission": "M10",
+      "required_permission": "R4_CONFIRMADO",
+      "source_location": "medicina",
+      "source_npc_evidence": "Lan Meihua",
+      "materials": [],
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "fajin_dos_alas",
+      "name": "Fajín de las Dos Alas",
+      "stage": "LianQi_III",
+      "slot": "FAJIN",
+      "grade": "REFINADO_MENOR",
+      "power_budget": 1.83,
+      "commerce_channel": "NO_SALE",
+      "stone_price": null,
+      "contribution_required": 0,
+      "contribution_spent": false,
+      "source_mission": "M11",
+      "required_permission": null,
+      "source_location": "formaciones",
+      "source_npc_evidence": "He Zhen",
+      "materials": [],
+      "merchant_authority_status": "NONE",
+      "notes": "Preserve unique/origin/mission/issue acquisition; not commercial stock."
+    },
+    {
+      "item_id": "calzas_paso_silencioso",
+      "name": "Calzas de paso silencioso",
+      "stage": "LianQi_III",
+      "slot": "PIERNAS",
+      "grade": "REFINADO_MENOR",
+      "power_budget": 2.5,
+      "commerce_channel": "PUBLIC_OPEN_STONES",
+      "stone_price": 16,
+      "contribution_required": 0,
+      "contribution_spent": false,
+      "source_mission": "M08",
+      "required_permission": null,
+      "source_location": "taller_textiles_cuero",
+      "source_npc_evidence": "Ning Cai",
+      "materials": [],
+      "merchant_authority_status": "SERVICE_ROLE_EVIDENCED__COMMERCE_CAPABILITY_REQUIRES_ASTRA_AUDIT",
+      "notes": "Open personal commerce once its existing location/mission availability is reachable; no Contribution check."
+    },
+    {
+      "item_id": "calzado_nube_baja",
+      "name": "Calzado de nube baja",
+      "stage": "LianQi_III",
+      "slot": "CALZADO",
+      "grade": "REFINADO_MENOR",
+      "power_budget": 2,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 21,
+      "contribution_required": 24,
+      "contribution_spent": false,
+      "source_mission": "M11",
+      "required_permission": "SECTA_INTERIOR",
+      "source_location": "taller_textiles_cuero",
+      "source_npc_evidence": "Ning Cai",
+      "materials": [],
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "amuleto_meridiano_estable",
+      "name": "Amuleto de meridiano estable",
+      "stage": "LianQi_III",
+      "slot": "AMULETO",
+      "grade": "REFINADO_MENOR",
+      "power_budget": 2.5,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 22,
+      "contribution_required": 21,
+      "contribution_spent": false,
+      "source_mission": "M10",
+      "required_permission": "R4_CONFIRMADO",
+      "source_location": "medicina",
+      "source_npc_evidence": "Lan Meihua",
+      "materials": [],
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "pulsera_nudo_formacion",
+      "name": "Pulsera de nudo de formación",
+      "stage": "LianQi_III",
+      "slot": "PULSERA",
+      "grade": "REFINADO_MENOR",
+      "power_budget": 1.75,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 20,
+      "contribution_required": 16,
+      "contribution_spent": false,
+      "source_mission": "M08",
+      "required_permission": "FORMACIONES_INVESTIGACION",
+      "source_location": "taller_formaciones",
+      "source_npc_evidence": "Wen Tao",
+      "materials": [],
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "anillo_hilo_plata",
+      "name": "Anillo de hilo de plata",
+      "stage": "LianQi_III",
+      "slot": "ANILLO",
+      "grade": "REFINADO_MENOR",
+      "power_budget": 1.67,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 18,
+      "contribution_required": 18,
+      "contribution_spent": false,
+      "source_mission": "M09",
+      "required_permission": "SECTA_INTERIOR",
+      "source_location": "taller_armas",
+      "source_npc_evidence": "Lu Cheng",
+      "materials": [],
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "anillo_tierra_profunda",
+      "name": "Anillo de tierra profunda",
+      "stage": "LianQi_III",
+      "slot": "ANILLO",
+      "grade": "REFINADO_MENOR",
+      "power_budget": 2,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 21,
+      "contribution_required": 21,
+      "contribution_spent": false,
+      "source_mission": "M10",
+      "required_permission": "SECTA_INTERIOR",
+      "source_location": "taller_textiles_cuero",
+      "source_npc_evidence": "Ning Cai",
+      "materials": [],
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "espejo_pulso_velado",
+      "name": "Espejo de Pulso Velado",
+      "stage": "LianQi_III",
+      "slot": "TESORO_ESPIRITUAL",
+      "grade": "ANTIGUO_FUNCIONAL",
+      "power_budget": 3.42,
+      "commerce_channel": "NO_SALE",
+      "stone_price": null,
+      "contribution_required": 0,
+      "contribution_spent": false,
+      "source_mission": "M12",
+      "required_permission": "PRIMERA_ALA_INVESTIGACION",
+      "source_location": "primera_ala",
+      "source_npc_evidence": null,
+      "materials": [],
+      "merchant_authority_status": "NONE",
+      "notes": "Preserve unique/origin/mission/issue acquisition; not commercial stock."
+    },
+    {
+      "item_id": "hoja_seis_corrientes",
+      "name": "Hoja de seis corrientes",
+      "stage": "LianQi_IV",
+      "slot": "ARMA",
+      "grade": "REFINADO_DE_SECTA",
+      "power_budget": 3.67,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 29,
+      "contribution_required": 34,
+      "contribution_spent": false,
+      "source_mission": "M13",
+      "required_permission": "MANTENIMIENTO_INVESTIGACION",
+      "source_location": "taller_armas",
+      "source_npc_evidence": "Lu Cheng",
+      "materials": [],
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "vara_relevo",
+      "name": "Vara de relevo",
+      "stage": "LianQi_IV",
+      "slot": "ARMA",
+      "grade": "REFINADO_DE_SECTA",
+      "power_budget": 2.67,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 27,
+      "contribution_required": 44,
+      "contribution_spent": false,
+      "source_mission": "M16",
+      "required_permission": "EMERGENCIA_SECTA",
+      "source_location": "oficina_logistica",
+      "source_npc_evidence": "Duan Shibo",
+      "materials": [],
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "velo_vigilante_nucleo",
+      "name": "Velo del vigilante del núcleo",
+      "stage": "LianQi_IV",
+      "slot": "TOCADO",
+      "grade": "REFINADO_DE_SECTA",
+      "power_budget": 2,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 25,
+      "contribution_required": 37,
+      "contribution_spent": false,
+      "source_mission": "M14",
+      "required_permission": "NUCLEO_SUPERIOR",
+      "source_location": "pabellon_disciplina",
+      "source_npc_evidence": "Qiao Ren",
+      "materials": [],
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "manto_mantenimiento",
+      "name": "Manto de mantenimiento",
+      "stage": "LianQi_IV",
+      "slot": "VESTIDURA",
+      "grade": "REFINADO_DE_SECTA",
+      "power_budget": 11.42,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 30,
+      "contribution_required": 34,
+      "contribution_spent": false,
+      "source_mission": "M13",
+      "required_permission": "MANTENIMIENTO_INVESTIGACION",
+      "source_location": "oficina_logistica",
+      "source_npc_evidence": "Duan Shibo",
+      "materials": [],
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "brazales_relevo",
+      "name": "Brazales de relevo",
+      "stage": "LianQi_IV",
+      "slot": "BRAZALES",
+      "grade": "REFINADO_DE_SECTA",
+      "power_budget": 2.75,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 28,
+      "contribution_required": 44,
+      "contribution_spent": false,
+      "source_mission": "M16",
+      "required_permission": "EMERGENCIA_SECTA",
+      "source_location": "taller_armas",
+      "source_npc_evidence": "Lu Cheng",
+      "materials": [],
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "fajin_nucleo_profundo",
+      "name": "Fajín del núcleo profundo",
+      "stage": "LianQi_IV",
+      "slot": "FAJIN",
+      "grade": "REFINADO_DE_SECTA",
+      "power_budget": 2.17,
+      "commerce_channel": "NO_SALE",
+      "stone_price": null,
+      "contribution_required": 0,
+      "contribution_spent": false,
+      "source_mission": "M17",
+      "required_permission": null,
+      "source_location": "consejo",
+      "source_npc_evidence": "Ji Xueying",
+      "materials": [],
+      "merchant_authority_status": "NONE",
+      "notes": "Preserve unique/origin/mission/issue acquisition; not commercial stock."
+    },
+    {
+      "item_id": "calzas_trama_sello",
+      "name": "Calzas de trama de sello",
+      "stage": "LianQi_IV",
+      "slot": "PIERNAS",
+      "grade": "REFINADO_DE_SECTA",
+      "power_budget": 3,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 27,
+      "contribution_required": 34,
+      "contribution_spent": false,
+      "source_mission": "M13",
+      "required_permission": "LIV_REVELACION",
+      "source_location": "taller_textiles_cuero",
+      "source_npc_evidence": "Ning Cai",
+      "materials": [],
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "botas_voto_inmovil",
+      "name": "Botas del voto inmóvil",
+      "stage": "LianQi_IV",
+      "slot": "CALZADO",
+      "grade": "REFINADO_DE_SECTA",
+      "power_budget": 2.42,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 26,
+      "contribution_required": 49,
+      "contribution_spent": false,
+      "source_mission": "M17",
+      "required_permission": "NUCLEO_PROFUNDO",
+      "source_location": "taller_textiles_cuero",
+      "source_npc_evidence": "Ning Cai",
+      "materials": [],
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "amuleto_ancla_resonante",
+      "name": "Amuleto de ancla resonante",
+      "stage": "LianQi_IV",
+      "slot": "AMULETO",
+      "grade": "REFINADO_DE_SECTA",
+      "power_budget": 3,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 28,
+      "contribution_required": 37,
+      "contribution_spent": false,
+      "source_mission": "M14",
+      "required_permission": "NUCLEO_SUPERIOR",
+      "source_location": "formaciones",
+      "source_npc_evidence": "He Zhen",
+      "materials": [],
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "pulsera_nudo_crisis",
+      "name": "Pulsera del nudo de crisis",
+      "stage": "LianQi_IV",
+      "slot": "PULSERA",
+      "grade": "REFINADO_DE_SECTA",
+      "power_budget": 2.5,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 27,
+      "contribution_required": 44,
+      "contribution_spent": false,
+      "source_mission": "M16",
+      "required_permission": "EMERGENCIA_SECTA",
+      "source_location": "medicina",
+      "source_npc_evidence": "Lan Meihua",
+      "materials": [],
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "anillo_relevo",
+      "name": "Anillo de relevo",
+      "stage": "LianQi_IV",
+      "slot": "ANILLO",
+      "grade": "REFINADO_DE_SECTA",
+      "power_budget": 2,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 25,
+      "contribution_required": 44,
+      "contribution_spent": false,
+      "source_mission": "M16",
+      "required_permission": "EMERGENCIA_SECTA",
+      "source_location": "taller_armas",
+      "source_npc_evidence": "Lu Cheng",
+      "materials": [],
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "anillo_marca_quieta",
+      "name": "Anillo de marca quieta",
+      "stage": "LianQi_IV",
+      "slot": "ANILLO",
+      "grade": "REFINADO_DE_SECTA",
+      "power_budget": 2,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 24,
+      "contribution_required": 34,
+      "contribution_spent": false,
+      "source_mission": "M13",
+      "required_permission": "MANTENIMIENTO_INVESTIGACION",
+      "source_location": "taller_formaciones",
+      "source_npc_evidence": "Wen Tao",
+      "materials": [],
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "cinta_patio_aspirante",
+      "name": "Cinta de patio del aspirante",
+      "stage": "LianQi_I",
+      "slot": "TOCADO",
+      "grade": "MUNDANO_TRABAJADO",
+      "power_budget": 0.58,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 3,
+      "contribution_required": 1,
+      "contribution_spent": false,
+      "source_mission": "M02",
+      "required_permission": "ASPIRANTE",
+      "source_location": "oficina_servicios",
+      "source_npc_evidence": "Tao Ming",
+      "materials": [],
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "anillo_cobre_sin_sello",
+      "name": "Anillo de cobre sin sello",
+      "stage": "LianQi_I",
+      "slot": "ANILLO",
+      "grade": "MUNDANO_TRABAJADO",
+      "power_budget": 0.58,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 3,
+      "contribution_required": 1,
+      "contribution_spent": false,
+      "source_mission": "M02",
+      "required_permission": "ASPIRANTE",
+      "source_location": "oficina_servicios",
+      "source_npc_evidence": "Tao Ming",
+      "materials": [],
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "pulsera_tension_meridiana",
+      "name": "Pulsera de tensión meridiana",
+      "stage": "LianQi_II",
+      "slot": "PULSERA",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "power_budget": 0.67,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 7,
+      "contribution_required": 8,
+      "contribution_spent": false,
+      "source_mission": "M06",
+      "required_permission": "DISCIPULO_EXTERNO",
+      "source_location": "medicina",
+      "source_npc_evidence": "Lan Meihua",
+      "materials": [],
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "calzas_guardia_externa",
+      "name": "Calzas de guardia externa",
+      "stage": "LianQi_II",
+      "slot": "PIERNAS",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "power_budget": 1.5,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 10,
+      "contribution_required": 3,
+      "contribution_spent": false,
+      "source_mission": "M04",
+      "required_permission": "PATRULLA_TERRITORIAL",
+      "source_location": "puesto_valle",
+      "source_npc_evidence": "Jiang Rui",
+      "materials": [],
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "anillo_reserva_menor",
+      "name": "Anillo de reserva menor",
+      "stage": "LianQi_II",
+      "slot": "ANILLO",
+      "grade": "TRABAJO_ESPIRITUAL_MENOR",
+      "power_budget": 1,
+      "commerce_channel": "PUBLIC_OPEN_STONES",
+      "stone_price": 8,
+      "contribution_required": 0,
+      "contribution_spent": false,
+      "source_mission": "M05",
+      "required_permission": null,
+      "source_location": "mercado_valle",
+      "source_npc_evidence": "Puestos del Mercado del Valle",
+      "materials": [],
+      "merchant_authority_status": "PUBLIC_OUTLET_EVIDENCED",
+      "notes": "Open personal commerce once its existing location/mission availability is reachable; no Contribution check."
+    },
+    {
+      "item_id": "fajin_respiracion_larga",
+      "name": "Fajín de respiración larga",
+      "stage": "LianQi_III",
+      "slot": "FAJIN",
+      "grade": "REFINADO_MENOR",
+      "power_budget": 1.67,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 16,
+      "contribution_required": 16,
+      "contribution_spent": false,
+      "source_mission": "M08",
+      "required_permission": "SECTA_INTERIOR",
+      "source_location": "taller_textiles_cuero",
+      "source_npc_evidence": "Ning Cai",
+      "materials": [],
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "brazales_aguja_plata",
+      "name": "Brazales de aguja de plata",
+      "stage": "LianQi_III",
+      "slot": "BRAZALES",
+      "grade": "REFINADO_MENOR",
+      "power_budget": 1.27,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 16,
+      "contribution_required": 18,
+      "contribution_spent": false,
+      "source_mission": "M09",
+      "required_permission": "SECTA_INTERIOR",
+      "source_location": "taller_armas",
+      "source_npc_evidence": "Lu Cheng",
+      "materials": [],
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "amuleto_flujo_contenido",
+      "name": "Amuleto de flujo contenido",
+      "stage": "LianQi_III",
+      "slot": "AMULETO",
+      "grade": "REFINADO_MENOR",
+      "power_budget": 1.33,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 17,
+      "contribution_required": 16,
+      "contribution_spent": false,
+      "source_mission": "M08",
+      "required_permission": "FORMACIONES_INVESTIGACION",
+      "source_location": "taller_formaciones",
+      "source_npc_evidence": "Wen Tao",
+      "materials": [],
+      "merchant_authority_status": "SPECIALIST_ROLE_EVIDENCED__FULFILLMENT_REQUIRES_ASTRA_AUDIT",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "vestidura_ala_cerrada",
+      "name": "Vestidura del Ala Cerrada",
+      "stage": "LianQi_IV",
+      "slot": "VESTIDURA",
+      "grade": "REFINADO_DE_SECTA",
+      "power_budget": 10.25,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 29,
+      "contribution_required": 37,
+      "contribution_spent": false,
+      "source_mission": "M14",
+      "required_permission": "NUCLEO_SUPERIOR",
+      "source_location": "pabellon_disciplina",
+      "source_npc_evidence": "Qiao Ren",
+      "materials": [],
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    },
+    {
+      "item_id": "pulsera_meridiano_profundo",
+      "name": "Pulsera del meridiano profundo",
+      "stage": "LianQi_IV",
+      "slot": "PULSERA",
+      "grade": "REFINADO_DE_SECTA",
+      "power_budget": 2.42,
+      "commerce_channel": "INSTITUTIONAL_STONES_GATE",
+      "stone_price": 26,
+      "contribution_required": 44,
+      "contribution_spent": false,
+      "source_mission": "M16",
+      "required_permission": "EMERGENCIA_SECTA",
+      "source_location": "medicina",
+      "source_npc_evidence": "Lan Meihua",
+      "materials": [],
+      "merchant_authority_status": "SOURCE_OR_AUTHORIZER_EVIDENCED__DO_NOT_ASSUME_VENDOR",
+      "notes": "Sect/institutional access. Check cumulative Contribution + existing mission/permission/material gates; spend stones only, never Contribution."
+    }
+  ],
+  "reclassifications": {
+    "note": "v0.2 correction: classification is permission-aware. Historical STONES does not mean public if the item already requires a sect permission.",
+    "examples": [
+      "sable_anillo_gris: STONES historically, but SECTA_INTERIOR => institutional",
+      "vestidura_flujo_ligero: STONES historically, but SECTA_INTERIOR => institutional",
+      "calzas_trama_sello: STONES historically, but LIV_REVELACION => institutional",
+      "tunica_ruta_sauces: HUESPED_SAUCES => contextual public, no Contribution"
+    ]
+  },
+  "non_equipment_balance": {
+    "consumables": {
+      "routine_public": [
+        {
+          "id_or_family": "decoccion_carmesi",
+          "price_stones": 5,
+          "stock": "ROUTINE",
+          "note": "Common fallback authority from Alchemy economy."
+        }
+      ],
+      "specialist_limited_stock": [
+        {
+          "id_or_family": "antidoto_jade",
+          "price_band_stones": [
+            6,
+            8
+          ],
+          "stock": "LIMITED",
+          "access": "Botica/specialist; exact seller to Astra audit"
+        },
+        {
+          "id_or_family": "balsamo_ceniza",
+          "price_band_stones": [
+            6,
+            8
+          ],
+          "stock": "LIMITED",
+          "access": "Botica/specialist; exact seller to Astra audit"
+        },
+        {
+          "id_or_family": "pildora_purificacion",
+          "price_band_stones": [
+            10,
+            14
+          ],
+          "stock": "LIMITED_INSTITUTIONAL",
+          "access": "permission/reputation may gate; not unlimited routine stock"
+        },
+        {
+          "id_or_family": "pildora_meridianos",
+          "price_band_stones": [
+            12,
+            16
+          ],
+          "stock": "LIMITED_INSTITUTIONAL",
+          "access": "medical authorization; not unlimited routine stock"
+        }
+      ],
+      "craft_primary_not_routine_unlimited": [
+        "Vitality formulations LianQi I-IV",
+        "Pure Qi formulations LianQi I-IV",
+        "Superior/Exceptional crafted qualities"
+      ],
+      "rule": "Buying finished medicines must never replace Alchemy mastery or renewable ingredient loops."
+    },
+    "manuals": {
+      "institutional_with_authorization": [
+        "Authorized sect manual copies explicitly tied to existing technique/permission sources"
+      ],
+      "no_sale": [
+        "Boss/unique manuals",
+        "mission-reward teachings",
+        "secret/First Wing research documents",
+        "ZhuJi-restricted texts unless a later explicit commerce authority exists"
+      ],
+      "price_status": "DEFER_EXACT_PRICE_UNTIL_TECHNIQUE_ACQUISITION_AUDIT",
+      "reason": "Current technique catalog does not carry a complete authoritative commerce/source map for every manual."
+    },
+    "materials": {
+      "automatic_monster_loot": {
+        "public_buyback": "SPECIALIST_ONLY_LOW_VALUE",
+        "use_priority": [
+          "equipment services",
+          "requisitions",
+          "specialist sale"
+        ],
+        "probability_scaling_for_mutants": false
+      },
+      "extraction_and_herboristery": {
+        "routine_public_vendor_stock": false,
+        "universal_resale": false,
+        "use_priority": [
+          "Alchemy",
+          "workshop services",
+          "requisitions"
+        ],
+        "note": "Do not create kill/extract/sell-all economy in Arc1."
+      },
+      "trade_roles": {
+        "automatic_monster_drop": [
+          "specialist buyback",
+          "mission requisition",
+          "equipment service component"
+        ],
+        "spiritual_extraction": [
+          "Alchemy input",
+          "mission requisition",
+          "equipment service component"
+        ],
+        "rule": "A material can have multiple sinks; its best functional value should generally exceed its liquid resale value."
+      }
+    },
+    "mission_and_unique_objects": {
+      "commerce": "NO_SALE"
+    }
+  },
+  "guards": {
+    "no_runtime_write": true,
+    "no_a07_write": true,
+    "no_main": true,
+    "no_merge": true,
+    "contribution_never_decremented": true,
+    "no_affinity_numeric_discount_by_default": true,
+    "no_vendor_invention": true,
+    "no_permission_invention": true,
+    "no_room_invention": true,
+    "no_mission_invention": true,
+    "existing_item_stats_unchanged": true
+  },
+  "material_exchange_policy": {
+    "model": "ALTERNATIVE_WORKSHOP_SERVICE_ROUTE",
+    "principle": "Monster automatic drops and Spiritual Extraction materials are functional currencies-in-kind for workshop services, not merely resale junk.",
+    "public_item_rule": "Public equipment may keep a full-stone route and also expose a material-service route with a substantially reduced stone service fee.",
+    "institutional_item_rule": "Institutional equipment keeps Contribution/permission/mission as access gates, but the player may satisfy the economic cost either with the full stone price or with the approved material bundle plus a reduced stone service fee. Contribution is never spent.",
+    "extraction_rule": "Extraction materials represent the specialized component; automatic drops represent the superficial/structural component. Where both are listed, both are required.",
+    "no_direct_crafting": true,
+    "performed_by_npc_service": true,
+    "no_material_probability_change": true,
+    "no_universal_barter": true,
+    "routes": [
+      {
+        "equipment_id": "anillo_reserva_menor",
+        "full_stone_price": 8,
+        "materials": {
+          "diente_qi_desgastado": 1
+        },
+        "service_fee_stones": 3,
+        "contribution_required": 0
+      },
+      {
+        "equipment_id": "pulsera_tension_meridiana",
+        "full_stone_price": 7,
+        "materials": {
+          "escama_qi_desprendida": 1,
+          "membrana_serpentina": 1
+        },
+        "service_fee_stones": 2,
+        "contribution_required": 8
+      },
+      {
+        "equipment_id": "amuleto_colmillo_montado",
+        "full_stone_price": null,
+        "materials": {
+          "colmillo_lobo_legitimo": 1,
+          "tendon_tres_colas": 1
+        },
+        "service_fee_stones": 2,
+        "contribution_required": 0,
+        "note": "Identity-defining material service; no pure-stone substitute proposed."
+      },
+      {
+        "equipment_id": "aguja_acero_frio",
+        "full_stone_price": 11,
+        "materials": {
+          "fragmento_caparazon_jade": 1,
+          "camara_jade": 1
+        },
+        "service_fee_stones": 4,
+        "contribution_required": 8
+      },
+      {
+        "equipment_id": "bandana_cuero_reforzada",
+        "full_stone_price": 7,
+        "materials": {
+          "herraje_robado": 1
+        },
+        "service_fee_stones": 3,
+        "contribution_required": 0
+      },
+      {
+        "equipment_id": "brazales_pulso_firme",
+        "full_stone_price": 9,
+        "materials": {
+          "costra_ceniza_vitrificada": 1,
+          "glandula_termica": 1
+        },
+        "service_fee_stones": 3,
+        "contribution_required": 8
+      },
+      {
+        "equipment_id": "anillo_sello_hierro",
+        "full_stone_price": 8,
+        "materials": {
+          "esquirla_coraza_ferrea": 1,
+          "membrana_ferrea": 1
+        },
+        "service_fee_stones": 3,
+        "contribution_required": 8
+      },
+      {
+        "equipment_id": "amuleto_meridiano_estable",
+        "full_stone_price": 22,
+        "materials": {
+          "escama_lunar_desprendida": 1,
+          "fluido_lunar": 1
+        },
+        "service_fee_stones": 7,
+        "contribution_required": 21
+      },
+      {
+        "equipment_id": "espada_vena_clara",
+        "full_stone_price": 20,
+        "materials": {
+          "escama_estelar_conductiva": 1,
+          "conducto_estelar": 1
+        },
+        "service_fee_stones": 8,
+        "contribution_required": 16
+      },
+      {
+        "equipment_id": "amuleto_ancla_resonante",
+        "full_stone_price": 28,
+        "materials": {
+          "cristal_bruma_superficial": 1,
+          "bolsa_niebla": 1
+        },
+        "service_fee_stones": 10,
+        "contribution_required": 37
+      },
+      {
+        "equipment_id": "hoja_seis_corrientes",
+        "full_stone_price": 29,
+        "materials": {
+          "pluma_exterior_estatica": 1,
+          "fibra_tempestad": 1
+        },
+        "service_fee_stones": 10,
+        "contribution_required": 34
+      },
+      {
+        "equipment_id": "espada_hierro_equilibrada",
+        "full_stone_price": 12,
+        "materials": {
+          "esquirla_coraza_ferrea": 1,
+          "caparazon_hierro": 1
+        },
+        "service_fee_stones": 5,
+        "contribution_required": 3
+      },
+      {
+        "equipment_id": "capucha_observador_valle",
+        "full_stone_price": 7,
+        "materials": {
+          "escama_qi_desprendida": 1,
+          "membrana_serpentina": 1
+        },
+        "service_fee_stones": 3,
+        "contribution_required": 0
+      },
+      {
+        "equipment_id": "calzas_guardia_externa",
+        "full_stone_price": 10,
+        "materials": {
+          "costra_ceniza_vitrificada": 1,
+          "saco_hollin": 1
+        },
+        "service_fee_stones": 4,
+        "contribution_required": 3
+      },
+      {
+        "equipment_id": "vara_dos_corrientes",
+        "full_stone_price": 19,
+        "materials": {
+          "escama_estelar_conductiva": 1,
+          "conducto_estelar": 1
+        },
+        "service_fee_stones": 7,
+        "contribution_required": 24
+      },
+      {
+        "equipment_id": "tocado_hilo_formacion",
+        "full_stone_price": 18,
+        "materials": {
+          "escama_lunar_desprendida": 1,
+          "fluido_lunar": 1
+        },
+        "service_fee_stones": 6,
+        "contribution_required": 16
+      },
+      {
+        "equipment_id": "tunica_reforzada_trama_cobre",
+        "full_stone_price": 22,
+        "materials": {
+          "esquirla_coraza_ferrea": 1,
+          "caparazon_hierro": 1,
+          "membrana_ferrea": 1
+        },
+        "service_fee_stones": 8,
+        "contribution_required": 16
+      },
+      {
+        "equipment_id": "vestidura_flujo_ligero",
+        "full_stone_price": 20,
+        "materials": {
+          "escama_lunar_desprendida": 1,
+          "branquia_lunar": 1
+        },
+        "service_fee_stones": 7,
+        "contribution_required": 16
+      },
+      {
+        "equipment_id": "brazales_pulso_medico",
+        "full_stone_price": 17,
+        "materials": {
+          "vesicula_medicinal": 1,
+          "fluido_lunar": 1
+        },
+        "service_fee_stones": 6,
+        "contribution_required": 21
+      },
+      {
+        "equipment_id": "calzas_paso_silencioso",
+        "full_stone_price": 16,
+        "materials": {
+          "escama_lunar_desprendida": 1,
+          "medula_viento": 1
+        },
+        "service_fee_stones": 6,
+        "contribution_required": 0
+      },
+      {
+        "equipment_id": "manto_mantenimiento",
+        "full_stone_price": 30,
+        "materials": {
+          "cristal_bruma_superficial": 1,
+          "sedimento_niebla": 1,
+          "membrana_ferrea": 1
+        },
+        "service_fee_stones": 12,
+        "contribution_required": 34
+      },
+      {
+        "equipment_id": "pulsera_nudo_crisis",
+        "full_stone_price": 27,
+        "materials": {
+          "pluma_exterior_estatica": 1,
+          "saco_pulmonar_tormenta": 1
+        },
+        "service_fee_stones": 9,
+        "contribution_required": 44
+      },
+      {
+        "equipment_id": "anillo_marca_quieta",
+        "full_stone_price": 24,
+        "materials": {
+          "cristal_bruma_superficial": 1,
+          "sedimento_niebla": 1
+        },
+        "service_fee_stones": 8,
+        "contribution_required": 34
+      },
+      {
+        "equipment_id": "vestidura_ala_cerrada",
+        "full_stone_price": 29,
+        "materials": {
+          "pluma_exterior_estatica": 1,
+          "fibra_tempestad": 1,
+          "saco_pulmonar_tormenta": 1
+        },
+        "service_fee_stones": 11,
+        "contribution_required": 37
+      }
+    ],
+    "economic_target": "Material route should normally save roughly 50-70% of the stone outlay while still costing time/field effort. It must never remove existing mission/permission/Contribution gates.",
+    "coverage_target": {
+      "total_equipment": 68,
+      "material_service_routes": 24,
+      "percentage": 35.29,
+      "intended_range_percent": [
+        30,
+        40
+      ],
+      "note": "No material routes in LI; the profession/tutorial economy is kept simple there. Material services become a meaningful alternative from LII onward."
+    }
+  },
+  "material_buyback_policy": {
+    "mode": "SPECIALIST_BUYBACK_WITH_BULK_RATES",
+    "principle": "Liquidating materials is deliberately less valuable than using them in workshop services, Alchemy or requisitions.",
+    "exact_npc_assignment": "DEFER_TO_ASTRA_COMMERCE_AUDIT",
+    "automatic_loot_per_unit_stones": {
+      "diente_qi_desgastado": 1,
+      "escama_qi_desprendida": 1,
+      "colmillo_lobo_legitimo": 1,
+      "fragmento_caparazon_jade": 1,
+      "herraje_robado": 1,
+      "pildora_consolidacion": 2,
+      "costra_ceniza_vitrificada": 2,
+      "esquirla_coraza_ferrea": 2,
+      "escama_lunar_desprendida": 3,
+      "escama_estelar_conductiva": 3,
+      "cristal_bruma_superficial": 4,
+      "pluma_exterior_estatica": 4
+    },
+    "extraction_bulk_rates": {
+      "LianQi_I": {
+        "simple": {
+          "units": 4,
+          "stones": 1
+        },
+        "normal": {
+          "units": 4,
+          "stones": 1
+        },
+        "dificil": {
+          "units": 3,
+          "stones": 1
+        }
+      },
+      "LianQi_II": {
+        "normal": {
+          "units": 3,
+          "stones": 1
+        },
+        "dificil": {
+          "units": 2,
+          "stones": 1
+        }
+      },
+      "LianQi_III": {
+        "normal": {
+          "units": 2,
+          "stones": 1
+        },
+        "dificil": {
+          "units": 2,
+          "stones": 1
+        }
+      },
+      "LianQi_IV": {
+        "normal": {
+          "units": 2,
+          "stones": 1
+        },
+        "dificil": {
+          "units": 2,
+          "stones": 1
+        },
+        "muy_dificil": {
+          "units": 2,
+          "stones": 1
+        }
+      }
+    },
+    "extraction_materials": {
+      "grasa_qi_roida": {
+        "stage": "LianQi_I",
+        "difficulty": "simple",
+        "yield_on_success": 1
+      },
+      "aguijon_jade": {
+        "stage": "LianQi_I",
+        "difficulty": "normal",
+        "yield_on_success": 1
+      },
+      "membrana_serpentina": {
+        "stage": "LianQi_I",
+        "difficulty": "dificil",
+        "yield_on_success": 1
+      },
+      "medula_viento": {
+        "stage": "LianQi_I",
+        "difficulty": "normal",
+        "yield_on_success": 1
+      },
+      "tendon_tres_colas": {
+        "stage": "LianQi_I",
+        "difficulty": "dificil",
+        "yield_on_success": 1
+      },
+      "camara_jade": {
+        "stage": "LianQi_I",
+        "difficulty": "dificil",
+        "yield_on_success": 1
+      },
+      "vesicula_medicinal": {
+        "stage": "LianQi_I",
+        "difficulty": "normal",
+        "yield_on_success": 1
+      },
+      "glandula_termica": {
+        "stage": "LianQi_II",
+        "difficulty": "normal",
+        "yield_on_success": 1
+      },
+      "saco_hollin": {
+        "stage": "LianQi_II",
+        "difficulty": "dificil",
+        "yield_on_success": 1
+      },
+      "caparazon_hierro": {
+        "stage": "LianQi_II",
+        "difficulty": "normal",
+        "yield_on_success": 1
+      },
+      "membrana_ferrea": {
+        "stage": "LianQi_II",
+        "difficulty": "dificil",
+        "yield_on_success": 1
+      },
+      "fluido_lunar": {
+        "stage": "LianQi_III",
+        "difficulty": "normal",
+        "yield_on_success": 1
+      },
+      "branquia_lunar": {
+        "stage": "LianQi_III",
+        "difficulty": "dificil",
+        "yield_on_success": 2
+      },
+      "conducto_estelar": {
+        "stage": "LianQi_III",
+        "difficulty": "normal",
+        "yield_on_success": 1
+      },
+      "saco_residual_estelar": {
+        "stage": "LianQi_III",
+        "difficulty": "dificil",
+        "yield_on_success": 1
+      },
+      "bolsa_niebla": {
+        "stage": "LianQi_IV",
+        "difficulty": "normal",
+        "yield_on_success": 1
+      },
+      "sedimento_niebla": {
+        "stage": "LianQi_IV",
+        "difficulty": "muy_dificil",
+        "yield_on_success": 2
+      },
+      "fibra_tempestad": {
+        "stage": "LianQi_IV",
+        "difficulty": "normal",
+        "yield_on_success": 1
+      },
+      "saco_pulmonar_tormenta": {
+        "stage": "LianQi_IV",
+        "difficulty": "dificil",
+        "yield_on_success": 1
+      }
+    },
+    "rules": [
+      "Bulk sale consumes only complete lots; remainder stays in inventory.",
+      "No universal vendor is implied.",
+      "Workshop/requisition/Alchemy sinks should normally beat liquidation value.",
+      "Mutant x1.5 affects automatic-loot quantity after success; it does not increase buyback price.",
+      "Extraction is not affected by Mutant loot multiplier."
+    ]
+  }
+}
