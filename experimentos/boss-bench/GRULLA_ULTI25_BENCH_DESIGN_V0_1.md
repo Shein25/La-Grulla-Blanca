@@ -237,11 +237,19 @@ El bench debe abortar si ocurre cualquiera:
 
 ## Estado actual
 
-El diseño del bench queda abierto.
+Ya existen en esta rama:
 
-Bloqueantes antes de codificar el runner masivo:
+- contrato `PACTO_ULTIMO_VUELO`;
+- helper contractual LAB;
+- prototipo visual/funcional `BOSS_UI_B13_GRULLA_PACTO_ULTIMO_VUELO.html`, derivado del B12 recuperado;
+- spec machine-readable del bench;
+- scaffold `grulla_ulti25_bench_runner_v01.py` con seeds pareadas y streams RNG por dominio.
 
-1. source ejecutable real de la Grulla F1–F3;
+B12/B13 son prototipos **SIN MOTOR**. Por eso el diseño del bench sigue abierto para ejecución real.
+
+Bloqueantes antes del runner masivo:
+
+1. source ejecutable real de la IA/combate de la Grulla F1–F3;
 2. fixture autoritativo del personaje/equipo/técnicas con el que se enfrentará al jefe;
 3. definir exactamente cómo se construye el trigger `PREPARED_OPPORTUNITY` para las 25 Ultis desde su catálogo existente.
 
