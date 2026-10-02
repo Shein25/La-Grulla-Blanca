@@ -1,0 +1,145 @@
+{
+  "schema_version": "arc1-contribution-cleanslate-v0.1",
+  "status": "RECOMMENDED_PRE_IMPLEMENTATION__AWAITING_HUMAN_RATIFICATION",
+  "created_on": "2026-10-02",
+  "source_audit": {
+    "runtime": "grulla-blanca_ver76.html",
+    "current_legacy_shape": [
+      "registro.saldo",
+      "registro.gastos",
+      "player.contribucion mirror",
+      "gastarContribucion()",
+      "cmd_canjear()",
+      "FACCIONES.grulla_blanca.servicios"
+    ],
+    "finding": "Current runtime models Contribution as spendable balance; this conflicts with ratified economy."
+  },
+  "target_model": {
+    "sole_authority": "player.facciones[factionId].contribucion",
+    "faction_record": {
+      "estado": "inactivo|miembro|huesped|aliado|expulsado",
+      "contribucion": "safe non-negative integer; monotonic",
+      "merito": "safe non-negative integer; separate rank progression",
+      "reputacion": "finite number; separate social/institutional dimension",
+      "historial": "bounded audit/history; never reconstructs authority"
+    },
+    "remove_fields": [
+      "saldo",
+      "gastos"
+    ],
+    "remove_mirrors": [
+      "player.contribucion"
+    ],
+    "no_duplicate_authority": true
+  },
+  "semantics": {
+    "contribution": "CUMULATIVE_NON_SPENDABLE_INSTITUTIONAL_ACCESS",
+    "increment_only": true,
+    "decrement_forbidden": true,
+    "price_currency": "SPIRIT_STONES",
+    "material_costs": "INVENTORY_MATERIALS",
+    "gate_example": "contribucion >= threshold",
+    "contribution_never_in_transaction_delta": true,
+    "merit_is_not_contribution": true,
+    "reputation_is_not_contribution": true
+  },
+  "runtime_api": {
+    "keep_or_adapt": [
+      {
+        "name": "registroFaccion(id)",
+        "role": "returns faction record"
+      },
+      {
+        "name": "otorgarContribucion(cantidad,motivo,id)",
+        "new_behavior": "increment registro.contribucion exactly once; never touches a spendable balance"
+      },
+      {
+        "name": "otorgarMerito(cantidad,motivo,id)",
+        "new_behavior": "unchanged dimension; return field names updated so no saldo terminology remains"
+      },
+      {
+        "name": "rangoFaccion(id)",
+        "new_behavior": "continues to derive rank from merito unless separately redesigned"
+      },
+      {
+        "name": "cmd_contribucion()",
+        "new_behavior": "pure query displaying cumulative Contribution, merit and rank; no spendable-balance wording"
+      }
+    ],
+    "add": [
+      {
+        "name": "contribucionFaccion(id)",
+        "role": "single reader for authoritative cumulative Contribution"
+      },
+      {
+        "name": "cumpleContribucion(minimo,id)",
+        "role": "boolean/informational gate helper; never mutates"
+      }
+    ],
+    "delete": [
+      "gastarContribucion()",
+      "cmd_canjear()",
+      "cmd_comprar() legacy/stub",
+      "cmd_tienda() legacy/stub",
+      "global cmd_servicios commerce/canje path"
+    ]
+  },
+  "data_purge": {
+    "delete": "FACCIONES.grulla_blanca.servicios legacy spendable-contribution offers",
+    "legacy_offers": [
+      "pocion coste 3 contribution",
+      "claridad coste 4 contribution",
+      "consolidacion coste 8 contribution"
+    ],
+    "rule": "Do not convert these automatically to free services, stone prices or new merchant stock. New offers require explicit new commerce authority."
+  },
+  "save_contract": {
+    "recommended_SAVE_SCHEMA_VERSION": 3,
+    "recommended_facciones_version": 2,
+    "old_save_support": false,
+    "migration": false,
+    "aliases": false,
+    "legacy_normalization": false,
+    "behavior": "Schema-2 development saves are rejected/reset; new game initializes clean faction record with contribucion=0.",
+    "rationale": "Version bump prevents an old spendable-balance save from being silently reinterpreted as cumulative Contribution."
+  },
+  "arc1_expected_awards": {
+    "P": 0,
+    "M01": 0,
+    "M02": 1,
+    "M03": 0,
+    "M04": 2,
+    "M05": 3,
+    "M06": 2,
+    "M07": 4,
+    "cumulative_after": {
+      "P": 0,
+      "M01": 0,
+      "M02": 1,
+      "M03": 1,
+      "M04": 3,
+      "M05": 6,
+      "M06": 8,
+      "M07": 12
+    },
+    "rule": "Existing mission reward event remains the grant point; each mission reward may grant Contribution once only."
+  },
+  "integration_guards": [
+    "No code path may decrement registro.contribucion.",
+    "No runtime field named saldo may represent Contribution.",
+    "No runtime field gastos may exist solely for Contribution spending.",
+    "No player.contribucion mirror.",
+    "No global CANJEAR/SERVICIOS purchase path.",
+    "Commerce gates read only through the authoritative Contribution reader.",
+    "Saving/loading preserves cumulative value exactly.",
+    "New game starts at 0.",
+    "Old save schema is rejected rather than migrated."
+  ],
+  "scope": {
+    "implement_now": false,
+    "purpose": "clean-slate contract for future Astra/ver76 integration",
+    "a07_redesign": false,
+    "commerce_slice1_dependency": false,
+    "note": "Slice1 Ning Cai public item does not require Contribution; this contract can be integrated/validated independently before institutional commerce expansion."
+  }
+}
