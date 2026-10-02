@@ -1,0 +1,435 @@
+{
+  "schema_version": "monster-individual-variance-six-proposal-v0.1",
+  "status": "LAB_PROPOSAL_AWAITING_CROSS_AXIS_VALIDATION",
+  "created_on": "2026-10-01",
+  "source_head": "45c3a9c240ea74208a0d8fd4d5be187bc817df35",
+  "scope": {
+    "include": [
+      "sapo_ceniza",
+      "escarabajo_hierro",
+      "pez_lunar",
+      "anguila_estelar",
+      "devorador_niebla",
+      "halcon_tormenta"
+    ],
+    "exclude_unique_true": true,
+    "excluded_unique": [
+      "eco_caido",
+      "sapo_caldera",
+      "rey_escarabajo",
+      "sombra_ahogada",
+      "guardian_coral",
+      "mantis_nube",
+      "centinela_pluma"
+    ]
+  },
+  "source_artifacts": {
+    "batch_a_sha256": "bcba2b003fa2d03d0447fb13bb0c45ccc85aa6f7a3de22115bbb94c1dda32c9f",
+    "batch_b_sha256": "7851366c9b61f899b913a7e7e6a6f1f7bad96fe23f10a14af7dffb81015527a4",
+    "batch_c_sha256": "836f54456aade744b37c27dc04d171316bc637d24b17f7d3e3faa76c39605a14",
+    "batch_d_sha256": "3a4bd1dc23a1bd54f17c92af443ee57e360bde103d79c971dc05a0b57c6be194",
+    "escarabajo_microlab_sha256": "d5cc200a85c41014db8fea00fcc442996865718b89a9a4d2090c12fff81fd923"
+  },
+  "derivation_rules": {
+    "canonical_t0_is_floor": true,
+    "source_screen_classes": [
+      "CLEAN"
+    ],
+    "review_and_outlier_not_used_as_envelope_sources": true,
+    "stat_upper_rule": "maximum measured CLEAN value at or above ratified T0 floor, per axis",
+    "attack_ladder_rule": "measured CLEAN dice expressions at or above T0 expected damage, preserving fixed identity fields",
+    "no_interpolated_dice": true,
+    "independent_axes": true,
+    "distribution": "UNIFORM_0_1",
+    "roll_once_per_instance": true,
+    "adaptive_tiers_separate": true,
+    "unique_species_variance_forbidden": true
+  },
+  "fixed_fields": [
+    "resource_model",
+    "control",
+    "crit_chance",
+    "crit_damage",
+    "technique.name",
+    "technique.mechanics",
+    "technique.params.cadence",
+    "technique QI_DRAIN/control chance",
+    "ai.cognition",
+    "ai.social",
+    "adaptive"
+  ],
+  "species": {
+    "sapo_ceniza": {
+      "base": {
+        "hp": 49,
+        "defense": 0,
+        "evasion": 11,
+        "precision": 97,
+        "tenacity": 5
+      },
+      "upper_envelope": {
+        "hp": 52,
+        "defense": 3,
+        "evasion": 33,
+        "precision": 100,
+        "tenacity": 19
+      },
+      "upper_sources": {
+        "hp": "sapo_ceniza-b10-f851070241",
+        "defense": "sapo_ceniza-b03-0151582d7e",
+        "evasion": "sapo_ceniza-b07-4e68c838f4",
+        "precision": "sapo_ceniza-b10-f851070241",
+        "tenacity": "sapo_ceniza-b07-4e68c838f4"
+      },
+      "attacks": {
+        "basic_damage": {
+          "ladder": [
+            "1d2+5",
+            "1d3+5",
+            "1d3+6",
+            "1d2+7"
+          ],
+          "sources": [
+            "sapo_ceniza-b00-878c225026",
+            "sapo_ceniza-b10-f851070241",
+            "sapo_ceniza-b04-29a65445b7",
+            "sapo_ceniza-b02-55ce04b200"
+          ]
+        },
+        "technique_direct_damage": {
+          "ladder": [
+            "1d2+4",
+            "1d2+5",
+            "1d2+8"
+          ],
+          "sources": [
+            "sapo_ceniza-b01-cf7f63c920",
+            "sapo_ceniza-b00-878c225026",
+            "sapo_ceniza-b09-7dc3aa8399"
+          ]
+        },
+        "burn_damage": {
+          "ladder": [
+            "1d2+2"
+          ],
+          "sources": [
+            "sapo_ceniza-b01-cf7f63c920"
+          ]
+        },
+        "burn_ticks": {
+          "ladder": [
+            3
+          ],
+          "sources": [
+            "sapo_ceniza-b01-cf7f63c920"
+          ]
+        }
+      },
+      "fixed_technique": {
+        "name": "Nube de Hollín",
+        "mechanics": [
+          "DIRECT_DAMAGE",
+          "BURN_DOT"
+        ],
+        "cadence": 3
+      },
+      "adaptive_contract": "monster_adaptive_six_v0.1"
+    },
+    "escarabajo_hierro": {
+      "base": {
+        "hp": 75,
+        "defense": 2,
+        "evasion": 14,
+        "precision": 90,
+        "tenacity": 24
+      },
+      "upper_envelope": {
+        "hp": 82,
+        "defense": 5,
+        "evasion": 22,
+        "precision": 98,
+        "tenacity": 34
+      },
+      "upper_sources": {
+        "hp": "escarabajo_hierro-b04-d2b395945f",
+        "defense": "escarabajo_hierro-b04-d2b395945f",
+        "evasion": "escarabajo_hierro-b03-28afd52077",
+        "precision": "escarabajo_hierro-b05-4dea609a12",
+        "tenacity": "escarabajo_hierro-b03-28afd52077"
+      },
+      "attacks": {
+        "basic_damage": {
+          "ladder": [
+            "1d2+3",
+            "1d2+4",
+            "1d2+6"
+          ],
+          "sources": [
+            "escarabajo_hierro-m10-50f2acebee",
+            "escarabajo_hierro-b03-28afd52077",
+            "escarabajo_hierro-b04-d2b395945f"
+          ]
+        },
+        "technique_direct_damage": {
+          "ladder": [
+            "1d2+8",
+            "1d4+9"
+          ],
+          "sources": [
+            "escarabajo_hierro-m10-50f2acebee",
+            "escarabajo_hierro-b04-d2b395945f"
+          ]
+        }
+      },
+      "fixed_technique": {
+        "name": "Carga de Caparazón",
+        "mechanics": [
+          "DIRECT_DAMAGE"
+        ],
+        "cadence": 3
+      },
+      "adaptive_contract": "monster_adaptive_six_v0.1"
+    },
+    "pez_lunar": {
+      "base": {
+        "hp": 42,
+        "defense": 2,
+        "evasion": 29,
+        "precision": 90,
+        "tenacity": 13
+      },
+      "upper_envelope": {
+        "hp": 44,
+        "defense": 3,
+        "evasion": 32,
+        "precision": 98,
+        "tenacity": 25
+      },
+      "upper_sources": {
+        "hp": "pez_lunar-b09-3ab2de73ee",
+        "defense": "pez_lunar-b11-b9b698a11a",
+        "evasion": "pez_lunar-b09-3ab2de73ee",
+        "precision": "pez_lunar-b09-3ab2de73ee",
+        "tenacity": "pez_lunar-b04-06d07824c6"
+      },
+      "attacks": {
+        "basic_damage": {
+          "ladder": [
+            "1d2+8",
+            "1d4+9",
+            "1d5+9"
+          ],
+          "sources": [
+            "pez_lunar-b00-8a7474198a",
+            "pez_lunar-b08-6da7bf1260",
+            "pez_lunar-b06-046b84b3cd"
+          ]
+        },
+        "technique_direct_damage": {
+          "ladder": [
+            "2d4+9"
+          ],
+          "sources": [
+            "pez_lunar-b00-8a7474198a"
+          ]
+        }
+      },
+      "fixed_technique": {
+        "name": "Mordida de Corriente",
+        "mechanics": [
+          "DIRECT_DAMAGE"
+        ],
+        "cadence": 4
+      },
+      "adaptive_contract": "monster_adaptive_six_v0.1"
+    },
+    "anguila_estelar": {
+      "base": {
+        "hp": 37,
+        "defense": 1,
+        "evasion": 36,
+        "precision": 92,
+        "tenacity": 16
+      },
+      "upper_envelope": {
+        "hp": 37,
+        "defense": 3,
+        "evasion": 39,
+        "precision": 107,
+        "tenacity": 16
+      },
+      "upper_sources": {
+        "hp": "anguila_estelar-b09-4f1d8e046c",
+        "defense": "anguila_estelar-b06-b4069c35a1",
+        "evasion": "anguila_estelar-b00-5d0b938a1d",
+        "precision": "anguila_estelar-b06-b4069c35a1",
+        "tenacity": "anguila_estelar-b09-4f1d8e046c"
+      },
+      "attacks": {
+        "basic_damage": {
+          "ladder": [
+            "1d3+6",
+            "1d3+7",
+            "1d3+9"
+          ],
+          "sources": [
+            "anguila_estelar-b09-4f1d8e046c",
+            "anguila_estelar-b00-5d0b938a1d",
+            "anguila_estelar-b06-b4069c35a1"
+          ]
+        },
+        "technique_direct_damage": {
+          "ladder": [
+            "2d6+9"
+          ],
+          "sources": [
+            "anguila_estelar-b09-4f1d8e046c"
+          ]
+        }
+      },
+      "fixed_technique": {
+        "name": "Mordida del Meridiano Azul",
+        "mechanics": [
+          "DIRECT_DAMAGE",
+          "QI_DRAIN"
+        ],
+        "cadence": 4,
+        "qi_drain": 6
+      },
+      "adaptive_contract": "monster_adaptive_six_v0.1"
+    },
+    "devorador_niebla": {
+      "base": {
+        "hp": 46,
+        "defense": 2,
+        "evasion": 28,
+        "precision": 93,
+        "tenacity": 14
+      },
+      "upper_envelope": {
+        "hp": 52,
+        "defense": 4,
+        "evasion": 42,
+        "precision": 107,
+        "tenacity": 26
+      },
+      "upper_sources": {
+        "hp": "devorador_niebla-b10-9f78bb9154",
+        "defense": "devorador_niebla-b09-a0b98e82bb",
+        "evasion": "devorador_niebla-b02-11f4b8fea7",
+        "precision": "devorador_niebla-b09-a0b98e82bb",
+        "tenacity": "devorador_niebla-b07-fcaae7da3a"
+      },
+      "attacks": {
+        "basic_damage": {
+          "ladder": [
+            "1d2+9",
+            "1d3+9",
+            "1d4+9"
+          ],
+          "sources": [
+            "devorador_niebla-b00-6f4bffd772",
+            "devorador_niebla-b01-1a19d77359",
+            "devorador_niebla-b10-9f78bb9154"
+          ]
+        },
+        "technique_direct_damage": {
+          "ladder": [
+            "3d4+8"
+          ],
+          "sources": [
+            "devorador_niebla-b00-6f4bffd772"
+          ]
+        }
+      },
+      "fixed_technique": {
+        "name": "Exhalación Vacía",
+        "mechanics": [
+          "DIRECT_DAMAGE"
+        ],
+        "cadence": 4
+      },
+      "adaptive_contract": "monster_adaptive_six_v0.1"
+    },
+    "halcon_tormenta": {
+      "base": {
+        "hp": 43,
+        "defense": 2,
+        "evasion": 30,
+        "precision": 89,
+        "tenacity": 22
+      },
+      "upper_envelope": {
+        "hp": 51,
+        "defense": 3,
+        "evasion": 52,
+        "precision": 110,
+        "tenacity": 31
+      },
+      "upper_sources": {
+        "hp": "halcon_tormenta-b08-9110a266eb",
+        "defense": "halcon_tormenta-b04-91ab45bf6d",
+        "evasion": "halcon_tormenta-b09-75c2c800ba",
+        "precision": "halcon_tormenta-b05-8fe0e7e408",
+        "tenacity": "halcon_tormenta-b08-9110a266eb"
+      },
+      "attacks": {
+        "basic_damage": {
+          "ladder": [
+            "1d3+6",
+            "1d2+7",
+            "1d3+7",
+            "1d2+8",
+            "1d3+8",
+            "1d2+9",
+            "1d3+9",
+            "1d4+9"
+          ],
+          "sources": [
+            "halcon_tormenta-b03-27f18b5b64",
+            "halcon_tormenta-b01-eec52a9ca0",
+            "halcon_tormenta-b08-9110a266eb",
+            "halcon_tormenta-b00-7d59ea6c94",
+            "halcon_tormenta-b04-91ab45bf6d",
+            "halcon_tormenta-b02-9329dbc763",
+            "halcon_tormenta-b11-f3042d7dbb",
+            "halcon_tormenta-b07-0c4c6898a5"
+          ]
+        },
+        "technique_direct_damage": {
+          "ladder": [
+            "3d6+8",
+            "2d10+9"
+          ],
+          "sources": [
+            "halcon_tormenta-b03-27f18b5b64",
+            "halcon_tormenta-b01-eec52a9ca0"
+          ]
+        }
+      },
+      "fixed_technique": {
+        "name": "Picado del Relámpago",
+        "mechanics": [
+          "DIRECT_DAMAGE"
+        ],
+        "cadence": 3
+      },
+      "adaptive_contract": "monster_adaptive_six_v0.1"
+    }
+  },
+  "mutant_policy_inherited": {
+    "target_incidence": 0.0075,
+    "maximum_incidence": 0.01,
+    "loot_multiplier": 1.5,
+    "xp_multiplier": 1.5,
+    "no_adaptive_tier_grant_from_mutant": true,
+    "threshold_source": "monster_individual_variance_v0.1.json"
+  },
+  "next_gate": {
+    "status": "REQUIRED_BEFORE_RATIFICATION",
+    "natural_population_simulation": true,
+    "conditional_mutant_tail_simulation": true,
+    "cross_axis_combination_validation": true,
+    "t1_t4_interaction_validation": true
+  }
+}
