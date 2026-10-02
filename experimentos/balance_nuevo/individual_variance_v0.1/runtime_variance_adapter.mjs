@@ -81,6 +81,9 @@ export function instantiateMonsterVariance({
   if (canonicalProfile.stats_status !== "READY") {
     throw new Error(`${speciesId}: canonical T0 must be READY`);
   }
+  if (canonicalProfile.unique === true || varianceConfig.guards?.unique_species_variance_forbidden !== true) {
+    throw new Error(`${speciesId}: unique species variance forbidden`);
+  }
 
   const spec = varianceConfig.species?.[speciesId];
   if (!spec?.base || !spec?.upper_envelope || !spec?.attacks) {
