@@ -2101,5 +2101,22 @@
     "status": "HUMAN_RATIFIED_DESIGN_AUTHORITY__PRE_IMPLEMENTATION",
     "rule": "NPC role alone never grants commerce. Only explicit capabilities in the merchant registry may expose SELL/BUY/SERVICE/AUTHORIZE/FULFILL/INFORMATION_ROUTING.",
     "pilot": "ning_cai -> SELL + FULFILL -> calzas_sendero_pinos -> 8 stones -> ROUTINE_UNLIMITED -> 0 commerce turns"
+  },
+  "transaction_engine_authority": {
+    "file": "ARC1_COMMERCE_TRANSACTION_CONTRACT_V0_1.json",
+    "status": "HUMAN_RATIFIED_DESIGN_AUTHORITY__PRE_IMPLEMENTATION",
+    "pipeline": "EVALUATE -> CONFIRM -> REVALIDATE -> BUILD_DELTA -> COMMIT -> RECEIPT",
+    "ui_is_never_authority": true,
+    "sold_goods_default_to_economic_sink": true
+  },
+  "catalog_ui_authority": {
+    "file": "ARC1_COMMERCE_CATALOG_UI_V0_1.json",
+    "status": "HUMAN_RATIFIED_DESIGN_AUTHORITY__PRE_IMPLEMENTATION",
+    "rule": "Use a text/list catalog in the existing MUD style; recover the prior user experience but never legacy implementation.",
+    "exits": [
+      "Volver a la conversación",
+      "Cerrar"
+    ],
+    "movement_closes_catalog": true
   }
 }
