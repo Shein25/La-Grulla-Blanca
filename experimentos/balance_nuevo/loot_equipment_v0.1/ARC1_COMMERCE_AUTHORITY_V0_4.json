@@ -2095,5 +2095,11 @@
       "mission requisition hooks",
       "turn-consumption contract"
     ]
+  },
+  "merchant_capability_authority": {
+    "file": "ARC1_MERCHANT_CAPABILITIES_V0_1.json",
+    "status": "HUMAN_RATIFIED_DESIGN_AUTHORITY__PRE_IMPLEMENTATION",
+    "rule": "NPC role alone never grants commerce. Only explicit capabilities in the merchant registry may expose SELL/BUY/SERVICE/AUTHORIZE/FULFILL/INFORMATION_ROUTING.",
+    "pilot": "ning_cai -> SELL + FULFILL -> calzas_sendero_pinos -> 8 stones -> ROUTINE_UNLIMITED -> 0 commerce turns"
   }
 }
