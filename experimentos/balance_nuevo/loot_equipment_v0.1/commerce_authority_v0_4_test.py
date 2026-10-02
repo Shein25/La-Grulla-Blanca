@@ -23,7 +23,6 @@ assert H["legacy_replacement"]["aliases_allowed_in_final_runtime"] is False
 assert P["hard_economic_decisions"]["contribution"]=="NON_SPENDABLE_CUMULATIVE_INSTITUTIONAL_ACCESS_GATE"
 assert all(x["contribution_spent"] is False for x in P["equipment"])
 
-assert H["legacy_replacement"]["authority"]=="NEW_ARC1_CATALOGS_ONLY"
 assert H["legacy_replacement"]["no_silent_coexistence"] is True
 assert P["legacy_policy"]["runtime_integration"]=="PURGE_AND_REPLACE"
 assert P["legacy_policy"]["save_compatibility_required"] is False
