@@ -150,39 +150,31 @@ def selfcheck() -> None:
             require_ready_profile(monster_id, data)
         except MonsterStatsNotReady:
             blocked += 1
-    if blocked != 6:
+    if blocked != 0:
         raise AssertionError(
-            f"expected 6 pending unique profiles after 12 T0 closures, got {blocked}"
+            f"expected 0 pending profiles after all 18 Arc 1 T0 closures, got {blocked}"
         )
     ready=[
         mid for mid,p in data["profiles"].items()
         if p["stats_status"]==READY
     ]
-    expected_ready=[
-        "rata_qi",
-        "serpiente_qi",
-        "lobo_espiritual",
-        "eco_caido",
-        "pez_lunar",
-        "devorador_niebla",
-        "avispa_jade",
-        "mono_pildoras",
-        "sapo_ceniza",
-        "escarabajo_hierro",
-        "anguila_estelar",
-        "halcon_tormenta",
-    ]
+    expected_ready=list(data["profiles"])
     if ready != expected_ready:
         raise AssertionError(
-            f"expected READY profiles {expected_ready}, got {ready}"
+            f"expected all registry profiles READY, got {ready}"
         )
-    if set(data["rules"]["ready_profiles"]) != set(expected_ready):
+    if data["rules"]["ready_profiles"] != expected_ready:
         raise AssertionError(
-            "rules.ready_profiles does not match actual READY profiles"
+            "rules.ready_profiles does not match full registry order"
         )
+    unique=[mid for mid,p in data["profiles"].items() if p["unique"]]
+    for mid in unique:
+        if data["profiles"][mid]["adaptive"]["status"]!="UNIQUE_T0_CLOSED_NO_T1_T4":
+            raise AssertionError(f"{mid}: unique profile must be closed without persistent T1-T4")
     print("PASS: 18/18 monsters use NEW_COMBAT_STATS_V0_1.")
     print("PASS: monster registry/profile schemas are exact.")
-    print("PASS: 12/18 Arc 1 monsters are T0 READY; 6 unique encounters remain pending.")
+    print("PASS: 18/18 Arc 1 monster T0 profiles are READY.")
+    print("PASS: all unique encounters are explicitly closed without persistent T1-T4.")
 
 
 if __name__ == "__main__":
