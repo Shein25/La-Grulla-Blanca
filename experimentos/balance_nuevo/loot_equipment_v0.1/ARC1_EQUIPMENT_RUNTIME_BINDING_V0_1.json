@@ -1,6 +1,6 @@
 {
   "schema_version": "arc1-equipment-runtime-binding-v0.1",
-  "status": "RECOMMENDED_PRE_IMPLEMENTATION__AWAITING_HUMAN_RATIFICATION",
+  "status": "HUMAN_RATIFIED_DESIGN_AUTHORITY__PRE_IMPLEMENTATION",
   "created_on": "2026-10-02",
   "source_catalog": "equipment_arc1_catalog.json",
   "finding": {
@@ -82,7 +82,8 @@
       "TESORO_ESPIRITUAL": []
     },
     "invariant": "0 <= equipped[slot].length <= slot_capacity[slot]",
-    "rationale": "One uniform representation handles single and multi-capacity slots without mixed string/array types."
+    "rationale": "One uniform representation handles single and multi-capacity slots without mixed string/array types.",
+    "status": "RATIFIED"
   },
   "equip_operation": {
     "preconditions": [
@@ -142,9 +143,9 @@
     "statsCortos": "Same canonical source; display-only, never economic/combat authority."
   },
   "save": {
-    "recommended_SAVE_SCHEMA_VERSION": 3,
     "persist": "canonical item IDs + canonical equipped slot arrays only",
-    "old_slot_shape_supported": false
+    "old_slot_shape_supported": false,
+    "SAVE_SCHEMA_VERSION": 3
   },
   "slice1_dependency": {
     "item": "calzas_sendero_pinos",
@@ -164,5 +165,11 @@
     "no legacy ataque/daño/qi_med bridge",
     "save/load round-trip preserves canonical slot arrays",
     "calzas_sendero_pinos changes expected new-combat stats after equip"
-  ]
+  ],
+  "ratified_on": "2026-10-02",
+  "ratification": {
+    "human_approved": true,
+    "implementation_authorized": false,
+    "note": "Ratified as clean-slate design authority. Runtime integration remains a separate future step."
+  }
 }
