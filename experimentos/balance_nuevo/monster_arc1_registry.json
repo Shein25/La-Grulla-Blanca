@@ -20,13 +20,19 @@
       "lobo_espiritual",
       "eco_caido",
       "pez_lunar",
+      "sombra_ahogada",
+      "centinela_pluma",
       "devorador_niebla",
       "avispa_jade",
       "mono_pildoras",
       "sapo_ceniza",
+      "sapo_caldera",
       "escarabajo_hierro",
+      "rey_escarabajo",
       "anguila_estelar",
-      "halcon_tormenta"
+      "guardian_coral",
+      "halcon_tormenta",
+      "mantis_nube"
     ]
   },
   "profiles": {
@@ -243,34 +249,40 @@
       "element": "agua",
       "unique": true,
       "engine_contract": "NEW_COMBAT_STATS_V0_1",
-      "stats_status": "PENDING_INTEGRAL_REBALANCE",
+      "stats_status": "READY",
       "stats": {
-        "hp": null,
+        "hp": 51,
         "qi_max": null,
-        "precision": null,
-        "evasion": null,
-        "defense": null,
-        "tenacity": null,
-        "control": null,
+        "precision": 106,
+        "evasion": 20,
+        "defense": 1,
+        "tenacity": 19,
+        "control": 0,
         "crit_chance": 5,
         "crit_damage": 1.5,
-        "basic_damage": null
+        "basic_damage": "1d2+7"
       },
       "technique": {
         "name": "Velo de Ahogo",
         "mechanics": [
           "POISON_DOT"
         ],
-        "params_status": "PENDING_INTEGRAL_REBALANCE",
-        "params": null
+        "params_status": "READY",
+        "params": {
+          "cadence": 3,
+          "poison": {
+            "damage": "1d2+2",
+            "ticks": 3
+          }
+        }
       },
       "ai": {
         "cognition": "TACTICO_3",
         "social": "SOLITARIO"
       },
       "adaptive": {
-        "status": "BLOCKED_UNTIL_T0_READY",
-        "rule": "T1-T4 are applied only after this T0 profile is READY."
+        "status": "UNIQUE_T0_CLOSED_NO_T1_T4",
+        "rule": "Unique encounter. T0 is human-ratified and frozen; persistent T1-T4 do not apply."
       },
       "resource_model": "NONE"
     },
@@ -284,34 +296,37 @@
       "element": "metal",
       "unique": true,
       "engine_contract": "NEW_COMBAT_STATS_V0_1",
-      "stats_status": "PENDING_INTEGRAL_REBALANCE",
+      "stats_status": "READY",
       "stats": {
-        "hp": null,
+        "hp": 123,
         "qi_max": null,
-        "precision": null,
-        "evasion": null,
-        "defense": null,
-        "tenacity": null,
-        "control": null,
+        "precision": 99,
+        "evasion": 36,
+        "defense": 5,
+        "tenacity": 37,
+        "control": 0,
         "crit_chance": 5,
         "crit_damage": 1.5,
-        "basic_damage": null
+        "basic_damage": "2d8+8"
       },
       "technique": {
         "name": "Aleteo de Cuchillas",
         "mechanics": [
           "DIRECT_DAMAGE"
         ],
-        "params_status": "PENDING_INTEGRAL_REBALANCE",
-        "params": null
+        "params_status": "READY",
+        "params": {
+          "cadence": 3,
+          "direct_damage": "2d6+9"
+        }
       },
       "ai": {
         "cognition": "REACTIVO_1",
         "social": "TERRITORIAL"
       },
       "adaptive": {
-        "status": "BLOCKED_UNTIL_T0_READY",
-        "rule": "T1-T4 are applied only after this T0 profile is READY."
+        "status": "UNIQUE_T0_CLOSED_NO_T1_T4",
+        "rule": "Unique encounter. T0 is human-ratified and frozen; persistent T1-T4 do not apply."
       },
       "resource_model": "NONE"
     },
@@ -511,18 +526,18 @@
       "element": "fuego",
       "unique": true,
       "engine_contract": "NEW_COMBAT_STATS_V0_1",
-      "stats_status": "PENDING_INTEGRAL_REBALANCE",
+      "stats_status": "READY",
       "stats": {
-        "hp": null,
+        "hp": 83,
         "qi_max": null,
-        "precision": null,
-        "evasion": null,
-        "defense": null,
-        "tenacity": null,
-        "control": null,
+        "precision": 99,
+        "evasion": 27,
+        "defense": 4,
+        "tenacity": 23,
+        "control": 0,
         "crit_chance": 5,
         "crit_damage": 1.5,
-        "basic_damage": null
+        "basic_damage": "1d2+7"
       },
       "technique": {
         "name": "Eructo del Horno Hundido",
@@ -530,16 +545,23 @@
           "DIRECT_DAMAGE",
           "BURN_DOT"
         ],
-        "params_status": "PENDING_INTEGRAL_REBALANCE",
-        "params": null
+        "params_status": "READY",
+        "params": {
+          "cadence": 3,
+          "direct_damage": "1d3+7",
+          "burn": {
+            "damage": "1d2+2",
+            "ticks": 4
+          }
+        }
       },
       "ai": {
         "cognition": "REACTIVO_1",
         "social": "TERRITORIAL"
       },
       "adaptive": {
-        "status": "BLOCKED_UNTIL_T0_READY",
-        "rule": "T1-T4 are applied only after this T0 profile is READY."
+        "status": "UNIQUE_T0_CLOSED_NO_T1_T4",
+        "rule": "Unique encounter. T0 is human-ratified and frozen; persistent T1-T4 do not apply."
       },
       "resource_model": "NONE"
     },
@@ -597,34 +619,37 @@
       "element": "metal",
       "unique": true,
       "engine_contract": "NEW_COMBAT_STATS_V0_1",
-      "stats_status": "PENDING_INTEGRAL_REBALANCE",
+      "stats_status": "READY",
       "stats": {
-        "hp": null,
+        "hp": 87,
         "qi_max": null,
-        "precision": null,
-        "evasion": null,
-        "defense": null,
-        "tenacity": null,
-        "control": null,
+        "precision": 97,
+        "evasion": 13,
+        "defense": 4,
+        "tenacity": 23,
+        "control": 0,
         "crit_chance": 5,
         "crit_damage": 1.5,
-        "basic_damage": null
+        "basic_damage": "1d2+6"
       },
       "technique": {
         "name": "Mandíbula de Yunque",
         "mechanics": [
           "DIRECT_DAMAGE"
         ],
-        "params_status": "PENDING_INTEGRAL_REBALANCE",
-        "params": null
+        "params_status": "READY",
+        "params": {
+          "cadence": 3,
+          "direct_damage": "1d10+9"
+        }
       },
       "ai": {
         "cognition": "CAZADOR_2",
         "social": "COLONIA"
       },
       "adaptive": {
-        "status": "BLOCKED_UNTIL_T0_READY",
-        "rule": "T1-T4 are applied only after this T0 profile is READY."
+        "status": "UNIQUE_T0_CLOSED_NO_T1_T4",
+        "rule": "Unique encounter. T0 is human-ratified and frozen; persistent T1-T4 do not apply."
       },
       "resource_model": "NONE"
     },
@@ -684,18 +709,18 @@
       "element": "agua",
       "unique": true,
       "engine_contract": "NEW_COMBAT_STATS_V0_1",
-      "stats_status": "PENDING_INTEGRAL_REBALANCE",
+      "stats_status": "READY",
       "stats": {
-        "hp": null,
+        "hp": 80,
         "qi_max": null,
-        "precision": null,
-        "evasion": null,
-        "defense": null,
-        "tenacity": null,
-        "control": null,
+        "precision": 103,
+        "evasion": 39,
+        "defense": 5,
+        "tenacity": 18,
+        "control": 0,
         "crit_chance": 5,
         "crit_damage": 1.5,
-        "basic_damage": null
+        "basic_damage": "1d2+7"
       },
       "technique": {
         "name": "Marea de los Nombres Hundidos",
@@ -703,16 +728,20 @@
           "DIRECT_DAMAGE",
           "QI_DRAIN"
         ],
-        "params_status": "PENDING_INTEGRAL_REBALANCE",
-        "params": null
+        "params_status": "READY",
+        "params": {
+          "cadence": 2,
+          "direct_damage": "1d3+8",
+          "qi_drain": 12
+        }
       },
       "ai": {
         "cognition": "TACTICO_3",
         "social": "TERRITORIAL"
       },
       "adaptive": {
-        "status": "BLOCKED_UNTIL_T0_READY",
-        "rule": "T1-T4 are applied only after this T0 profile is READY."
+        "status": "UNIQUE_T0_CLOSED_NO_T1_T4",
+        "rule": "Unique encounter. T0 is human-ratified and frozen; persistent T1-T4 do not apply."
       },
       "resource_model": "NONE"
     },
@@ -770,34 +799,37 @@
       "element": "viento",
       "unique": true,
       "engine_contract": "NEW_COMBAT_STATS_V0_1",
-      "stats_status": "PENDING_INTEGRAL_REBALANCE",
+      "stats_status": "READY",
       "stats": {
-        "hp": null,
+        "hp": 72,
         "qi_max": null,
-        "precision": null,
-        "evasion": null,
-        "defense": null,
-        "tenacity": null,
-        "control": null,
+        "precision": 103,
+        "evasion": 44,
+        "defense": 7,
+        "tenacity": 7,
+        "control": 0,
         "crit_chance": 5,
         "crit_damage": 1.5,
-        "basic_damage": null
+        "basic_damage": "1d5+9"
       },
       "technique": {
         "name": "Tijera del Horizonte",
         "mechanics": [
           "DIRECT_DAMAGE"
         ],
-        "params_status": "PENDING_INTEGRAL_REBALANCE",
-        "params": null
+        "params_status": "READY",
+        "params": {
+          "cadence": 4,
+          "direct_damage": "3d10+9"
+        }
       },
       "ai": {
         "cognition": "MASTER_4",
         "social": "SOLITARIO"
       },
       "adaptive": {
-        "status": "BLOCKED_UNTIL_T0_READY",
-        "rule": "T1-T4 are applied only after this T0 profile is READY."
+        "status": "UNIQUE_T0_CLOSED_NO_T1_T4",
+        "rule": "Unique encounter. T0 is human-ratified and frozen; persistent T1-T4 do not apply."
       },
       "resource_model": "NONE"
     }
