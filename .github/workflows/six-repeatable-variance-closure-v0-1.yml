@@ -1,0 +1,59 @@
+name: Six Repeatable Variance Closure v0.1
+
+on:
+  push:
+    branches:
+      - experiment/variance-six-repeatables-v0.1
+    paths:
+      - "experimentos/balance_nuevo/individual_variance_v0.1/monster_individual_variance_v0.1.json"
+      - "experimentos/balance_nuevo/individual_variance_v0.1/individual_variance.py"
+      - "experimentos/balance_nuevo/individual_variance_v0.1/runtime_variance_adapter.mjs"
+      - "experimentos/balance_nuevo/individual_variance_v0.1/runtime_variance_adapter.test.mjs"
+      - "experimentos/balance_nuevo/individual_variance_v0.1/SIX_REPEATABLE_VARIANCE_ENVELOPE_PROPOSAL_V0_1.json"
+      - "experimentos/balance_nuevo/individual_variance_v0.1/six_repeatable_variance_proposal_test.py"
+      - ".github/workflows/six-repeatable-variance-closure-v0-1.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  close:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Validate proposal provenance and T0 floors
+        working-directory: experimentos/balance_nuevo/individual_variance_v0.1
+        run: python six_repeatable_variance_proposal_test.py
+      - name: Validate ratified variance population
+        working-directory: experimentos/balance_nuevo/individual_variance_v0.1
+        run: python individual_variance.py
+      - name: Validate runtime adapter
+        working-directory: experimentos/balance_nuevo/individual_variance_v0.1
+        run: node runtime_variance_adapter.test.mjs
+      - name: Validate heavy evidence and unique exclusion
+        working-directory: experimentos/balance_nuevo/individual_variance_v0.1
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open("monster_individual_variance_v0.1.json",encoding="utf-8"))
+          x=d["semantics"]["extension_validation"]["six_repeatables_2026_10_01"]
+          assert x["total_fights"]==420000
+          assert x["results_sha256"]=="b704247806382792d513181dc55efe8ea7deeb81963636e7c9be88494feb763b"
+          assert x["github_artifact_sha256"]=="59b9315820cd6dfa78346c2808d6c03b0aa19452195ceb91c5ea34f04eff412b"
+          assert x["timeout_rate_all_arms"]==0
+          assert x["hard_polarization_over_75pp"] is False
+          assert x["t1_t4_interaction_status"]=="PASS_NO_EXPLOSIVE_INTERACTION"
+          assert d["guards"]["unique_species_variance_forbidden"] is True
+          assert len(d["species"])==11
+          rates=x["observed_natural_mutant_incidence"]
+          assert all(v<0.01 for v in rates.values()),rates
+          print("PASS: 420k heavy evidence pinned; six repeatable envelopes ratified")
+          print("PASS: 11 repeatable species have variance; unique:true remains forbidden")
+          PY
