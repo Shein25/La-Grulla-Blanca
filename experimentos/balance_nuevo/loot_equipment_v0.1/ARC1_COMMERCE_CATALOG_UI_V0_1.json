@@ -1,0 +1,78 @@
+{
+  "schema_version": "arc1-commerce-catalog-ui-contract-v0.1",
+  "status": "HUMAN_RATIFIED_DESIGN_AUTHORITY__PRE_IMPLEMENTATION",
+  "created_on": "2026-10-02",
+  "design_goal": "Recover the readable text/catalog experience of prior prototypes without reusing legacy implementation.",
+  "surface": "CATALOG_INSIDE_CURRENT_MUD_STYLE",
+  "entry": "DIALOGUE_OPTION_ONLY",
+  "root_menu": {
+    "dynamic_options": [
+      "BUY",
+      "SELL",
+      "SERVICE"
+    ],
+    "fixed_options": [
+      "RETURN_TO_CONVERSATION",
+      "CLOSE"
+    ],
+    "rule": "Show only capabilities actually available for this NPC."
+  },
+  "catalog": {
+    "list_fields": [
+      "item_name",
+      "authoritative_display_price",
+      "compact_requirement_badges"
+    ],
+    "select_opens_detail": true,
+    "no_drag_drop": true,
+    "no_cart": true,
+    "no_required_item_images": true,
+    "pagination_if_needed": true
+  },
+  "detail": {
+    "show": [
+      "name",
+      "slot_or_category",
+      "description_or_stats",
+      "price",
+      "gates",
+      "materials_if_service",
+      "availability"
+    ],
+    "actions": [
+      "CONFIRM",
+      "BACK"
+    ],
+    "rule": "Display data is informational; confirm submits only request identity/intent."
+  },
+  "sell_view": {
+    "rule": "Show only player inventory entries currently accepted by merchant buyInterests.",
+    "hide_or_disable_nonaccepted": true,
+    "show_bulk_requirements": true
+  },
+  "service_view": {
+    "rule": "Show authorized SERVICE_RECIPE entries with materials, stone fee and non-spendable gates.",
+    "contribution_display": "Requirement only, never a cost."
+  },
+  "exits": {
+    "return_to_conversation_label": "Volver a la conversación",
+    "close_label": "Cerrar",
+    "movement_closes_catalog": true
+  },
+  "slice1_mock": {
+    "title": "TALLER DE NING CAI",
+    "balance_line": "Piedras espirituales: <current>",
+    "rows": [
+      {
+        "itemId": "calzas_sendero_pinos",
+        "label": "Calzas de sendero de pinos",
+        "price": "8 piedras"
+      }
+    ],
+    "actions": [
+      "COMPRAR",
+      "VOLVER A LA CONVERSACIÓN",
+      "CERRAR"
+    ]
+  }
+}
