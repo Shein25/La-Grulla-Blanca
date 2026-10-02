@@ -1,0 +1,68 @@
+{
+  "schema": "GRULLA_ULTI25_BENCH_V0_1",
+  "date": "2026-10-02",
+  "state": "DESIGN_LAB_NO_CANON",
+  "boss": "GRULLA_F1_F2_F3_REAL_RUNTIME_REQUIRED",
+  "f3_death_gate": {
+    "contract": "GRULLA_F3_PACTO_ULTIMO_VUELO_2026-10-02.md",
+    "hp_floor": 1,
+    "release_condition": "FIRST_REAL_F3_INTENT_RESOLVED",
+    "control_prevented_action_releases": false,
+    "applies_to": [
+      "DIRECT",
+      "MULTIHIT",
+      "DOT",
+      "HEMORRHAGE",
+      "DERIVED",
+      "CONVERTED",
+      "RETALIATION",
+      "OTHER_LIFE_DAMAGE"
+    ]
+  },
+  "arms": [
+    "BASELINE_NO_ULTI",
+    "F1_EARLY",
+    "F2_ENTRY",
+    "F3_ENTRY",
+    "PREPARED_OPPORTUNITY"
+  ],
+  "player_profiles": [
+    "FULL",
+    "BALANCED",
+    "DISADVANTAGE",
+    "NEAR_DEATH"
+  ],
+  "paired_rng": true,
+  "smoke": {
+    "seeds": 20
+  },
+  "pilot": {
+    "seeds": 200,
+    "ulti_encounters": 80000
+  },
+  "hard_fail_invariants": [
+    "F3_KILL_BEFORE_FIRST_REAL_ACTION==0",
+    "NO_RELEASE_ON_PREVENTED_ACTION",
+    "MULTIHIT_CANNOT_BYPASS_F3_GATE",
+    "REAL_GRULLA_AI_REQUIRED",
+    "REAL_AUX_TECHNIQUES_REQUIRED",
+    "PAIRED_RNG_REQUIRED",
+    "NO_INVENTED_PLAYER_OR_BOSS_STATS"
+  ],
+  "required_outputs": [
+    "run_manifest.json",
+    "self_check.json",
+    "baseline_summary.csv",
+    "ulti_summary.csv",
+    "paired_delta_summary.csv",
+    "f3_skip_pressure.csv",
+    "family_comparison.csv",
+    "phase_metrics.csv",
+    "issues.json"
+  ],
+  "blockers": [
+    "EXECUTABLE_GRULLA_F1_F2_F3_SOURCE",
+    "AUTHORITATIVE_PLAYER_FIXTURE",
+    "PREPARED_OPPORTUNITY_TRIGGER_MAP_25"
+  ]
+}
