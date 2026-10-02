@@ -1,0 +1,250 @@
+{
+  "schema_version": "monster-remaining-unique-t0-v0.1",
+  "status": "ALL_REMAINING_UNIQUE_T0_HUMAN_RATIFIED_CLOSED",
+  "ratified_on": "2026-10-01",
+  "source_head": "dba512b77daeb88401197a221a16bdeca00553ce",
+  "species": {
+    "sapo_caldera": {
+      "unique": true,
+      "role": "BOSS",
+      "stage": "LianQi_II",
+      "candidate_id": "sapo_caldera-b00-b43e088b51",
+      "stats": {
+        "hp": 83,
+        "qi_max": null,
+        "precision": 99,
+        "evasion": 27,
+        "defense": 4,
+        "tenacity": 23,
+        "control": 0,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": "1d2+7"
+      },
+      "technique": {
+        "name": "Eructo del Horno Hundido",
+        "mechanics": [
+          "DIRECT_DAMAGE",
+          "BURN_DOT"
+        ],
+        "params": {
+          "cadence": 3,
+          "direct_damage": "1d3+7",
+          "burn": {
+            "damage": "1d2+2",
+            "ticks": 4
+          }
+        }
+      },
+      "prepared_veteran_hp3_qi1_win_rate": 0.0711
+    },
+    "rey_escarabajo": {
+      "unique": true,
+      "role": "BOSS",
+      "stage": "LianQi_II",
+      "candidate_id": "rey_escarabajo-b07-52c54baab4",
+      "stats": {
+        "hp": 87,
+        "qi_max": null,
+        "precision": 97,
+        "evasion": 13,
+        "defense": 4,
+        "tenacity": 23,
+        "control": 0,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": "1d2+6"
+      },
+      "technique": {
+        "name": "Mandíbula de Yunque",
+        "mechanics": [
+          "DIRECT_DAMAGE"
+        ],
+        "params": {
+          "cadence": 3,
+          "direct_damage": "1d10+9"
+        }
+      },
+      "prepared_veteran_hp3_qi1_win_rate": 0.3456
+    },
+    "sombra_ahogada": {
+      "unique": true,
+      "role": "ELITE",
+      "stage": "LianQi_III",
+      "candidate_id": "sombra_ahogada-m11-b35740db28",
+      "stats": {
+        "hp": 51,
+        "qi_max": null,
+        "precision": 106,
+        "evasion": 20,
+        "defense": 1,
+        "tenacity": 19,
+        "control": 0,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": "1d2+7"
+      },
+      "technique": {
+        "name": "Velo de Ahogo",
+        "mechanics": [
+          "POISON_DOT"
+        ],
+        "params": {
+          "cadence": 3,
+          "poison": {
+            "damage": "1d2+2",
+            "ticks": 3
+          }
+        }
+      },
+      "prepared_veteran_hp3_qi1_win_rate": null
+    },
+    "guardian_coral": {
+      "unique": true,
+      "role": "BOSS",
+      "stage": "LianQi_III",
+      "candidate_id": "guardian_coral-b10-22f01b55e7",
+      "stats": {
+        "hp": 80,
+        "qi_max": null,
+        "precision": 103,
+        "evasion": 39,
+        "defense": 5,
+        "tenacity": 18,
+        "control": 0,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": "1d2+7"
+      },
+      "technique": {
+        "name": "Marea de los Nombres Hundidos",
+        "mechanics": [
+          "DIRECT_DAMAGE",
+          "QI_DRAIN"
+        ],
+        "params": {
+          "cadence": 2,
+          "direct_damage": "1d3+8",
+          "qi_drain": 12
+        }
+      },
+      "prepared_veteran_hp3_qi1_win_rate": 0.505
+    },
+    "mantis_nube": {
+      "unique": true,
+      "role": "BOSS",
+      "stage": "LianQi_IV",
+      "candidate_id": "mantis_nube-b08-04e4ccc69a",
+      "stats": {
+        "hp": 72,
+        "qi_max": null,
+        "precision": 103,
+        "evasion": 44,
+        "defense": 7,
+        "tenacity": 7,
+        "control": 0,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": "1d5+9"
+      },
+      "technique": {
+        "name": "Tijera del Horizonte",
+        "mechanics": [
+          "DIRECT_DAMAGE"
+        ],
+        "params": {
+          "cadence": 4,
+          "direct_damage": "3d10+9"
+        }
+      },
+      "prepared_veteran_hp3_qi1_win_rate": 0.41
+    },
+    "centinela_pluma": {
+      "unique": true,
+      "role": "BOSS",
+      "stage": "LianQi_IV",
+      "candidate_id": "centinela_pluma-b01-e3ffe23c9c",
+      "stats": {
+        "hp": 123,
+        "qi_max": null,
+        "precision": 99,
+        "evasion": 36,
+        "defense": 5,
+        "tenacity": 37,
+        "control": 0,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": "2d8+8"
+      },
+      "technique": {
+        "name": "Aleteo de Cuchillas",
+        "mechanics": [
+          "DIRECT_DAMAGE"
+        ],
+        "params": {
+          "cadence": 3,
+          "direct_damage": "2d6+9"
+        }
+      },
+      "prepared_veteran_hp3_qi1_win_rate": 0.15
+    }
+  },
+  "evidence": {
+    "unique_encounter_stress": {
+      "fights": 126000,
+      "result_zip_sha256": "d72c05b3330399f7b3e9796f8978baca9e94522fe5a4e7c4070879759a3c8ff9"
+    },
+    "sombra_microlab": {
+      "fights": 46400,
+      "result_zip_sha256": "48b5dcdcef0196f10ab7c4ef362df54a384e342950d125f10859e429e5c34fd5"
+    },
+    "boss_consumable_quality_stress": {
+      "fights": 126000,
+      "workflow_run_id": 36943351635,
+      "github_artifact_sha256": "6aa5a9585be9ae601bf1717276eeb01b3c232657b9b28c67f227cd9838b995dd",
+      "result_zip_sha256": "1f3afb882aa60df9c9013d35666b6f9a784e31a642b1406091a1c50b6dff8e41",
+      "preparation_arms": [
+        "NONE",
+        "CURRENT_HP_EXCEPTIONAL_ONLY",
+        "CURRENT_QI_EXCEPTIONAL_ONLY",
+        "PRIOR_EXCEPTIONAL_PAIR",
+        "CURRENT_STABLE_PAIR",
+        "CURRENT_SUPERIOR_PAIR",
+        "CURRENT_EXCEPTIONAL_PAIR"
+      ]
+    },
+    "boss_consumable_quantity_stress": {
+      "fights": 54000,
+      "workflow_run_id": 36943571989,
+      "github_artifact_sha256": "86105a4d3fd7652f44d9dcfaba602f215e4448dfce1d80f95b09ea3001861400",
+      "result_zip_sha256": "8f4e9342ed3271a2a8b17a0d9a42bf179f44c33a709ae64834b50c4edc2c4a64",
+      "hp_quantity_axis": [
+        1,
+        2,
+        3
+      ],
+      "qi_quantity_axis": [
+        0,
+        1
+      ],
+      "policy": "VETERAN"
+    }
+  },
+  "consumable_interpretation": {
+    "drinking_consumes_full_action": true,
+    "monster_receives_normal_response": true,
+    "no_artificial_potion_cooldown": true,
+    "conclusion": "Preparation materially changes survivability and outcomes. Up to three current-stage exceptional HP potions plus one exceptional Qi elixir were stress-tested without using win-rate as a target objective.",
+    "hp_is_primary_survival_driver": true,
+    "qi_is_contextual": true,
+    "guardian_qi_drain_interaction_observed": true
+  },
+  "guards": {
+    "unique_species_have_no_persistent_t1_t4": true,
+    "no_t5": true,
+    "target_win_rate_objective_used": false,
+    "no_main": true,
+    "no_merge": true,
+    "reopening_requires_explicit_human_decision": true
+  }
+}
