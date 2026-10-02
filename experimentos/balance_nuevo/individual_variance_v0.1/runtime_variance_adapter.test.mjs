@@ -11,7 +11,7 @@ const registry = JSON.parse(fs.readFileSync(
   "utf8"
 ));
 
-const species = ["rata_qi","avispa_jade","serpiente_qi","mono_pildoras","lobo_espiritual"];
+const species = ["rata_qi","avispa_jade","serpiente_qi","mono_pildoras","lobo_espiritual","sapo_ceniza","escarabajo_hierro","pez_lunar","anguila_estelar","devorador_niebla","halcon_tormenta"];
 
 function sequenceRandom(values) {
   let i = 0;
@@ -83,6 +83,17 @@ const loboLow = instantiateMonsterVariance({
   random:() => 0,
 });
 assert.equal(loboLow.stats.precision, 97);
+
+
+for (const sid of ["eco_caido","sapo_caldera","rey_escarabajo","sombra_ahogada","guardian_coral","mantis_nube","centinela_pluma"]) {
+  assert.throws(() => instantiateMonsterVariance({
+    speciesId:sid,
+    canonicalProfile:registry.profiles[sid],
+    varianceConfig:cfg,
+    random:() => 0.5,
+  }), /unique species variance forbidden/);
+}
+assert.equal(cfg.guards.unique_species_variance_forbidden, true);
 
 console.log("PASS: runtime variance adapter preserves canonical T0 and identity");
 console.log("PASS: Mutante metadata exposes x1.5 loot/combat XP without touching profession XP/drop probabilities");
