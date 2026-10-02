@@ -1,6 +1,6 @@
 {
   "schema_version": "arc1-commerce-slice1-a07-preflight-v0.1",
-  "status": "PROPOSED_PRE_IMPLEMENTATION__NOT_RUNTIME",
+  "status": "HUMAN_RATIFIED_DESIGN_AUTHORITY__PRE_IMPLEMENTATION",
   "created_on": "2026-10-02",
   "purpose": "Define the minimal Ning Cai Slice 1 wiring across A07.9, Commerce, persistence and new equipment without modifying runtime yet.",
   "fixed_authorities": {
@@ -120,14 +120,15 @@
     "productive_slice_gate": "Slice 1 is fully validated only when the purchased item can later be equipped and NEW_COMBAT_STATS_V0_1 reflects +3 hp_max and +1 evasion."
   },
   "recommended_availability": {
-    "status": "NEEDS_HUMAN_RATIFICATION",
-    "rule": "Offer becomes visible only after real M04 completion/availability source is satisfied; do not infer availability solely from min_stage.",
-    "rationale": "Catalog source is M04 and the pilot should not leak future equipment before its authored source."
+    "status": "RATIFIED",
+    "rule": "calzas_sendero_pinos becomes visible only after real M04 completion/availability source is satisfied; min_stage alone never reveals it.",
+    "sourceMission": "M04"
   },
   "hp_current_semantics": {
-    "status": "NEEDS_HUMAN_RATIFICATION",
-    "recommendation": "Equipping hp_max gear changes max HP but does not heal current HP; unequipping clamps current HP to the new max.",
-    "rationale": "Prevents equipment swapping from becoming a free healing exploit."
+    "status": "RATIFIED",
+    "equip": "Increase max HP by equipment bonus; do not increase current HP.",
+    "unequip": "Decrease max HP by removed bonus; set current HP = min(current HP, new max HP).",
+    "rule": "Equipment swapping must never become a healing source."
   },
   "explicit_non_goals": [
     "No BUY-from-player in Slice 1.",
@@ -157,5 +158,10 @@
     "equip purchased calzas -> PIERNAS contains one item; +3 hp_max; +1 evasion",
     "second PIERNAS item rejected while occupied",
     "unequip returns exactly one item and applies ratified HP-current semantics"
-  ]
+  ],
+  "ratified_on": "2026-10-02",
+  "ratification": {
+    "human_approved": true,
+    "implementation_authorized": false
+  }
 }
