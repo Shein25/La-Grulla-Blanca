@@ -1485,6 +1485,19 @@
           "requisitions"
         ],
         "note": "Do not create kill/extract/sell-all economy in Arc1."
+      },
+      "trade_roles": {
+        "automatic_monster_drop": [
+          "specialist buyback",
+          "mission requisition",
+          "equipment service component"
+        ],
+        "spiritual_extraction": [
+          "Alchemy input",
+          "mission requisition",
+          "equipment service component"
+        ],
+        "rule": "A material can have multiple sinks; its best functional value should generally exceed its liquid resale value."
       }
     },
     "mission_and_unique_objects": {
@@ -1503,5 +1516,128 @@
     "no_room_invention": true,
     "no_mission_invention": true,
     "existing_item_stats_unchanged": true
+  },
+  "material_exchange_policy": {
+    "model": "ALTERNATIVE_WORKSHOP_SERVICE_ROUTE",
+    "principle": "Monster automatic drops and Spiritual Extraction materials are functional currencies-in-kind for workshop services, not merely resale junk.",
+    "public_item_rule": "Public equipment may keep a full-stone route and also expose a material-service route with a substantially reduced stone service fee.",
+    "institutional_item_rule": "Institutional equipment keeps Contribution/permission/mission as access gates, but the player may satisfy the economic cost either with the full stone price or with the approved material bundle plus a reduced stone service fee. Contribution is never spent.",
+    "extraction_rule": "Extraction materials represent the specialized component; automatic drops represent the superficial/structural component. Where both are listed, both are required.",
+    "no_direct_crafting": true,
+    "performed_by_npc_service": true,
+    "no_material_probability_change": true,
+    "no_universal_barter": true,
+    "routes": [
+      {
+        "equipment_id": "anillo_reserva_menor",
+        "full_stone_price": 8,
+        "materials": {
+          "diente_qi_desgastado": 1
+        },
+        "service_fee_stones": 3,
+        "contribution_required": 0
+      },
+      {
+        "equipment_id": "pulsera_tension_meridiana",
+        "full_stone_price": 7,
+        "materials": {
+          "escama_qi_desprendida": 1,
+          "membrana_serpentina": 1
+        },
+        "service_fee_stones": 2,
+        "contribution_required": 8
+      },
+      {
+        "equipment_id": "amuleto_colmillo_montado",
+        "full_stone_price": null,
+        "materials": {
+          "colmillo_lobo_legitimo": 1,
+          "tendon_tres_colas": 1
+        },
+        "service_fee_stones": 2,
+        "contribution_required": 0,
+        "note": "Identity-defining material service; no pure-stone substitute proposed."
+      },
+      {
+        "equipment_id": "aguja_acero_frio",
+        "full_stone_price": 11,
+        "materials": {
+          "fragmento_caparazon_jade": 1,
+          "camara_jade": 1
+        },
+        "service_fee_stones": 4,
+        "contribution_required": 8
+      },
+      {
+        "equipment_id": "bandana_cuero_reforzada",
+        "full_stone_price": 7,
+        "materials": {
+          "herraje_robado": 1
+        },
+        "service_fee_stones": 3,
+        "contribution_required": 0
+      },
+      {
+        "equipment_id": "brazales_pulso_firme",
+        "full_stone_price": 9,
+        "materials": {
+          "costra_ceniza_vitrificada": 1,
+          "glandula_termica": 1
+        },
+        "service_fee_stones": 3,
+        "contribution_required": 8
+      },
+      {
+        "equipment_id": "anillo_sello_hierro",
+        "full_stone_price": 8,
+        "materials": {
+          "esquirla_coraza_ferrea": 1,
+          "membrana_ferrea": 1
+        },
+        "service_fee_stones": 3,
+        "contribution_required": 8
+      },
+      {
+        "equipment_id": "amuleto_meridiano_estable",
+        "full_stone_price": 22,
+        "materials": {
+          "escama_lunar_desprendida": 1,
+          "fluido_lunar": 1
+        },
+        "service_fee_stones": 7,
+        "contribution_required": 21
+      },
+      {
+        "equipment_id": "espada_vena_clara",
+        "full_stone_price": 20,
+        "materials": {
+          "escama_estelar_conductiva": 1,
+          "conducto_estelar": 1
+        },
+        "service_fee_stones": 8,
+        "contribution_required": 16
+      },
+      {
+        "equipment_id": "amuleto_ancla_resonante",
+        "full_stone_price": 28,
+        "materials": {
+          "cristal_bruma_superficial": 1,
+          "bolsa_niebla": 1
+        },
+        "service_fee_stones": 10,
+        "contribution_required": 37
+      },
+      {
+        "equipment_id": "hoja_seis_corrientes",
+        "full_stone_price": 29,
+        "materials": {
+          "pluma_exterior_estatica": 1,
+          "fibra_tempestad": 1
+        },
+        "service_fee_stones": 10,
+        "contribution_required": 34
+      }
+    ],
+    "economic_target": "Material route should normally save roughly 50-70% of the stone outlay while still costing time/field effort. It must never remove existing mission/permission/Contribution gates."
   }
 }
