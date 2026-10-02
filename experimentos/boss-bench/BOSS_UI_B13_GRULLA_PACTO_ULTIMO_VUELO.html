@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>La Grulla Blanca · Boss UI Lab B13 · Pacto del Último Vuelo</title>
+<style>
+:root{
+  --tinta:#090b0a;--panel:#101310;--panel-alto:#151915;
+  --papel:#ded8ca;--texto:#c8c2b5;--tenue:#827f73;
+  --jade:#8fc6a3;--jade-claro:#bfe1cb;--jade-brillo:#e6f4ec;
+  --cinabrio:#d36b58;--oro:#d5ad63;--agua:#82b7c8;--loto:#baa5ca;--borde:#293029;
+  --acc:#b7d5c5;--acc-bright:#e2eee8;--acc-soft:rgba(143,198,163,.16);--crack:#cfe3d6;
+  --phase-danger:#d7a27f;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#060706;color:var(--papel);font-family:Georgia,"Palatino Linotype",serif;overflow:hidden}
+button{font:11px/1.2 ui-monospace,Consolas,monospace;letter-spacing:.06em;cursor:pointer}
+
+.lab{position:sticky;top:0;z-index:80;display:flex;gap:6px;align-items:center;flex-wrap:wrap;
+  padding:8px 12px;border-bottom:1px solid var(--borde);background:#0d100e}
+.lab strong{color:var(--jade);font-size:11px;letter-spacing:.1em;margin-right:6px;font-family:ui-monospace,Consolas,monospace}
+.lab button{color:var(--oro);background:#111511;border:1px solid #3a4037;border-radius:3px;padding:5px 8px}
+.lab button:hover,.lab button.is-active{background:rgba(213,173,99,.14);border-color:#6b5730}
+.lab-note{margin-left:auto;color:var(--tenue);font:10px ui-monospace,Consolas,monospace}
+
+
+/* -------- room previa: nucleo_santuario_vinculo -------- */
+.precombat-room{
+  height:calc(100% - 40px);
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding:34px 18px 24px;
+  overflow:auto;
+}
+.precombat-room[hidden],.stage[hidden]{display:none!important}
+.room-shell{
+  width:min(940px,100%);
+  padding:24px 0 20px;
+  border-top:1px solid #344139;
+  border-bottom:1px solid #28322c;
+}
+.room-id{
+  text-align:center;
+  color:#55645b;
+  font:9px ui-monospace,Consolas,monospace;
+  letter-spacing:.16em;
+  margin-bottom:8px;
+}
+.room-kicker{
+  text-align:center;
+  color:#789483;
+  font:9.5px ui-monospace,Consolas,monospace;
+  letter-spacing:.22em;
+  margin-bottom:6px;
+}
+.room-name{
+  text-align:center;
+  color:#ded8ca;
+  font-size:clamp(23px,3vw,34px);
+  font-weight:400;
+  letter-spacing:.08em;
+  margin:0;
+}
+.room-desc{
+  max-width:760px;
+  margin:12px auto 20px;
+  text-align:center;
+  color:#aaa69a;
+  font-size:14px;
+  line-height:1.6;
+}
+.room-presence{
+  position:relative;
+  max-width:760px;
+  margin:0 auto 18px;
+  padding:13px 16px;
+  text-align:center;
+  border:1px solid #304039;
+  background:linear-gradient(90deg,transparent,rgba(143,198,163,.06),transparent);
+}
+.room-presence:before,.room-presence:after{
+  content:"";
+  position:absolute;
+  top:50%;
+  width:42px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,#6f9980);
+  opacity:.55;
+}
+.room-presence:before{left:18px}
+.room-presence:after{right:18px;transform:scaleX(-1)}
+.room-presence strong{
+  display:block;
+  color:#cfe5d7;
+  font-weight:400;
+  letter-spacing:.17em;
+  font-size:14px;
+  margin-bottom:5px;
+}
+.room-presence span{
+  color:#8d998f;
+  font-size:12px;
+  font-style:italic;
+}
+.room-terminal{
+  max-width:760px;
+  margin:0 auto;
+  border:1px solid #27322c;
+  background:#080b09;
+  border-radius:4px;
+  overflow:hidden;
+}
+.room-log{
+  min-height:150px;
+  max-height:250px;
+  overflow-y:auto;
+  padding:13px 15px;
+  color:#aaa69a;
+  font:12.5px/1.58 ui-monospace,Consolas,monospace;
+}
+.room-log div{margin:3px 0}
+.room-log .room-system{color:#718579}
+.room-log .room-grulla{color:#bfd8c8}
+.room-log .room-warn{color:#d3b56f}
+.command-row{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  border-top:1px solid #27322c;
+  background:#0c100d;
+}
+.command-mark{
+  padding-left:13px;
+  color:#9fcdb0;
+  font:14px ui-monospace,Consolas,monospace;
+}
+.command-input{
+  width:100%;
+  border:0;
+  outline:0;
+  background:transparent;
+  color:#d8d2c5;
+  padding:12px 10px;
+  font:13px ui-monospace,Consolas,monospace;
+}
+.command-input::placeholder{color:#535c55}
+.command-input:focus{box-shadow:inset 0 -1px 0 rgba(159,205,176,.28)}
+.command-send{
+  align-self:stretch;
+  padding:0 17px;
+  border:0;
+  border-left:1px solid #27322c;
+  background:#101611;
+  color:#abcdb6;
+}
+.command-send:hover{background:#152019}
+.room-help{
+  max-width:760px;
+  margin:9px auto 0;
+  text-align:right;
+  color:#59645d;
+  font:10px ui-monospace,Consolas,monospace;
+  letter-spacing:.04em;
+}
+.room-help strong{color:#7e9487;font-weight:400}
+.precombat-room.is-starting .room-shell{animation:roomYield .58s ease both}
+@keyframes roomYield{
+  from{opacity:1;filter:blur(0);transform:translateY(0)}
+  to{opacity:0;filter:blur(2px);transform:translateY(-5px)}
+}
+@media(max-width:700px){
+  .precombat-room{padding:22px 12px}
+  .room-presence:before,.room-presence:after{width:20px}
+  .command-send{padding:0 12px}
+}
+
+.stage{height:calc(100% - 40px);overflow:hidden;display:flex;justify-content:center}
+.stage.is-compact .frame{max-width:900px}
+.frame{width:100%;max-width:1220px;height:100%;display:flex;flex-direction:column;padding:14px 22px 12px;min-height:0}
+
+.crown{flex:none;text-align:center;margin-bottom:4px}
+.kicker{color:var(--tenue);font:9.5px ui-monospace,Consolas,monospace;letter-spacing:.19em}
+.boss-name{position:relative;display:inline-block;margin:4px 0 1px;padding:0 34px;font-size:clamp(20px,2.4vw,27px);color:#e3d7bd;letter-spacing:.12em;font-weight:400;transition:letter-spacing .35s ease,text-shadow .35s ease,color .35s ease}
+.boss-name:before,.boss-name:after{content:"";position:absolute;top:52%;width:26px;height:1px;background:linear-gradient(90deg,transparent,var(--acc),transparent);opacity:.55;transition:width .35s ease,opacity .35s ease,filter .35s ease}
+.boss-name:before{left:0;transform:translateY(-50%)}
+.boss-name:after{right:0;transform:translateY(-50%)}
+body.boss-grulla .boss-name{text-shadow:0 0 10px rgba(143,198,163,.06)}
+body.boss-grulla .boss-name:before,body.boss-grulla .boss-name:after{width:34px;opacity:.72}
+body.boss-grulla.phase-2 .boss-name{
+  letter-spacing:.15em;
+  animation:bossNameColor2 2.8s ease-in-out infinite;
+}
+body.boss-grulla.phase-3 .boss-name{
+  letter-spacing:.2em;
+  animation:bossNameColor3 2.15s ease-in-out infinite;
+}
+body.boss-grulla.phase-3 .boss-name:before,body.boss-grulla.phase-3 .boss-name:after{
+  width:56px;opacity:.95;filter:drop-shadow(0 0 7px rgba(216,160,137,.18))
+}
+@keyframes bossNameColor2{
+  0%,100%{
+    color:#e3d7bd;
+    text-shadow:0 0 8px rgba(215,195,132,.05);
+  }
+  50%{
+    color:#e7d59a;
+    text-shadow:0 0 14px rgba(215,195,132,.18),0 0 22px rgba(215,195,132,.08);
+  }
+}
+@keyframes bossNameColor3{
+  0%,100%{
+    color:#e6c9b7;
+    text-shadow:0 0 10px rgba(216,160,137,.08);
+  }
+  50%{
+    color:#f0a887;
+    text-shadow:0 0 18px rgba(216,160,137,.28),0 0 30px rgba(216,160,137,.14);
+  }
+}
+.boss-sub{margin:0;color:#a49a86;font-style:italic;font-size:12px}
+
+/* -------- sello -------- */
+.seal-wrap{flex:none;display:flex;flex-direction:column;align-items:center;margin:4px 0 9px}
+.seal{width:184px;height:184px;display:grid;place-items:center}
+.seal>*{grid-area:1/1}
+.seal-resource{position:relative;width:184px;height:184px;border-radius:50%;transition:filter .35s ease,opacity .35s ease,transform .35s ease, background .35s ease}
+.seal-resource:before{
+  content:"";
+  position:absolute;
+  inset:-8px;
+  border-radius:50%;
+  opacity:0;
+  transform:scale(1);
+  pointer-events:none;
+  box-shadow:0 0 0 rgba(0,0,0,0);
+}
+.seal-resource:after{content:"";position:absolute;inset:12px;border-radius:50%;background:#060706;box-shadow:inset 0 0 0 1px #111411}
+.seal-phase{position:relative;width:145px;height:145px;border-radius:50%;transition:background .35s ease,filter .35s ease}
+.seal-phase:after{content:"";position:absolute;inset:9px;border-radius:50%;background:#060706}
+.seal-core{position:relative;width:106px;height:106px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#181a16,#0a0b09 72%);border:1px solid #35372f;
+  display:flex;align-items:center;justify-content:center;overflow:hidden}
+.seal-crack{position:absolute;top:50%;left:50%;width:66px;height:66px;transform:translate(-50%,-50%) rotate(6deg);opacity:.14;transition:opacity .35s ease,filter .35s ease;pointer-events:none}
+.seal-crack .cr{position:absolute;height:1.5px;background:var(--crack);transform-origin:left center;border-radius:2px;box-shadow:0 0 4px color-mix(in srgb,var(--crack) 32%,transparent)}
+.seal-crack .c1{width:18px;left:31px;top:4px;transform:rotate(102deg)}
+.seal-crack .c2{width:15px;left:27px;top:21px;transform:rotate(38deg)}
+.seal-crack .c3{width:17px;left:38px;top:30px;transform:rotate(132deg)}
+.seal-crack .c4{width:14px;left:27px;top:42px;transform:rotate(49deg)}
+.seal-crack .c5{width:17px;left:37px;top:52px;transform:rotate(104deg)}
+.seal-crack .c6{width:13px;left:23px;top:20px;transform:rotate(128deg);height:1px;opacity:.85}
+.seal-crack .c7{width:12px;left:42px;top:29px;transform:rotate(43deg);height:1px;opacity:.8}
+body.phase-2 .seal-crack{opacity:.48;filter:drop-shadow(0 0 5px color-mix(in srgb,var(--crack) 55%,transparent))}
+body.phase-3 .seal-crack{opacity:.82;filter:drop-shadow(0 0 9px color-mix(in srgb,var(--crack) 60%,transparent))}
+.seal-core-label{position:relative;color:var(--acc);font:9.5px ui-monospace,Consolas,monospace;letter-spacing:.1em;text-align:center;z-index:2;line-height:1.45}
+body.boss-grulla.phase-1 .seal-core{animation:pactPulse1 3.2s ease-in-out infinite}
+body.boss-grulla.phase-2 .seal-core{animation:pactPulse2 2.2s ease-in-out infinite}
+body.boss-grulla.phase-3 .seal-core{animation:pactPulse3 1.45s ease-in-out infinite}
+body.boss-grulla.phase-3 .seal-core-label{animation:pactLabelFlicker 1.35s ease-in-out infinite}
+@keyframes pactPulse1{0%,100%{box-shadow:inset 0 0 0 1px rgba(183,213,197,.08),0 0 0 transparent}50%{box-shadow:inset 0 0 18px rgba(183,213,197,.06),0 0 8px rgba(183,213,197,.06)}}
+@keyframes pactPulse2{0%,100%{box-shadow:inset 0 0 0 1px rgba(215,195,132,.10),0 0 5px transparent}50%{box-shadow:inset 0 0 22px rgba(215,195,132,.10),0 0 13px rgba(215,195,132,.12)}}
+@keyframes pactPulse3{0%,100%{box-shadow:inset 0 0 5px rgba(216,160,137,.08),0 0 5px rgba(216,160,137,.08);transform:scale(1)}45%{box-shadow:inset 0 0 28px rgba(216,160,137,.16),0 0 20px rgba(216,160,137,.18);transform:scale(1.018)}55%{box-shadow:inset 0 0 14px rgba(216,160,137,.10),0 0 8px rgba(216,160,137,.10);transform:scale(.994)}}
+@keyframes pactLabelFlicker{0%,100%{opacity:1;text-shadow:0 0 5px rgba(226,198,186,.15)}47%{opacity:.72;text-shadow:0 0 14px rgba(226,198,186,.30)}53%{opacity:.95}70%{opacity:.78}74%{opacity:1}}
+.seal-caption{margin-top:8px;display:flex;gap:12px;align-items:center;font:11px ui-monospace,Consolas,monospace;color:#9d998d}
+.seal-caption strong{color:var(--acc);letter-spacing:.08em}
+
+/* -------- fase persistente -------- */
+.phase-focus{width:min(780px,96vw);margin-top:10px;padding-top:10px;border-top:1px solid #292d29;text-align:center}
+.phase-track{display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:7px}
+.phase-dot{width:11px;height:11px;border-radius:50%;border:1px solid #4a4f49;background:#242825;transition:.3s ease}
+.phase-link{width:56px;height:2px;background:#232723;transition:.3s ease}
+.phase-dot.is-done,.phase-link.is-done{background:color-mix(in srgb,var(--acc) 30%,#30342f);border-color:color-mix(in srgb,var(--acc) 50%,#4a4f49)}
+.phase-dot.is-current{background:var(--acc);border-color:var(--acc);box-shadow:0 0 12px var(--acc-soft)}
+.phase-focus-roman{font:11px ui-monospace,Consolas,monospace;letter-spacing:.32em;color:var(--acc);margin-bottom:4px}
+.phase-focus-name{display:inline-block;font-size:clamp(18px,2vw,28px);line-height:1.1;letter-spacing:.1em;color:#ece6d8;text-align:center;animation:phaseBreath 2.4s ease-in-out infinite}
+.phase-focus-sub{margin-top:6px;font-size:12px;color:#9e998d;letter-spacing:.08em}
+@keyframes phaseBreath{0%,100%{color:var(--acc);text-shadow:0 0 4px transparent;letter-spacing:.1em}50%{color:var(--acc-bright);text-shadow:0 0 10px var(--acc-soft),0 0 18px var(--acc-soft);letter-spacing:.125em}}
+body.phase-3 .phase-focus-name{animation-duration:1.9s}
+body.phase-3 .phase-focus-sub{color:#c5bbb0}
+
+/* -------- proclama -------- */
+.scroll-wrap{flex:none;max-width:720px;margin:0 auto 12px;width:100%}
+.proclaim{position:relative;overflow:hidden;max-height:118px;transition:max-height .35s ease,border-color .35s ease,background .35s ease, box-shadow .35s ease,transform .35s ease,filter .35s ease;border:1px solid color-mix(in srgb,var(--acc) 58%,#3c392f);border-left:0;
+  background:
+  radial-gradient(circle at 50% -6%,color-mix(in srgb,var(--acc) 18%,transparent),transparent 58%),
+  linear-gradient(90deg,rgba(255,255,255,.015),color-mix(in srgb,var(--acc) 10%,transparent) 8%,var(--acc-soft) 20%,#11120f 50%,var(--acc-soft) 80%,color-mix(in srgb,var(--acc) 10%,transparent) 92%,rgba(255,255,255,.015));
+  padding:13px 18px 14px;border-radius:6px;text-align:center;box-shadow:inset 0 0 0 1px rgba(255,255,255,.03), inset 0 0 26px rgba(255,255,255,.01)}
+.proclaim:before,.proclaim:after{content:"";position:absolute;left:50%;transform:translateX(-50%);width:min(90%,620px);height:1px;background:linear-gradient(90deg,transparent,var(--acc),transparent);opacity:.62}
+.proclaim:before{top:0}
+.proclaim:after{bottom:0}
+.proclaim .side-glow,.proclaim .side-glow-r{content:"";position:absolute;top:16%;bottom:16%;width:1px;opacity:.0;pointer-events:none}
+.proclaim .side-glow{left:0;background:linear-gradient(180deg,transparent,var(--acc),transparent)}
+.proclaim .side-glow-r{right:0;background:linear-gradient(180deg,transparent,var(--acc),transparent)}
+body.boss-grulla.phase-1 .proclaim{animation:proclaimPulse1 4.8s ease-in-out infinite}
+body.boss-grulla.phase-2 .proclaim{animation:proclaimPulse2 4.1s ease-in-out infinite}
+body.boss-grulla.phase-3 .proclaim{animation:proclaimPulse3 3.4s ease-in-out infinite}
+body.boss-grulla.phase-2 .proclaim:before,body.boss-grulla.phase-2 .proclaim:after{opacity:.72}
+body.boss-grulla.phase-3 .proclaim:before,body.boss-grulla.phase-3 .proclaim:after{opacity:.82}
+@keyframes proclaimPulse1{
+  0%,100%{
+    border-color:color-mix(in srgb,var(--acc) 54%,#3c392f);
+    box-shadow:0 0 0 1px rgba(159,205,176,.06),0 0 14px rgba(159,205,176,.055),inset 0 0 20px rgba(159,205,176,.025);
+    filter:brightness(1);
+  }
+  50%{
+    border-color:color-mix(in srgb,var(--acc) 64%,#3c392f);
+    box-shadow:0 0 0 1px rgba(159,205,176,.075),0 0 22px rgba(159,205,176,.085),inset 0 0 25px rgba(159,205,176,.035);
+    filter:brightness(1.015);
+  }
+}
+@keyframes proclaimPulse2{
+  0%,100%{
+    border-color:color-mix(in srgb,var(--acc) 57%,#3c392f);
+    box-shadow:0 0 0 1px rgba(215,195,132,.07),0 0 16px rgba(215,195,132,.065),inset 0 0 21px rgba(215,195,132,.03);
+    filter:brightness(1);
+  }
+  50%{
+    border-color:color-mix(in srgb,var(--acc) 69%,#3c392f);
+    box-shadow:0 0 0 1px rgba(215,195,132,.09),0 0 27px rgba(215,195,132,.105),inset 0 0 28px rgba(215,195,132,.043);
+    filter:brightness(1.025);
+  }
+}
+@keyframes proclaimPulse3{
+  0%,100%{
+    border-color:color-mix(in srgb,var(--acc) 61%,#3c392f);
+    box-shadow:0 0 0 1px rgba(216,160,137,.09),0 0 19px rgba(216,160,137,.075),inset 0 0 23px rgba(216,160,137,.035);
+    filter:brightness(1);
+  }
+  50%{
+    border-color:color-mix(in srgb,var(--acc) 76%,#3c392f);
+    box-shadow:0 0 0 1px rgba(216,160,137,.115),0 0 32px rgba(216,160,137,.125),inset 0 0 31px rgba(216,160,137,.052);
+    filter:brightness(1.035);
+  }
+}50%{box-shadow:0 0 0 1px rgba(216,160,137,.18),0 0 42px rgba(216,160,137,.22),0 0 64px rgba(216,160,137,.08), inset 0 0 36px rgba(216,160,137,.07)}}
+.proclaim-tag{position:relative;display:inline-block;padding:0 24px;color:var(--acc);font:11px ui-monospace,Consolas,monospace;letter-spacing:.26em;text-transform:uppercase}
+.proclaim-tag:before,.proclaim-tag:after{content:"";position:absolute;top:50%;width:16px;height:1px;background:linear-gradient(90deg,transparent,var(--acc));opacity:.95}
+.proclaim-tag:before{left:0;transform:translateY(-50%)}
+.proclaim-tag:after{right:0;transform:translateY(-50%) scaleX(-1)}
+body.boss-grulla .proclaim-tag{text-shadow:0 0 14px var(--acc-soft)}
+.proclaim-text{max-width:670px;margin:9px auto 0;font-size:14.8px;line-height:1.52;color:#ddd4c4}
+body.boss-grulla.phase-1 .proclaim-text{text-shadow:0 0 8px rgba(159,205,176,.05)}
+body.boss-grulla.phase-2 .proclaim-text{color:#e8dcc2;text-shadow:0 0 10px rgba(215,195,132,.07)}
+body.boss-grulla.phase-3 .proclaim-text{color:#f0e3d7;text-shadow:0 0 12px rgba(216,160,137,.09)}
+
+
+.proclaim.is-intent-warning{
+  border-color:color-mix(in srgb,var(--acc) 78%,#3c392f);
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--acc) 14%,transparent),
+             0 0 26px color-mix(in srgb,var(--acc) 14%,transparent),
+             inset 0 0 26px color-mix(in srgb,var(--acc) 5%,transparent);
+}
+.proclaim.is-intent-warning .proclaim-tag{
+  color:var(--acc-bright);
+  text-shadow:0 0 12px var(--acc-soft);
+}
+.proclaim.is-intent-warning .proclaim-text{
+  color:#efe6d7;
+}
+.intent-name{
+  color:var(--acc);
+  font-weight:700;
+  letter-spacing:.06em;
+}
+
+/* -------- rejilla principal -------- */
+.grid{flex:1;min-height:0;display:grid;grid-template-columns:190px 1fr 220px;gap:10px}
+.col{min-width:0;min-height:0;border:1px solid var(--borde);background:#0b0e0c;border-radius:4px;overflow:hidden;display:flex;flex-direction:column}
+.col-label{flex:none;padding:7px 9px;color:var(--tenue);font:9.5px ui-monospace,Consolas,monospace;letter-spacing:.13em;border-bottom:1px solid var(--borde)}
+
+.player{padding:9px 10px;display:flex;flex-direction:column;gap:8px;overflow-y:auto}
+.p-name{color:var(--oro);font-weight:700;font-size:12.5px}
+.p-sub{color:var(--tenue);font:9.5px ui-monospace,Consolas,monospace}
+.meter{display:grid;grid-template-columns:28px 1fr 40px;gap:6px;align-items:center;font:9.5px ui-monospace,Consolas,monospace}
+.meter .track{height:8px;border:1px solid #343a34;border-radius:5px;background:#080a09;overflow:hidden}
+.meter .fill{height:100%;display:block}
+.fill.hp{background:linear-gradient(90deg,#8d342d,var(--cinabrio))}
+.fill.qi{background:linear-gradient(90deg,#3d7780,var(--agua))}
+.chips{display:flex;gap:4px;flex-wrap:wrap}
+.chip{font:9px ui-monospace,Consolas,monospace;padding:2px 6px;border-radius:2px;border:1px solid #4b4437;background:#14130f;color:#c9c2b3}
+.chip.buff{color:#b9d8bf;border-color:#3e6548;background:#101a13}
+
+.combate-registro-caja{flex:1;min-height:0;height:0;overflow:hidden;display:flex;flex-direction:column;background:#0b0d0b}
+.combate-registro{flex:1;min-height:0;overflow-y:auto;padding:8px 11px 10px;font-size:12.5px;line-height:1.55;color:#bbb4a6}
+.combate-registro-linea{margin:2px 0}
+.combate-registro-linea.cl-falla{color:var(--tenue)}
+.combate-registro-linea.cl-critico{color:var(--oro)}
+.combate-registro-linea.cl-cae{color:#e0d7c4;font-weight:bold}
+.combate-registro-linea.cl-union{color:var(--jade-claro)}
+.combate-registro-linea.cl-estado{color:var(--loto)}
+.combate-registro-linea.cl-botin{color:var(--jade)}
+.combate-registro-linea.cl-combo{color:var(--oro);font-weight:bold}
+.combate-registro-linea.cl-ventaja{color:var(--jade-claro);font-weight:bold}
+.combate-registro-linea.cl-desventaja{color:var(--cinabrio)}
+.combate-registro-linea.cl-consecuencia{color:var(--jade-claro);font-style:italic}
+.combate-registro-linea.cl-fase{color:var(--oro);font-weight:bold;margin-top:8px}
+.combate-registro-linea .cl-danio{color:var(--cinabrio);font-weight:bold}
+.combate-elemento-fuego{color:var(--cinabrio)}
+.combate-elemento-agua{color:var(--agua)}
+.combate-elemento-viento{color:var(--jade-claro)}
+.combate-elemento-metal{color:#cdd3d6}
+.combate-elemento-tierra{color:var(--oro)}
+.combate-elemento-mixta{color:var(--loto)}
+
+.skills{flex:1;min-height:0;overflow-y:auto;padding:8px;display:grid;grid-template-columns:1fr;gap:5px}
+.skill{padding:6px 8px;border:1px solid color-mix(in srgb,var(--elem,#6b5a48) 55%,#2c302c);border-left:3px solid var(--elem,#6b5a48);
+  border-radius:4px;background:#101310;text-align:left}
+.skill strong{display:block;color:#ddd5c7;font-size:11px}
+.skill span{display:block;margin-top:2px;color:#918d83;font:9px ui-monospace,Consolas,monospace}
+
+.actions{flex:none;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;margin-top:10px}
+.actions button{padding:9px 6px;color:var(--oro);background:#111511;border:1px solid #3a4037;border-radius:4px}
+.actions button:hover{background:rgba(213,173,99,.12)}
+.actions .primary{background:#141008;border-color:#6b5326}
+.actions .danger{color:#d69a86}
+
+body.boss-centinela{--acc:#d5ad63;--acc-bright:#efd08e;--acc-soft:rgba(213,173,99,.14);--crack:#d36b58;--phase-danger:#e79e73}
+body.boss-grulla{--acc:#b7d5c5;--acc-bright:#e2eee8;--acc-soft:rgba(143,198,163,.16);--crack:#cfe3d6;--phase-danger:#d5b5a1}
+body.hp-medio .seal-resource{filter:drop-shadow(0 0 8px color-mix(in srgb,var(--acc) 28%,transparent))}
+body.hp-bajo .seal-resource{filter:drop-shadow(0 0 12px color-mix(in srgb,var(--phase-danger) 35%,transparent))}
+
+body.life-band-1 .seal-resource:before{
+  opacity:.42;
+  animation:ringBreath1 4.2s ease-in-out infinite;
+}
+body.life-band-2 .seal-resource:before{
+  opacity:.56;
+  animation:ringBreath2 3.1s ease-in-out infinite;
+}
+body.life-band-3 .seal-resource:before{
+  opacity:.72;
+  animation:ringBreath3 2.2s ease-in-out infinite;
+}
+
+@keyframes ringBreath1{
+  0%,100%{
+    transform:scale(1);
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,.015),
+      0 0 10px color-mix(in srgb,var(--acc) 18%,transparent);
+    filter:brightness(1);
+  }
+  50%{
+    transform:scale(1.012);
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,.025),
+      0 0 18px color-mix(in srgb,var(--acc) 28%,transparent),
+      0 0 28px color-mix(in srgb,var(--acc) 10%,transparent);
+    filter:brightness(1.02);
+  }
+}
+@keyframes ringBreath2{
+  0%,100%{
+    transform:scale(1);
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,.02),
+      0 0 14px color-mix(in srgb,var(--acc) 24%,transparent);
+    filter:brightness(1);
+  }
+  50%{
+    transform:scale(1.018);
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,.03),
+      0 0 24px color-mix(in srgb,var(--acc) 36%,transparent),
+      0 0 38px color-mix(in srgb,var(--acc) 14%,transparent);
+    filter:brightness(1.03);
+  }
+}
+@keyframes ringBreath3{
+  0%,100%{
+    transform:scale(1);
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,.025),
+      0 0 18px color-mix(in srgb,var(--phase-danger) 24%,transparent);
+    filter:brightness(1);
+  }
+  45%{
+    transform:scale(1.024);
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,.04),
+      0 0 30px color-mix(in srgb,var(--phase-danger) 44%,transparent),
+      0 0 48px color-mix(in srgb,var(--phase-danger) 18%,transparent);
+    filter:brightness(1.05);
+  }
+  55%{
+    transform:scale(1.016);
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,.03),
+      0 0 22px color-mix(in srgb,var(--phase-danger) 34%,transparent),
+      0 0 36px color-mix(in srgb,var(--phase-danger) 14%,transparent);
+    filter:brightness(1.03);
+  }
+}
+
+/* impacto de prueba sobre la vida del jefe */
+.seal.is-hit .seal-resource{animation:bossHitRing .42s cubic-bezier(.2,.9,.2,1)}
+.seal.is-hit .seal-phase{animation:bossHitInner .42s ease-out}
+.seal.is-hit .seal-core{animation:bossHitCore .42s ease-out!important}
+.seal-caption.is-hit strong{animation:bossHitNumber .48s ease-out}
+@keyframes bossHitRing{
+  0%{transform:scale(1);filter:brightness(1)}
+  28%{transform:scale(1.055);filter:brightness(1.85) drop-shadow(0 0 16px var(--acc))}
+  55%{transform:scale(.985);filter:brightness(1.25) drop-shadow(0 0 8px var(--acc-soft))}
+  100%{transform:scale(1);filter:brightness(1)}
+}
+@keyframes bossHitInner{
+  0%{transform:scale(1)}
+  30%{transform:scale(.965);filter:brightness(1.55)}
+  100%{transform:scale(1);filter:none}
+}
+@keyframes bossHitCore{
+  0%{transform:translateX(0) scale(1)}
+  20%{transform:translateX(-2px) scale(.985)}
+  38%{transform:translateX(2px) scale(1.02)}
+  58%{transform:translateX(-1px) scale(.995)}
+  100%{transform:translateX(0) scale(1)}
+}
+@keyframes bossHitNumber{
+  0%{color:var(--acc);transform:scale(1)}
+  30%{color:#fff4eb;transform:scale(1.18);text-shadow:0 0 12px var(--acc)}
+  100%{color:var(--acc);transform:scale(1);text-shadow:none}
+}
+.actions .primary.is-impact{animation:attackTap .22s ease-out}
+@keyframes attackTap{0%{transform:translateY(0)}45%{transform:translateY(1px) scale(.985)}100%{transform:translateY(0) scale(1)}}
+
+.phase-transition{position:fixed;inset:40px 0 0;z-index:70;display:grid;place-items:center;pointer-events:none;opacity:0;visibility:hidden;background:rgba(4,6,5,.48);transition:opacity .2s ease,visibility .2s ease}
+.phase-transition-card{text-align:center;max-width:min(760px,88vw);padding:22px 34px;border-top:1px solid var(--acc);border-bottom:1px solid var(--acc);background:linear-gradient(90deg,transparent,rgba(7,10,8,.88) 15%,rgba(7,10,8,.94) 50%,rgba(7,10,8,.88) 85%,transparent);transform:translateY(8px);transition:transform .25s ease}
+.phase-transition-kicker{color:var(--acc);font:9px ui-monospace,Consolas,monospace;letter-spacing:.24em;margin-bottom:7px}
+.phase-transition-name{color:#e5dfd2;font-size:clamp(26px,3vw,38px);font-weight:400;letter-spacing:.08em;animation:phaseBreath 2.1s ease-in-out infinite}
+.phase-transition-line{margin-top:7px;color:#aaa697;font-size:13px;font-style:italic}
+.phase-transition-card:before,.phase-transition-card:after{content:"";position:absolute;top:50%;width:0;height:1px;opacity:0;background:linear-gradient(90deg,transparent,var(--acc),transparent);pointer-events:none}
+.phase-transition-card:before{right:50%;transform-origin:right center}
+.phase-transition-card:after{left:50%;transform-origin:left center}
+body.boss-grulla.phase-3.is-phase-transition .phase-transition-card{position:relative;overflow:visible;animation:finalCardSurge 1.25s ease-out both}
+body.boss-grulla.phase-3.is-phase-transition .phase-transition-card:before,body.boss-grulla.phase-3.is-phase-transition .phase-transition-card:after{animation:wingSpread 1.05s cubic-bezier(.2,.8,.2,1) both}
+body.boss-grulla.phase-3.is-phase-transition .phase-transition-name{animation:finalTitleOpen 1.15s cubic-bezier(.16,.84,.24,1) both,phaseBreath 1.8s ease-in-out 1.15s infinite}
+body.boss-grulla.phase-3.is-phase-transition .phase-transition-line{animation:finalLineRise .9s ease-out .2s both}
+@keyframes wingSpread{0%{width:0;opacity:0;filter:blur(3px)}25%{opacity:.7}100%{width:min(32vw,420px);opacity:.22;filter:blur(0)}}
+@keyframes finalTitleOpen{0%{opacity:0;letter-spacing:.02em;transform:scaleX(.88) scale(.96);filter:blur(3px)}45%{opacity:1;letter-spacing:.16em;filter:blur(0)}100%{opacity:1;letter-spacing:.12em;transform:scaleX(1) scale(1)}}
+@keyframes finalCardSurge{0%{box-shadow:0 0 0 transparent}45%{box-shadow:0 0 36px rgba(216,160,137,.10)}100%{box-shadow:0 0 14px rgba(216,160,137,.06)}}
+@keyframes finalLineRise{0%{opacity:0;transform:translateY(6px)}100%{opacity:1;transform:translateY(0)}}
+body.is-phase-transition .phase-transition{opacity:1;visibility:visible}
+body.is-phase-transition .phase-transition-card{transform:translateY(0)}
+
+@media(prefers-reduced-motion:reduce){.phase-focus-name,.phase-transition-name,.proclaim.is-warning,.seal-resource,.seal-resource:before,.seal-core,.seal-core-label,.phase-transition-card,.phase-transition-line,.phase-transition-card:before,.phase-transition-card:after,.boss-name,.proclaim-tag{animation:none!important}}
+@media(max-width:980px){
+  .grid{grid-template-columns:160px 1fr 190px}
+  .seal{width:166px;height:166px}.seal-resource{width:166px;height:166px}.seal-phase{width:130px;height:130px}.seal-core{width:98px;height:98px}
+  .phase-focus-name{font-size:clamp(16px,2.1vw,24px)}
+}
+@media(max-width:700px){
+  .frame{padding:12px 12px 10px}
+  .grid{display:flex;flex-direction:column;overflow-y:auto}
+  .col{min-height:200px}
+  .actions{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .phase-link{width:32px}
+  .phase-focus-name{font-size:18px}
+}
+</style>
+</head>
+<body>
+<div class="lab">
+  <strong>LAB B13 · LA GRULLA · PACTO DEL ÚLTIMO VUELO</strong>
+  <button data-boss="centinela">CENTINELA</button>
+  <button data-boss="grulla" class="is-active">GRULLA</button>
+  <button data-phase="1" class="is-active">FASE I</button>
+  <button data-phase="2">FASE II</button>
+  <button data-phase="3">FASE III</button>
+  <button id="hpBtn">REINICIAR VIDA</button>
+  <button id="intentBtn">FORZAR INTENCIÓN</button>
+  <button id="resolveF3Btn">RESOLVER ACCIÓN F3</button>
+  <button id="skillBtn">20 TÉCNICAS</button>
+  <button id="compactBtn">ANCHO COMPACTO</button>
+  <span class="lab-note">PROTOTIPO AISLADO · SIN MOTOR · SIN IMÁGENES</span>
+</div>
+
+<div class="phase-transition" id="phaseTransition" aria-hidden="true">
+  <div class="phase-transition-card">
+    <div class="phase-transition-kicker">CAMBIO DE FASE</div>
+    <div class="phase-transition-name" id="transitionName"></div>
+    <div class="phase-transition-line" id="transitionLine"></div>
+  </div>
+</div>
+
+
+<section class="precombat-room" id="precombatRoom" aria-label="Santuario del Vínculo">
+  <div class="room-shell">
+    <div class="room-id">nucleo_santuario_vinculo · ROOM DE PRUEBA</div>
+    <div class="room-kicker">NÚCLEO · SANTUARIO DEL VÍNCULO</div>
+    <h2 class="room-name">SANTUARIO DEL VÍNCULO</h2>
+    <p class="room-desc">
+      El recinto permanece en silencio. En el centro, la Grulla Primera aguarda junto al Vínculo
+      que ha sostenido desde el pacto original. No adopta una guardia ni intenta acercarse.
+    </p>
+
+    <div class="room-presence">
+      <strong>LA GRULLA ESTÁ AQUÍ</strong>
+      <span>Permanece inmóvil, observándote.</span>
+    </div>
+
+    <div class="room-terminal">
+      <div class="room-log" id="roomLog" aria-live="polite">
+        <div class="room-system">Has entrado en el Santuario del Vínculo.</div>
+        <div>El aire parece más pesado cerca de la Grulla.</div>
+        <div class="room-grulla">La Grulla no se mueve.</div>
+      </div>
+      <form class="command-row" id="commandForm">
+        <span class="command-mark">&gt;</span>
+        <input class="command-input" id="commandInput" autocomplete="off" spellcheck="false"
+               placeholder="Escribe un comando..." aria-label="Comando">
+        <button class="command-send" type="submit">ENVIAR</button>
+      </form>
+    </div>
+    <div class="room-help">COMANDOS DE PRUEBA: <strong>examinar</strong> · <strong>atacar</strong></div>
+  </div>
+</section>
+
+<main class="stage" id="stage" hidden>
+<div class="frame">
+  <div class="crown">
+    <div class="kicker" id="kicker"></div>
+    <h1 class="boss-name" id="bossName"></h1>
+    <p class="boss-sub" id="bossSub"></p>
+  </div>
+
+  <div class="seal-wrap">
+    <div class="seal" id="seal">
+      <div class="seal-resource" id="sealRes"></div>
+      <div class="seal-phase" id="sealPhase"></div>
+      <div class="seal-core">
+        <div class="seal-crack" aria-hidden="true">
+          <span class="cr c1"></span><span class="cr c2"></span><span class="cr c3"></span>
+          <span class="cr c4"></span><span class="cr c5"></span><span class="cr c6"></span>
+          <span class="cr c7"></span>
+        </div>
+        <span class="seal-core-label" id="sealLabel"></span>
+      </div>
+    </div>
+    <div class="seal-caption" id="sealCaption"><span id="resLabel"></span><strong id="resNum"></strong></div>
+
+    <div class="phase-focus">
+      <div class="phase-track" id="phaseTrack"></div>
+      <div class="phase-focus-roman" id="phaseRoman"></div>
+      <div class="phase-focus-name" id="phaseName"></div>
+      <div class="phase-focus-sub" id="phaseSub"></div>
+    </div>
+  </div>
+
+  <div class="scroll-wrap">
+    <div class="proclaim" id="proclaim">
+      <span class="side-glow" aria-hidden="true"></span><span class="side-glow-r" aria-hidden="true"></span>
+      <div class="proclaim-tag" id="intentStage"></div>
+      <p class="proclaim-text" id="intentText"></p>
+    </div>
+  </div>
+
+  <div class="grid">
+    <section class="col">
+      <div class="col-label">JUGADOR</div>
+      <div class="player">
+        <div class="p-name">Discípulo de la Grulla Blanca</div>
+        <div class="p-sub">LianQi IV · turno disponible</div>
+        <div class="meter"><span>VID</span><span class="track"><span class="fill hp" style="width:81%"></span></span><span>81/100</span></div>
+        <div class="meter"><span>QI</span><span class="track"><span class="fill qi" style="width:64%"></span></span><span>64/100</span></div>
+        <div class="chips"><span class="chip buff">PIEL DE COBRE</span><span class="chip">FOCO</span></div>
+      </div>
+    </section>
+
+    <section class="col combate-registro-caja">
+      <div class="col-label">REGISTRO DE COMBATE</div>
+      <div id="log" class="combate-registro" role="log" aria-live="polite"></div>
+    </section>
+
+    <section class="col">
+      <div class="col-label">TÉCNICAS PREPARADAS</div>
+      <div class="skills" id="skills"></div>
+    </section>
+  </div>
+
+  <div class="actions">
+    <button class="primary" id="attackBtn">ATACAR · 10</button>
+    <button>TÉCNICAS</button>
+    <button>OBJETOS</button>
+    <button>DEFENDER</button>
+    <button class="danger">HUIR</button>
+  </div>
+</div>
+</main>
+
+<script>
+const bosses={
+  centinela:{
+    cls:"boss-centinela",
+    kicker:"ENCUENTRO MAYOR · PROTOCOLO ANTIGUO",
+    name:"CENTINELA DE PLUMAS PETRIFICADAS",
+    sub:"Mecanismo de defensa · secuencia programada, no voluntad",
+    resLabel:"VIDA",
+    coreLabel:"PROTOCOLO",
+    phases:["MARCA","CONDENSACIÓN","DESCARGA"],
+    focusSubs:["La secuencia acaba de fijarte.","La energía se concentra y aprieta el ritmo.","El protocolo entra en ejecución."],
+    intents:[
+      ["MARCA","Un patrón se fija sobre tu sombra. Aún no hay daño — sólo memoria."],
+      ["CONDENSACIÓN","La carga converge en su brazo alzado. La secuencia todavía puede romperse."],
+      ["DESCARGA","La energía alcanza el punto sin retorno. Lo siguiente cierra el protocolo."]
+    ],
+    transitionLines:[
+      "El protocolo fija tu presencia como objetivo.",
+      "La energía converge: la secuencia empieza a cerrarse.",
+      "El protocolo alcanza su punto de ejecución."
+    ],
+    longSuffix:" Cada ronda sin interrupción acerca el protocolo a su descarga; el Centinela no improvisa — repite lo que fue tallado en él hace siglos.",
+    logs:[
+      [
+        '<div class="system">El Centinela despierta con un crujido mineral.</div>',
+        '<div class="enemy">Sus plumas de piedra se orientan hacia ti.</div>',
+        '<div class="bossline">MARCA.</div>',
+        '<div>El suelo bajo tus pies conserva una débil línea luminosa.</div>',
+        '<div class="system">Tu turno.</div>'
+      ],
+      [
+        '<div class="system">La secuencia progresa sin desviarse.</div>',
+        '<div class="enemy">El Centinela alza un brazo y el aire vibra.</div>',
+        '<div class="bossline">CONDENSACIÓN.</div>',
+        '<div>Pequeños fragmentos de piedra ascienden hacia él.</div>',
+        '<div class="player">Retrocedes para ganar ángulo.</div>'
+      ],
+      [
+        '<div class="system">No queda margen en la secuencia.</div>',
+        '<div class="enemy">Las grietas del Centinela arden desde dentro.</div>',
+        '<div class="bossline">DESCARGA.</div>',
+        '<div>La presión acumulada está a punto de liberarse.</div>',
+        '<div class="system">Tu turno.</div>'
+      ]
+    ]
+  },
+  grulla:{
+    cls:"boss-grulla",
+    kicker:"SANTUARIO DEL VÍNCULO · LA GRULLA PRIMERA",
+    name:"LA GRULLA",
+    sub:"La misma presencia que permanece unida al pacto original",
+    resLabel:"VIDA",
+    coreLabel:"PACTO",
+    phases:["LA GRULLA ESPERA","LA GRULLA TE RECONOCE","LA GRULLA DESPLIEGA SUS ALAS"],
+    focusSubs:["Aún contiene su fuerza mientras te observa.","Empieza a anticiparte y a responder con precisión.","La Grulla deja de contenerse. El Vínculo tiembla con ella."],
+    intents:[
+      ["LA GRULLA ESPERA","La Grulla contiene cada intercambio con una calma inquietante. No cede el Santuario, pero tampoco emplea todavía toda su fuerza. Te observa mientras luchas."],
+      ["LA GRULLA TE RECONOCE","Algo cambia en su manera de enfrentarte. Empieza a anticipar tus movimientos y a responder con una precisión que antes no mostraba. Ya no eres sólo un intruso ante el Vínculo."],
+      ["LA GRULLA DESPLIEGA SUS ALAS","La Grulla abre las alas y el Santuario entero responde. El Vínculo tiembla, el aire se inclina a su alrededor y la fuerza que mantuvo contenida desciende por fin sobre el combate."]
+    ],
+    transitionLines:[
+      "Aún contiene su fuerza mientras observa cómo luchas.",
+      "Ya no responde al azar: empieza a anticiparte.",
+      "La Grulla abre las alas. El Santuario entero responde con ella."
+    ],
+    longSuffix:" El enfrentamiento no rompe una simple resistencia: fuerza a responder a un vínculo vivo sostenido desde el pacto original.",
+    logs:[
+      [
+        '<div class="system">El silencio del Santuario no se rompe del todo.</div>',
+        '<div class="enemy">La Grulla esquiva lo justo y recupera su lugar.</div>',
+        '<div class="bossline">LA GRULLA ESPERA.</div>',
+        '<div>No te niega el paso, pero tampoco te permite acercarte sin medida.</div>',
+        '<div class="system">Tu turno.</div>'
+      ],
+      [
+        '<div class="system">El ritmo del combate cambia sin aviso.</div>',
+        '<div class="enemy">La Grulla corta tu salida antes de que completes el paso.</div>',
+        '<div class="bossline">LA GRULLA TE RECONOCE.</div>',
+        '<div>Tus hábitos ya forman parte de su lectura del combate.</div>',
+        '<div class="player">Forzas un nuevo ángulo para no repetir tu patrón.</div>'
+      ],
+      [
+        '<div class="system">La presión en el Santuario asciende de golpe.</div>',
+        '<div class="enemy">La Grulla despliega las alas y el aire se aparta de ella.</div>',
+        '<div class="bossline">LA GRULLA DESPLIEGA SUS ALAS.</div>',
+        '<div>La fuerza que mantenía contenida entra plenamente en el combate.</div>',
+        '<div class="system">Tu turno.</div>'
+      ]
+    ]
+  }
+};
+const skillBase=[
+ ["LÁTIGO DE AGUA","5 qi · impacto","#82b7c8"],["PASO DE NUBE","4 qi · evasión","#a8c7d1"],
+ ["PIEL DE COBRE","6 qi · defensa","#d5ad63"],["FILAMENTO","7 qi · control","#baa5ca"],
+ ["OLEAJE","8 qi · presión","#82b7c8"],["RESPIRACIÓN","3 qi · recuperación","#8fc6a3"],
+ ["CORTE DE VIENTO","7 qi · ofensiva","#9fc4b0"],["MURO DE TIERRA","8 qi · defensa","#b89a68"],
+ ["NIEBLA","6 qi · utilidad","#82b7c8"],["ANCLA","9 qi · control","#baa5ca"],
+ ["PULSO","5 qi · técnica","#d5ad63"],["PASO LATERAL","3 qi · evasión","#9fc4b0"],
+ ["CORTE FINO","6 qi · ofensiva","#d36b58"],["CÍRCULO","5 qi · defensa","#b89a68"],
+ ["FLUJO","4 qi · utilidad","#82b7c8"],["SELLO","9 qi · control","#baa5ca"],
+ ["RETORNO","5 qi · recuperación","#8fc6a3"],["PRESIÓN","7 qi · ofensiva","#d36b58"],
+ ["VACIADO","4 qi · utilidad","#9fc4b0"],["GUARDIA","5 qi · defensa","#d5ad63"]
+];
+let bossKey="grulla",phase=1,manySkills=false,compact=false;
+const phaseHpMax={1:150,2:100,3:50};
+const MAX_LINEAS_LOG_COMBATE=250;
+let currentHp=phaseHpMax[1];
+let transitionLocked=false;
+let combatRound=1;
+let intentPreparing=false;
+
+// B13 · PACTO DEL ÚLTIMO VUELO — LAB contractual.
+// En runtime real, el release debe venir de la primera intención F3 realmente resuelta.
+const PACTO_F3={INACTIVE:"INACTIVE",ACTIVE:"ACTIVE",CRACKED:"CRACKED_WAITING_FOR_F3_ACTION",RELEASED:"RELEASED"};
+let pactoF3State=PACTO_F3.INACTIVE;
+let pactoF3LethalPreventions=0;
+let pactoF3PreventedDamage=0;
+let pactoF3MaxOverkill=0;
+let pactoF3SkipAttempted=false;
+
+const combatLogLines=[];
+
+
+let combatStarted=false;
+
+function appendRoomLine(text,cls=""){
+  const log=document.getElementById("roomLog");
+  if(!log) return;
+  const line=document.createElement("div");
+  if(cls) line.className=cls;
+  line.textContent=text;
+  log.appendChild(line);
+  log.scrollTop=log.scrollHeight;
+}
+
+function beginBossCombat(){
+  if(combatStarted) return;
+
+  bossKey="grulla";
+  phase=1;
+  currentHp=phaseHpMax[1];
+
+  const room=document.getElementById("precombatRoom");
+  const stage=document.getElementById("stage");
+  const input=document.getElementById("commandInput");
+  const send=document.querySelector(".command-send");
+
+  appendRoomLine("Atacas a La Grulla.","room-warn");
+  appendRoomLine("Por primera vez, sus alas se separan apenas de su cuerpo.","room-grulla");
+
+  if(input) input.disabled=true;
+  if(send) send.disabled=true;
+
+  combatStarted=true;
+  combatRound=1;
+  intentPreparing=false;
+  pactoF3State=PACTO_F3.INACTIVE;
+  pactoF3LethalPreventions=0;
+  pactoF3PreventedDamage=0;
+  pactoF3MaxOverkill=0;
+  pactoF3SkipAttempted=false;
+
+  // Cambio directo y seguro: primero mostramos la UI y luego la renderizamos.
+  room.hidden=true;
+  stage.hidden=false;
+  limpiarRegistroCombate();
+  render();
+  registrarSalidaCombate("⚔ COMBATE · SANTUARIO DEL VÍNCULO");
+  registrarSalidaCombate("══ FASE I · LA GRULLA ESPERA ══");
+
+  // La presentación de Fase I aparece después del primer frame.
+  requestAnimationFrame(()=>{
+    requestAnimationFrame(showPhaseTransition);
+  });
+}
+
+function runRoomCommand(raw){
+  const visible=String(raw ?? "").trim();
+  const command=visible
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g,"")
+    .replace(/\s+/g," ");
+  if(!command) return;
+
+  appendRoomLine("> "+visible);
+
+  if(command==="atacar" || command==="atacar grulla" || command==="atacar la grulla"){
+    beginBossCombat();
+    return;
+  }
+
+  if(
+    command==="examinar" ||
+    command==="examinar grulla" ||
+    command==="examinar la grulla" ||
+    command==="mirar"
+  ){
+    appendRoomLine(
+      "La misma Grulla vinculada al pacto original permanece frente a ti. No parece sorprendida por tu presencia.",
+      "room-grulla"
+    );
+    return;
+  }
+
+  appendRoomLine("Ese comando no produce ningún efecto en esta sala de prueba.","room-system");
+}
+
+
+function clasificarLineaCombate(linea){
+  if(/\bfalla\b/.test(linea)) return "cl-falla";
+  if(/CRÍTICO/.test(linea)) return "cl-critico";
+  if(/ha caído!$/.test(linea)) return "cl-cae";
+  if(/^\s*Concordancia:/.test(linea)) return "cl-combo";
+  if(/^\s*¡Ventaja elemental!/.test(linea)) return "cl-ventaja";
+  if(/golpeas con menos fuerza\.\)\s*$/.test(linea)) return "cl-desventaja";
+  if(/se suma al combate|entra al combate|queda atrapad[oa] en la formación/.test(linea)) return "cl-union";
+  if(/^══ FASE/.test(linea)) return "cl-fase";
+  if(/^Botín:|^No encuentras botín|^Absorbes el qi|^✦ Bestiario/.test(linea)) return "cl-botin";
+  if(/^⚠|entra en tus meridianos|se aferra a tu piel|estados activos/.test(linea)) return "cl-estado";
+  if(/^Consecuencia:/.test(linea)) return "cl-consecuencia";
+  return "";
+}
+
+function nodoLineaCombate(linea){
+  const div=document.createElement("div");
+  div.className="combate-registro-linea "+clasificarLineaCombate(linea);
+
+  // Igual que el combate normal: la cifra de daño se resalta dentro de la línea.
+  const m=linea.match(/\d+ (?:de )?daño/);
+  if(m){
+    div.append(linea.slice(0,m.index));
+    const span=document.createElement("span");
+    span.className="cl-danio";
+    span.textContent=m[0];
+    div.appendChild(span);
+    div.append(linea.slice(m.index+m[0].length));
+  }else{
+    div.append(linea);
+  }
+  return div;
+}
+
+function registrarSalidaCombate(texto){
+  const cont=document.getElementById("log");
+  if(!cont) return;
+  const estabaAbajo=cont.scrollHeight-cont.scrollTop-cont.clientHeight<12;
+  for(const cruda of String(texto).split("\n")){
+    const linea=cruda.replace(/^\s+/,"");
+    if(!linea) continue;
+    combatLogLines.push(linea);
+    cont.appendChild(nodoLineaCombate(linea));
+  }
+  while(combatLogLines.length>MAX_LINEAS_LOG_COMBATE) combatLogLines.shift();
+  while(cont.children.length>MAX_LINEAS_LOG_COMBATE) cont.firstElementChild?.remove();
+  if(estabaAbajo) cont.scrollTop=cont.scrollHeight;
+}
+
+function limpiarRegistroCombate(){
+  combatLogLines.length=0;
+  const cont=document.getElementById("log");
+  if(cont) cont.replaceChildren();
+}
+
+function renderIntencionBoss(){
+  const tag=document.getElementById("intentStage");
+  const text=document.getElementById("intentText");
+  const box=document.getElementById("proclaim");
+
+  tag.textContent="INTENCIÓN · LA GRULLA";
+  if(intentPreparing){
+    text.innerHTML='<span class="intent-name">PREPARA UNA TÉCNICA</span> · Reúne qi. La acción anunciada se resolverá desde el motor real.';
+  }else{
+    text.textContent="Sin preparación especial anunciada.";
+  }
+
+  box.classList.toggle("is-intent-warning",intentPreparing);
+  box.classList.remove("is-warning");
+  box.style.maxHeight="118px";
+}
+
+function renderSkills(){
+  const n=manySkills?20:8;
+  document.getElementById("skills").innerHTML=skillBase.slice(0,n).map(([n,m,c])=>
+    `<button class="skill" style="--elem:${c}"><strong>${n}</strong><span>${m}</span></button>`).join("");
+}
+function phaseAccColor(bossKey,phase){
+  if(bossKey==="grulla") return phase===1?"#9fcdb0":phase===2?"#d7c384":"#d8a089";
+  return phase===1?"#c4a76a":phase===2?"#d7bc7c":"#d58b70";
+}
+function renderRing(){
+  const maxHp=phaseHpMax[phase];
+  currentHp=Math.max(0,Math.min(currentHp,maxHp));
+  const pct=maxHp ? (currentHp/maxHp)*100 : 0;
+  const col=phaseAccColor(bossKey,phase);
+  document.body.style.setProperty('--acc',col);
+  document.body.style.setProperty('--acc-bright', phase===3 ? (bossKey==='grulla' ? '#f3e1d5' : '#f1d59f') : (bossKey==='grulla' ? '#e2eee8' : '#efd08e'));
+  document.body.style.setProperty('--acc-soft', bossKey==='grulla' ? (phase===3 ? 'rgba(216,160,137,.18)' : phase===2 ? 'rgba(215,195,132,.16)' : 'rgba(143,198,163,.16)') : (phase===3 ? 'rgba(211,107,88,.16)' : 'rgba(213,173,99,.14)'));
+  document.body.style.setProperty('--crack', phase===3 ? '#e2c6ba' : bossKey==='grulla' ? '#cfe3d6' : '#d36b58');
+  document.getElementById('sealRes').style.background=`conic-gradient(${col} 0 ${pct*3.6}deg, #1b1e1a ${pct*3.6}deg 360deg)`;
+
+  const segCols=[1,2,3].map(idx=>{
+    if(idx<phase) return `color-mix(in srgb, ${col} 36%, #1a1c18)`;
+    if(idx===phase) return col;
+    return '#1a1c18';
+  });
+  document.getElementById("sealPhase").style.background=
+    `conic-gradient(${segCols[0]} 0deg 116deg, transparent 116deg 124deg, ${segCols[1]} 124deg 236deg, transparent 236deg 244deg, ${segCols[2]} 244deg 356deg, transparent 356deg 360deg)`;
+  return {pct,col,currentHp,maxHp};
+}
+function render(){
+  const b=bosses[bossKey];
+  const hpRatioClass = currentHp<=phaseHpMax[phase]*.2?'hp-bajo':currentHp<=phaseHpMax[phase]*.55?'hp-medio':'hp-alto';
+  const lifeBand = currentHp<=phaseHpMax[phase]*.15 ? 'life-band-3'
+    : currentHp<=phaseHpMax[phase]*.30 ? 'life-band-2'
+    : currentHp<=phaseHpMax[phase]*.50 ? 'life-band-1'
+    : 'life-band-0';
+  document.body.className=`${b.cls} phase-${phase} ${hpRatioClass} ${lifeBand}`;
+  const {pct,col,currentHp:hpNow,maxHp}=renderRing();
+  document.getElementById("kicker").textContent=b.kicker;
+  document.getElementById("bossName").textContent=b.name;
+  document.getElementById("bossSub").textContent=b.sub;
+  document.getElementById("resLabel").textContent=b.resLabel;
+  const pactoLabel = phase===1 ? 'ÍNTEGRO'
+    : phase===2 ? 'TENSÁNDOSE'
+    : pactoF3State===PACTO_F3.ACTIVE ? 'ÚLTIMO VUELO'
+    : pactoF3State===PACTO_F3.CRACKED ? 'AGRIETADO'
+    : pactoF3State===PACTO_F3.RELEASED ? 'CEDIÓ'
+    : 'CEDIENDO';
+  document.getElementById("sealLabel").innerHTML=bossKey==="grulla"?`PACTO<br>${pactoLabel}`:b.coreLabel;
+  document.getElementById("resNum").textContent=`${hpNow} / ${maxHp}`;
+  document.getElementById("phaseRoman").textContent=["I","II","III"][phase-1];
+  document.getElementById("phaseName").textContent=b.phases[phase-1];
+  document.getElementById("phaseSub").textContent=b.focusSubs[phase-1];
+  document.getElementById("phaseTrack").innerHTML=[1,2,3].map((idx,i)=>{
+    const dot=`<span class="phase-dot ${idx<phase?'is-done':idx===phase?'is-current':''}"></span>`;
+    const link=i<2?`<span class="phase-link ${idx<phase?'is-done':''}"></span>`:'';
+    return dot+link;
+  }).join('');
+
+  renderIntencionBoss();
+  renderSkills();
+
+
+document.querySelectorAll("[data-boss]").forEach(x=>x.classList.toggle("is-active",x.dataset.boss===bossKey));
+  document.querySelectorAll("[data-phase]").forEach(x=>x.classList.toggle("is-active",Number(x.dataset.phase)===phase));
+  document.getElementById("hpBtn").textContent="REINICIAR VIDA";
+  document.getElementById("intentBtn").textContent=intentPreparing?"INTENCIÓN NORMAL":"FORZAR INTENCIÓN";
+  const resolveF3Btn=document.getElementById("resolveF3Btn");
+  if(resolveF3Btn){
+    resolveF3Btn.disabled=!(bossKey==="grulla" && phase===3 && pactoF3State!==PACTO_F3.RELEASED);
+    resolveF3Btn.textContent=pactoF3State===PACTO_F3.RELEASED?"PACTO LIBERADO":"RESOLVER ACCIÓN F3";
+  }
+  document.getElementById("skillBtn").textContent=manySkills?"8 TÉCNICAS":"20 TÉCNICAS";
+  document.getElementById("compactBtn").textContent=compact?"ANCHO NORMAL":"ANCHO COMPACTO";
+  document.getElementById("stage").classList.toggle("is-compact",compact);
+}
+
+function flashBossHit(){
+  const seal=document.getElementById("seal");
+  const caption=document.getElementById("sealCaption");
+  const btn=document.getElementById("attackBtn");
+  seal.classList.remove("is-hit");
+  caption.classList.remove("is-hit");
+  btn.classList.remove("is-impact");
+  void seal.offsetWidth;
+  seal.classList.add("is-hit");
+  caption.classList.add("is-hit");
+  btn.classList.add("is-impact");
+  setTimeout(()=>{seal.classList.remove("is-hit");caption.classList.remove("is-hit");btn.classList.remove("is-impact")},520);
+}
+
+function activarPactoUltimoVuelo(){
+  if(bossKey!=="grulla" || phase!==3){
+    pactoF3State=PACTO_F3.INACTIVE;
+    return;
+  }
+  pactoF3State=PACTO_F3.ACTIVE;
+  pactoF3LethalPreventions=0;
+  pactoF3PreventedDamage=0;
+  pactoF3MaxOverkill=0;
+  pactoF3SkipAttempted=false;
+  registrarSalidaCombate("✦ PACTO DEL ÚLTIMO VUELO · La Grulla no caerá antes de resolver una intención real de Fase III.");
+}
+
+function aplicarDanioPruebaConPacto(danio,fuente="ATAQUE_PRUEBA"){
+  const dmg=Math.max(0,Number(danio)||0);
+  const rawAfter=currentHp-dmg;
+  const protege=bossKey==="grulla" && phase===3 &&
+    (pactoF3State===PACTO_F3.ACTIVE || pactoF3State===PACTO_F3.CRACKED);
+
+  if(protege && rawAfter<=0){
+    const overkill=Math.max(0,1-rawAfter);
+    currentHp=1;
+    pactoF3State=PACTO_F3.CRACKED;
+    pactoF3LethalPreventions+=1;
+    pactoF3PreventedDamage+=overkill;
+    pactoF3MaxOverkill=Math.max(pactoF3MaxOverkill,overkill);
+    pactoF3SkipAttempted=true;
+    registrarSalidaCombate(`✦ El PACTO impide el letal de ${fuente}: la Grulla queda en 1 VIDA · exceso prevenido ${overkill}.`);
+    return {lethalPrevented:true,overkill};
+  }
+
+  currentHp=Math.max(0,rawAfter);
+  return {lethalPrevented:false,overkill:0};
+}
+
+function resolverPrimeraIntencionRealF3(){
+  if(bossKey!=="grulla" || phase!==3) return false;
+  if(pactoF3State===PACTO_F3.RELEASED) return false;
+  pactoF3State=PACTO_F3.RELEASED;
+  registrarSalidaCombate("✦ La Grulla resuelve su primera intención real de Fase III. El PACTO DEL ÚLTIMO VUELO se libera.");
+  render();
+  return true;
+}
+
+function testAttack(){
+  if(transitionLocked || currentHp<=0) return;
+
+  const resultadoPacto=aplicarDanioPruebaConPacto(10,"ATAQUE · 10");
+  combatRound+=1;
+  render();
+  flashBossHit();
+
+  registrarSalidaCombate(`Tú atacas: 10 de daño.${resultadoPacto.lethalPrevented?" · LETAL PREVENIDO POR EL PACTO":""}`);
+  registrarSalidaCombate(`Ronda ${combatRound}.`);
+
+  if(currentHp===0){
+    transitionLocked=true;
+    if(phase<3){
+      setTimeout(()=>{
+        phase+=1;
+        currentHp=phaseHpMax[phase];
+        intentPreparing=false;
+        if(phase===3 && bossKey==="grulla") activarPactoUltimoVuelo();
+        render();
+        registrarSalidaCombate(`══ FASE ${["I","II","III"][phase-1]} · ${bosses[bossKey].phases[phase-1]} ══`);
+        showPhaseTransition();
+        transitionLocked=false;
+      },650);
+    }else{
+      setTimeout(()=>{
+        registrarSalidaCombate(pactoF3State===PACTO_F3.RELEASED
+          ? "Consecuencia: la Grulla puede caer; el PACTO ya fue liberado."
+          : "Consecuencia: el PACTO sostiene a la Grulla hasta su primera acción real de Fase III.");
+        transitionLocked=false;
+      },650);
+    }
+  }
+}
+
+let transitionTimer=null;
+function showPhaseTransition(){
+  const b=bosses[bossKey];
+  document.getElementById("transitionName").textContent=b.phases[phase-1];
+  document.getElementById("transitionLine").textContent=(b.transitionLines||[])[phase-1]||"";
+  document.body.classList.add("is-phase-transition");
+  clearTimeout(transitionTimer);
+  transitionTimer=setTimeout(()=>document.body.classList.remove("is-phase-transition"),1250);
+}
+function setPhase(next){
+  if(next===phase) return;
+  phase=next;
+  currentHp=phaseHpMax[phase];
+  intentPreparing=false;
+  if(bossKey==="grulla" && phase===3) activarPactoUltimoVuelo();
+  else pactoF3State=PACTO_F3.INACTIVE;
+  render();
+  registrarSalidaCombate(`══ FASE ${["I","II","III"][phase-1]} · ${bosses[bossKey].phases[phase-1]} ══`);
+  requestAnimationFrame(showPhaseTransition);
+}
+document.querySelectorAll("[data-boss]").forEach(x=>x.onclick=()=>{if(!combatStarted)return;bossKey=x.dataset.boss;phase=1;currentHp=phaseHpMax[1];pactoF3State=PACTO_F3.INACTIVE;render();showPhaseTransition()});
+document.querySelectorAll("[data-phase]").forEach(x=>x.onclick=()=>{if(combatStarted)setPhase(Number(x.dataset.phase))});
+document.getElementById("hpBtn").onclick=()=>{if(!combatStarted)return;currentHp=phaseHpMax[phase];if(bossKey==="grulla"&&phase===3)activarPactoUltimoVuelo();render()};
+document.getElementById("intentBtn").onclick=()=>{
+  if(!combatStarted)return;
+  intentPreparing=!intentPreparing;
+  renderIntencionBoss();
+};
+document.getElementById("resolveF3Btn").onclick=()=>{
+  if(!combatStarted)return;
+  resolverPrimeraIntencionRealF3();
+};
+document.getElementById("skillBtn").onclick=()=>{if(!combatStarted)return;manySkills=!manySkills;render()};
+document.getElementById("compactBtn").onclick=()=>{if(!combatStarted)return;compact=!compact;render()};
+document.getElementById("attackBtn").onclick=()=>{if(combatStarted)testAttack()};
+
+const commandForm=document.getElementById("commandForm");
+const commandInput=document.getElementById("commandInput");
+
+function dispatchRoomInput(){
+  const value=commandInput.value;
+  commandInput.value="";
+  runRoomCommand(value);
+  if(!combatStarted) commandInput.focus();
+}
+
+commandForm.addEventListener("submit",(ev)=>{
+  ev.preventDefault();
+  dispatchRoomInput();
+});
+
+commandInput.addEventListener("keydown",(ev)=>{
+  if(ev.key==="Enter"){
+    ev.preventDefault();
+    dispatchRoomInput();
+  }
+});
+
+commandInput.focus();
+// La UI de boss se crea sólo después de escribir ATACAR.
+
+</script>
+</body>
+</html>
