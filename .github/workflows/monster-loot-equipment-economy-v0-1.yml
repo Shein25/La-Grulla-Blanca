@@ -26,6 +26,9 @@ jobs:
       - name: Validate mission hooks and specialist buyback
         working-directory: experimentos/balance_nuevo/loot_equipment_v0.1
         run: python simulate_mission_buyback_v0_1.py
+      - name: Validate Commerce balance v0.2
+        working-directory: experimentos/balance_nuevo/loot_equipment_v0.1
+        run: python commerce_balance_v0_2_test.py
       - name: Upload simulation
         uses: actions/upload-artifact@v4
         with:
