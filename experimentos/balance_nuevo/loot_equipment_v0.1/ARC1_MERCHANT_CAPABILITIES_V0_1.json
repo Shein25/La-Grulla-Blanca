@@ -1,0 +1,281 @@
+{
+  "schema_version": "arc1-merchant-capabilities-v0.1",
+  "status": "HUMAN_RATIFIED_DESIGN_AUTHORITY__PRE_IMPLEMENTATION",
+  "created_on": "2026-10-02",
+  "principles": {
+    "role_does_not_imply_commerce": true,
+    "commerce_domain_separate_from_a07": true,
+    "no_universal_vendor": true,
+    "dialogue_entry_only": true,
+    "buy_interests_may_derive_from_authorized_service_recipes": true,
+    "ai_never_mutates_economy": true
+  },
+  "capabilities": [
+    "SELL",
+    "BUY",
+    "SERVICE",
+    "AUTHORIZE",
+    "FULFILL",
+    "INFORMATION_ROUTING"
+  ],
+  "merchants": {
+    "ning_cai": {
+      "capabilities": [
+        "SELL",
+        "BUY",
+        "SERVICE",
+        "FULFILL"
+      ],
+      "status": "RATIFIED",
+      "scope": [
+        "textiles",
+        "leather",
+        "clothing",
+        "footwear",
+        "compatible_accessories",
+        "authorized_material_service_recipes"
+      ],
+      "anchored": true,
+      "pilot_candidate": true
+    },
+    "lu_cheng": {
+      "capabilities": [
+        "SELL",
+        "BUY",
+        "SERVICE",
+        "FULFILL"
+      ],
+      "status": "RATIFIED",
+      "scope": [
+        "weapons",
+        "metalwork",
+        "compatible_accessories",
+        "authorized_material_service_recipes"
+      ],
+      "anchored": true
+    },
+    "yao_fen": {
+      "capabilities": [
+        "SELL",
+        "BUY"
+      ],
+      "status": "RATIFIED",
+      "scope": [
+        "routine_medicine",
+        "alchemy_inputs_when_catalog_ratified"
+      ],
+      "note": "No unlimited replacement for player-crafted HP/Qi families."
+    },
+    "pei_luo": {
+      "capabilities": [
+        "SELL"
+      ],
+      "status": "RATIFIED",
+      "scope": [
+        "routine_food",
+        "decoccion_carmesi_when_bound"
+      ]
+    },
+    "mei_shufen": {
+      "capabilities": [
+        "SELL",
+        "BUY"
+      ],
+      "status": "RATIFIED_PENDING_CATALOG_BINDING",
+      "scope": [
+        "local_herbs",
+        "plant_materials"
+      ]
+    },
+    "ma_qiren": {
+      "capabilities": [
+        "SELL",
+        "BUY"
+      ],
+      "status": "RATIFIED_PENDING_CATALOG_BINDING",
+      "scope": [
+        "general_supplies",
+        "materials"
+      ],
+      "note": "No concrete offers until catalog binding is audited."
+    },
+    "lan_meihua": {
+      "capabilities": [
+        "BUY",
+        "SERVICE",
+        "FULFILL"
+      ],
+      "status": "RATIFIED",
+      "scope": [
+        "medical_specialist_equipment",
+        "specialized_materials"
+      ]
+    },
+    "wen_tao": {
+      "capabilities": [
+        "BUY",
+        "SERVICE",
+        "FULFILL"
+      ],
+      "status": "RATIFIED",
+      "scope": [
+        "formations_equipment",
+        "conductive_materials"
+      ]
+    },
+    "he_zhen": {
+      "capabilities": [
+        "AUTHORIZE",
+        "SERVICE",
+        "FULFILL"
+      ],
+      "status": "RATIFIED",
+      "scope": [
+        "high_level_formations",
+        "territory",
+        "institutional_specialist_services"
+      ]
+    },
+    "duan_shibo": {
+      "capabilities": [
+        "AUTHORIZE",
+        "FULFILL"
+      ],
+      "status": "RATIFIED",
+      "scope": [
+        "resources",
+        "production",
+        "maintenance",
+        "institutional_logistics"
+      ]
+    },
+    "chen_bo": {
+      "capabilities": [
+        "SERVICE",
+        "FULFILL"
+      ],
+      "status": "RATIFIED",
+      "scope": [
+        "examination",
+        "anatomy",
+        "medical_specialist_services"
+      ]
+    },
+    "jiang_rui": {
+      "capabilities": [
+        "AUTHORIZE",
+        "FULFILL"
+      ],
+      "status": "RATIFIED",
+      "scope": [
+        "patrol_equipment",
+        "patrol_requisitions"
+      ]
+    },
+    "wei_jian": {
+      "capabilities": [
+        "AUTHORIZE",
+        "FULFILL"
+      ],
+      "status": "RATIFIED",
+      "scope": [
+        "martial_pavilion",
+        "early_institutional_martial_equipment"
+      ]
+    },
+    "qiao_ren": {
+      "capabilities": [
+        "AUTHORIZE"
+      ],
+      "status": "RATIFIED",
+      "scope": [
+        "discipline",
+        "administration",
+        "higher_institutional_access"
+      ]
+    },
+    "song_rui": {
+      "capabilities": [
+        "AUTHORIZE",
+        "FULFILL"
+      ],
+      "status": "RATIFIED_LIMITED",
+      "scope": [
+        "archive_bound_items_only"
+      ]
+    },
+    "tao_ming": {
+      "capabilities": [
+        "INFORMATION_ROUTING"
+      ],
+      "status": "RATIFIED",
+      "scope": [
+        "service_registry",
+        "routing"
+      ],
+      "note": "Explicitly not a universal shop."
+    },
+    "ji_xueying": {
+      "capabilities": [
+        "AUTHORIZE"
+      ],
+      "status": "RATIFIED",
+      "scope": [
+        "sect_master_authority_only"
+      ],
+      "note": "No normal commerce."
+    },
+    "xu_an": {
+      "capabilities": [
+        "AUTHORIZE"
+      ],
+      "status": "RATIFIED",
+      "scope": [
+        "sauces_local_context_only"
+      ]
+    }
+  },
+  "no_commerce_now": [
+    "su_lian",
+    "shen_baojun",
+    "madre_wen",
+    "gao_shun",
+    "feng_zhi",
+    "ren_bo",
+    "ma_gu",
+    "yu_shun",
+    "lin_yue",
+    "han_qiao",
+    "zhao_wen",
+    "mei_lian",
+    "guo_chen",
+    "luo_yan"
+  ],
+  "unbound_outlets": [
+    {
+      "outlet": "Puestos del Mercado del Valle",
+      "status": "UNBOUND",
+      "rule": "Do not invent or auto-bind an NPC solely to satisfy commerce."
+    },
+    {
+      "outlet": "Artesanos de Sauces",
+      "status": "UNBOUND",
+      "rule": "Do not invent or auto-bind an NPC solely to satisfy commerce."
+    }
+  ],
+  "pilot": {
+    "npc_id": "ning_cai",
+    "capabilities": [
+      "SELL",
+      "FULFILL"
+    ],
+    "offer_item_id": "calzas_sendero_pinos",
+    "price_stones": 8,
+    "contribution_required": 0,
+    "stock_policy": "ROUTINE_UNLIMITED",
+    "turns_commerce": 0,
+    "materials": false,
+    "services": false,
+    "purpose": "Validate dialogue -> commerce -> deterministic purchase -> close/return flow before institutional gates or material services."
+  }
+}
