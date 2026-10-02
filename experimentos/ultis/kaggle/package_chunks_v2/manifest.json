@@ -1,0 +1,21 @@
+{
+  "package": "ULTI_3F_KAGGLE_PACKAGE_2026-10-02.zip",
+  "status": "LAB_NO_RUNTIME_NO_CANON",
+  "encoding": "base64-concat",
+  "branch": "experiment/ultis-kaggle-3familias-v0.1",
+  "parts": [
+    "chunk_00.b64",
+    "chunk_01.b64",
+    "chunk_02.b64",
+    "chunk_03.b64",
+    "chunk_04.b64",
+    "chunk_05.b64",
+    "chunk_06.b64",
+    "chunk_07.b64",
+    "chunk_08.b64"
+  ],
+  "base64_length": 35440,
+  "decoded_size_bytes": 26580,
+  "sha256": "18314ab1614d930b7fce22919a3fc5c63c846980c9fc0fe5222eaefb2aa29744",
+  "authority": "NEW_COMBAT_STATS_V0_1"
+}
