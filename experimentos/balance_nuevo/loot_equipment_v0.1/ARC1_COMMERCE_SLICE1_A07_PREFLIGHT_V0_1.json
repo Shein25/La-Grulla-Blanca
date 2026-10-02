@@ -1,0 +1,161 @@
+{
+  "schema_version": "arc1-commerce-slice1-a07-preflight-v0.1",
+  "status": "PROPOSED_PRE_IMPLEMENTATION__NOT_RUNTIME",
+  "created_on": "2026-10-02",
+  "purpose": "Define the minimal Ning Cai Slice 1 wiring across A07.9, Commerce, persistence and new equipment without modifying runtime yet.",
+  "fixed_authorities": {
+    "a07": {
+      "invariant": "canonical mission/handler path has priority over the general conversation host",
+      "host": "createGeneralConversationHost()",
+      "interaction_terminal": true,
+      "freeAiText": false,
+      "frozen_authored_player_entries": 84,
+      "rule": "Commerce must not alter ROLE, SELF_INTRODUCTION or authored A07 corpus semantics."
+    },
+    "merchant": {
+      "actorId": "ning_cai",
+      "room": "taller_ning_cai",
+      "mobility": "ANCLADO",
+      "capabilities": [
+        "SELL",
+        "FULFILL"
+      ]
+    },
+    "offer": {
+      "itemId": "calzas_sendero_pinos",
+      "name": "Calzas de sendero de pinos",
+      "priceStones": 8,
+      "contributionRequired": 0,
+      "permission": null,
+      "sourceMission": "M04",
+      "minStage": "LianQi_II",
+      "stockPolicy": "ROUTINE_UNLIMITED",
+      "stats": {
+        "hp_max": 3,
+        "evasion": 1
+      },
+      "slot": "PIERNAS"
+    }
+  },
+  "integration_shape": {
+    "entry": [
+      "Player executes HABLAR with Ning Cai.",
+      "Existing canonical handler/mission resolution runs first.",
+      "If canonical handler handled the interaction, STOP: no commerce option and no second response.",
+      "If general A07.9 conversation surface is authorized, the host may query a read-only Commerce domain-choice provider.",
+      "If Commerce is currently available, append one DOMAIN option to the same native player-choice surface."
+    ],
+    "domain_option": {
+      "label_default": "Quisiera comerciar.",
+      "namespace": "DOMAIN:COMMERCE",
+      "counted_as_a07_authored_entry": false,
+      "modifies_frozen_84_entries": false,
+      "creates_a07_intent": false,
+      "creates_npc_utterance": false,
+      "rule": "It is a player domain action, not NPC-authored dialogue."
+    },
+    "handoff": [
+      "Selecting DOMAIN:COMMERCE consumes/invalidates the current A07 interaction capability/lease.",
+      "Host issues a private one-shot Commerce session capability tied to actorId, room, area/session epoch and originating interaction proof.",
+      "No public npcId/reason API may fabricate a session."
+    ],
+    "commerce_surface": [
+      "Open the existing-MUD-style text catalog.",
+      "Slice 1 exposes BUY only for calzas_sendero_pinos plus RETURN_TO_CONVERSATION and CLOSE.",
+      "UI submits intent/identity only; no price, gate, stock or currency authority."
+    ],
+    "transaction": [
+      "EVALUATE from authoritative Commerce/equipment/player state.",
+      "CONFIRM by player.",
+      "REVALIDATE actor, copresence, room, capability, offer, funds, gate/availability and item definition.",
+      "BUILD_DELTA: stones -8, inventory +1 calzas_sendero_pinos.",
+      "COMMIT synchronously with no observable partial success.",
+      "RECEIPT to UI/log."
+    ],
+    "post_purchase": [
+      "ROUTINE_UNLIMITED does not decrement/persist merchant stock.",
+      "Purchase does not auto-equip.",
+      "Catalog remains usable while session remains valid."
+    ],
+    "return_to_conversation": [
+      "Commerce closes current domain session.",
+      "A private one-shot return capability is presented to the A07 host.",
+      "Host revalidates same canonical actor, copresence, room/context, player/actor eligibility and current runtime epoch.",
+      "If valid, create a NEW A07 interaction capability and rebuild available player choices without calling cmd_hablar() or gestionarMisionesNpc().",
+      "Do not replay SELF_INTRODUCTION/opening/mission handling merely because Commerce closed.",
+      "If invalid, close to normal gameplay with no forced dialogue."
+    ],
+    "close_or_leave": [
+      "CLOSE destroys Commerce capabilities and returns to normal gameplay.",
+      "Movement/room change invalidates Commerce before any later transaction.",
+      "No ROOMS.exits change is required."
+    ]
+  },
+  "session_invalidation": [
+    "room change",
+    "actor no longer copresent",
+    "actor/player death or ineligible state",
+    "combat begins",
+    "LOAD/new game",
+    "external SAVE/lifecycle boundary that invalidates A07 session authority",
+    "runtime epoch/generation change",
+    "domain capability consumed/replayed",
+    "offer/capability removed"
+  ],
+  "persistence_boundary": {
+    "requirement": "Successful purchase must survive save/load and must not publish a half-committed economy state.",
+    "recommended_pattern": "prepare validated draft snapshot -> native durable writer -> publish RAM -> receipt",
+    "unknown_outcome_rule": "If persistence outcome becomes uncertain after durable boundary, quarantine/close session; never retry the same token automatically.",
+    "save_schema": 3
+  },
+  "equipment_dependency": {
+    "canonical_equipped_shape": "ARRAY_PER_SLOT",
+    "slot": "PIERNAS",
+    "capacity": 1,
+    "item_effects": {
+      "hp_max": 3,
+      "evasion": 1
+    },
+    "purchase_complete_without_autoequip": true,
+    "productive_slice_gate": "Slice 1 is fully validated only when the purchased item can later be equipped and NEW_COMBAT_STATS_V0_1 reflects +3 hp_max and +1 evasion."
+  },
+  "recommended_availability": {
+    "status": "NEEDS_HUMAN_RATIFICATION",
+    "rule": "Offer becomes visible only after real M04 completion/availability source is satisfied; do not infer availability solely from min_stage.",
+    "rationale": "Catalog source is M04 and the pilot should not leak future equipment before its authored source."
+  },
+  "hp_current_semantics": {
+    "status": "NEEDS_HUMAN_RATIFICATION",
+    "recommendation": "Equipping hp_max gear changes max HP but does not heal current HP; unequipping clamps current HP to the new max.",
+    "rationale": "Prevents equipment swapping from becoming a free healing exploit."
+  },
+  "explicit_non_goals": [
+    "No BUY-from-player in Slice 1.",
+    "No SERVICE recipes.",
+    "No Contribution gate.",
+    "No finite stock.",
+    "No discounts/affinity pricing.",
+    "No new public comprar/vender/comerciar parser commands.",
+    "No new timer or restock clock.",
+    "No A07 memory/relationship redesign.",
+    "No ROOMS.exits changes.",
+    "No legacy compatibility."
+  ],
+  "required_tests": [
+    "canonical handler handled -> commerce option absent and no second response",
+    "general Ning Cai conversation -> exactly one DOMAIN:COMMERCE option when eligible",
+    "domain option is not counted as an A07 authored player entry",
+    "select commerce -> old A07 capability cannot be reused",
+    "8 stones -> exactly one successful purchase and one item",
+    "7 stones -> zero mutation",
+    "double click/replayed request -> one commit maximum",
+    "forged UI price ignored; engine charges authoritative 8",
+    "movement before confirm -> session invalid, zero mutation",
+    "CLOSE -> normal gameplay",
+    "RETURN -> new A07 capability without cmd_hablar/mission replay",
+    "save/load after purchase preserves stones and item",
+    "equip purchased calzas -> PIERNAS contains one item; +3 hp_max; +1 evasion",
+    "second PIERNAS item rejected while occupied",
+    "unequip returns exactly one item and applies ratified HP-current semantics"
+  ]
+}
