@@ -390,5 +390,69 @@
     "no_unique_species_rng_table": true,
     "no_main": true,
     "no_merge": true
+  },
+  "new_material_items": {
+    "diente_qi_desgastado": {
+      "name": "diente de qi desgastado",
+      "type": "material",
+      "description": "Un incisivo pequeño con vetas pálidas de qi acumulado. Se desprendió entero durante el combate; sirve como inserto menor para piezas que estabilizan reservas pequeñas."
+    },
+    "escama_qi_desprendida": {
+      "name": "escama de qi desprendida",
+      "type": "material",
+      "description": "Una escama superficial verdosa desprendida por el impacto. No contiene la glándula ni la membrana meridiana de la serpiente, pero conserva una conducción débil y estable."
+    },
+    "colmillo_lobo_legitimo": {
+      "name": "colmillo de lobo espiritual intacto",
+      "type": "material",
+      "description": "Un colmillo desprendido sin fracturas. Es un trofeo superficial legítimo, distinto de la médula y los tendones que requieren Examen Espiritual."
+    },
+    "fragmento_caparazon_jade": {
+      "name": "fragmento de caparazón de jade",
+      "type": "material",
+      "description": "Una pequeña lámina externa de la coraza de una avispa de jade. Conserva dureza y filo, pero no incluye aguijón ni cámara tóxica."
+    },
+    "herraje_robado": {
+      "name": "herraje robado",
+      "type": "material",
+      "description": "Hebilla, aro o pieza de cierre que el macaco llevaba entre sus hurtos. Ninguna pieza es valiosa por sí sola, pero los talleres saben reutilizar metal y cierres todavía sanos."
+    },
+    "costra_ceniza_vitrificada": {
+      "name": "costra de ceniza vitrificada",
+      "type": "material",
+      "description": "Una capa superficial de ceniza fundida que se desprendió del sapo al enfriarse. Resiste bien cambios bruscos de temperatura sin ser una glándula ni un saco interno."
+    },
+    "esquirla_coraza_ferrea": {
+      "name": "esquirla de coraza férrea",
+      "type": "material",
+      "description": "Un fragmento externo del caparazón roto durante el combate. Es demasiado pequeño para contar como la placa aprovechable del Examen, pero sirve como inserto o sello metálico."
+    },
+    "escama_lunar_desprendida": {
+      "name": "escama lunar desprendida",
+      "type": "material",
+      "description": "Una escama translúcida que se soltó al abatir al pez lunar. Conserva un brillo pálido, pero no sustituye al fluido ni al filamento branquial obtenidos por Examen."
+    },
+    "escama_estelar_conductiva": {
+      "name": "escama estelar conductiva",
+      "type": "material",
+      "description": "Una escama superficial recorrida por una línea azul tenue. Conduce algo de qi residual, aunque el verdadero conducto estelar permanece dentro del cuerpo."
+    },
+    "cristal_bruma_superficial": {
+      "name": "cristal de bruma superficial",
+      "type": "material",
+      "description": "Una cristalización que quedó en el borde del cuerpo de niebla al disiparse. Es estable para anclajes menores, pero no reemplaza la bolsa ni el sedimento extraíbles."
+    },
+    "pluma_exterior_estatica": {
+      "name": "pluma exterior estática",
+      "type": "material",
+      "description": "Una pluma externa chamuscada por su propia descarga. Retiene electricidad residual y puede utilizarse como guía en un montaje, pero no sustituye la fibra profunda del ala."
+    }
+  },
+  "design_notes": {
+    "equipment_material_logic": "Material-route equipment is a workshop exchange/service, not player crafting. Lu Cheng, Ning Cai and institutional specialists perform the work.",
+    "no_durability_system": true,
+    "no_profession_xp_from_superficial_loot": true,
+    "automatic_loot_rolls_independent": true,
+    "macaco_rare_pill_note": "Pildora de consolidacion remains a rare stolen-object drop at 1.5% only; it is not required by any equipment route."
   }
 }
