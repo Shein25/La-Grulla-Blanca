@@ -1,6 +1,6 @@
 {
   "schema_version": "arc1-contribution-cleanslate-v0.1",
-  "status": "RECOMMENDED_PRE_IMPLEMENTATION__AWAITING_HUMAN_RATIFICATION",
+  "status": "HUMAN_RATIFIED_DESIGN_AUTHORITY__PRE_IMPLEMENTATION",
   "created_on": "2026-10-02",
   "source_audit": {
     "runtime": "grulla-blanca_ver76.html",
@@ -94,14 +94,14 @@
     "rule": "Do not convert these automatically to free services, stone prices or new merchant stock. New offers require explicit new commerce authority."
   },
   "save_contract": {
-    "recommended_SAVE_SCHEMA_VERSION": 3,
-    "recommended_facciones_version": 2,
     "old_save_support": false,
     "migration": false,
     "aliases": false,
     "legacy_normalization": false,
     "behavior": "Schema-2 development saves are rejected/reset; new game initializes clean faction record with contribucion=0.",
-    "rationale": "Version bump prevents an old spendable-balance save from being silently reinterpreted as cumulative Contribution."
+    "rationale": "Version bump prevents an old spendable-balance save from being silently reinterpreted as cumulative Contribution.",
+    "SAVE_SCHEMA_VERSION": 3,
+    "facciones_version": 2
   },
   "arc1_expected_awards": {
     "P": 0,
@@ -141,5 +141,11 @@
     "a07_redesign": false,
     "commerce_slice1_dependency": false,
     "note": "Slice1 Ning Cai public item does not require Contribution; this contract can be integrated/validated independently before institutional commerce expansion."
+  },
+  "ratified_on": "2026-10-02",
+  "ratification": {
+    "human_approved": true,
+    "implementation_authorized": false,
+    "note": "Ratified as clean-slate design authority. Runtime integration remains a separate future step."
   }
 }
