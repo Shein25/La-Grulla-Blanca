@@ -16,12 +16,18 @@ assert H["extraction_authority"]["yields_overrides"]["sedimento_niebla"]==2
 
 assert H["contribution"]["authority"]=="NON_SPENDABLE_CUMULATIVE_GATE"
 assert H["contribution"]["deprecate_runtime_spending"] is True
+assert H["contribution"]["migration_required"] is False
+assert H["legacy_replacement"]["authority"]=="PURGE_LEGACY_NO_COMPATIBILITY"
+assert H["legacy_replacement"]["save_compatibility_required"] is False
+assert H["legacy_replacement"]["aliases_allowed_in_final_runtime"] is False
 assert P["hard_economic_decisions"]["contribution"]=="NON_SPENDABLE_CUMULATIVE_INSTITUTIONAL_ACCESS_GATE"
 assert all(x["contribution_spent"] is False for x in P["equipment"])
 
 assert H["legacy_replacement"]["authority"]=="NEW_ARC1_CATALOGS_ONLY"
 assert H["legacy_replacement"]["no_silent_coexistence"] is True
-assert P["legacy_policy"]["runtime_integration"]=="REPLACE_NOT_MERGE"
+assert P["legacy_policy"]["runtime_integration"]=="PURGE_AND_REPLACE"
+assert P["legacy_policy"]["save_compatibility_required"] is False
+assert P["legacy_policy"]["aliases_in_runtime"]=="FORBIDDEN"
 
 assert H["dialogue_entry"]["authority"]=="DIALOGUE_ONLY"
 for cmd in ["comprar <item>","vender <item>","comerciar <npc>"]:
@@ -42,6 +48,6 @@ assert P["readiness"]["runtime_implementation"]=="BLOCKED_UNTIL_ASTRA_REQUIRED_C
 print("PASS: Arc1 Commerce Authority v0.4")
 print("PASS: redesign Extraction authority fixed")
 print("PASS: Contribution is non-spendable")
-print("PASS: legacy replacement is REPLACE_NOT_MERGE")
+print("PASS: legacy is purged with no compatibility layer")
 print("PASS: Commerce entry is dialogue-only")
 print("PASS: Astra inconsistencies fixed")
