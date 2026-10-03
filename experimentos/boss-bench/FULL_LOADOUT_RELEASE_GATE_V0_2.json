@@ -1,0 +1,21 @@
+{
+  "schema": "FULL_LOADOUT_RELEASE_GATE_V0_2",
+  "state": "TECHNIQUES_LOCKED_EQUIPMENT_APPROVED",
+  "date": "2026-10-02",
+  "human_approvals": {
+    "equipment_approved": true,
+    "techniques_approved": false,
+    "player_build_approved_for_equipment_bench": true,
+    "full_technique_build_approved": false
+  },
+  "release_modes": {
+    "ULTIS_EQUIPMENT": true,
+    "FULL_LOADOUT": false
+  },
+  "notes": [
+    "El usuario aprobó explícitamente usar equipo en el benchmark de Ultis.",
+    "Las técnicas normales siguen fuera hasta terminar su ajuste.",
+    "No modificar el status interno del catálogo de equipo; usar overlay de autoridad para el benchmark.",
+    "FULL_LOADOUT se habilitará sólo por decisión humana posterior."
+  ]
+}
