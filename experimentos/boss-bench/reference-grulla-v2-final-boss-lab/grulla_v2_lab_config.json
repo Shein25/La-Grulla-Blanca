@@ -1,0 +1,98 @@
+{
+  "schema_version": "grulla-v2-final-boss-lab-v0.1",
+  "status": "LAB_PROVISIONAL_NO_RUNTIME_NO_MERGE",
+  "seed": 20260930,
+  "stage": "LianQi_IV",
+  "phase_stats": {
+    "1": {"name": "LA GRULLA ESPERA", "hp": 150, "precision": 90, "evasion": 55, "defense": 12, "tenacity": 40, "crit_chance": 5, "crit_damage": 1.5},
+    "2": {"name": "LA GRULLA TE RECONOCE", "hp": 100, "precision": 95, "evasion": 60, "defense": 16, "tenacity": 45, "crit_chance": 7, "crit_damage": 1.5},
+    "3": {"name": "LA GRULLA DESPLIEGA SUS ALAS", "hp": 50, "precision": 100, "evasion": 65, "defense": 20, "tenacity": 50, "crit_chance": 10, "crit_damage": 1.5,
+      "initial_absorption": 36, "absorption_per_hit_cap": 12, "crit_bonus_received_factor": 0.50,
+      "last_breath_rounds": 3, "last_breath_precision": 10, "last_breath_evasion": 10
+    }
+  },
+  "abilities": {
+    "GOLPE_F1": {"dice": "2d6+3", "precision_bonus": 0, "percent_penetration": 5, "flat_penetration": 0},
+    "TORMENTA_F1": {"dice": "2d8+5", "precision_bonus": 5, "percent_penetration": 15, "flat_penetration": 0, "heal_received_mult": 0.80, "debuff_turns": 1},
+    "GOLPE_F2": {"dice": "2d6+4", "precision_bonus": 5, "percent_penetration": 10, "flat_penetration": 0},
+    "TORMENTA_F2": {"dice": "2d8+6", "precision_bonus": 8, "percent_penetration": 20, "flat_penetration": 0, "qi_drain": 4, "heal_received_mult": 0.65, "debuff_turns": 2},
+    "PICOTAZO_F3": {"dice": "2d6+5", "precision_bonus": 15, "percent_penetration": 10, "flat_penetration": 0},
+    "CAMPANA_F3": {"dice": "2d10+6", "precision_bonus": 10, "percent_penetration": 25, "flat_penetration": 2, "qi_drain": 6, "heal_received_mult": 0.50, "qi_recovery_mult": 0.50, "debuff_turns": 2},
+    "ROMPER_F3": {"dice": "3d6+6", "precision_bonus": 20, "percent_penetration": 35, "flat_penetration": 3},
+    "PATA_MITIGATION": {"1": 0.25, "2": 0.35, "3": 0.45},
+    "ALA_EVASION": {"1": 15, "2": 20, "3": 25},
+    "CERRAR_F2": {"reserve": 18, "per_hit_cap": 8},
+    "RECORDAR_F2": {"evasion_bonus": 20},
+    "ECO_F2": {"qi_drain": 6, "qi_recovery_mult": 0.50, "debuff_turns": 2},
+    "ESPEJO_ROTO_F3": {"reflect_ratio": 0.50, "reflect_cap": 12, "resolution": "ABSORPTION_ONLY"}
+  },
+  "lab_bridges": {
+    "generic_defend_mitigation": 0.40,
+    "telegraph_control_degrade_mult": 0.60,
+    "telegraph_break_damage_f2": 12,
+    "telegraph_break_damage_f3": 10,
+    "telegraph_break_damage_mult": 0.65,
+    "heavy_hit_ratio": 0.20,
+    "low_hp_ratio": 0.30
+  },
+  "consumable_profiles": {
+    "none": [],
+    "standard": [
+      {"id": "pocion_refinada", "kind": "HEAL", "dice": "3d4+4", "count": 1},
+      {"id": "elixir_qi", "kind": "QI", "amount": 20, "count": 1}
+    ],
+    "prepared": [
+      {"id": "pocion_refinada_superior", "kind": "HEAL", "dice": "4d4+4", "count": 2},
+      {"id": "elixir_tempestad", "kind": "QI", "amount": 35, "count": 2}
+    ],
+    "max_reasonable": [
+      {"id": "pocion_refinada_excepcional", "kind": "HEAL", "dice": "4d4+6", "count": 2},
+      {"id": "elixir_tempestad_excepcional", "kind": "QI", "amount": 55, "count": 2}
+    ]
+  },
+  "equipment_loadouts": {
+    "guaranteed": ["espada_madera_entrenamiento", "uniforme_gris_aspirante", "fajin_nucleo_profundo"],
+    "veteran_balanced": ["hoja_seis_corrientes", "manto_mantenimiento", "velo_vigilante_nucleo", "brazales_relevo", "fajin_nucleo_profundo", "calzas_trama_sello", "botas_voto_inmovil", "amuleto_ancla_resonante", "pulsera_nudo_crisis", "anillo_relevo", "anillo_marca_quieta", "espejo_pulso_velado"],
+    "max_penetration": ["espada_vena_clara", "manto_mantenimiento", "velo_vigilante_nucleo", "brazales_aguja_plata", "fajin_nucleo_profundo", "calzas_trama_sello", "botas_voto_inmovil", "amuleto_ancla_resonante", "pulsera_nudo_crisis", "anillo_sello_hierro", "anillo_marca_quieta", "espejo_pulso_velado"]
+  },
+  "builds": {
+    "fuego": {
+      "burst_guard": {"palma_ardiente": [1,1,1], "cuerpo_horno": [0,0,0]},
+      "dot_guard": {"palma_ardiente": [0,0,0], "cuerpo_horno": [0,0,0]}
+    },
+    "metal": {
+      "pen_guard": {"destello_plata": [0,0,0], "armadura_plata": [0,0,0]},
+      "pen_shred": {"destello_plata": [0,0,0], "lluvia_filos": [0,0,0]}
+    },
+    "agua": {
+      "control_guard": {"latigazo_marea": [0,0,0], "espejo_luna": [0,0,0]},
+      "direct_guard": {"latigazo_marea": [1,1,1], "espejo_luna": [0,0,0]}
+    },
+    "tierra": {
+      "pressure_guard": {"golpe_montana": [0,0,0], "piel_cobre": [0,0,0]},
+      "direct_guard": {"golpe_montana": [1,1,1], "piel_cobre": [0,0,0]}
+    },
+    "viento": {
+      "precision_guard": {"lanza_nubes": [0,0,0], "paso_nube": [0,0,0]},
+      "direct_guard": {"lanza_nubes": [1,1,1], "paso_nube": [0,0,0]}
+    }
+  },
+  "sensitivity": {
+    "defense_triplets": [[10,14,18],[12,16,20],[14,18,22]],
+    "f3_absorption": [24,36,48],
+    "f3_absorption_cap": [8,12,16],
+    "f3_pata_mitigation": [0.35,0.45,0.55],
+    "reflect_ratio": [0.35,0.50,0.65],
+    "reflect_cap": [8,12,16],
+    "campana_heal_mult": [0.65,0.50,0.35]
+  },
+  "acceptance_targets_provisional": {
+    "veteran_blind_win_rate": [0.10,0.25],
+    "master_reader_win_rate": [0.30,0.45],
+    "prepared_master_win_rate": [0.35,0.55],
+    "max_reasonable_win_rate_ceiling": 0.65,
+    "f3_mean_rounds_min": 5.0,
+    "f3_mean_rounds_max": 9.0,
+    "hard_lock_root_floor": 0.05
+  }
+}
