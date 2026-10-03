@@ -1,0 +1,99 @@
+{
+  "schema": "GRULLA_CONSUMABLE_BENCH_AUTHORITY_V0_1",
+  "date": "2026-10-02",
+  "state": "HP_QI_RATIFIED_QUANTITY_STRESS_NOT_CANON",
+  "encounter_stage": "LianQi_IV",
+  "hp_contract": {
+    "path": "experimentos/balance_nuevo/alchemy_consumables_v0.1/ALCHEMY_VITALITY_HP_CONTRACT_V0_1.json",
+    "git_blob_sha": "1bf62d905bc2eb1399c3fafb5da9c8d0069932f1",
+    "status": "READY_HUMAN_RATIFIED",
+    "lianqi_iv": {
+      "formulation": "Condensada",
+      "impura": {
+        "formula": "5d4+10",
+        "min": 15,
+        "mean": 22.5,
+        "max": 30
+      },
+      "estable": {
+        "formula": "5d6+12",
+        "min": 17,
+        "mean": 29.5,
+        "max": 42
+      },
+      "superior": {
+        "formula": "6d6+16",
+        "min": 22,
+        "mean": 37,
+        "max": 52
+      },
+      "excepcional": {
+        "formula": "7d6+20",
+        "min": 27,
+        "mean": 44.5,
+        "max": 62
+      }
+    },
+    "common_potion": {
+      "formula": "2d4+3",
+      "min": 5,
+      "mean": 8,
+      "max": 11
+    }
+  },
+  "qi_contract": {
+    "path": "experimentos/balance_nuevo/alchemy_consumables_v0.1/ALCHEMY_QI_RECOVERY_CONTRACT_V0_2.json",
+    "git_blob_sha": "b8bd9b504b57bbd37d5d4c47046546c242009770",
+    "status": "READY_HUMAN_RATIFIED",
+    "lianqi_iv": {
+      "formulation": "Tempestad",
+      "impura": 32,
+      "estable": 34,
+      "superior": 36,
+      "excepcional": 38
+    },
+    "combat_use": {
+      "consumes_full_action": true,
+      "restore_mode": "ABSOLUTE_QI",
+      "cap_at_qi_max": true,
+      "no_artificial_potion_cooldown": true
+    }
+  },
+  "benchmark_use": {
+    "headline_analysis": "NO_CONSUMABLES_ISOLATION",
+    "secondary_analysis": "CONSUMABLE_PREPARED_STRESS",
+    "rationale": "Separar potencia intrínseca de Ulti/técnica del valor de preparación por consumibles."
+  },
+  "quantity_stress": {
+    "status": "LAB_STRESS_NOT_GAMEPLAY_CANON",
+    "source": "experimentos/balance_nuevo/unique_boss_consumable_quantity_stress_v0_1.py",
+    "arms": [
+      "HP1_EXCEPTIONAL",
+      "HP2_EXCEPTIONAL",
+      "HP3_EXCEPTIONAL",
+      "HP1_QI1_EXCEPTIONAL",
+      "HP2_QI1_EXCEPTIONAL",
+      "HP3_QI1_EXCEPTIONAL"
+    ],
+    "hp_quantity_axis": [
+      1,
+      2,
+      3
+    ],
+    "qi_quantity_axis": [
+      0,
+      1
+    ]
+  },
+  "inherited_bench_policy": {
+    "hp_trigger": "HP <= 60% max AND missing HP >= potion minimum",
+    "qi_trigger_final_full_loadout": "current Qi below cheapest usable offensive technique cost",
+    "drinking_consumes_full_player_action": true,
+    "boss_gets_normal_response_turn": true,
+    "no_artificial_potion_cooldown": true
+  },
+  "caveat_current_ulti_equipment_mode": {
+    "qi_policy": "DO_NOT_REUSE_TECHNIQUE_TRIGGER_BLINDLY",
+    "note": "Sin técnicas normales, el trigger de Qi debe definirse respecto del coste de la Ulti o dejarse como stress separado. No se inventa como gameplay canon."
+  }
+}
