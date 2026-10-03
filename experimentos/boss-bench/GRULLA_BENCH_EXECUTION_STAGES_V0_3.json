@@ -1,0 +1,68 @@
+{
+  "schema": "GRULLA_BENCH_EXECUTION_STAGES_V0_3",
+  "date": "2026-10-02",
+  "state": "LAB_NO_CANON",
+  "default_mode": "ULTIS_EQUIPMENT",
+  "modes": {
+    "ULTIS_ONLY": {
+      "enabled": true,
+      "role": "DIAGNOSTIC_CONTROL",
+      "equipment_profile": "NAKED",
+      "normal_techniques_enabled": false,
+      "consumables_enabled": false
+    },
+    "ULTIS_EQUIPMENT": {
+      "enabled": true,
+      "role": "PRIMARY_NOW",
+      "encounter_stage": "LianQi_IV",
+      "equipment_profiles": [
+        "MANDATORY_ENTRY",
+        "EXPECTED_STAGE",
+        "HIGH_ROLL_STRESS"
+      ],
+      "control_profile": "NAKED",
+      "normal_techniques_enabled": false,
+      "consumables_enabled": false,
+      "includes": [
+        "GRULLA_REAL_AI_AND_PHASES",
+        "PACTO_ULTIMO_VUELO",
+        "ULTIMATES_25_CLOSED_LAB_AUTHORITY",
+        "APPROVED_EQUIPMENT_STATS_AND_EFFECTS",
+        "BASIC_DEFEND_RECOVER_FIXED_POLICY",
+        "PAIRED_BASELINE_PER_EQUIPMENT_PROFILE"
+      ],
+      "hard_requirements": [
+        "GRULLA_ADAPTER_RUNTIME_SELFCHECK_PASS",
+        "GRULLA_NUMERIC_AUTHORITY_SYNCED",
+        "ULTI_AUTHORITY_LOCKED",
+        "EQUIPMENT_BENCH_AUTHORITY_OVERLAY_APPROVED",
+        "PLAYER_BASE_FIXTURE_DECLARED"
+      ]
+    },
+    "FULL_LOADOUT": {
+      "enabled": false,
+      "role": "FUTURE_AFTER_TECHNIQUES",
+      "inherits": "ULTIS_EQUIPMENT",
+      "adds": [
+        "ARC1_TECHNIQUES_REAL",
+        "TECHNIQUE_BRANCHES_REAL",
+        "TECHNIQUE_LOADOUT_POLICY",
+        "QI_ECONOMY_FULL",
+        "TECHNIQUE_EQUIPMENT_ULTI_SYNERGIES"
+      ],
+      "hard_requirements": [
+        "TECHNIQUES_APPROVED_BY_HUMAN",
+        "TECHNIQUE_CATALOG_NON_PROVISIONAL_OR_HUMAN_OVERRIDE",
+        "TECHNIQUE_RUNTIME_ADAPTER_PASS",
+        "FULL_LOADOUT_RELEASE_GATE_TRUE"
+      ]
+    }
+  },
+  "comparison_outputs": [
+    "naked_vs_equipment_delta.csv",
+    "equipment_profile_delta.csv",
+    "ulti_equipment_synergy.csv",
+    "f3_skip_pressure_by_equipment.csv",
+    "family_comparison_by_equipment.csv"
+  ]
+}
