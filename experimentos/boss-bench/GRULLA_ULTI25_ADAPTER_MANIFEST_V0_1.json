@@ -1,0 +1,26 @@
+{
+  "schema": "GRULLA_ULTI25_ADAPTER_RECOVERY_V0_1",
+  "date": "2026-10-02",
+  "branch": "experiment/grulla-f3-pacto-ulti-bench-v0.1",
+  "state": "LAB_NO_CANON",
+  "recovered_source": {
+    "commit": "4237f126a66193607f7857e5a9883b3070cc7c78",
+    "files": {
+      "brain": "8aaa18c2c98fd6926b5a87d717c6104cbe9657ef",
+      "ability_contract": "44b81744d96d0b342fdb6d24a4b138d2c1529ad4",
+      "player_action_adapter": "38da41b57625016015b95d815048112a68a21542",
+      "technique_gate": "09973493c2a10b3b39e6599d365230fb465b2a61",
+      "runtime_contract": "34b0f879330cae48f6207b3df5b72ac206840ec4",
+      "encounter_session": "dc2930566411fdae7d3c3c02ff184a229b7a7661",
+      "special_combat_adapter": "6d8ace4fbf61d2314376c007bae867f2d0f29286"
+    }
+  },
+  "new_files": [
+    "experimentos/boss-bench/grulla-f3-pacto-ultimo-vuelo-v0.1.mjs",
+    "experimentos/boss-bench/grulla-ulti25-bench-adapter-v0.1.mjs",
+    "experimentos/boss-bench/grulla-ulti25-bench-adapter.test.mjs"
+  ],
+  "syntax_check": "PASS",
+  "runtime_selfcheck": "PENDING_EXECUTION",
+  "numeric_authority": "AUTHORITY_SYNC_REQUIRED_BEFORE_MASS_BENCH"
+}
