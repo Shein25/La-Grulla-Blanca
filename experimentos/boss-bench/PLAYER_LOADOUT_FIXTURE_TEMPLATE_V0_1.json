@@ -1,0 +1,19 @@
+{
+  "schema": "PLAYER_LOADOUT_FIXTURE_TEMPLATE_V0_1",
+  "state": "TEMPLATE_NOT_EXECUTABLE",
+  "fixture_id": null,
+  "authority": {
+    "player_stats_source": null,
+    "player_stats_commit_or_sha": null,
+    "techniques_source": null,
+    "techniques_commit_or_sha": null,
+    "equipment_source": null,
+    "equipment_commit_or_sha": null,
+    "approved_by_human": false
+  },
+  "player_stats": null,
+  "techniques": [],
+  "equipment": [],
+  "consumables": [],
+  "notes": "No completar por inferencia. Usar únicamente autoridades cerradas cuando técnicas/equipo/build estén aprobados."
+}
