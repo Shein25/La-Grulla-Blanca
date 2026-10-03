@@ -1,0 +1,80 @@
+{
+  "schema": "GRULLA_BENCH_EXECUTION_STAGES_V0_4",
+  "date": "2026-10-02",
+  "state": "LAB_NO_CANON",
+  "default_mode": "ULTIS_EQUIPMENT",
+  "dimensions": {
+    "equipment": [
+      "MANDATORY_ENTRY",
+      "EXPECTED_STAGE",
+      "HIGH_ROLL_STRESS"
+    ],
+    "control_equipment": "NAKED",
+    "consumables": {
+      "primary": "NONE",
+      "secondary_stress": [
+        "HP1_EXCEPTIONAL",
+        "HP2_EXCEPTIONAL",
+        "HP3_EXCEPTIONAL",
+        "HP1_QI1_EXCEPTIONAL",
+        "HP2_QI1_EXCEPTIONAL",
+        "HP3_QI1_EXCEPTIONAL"
+      ],
+      "quantities_are_canon": false
+    }
+  },
+  "modes": {
+    "ULTIS_EQUIPMENT": {
+      "enabled": true,
+      "role": "PRIMARY_NOW",
+      "normal_techniques_enabled": false,
+      "ultimates_enabled": true,
+      "equipment_enabled": true,
+      "consumable_analysis": [
+        "NONE",
+        "SECONDARY_STRESS"
+      ],
+      "note": "Headline sin consumibles; stress separado con contratos HP/QI ratificados."
+    },
+    "TECHNIQUES_EQUIPMENT": {
+      "enabled": false,
+      "role": "FUTURE_AFTER_TECHNIQUE_CLOSE",
+      "normal_techniques_enabled": true,
+      "ultimates_enabled": false,
+      "equipment_enabled": true,
+      "consumable_analysis": [
+        "NONE",
+        "SECONDARY_STRESS"
+      ],
+      "hard_requirements": [
+        "TECHNIQUES_APPROVED_BY_HUMAN",
+        "TECHNIQUE_RUNTIME_ADAPTER_PASS",
+        "TECHNIQUE_LOADOUT_POLICY_LOCKED"
+      ]
+    },
+    "FULL_LOADOUT": {
+      "enabled": false,
+      "role": "FINAL_COMBINED",
+      "normal_techniques_enabled": true,
+      "ultimates_enabled": true,
+      "equipment_enabled": true,
+      "consumable_analysis": [
+        "NONE",
+        "SECONDARY_STRESS"
+      ],
+      "hard_requirements": [
+        "TECHNIQUES_EQUIPMENT_MODE_PASS",
+        "ULTIS_EQUIPMENT_MODE_PASS",
+        "TECHNIQUE_ULTI_INTERACTION_ADAPTER_PASS"
+      ]
+    }
+  },
+  "final_comparisons": [
+    "ULTIS_EQUIPMENT_vs_BASELINE",
+    "TECHNIQUES_EQUIPMENT_vs_BASELINE",
+    "FULL_LOADOUT_vs_TECHNIQUES_EQUIPMENT",
+    "FULL_LOADOUT_vs_ULTIS_EQUIPMENT",
+    "CONSUMABLE_STRESS_vs_NO_CONSUMABLE",
+    "F1_vs_F2_vs_F3_vs_PREPARED_OPPORTUNITY"
+  ]
+}
