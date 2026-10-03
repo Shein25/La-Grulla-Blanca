@@ -1,0 +1,99 @@
+{
+  "schema": "EQUIPMENT_LIV_BENCH_PROFILE_SNAPSHOT_V0_1",
+  "date": "2026-10-02",
+  "source_blob_sha": "f3ba217b834eb0c2bb4156b12d4f7e8b9990263f",
+  "stage": "LianQi_IV",
+  "profiles": {
+    "NAKED": {
+      "role": "CONTROL",
+      "items": [],
+      "stats": {},
+      "effects": []
+    },
+    "MANDATORY_ENTRY": {
+      "role": "PRIMARY",
+      "items": [
+        "espada_madera_entrenamiento",
+        "uniforme_gris_aspirante",
+        "fajin_dos_alas"
+      ],
+      "stats": {
+        "precision": 1,
+        "defense": 1,
+        "hp_max": 1,
+        "qi_max": 4,
+        "control": 2
+      },
+      "effects": []
+    },
+    "EXPECTED_STAGE": {
+      "role": "PRIMARY_DEFAULT",
+      "items": [
+        "hoja_seis_corrientes",
+        "velo_vigilante_nucleo",
+        "manto_mantenimiento",
+        "brazales_pulso_medico",
+        "fajin_dos_alas",
+        "calzas_trama_sello",
+        "calzado_nube_baja",
+        "amuleto_ancla_resonante",
+        "anillo_hilo_plata"
+      ],
+      "stats": {
+        "basic_attack_flat": 2,
+        "precision": 8,
+        "technique_direct_damage_percent": 3,
+        "tenacity": 14,
+        "defense": 4,
+        "qi_max": 6,
+        "control": 7,
+        "hp_max": 7,
+        "evasion": 8,
+        "crit_chance_pp": 2
+      },
+      "effects": []
+    },
+    "HIGH_ROLL_STRESS": {
+      "role": "PRIMARY_STRESS",
+      "items": [
+        "hoja_seis_corrientes",
+        "tocado_hilo_formacion",
+        "tunica_reforzada_trama_cobre",
+        "vendas_antebrazo_practica",
+        "fajin_dos_alas",
+        "calzas_paso_silencioso",
+        "calzado_nube_baja",
+        "amuleto_colmillo_montado",
+        "pulsera_nudo_formacion",
+        "anillo_hilo_plata",
+        "anillo_marca_quieta",
+        "espejo_pulso_velado"
+      ],
+      "stats": {
+        "basic_attack_flat": 2,
+        "precision": 13,
+        "technique_direct_damage_percent": 6,
+        "control": 7,
+        "defense": 3,
+        "hp_max": 5,
+        "qi_max": 7,
+        "evasion": 13,
+        "crit_chance_pp": 2,
+        "percent_penetration_pp": 5,
+        "tenacity": 3
+      },
+      "effects": [
+        {
+          "item_id": "espejo_pulso_velado",
+          "type": "HP_THRESHOLD_ABSORPTION",
+          "threshold_pct": 35,
+          "absorption_max_hp_percent": 20,
+          "uses": 1
+        }
+      ]
+    }
+  },
+  "techniques_enabled": false,
+  "consumables_enabled": false,
+  "note": "Snapshot derivado mecánicamente del catálogo; el adapter vuelve a validarlo contra la fuente al ejecutar."
+}
