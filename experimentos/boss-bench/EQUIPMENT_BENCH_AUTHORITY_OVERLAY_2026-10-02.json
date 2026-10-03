@@ -1,0 +1,42 @@
+{
+  "schema": "EQUIPMENT_BENCH_AUTHORITY_OVERLAY_V0_1",
+  "date": "2026-10-02",
+  "state": "HUMAN_APPROVED_FOR_GRULLA_ULTI_BENCH",
+  "human_decision": {
+    "equipment_approved": true,
+    "techniques_approved": false,
+    "decision": "Testear las Ultis con el equipo aprobado; dejar las técnicas fuera hasta terminar su ajuste."
+  },
+  "source": {
+    "path": "experimentos/balance_nuevo/equipment_arc1_catalog.json",
+    "git_blob_sha": "f3ba217b834eb0c2bb4156b12d4f7e8b9990263f",
+    "schema_version": "arc1-equipment-v0.2",
+    "source_status_label": "PROVISIONAL_DESIGN_DESCRIPTIONS_AND_PROLOGUE_CLOSED_ACQUISITION_AUDIT_DEFERRED",
+    "status_label_note": "La etiqueta del archivo se conserva. La decisión humana posterior autoriza su uso como autoridad de EQUIPO para este benchmark; no se reescribe el catálogo."
+  },
+  "encounter_stage": "LianQi_IV",
+  "profiles": [
+    "NAKED",
+    "MANDATORY_ENTRY",
+    "EXPECTED_STAGE",
+    "HIGH_ROLL_STRESS"
+  ],
+  "primary_profiles": [
+    "MANDATORY_ENTRY",
+    "EXPECTED_STAGE",
+    "HIGH_ROLL_STRESS"
+  ],
+  "control_profile": "NAKED",
+  "equipment_effects_enabled": true,
+  "normal_techniques_enabled": false,
+  "consumables_enabled": false,
+  "equipment_profile_source": "equipment_arc1_catalog.json::simulation_loadouts",
+  "invariants": [
+    "NO_TECHNIQUE_STATS_OR_BRANCHES_APPLIED",
+    "NO_CONSUMABLES_APPLIED",
+    "EQUIPMENT_ITEMS_MUST_EXIST_IN_CATALOG",
+    "SLOT_LIMITS_MUST_HOLD",
+    "EQUIPMENT_STATS_AND_EFFECTS_APPLY_EXACTLY_AS_CATALOGED",
+    "SAME_EQUIPMENT_PROFILE_FOR_PAIRED_BASELINE_AND_ULTI_BRANCH"
+  ]
+}
