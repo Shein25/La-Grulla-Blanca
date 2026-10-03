@@ -1,0 +1,96 @@
+{
+  "schema": "GRULLA_BENCH_EXECUTION_STAGES_V0_2",
+  "date": "2026-10-02",
+  "state": "LAB_NO_CANON",
+  "branch": "experiment/grulla-f3-pacto-ulti-bench-v0.1",
+  "modes": {
+    "ULTIS_ONLY": {
+      "enabled": true,
+      "purpose": "Aislar el valor de las 25 Definitivas contra la Grulla F1->F2->F3 sin contaminar el resultado con técnicas/equipo todavía en ajuste.",
+      "includes": [
+        "GRULLA_REAL_AI_AND_PHASES",
+        "PACTO_ULTIMO_VUELO",
+        "ULTIMATES_25_CLOSED_LAB_AUTHORITY",
+        "BASIC_DEFEND_RECOVER_OR_FIXED_NEUTRAL_POLICY",
+        "PAIRED_BASELINE"
+      ],
+      "excludes": [
+        "ARC1_TECHNIQUE_BRANCH_BALANCE_AS_CAUSAL_VARIABLE",
+        "EQUIPMENT_BONUSES_AS_CAUSAL_VARIABLE",
+        "CONSUMABLE_BUILD_OPTIMIZATION"
+      ],
+      "hard_requirements": [
+        "GRULLA_ADAPTER_RUNTIME_SELFCHECK_PASS",
+        "GRULLA_NUMERIC_AUTHORITY_SYNCED",
+        "ULTI_AUTHORITY_LOCKED",
+        "PLAYER_LAB_FIXTURE_DECLARED"
+      ]
+    },
+    "FULL_LOADOUT": {
+      "enabled": false,
+      "purpose": "Repetir el mismo bench con técnicas normales, ramas, equipo y build completos una vez cerrados.",
+      "inherits": "ULTIS_ONLY",
+      "adds": [
+        "ARC1_TECHNIQUES_REAL",
+        "TECHNIQUE_BRANCHES_REAL",
+        "EQUIPMENT_REAL",
+        "FULL_PLAYER_BUILD",
+        "LOADOUT_SYNERGIES",
+        "QI_ECONOMY_FULL",
+        "DEFENSE_AND_CONTROL_INTERACTIONS"
+      ],
+      "hard_requirements": [
+        "TECHNIQUES_APPROVED_BY_HUMAN",
+        "EQUIPMENT_APPROVED_BY_HUMAN",
+        "PLAYER_BUILD_APPROVED_BY_HUMAN",
+        "TECHNIQUE_CATALOG_NON_PROVISIONAL",
+        "EQUIPMENT_CATALOG_NON_PROVISIONAL",
+        "FULL_LOADOUT_RELEASE_GATE_TRUE"
+      ]
+    }
+  },
+  "sources": {
+    "techniques": {
+      "path": "experimentos/balance_nuevo/techniques_arc1_catalog.json",
+      "git_blob_sha": "073ed88fdb9d00795a10972a4a850b22505b6d48",
+      "observed_status": "PROVISIONAL_LAB_INPUT_NOT_RUNTIME_CANON",
+      "use_now": false
+    },
+    "equipment": {
+      "path": "experimentos/balance_nuevo/equipment_arc1_catalog.json",
+      "git_blob_sha": "f3ba217b834eb0c2bb4156b12d4f7e8b9990263f",
+      "observed_status": "PROVISIONAL_DESIGN_DESCRIPTIONS_AND_PROLOGUE_CLOSED_ACQUISITION_AUDIT_DEFERRED",
+      "use_now": false
+    },
+    "legacy_combat_engine": {
+      "path": "experimentos/balance_nuevo/etapa19b_combat_engine.py",
+      "git_blob_sha": "5fc8d136428684c9c67b49b7456210da6bb32502",
+      "role": "REFERENCE_AND_FUTURE_TECHNIQUE_EQUIPMENT_BRIDGE_ONLY",
+      "authority_for_ultis": false
+    }
+  },
+  "future_comparison": {
+    "keep_same": [
+      "boss",
+      "boss_ai",
+      "f3_pact",
+      "seeds",
+      "paired_design",
+      "activation_windows",
+      "metrics",
+      "ultimate_implementations"
+    ],
+    "change_only": [
+      "player_techniques",
+      "player_equipment",
+      "player_build",
+      "normal_action_policy"
+    ],
+    "required_outputs": [
+      "ultis_only_vs_full_loadout_delta.csv",
+      "family_comparison_full_loadout.csv",
+      "f3_skip_pressure_full_loadout.csv",
+      "build_synergy_summary.csv"
+    ]
+  }
+}
