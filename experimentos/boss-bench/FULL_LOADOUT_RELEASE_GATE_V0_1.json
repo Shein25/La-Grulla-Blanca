@@ -1,0 +1,22 @@
+{
+  "schema": "FULL_LOADOUT_RELEASE_GATE_V0_1",
+  "state": "LOCKED",
+  "date": "2026-10-02",
+  "human_approvals": {
+    "techniques_approved": false,
+    "equipment_approved": false,
+    "player_build_approved": false
+  },
+  "authority_checks": {
+    "technique_catalog_non_provisional": false,
+    "equipment_catalog_non_provisional": false,
+    "technique_runtime_adapter_pass": false,
+    "equipment_runtime_adapter_pass": false
+  },
+  "release": false,
+  "notes": [
+    "No cambiar release a true por inferencia automática.",
+    "La aprobación debe reflejar una decisión humana explícita después del cierre de técnicas/equipo.",
+    "ULTIS_ONLY no depende de este gate."
+  ]
+}
