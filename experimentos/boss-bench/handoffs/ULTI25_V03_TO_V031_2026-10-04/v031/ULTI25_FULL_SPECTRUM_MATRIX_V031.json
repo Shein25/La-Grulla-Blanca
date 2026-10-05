@@ -1,0 +1,174 @@
+{
+  "schema": "ULTI25_FULL_SPECTRUM_MATRIX_V031",
+  "status": "LAB_TEST_PLAN_V031_NO_CANON",
+  "literal_exhaustiveness_note": "El espacio continuo es infinito; V02 cubre exhaustivamente estados discretos/bordes definidos, añade cobertura combinatoria por pares y fuzzing reproducible.",
+  "accepted_parent_v05_sha256": "3372ee2172253eaf7f410616693960bf6ad8da5510f1ad611d5506631ea648f5",
+  "previous_f3_stress_result_sha256": "aed5f0dac0e76498e355f91bcab435955ddd788c55284126793f275001e5ddb0",
+  "ultimates": 25,
+  "modes": 38,
+  "continuous_windows": [
+    "F1_EARLY",
+    "F1_LATE_PRE_TRANSITION",
+    "F2_ENTRY",
+    "F2_ADAPTIVE_MID",
+    "F2_LATE_PRE_TRANSITION",
+    "F3_ENTRY_PACT_ACTIVE",
+    "F3_PRE_RELEASE",
+    "F3_CONTROL_DENIED_FIRST_INTENT",
+    "F3_POST_RELEASE",
+    "PREPARED_OPPORTUNITY"
+  ],
+  "player_states": [
+    "FULL",
+    "BALANCED",
+    "DISADVANTAGE",
+    "NEAR_DEATH"
+  ],
+  "equipment_profiles": [
+    "NAKED",
+    "MANDATORY_ENTRY",
+    "EXPECTED_STAGE",
+    "HIGH_ROLL_STRESS"
+  ],
+  "qi_boundaries": [
+    "ZERO",
+    "COST_MINUS_1",
+    "EXACT_COST",
+    "COST_PLUS_1",
+    "FULL"
+  ],
+  "hp_boundaries": [
+    "HP_1",
+    "HP_2",
+    "HP_10_PERCENT",
+    "HP_16_PERCENT",
+    "HP_40_PERCENT",
+    "HP_65_PERCENT",
+    "FULL"
+  ],
+  "boss_numeric_stress": [
+    "CANONICAL_OR_BOUND_AUTHORITY",
+    "DEF_0",
+    "DEF_HIGH",
+    "EVA_0",
+    "EVA_HIGH",
+    "TEN_0",
+    "TEN_HIGH",
+    "ABS_0",
+    "ABS_1",
+    "ABS_HIGH",
+    "HEAVY_PRESSURE"
+  ],
+  "control_outcomes": [
+    "NATURAL",
+    "FORCED_SUCCESS",
+    "FORCED_RESIST",
+    "ABSOLUTE_IMMUNITY_WHERE_LEGAL"
+  ],
+  "target_topologies": [
+    "BOSS_ONLY",
+    "BOSS_PLUS_1_SYNTHETIC_ADD",
+    "BOSS_PLUS_2_SYNTHETIC_ADDS"
+  ],
+  "activation_edges": [
+    "FIRST_USE",
+    "SECOND_USE_SAME_COMBAT",
+    "OOC_39",
+    "OOC_40",
+    "OOC_41"
+  ],
+  "duration_edges": [
+    "FIRST_VALID",
+    "LAST_VALID",
+    "ONE_PAST_EXPIRY",
+    "MISS_THEN_HIT",
+    "TARGET_SWITCH_WHERE_ALLOWED"
+  ],
+  "transition_edges": [
+    "LETHAL_PACKET_EXACT_HP",
+    "OVERKILL_PACKET",
+    "MULTIHIT_CROSSES_PHASE",
+    "DOT_CROSSES_PHASE",
+    "HEMORRHAGE_CROSSES_PHASE",
+    "CONTROLLED_TRANSITION",
+    "BUFF_PERSISTS",
+    "DEBUFF_PERSISTS",
+    "ABSORPTION_PERSISTS_IF_CONTRACT_ALLOWS",
+    "EQUIPMENT_PROC_ALREADY_USED",
+    "EQUIPMENT_PROC_TRIGGERS_ON_BOUNDARY"
+  ],
+  "operational_stress": [
+    "ORDER_CANONICAL",
+    "ORDER_REVERSED",
+    "ORDER_RANDOM_1",
+    "ORDER_RANDOM_2",
+    "WORKERS_1",
+    "WORKERS_2",
+    "WORKERS_4",
+    "RESUME_AFTER_CHECKPOINT",
+    "KILL_BETWEEN_WRITE_AND_COMMIT",
+    "DUPLICATE_EVENT_KEY",
+    "TRACE_REPLAY"
+  ],
+  "presets": {
+    "quick": {
+      "core_reps": 2,
+      "fuzz_per_ulti": 50,
+      "f3_reps": 4
+    },
+    "standard": {
+      "core_reps": 8,
+      "fuzz_per_ulti": 1000,
+      "f3_reps": 16
+    },
+    "deep": {
+      "core_reps": 32,
+      "fuzz_per_ulti": 4000,
+      "f3_reps": 64
+    },
+    "local_acceptance": {
+      "core_reps": 1,
+      "fuzz_per_ulti": 0,
+      "f3_reps": 1
+    }
+  },
+  "suites": [
+    "A_AUTHORITY_AND_HASHES",
+    "B_CATALOG_AND_MODE_COMPLETENESS",
+    "C_ACTIVATION_AND_COOLDOWN",
+    "D_QI_HP_BOUNDARIES",
+    "E_DURATION_AND_EXPIRY",
+    "F_DAMAGE_PIPELINE",
+    "G_CONTROL",
+    "H_AOE_TARGETING",
+    "I_EQUIPMENT",
+    "J_F1_BEHAVIOR",
+    "K_F1_TO_F2_TRANSITION",
+    "L_F2_ADAPTATION",
+    "M_F2_TO_F3_TRANSITION",
+    "N_F3_PACT",
+    "O_PREPARED_OPPORTUNITY",
+    "P_STATE_CONTINUITY",
+    "Q_CRN_AND_DETERMINISM",
+    "R_ORDER_WORKER_RESUME",
+    "S_PROPERTY_FUZZ",
+    "T_BALANCE_PAIRED_TELEMETRY"
+  ],
+  "v031_changes": [
+    "late F1/F2 opportunity before mechanical transition",
+    "explicit transition-edge execution at F1 and F2 boundaries",
+    "cooldown oracle scoped by suite+activation_edge",
+    "rejected Rio causal-equivalence oracle",
+    "immutable first F3 denial telemetry"
+  ],
+  "transition_phases": [
+    "F1",
+    "F2"
+  ],
+  "critical_local_windows": [
+    "F1_LATE_PRE_TRANSITION",
+    "F2_LATE_PRE_TRANSITION",
+    "F3_CONTROL_DENIED_FIRST_INTENT",
+    "F3_POST_RELEASE"
+  ]
+}
