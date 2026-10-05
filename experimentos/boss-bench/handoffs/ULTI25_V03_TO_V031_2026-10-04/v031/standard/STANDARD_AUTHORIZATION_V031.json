@@ -1,0 +1,43 @@
+{
+  "status": "STANDARD_AUTHORIZED_AFTER_CLEAN_QUICK_V031",
+  "date": "2026-10-05",
+  "quick_result_zip_sha256": "4f0b19465662e81e0aeed42886ac0f1884613e873c450212b4bdd56c3e00813a",
+  "quick_gate": {
+    "pass": true,
+    "status": "PASS",
+    "cases_executed": 28464,
+    "hard_issue_count": 0,
+    "paired_rows": 12160,
+    "runner_sha256": "97184d1cd72eda278434de5b8bc59763776e7288d2afad10ab1204d609a1d7e3",
+    "issues_csv_empty": true,
+    "self_check_pass": true
+  },
+  "standard_expected_cases": 133856,
+  "standard_by_suite": {
+    "CORE_CONTINUOUS": 48640,
+    "PAIRED_BASELINE": 48640,
+    "QI_BOUNDARY": 3040,
+    "HP_BOUNDARY": 1064,
+    "ACTIVATION_COOLDOWN": 2000,
+    "PHASE_TRANSITION": 3344,
+    "BOSS_CRN_STRESS": 1672,
+    "TARGET_TOPOLOGY": 456,
+    "PROPERTY_FUZZ": 25000
+  },
+  "immutable_payload_sha256": "f1cb59aae1d69f39f2024a7ad3c8d8c50566081fd3dd4963c7e1ef8209d55038",
+  "runner_sha256": "97184d1cd72eda278434de5b8bc59763776e7288d2afad10ab1204d609a1d7e3",
+  "accepted_v05_full_sha256": "3372ee2172253eaf7f410616693960bf6ad8da5510f1ad611d5506631ea648f5",
+  "boss_numeric_authority_sha256": "0264794e6f2eca67dff23a3d04e5339bbe23df06c90558d294073a0f8727af3a",
+  "ultimate_catalog_sha256": "36e9141255adb382e37751805bbec67604fede75dd7408572e293ebb34d1c477",
+  "combat_engine_sha256": "483a7065525f344620443017bc8015d783cd7567d48e567781b57ea6d96f2137",
+  "f3_strict_harness_sha256": "e4c23407e44fe8bc8b86c072db91379fc3957747be662f5d54468b0e63143041",
+  "policy": {
+    "normal_techniques_enabled": false,
+    "consumables_enabled": false,
+    "balance_authoritative": false,
+    "automatic_balance_changes": false,
+    "sentencia": "BALANCE_PRIORITY / HUMAN_REVIEW_ONLY_NO_AUTO_NERF_OR_BUFF",
+    "main_touch": false,
+    "merge": false
+  }
+}
