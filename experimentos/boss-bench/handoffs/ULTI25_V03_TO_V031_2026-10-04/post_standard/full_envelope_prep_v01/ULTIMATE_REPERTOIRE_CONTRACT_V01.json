@@ -1,0 +1,50 @@
+{
+  "schema": "ULTIMATE_REPERTOIRE_CONTRACT_V01",
+  "status": "HUMAN_DECISION_FROZEN_FOR_FUTURE_TESTS",
+  "date": "2026-10-05",
+  "scope": "player ultimate repertoire and per-combat use budget",
+  "rules": {
+    "max_equipped_ultimates": 2,
+    "slots": [
+      {
+        "slot": "PRIMARY_ELEMENT_ULTIMATE",
+        "element_source": "primary_element",
+        "max_equipped": 1
+      },
+      {
+        "slot": "GRAFTED_ELEMENT_ULTIMATE",
+        "element_source": "grafted_element",
+        "max_equipped": 1
+      }
+    ],
+    "shared_ultimate_use_budget_per_combat": 1,
+    "successful_activation_consumes_shared_budget": true,
+    "after_budget_consumed": "ALL_OTHER_EQUIPPED_ULTIMATES_LOCKED_FOR_REMAINDER_OF_COMBAT",
+    "ultimates_are_alternatives_not_a_combo_chain": true,
+    "existing_per_ultimate_out_of_combat_cooldown_authority": "PRESERVE_EXISTING_AUTHORITY"
+  },
+  "not_yet_authorized": {
+    "rejected_or_not_activated_attempt_consumes_shared_budget": "AUTHORITY_REQUIRED",
+    "same_primary_and_grafted_element_is_legal": "AUTHORITY_REQUIRED",
+    "unlock_acquisition_selection_rules": "OUT_OF_SCOPE_AUTHORITY_REQUIRED"
+  },
+  "future_balance_implication": {
+    "test_unit": "TWO_ULTIMATE_REPERTOIRE_WITH_ONE_SHARED_USE",
+    "must_compare_choice_not_sequence": true,
+    "must_measure": [
+      "ULTIMATE_CHOICE_SHARE",
+      "ULTIMATE_OPPORTUNITY_REGRET",
+      "ULTIMATE_UNUSED_RATE",
+      "PRIMARY_ULTIMATE_USE_RATE",
+      "GRAFTED_ULTIMATE_USE_RATE",
+      "ULTIMATE_PHASE_OF_USE",
+      "F3_PACT_INTERACTION",
+      "POST_ULTIMATE_SURVIVAL_AND_BOSS_STATE"
+    ]
+  },
+  "guards": {
+    "no_auto_nerf_or_buff": true,
+    "human_decisions_prevail": true,
+    "v031_validated_runner_is_immutable_evidence": true
+  }
+}
