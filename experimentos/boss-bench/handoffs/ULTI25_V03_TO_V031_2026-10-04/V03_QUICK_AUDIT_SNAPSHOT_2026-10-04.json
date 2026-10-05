@@ -1,0 +1,162 @@
+{
+  "date_local": "2026-10-04",
+  "status": "V03_QUICK_AUDITED_PATCH_REQUIRED_BEFORE_STANDARD",
+  "package_sha256": "df3b3077b75f0b9f78a2b4b4e709dcc8a3b7c91e3d3018230f1f8a29f2d6efbb",
+  "quick_results_sha256": "3f0e125e5c92563da0ad08971e53581310f0a30f22985553285bd753288053f5",
+  "kaggle_notebook_sha256": "14f36c3ef2835d6c4f4ba42044aa995476c7d5418221f5ae0a824450ecd8a225",
+  "cases_executed": 28046,
+  "raw_hard_issue_count": 504,
+  "issue_counts": {
+    "ooc_not_ready_at_40": 200,
+    "reactivation_probe_missing": 200,
+    "second_activation_not_blocked": 100,
+    "pact_released_by_denied_intent": 4
+  },
+  "interpretation": {
+    "cooldown_checker_false_positives": 500,
+    "pact_telemetry_false_positives": 4,
+    "confirmed_ulti_general_bug_count": 0,
+    "confirmed_runner_bug": "Rejected Río Celeste activation is observed by Grulla brain before activation result, contaminating treatment arm."
+  },
+  "mechanical_invariants": {
+    "f3_lethal_prevention_cases": 712,
+    "f3_lethal_preventions_total": 730.0,
+    "max_prevented_lethal_damage": 253.0,
+    "duration_violation_total": 0.0,
+    "aoe_scalar_violation_total": 0.0,
+    "simulation_errors": 0,
+    "truncations": 0,
+    "f3_kill_before_first_real_action": 0,
+    "max_pact_release_count": 1,
+    "pact_active_after_first_real_resolved_action": 0
+  },
+  "window_activation": {
+    "F1_EARLY": {"activations": 1080, "cases": 1216},
+    "F1_LATE_PRE_TRANSITION": {"activations": 119, "cases": 1216},
+    "F2_ADAPTIVE_MID": {"activations": 842, "cases": 1216},
+    "F2_ENTRY": {"activations": 1029, "cases": 1216},
+    "F2_LATE_PRE_TRANSITION": {"activations": 0, "cases": 1216},
+    "F3_CONTROL_DENIED_FIRST_INTENT": {"activations": 940, "cases": 1216},
+    "F3_ENTRY_PACT_ACTIVE": {"activations": 673, "cases": 1216},
+    "F3_POST_RELEASE": {"activations": 876, "cases": 1216},
+    "F3_PRE_RELEASE": {"activations": 674, "cases": 1216},
+    "PREPARED_OPPORTUNITY": {"activations": 953, "cases": 1216}
+  },
+  "phase_transition_suite": {
+    "cases": 418,
+    "activations": 24,
+    "transition_edge_consumed_by_runner": false,
+    "activation_families": {"FUEGO": 24}
+  },
+  "rio": {
+    "core_cases": 320,
+    "core_activations": 0,
+    "activation_reasons": {
+      "IMPLEMENTATION_REJECTED": 211,
+      "NOT_ATTEMPTED": 109
+    },
+    "rejected_pair_differences": {
+      "pairs": 211,
+      "player_hp_diff": 47,
+      "player_qi_diff": 36,
+      "outcome_diff": 3,
+      "boss_hp_diff": 3,
+      "rounds_diff": 12
+    },
+    "not_attempted_pair_differences": {
+      "pairs": 109,
+      "player_hp_diff": 0,
+      "player_qi_diff": 0,
+      "outcome_diff": 0,
+      "boss_hp_diff": 0,
+      "rounds_diff": 0
+    }
+  },
+  "pact_telemetry_cases": [
+    {
+      "case_id": "7ccea5ba59e487fcb4586ac1",
+      "ultimate": "EARTH_TRONO_VOLCAN_SEPULTADO",
+      "mode": "FULL",
+      "window": "F3_CONTROL_DENIED_FIRST_INTENT",
+      "player_state": "FULL",
+      "equipment_profile": "MANDATORY_ENTRY"
+    },
+    {
+      "case_id": "2a550aea4de60a2465e49640",
+      "ultimate": "EARTH_TRONO_VOLCAN_SEPULTADO",
+      "mode": "FULL",
+      "window": "F3_CONTROL_DENIED_FIRST_INTENT",
+      "player_state": "DISADVANTAGE",
+      "equipment_profile": "HIGH_ROLL_STRESS"
+    },
+    {
+      "case_id": "506859380f5426aea30366d8",
+      "ultimate": "WIND_DESIERTO_MIL_DUNAS",
+      "mode": "FULL",
+      "window": "F3_CONTROL_DENIED_FIRST_INTENT",
+      "player_state": "BALANCED",
+      "equipment_profile": "EXPECTED_STAGE"
+    },
+    {
+      "case_id": "50c3e78355df48ef4b60d05f",
+      "ultimate": "WIND_DESIERTO_MIL_DUNAS",
+      "mode": "FULL",
+      "window": "F3_CONTROL_DENIED_FIRST_INTENT",
+      "player_state": "BALANCED",
+      "equipment_profile": "HIGH_ROLL_STRESS"
+    }
+  ],
+  "power_signals_top": [
+    {
+      "ultimate": "METAL_SENTENCIA_FILO_CELESTIAL",
+      "activated_pairs": 198,
+      "mechanical_win_uplift_pp": 7.575757575757576,
+      "mean_ultimate_damage_total": 38.77777777777778,
+      "mean_delta_boss_hp_end": -11.974747474747474
+    },
+    {
+      "ultimate": "FIRE_RENACER_SOL_CARMESI",
+      "activated_pairs": 495,
+      "mechanical_win_uplift_pp": 6.060606060606066,
+      "mean_ultimate_damage_total": 0.3191919191919192,
+      "mean_delta_boss_hp_end": -3.8686868686868685
+    },
+    {
+      "ultimate": "FIRE_CORAZON_MONTANA_ARDIENTE",
+      "activated_pairs": 327,
+      "mechanical_win_uplift_pp": 1.5290519877675823,
+      "mean_ultimate_damage_total": 1.6391437308868502,
+      "mean_delta_boss_hp_end": 0.1162079510703364
+    }
+  ],
+  "power_signals_bottom": [
+    {
+      "ultimate": "FIRE_AGUJA_CRISOL_ROJO",
+      "activated_pairs": 331,
+      "mechanical_win_uplift_pp": -1.5105740181268867,
+      "mean_ultimate_damage_total": 2.675226586102719,
+      "mean_delta_boss_hp_end": 2.099697885196375
+    },
+    {
+      "ultimate": "FIRE_LOTO_VAPOR_CONCORDANTE",
+      "activated_pairs": 488,
+      "mechanical_win_uplift_pp": -3.4836065573770503,
+      "mean_ultimate_damage_total": 0.8237704918032787,
+      "mean_delta_boss_hp_end": 2.6413934426229506
+    },
+    {
+      "ultimate": "FIRE_BRASA_VENDAVAL",
+      "activated_pairs": 167,
+      "mechanical_win_uplift_pp": -6.586826347305397,
+      "mean_ultimate_damage_total": 0.11976047904191617,
+      "mean_delta_boss_hp_end": 4.233532934131737
+    }
+  ],
+  "sentencia_f3_post_release": {
+    "n": 21,
+    "mechanical_win_uplift_pp": 28.57142857142857,
+    "ulti_win_rate": 0.2857142857142857,
+    "baseline_win_rate": 0.0
+  },
+  "decision": "DO_NOT_RUN_STANDARD. Build V03.1, rerun QUICK, then standard only if clean."
+}
