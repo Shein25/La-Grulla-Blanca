@@ -1,0 +1,55 @@
+{
+  "schema": "STANDARD_RESULT_AUDIT_V031_2026-10-05",
+  "status": "PASS",
+  "result_zip": "CONTINUOUS_FULL_SPECTRUM_V031_STANDARD.zip",
+  "result_zip_bytes": 34216260,
+  "result_zip_sha256": "f15a09948a57fb4a3857159f847bc3276cd17896158d40fa11104197aaee78fd",
+  "cases_expected": 133856,
+  "cases_executed": 133856,
+  "case_id_duplicates": 0,
+  "hard_issue_count": 0,
+  "simulation_errors": 0,
+  "truncations": 0,
+  "duration_violations": 0,
+  "aoe_violations": 0,
+  "paired_core_baseline_rows": 48640,
+  "runner_sha256": "97184d1cd72eda278434de5b8bc59763776e7288d2afad10ab1204d609a1d7e3",
+  "rio_celeste": {
+    "core_rejections": 1080,
+    "core_rejection_pair_divergences": 0,
+    "all_implementation_rejected_rows": 1936,
+    "all_implementation_rejected_are_rio": true
+  },
+  "f3_pact": {
+    "critical_first_denials_observed": 4017,
+    "critical_first_denials_preserving_pact": 4017,
+    "kill_before_first_real_action": 0,
+    "max_release_count_observed": 1
+  },
+  "transitions": {
+    "cases": 3344,
+    "observed": 3344,
+    "passed": 3344
+  },
+  "late_windows": {
+    "F1_LATE_PRE_TRANSITION_activations": 3531,
+    "F2_LATE_PRE_TRANSITION_activations": 2775
+  },
+  "cooldown": {
+    "cases": 2000,
+    "per_edge": 400,
+    "issues": 0
+  },
+  "property_fuzz": {
+    "cases": 25000,
+    "issues": 0
+  },
+  "balance": {
+    "authoritative": false,
+    "automatic_changes": false,
+    "review_only": [
+      "METAL_SENTENCIA_FILO_CELESTIAL"
+    ]
+  },
+  "decision": "V031_MECHANICAL_RUNNER_VALIDATED_FOR_CURRENT_SCOPE_NO_GLOBAL_BALANCE_CANON"
+}
