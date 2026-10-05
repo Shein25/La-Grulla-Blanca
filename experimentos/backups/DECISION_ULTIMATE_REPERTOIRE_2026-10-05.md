@@ -21,19 +21,30 @@ Una vez consumido ese presupuesto, la otra Ulti equipada queda bloqueada durante
 
 ## Decisión estructural de desbloqueo
 
-Las Ultis **NO se desbloquean automáticamente por alcanzar una etapa de LianQi**. La etapa es sólo un requisito mínimo. El gate real es la **maestría completa de la rama elemental correspondiente**.
+Las Ultis **NO se desbloquean automáticamente por alcanzar una etapa de LianQi**. La etapa es sólo un requisito mínimo. El gate real es que la **rama elemental correspondiente haya sido aprendida al máximo**.
+
+### Regla de maestría / aprendizaje máximo
+
+`RAMA_APRENDIDA_AL_MAXIMO` es un estado de progresión/conocimiento de la rama y **NO depende de cómo el jugador distribuya sus puntos entre las especializaciones**.
+
+Por tanto:
+
+- no se exige tener puntos en todas las especializaciones;
+- no se exige una distribución concreta;
+- una build `2/2/2` conserva acceso a la Ulti;
+- también son válidas otras distribuciones permitidas por el sistema aunque alguna especialización tenga 0 puntos;
+- cambiar el reparto de puntos no debe bloquear una Ulti ya habilitada mientras la rama continúe aprendida al máximo.
+
+La distribución de puntos define el **build**. El aprendizaje máximo de la rama define la **elegibilidad de la Ulti**. Son conceptos independientes.
 
 ### Ulti del elemento principal
 
 Requisitos acumulativos:
 
 - haber alcanzado como mínimo **LianQi III**;
-- haber alcanzado la **maestría completa de la rama del elemento principal**;
-- "maestría completa de la rama" significa que el jugador ha progresado lo suficiente como para **ser capaz de asignar al menos 1 punto en cada especialización de esa rama**.
+- tener la rama del elemento principal en estado **aprendida al máximo**.
 
-No se exige haber gastado efectivamente un punto en cada especialización: se exige haber alcanzado el nivel de maestría que permite hacerlo.
-
-Cuando se cumplen ambos requisitos, se habilita la Ulti del elemento principal.
+Cuando se cumplen ambos requisitos, se habilita la Ulti del elemento principal, independientemente del reparto de puntos entre especializaciones.
 
 ### Ulti del elemento injertado
 
@@ -41,22 +52,23 @@ Requisitos acumulativos:
 
 - poseer efectivamente el **injerto elemental**;
 - haber alcanzado como mínimo **LianQi IV**;
-- haber alcanzado la **maestría completa de la rama del elemento injertado**;
-- la misma definición de maestría aplica: capacidad de asignar al menos 1 punto en cada especialización de esa rama.
+- tener la rama del elemento injertado en estado **aprendida al máximo**.
 
-Cuando se cumplen los tres requisitos, se habilita la Ulti del elemento injertado.
+Cuando se cumplen los tres requisitos, se habilita la Ulti del elemento injertado, independientemente del reparto de puntos entre especializaciones.
 
 ### Consecuencia de progresión
 
-- Antes de cumplir la maestría de la rama principal en LianQi III: 0 Ultis disponibles.
-- LianQi III + maestría completa de la rama principal: hasta 1 Ulti disponible, la principal.
+- Antes de tener la rama principal aprendida al máximo en LianQi III: 0 Ultis disponibles.
+- LianQi III + rama principal aprendida al máximo: hasta 1 Ulti disponible, la principal.
 - Tener injerto en LianQi III NO concede automáticamente la Ulti injertada.
-- LianQi IV + injerto + maestría completa de la rama injertada: puede habilitarse la segunda Ulti.
+- LianQi IV + injerto + rama injertada aprendida al máximo: puede habilitarse la segunda Ulti.
 - Incluso con 2 Ultis disponibles, el presupuesto global sigue siendo 1 activación válida por combate.
 
 ## Implicación de balance
 
-Los benchmarks por etapa deben respetar disponibilidad real. No se debe probar un monstruo/jefe de LianQi III suponiendo automáticamente 2 Ultis ni una Ulti principal si el perfil no demuestra maestría completa de su rama.
+Los benchmarks por etapa deben respetar disponibilidad real. No se debe probar un monstruo/jefe de LianQi III suponiendo automáticamente 2 Ultis ni una Ulti principal si el perfil no tiene su rama principal aprendida al máximo.
+
+Los benchmarks **NO deben utilizar la distribución de puntos como gate de Ulti**. Distintas builds de una misma rama deben poder compararse conservando la misma Ulti cuando cumplen el mismo estado de aprendizaje máximo.
 
 El balance futuro debe evaluar la decisión entre las dos Ultis disponibles en un mismo estado de combate sólo para perfiles que realmente hayan desbloqueado ambas.
 
@@ -85,7 +97,7 @@ Debe detectarse especialmente si una Ulti domina a la otra en casi todos los con
 Quedan pendientes de autoridad explícita:
 - si un intento rechazado/no activado consume o no el presupuesto global;
 - si elemento principal e injertado pueden ser el mismo elemento;
-- reglas de adquisición/selección de la Ulti concreta dentro de cada elemento una vez cumplido el gate de maestría.
+- reglas de adquisición/selección de la Ulti concreta dentro de cada elemento una vez cumplido el gate de aprendizaje máximo.
 
 Hasta que esas reglas se definan, los runners futuros deben abortar las suites que dependan de ellas o marcarlas `AUTHORITY_REQUIRED`; no deben asumir una respuesta.
 
