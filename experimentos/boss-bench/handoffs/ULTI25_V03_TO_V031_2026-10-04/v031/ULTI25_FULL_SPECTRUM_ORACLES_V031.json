@@ -1,0 +1,63 @@
+{
+  "schema": "ULTI25_FULL_SPECTRUM_ORACLES_V031",
+  "hard_fail": [
+    "simulation_error",
+    "nonfinite_metric",
+    "negative_hp",
+    "negative_qi",
+    "negative_absorption",
+    "ultimate_uses_gt_1",
+    "illegal_activation_succeeds",
+    "legal_activation_fails_without_explicit_reason",
+    "ooc_cooldown_ready_before_40",
+    "ooc_cooldown_not_ready_at_40",
+    "duration_consumed_too_early",
+    "duration_survives_one_past_expiry",
+    "dot_or_bleed_crit_without_explicit_contract",
+    "aoe_single_target_scaled_down",
+    "f1_f2_overkill_transfers_to_next_phase",
+    "player_state_resets_on_phase_transition",
+    "f3_pact_not_active_on_entry",
+    "f3_kill_before_first_real_action",
+    "control_denied_first_f3_intent_releases_pact",
+    "pact_release_count_gt_1",
+    "pact_still_active_after_first_real_resolved_f3_intent",
+    "same_case_same_seed_nondeterministic",
+    "pre_divergence_crn_trace_mismatch",
+    "state_leakage_across_case_order",
+    "resume_changes_result",
+    "transition_edge_not_observed",
+    "transition_edge_contract_failed",
+    "transition_fixture_marked_balance_authoritative",
+    "rio_rejected_not_baseline_equivalent",
+    "first_control_denied_probe_not_observed",
+    "pact_released_by_first_denied_intent",
+    "ooc_cooldown_not_ready_at_41"
+  ],
+  "balance_flags_not_auto_fail": [
+    "loss_to_win_flip_extreme",
+    "win_to_loss_flip_nonzero",
+    "very_high_effective_damage",
+    "very_low_activation_rate",
+    "very_low_survival",
+    "resource_economy_outlier",
+    "action_denial_outlier",
+    "phase_specific_power_spike",
+    "equipment_interaction_outlier"
+  ],
+  "reporting_rule": "Bug/invariant failures are separate from balance flags. Stress fixtures are never balance authority. Sentencia remains BALANCE_PRIORITY only; no automatic nerf/buff/canon.",
+  "v031_scoping": {
+    "ACTIVATION_COOLDOWN": "evaluate only the contract named by suite + activation_edge",
+    "CORE_CONTINUOUS": "reactivation/OOC telemetry is required only when reactivation_probe_performed=1",
+    "F3_FIRST_DENIAL": "f3_first_denied_observed and pact_active_after_first_denied are immutable after first observation",
+    "RIO_REJECTED": "paired treatment must exactly equal baseline on outcome/HP/Qi/boss state/rounds/phase traces/action counts/causal_trace/brain_state_hash",
+    "PHASE_TRANSITION": "transition fixtures are mechanics-only and balance_authoritative=false"
+  },
+  "balance_priority": [
+    {
+      "ultimate": "METAL_SENTENCIA_FILO_CELESTIAL",
+      "flag": "BALANCE_PRIORITY",
+      "automatic_change": false
+    }
+  ]
+}
