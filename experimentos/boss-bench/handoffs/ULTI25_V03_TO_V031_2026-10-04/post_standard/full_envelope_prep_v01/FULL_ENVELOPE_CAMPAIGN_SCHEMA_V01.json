@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "La Grulla Blanca Full Envelope Campaign V01",
+  "type": "object",
+  "required": [
+    "campaign_id",
+    "authorities",
+    "roots",
+    "techniques",
+    "ultimates",
+    "execution"
+  ],
+  "properties": {
+    "campaign_id": {"type": "string", "minLength": 1},
+    "authorities": {
+      "type": "object",
+      "required": ["technique_catalog_sha256", "ultimate_catalog_sha256", "grulla_runner_sha256"],
+      "properties": {
+        "technique_catalog_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "ultimate_catalog_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "grulla_runner_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "roots": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "uniqueItems": true,
+      "items": {"enum": ["FIRE", "METAL", "WATER", "EARTH", "WIND"]}
+    },
+    "techniques": {
+      "type": "array",
+      "minItems": 15,
+      "maxItems": 15,
+      "items": {
+        "type": "object",
+        "required": ["id", "root"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "root": {"enum": ["FIRE", "METAL", "WATER", "EARTH", "WIND"]}
+        }
+      }
+    },
+    "ultimates": {
+      "type": "array",
+      "minItems": 25,
+      "maxItems": 25,
+      "items": {
+        "type": "object",
+        "required": ["id", "root"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "root": {"enum": ["FIRE", "METAL", "WATER", "EARTH", "WIND"]}
+        }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "required": ["notebooks", "checkpoint_every_cases", "checkpoint_every_minutes", "session_budget_minutes", "watchdog_reserve_minutes"],
+      "properties": {
+        "notebooks": {"const": 5},
+        "checkpoint_every_cases": {"type": "integer", "minimum": 1},
+        "checkpoint_every_minutes": {"type": "integer", "minimum": 1},
+        "session_budget_minutes": {"type": "integer", "minimum": 60},
+        "watchdog_reserve_minutes": {"type": "integer", "minimum": 5}
+      }
+    }
+  }
+}
