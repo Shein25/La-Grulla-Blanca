@@ -1,0 +1,48 @@
+{
+  "zip": "GRULLA_ULTI25_CONTINUOUS_FULL_SPECTRUM_V031.zip",
+  "zip_sha256": "8c18d8f3aaecfe887e76fd7d410ca803bb7c499f0584b00c318bf75122337f0e",
+  "zip_bytes": 341521,
+  "base64_chars": 455364,
+  "parts": [
+    {
+      "file": "GRULLA_ULTI25_CONTINUOUS_FULL_SPECTRUM_V031.part01.b64",
+      "chars": 56921,
+      "sha256": "52eb83d3694dcd931331e64d6910dfc9a4ad9f08d8a597a72cc5a16911fa6a2d"
+    },
+    {
+      "file": "GRULLA_ULTI25_CONTINUOUS_FULL_SPECTRUM_V031.part02.b64",
+      "chars": 56921,
+      "sha256": "f58f496e77a67490d9187b6b9770efce345aaea5b93c1c9f49c634971c87563b"
+    },
+    {
+      "file": "GRULLA_ULTI25_CONTINUOUS_FULL_SPECTRUM_V031.part03.b64",
+      "chars": 56921,
+      "sha256": "62ed9cdf03f1abdeaba21cc00529743625613c0fc4102f34282804ded3388d17"
+    },
+    {
+      "file": "GRULLA_ULTI25_CONTINUOUS_FULL_SPECTRUM_V031.part04.b64",
+      "chars": 56921,
+      "sha256": "62fd32fee0e8e6be0f7a7af386a4d9d442e64ce0915aeab620c358ea319b7fc4"
+    },
+    {
+      "file": "GRULLA_ULTI25_CONTINUOUS_FULL_SPECTRUM_V031.part05.b64",
+      "chars": 56921,
+      "sha256": "0515a871082d4e46c362ebb0c6b60240caca84da8829f9d47dbb7a23d1266e05"
+    },
+    {
+      "file": "GRULLA_ULTI25_CONTINUOUS_FULL_SPECTRUM_V031.part06.b64",
+      "chars": 56921,
+      "sha256": "827c57e02c14bf6e752c0d99187997e556678e9c35fbf56bc605e237c8f88f62"
+    },
+    {
+      "file": "GRULLA_ULTI25_CONTINUOUS_FULL_SPECTRUM_V031.part07.b64",
+      "chars": 56921,
+      "sha256": "9f7eca3c929191baa38f67d8846f9882e2a463ba5dba8e693d994a576ddbf28f"
+    },
+    {
+      "file": "GRULLA_ULTI25_CONTINUOUS_FULL_SPECTRUM_V031.part08.b64",
+      "chars": 56917,
+      "sha256": "b6587ea2253207b07254b43b10749eeb0a4ca69d96fcf653890b240c329290f1"
+    }
+  ]
+}
