@@ -1,0 +1,35 @@
+{
+  "package": "GRULLA_ULTI25_CONTINUOUS_FULL_SPECTRUM_V031_STANDARD_READY.zip",
+  "bytes": 118877,
+  "sha256": "2fb59f645918f7cd810bf06c66c8cdec8f0599a3ae3bc4dde771bd1788f08ff0",
+  "files": [
+    {
+      "file": "KAGGLE_GRULLA_ULTI25_CONTINUOUS_FULL_SPECTRUM_V031_STANDARD.ipynb",
+      "bytes": 153395,
+      "sha256": "531003aa6701151528716e88e0f7550bb49ccb3b26b2ffd28a933ef3abe0470d"
+    },
+    {
+      "file": "STANDARD_AUTHORIZATION_V031.json",
+      "bytes": 1764,
+      "sha256": "3146ac7cd43925d6f09373e54f0d02ef292cc3884ff63092796c6fd6a87af68e"
+    },
+    {
+      "file": "README_STANDARD_V031.md",
+      "bytes": 902,
+      "sha256": "86b0d81f8e3a9bdd521b99e9b69bec2fb5c8a94f149f8a99dc3df9b374744b11"
+    },
+    {
+      "file": "authorize_standard_notebook_v031.py",
+      "bytes": 4423,
+      "sha256": "32d887687c5ff51d40440f08ba84c28385d8195790b2c7c0ee89708c61564913"
+    },
+    {
+      "file": "SHA256SUMS_STANDARD_V031.txt",
+      "bytes": 423,
+      "sha256": "d48c14bb431c796a92c9f71079564f902a786643cda8abae74ebaa65ac27704b"
+    }
+  ],
+  "payload_sha256": "f1cb59aae1d69f39f2024a7ad3c8d8c50566081fd3dd4963c7e1ef8209d55038",
+  "payload_unchanged_from_quick": true,
+  "quick_result_zip_sha256": "4f0b19465662e81e0aeed42886ac0f1884613e873c450212b4bdd56c3e00813a"
+}
