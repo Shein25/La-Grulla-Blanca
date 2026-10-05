@@ -1,0 +1,34 @@
+{
+  "schema": "READINESS_FULL_ENVELOPE_V01",
+  "status": "PREPARED_WAITING_FOR_FINAL_TECHNIQUE_AUTHORITY",
+  "validated_ulti_evidence": {
+    "version": "V03.1",
+    "standard_cases": 133856,
+    "standard_status": "PASS",
+    "hard_issues": 0,
+    "runner_sha256": "97184d1cd72eda278434de5b8bc59763776e7288d2afad10ab1204d609a1d7e3"
+  },
+  "ready": [
+    "ultimate_repertoire_contract_frozen",
+    "shared_one_use_budget_frozen_for_successful_activation",
+    "five_notebook_execution_architecture_defined",
+    "checkpoint_resume_requirements_defined",
+    "progress_eta_watchdog_requirements_defined",
+    "choice_metrics_defined",
+    "cross_root_crn_seed_rule_defined"
+  ],
+  "blocking_authorities": [
+    "FINAL_OR_AUTHORIZED_15_TECHNIQUE_CATALOG_AND_SHA256",
+    "TECHNIQUE_RUNTIME_OR_RUNNER_AUTHORITY",
+    "PLAYER_LOADOUT_STAGE_AUTHORITY_FOR_FULL_ENVELOPE",
+    "REJECTED_OR_NOT_ACTIVATED_ULTI_SHARED_BUDGET_RULE",
+    "PRIMARY_EQUALS_GRAFTED_ELEMENT_LEGALITY_IF_APPLICABLE"
+  ],
+  "must_not_do": [
+    "DO_NOT_MODIFY_VALIDATED_V031_EVIDENCE",
+    "DO_NOT_INVENT_MISSING_TECHNIQUE_VALUES",
+    "DO_NOT_ALLOW_TWO_SUCCESSFUL_ULTIMATE_ACTIVATIONS_IN_ONE_COMBAT",
+    "DO_NOT_AUTO_NERF_OR_BUFF",
+    "DO_NOT_DECLARE_GLOBAL_CANON_FROM_MECHANICAL_FIXTURES"
+  ]
+}
