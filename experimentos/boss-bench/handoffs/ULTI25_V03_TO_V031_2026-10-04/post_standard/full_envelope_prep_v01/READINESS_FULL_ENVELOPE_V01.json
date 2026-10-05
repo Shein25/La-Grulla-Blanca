@@ -10,6 +10,9 @@
   },
   "ready": [
     "ultimate_repertoire_contract_frozen",
+    "primary_ultimate_unlock_gate_lianqi_iii_plus_full_primary_branch_mastery_frozen",
+    "grafted_ultimate_unlock_gate_lianqi_iv_plus_existing_graft_plus_full_grafted_branch_mastery_frozen",
+    "mastery_means_capable_of_assigning_one_point_to_each_specialization_not_actual_spend",
     "shared_one_use_budget_frozen_for_successful_activation",
     "five_notebook_execution_architecture_defined",
     "checkpoint_resume_requirements_defined",
@@ -20,13 +23,16 @@
   "blocking_authorities": [
     "FINAL_OR_AUTHORIZED_15_TECHNIQUE_CATALOG_AND_SHA256",
     "TECHNIQUE_RUNTIME_OR_RUNNER_AUTHORITY",
-    "PLAYER_LOADOUT_STAGE_AUTHORITY_FOR_FULL_ENVELOPE",
+    "PLAYER_LOADOUT_STAGE_AND_MASTERY_AUTHORITY_FOR_FULL_ENVELOPE",
     "REJECTED_OR_NOT_ACTIVATED_ULTI_SHARED_BUDGET_RULE",
-    "PRIMARY_EQUALS_GRAFTED_ELEMENT_LEGALITY_IF_APPLICABLE"
+    "PRIMARY_EQUALS_GRAFTED_ELEMENT_LEGALITY_IF_APPLICABLE",
+    "CONCRETE_ULTIMATE_ACQUISITION_OR_SELECTION_AFTER_MASTERY"
   ],
   "must_not_do": [
     "DO_NOT_MODIFY_VALIDATED_V031_EVIDENCE",
     "DO_NOT_INVENT_MISSING_TECHNIQUE_VALUES",
+    "DO_NOT_GRANT_PRIMARY_ULTIMATE_FROM_STAGE_ALONE",
+    "DO_NOT_GRANT_GRAFTED_ULTIMATE_FROM_GRAFT_OR_STAGE_ALONE",
     "DO_NOT_ALLOW_TWO_SUCCESSFUL_ULTIMATE_ACTIVATIONS_IN_ONE_COMBAT",
     "DO_NOT_AUTO_NERF_OR_BUFF",
     "DO_NOT_DECLARE_GLOBAL_CANON_FROM_MECHANICAL_FIXTURES"
