@@ -176,3 +176,23 @@ Total previsto: **220.800 combates**.
 Antes de integración final del Arco 1 deberá existir un cross-check específico contra el Player Power Envelope/técnicas cerradas.
 
 No ratificación automática.
+
+
+## Corrección de harness detectada antes de T4
+
+Durante la preparación de V01 se detectó un bug de instrumentación en los runners T2/T3 para el sufijo congelado `ACECHANTE C20`:
+
+- contrato correcto: tras un miss del monstruo, `+20 PREC` sólo para el **siguiente ataque**;
+- implementación de harness previa: añadía el bono a `state.monster.precision` pero no lo retiraba después del ataque, por lo que podía persistir.
+
+Alcance:
+- no afecta población NATURAL;
+- sólo puede afectar individuos con sufijo ACECHANTE, incluidos algunos Excepcionales/Ascendidos;
+- no cambia el contrato congelado del sufijo; corrige su ejecución en laboratorio.
+
+T4 V01:
+- usa semántica temporal correcta;
+- conserva `T3_FROZEN` como baseline;
+- exporta métricas suficientes para comparar el baseline corregido con T3 V03;
+- no reabre T0–T3 automáticamente;
+- si la regresión fuese material, se abre únicamente un hotfix de validación de capas congeladas.
