@@ -158,3 +158,40 @@ Estándar desde T3:
 Objetivo: evitar barras duplicadas/fantasma propias del render de `tqdm` en Google Colab.
 
 La telemetría y checkpoints no cambian; sólo cambia la presentación.
+
+
+---
+
+## T2 LI — cierre final 2026-10-06
+
+Estado: **T2_LI_FINAL_FREEZE_2026-10-06**.
+
+Contrato:
+`experimentos/balance_nuevo/t2_li/T2_LI_FINAL_CONTRACT_V1.json`
+
+Freeze:
+`experimentos/balance_nuevo/t2_li/T2_LI_FINAL_FREEZE_2026-10-06.md`
+
+Gate final:
+- `LI_MONSTER_T2_FINAL_ALL_FIVE_GATE_V03`;
+- review SHA-256 `d140b9e3fafe744df2b512df3ba15bf80184deea1d97eb54fa92161ae2ab0e72`;
+- 147.200 combates;
+- manifest íntegro;
+- `issues=[]`.
+
+T2 congelado:
+`T2_R2_SHORT_THREAT_40_15_PRESERVE_DUE`
+
+- memoria 2;
+- repetición 2;
+- sólo acciones EFECTIVA;
+- anticipación si HP<=40% o golpe actual>=15% HPmax;
+- reconocimiento no pisa técnica canónica due por cadencia;
+- trigger natural T1 30/20 conserva prioridad;
+- magnitud/cooldown/cargas T1 no cambian.
+
+T2 queda cerrado para Rata, Serpiente, Avispa, Mono y Lobo. El siguiente frente permitido es T3 / CONTRAADAPTACIÓN.
+
+La Rata posee evidencia histórica de T3 `CONFIRMED_PATTERN_REFLEJO_MISS + INSTANCE_BASIC`, pero esa evidencia fue calibrada contra T1/T2 antiguos y sólo puede reutilizarse como ancla conceptual: debe revalidarse contra T1/T2 finales actuales.
+
+Para Serpiente/Avispa/Mono/Lobo no existe T3 numérico cerrado recuperado. Cualquier counter será hipótesis LAB derivada de identidad existente y deberá medirse antes de freeze.
