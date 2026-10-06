@@ -624,3 +624,96 @@ Estado resumido:
 
 Próximo artefacto esperado:
 `PASO_NUBE_HORIZONTAL_LAB_V01_RESULTS.zip`.
+
+
+---
+
+# ACTUALIZACIÓN PASO DE NUBE — RESULTADO HORIZONTAL LAB V01 R64 — 2026-10-05
+
+## Backup previo
+- Ruta: `experimentos/backups/HANDOFF_MAESTRO_TECNICAS_HEAVY_2026-10-05_PRE_PASO_R64_RESULT_UPDATE.md`
+- Commit: `ebe6f7597a5444bed99ed1fc4fa4d7f9e5d8b524`
+
+## Artefacto recibido
+- `PASO_NUBE_HORIZONTAL_LAB_V01_RESULTS.zip`
+- SHA-256: `be79f711505c3ee1f333a8b53972708af8c4b733c0b1ff286216782f3321e3b0`
+- Tamaño aproximado: 2.57 MB
+- 17 archivos.
+- `PACKAGE_MANIFEST.json`: 16/16 entradas verificadas por hash y tamaño.
+- `NUMERIC_CONTROL_GATE = PASS`
+- Error máximo del control histórico: `2.22e-16`.
+
+## Resultado principal
+`HORIZONTAL_VIABLE_SET_R64.status = NO_MULTI_OPTION_HORIZONTAL_SET_YET`
+
+No hubo ninguna variante horizontalmente válida en V01.
+
+### F1_CONTROL
+- utility_mean: `0.516458`
+- cross_gap: `-0.035385`
+- material disadvantages: `303/476`
+- regret: `0.052311`
+- polarization: `0.042843`
+- distance: `0.107143`
+- falla por gap transversal y por máximo gap de etapa.
+
+### NUBE_AFILADA — mejor punto de partida
+Parámetros:
+- Qi 6
+- EVA inicial 37
+- EVA por mejora 6
+- response precision 5
+- response crit 4
+- eff flat -1
+- eff mult 0.95
+
+Resultados:
+- utility_mean: `0.523593`
+- cross_gap: `-0.029418`
+- material disadvantages: `263/476`
+- regret: `0.069659`
+- polarization: `0.069060`
+- distance: `0.238095`
+- 0 pares hermanos universalmente dominados.
+- no queda dominada por otra variante.
+- **sólo falla el gate global `abs_cross_gap_mean <= 0.020`.**
+- máximo gap por etapa queda dentro del gate (`~0.03944`).
+
+Conclusión:
+`NUBE_AFILADA` es el ancla para el siguiente diseño, pero NO está aprobada todavía.
+
+### NUBE_PURA
+- utility_mean: `0.523480`
+- cross_gap: `-0.029459`
+- regret: `0.077636`
+- falla además en LII y regret.
+- no preferir frente a NUBE_AFILADA.
+
+### Resto
+CONTRAGOLPE, FLUJO_CONTINUO, IMPULSO_NUBE, LIGEREZA y RESPUESTA_PRECISA quedan materialmente por debajo o dominadas por otra variante.
+TRIPLE_EQUILIBRIO sigue débil y además excede regret/distance.
+
+## Decisión de continuidad
+**NO ejecutar R256 todavía.**
+
+Motivo:
+R64 ya muestra que ninguna variante V01 entra al rango horizontal. Aumentar réplicas sólo confirmaría con más precisión una insuficiencia de diseño conocida.
+
+Próximo paso:
+`PASO_NUBE_HORIZONTAL_LAB_V02`
+
+Objetivo:
+- partir de NUBE_AFILADA;
+- mantener las otras 14 técnicas V0.2 congeladas;
+- no reabrir Optuna/NSGA-II;
+- introducir un refuerzo mínimo de base/identidad para Paso;
+- volver a generar varias configuraciones horizontalmente válidas;
+- ninguna opción puede hacer obsoletas a las otras;
+- R256 sólo después de obtener 2–4 supervivientes R64 reales.
+
+Estado nuevo:
+`PASO_NUBE_V01_NO_SURVIVORS_V02_DESIGN_REQUIRED`
+
+## Regla importante
+No bajar el gate sólo para hacer pasar una candidata.
+El objetivo sigue siendo corregir la técnica, no adaptar el criterio al resultado.
