@@ -1,4 +1,4 @@
-"""Intra-species monster variance v0.3 — LAB prototype.
+"""Intra-species monster variance v0.4 — LAB prototype.
 
 Defensive and offensive axes roll independently inside measured envelopes.
 Rare convergence is classified as Mutante (<1%) with x1.5 loot and XP.
@@ -101,18 +101,30 @@ def selfcheck(samples=50000):
         assert rate<CONFIG["mutant"]["maximum_incidence"],(species_id,rate)
 
     # explicit offensive variance guards
-    assert len(CONFIG["species"]["rata_qi"]["attacks"]["basic_damage"]["ladder"])>1
+    assert CONFIG["species"]["rata_qi"]["attacks"]["basic_damage"]["ladder"]==["2d4+3"]
     assert len(CONFIG["species"]["avispa_jade"]["attacks"]["poison_ticks"]["ladder"])>1
     assert len(CONFIG["species"]["serpiente_qi"]["attacks"]["poison_damage"]["ladder"])>1
     assert len(CONFIG["species"]["lobo_espiritual"]["attacks"]["technique_direct_damage"]["ladder"])>1
     assert len(CONFIG["species"]["mono_pildoras"]["attacks"]["basic_damage"]["ladder"])>1
     assert len(CONFIG["species"]["mono_pildoras"]["attacks"]["technique_direct_damage"]["ladder"])>1
-    assert CONFIG["species"]["mono_pildoras"]["fixed_technique"]["qi_drain"]==5
+    assert CONFIG["species"]["mono_pildoras"]["fixed_technique"]["qi_drain"]==6
+    assert CONFIG["species"]["lobo_espiritual"]["fixed_technique"]["cadence"]==4
     for sid,spec in CONFIG["species"].items():
         for key in CONFIG["variable_stats"]:
             assert spec["upper_envelope"][key] >= spec["base"][key],(sid,key)
 
-    print("PASS: defensive and offensive individual variance stays inside measured envelopes")
+    frozen_bases={
+        "rata_qi":{"hp":45,"defense":2,"evasion":0,"precision":84,"tenacity":0},
+        "serpiente_qi":{"hp":57,"defense":0,"evasion":11,"precision":94,"tenacity":5},
+        "avispa_jade":{"hp":42,"defense":2,"evasion":22,"precision":102,"tenacity":7},
+        "mono_pildoras":{"hp":59,"defense":2,"evasion":28,"precision":91,"tenacity":12},
+        "lobo_espiritual":{"hp":53,"defense":1,"evasion":12,"precision":100,"tenacity":20},
+    }
+    for sid,expected in frozen_bases.items():
+        for key,value in expected.items():
+            assert CONFIG["species"][sid]["base"][key]==value,(sid,key,CONFIG["species"][sid]["base"][key],value)
+
+    print("PASS: v0.4 bases match frozen LI T0 and every upper stat stays >= floor")
     print("PASS: Mutante incidence <1%; loot and XP multipliers are exactly 1.5")
     print(json.dumps(rates,ensure_ascii=False,sort_keys=True))
 
