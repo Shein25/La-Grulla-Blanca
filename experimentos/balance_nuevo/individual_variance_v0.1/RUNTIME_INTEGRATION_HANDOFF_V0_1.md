@@ -90,3 +90,15 @@ Para cualquier experimento, benchmark, gate, notebook o paquete de resultados pr
 - no implica tocar `main`, merge ni runtime canónico.
 
 Motivo: el flujo del usuario presenta un límite práctico de **1 MB para importación** en algunas interfaces. Colab queda como vía por defecto para artefactos que superen ese límite.
+
+
+### Regla de rutas por backend
+
+Decisión humana registrada: 2026-10-06.
+
+- Notebook **Google Colab**: usar únicamente rutas relativas o rutas bajo `/content/...`.
+- Notebook **Kaggle**: usar únicamente rutas bajo `/kaggle/input/...` y `/kaggle/working/...` cuando corresponda.
+- Prohibido entregar un notebook Colab que contenga rutas `/kaggle/...`.
+- Prohibido asumir que Colab resolverá mounts o paths de Kaggle.
+- Si se mantiene una misma lógica para ambos backends, separar explícitamente los launchers/configuración de paths por backend.
+- Validar antes de entregar: grep/check automático de rutas incompatibles con el backend objetivo.
