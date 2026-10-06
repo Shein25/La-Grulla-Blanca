@@ -131,3 +131,30 @@ Nota de autoridad T2:
 - la arquitectura poblacional vigente define T2 = RECONOCIMIENTO / memoria persistente / anticipación elegible;
 - el contrato histórico de Rata R2_SHORT conserva identidad útil, pero sus referencias T1 +40/CD5 son obsoletas frente al T1 final +70/CD6;
 - por tanto T2 debe revalidarse sobre `T1_LI_FINAL_FREEZE_2026-10-06`, sin transplantar numeración vieja.
+
+
+---
+
+## Estándar UI Colab — panel único
+
+Decisión humana / corrección visual: 2026-10-06.
+
+Los notebooks Colab de experimentos pesados no deben usar `tqdm.write()` ni salidas auxiliares que fuercen re-render de una barra activa.
+
+Estándar desde T3:
+- un único panel actualizable mediante `IPython.display(..., display_id=True)` / `update_display`;
+- una sola barra visual;
+- ancho compacto;
+- especie/fase actual;
+- progreso n/total y porcentaje;
+- CPU por worker o CPU total resumida;
+- RAM;
+- peleas/s;
+- ETA;
+- último checkpoint;
+- errores/issues;
+- no imprimir telemetría repetitiva debajo de la barra.
+
+Objetivo: evitar barras duplicadas/fantasma propias del render de `tqdm` en Google Colab.
+
+La telemetría y checkpoints no cambian; sólo cambia la presentación.
