@@ -85,3 +85,20 @@ preferir el más simple/coherente y documentar la equivalencia efectiva.
 - 0 rutas Kaggle.
 
 No ratificación automática.
+
+
+## Paquete Colab preparado
+
+Artefacto:
+`COLAB_LI_MONSTER_T4_COOLDOWN_FOCAL_V02.zip`
+
+- ZIP SHA-256: `f571c7283baa909b9a9e4c69dbef9cde78b9403dc1339da8af09ec5c76573878`
+- Notebook SHA-256: `3e050516d91fe45efa0b531e84bdd2394187ff422112908558c7bb47c4dfffd4`
+- Runner SHA-256: `7ce941bdf743b81bc9b8f188c7f7cc871b0b92d796cc449acfb2e85607fbb998`
+- notebook válido `nbformat 4`;
+- 294.400 combates previstos;
+- 0 imports tqdm;
+- 0 rutas Kaggle;
+- panel único coloreado;
+- Acechante C20 con semántica temporal corregida;
+- no ratificación automática.
