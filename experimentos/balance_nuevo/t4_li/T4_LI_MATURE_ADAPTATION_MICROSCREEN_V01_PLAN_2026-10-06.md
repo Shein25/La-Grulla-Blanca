@@ -196,3 +196,22 @@ T4 V01:
 - exporta métricas suficientes para comparar el baseline corregido con T3 V03;
 - no reabre T0–T3 automáticamente;
 - si la regresión fuese material, se abre únicamente un hotfix de validación de capas congeladas.
+
+
+## Paquete Colab preparado
+
+Artefacto:
+`COLAB_LI_MONSTER_T4_MATURE_ADAPTATION_MICROSCREEN_V01.zip`
+
+- ZIP SHA-256: `d8d86fcbb2f2bc4d976d0a3e987f217f5fc73651405372402b943fcd4ce17a37`
+- Notebook SHA-256: `d675cd3a754f98183270a0307805f79b638666b3d4cf3a85232ee2b26eb2291f`
+- Runner SHA-256: `5d6b0c20abed4f39a9009e385167aa7af86c167bec33c502dcf8731a509a69e9`
+- 220.800 combates previstos.
+- `nbformat 4` válido.
+- 0 imports tqdm.
+- 0 rutas Kaggle.
+- panel único coloreado.
+- baseline T3 congelado incluido.
+- corrección Acechante temporal incluida y auditada mediante `max_abs_precision_drift`.
+
+No ratifica T4 automáticamente.
