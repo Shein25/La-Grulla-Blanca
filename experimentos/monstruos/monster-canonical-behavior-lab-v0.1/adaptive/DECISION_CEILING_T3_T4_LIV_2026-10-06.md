@@ -1,4 +1,4 @@
-# Decisión — T3/T4 reservados a LianQi IV
+# SUPERSEDED — NO USAR COMO GATE\n\n> **Supersedido el 2026-10-06** por `DECISION_LIBERTAD_SOBREEXTENSION_ADAPTATIVA_2026-10-06.md`. T3/T4 siguen pensados principalmente para rejugabilidad avanzada/LIV, pero no están prohibidos antes si el jugador logra sostener presión válida.\n\n# Decisión — T3/T4 reservados a LianQi IV
 
 **Fecha:** 2026-10-06  
 **Estado:** SELECCIONADO / AUTORIDAD HUMANA
