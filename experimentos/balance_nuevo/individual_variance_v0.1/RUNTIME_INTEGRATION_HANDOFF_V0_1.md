@@ -213,3 +213,47 @@ El estándar `single-panel` de Colab se mantiene, pero la barra de progreso debe
 - evitar `tqdm.write()` y salidas repetitivas.
 
 La preferencia es visual; no cambia seeds, workers, checkpoints ni semántica experimental.
+
+
+---
+
+## T3 LI — cierre final 2026-10-06
+
+Estado: **T3_LI_FINAL_FREEZE_2026-10-06**.
+
+Contrato:
+`experimentos/balance_nuevo/t3_li/T3_LI_FINAL_CONTRACT_V1.json`
+
+Freeze:
+`experimentos/balance_nuevo/t3_li/T3_LI_FINAL_FREEZE_2026-10-06.md`
+
+Gate final:
+- `LI_MONSTER_T3_FINAL_DUAL_STAGE_GATE_V03`;
+- review SHA-256 `ba9c8ef20c5155af0064f337b7eda7ff6cafcc79da8900e303a432849a0461d2`;
+- 294.400 combates;
+- LI_OVERREACH + LIV_STRUCTURAL;
+- manifest 7/7;
+- false counter = 0;
+- degenerate loops = 0;
+- `issues=[]`.
+
+Counters congelados:
+- Rata: `R1_INSTANCE_BASIC`;
+- Serpiente: `S1_INSTANCE_POISON_TICK`;
+- Avispa: `A2_INSTANCE_POISON_TICK`;
+- Mono: `M2_INSTANCE_MANOTAZO_PACKET`;
+- Lobo: `L2_INSTANCE_EMBOSCADA_DAMAGE`.
+
+Regla causal:
+T3 exige predicción T2 confirmada + T1 activo + evidencia de que T1 cambió el resultado defensivo. Fallos naturales no cuentan.
+
+El siguiente frente permitido es **T4 / ADAPTACIÓN MADURA**.
+
+Autoridad histórica recuperada:
+- Rata conserva la identidad `Mordisco Frenético`, físico/instintivo/multi-hit;
+- candidato histórico: `INSTANCE_BASIC ×1.0 + follow-up 2d4 ×0.50`, rolls independientes, CD5, REPLACE_BASIC_WHEN_READY;
+- esos números fueron calibrados contra T1/T2/T3 antiguos y deben revalidarse sobre los freezes finales actuales;
+- no existe T5;
+- Serpiente/Avispa/Mono/Lobo no tienen T4 final recuperado: cualquier T4 para ellos será hipótesis LAB explícita, no autoridad histórica.
+
+T4 no puede reabrir T0–T3.
