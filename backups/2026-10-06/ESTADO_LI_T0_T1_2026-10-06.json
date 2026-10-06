@@ -1,0 +1,37 @@
+{
+  "status": "HANDOFF_READY",
+  "date": "2026-10-06",
+  "repo": "Shein25/La-Grulla-Blanca",
+  "balance_branch": "experiment/li-monster-t0-final-t1-lab-v0.1",
+  "handoff_parent_head": "6a3816e93653aefae099a671f6924fe22c5a8dbf",
+  "adaptive_branch": "experiment/monster-adaptive-survival-lab-v0.1",
+  "adaptive_head": "ff72a5f4827a8c63e7516ff92a673b2ffff83e04",
+  "t0": {
+    "status": "FROZEN",
+    "review_sha256": "77337e8ee77dfcd53ca1e679998d158cf5d2f8de8b6f744fc5e4c426bb3bf542",
+    "fights": 3571200
+  },
+  "overreach_policy": "ALLOWED_NATURAL_LIMIT_BY_COMBAT_AND_DECAY",
+  "pressure_thresholds": {
+    "T1": 20,
+    "T2": 45,
+    "T3": 70,
+    "T4": 90
+  },
+  "historical_floors": {
+    "T0": "T0",
+    "T1": "T1",
+    "T2": "T1",
+    "T3": "T2",
+    "T4": "T3"
+  },
+  "t1_v02": {
+    "status": "READY_FOR_REVIEW_RESULTS",
+    "zip_sha256": "08feef921d84b5c612dde8baf7110b831649971f352ba75a95d09197758ed93a",
+    "notebook_sha256": "2fedfe163fae1830e657b23701b3e4a7ff6f5961db54762f6239a58fd3a46bb4",
+    "runner_sha256": "46e81974468ba915b724962694a6760ab2ae617b1d8c0663e4a7a20f67aa0f48",
+    "v01": "OBSOLETE"
+  },
+  "next_input": "LI_MONSTER_T1_SURVIVAL_GENERAL_V02_REVIEW.zip",
+  "next_action": "AUDIT_T1_V02_REVIEW_THEN_PREPARE_SINGLE_EXHAUSTIVE_T1_GATE"
+}
