@@ -47,11 +47,10 @@ T('player below native stage receives base-only behavior, no adaptive tier',()=>
   }
 });
 
-T('LianQi III remains capped at T2 for native LI species',()=>{
+T('player stage does not artificially block adaptive progression beyond expected comfort',()=>{
   const c3=adaptiveCapabilityCeiling('rata_qi',3);
-  assert.equal(c3.tier,2);
-  assert.ok(c3.capabilities.includes('PERSISTENT_PATTERN_MEMORY'));
-  assert.equal(c3.capabilities.includes('SPECIES_COUNTER_BRANCH_ELIGIBLE'),false);
+  assert.equal(c3.tier,3);
+  assert.ok(c3.capabilities.includes('SPECIES_COUNTER_BRANCH_ELIGIBLE'));
 });
 
 T('outgrowing native stage raises capability ceiling without synthesizing stats',()=>{
