@@ -31,6 +31,13 @@
       "timeout_rate_max": 0,
       "issues": [],
       "difficulty_rule": "LOW_PLAYER_WIN_RATE_AGAINST_MUTANTS_IS_EXPECTED_AND_NONBLOCKING"
+    },
+    "suffix_contract": {
+      "status": "HUMAN_RATIFIED_FROZEN_FOR_T2_LAB",
+      "contract": "suffix_lab_v0.1/MUTANT_SUFFIX_CONTRACT_V1.json",
+      "frozen_on": "2026-10-06",
+      "final_gate": "LI_MUTANT_SUFFIX_FINAL_FREEZE_GATE_V03",
+      "review_sha256": "bc4ef362e77d469aef9ea3af19a50bb686a1e01b3b2ab5a042e9c451b22adfe8"
     }
   },
   "axis_distribution": "UNIFORM_0_1",
@@ -358,6 +365,9 @@
     "t1_compatibility_gate_required_before_runtime": true,
     "no_player_winrate_floor_for_mutants": true,
     "hard_fail_only_on_invalidity_identity_or_runtime_breakage": true,
-    "t1_compatibility_gate_passed": true
+    "t1_compatibility_gate_passed": true,
+    "suffix_system_frozen_for_t2_lab": true,
+    "suffix_derives_from_q_axes": true,
+    "no_suffix_extra_rng": true
   }
 }
