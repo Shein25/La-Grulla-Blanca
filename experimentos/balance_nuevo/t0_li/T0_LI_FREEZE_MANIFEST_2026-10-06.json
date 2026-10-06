@@ -1,0 +1,14 @@
+{
+  "status": "T0_LI_FROZEN",
+  "date": "2026-10-06",
+  "source_review_sha256": "77337e8ee77dfcd53ca1e679998d158cf5d2f8de8b6f744fc5e4c426bb3bf542",
+  "registry_commit": "f53edd00dd894cb3534df0b8544543dc074f6acb",
+  "profiles": {
+    "rata_qi": {"hp":45,"precision":84,"evasion":0,"defense":2,"basic_damage":"2d4+3"},
+    "serpiente_qi": {"hp":57,"precision":94,"evasion":11,"defense":0,"basic_damage":"1d2+2","technique":{"cadence":2,"poison":{"damage":"1d2+2","ticks":3}}},
+    "avispa_jade": {"hp":42,"precision":102,"evasion":22,"defense":2,"basic_damage":"1d2+1","technique":{"cadence":2,"poison":{"damage":"1d3+2","ticks":2}}},
+    "mono_pildoras": {"hp":59,"precision":91,"evasion":28,"defense":2,"basic_damage":"1d2+3","technique":{"cadence":2,"direct_damage":"1d2+3","qi_drain":6}},
+    "lobo_espiritual": {"hp":53,"precision":100,"evasion":12,"defense":1,"basic_damage":"2d4+2","technique":{"cadence":4,"direct_damage":"2d6+1"}}
+  },
+  "adaptive_ceiling": {"LianQi_I":"T1","LianQi_II":"T2","LianQi_III":"T2","LianQi_IV":"T4"}
+}
