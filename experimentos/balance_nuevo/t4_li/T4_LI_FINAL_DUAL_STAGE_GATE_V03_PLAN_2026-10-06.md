@@ -73,3 +73,22 @@ Total previsto: **294.400 combates**.
 Si V03 cierra limpio, T4 puede pasar a freeze humano y se cierra la cadena T0→T4.
 
 No ratificación automática.
+
+
+## Paquete Colab preparado
+
+Artefacto:
+`COLAB_LI_MONSTER_T4_FINAL_DUAL_STAGE_GATE_V03.zip`
+
+- ZIP SHA-256: `7907acbcb8ad218b2a59c99b4db25a07960804d886d53a50ee4be2e2100b660b`
+- Notebook SHA-256: `5d7cffdeb676a30c4380a90e919688c48605717f704d002ea55ec0b72edb7825`
+- Runner SHA-256: `b128ea9abcb8b7103da82547fc5fd4def5020547a2146a6d76e1821e96222191`
+- notebook válido `nbformat 4`;
+- 294.400 combates previstos;
+- 0 imports tqdm;
+- 0 rutas Kaggle;
+- panel único HTML coloreado;
+- workers automáticos;
+- checkpoints por etapa/especie.
+
+No ratifica T4 automáticamente.
