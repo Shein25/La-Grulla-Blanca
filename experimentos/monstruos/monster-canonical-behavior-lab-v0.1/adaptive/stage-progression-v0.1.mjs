@@ -118,7 +118,11 @@ export function adaptiveCapabilityCeiling(mobId,playerStage){
       ...ADAPTIVE_BASE_ONLY
     });
   }
-  const delta=Math.min(3,relation.delta);
+  // Human authority 2026-10-06:
+  // T3/T4 are Arc 1 replayability tiers reserved for LianQi IV.
+  // Before LianQi IV the adaptive learning ceiling cannot exceed T2.
+  const maxDelta=playerStage<4?1:3;
+  const delta=Math.min(maxDelta,relation.delta);
   return Object.freeze({
     ...relation,
     ...ADAPTIVE_CAPABILITY_BY_STAGE_DELTA[delta]
