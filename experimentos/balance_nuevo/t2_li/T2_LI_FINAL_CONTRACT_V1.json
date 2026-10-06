@@ -1,0 +1,65 @@
+{
+  "schema_version": "li-t2-recognition-v1.0",
+  "status": "HUMAN_RATIFIED_FROZEN",
+  "frozen_on": "2026-10-06",
+  "authority": {
+    "t0": "T0_LI_EXHAUSTIVE_PASS_2026-10-06",
+    "t1": "T1_LI_FINAL_FREEZE_2026-10-06",
+    "variance": "monster-individual-variance-v0.4",
+    "mutant_suffix": "MUTANT_SUFFIX_CONTRACT_V1",
+    "final_gate": "LI_MONSTER_T2_FINAL_ALL_FIVE_GATE_V03",
+    "review_sha256": "d140b9e3fafe744df2b512df3ba15bf80184deea1d97eb54fa92161ae2ab0e72",
+    "represented_combat_fights": 147200
+  },
+  "identity": "RECOGNITION",
+  "recognition": {
+    "memory_window": 2,
+    "repeated_same_category_required": 2,
+    "count_results": [
+      "EFECTIVA"
+    ],
+    "observable_categories": [
+      "PLAYER_BASIC",
+      "PLAYER_UNITARGET_TECHNIQUE",
+      "PLAYER_AOE_TECHNIQUE",
+      "PLAYER_DEFENSIVE_TECHNIQUE"
+    ],
+    "forbidden_inputs": [
+      "player.root",
+      "player.build_id",
+      "future RNG",
+      "hidden technique metadata"
+    ]
+  },
+  "anticipation": {
+    "hp_ratio_lte": 0.4,
+    "received_hit_ratio_gte": 0.15,
+    "preserve_due_canonical_technique": true,
+    "t1_natural_trigger_priority": true
+  },
+  "semantics": {
+    "t2_adds_new_active_ability": false,
+    "t2_reuses_frozen_t1_survival": true,
+    "t1_magnitude_cooldown_charges_unchanged": true,
+    "no_universal_stat_scaling": true,
+    "adaptive_tier_applies_after_individual_variance_and_suffix": true
+  },
+  "t1_natural_trigger": {
+    "hp_ratio_lte": 0.3,
+    "received_hit_ratio_gte": 0.2
+  },
+  "species": [
+    "rata_qi",
+    "serpiente_qi",
+    "avispa_jade",
+    "mono_pildoras",
+    "lobo_espiritual"
+  ],
+  "guards": {
+    "no_root_build_inspection": true,
+    "no_new_clock_timer": true,
+    "no_t3_t4_execution": true,
+    "no_player_winrate_target": true,
+    "no_canonical_runtime_activation": true
+  }
+}
