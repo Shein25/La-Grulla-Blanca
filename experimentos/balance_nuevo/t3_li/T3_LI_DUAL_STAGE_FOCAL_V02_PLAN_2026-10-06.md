@@ -99,3 +99,19 @@ Google Colab:
 - 0 rutas Kaggle;
 - checkpoints por especie y etapa;
 - workers automáticos.
+
+
+## Paquete Colab preparado
+
+Artefacto:
+`COLAB_LI_MONSTER_T3_DUAL_STAGE_FOCAL_V02.zip`
+
+- ZIP SHA-256: `0b8acb190bd1dce8c9778d5d84bec5bfd6db594ef06f8cdbcbecaa38f7f72aa8`
+- Notebook SHA-256: `1d9d7438e138565cc2473de305a3e909ec632f5e3bca54f17660e4a0f21a40a1`
+- Runner SHA-256: `a956a33ef7bd6105469b11062e8c06ccd619d4ef99add27e167f85cc3c405a6b`
+- combates previstos: 176.640;
+- panel único;
+- 0 imports tqdm;
+- 0 rutas Kaggle;
+- notebook nbformat 4 válido;
+- runner compila.
