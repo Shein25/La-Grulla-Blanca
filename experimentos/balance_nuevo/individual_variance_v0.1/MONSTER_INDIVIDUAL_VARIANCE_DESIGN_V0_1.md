@@ -1,89 +1,68 @@
-# Variabilidad intraespecie de monstruos — v0.3
+# Variabilidad intraespecie de monstruos — v0.4
 
-**Estado:** DISEÑO LAB / NO RUNTIME CANON TODAVÍA
+**Fecha de rebase:** 2026-10-06  
+**Estado:** HUMAN_RATIFIED_REBASED_T0_T1_COMPAT_PENDING
 
 ## Objetivo
 
-Mantener un único `species_id` por criatura y permitir que dos individuos de
-la misma especie tengan estadísticas distintas sin inflar el catálogo.
+Mantener un único `species_id` por criatura y permitir variabilidad individual defensiva y ofensiva sin inflar el catálogo.
 
-El T0 READY es el **piso natural**. No existe variación por debajo del T0 en
-esta capa.
+La autoridad actual es:
 
-La variación individual incluye tanto ejes defensivos como **ofensivos**.
+- T0 LI congelado: `T0_LI_EXHAUSTIVE_PASS_2026-10-06`;
+- T1 LI congelado: `T1_LI_FINAL_FREEZE_2026-10-06`.
 
-## Tiradas independientes
+El T0 congelado es el **piso natural absoluto**. Ninguna instancia normal ni Mutante puede aparecer por debajo de él.
 
-Cada eje variable recibe su propia tirada `q_axis ∈ [0,1]` una sola vez al
-crear la instancia.
+## Rebase 2026-10-06
 
-Ejes físicos/estadísticos:
+La v0.3 fue validada antes del rebalance final de T0/T1 y contenía pisos antiguos. La v0.4 aplica esta regla sin inventar valores:
+
+1. el nuevo T0 congelado reemplaza el piso histórico de cada eje;
+2. un techo histórico se conserva sólo si todavía es >= al nuevo piso;
+3. si el viejo techo quedó por debajo del nuevo T0, ese eje queda colapsado al T0 hasta que exista nueva evidencia;
+4. en escaleras ofensivas se eliminan expresiones por debajo del ataque T0 congelado;
+5. cadencia, QI_DRAIN y demás mecánicas identitarias se sincronizan con el T0 congelado.
+
+Esto conserva únicamente evidencia experimental ya existente.
+
+## Distribución
+
+Cada eje realmente variable recibe una tirada independiente `q_axis ∈ [0,1]` una vez al crear la instancia.
 
 ```text
-HP
-DEF
-EVA
-PREC
-TEN
+stat_instance = round(T0_floor + q_axis * (measured_ceiling - T0_floor))
 ```
 
-Ejes ofensivos:
+La distribución sigue siendo `UNIFORM_0_1`.
+
+Ejes físicos posibles:
+
+```text
+HP / DEF / EVA / PREC / TEN
+```
+
+Ejes ofensivos posibles:
 
 ```text
 daño básico
-daño directo de técnica, cuando exista
-daño DOT, cuando exista
-duración/ticks del DOT, cuando exista evidencia experimental
+daño directo de técnica
+daño DOT
+ticks de DOT cuando exista evidencia
 ```
 
-Para stats enteros:
-
-```text
-stat_instance = round(base + q_axis * (ceiling - base))
-```
-
-Para expresiones de dados se usan **escaleras discretas formadas únicamente
-por expresiones ya observadas en los experimentos**.
-
-Por tanto un individuo puede ser más resistente sin pegar más, pegar más sin
-ser más resistente, o reunir ambas condiciones.
-
-## Qué NO varía por azar
-
-La variación individual no cambia la identidad mecánica de la especie.
-
-Se mantienen fijos:
-
-- `resource_model`;
-- Control base;
-- crítico y multiplicador base;
-- nombre/tipo de técnica;
-- mecánicas de técnica;
-- cadencia;
-- QI_DRAIN;
-- probabilidades de control;
-- cognición/social AI;
-- adaptación T1–T4.
-
-Ejemplo: un Mono puede pegar más fuerte, pero no recibe aleatoriamente más
-`QI_DRAIN` ni una cadencia distinta sólo por ser un individuo fuerte.
+Un eje cuyo techo haya colapsado al T0 deja temporalmente de contar como eje variable.
 
 ## Mutante
-
-La coincidencia excepcional de tiradas altas es contenido emergente, no un
-error a prevenir.
 
 ```text
 individual_power_score
 = media de q de todos los ejes que realmente varían
 ```
 
-Esto incluye ejes ofensivos.
+El umbral depende del número efectivo de ejes y mantiene una cola teórica cercana a 0,75%, con guardia <1%.
 
-El umbral depende de la cantidad de ejes variables y se calibra para una cola
-teórica de aproximadamente **0,75%**, siempre con guardia de **<1%**.
-
-Cuando cruza el umbral:
+Al superar el umbral:
 
 ```text
 suffix = "Mutante"
@@ -91,79 +70,118 @@ loot_multiplier = 1.5
 xp_multiplier = 1.5
 ```
 
-No se crea un nuevo `species_id`.
+No se crea otro `species_id`.
 
-## Fuentes ofensivas ya medidas
+## Criterio de dificultad ratificado
 
-### Rata
+Un Mutante es contenido raro y excepcional.
 
-No tiene técnica. Varía el daño básico dentro de expresiones ya observadas.
+**No existe un piso mínimo de probabilidad de victoria del jugador frente a Mutantes.**
 
-### Avispa
+Que la probabilidad de victoria caiga mucho respecto del individuo normal o T0/T1 es esperable y no constituye por sí mismo un fallo de balance.
 
-Puede variar:
+El gate de compatibilidad debe fallar por problemas mecánicos, no por ser difícil:
 
-- daño básico;
-- daño de veneno;
-- ticks del veneno.
+- valores inválidos o por debajo de T0;
+- identidad mecánica alterada;
+- NaN/Inf;
+- loops, timeouts o soft-locks;
+- procs imposibles/inconsistentes;
+- Mutantes sistemáticamente más fáciles por un bug;
+- tier adaptativo concedido por la condición Mutante;
+- modificación del registro canónico.
 
-La cadencia y la mecánica `POISON_DOT` permanecen fijas.
+## Identidad fija
 
-### Serpiente
+Nunca se sortea:
 
-Puede variar:
+- `resource_model`;
+- Control base;
+- crítico/multiplicador base;
+- nombre y tipo de técnica;
+- mecánicas de técnica;
+- cadencia;
+- QI_DRAIN;
+- probabilidad de control;
+- cognición/social AI;
+- reglas T1–T4.
 
-- daño básico si existen expresiones distintas medidas;
-- daño de veneno;
-- ticks del veneno.
+Ser Mutante no concede T1/T2/T3/T4 ni modifica `maxTierReached`.
 
-La cadencia y `POISON_DOT` permanecen fijas.
+## Envolventes rebased
 
-### Lobo
+### Rata Qi
 
-Puede variar:
+T0: HP45 / DEF2 / EVA0 / PRE84 / TEN0 / básico `2d4+3`.
 
-- daño básico;
-- daño directo de `Emboscada de las Tres Colas`.
+- HP y DEF: colapsados al T0.
+- básico: colapsado a `2d4+3`; todas las expresiones históricas eran inferiores al nuevo T0.
+- EVA: techo medido 19.
+- PRE: techo medido 104.
+- TEN: techo medido 1.
 
-La cadencia permanece fija.
+### Serpiente Qi
 
-### Mono
+T0: HP57 / DEF0 / EVA11 / PRE94 / TEN5.
 
-T0 ratificado: `grid 43`.
+- HP: colapsado a 57.
+- DEF/EVA/PRE/TEN: conservan techos medidos 3/30/106/32.
+- básico fijo `1d2+2`.
+- veneno conserva escalera medida desde `1d2+2` hasta candidatos superiores y ticks 3→4.
+- cadencia 2 fija.
 
-Su variación incluye:
+### Avispa Jade
 
-- DEF/EVA/PREC dentro de envolventes medidas;
-- daño básico;
-- daño directo de `Manotazo al Dantian`.
+T0: HP42 / DEF2 / EVA22 / PRE102 / TEN7.
 
-HP=34 y TEN=12 no se elevan en v0.3 porque no existe un techo medido superior
-compatible con el piso ratificado. `QI_DRAIN=5` y cadencia 2 permanecen fijos
-como identidad. El techo de supervivencia usa grid 48 y los techos ofensivos
-usan candidatos del search amplio; sus combinaciones cruzadas son LAB-only
-hasta ser validadas por Monte Carlo.
+- HP/DEF: colapsados al T0.
+- EVA/PRE/TEN: techos 55/103/8.
+- básico, veneno y ticks conservan escaleras medidas que parten del T0 actual.
+- cadencia 2 fija.
 
-## Separación con adaptación
+### Mono Píldoras
+
+T0: HP59 / DEF2 / EVA28 / PRE91 / TEN12.
+
+- HP/TEN: colapsados al T0.
+- DEF/EVA/PRE: techos 3/44/111.
+- básico y daño directo conservan escaleras medidas.
+- `QI_DRAIN=6` fijo.
+- cadencia 2 fija.
+
+### Lobo Espiritual
+
+T0: HP53 / DEF1 / EVA12 / PRE100 / TEN20.
+
+- EVA/PRE/TEN: colapsados al T0 donde el techo histórico no lo superaba.
+- HP/DEF: techos 57/5.
+- básico y daño de Emboscada conservan escaleras medidas.
+- cadencia de Emboscada = **4**, fija.
+
+## Orden de aplicación
 
 ```text
 species T0 READY
-→ tiradas individuales defensivas + ofensivas
-→ posible sufijo Mutante
-→ stats/ataques de instancia
-→ adaptation tier T0–T4
+→ tiradas individuales
+→ posible Mutante
+→ perfil individual
+→ tier adaptativo T0/T1/...
 → combate
 ```
 
-Ser Mutante no concede T1/T2/T3/T4 ni altera `maxTierReached`.
+El T1 congelado se aplica **después** de resolver la instancia individual.
 
-## Guardia antes de runtime
+## Guardia previa a runtime
 
-1. ninguna stat o ataque cae por debajo del T0;
-2. ningún valor supera una envolvente experimental declarada;
-3. la incidencia Mutante permanece <1%;
-4. `loot_multiplier=1.5` y `xp_multiplier=1.5` sólo se aplican a Mutantes;
-5. las mecánicas identitarias no se sortean;
-6. normales y Mutantes se validan por raíz/loadout;
-7. los cinco LianQi I se prueban conjuntamente antes de activar runtime.
+Antes de activar esta v0.4:
 
+1. selfcheck de incidencia y envelopes;
+2. incidencia Mutante <1%;
+3. ningún eje/ataque por debajo del T0 congelado;
+4. normales y Mutantes probados con T1 congelado;
+5. cero timeouts/NaN/soft-lock;
+6. mecánicas identitarias intactas;
+7. no se exige una probabilidad mínima de victoria contra Mutantes;
+8. no escribir ni mutar el registro canónico.
+
+Hasta que pase ese gate, la configuración permanece `T1_COMPAT_PENDING`.
