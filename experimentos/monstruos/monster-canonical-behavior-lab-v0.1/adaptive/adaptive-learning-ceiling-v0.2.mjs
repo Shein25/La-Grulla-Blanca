@@ -1,6 +1,6 @@
 import {reconcilePopulationAdaptation} from './adaptive-ecology-milestone-floor-v0.2.mjs';
 
-export const ADAPTIVE_LEARNING_CEILING_STATUS='EXPERIMENTAL_V02_LEARNING_CEILING';
+export const ADAPTIVE_LEARNING_CEILING_STATUS='EXPERIMENTAL_V03_NATURAL_OVERREACH';
 
 export const ADAPTIVE_PRESSURE_THRESHOLDS=Object.freeze({
   T1:20,
@@ -8,14 +8,6 @@ export const ADAPTIVE_PRESSURE_THRESHOLDS=Object.freeze({
   T3:70,
   T4:90,
   MAX:100
-});
-
-const PRESSURE_CAP_BY_CEILING=Object.freeze({
-  0:19,
-  1:44,
-  2:69,
-  3:89,
-  4:100
 });
 
 function tier(v,label){
@@ -37,22 +29,28 @@ export function pressureTierFromPressure(value){
   return 0;
 }
 
+/**
+ * Compatibilidad de API.
+ *
+ * Desde la autoridad humana 2026-10-06 la etapa del jugador NO impone un
+ * hard cap sobre la presión. El ceiling histórico se conserva únicamente como
+ * banda esperada/orientativa. Por eso cualquier ceiling devuelve MAX=100.
+ */
 export function pressureCapForAdaptiveCeiling(ceilingTier){
-  return PRESSURE_CAP_BY_CEILING[tier(ceilingTier,'ceilingTier')];
+  tier(ceilingTier,'ceilingTier');
+  return ADAPTIVE_PRESSURE_THRESHOLDS.MAX;
 }
 
 /**
- * El techo limita aprendizaje real, no sólo manifestación.
+ * Compatibilidad de API: ya no recorta pressure.
  *
- * Consecuencia deliberada:
- * - una población con ceiling T1 no puede almacenar presión de T2/T3/T4;
- * - al subir el jugador de etapa no aparecen tiers "precargados";
- * - hacen falta nuevos eventos válidos para seguir aprendiendo.
+ * Si el jugador consigue producir presión válida más allá de su banda
+ * esperada, la población puede seguir adaptándose. El muro natural es la
+ * dificultad del combate + decay, no una prohibición de etapa.
  */
 export function clampPressureToAdaptiveCeiling({pressure:value,ceilingTier}){
-  const p=pressure(value);
-  const cap=pressureCapForAdaptiveCeiling(ceilingTier);
-  return Math.min(p,cap);
+  tier(ceilingTier,'ceilingTier');
+  return pressure(value);
 }
 
 export function reconcileLearningWithCeiling({
@@ -60,9 +58,9 @@ export function reconcileLearningWithCeiling({
   maxTierReached,
   ceilingTier
 }){
-  const ceiling=tier(ceilingTier,'ceilingTier');
-  const cappedPressure=clampPressureToAdaptiveCeiling({pressure:value,ceilingTier:ceiling});
-  const pressureTier=pressureTierFromPressure(cappedPressure);
+  const expectedTier=tier(ceilingTier,'ceilingTier');
+  const currentPressure=pressure(value);
+  const pressureTier=pressureTierFromPressure(currentPressure);
   const reconciled=reconcilePopulationAdaptation({
     pressureTier,
     maxTierReached,
@@ -70,14 +68,17 @@ export function reconcileLearningWithCeiling({
   });
 
   return Object.freeze({
-    rawPressure:pressure(value),
-    pressure:cappedPressure,
-    pressureWasCapped:cappedPressure!==value,
+    rawPressure:currentPressure,
+    pressure:currentPressure,
+    pressureWasCapped:false,
     pressureTier,
     maxTierReached:reconciled.maxTierReached,
     floorTier:reconciled.floorTier,
     earnedTier:reconciled.effectiveTier,
-    capabilityCeilingTier:ceiling,
-    effectiveAdaptiveTier:Math.min(reconciled.effectiveTier,ceiling)
+    // Campo histórico conservado por compatibilidad. Es ORIENTATIVO, no gate.
+    capabilityCeilingTier:expectedTier,
+    expectedCapabilityTier:expectedTier,
+    effectiveAdaptiveTier:reconciled.effectiveTier,
+    overreachedExpectedBand:reconciled.effectiveTier>expectedTier
   });
 }
