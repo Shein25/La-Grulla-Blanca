@@ -1165,3 +1165,96 @@ Recommended gate:
 
 Do not treat local validation as global balance evidence.
 No main. No merge.
+
+
+---
+
+# PLAYER POWER ENVELOPE LI — FUEGO FIX3 RESULT — 2026-10-06
+
+## Artifact
+- `PLAYER_ENVELOPE_LI_FUEGO_REVIEW_FIX3.zip`
+- SHA-256: `b4f65c18f6d176d4163faa1d5b1c10dab9c9961910df821eab9d93c259a2c2f2`
+- campaign: `PLAYER_POWER_ENVELOPE_LI_V01_FIX3`
+- recipe_hash: `15586b2cfc1aafe2deb5c95988c2b55a5482758770d788a92aaa4c6fc36b9ebc`
+- selection_sha256: `cdd4d6bf9b26fe6920aa8731ec5158409b824d82fe5266d178eddcddd65c3c70`
+
+## Postflight
+PASS:
+- screen expected/observed 48,640 / 48,640;
+- refine expected/observed 458 / 458;
+- SQLite integrity ok;
+- illegal AOE 0;
+- illegal Ulti 0;
+- NaN/Inf 0;
+- package manifest valid.
+
+## R12 exhaustive — signature mean win rates
+- rata_qi: 1.0000 / 1.0000 (DEFENSE_OPEN / UNITARGET_FIRST)
+- serpiente_qi: 0.999829 / 1.000000
+- avispa_jade: 0.999674 / 0.999897
+- mono_pildoras: 0.991571 / 0.989189
+- lobo_espiritual: 0.919459 / 0.906010
+
+Across all 10 contexts:
+- signature-weighted mean win rate ≈ 0.980563;
+- raw-loadout-weighted mean ≈ 0.980594.
+Excluding lobo:
+- signature mean ≈ 0.997520.
+Lobo mean across the two policies:
+- ≈ 0.912735.
+
+## R128 directed — interpretation guard
+R128 is NONREPRESENTATIVE and only validates selected extremes/frontier/reference profiles.
+
+Worst observed refined cells:
+- lobo / UNITARGET_FIRST: 0.734375
+- lobo / DEFENSE_OPEN: 0.781250
+- mono / UNITARGET_FIRST: 0.945312
+- mono / DEFENSE_OPEN: 0.960938
+- avispa / DEFENSE_OPEN: 0.992188
+- avispa / UNITARGET_FIRST: 1.000000
+- serpiente / DEFENSE_OPEN: 0.992188
+- serpiente / UNITARGET_FIRST: 1.000000
+- rata: 1.000000 both policies
+
+The low R12 lobo minima (0.4167 / 0.5000) regress upward under independent R128, confirming that the directed refinement is correctly filtering winner's-curse/noise rather than treating R12 extremes as final truth.
+
+## Reference profiles R128
+NAKED:
+- lobo DEFENSE_OPEN 0.7891
+- lobo UNITARGET_FIRST 0.8359
+- mono 0.9766 / 0.9453
+- rata 1.0 / 1.0
+- serpiente 1.0 / 1.0
+- avispa 0.9922 / 1.0
+
+EXPECTED_STAGE:
+- lobo 0.9531 / 0.9453
+- every other matchup >=0.9922
+
+## Current interpretation
+- No hard wall for Fuego LI.
+- `lobo_espiritual` is the only meaningful LI threat observed for Fuego.
+- Four of five native LI enemies are extremely low-threat under Fuego, including naked/reference profiles.
+- DO NOT rebalance Fuego or monsters from this root alone.
+- Required next evidence: Metal + Agua + Tierra + Viento under the same common_recipe_hash, then cross-root consolidation on the common 48,640-cell grids.
+- If all five roots reproduce the same low-threat pattern, the likely problem is LI enemy pressure, not Fuego-specific power.
+- If Fuego is materially above the other roots under the same signatures/enemies/policies, reopen Fuego balance attribution only then.
+
+## Policy observation
+R12 mean `DEFENSE_OPEN - UNITARGET_FIRST` win-rate:
+- lobo +0.0134
+- mono +0.0024
+- avispa -0.0002
+- serpiente -0.0002
+- rata 0.0000
+
+Defense opening costs ~+6 Qi and ~+1 round in most short matchups; only lobo shows a material survival/WR benefit at the aggregate R12 level.
+
+## Infrastructure caveat
+This successful fresh Fuego run validates the FIX3 first-run path and postflight.
+It does NOT by itself validate interrupted Kaggle Save Version resume.
+Keep resume as a separate smoke gate before relying on it for interrupted heavy campaigns.
+
+Status:
+`LI_FUEGO_FIX3_COMPLETE_AWAITING_OTHER_ROOTS`
