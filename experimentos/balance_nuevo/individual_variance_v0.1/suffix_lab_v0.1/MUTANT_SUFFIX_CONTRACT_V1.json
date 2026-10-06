@@ -1,0 +1,108 @@
+{
+  "schema_version": "mutant-suffix-contract-v1.0",
+  "status": "HUMAN_RATIFIED_FROZEN_FOR_T2_LAB",
+  "frozen_on": "2026-10-06",
+  "authority": {
+    "variance_config": "monster-individual-variance-v0.4",
+    "t0": "T0_LI_EXHAUSTIVE_PASS_2026-10-06",
+    "t1": "T1_LI_FINAL_FREEZE_2026-10-06",
+    "final_gate": "LI_MUTANT_SUFFIX_FINAL_FREEZE_GATE_V03",
+    "review_sha256": "bc4ef362e77d469aef9ea3af19a50bb686a1e01b3b2ab5a042e9c451b22adfe8",
+    "represented_combat_fights": 404480,
+    "natural_spawn_samples": 2500000
+  },
+  "semantics": {
+    "roll_once_per_instance": true,
+    "no_fixed_normal_monster": true,
+    "suffix_rng": false,
+    "suffix_derives_from_same_q_axes": true,
+    "adaptive_tier_applies_after_individualization": true,
+    "mutation_does_not_grant_adaptive_tier": true
+  },
+  "taxonomy": {
+    "extreme_q_threshold": 0.95,
+    "specialized": "Mutant with fewer than 2 variable q_axis >= 0.95; semantic family is the dominant available suffix group.",
+    "exceptional": "Exactly 2 variable q_axis >= 0.95.",
+    "ascended": "3 or more variable q_axis >= 0.95."
+  },
+  "groups": {
+    "ACORAZADO": [
+      "hp",
+      "defense"
+    ],
+    "FUGAZ": [
+      "evasion"
+    ],
+    "ACECHANTE": [
+      "precision"
+    ],
+    "INDOMITO": [
+      "tenacity"
+    ],
+    "VORAZ": [
+      "basic_damage",
+      "technique_direct_damage",
+      "poison_damage",
+      "poison_ticks"
+    ]
+  },
+  "abilities": {
+    "ACORAZADO": {
+      "id": "A15",
+      "trigger": "first crossing to <=50% monster HP",
+      "effect": "ABSORB_RESERVE",
+      "absorb_max_hp_pct": 0.15,
+      "once_per_combat": true
+    },
+    "FUGAZ": {
+      "id": "F25",
+      "trigger": "after receiving a player critical hit",
+      "effect": "EVADE_NEXT",
+      "evasion_bonus": 25,
+      "duration_player_actions": 1,
+      "retriggerable": true
+    },
+    "ACECHANTE": {
+      "id": "C20",
+      "trigger": "after the monster misses an attack",
+      "effect": "PRECISION_NEXT",
+      "precision_bonus": 20,
+      "retriggerable": true,
+      "note": "Originally a LAB hypothesis; frozen after V01/V03 validation."
+    },
+    "INDOMITO": {
+      "id": "I25",
+      "trigger": "first incoming CONTROL attempt",
+      "effect": "TENACITY_FIRST_CONTROL",
+      "tenacity_bonus": 25,
+      "first_control_attempt_only": true
+    },
+    "VORAZ": {
+      "id": "V2",
+      "trigger": "first crossing of player HP to <=40%",
+      "effect": "NEXT_BASIC_DAMAGE_SCALAR",
+      "next_basic_damage_scalar": 1.5,
+      "once_per_combat": true
+    }
+  },
+  "inheritance": {
+    "specialized": "Use the CENTER ability of the dominant semantic suffix group.",
+    "exceptional": "Inherit the CENTER abilities of every suffix group represented by its >=0.95 extreme axes.",
+    "ascended": "Inherit the CENTER abilities of every suffix group represented by its >=0.95 extreme axes.",
+    "duplicate_group_axes": "Multiple extreme axes in the same suffix group do not duplicate or stack the same suffix ability."
+  },
+  "rewards": {
+    "loot_multiplier": 1.5,
+    "combat_xp_multiplier": 1.5,
+    "unique_drop_probability_multiplier": 1,
+    "profession_xp_multiplier": 1
+  },
+  "guards": {
+    "mutant_incidence_below_one_percent": true,
+    "no_player_winrate_floor": true,
+    "no_new_species_id": true,
+    "no_runtime_canonical_activation": true,
+    "no_tier_grant_from_mutation": true,
+    "no_suffix_extra_rng": true
+  }
+}
