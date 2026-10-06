@@ -78,3 +78,21 @@ Elegir la regla T2 más simple que:
 No hay target de win-rate.
 No ratificación automática.
 Colab only: /content o rutas relativas; 0 rutas Kaggle.
+
+
+## Paquete Colab preparado
+
+Artefacto:
+`COLAB_LI_MONSTER_T2_RATA_SERPIENTE_FOCAL_V02.zip`
+
+- ZIP SHA-256: `8dddd320f8689da212c638fe8d95c4119f5aa4f61ff21e9fd34321c751dca5c3`
+- Notebook SHA-256: `f7df1ee51ecc54bc09bf073dde75e6cc4651619fbe70d67221ab71a4b55dcdf1`
+- Runner SHA-256: `74e7aa1c45258beff6c2a7afa98d1d3c3f3b53b5ff7feb36736316b39ce0ee5b`
+- notebook: nbformat 4 válido;
+- runner: py_compile PASS;
+- rutas `/kaggle/`: 0;
+- backend: Google Colab;
+- workers: auto-detect CPU lógicas;
+- checkpoint parcial y completo por especie;
+- combates representados previstos: 147.200;
+- CRN pareado entre brazos.
