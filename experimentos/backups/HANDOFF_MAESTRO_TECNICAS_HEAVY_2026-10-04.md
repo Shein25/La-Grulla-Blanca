@@ -1347,3 +1347,86 @@ Preserve internal threat hierarchy and evaluate HP/Qi remaining, rounds and mons
 No T0 recalibration is authorized until cross-root evidence exists.
 
 No main. No merge. No gameplay rebalance in FIX4.
+
+
+---
+
+# ASTRA FIX4 REAUDIT → FIX5 F3-R01 END-TO-END — 2026-10-06
+
+## Astra verdict on FIX4
+`FIX4_AUDIT_FAIL_BLOCKING`
+Final gate: `NO_GO_FIX5_REQUIRED`.
+
+Astra confirmed CRN compatibility with Fuego FIX3 as PASS and preserved Fuego as a valid sealed witness.
+The sole demonstrated blocker in scope was a residual post-screen call in main that still validated with `refine_jobs=None`.
+
+## FIX5 artifact
+- Package: `KAGGLE_PLAYER_ENVELOPE_LI_5_ROOTS_V01_FIX5.zip`
+- SHA-256: `293c3d221fc572b1f90beb74cda781488e9604b50337bbad9020c7bcf7467a91`
+- Runner SHA-256: `eeaf8c835be407be9b5219368f82a9179adb07e362234b0bef8e9d1383cd8d8e`
+- Common recipe: `9b36d8fd1e74f35d931ac20bc11e05a47ee272dc176cfb07b0137bbf91e1c69b`
+- CRN epoch preserved: `13b6c488bfd3cf516b76cdea1ff22a38f981dbe5f565d6fa435378ee720050c8`
+
+Root recipes:
+- Fuego `aa5d2bc6b35821ba46896f5056701c13d36a1f005f51f5c55affeaf0914201a8`
+- Metal `8694bd7da243a46c4b9c2dfad9c71a07b04ebb4c96f87d4135d830aff0094a78`
+- Agua `a51b4ab2f2c14ebcf11d02071887e1f743c421e7d0248427b542ac6df41a7ddd`
+- Tierra `bc9e7b9243757a489d3b135dc2a8449e0e5a9e904b1d60cbb8c3aed01ef5792d`
+- Viento `f80b7554e2182ffd046400e7e7baff780d6f6a9004401cf503bf4ada8bedea10`
+
+## F3-R01 correction
+After `execute_missing(screen)`, FIX5 no longer calls generic validation with missing refine authority.
+It calls:
+`validate_resume_state(..., allow_create_selection=True)`
+then requires complete screen + refine_jobs + selection hash, recomputes deterministic selection, checks the selection hash, persists/verifies selection, validates refine expected-set, and only then runs missing refine jobs.
+
+Fail-closed checks remain.
+
+## Exact local end-to-end reproduction
+Smoke shape requested by Astra:
+- Fuego;
+- authentic NAKED signature;
+- Lobo Espiritual READY;
+- UNITARGET_FIRST + DEFENSE_OPEN;
+- 2 screen cells ×12 =24 fights;
+- 2 refine cells ×128.
+
+Session A:
+- screen 2/2 confirmed;
+- deterministic selection persisted;
+- refine 1/2 confirmed.
+
+Session B from clean working:
+- candidate selected: screen2/refine1;
+- screen recomputation: zero;
+- post-screen authority reconstruction: PASS;
+- confirmed refine retained;
+- only missing second refine executed;
+- final screen2/refine2.
+
+Second reopen:
+- zero pending;
+- screen rows/batches unchanged;
+- refine rows/batches unchanged.
+
+## Fuego preservation
+Fuego FIX3 remains sealed:
+- recipe `15586b2cfc1aafe2deb5c95988c2b55a5482758770d788a92aaa4c6fc36b9ebc`
+- REVIEW SHA `b4f65c18f6d176d4163faa1d5b1c10dab9c9961910df821eab9d93c259a2c2f2`
+
+Checks:
+- 48,640/48,640 Fuego R12 seed digests FIX3 vs FIX5 epoch identical;
+- two NAKED/Lobo 12-rep replays FIX3 vs FIX5: exact result_json equality;
+- FIX3/FIX4 DBs are NOT accepted as FIX5 writable DBs.
+
+## Current gate
+`FIX5_PENDING_ASTRA_REAUDIT`
+
+Next:
+1. Astra audits F3-R01 end-to-end only.
+2. If structural PASS: authorize real Kaggle Save Version -> Input -> resume smoke.
+3. If runtime smoke PASS: execute Metal, Agua, Tierra, Viento.
+4. Do not repeat Fuego.
+5. Cross-root LI consolidation after all five roots.
+
+No gameplay rebalance in FIX5. No main. No merge.
