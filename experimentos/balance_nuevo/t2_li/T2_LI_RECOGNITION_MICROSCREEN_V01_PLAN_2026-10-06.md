@@ -121,3 +121,38 @@ Artefacto:
 - matriz representada: 36.800 combates.
 
 El paquete es un micro-screen diagnóstico y no ratifica T2 automáticamente.
+
+
+## Colab V01R1 — hotfix de infraestructura
+
+Durante la primera ejecución V01 en Google Colab, `ProcessPoolExecutor` falló al inicializar workers con:
+
+```text
+ModuleNotFoundError: No module named 'monster_new_engine_guard'
+BrokenProcessPool
+```
+
+Causa:
+- `etapa19b_combat_engine.py` importa directamente `monster_new_engine_guard`;
+- el notebook V01 descargaba el motor pero omitía ese archivo de `SOURCE_SPECS`;
+- `worker_init()` sí añadía `sources/` a `sys.path`, por lo que el fallo no era de path sino de dependencia ausente.
+
+R1 corrige exclusivamente infraestructura:
+- añade `monster_new_engine_guard.py` fijado al blob `0dd32a940ff1ba18501f957a95ae4b8cd115b4b9`;
+- compila e importa guard + motor en el proceso principal;
+- cada worker valida la existencia de ambos archivos e invalida caché de imports;
+- añade preflight real de `ProcessPoolExecutor` antes de generar los pools de individuos;
+- mantiene exactamente las mismas seeds, CRN, tamaños de pool, T1, hipótesis T2, roots, policies y perfiles.
+
+Artefacto:
+`COLAB_LI_MONSTER_T2_RECOGNITION_MICROSCREEN_V01R1.zip`
+
+SHA-256:
+- notebook: `c5be2d7b044f888dfce97b3daa49b2a0a2adb170bc810d1732cdab4a2212f0dd`;
+- runner: `b59005e2981916f0062c6aecf30637fbb5c0cdbaeebc1b01b7ef89d1e2d12ec7`;
+- ZIP: `23510d7e406ec42fc41583e92afdd6a832d4f9a5f6cddd0fa0ece3d972658001`.
+
+Backend guard:
+- nbformat 4 válido;
+- 0 rutas `/kaggle/`;
+- Colab usa `/content/...`.
