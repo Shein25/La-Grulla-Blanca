@@ -1,0 +1,998 @@
+{
+  "schema_version": "six-repeatable-t0-variance-authority-v0.1",
+  "status": "HUMAN_RATIFIED_INPUT_REUSED_FOR_ADAPTIVE_REVALIDATION",
+  "created_on": "2026-10-06",
+  "source": {
+    "t0_and_historical_adaptive_branch": "experiment/variance-six-repeatables-v0.1",
+    "t0_and_historical_adaptive_contract": "experimentos/balance_nuevo/monster_adaptive_six_v0.1/MONSTER_ADAPTIVE_SIX_CONTRACT_V0_1.json",
+    "historical_variance_branch": "experiment/variance-six-repeatables-v0.1",
+    "historical_variance_config": "experimentos/balance_nuevo/individual_variance_v0.1/monster_individual_variance_v0.1.json",
+    "variance_closure_head": "17c16f66dc929a91d3ebab5e5c4bb9ac17b92e5e",
+    "variance_heavy_fights": 420000,
+    "note": "T0 and variance are preserved. Historical T1-T4 are anchors only and must be revalidated under the 2026-10-06 final adaptive semantics."
+  },
+  "mutant": {
+    "distribution": "UNIFORM_0_1",
+    "target_incidence": 0.0075,
+    "maximum_incidence": 0.01,
+    "threshold_by_variable_axis_count": {
+      "1": 0.9925,
+      "2": 0.9387627564,
+      "3": 0.8814368899,
+      "4": 0.8371611094,
+      "5": 0.8041703275,
+      "6": 0.779195057,
+      "7": 0.7595352057,
+      "8": 0.7434948144,
+      "9": 0.73008977
+    }
+  },
+  "species": {
+    "sapo_ceniza": {
+      "native_stage": "LianQi_II",
+      "t0": {
+        "status": "READY_HUMAN_RATIFIED",
+        "source_candidate": "sapo_ceniza-b01-cf7f63c920",
+        "source_results_sha256": "7851366c9b61f899b913a7e7e6a6f1f7bad96fe23f10a14af7dffb81015527a4",
+        "stats": {
+          "hp": 49,
+          "qi_max": null,
+          "precision": 97,
+          "evasion": 11,
+          "defense": 0,
+          "tenacity": 5,
+          "control": 0,
+          "crit_chance": 5,
+          "crit_damage": 1.5,
+          "basic_damage": "1d2+5"
+        },
+        "technique": {
+          "name": "Nube de Hollín",
+          "mechanics": [
+            "DIRECT_DAMAGE",
+            "BURN_DOT"
+          ],
+          "params": {
+            "cadence": 3,
+            "direct_damage": "1d2+4",
+            "burn": {
+              "damage": "1d2+2",
+              "ticks": 3
+            }
+          }
+        }
+      },
+      "variance": {
+        "base": {
+          "source_candidate": "sapo_ceniza-b01-cf7f63c920",
+          "hp": 49,
+          "defense": 0,
+          "evasion": 11,
+          "precision": 97,
+          "tenacity": 5
+        },
+        "upper_envelope": {
+          "source_axes": {
+            "hp": "sapo_ceniza-b10-f851070241",
+            "defense": "sapo_ceniza-b03-0151582d7e",
+            "evasion": "sapo_ceniza-b07-4e68c838f4",
+            "precision": "sapo_ceniza-b10-f851070241",
+            "tenacity": "sapo_ceniza-b07-4e68c838f4"
+          },
+          "hp": 52,
+          "defense": 3,
+          "evasion": 33,
+          "precision": 100,
+          "tenacity": 19
+        },
+        "attacks": {
+          "basic_damage": {
+            "ladder": [
+              "1d2+5",
+              "1d3+5",
+              "1d3+6",
+              "1d2+7"
+            ],
+            "sources": [
+              "sapo_ceniza-b00-878c225026",
+              "sapo_ceniza-b10-f851070241",
+              "sapo_ceniza-b04-29a65445b7",
+              "sapo_ceniza-b02-55ce04b200"
+            ]
+          },
+          "technique_direct_damage": {
+            "ladder": [
+              "1d2+4",
+              "1d2+5",
+              "1d2+8"
+            ],
+            "sources": [
+              "sapo_ceniza-b01-cf7f63c920",
+              "sapo_ceniza-b00-878c225026",
+              "sapo_ceniza-b09-7dc3aa8399"
+            ]
+          }
+        },
+        "fixed_technique": {
+          "name": "Nube de Hollín",
+          "mechanics": [
+            "DIRECT_DAMAGE",
+            "BURN_DOT"
+          ],
+          "cadence": 3
+        },
+        "source_note": "CLEAN-only per-axis envelope. Burn 1d2+2 x3 remains fixed at ratified T0 because no stronger CLEAN same-cadence burn axis was measured."
+      },
+      "historical_adaptive_anchor": {
+        "status": "STALE_NUMERIC_AUTHORITY_ANCHOR_ONLY",
+        "t1": {
+          "status": "READY_HUMAN_RATIFIED",
+          "ability": {
+            "kind": "MITIGATE_NEXT",
+            "damage_reduction_pct": 10,
+            "cooldown_rounds": 5
+          },
+          "signals": {
+            "self_low_hp_ratio": 0.35,
+            "heavy_hit_ratio": 0.2
+          },
+          "source": "REFINEMENT_SAPO_ESCARABAJO_T1_T4_V01"
+        },
+        "t2": {
+          "status": "READY_HUMAN_RATIFIED",
+          "identity": "RECOGNITION",
+          "memory_window": 2,
+          "repeated_same_category_required": 2,
+          "count_results": [
+            "EFECTIVA"
+          ],
+          "observable_categories": [
+            "PLAYER_BASIC",
+            "PLAYER_UNITARGET_TECHNIQUE",
+            "PLAYER_AOE_TECHNIQUE",
+            "PLAYER_DEFENSIVE_TECHNIQUE"
+          ],
+          "hidden_root_or_build_inspection": false,
+          "future_rng_inspection": false
+        },
+        "t3": {
+          "status": "READY_HUMAN_RATIFIED",
+          "identity": "SPECIES_COUNTER",
+          "trigger": {
+            "label": "CONFIRMED_PATTERN_T1_CAUSAL_INTERACTION",
+            "requires_t2_recognition_active": true,
+            "requires_prediction_confirmed": true,
+            "requires_t1_active": true,
+            "offensive_player_action_required": true,
+            "causal_rule": "PLAYER_ATTACK_CONNECTED_WITH_T1_MITIGATION_ACTIVE"
+          },
+          "damage": {
+            "mode": "INSTANCE_T0_BASIC",
+            "source": "resolved individual T0 basic_damage",
+            "direct_damage_pipeline": true
+          },
+          "guards": {
+            "no_qi_drain": true,
+            "no_dot": true,
+            "no_control": true,
+            "no_hidden_player_build_inspection": true,
+            "no_artificial_once_per_fight_limit": true
+          }
+        },
+        "t4": {
+          "status": "READY_HUMAN_RATIFIED",
+          "identity": "EXISTING_T0_TECHNIQUE_REUSE",
+          "technique_name": "Nube de Hollín",
+          "activation": "REPLACE_NORMAL_MONSTER_TURN_WHEN_READY_AND_T1_NOT_SELECTED",
+          "cooldown_rounds": 12,
+          "params_source": "FROZEN_T0_TECHNIQUE",
+          "numeric_buff": false,
+          "direct_damage_pipeline": true,
+          "guards": {
+            "t0_technique_numbers_frozen": true,
+            "no_new_mechanic_family": true,
+            "no_t5": true
+          }
+        }
+      }
+    },
+    "escarabajo_hierro": {
+      "native_stage": "LianQi_II",
+      "t0": {
+        "status": "READY_HUMAN_RATIFIED",
+        "source_candidate": "escarabajo_hierro-m14-6996f62d4a",
+        "source_results_sha256": "d5cc200a85c41014db8fea00fcc442996865718b89a9a4d2090c12fff81fd923",
+        "stats": {
+          "hp": 75,
+          "qi_max": null,
+          "precision": 90,
+          "evasion": 14,
+          "defense": 2,
+          "tenacity": 24,
+          "control": 0,
+          "crit_chance": 5,
+          "crit_damage": 1.5,
+          "basic_damage": "1d2+3"
+        },
+        "technique": {
+          "name": "Carga de Caparazón",
+          "mechanics": [
+            "DIRECT_DAMAGE"
+          ],
+          "params": {
+            "cadence": 3,
+            "direct_damage": "1d2+8"
+          }
+        }
+      },
+      "variance": {
+        "base": {
+          "source_candidate": "escarabajo_hierro-m14-6996f62d4a",
+          "hp": 75,
+          "defense": 2,
+          "evasion": 14,
+          "precision": 90,
+          "tenacity": 24
+        },
+        "upper_envelope": {
+          "source_axes": {
+            "hp": "escarabajo_hierro-b04-d2b395945f",
+            "defense": "escarabajo_hierro-b04-d2b395945f",
+            "evasion": "escarabajo_hierro-b03-28afd52077",
+            "precision": "escarabajo_hierro-b05-4dea609a12",
+            "tenacity": "escarabajo_hierro-b03-28afd52077"
+          },
+          "hp": 82,
+          "defense": 5,
+          "evasion": 22,
+          "precision": 98,
+          "tenacity": 34
+        },
+        "attacks": {
+          "basic_damage": {
+            "ladder": [
+              "1d2+3",
+              "1d2+4",
+              "1d2+6"
+            ],
+            "sources": [
+              "escarabajo_hierro-m10-50f2acebee",
+              "escarabajo_hierro-b03-28afd52077",
+              "escarabajo_hierro-b04-d2b395945f"
+            ]
+          },
+          "technique_direct_damage": {
+            "ladder": [
+              "1d2+8",
+              "1d4+9"
+            ],
+            "sources": [
+              "escarabajo_hierro-m10-50f2acebee",
+              "escarabajo_hierro-b04-d2b395945f"
+            ]
+          }
+        },
+        "fixed_technique": {
+          "name": "Carga de Caparazón",
+          "mechanics": [
+            "DIRECT_DAMAGE"
+          ],
+          "cadence": 3
+        },
+        "source_note": "CLEAN-only envelope combines broad T0 and focused micro-lab evidence; cross-axis/T4 interaction validated in 420k heavy run."
+      },
+      "historical_adaptive_anchor": {
+        "status": "STALE_NUMERIC_AUTHORITY_ANCHOR_ONLY",
+        "t1": {
+          "status": "READY_HUMAN_RATIFIED",
+          "ability": {
+            "kind": "DEFENSE_UP",
+            "defense_bonus": 2,
+            "cooldown_rounds": 5
+          },
+          "signals": {
+            "self_low_hp_ratio": 0.35,
+            "heavy_hit_ratio": 0.2
+          },
+          "source": "REFINEMENT_SAPO_ESCARABAJO_T1_T4_V01"
+        },
+        "t2": {
+          "status": "READY_HUMAN_RATIFIED",
+          "identity": "RECOGNITION",
+          "memory_window": 2,
+          "repeated_same_category_required": 2,
+          "count_results": [
+            "EFECTIVA"
+          ],
+          "observable_categories": [
+            "PLAYER_BASIC",
+            "PLAYER_UNITARGET_TECHNIQUE",
+            "PLAYER_AOE_TECHNIQUE",
+            "PLAYER_DEFENSIVE_TECHNIQUE"
+          ],
+          "hidden_root_or_build_inspection": false,
+          "future_rng_inspection": false
+        },
+        "t3": {
+          "status": "READY_HUMAN_RATIFIED",
+          "identity": "SPECIES_COUNTER",
+          "trigger": {
+            "label": "CONFIRMED_PATTERN_T1_CAUSAL_INTERACTION",
+            "requires_t2_recognition_active": true,
+            "requires_prediction_confirmed": true,
+            "requires_t1_active": true,
+            "offensive_player_action_required": true,
+            "causal_rule": "PLAYER_ATTACK_CONNECTED_AND_T1_DEFENSE_PREVENTED_DAMAGE"
+          },
+          "damage": {
+            "mode": "INSTANCE_T0_BASIC",
+            "source": "resolved individual T0 basic_damage",
+            "direct_damage_pipeline": true
+          },
+          "guards": {
+            "no_qi_drain": true,
+            "no_dot": true,
+            "no_control": true,
+            "no_hidden_player_build_inspection": true,
+            "no_artificial_once_per_fight_limit": true
+          }
+        },
+        "t4": {
+          "status": "READY_HUMAN_RATIFIED",
+          "identity": "EXISTING_T0_TECHNIQUE_REUSE",
+          "technique_name": "Carga de Caparazón",
+          "activation": "REPLACE_NORMAL_MONSTER_TURN_WHEN_READY_AND_T1_NOT_SELECTED",
+          "cooldown_rounds": 8,
+          "params_source": "FROZEN_T0_TECHNIQUE",
+          "numeric_buff": false,
+          "direct_damage_pipeline": true,
+          "guards": {
+            "t0_technique_numbers_frozen": true,
+            "no_new_mechanic_family": true,
+            "no_t5": true
+          }
+        }
+      }
+    },
+    "pez_lunar": {
+      "native_stage": "LianQi_III",
+      "t0": {
+        "status": "READY_HUMAN_RATIFIED",
+        "source_candidate": "pez_lunar-b00-8a7474198a",
+        "source_results_sha256": "bcba2b003fa2d03d0447fb13bb0c45ccc85aa6f7a3de22115bbb94c1dda32c9f",
+        "stats": {
+          "hp": 42,
+          "qi_max": null,
+          "precision": 90,
+          "evasion": 29,
+          "defense": 2,
+          "tenacity": 13,
+          "control": 0,
+          "crit_chance": 5,
+          "crit_damage": 1.5,
+          "basic_damage": "1d2+8"
+        },
+        "technique": {
+          "name": "Mordida de Corriente",
+          "mechanics": [
+            "DIRECT_DAMAGE"
+          ],
+          "params": {
+            "cadence": 4,
+            "direct_damage": "2d4+9"
+          }
+        }
+      },
+      "variance": {
+        "base": {
+          "source_candidate": "pez_lunar-b00-8a7474198a",
+          "hp": 42,
+          "defense": 2,
+          "evasion": 29,
+          "precision": 90,
+          "tenacity": 13
+        },
+        "upper_envelope": {
+          "source_axes": {
+            "hp": "pez_lunar-b09-3ab2de73ee",
+            "defense": "pez_lunar-b11-b9b698a11a",
+            "evasion": "pez_lunar-b09-3ab2de73ee",
+            "precision": "pez_lunar-b09-3ab2de73ee",
+            "tenacity": "pez_lunar-b04-06d07824c6"
+          },
+          "hp": 44,
+          "defense": 3,
+          "evasion": 32,
+          "precision": 98,
+          "tenacity": 25
+        },
+        "attacks": {
+          "basic_damage": {
+            "ladder": [
+              "1d2+8",
+              "1d4+9",
+              "1d5+9"
+            ],
+            "sources": [
+              "pez_lunar-b00-8a7474198a",
+              "pez_lunar-b08-6da7bf1260",
+              "pez_lunar-b06-046b84b3cd"
+            ]
+          },
+          "technique_direct_damage": {
+            "ladder": [
+              "2d4+9"
+            ],
+            "sources": [
+              "pez_lunar-b00-8a7474198a"
+            ]
+          }
+        },
+        "fixed_technique": {
+          "name": "Mordida de Corriente",
+          "mechanics": [
+            "DIRECT_DAMAGE"
+          ],
+          "cadence": 4
+        },
+        "source_note": "Technique damage remains fixed; only measured CLEAN basic-damage variance is enabled offensively."
+      },
+      "historical_adaptive_anchor": {
+        "status": "STALE_NUMERIC_AUTHORITY_ANCHOR_ONLY",
+        "t1": {
+          "status": "READY_HUMAN_RATIFIED",
+          "ability": {
+            "kind": "EVADE_NEXT",
+            "evasion_bonus": 20,
+            "cooldown_rounds": 5
+          },
+          "signals": {
+            "self_low_hp_ratio": 0.35,
+            "heavy_hit_ratio": 0.2
+          },
+          "source_arm": "pez_lunar__T1_0_EVADE_NEXT"
+        },
+        "t2": {
+          "status": "READY_HUMAN_RATIFIED",
+          "identity": "RECOGNITION",
+          "memory_window": 2,
+          "repeated_same_category_required": 2,
+          "count_results": [
+            "EFECTIVA"
+          ],
+          "observable_categories": [
+            "PLAYER_BASIC",
+            "PLAYER_UNITARGET_TECHNIQUE",
+            "PLAYER_AOE_TECHNIQUE",
+            "PLAYER_DEFENSIVE_TECHNIQUE"
+          ],
+          "hidden_root_or_build_inspection": false,
+          "future_rng_inspection": false
+        },
+        "t3": {
+          "status": "READY_HUMAN_RATIFIED",
+          "identity": "SPECIES_COUNTER",
+          "trigger": {
+            "label": "CONFIRMED_PATTERN_T1_CAUSAL_INTERACTION",
+            "requires_t2_recognition_active": true,
+            "requires_prediction_confirmed": true,
+            "requires_t1_active": true,
+            "offensive_player_action_required": true,
+            "causal_rule": "PLAYER_ATTACK_MISS_WITH_T1_EVASION_ACTIVE"
+          },
+          "damage": {
+            "mode": "INSTANCE_T0_BASIC",
+            "source": "resolved individual T0 basic_damage",
+            "direct_damage_pipeline": true
+          },
+          "guards": {
+            "no_qi_drain": true,
+            "no_dot": true,
+            "no_control": true,
+            "no_hidden_player_build_inspection": true,
+            "no_artificial_once_per_fight_limit": true
+          }
+        },
+        "t4": {
+          "status": "READY_HUMAN_RATIFIED",
+          "identity": "EXISTING_T0_TECHNIQUE_REUSE",
+          "technique_name": "Mordida de Corriente",
+          "activation": "REPLACE_NORMAL_MONSTER_TURN_WHEN_READY_AND_T1_NOT_SELECTED",
+          "cooldown_rounds": 5,
+          "params_source": "FROZEN_T0_TECHNIQUE",
+          "numeric_buff": false,
+          "direct_damage_pipeline": true,
+          "guards": {
+            "t0_technique_numbers_frozen": true,
+            "no_new_mechanic_family": true,
+            "no_t5": true
+          }
+        }
+      }
+    },
+    "anguila_estelar": {
+      "native_stage": "LianQi_III",
+      "t0": {
+        "status": "READY_HUMAN_RATIFIED",
+        "source_candidate": "anguila_estelar-b09-4f1d8e046c",
+        "source_results_sha256": "836f54456aade744b37c27dc04d171316bc637d24b17f7d3e3faa76c39605a14",
+        "stats": {
+          "hp": 37,
+          "qi_max": null,
+          "precision": 92,
+          "evasion": 36,
+          "defense": 1,
+          "tenacity": 16,
+          "control": 0,
+          "crit_chance": 5,
+          "crit_damage": 1.5,
+          "basic_damage": "1d3+6"
+        },
+        "technique": {
+          "name": "Mordida del Meridiano Azul",
+          "mechanics": [
+            "DIRECT_DAMAGE",
+            "QI_DRAIN"
+          ],
+          "params": {
+            "cadence": 4,
+            "direct_damage": "2d6+9",
+            "qi_drain": 6
+          }
+        }
+      },
+      "variance": {
+        "base": {
+          "source_candidate": "anguila_estelar-b09-4f1d8e046c",
+          "hp": 37,
+          "defense": 1,
+          "evasion": 36,
+          "precision": 92,
+          "tenacity": 16
+        },
+        "upper_envelope": {
+          "source_axes": {
+            "hp": "anguila_estelar-b09-4f1d8e046c",
+            "defense": "anguila_estelar-b06-b4069c35a1",
+            "evasion": "anguila_estelar-b00-5d0b938a1d",
+            "precision": "anguila_estelar-b06-b4069c35a1",
+            "tenacity": "anguila_estelar-b09-4f1d8e046c"
+          },
+          "hp": 37,
+          "defense": 3,
+          "evasion": 39,
+          "precision": 107,
+          "tenacity": 16
+        },
+        "attacks": {
+          "basic_damage": {
+            "ladder": [
+              "1d3+6",
+              "1d3+7",
+              "1d3+9"
+            ],
+            "sources": [
+              "anguila_estelar-b09-4f1d8e046c",
+              "anguila_estelar-b00-5d0b938a1d",
+              "anguila_estelar-b06-b4069c35a1"
+            ]
+          },
+          "technique_direct_damage": {
+            "ladder": [
+              "2d6+9"
+            ],
+            "sources": [
+              "anguila_estelar-b09-4f1d8e046c"
+            ]
+          }
+        },
+        "fixed_technique": {
+          "name": "Mordida del Meridiano Azul",
+          "mechanics": [
+            "DIRECT_DAMAGE",
+            "QI_DRAIN"
+          ],
+          "cadence": 4,
+          "qi_drain": 6
+        },
+        "source_note": "HP and TEN remain fixed because no stronger CLEAN T0-compatible ceiling was measured; QI_DRAIN 6 is identity-fixed."
+      },
+      "historical_adaptive_anchor": {
+        "status": "STALE_NUMERIC_AUTHORITY_ANCHOR_ONLY",
+        "t1": {
+          "status": "READY_HUMAN_RATIFIED",
+          "ability": {
+            "kind": "EVADE_NEXT",
+            "evasion_bonus": 35,
+            "cooldown_rounds": 5
+          },
+          "signals": {
+            "self_low_hp_ratio": 0.35,
+            "heavy_hit_ratio": 0.2
+          },
+          "source_arm": "anguila_estelar__T1_1_EVADE_NEXT"
+        },
+        "t2": {
+          "status": "READY_HUMAN_RATIFIED",
+          "identity": "RECOGNITION",
+          "memory_window": 2,
+          "repeated_same_category_required": 2,
+          "count_results": [
+            "EFECTIVA"
+          ],
+          "observable_categories": [
+            "PLAYER_BASIC",
+            "PLAYER_UNITARGET_TECHNIQUE",
+            "PLAYER_AOE_TECHNIQUE",
+            "PLAYER_DEFENSIVE_TECHNIQUE"
+          ],
+          "hidden_root_or_build_inspection": false,
+          "future_rng_inspection": false
+        },
+        "t3": {
+          "status": "READY_HUMAN_RATIFIED",
+          "identity": "SPECIES_COUNTER",
+          "trigger": {
+            "label": "CONFIRMED_PATTERN_T1_CAUSAL_INTERACTION",
+            "requires_t2_recognition_active": true,
+            "requires_prediction_confirmed": true,
+            "requires_t1_active": true,
+            "offensive_player_action_required": true,
+            "causal_rule": "PLAYER_ATTACK_MISS_WITH_T1_EVASION_ACTIVE"
+          },
+          "damage": {
+            "mode": "INSTANCE_T0_BASIC",
+            "source": "resolved individual T0 basic_damage",
+            "direct_damage_pipeline": true
+          },
+          "guards": {
+            "no_qi_drain": true,
+            "no_dot": true,
+            "no_control": true,
+            "no_hidden_player_build_inspection": true,
+            "no_artificial_once_per_fight_limit": true
+          }
+        },
+        "t4": {
+          "status": "READY_HUMAN_RATIFIED",
+          "identity": "EXISTING_T0_TECHNIQUE_REUSE",
+          "technique_name": "Mordida del Meridiano Azul",
+          "activation": "REPLACE_NORMAL_MONSTER_TURN_WHEN_READY_AND_T1_NOT_SELECTED",
+          "cooldown_rounds": 5,
+          "params_source": "FROZEN_T0_TECHNIQUE",
+          "numeric_buff": false,
+          "direct_damage_pipeline": true,
+          "guards": {
+            "t0_technique_numbers_frozen": true,
+            "no_new_mechanic_family": true,
+            "no_t5": true
+          }
+        }
+      }
+    },
+    "devorador_niebla": {
+      "native_stage": "LianQi_IV",
+      "t0": {
+        "status": "READY_HUMAN_RATIFIED",
+        "source_candidate": "devorador_niebla-b00-6f4bffd772",
+        "source_results_sha256": "bcba2b003fa2d03d0447fb13bb0c45ccc85aa6f7a3de22115bbb94c1dda32c9f",
+        "stats": {
+          "hp": 46,
+          "qi_max": null,
+          "precision": 93,
+          "evasion": 28,
+          "defense": 2,
+          "tenacity": 14,
+          "control": 0,
+          "crit_chance": 5,
+          "crit_damage": 1.5,
+          "basic_damage": "1d2+9"
+        },
+        "technique": {
+          "name": "Exhalación Vacía",
+          "mechanics": [
+            "DIRECT_DAMAGE"
+          ],
+          "params": {
+            "cadence": 4,
+            "direct_damage": "3d4+8"
+          }
+        }
+      },
+      "variance": {
+        "base": {
+          "source_candidate": "devorador_niebla-b00-6f4bffd772",
+          "hp": 46,
+          "defense": 2,
+          "evasion": 28,
+          "precision": 93,
+          "tenacity": 14
+        },
+        "upper_envelope": {
+          "source_axes": {
+            "hp": "devorador_niebla-b10-9f78bb9154",
+            "defense": "devorador_niebla-b09-a0b98e82bb",
+            "evasion": "devorador_niebla-b02-11f4b8fea7",
+            "precision": "devorador_niebla-b09-a0b98e82bb",
+            "tenacity": "devorador_niebla-b07-fcaae7da3a"
+          },
+          "hp": 52,
+          "defense": 4,
+          "evasion": 42,
+          "precision": 107,
+          "tenacity": 26
+        },
+        "attacks": {
+          "basic_damage": {
+            "ladder": [
+              "1d2+9",
+              "1d3+9",
+              "1d4+9"
+            ],
+            "sources": [
+              "devorador_niebla-b00-6f4bffd772",
+              "devorador_niebla-b01-1a19d77359",
+              "devorador_niebla-b10-9f78bb9154"
+            ]
+          },
+          "technique_direct_damage": {
+            "ladder": [
+              "3d4+8"
+            ],
+            "sources": [
+              "devorador_niebla-b00-6f4bffd772"
+            ]
+          }
+        },
+        "fixed_technique": {
+          "name": "Exhalación Vacía",
+          "mechanics": [
+            "DIRECT_DAMAGE"
+          ],
+          "cadence": 4
+        },
+        "source_note": "Technique damage remains fixed; survival/basic axes use CLEAN measured ceilings."
+      },
+      "historical_adaptive_anchor": {
+        "status": "STALE_NUMERIC_AUTHORITY_ANCHOR_ONLY",
+        "t1": {
+          "status": "READY_HUMAN_RATIFIED",
+          "ability": {
+            "kind": "EVADE_NEXT",
+            "evasion_bonus": 20,
+            "cooldown_rounds": 5
+          },
+          "signals": {
+            "self_low_hp_ratio": 0.35,
+            "heavy_hit_ratio": 0.2
+          },
+          "source_arm": "devorador_niebla__T1_0_EVADE_NEXT"
+        },
+        "t2": {
+          "status": "READY_HUMAN_RATIFIED",
+          "identity": "RECOGNITION",
+          "memory_window": 2,
+          "repeated_same_category_required": 2,
+          "count_results": [
+            "EFECTIVA"
+          ],
+          "observable_categories": [
+            "PLAYER_BASIC",
+            "PLAYER_UNITARGET_TECHNIQUE",
+            "PLAYER_AOE_TECHNIQUE",
+            "PLAYER_DEFENSIVE_TECHNIQUE"
+          ],
+          "hidden_root_or_build_inspection": false,
+          "future_rng_inspection": false
+        },
+        "t3": {
+          "status": "READY_HUMAN_RATIFIED",
+          "identity": "SPECIES_COUNTER",
+          "trigger": {
+            "label": "CONFIRMED_PATTERN_T1_CAUSAL_INTERACTION",
+            "requires_t2_recognition_active": true,
+            "requires_prediction_confirmed": true,
+            "requires_t1_active": true,
+            "offensive_player_action_required": true,
+            "causal_rule": "PLAYER_ATTACK_MISS_WITH_T1_EVASION_ACTIVE"
+          },
+          "damage": {
+            "mode": "INSTANCE_T0_BASIC",
+            "source": "resolved individual T0 basic_damage",
+            "direct_damage_pipeline": true
+          },
+          "guards": {
+            "no_qi_drain": true,
+            "no_dot": true,
+            "no_control": true,
+            "no_hidden_player_build_inspection": true,
+            "no_artificial_once_per_fight_limit": true
+          }
+        },
+        "t4": {
+          "status": "READY_HUMAN_RATIFIED",
+          "identity": "EXISTING_T0_TECHNIQUE_REUSE",
+          "technique_name": "Exhalación Vacía",
+          "activation": "REPLACE_NORMAL_MONSTER_TURN_WHEN_READY_AND_T1_NOT_SELECTED",
+          "cooldown_rounds": 5,
+          "params_source": "FROZEN_T0_TECHNIQUE",
+          "numeric_buff": false,
+          "direct_damage_pipeline": true,
+          "guards": {
+            "t0_technique_numbers_frozen": true,
+            "no_new_mechanic_family": true,
+            "no_t5": true
+          }
+        }
+      }
+    },
+    "halcon_tormenta": {
+      "native_stage": "LianQi_IV",
+      "t0": {
+        "status": "READY_HUMAN_RATIFIED",
+        "source_candidate": "halcon_tormenta-b03-27f18b5b64",
+        "source_results_sha256": "836f54456aade744b37c27dc04d171316bc637d24b17f7d3e3faa76c39605a14",
+        "stats": {
+          "hp": 43,
+          "qi_max": null,
+          "precision": 89,
+          "evasion": 30,
+          "defense": 2,
+          "tenacity": 22,
+          "control": 0,
+          "crit_chance": 5,
+          "crit_damage": 1.5,
+          "basic_damage": "1d3+6"
+        },
+        "technique": {
+          "name": "Picado del Relámpago",
+          "mechanics": [
+            "DIRECT_DAMAGE"
+          ],
+          "params": {
+            "cadence": 3,
+            "direct_damage": "3d6+8"
+          }
+        }
+      },
+      "variance": {
+        "base": {
+          "source_candidate": "halcon_tormenta-b03-27f18b5b64",
+          "hp": 43,
+          "defense": 2,
+          "evasion": 30,
+          "precision": 89,
+          "tenacity": 22
+        },
+        "upper_envelope": {
+          "source_axes": {
+            "hp": "halcon_tormenta-b08-9110a266eb",
+            "defense": "halcon_tormenta-b04-91ab45bf6d",
+            "evasion": "halcon_tormenta-b09-75c2c800ba",
+            "precision": "halcon_tormenta-b05-8fe0e7e408",
+            "tenacity": "halcon_tormenta-b08-9110a266eb"
+          },
+          "hp": 51,
+          "defense": 3,
+          "evasion": 52,
+          "precision": 110,
+          "tenacity": 31
+        },
+        "attacks": {
+          "basic_damage": {
+            "ladder": [
+              "1d3+6",
+              "1d2+7",
+              "1d3+7",
+              "1d2+8",
+              "1d3+8",
+              "1d2+9",
+              "1d3+9",
+              "1d4+9"
+            ],
+            "sources": [
+              "halcon_tormenta-b03-27f18b5b64",
+              "halcon_tormenta-b01-eec52a9ca0",
+              "halcon_tormenta-b08-9110a266eb",
+              "halcon_tormenta-b00-7d59ea6c94",
+              "halcon_tormenta-b04-91ab45bf6d",
+              "halcon_tormenta-b02-9329dbc763",
+              "halcon_tormenta-b11-f3042d7dbb",
+              "halcon_tormenta-b07-0c4c6898a5"
+            ]
+          },
+          "technique_direct_damage": {
+            "ladder": [
+              "3d6+8",
+              "2d10+9"
+            ],
+            "sources": [
+              "halcon_tormenta-b03-27f18b5b64",
+              "halcon_tormenta-b01-eec52a9ca0"
+            ]
+          }
+        },
+        "fixed_technique": {
+          "name": "Picado del Relámpago",
+          "mechanics": [
+            "DIRECT_DAMAGE"
+          ],
+          "cadence": 3
+        },
+        "source_note": "CLEAN-only envelope; high EVA/PREC convergence was explicitly exercised with T4 in heavy validation."
+      },
+      "historical_adaptive_anchor": {
+        "status": "STALE_NUMERIC_AUTHORITY_ANCHOR_ONLY",
+        "t1": {
+          "status": "READY_HUMAN_RATIFIED",
+          "ability": {
+            "kind": "EVADE_NEXT",
+            "evasion_bonus": 35,
+            "cooldown_rounds": 5
+          },
+          "signals": {
+            "self_low_hp_ratio": 0.35,
+            "heavy_hit_ratio": 0.2
+          },
+          "source_arm": "halcon_tormenta__T1_1_EVADE_NEXT"
+        },
+        "t2": {
+          "status": "READY_HUMAN_RATIFIED",
+          "identity": "RECOGNITION",
+          "memory_window": 2,
+          "repeated_same_category_required": 2,
+          "count_results": [
+            "EFECTIVA"
+          ],
+          "observable_categories": [
+            "PLAYER_BASIC",
+            "PLAYER_UNITARGET_TECHNIQUE",
+            "PLAYER_AOE_TECHNIQUE",
+            "PLAYER_DEFENSIVE_TECHNIQUE"
+          ],
+          "hidden_root_or_build_inspection": false,
+          "future_rng_inspection": false
+        },
+        "t3": {
+          "status": "READY_HUMAN_RATIFIED",
+          "identity": "SPECIES_COUNTER",
+          "trigger": {
+            "label": "CONFIRMED_PATTERN_T1_CAUSAL_INTERACTION",
+            "requires_t2_recognition_active": true,
+            "requires_prediction_confirmed": true,
+            "requires_t1_active": true,
+            "offensive_player_action_required": true,
+            "causal_rule": "PLAYER_ATTACK_MISS_WITH_T1_EVASION_ACTIVE"
+          },
+          "damage": {
+            "mode": "INSTANCE_T0_BASIC",
+            "source": "resolved individual T0 basic_damage",
+            "direct_damage_pipeline": true
+          },
+          "guards": {
+            "no_qi_drain": true,
+            "no_dot": true,
+            "no_control": true,
+            "no_hidden_player_build_inspection": true,
+            "no_artificial_once_per_fight_limit": true
+          }
+        },
+        "t4": {
+          "status": "READY_HUMAN_RATIFIED",
+          "identity": "EXISTING_T0_TECHNIQUE_REUSE",
+          "technique_name": "Picado del Relámpago",
+          "activation": "REPLACE_NORMAL_MONSTER_TURN_WHEN_READY_AND_T1_NOT_SELECTED",
+          "cooldown_rounds": 5,
+          "params_source": "FROZEN_T0_TECHNIQUE",
+          "numeric_buff": false,
+          "direct_damage_pipeline": true,
+          "guards": {
+            "t0_technique_numbers_frozen": true,
+            "no_new_mechanic_family": true,
+            "no_t5": true
+          }
+        }
+      }
+    }
+  }
+}
