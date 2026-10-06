@@ -1,4 +1,4 @@
-# Decisión — El techo limita aprendizaje real v0.2
+# SUPERSEDED — NO USAR COMO AUTORIDAD VIGENTE\n\n> **Supersedido el 2026-10-06** por `DECISION_LIBERTAD_SOBREEXTENSION_ADAPTATIVA_2026-10-06.md`. La etapa ya no limita ni recorta la presión; sólo describe una banda esperada.\n\n# Decisión — El techo limita aprendizaje real v0.2
 
 **Fecha:** 2026-09-26  
 **Estado:** SELECCIONADO  
