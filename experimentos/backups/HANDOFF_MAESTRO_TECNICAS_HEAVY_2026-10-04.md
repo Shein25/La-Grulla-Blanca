@@ -1574,3 +1574,62 @@ T3 and T4 are replayability/endgame content for players already at LianQi IV. LI
 
 Next gate:
 ONE general exhaustive T0 validation over 4,864 gear signatures, internally using five roots x two policies and average cross-root as primary metric. Per-root breakdown remains diagnostic guard only. Do not canonize T0 yet. Do not touch player/techniques/equipment/T1-T4.
+
+
+---
+
+# LI T0 EXHAUSTIVE VALIDATION PREP — 2026-10-06
+
+Status:
+`LI_MONSTER_T0_EXHAUSTIVE_VALIDATION_READY_FOR_KAGGLE`
+
+Input authority:
+- Cross-root LI complete.
+- T0 general search REVIEW valid.
+- No player/technique/equipment/root rebalance in this step.
+
+Selected exhaustive candidates:
+- Rata Qi: `59c6253e797f0c92`
+- Serpiente Qi: `9672faaa29074ab3`
+- Avispa Jade: `320443d1333c58a3`
+- Mono auto-winner: `428e99e3bb02685c`
+- Mono identity alternative: `36667a2ea37561ed`
+- Lobo Espiritual: `3ac540847aca982a`
+
+The exhaustive gate intentionally keeps both Mono finalists under identical CRN.
+
+Kaggle artifact:
+`KAGGLE_LI_MONSTER_T0_EXHAUSTIVE_VALIDATION_V01.zip`
+
+Artifact SHA-256:
+`e4cc1c46cf84ea751acdc373738b9059a7b3f45c23ce4f75bb3f5be7fa5ff115`
+
+Notebook SHA-256:
+`8af40fceca0e7dc4060994159987701448f700e79bb0de07e3ca2f631440fc6e`
+
+Runner SHA-256:
+`a40bc6f9e63297660a1e26478ad5c3410f7b1b7bb63f3e2f911f6ff522e39573`
+
+Validation design:
+- 4,864 mechanical LI signatures / 6,144 raw loadouts.
+- Five roots internal, never separate monster variants per root.
+- Two legal policies.
+- R12 exhaustive screen.
+- R128 NAKED / MANDATORY_ENTRY / EXPECTED_STAGE / HIGH_ROLL_STRESS.
+- R128 worst-tail confirmation.
+- Cross-root average is primary; per-root output is a diagnostic guardrail.
+- HIGH_ROLL_STRESS is non-regression/stress only, not a mandatory superior win-rate band.
+- Candidate stats remain provisional until this gate passes.
+
+Corrected adaptive progression human authority:
+- LI ceiling T1.
+- LII ceiling T2.
+- LIII ceiling T2.
+- LIV can learn T3/T4 with new valid pressure.
+- T3/T4 are replayability/endgame content for LianQi IV.
+- No universal numeric T1-T4 scaling is authorized.
+
+Local reduced-signature end-to-end smoke:
+`PASS` for signature generation, candidate patching, five roots, two policies, SQLite checkpoint, R12/R128 paths, tail selection, exact job-set validation, and REVIEW generation.
+
+No main. No merge. No runtime/registry write. No T0 canonization yet.
