@@ -256,3 +256,371 @@ El chat nuevo debe:
 - no aceptar F7 antes del micro-lab;
 - no declarar Lluvia F2 CANON antes de ratificación;
 - registrar decisiones nuevas en este flujo de backups Git.
+
+
+---
+
+# ACTUALIZACIÓN MAESTRA — 2026-10-05
+
+> **AUTORIDAD DE CONTINUIDAD:** este bloque supersede cualquier sección anterior incompatible de este mismo handoff.  
+> No borrar el histórico previo: queda preservado como trazabilidad de decisiones.
+
+## 1. Backup Git previo a esta actualización
+
+Antes de modificar este handoff se creó una copia exacta del estado anterior:
+
+- Ruta: `experimentos/backups/HANDOFF_MAESTRO_TECNICAS_HEAVY_2026-10-05_PRE_UPDATE_BACKUP.md`
+- Commit de backup: `5dd7f27a3b79fe7d79eb618a7cd119d4407b502c`
+- Rama: `experiment/techniques-kaggle-heavy-v0.4`
+- `main` NO tocado.
+- Sin merge.
+
+## 2. Estado global de las 15 técnicas ordinarias — V0.2
+
+Estado actual:
+
+`PROVISIONAL_REBALANCE_PENDING_PASO_NUBE_HORIZONTAL_LAB`
+
+Patrón provisional humano vigente:
+
+- **Fuego:** F1 / F1 / F0
+- **Metal:** F1 / F5 / F2
+- **Viento:** F0 / F1 / F2
+- **Tierra:** F0 / F2 / F2
+- **Agua:** F0 / F1 / F1
+
+Este patrón supersede el V0.1 anterior donde:
+- Cuerpo-Horno estaba en F2;
+- Destello estaba en F0;
+- Armadura estaba en F7/F0 según checkpoint intermedio.
+
+No reabrir las otras 14 técnicas salvo:
+- bug verificado;
+- nueva inconsistencia cross-root material;
+- decisión humana explícita.
+
+## 3. Cambios V0.2 que quedaron ratificados provisionalmente
+
+### Fuego
+
+#### Palma Ardiente — F1 KEEP
+- `direct_pct/2: 15 -> 25`
+- `eff/t1_t2_precision: 5 -> 6`
+- `DOT_ROUTE_POTENCY_INCREMENT: 0.05 -> 0.04`
+- Estado: `WATCH_FIRE_UNITARGET`
+- No nerfear sólo porque Fuego conserve la media unitarget más alta.
+
+#### Respiración del Cuerpo-Horno — F1
+Cambio respecto al checkpoint viejo F2:
+- conservar únicamente `barrier_t1_t2_synergy_pp: 0.05 -> 0.04`
+- NO aplicar:
+  - `absorption_pct 0.25 -> 0.30`
+  - `barrier_pp_each 0.05 -> 0.04`
+  - `CONVERSION_RATE_INCREMENT 0.10 -> 0.15`
+
+Motivo:
+el CROSS-ROOT V0.1 mostró que F2 elevaba demasiado el techo defensivo. F1 corrige esto sin desmontar la identidad de Fuego.
+
+#### Círculo de las Cien Ascuas — F0 KEEP
+Sin cambios.
+
+### Metal
+
+#### Destello de Plata — F1
+Supersede la decisión vieja F0.
+
+Cambios:
+- `penetration/t1_percent_pp: 10 -> 11`
+- `penetration/t2_flat: 3 -> 2`
+- `execution/crit_pp/2: 5 -> 7`
+- `BASE_DAMAGE_FLAT_MODIFIER: 4 -> 5`
+
+Motivo:
+el CROSS-ROOT V0.1 mostró déficit unitarget claro de Metal. F1 lo recupera sin convertirlo en daño bruto de Fuego.
+
+#### Armadura de Plata — F5
+Supersede F7 y el estado abierto del micro-lab.
+
+Cambio:
+- `base_defense_per_plate: 3 -> 4`
+
+Mantener:
+- `qi_cost = 7`
+- `RESISTANCE_LATER_DEF_INCREMENT = 2`
+
+F7 queda descartado.
+
+Control V0.2 F5 vs F0:
+- Δ utilidad media aproximada: `+0.03583`
+- 333/476 celdas con ventaja material
+- 0 pérdidas materiales
+- 473/476 celdas con media positiva
+
+No crear F8/DEF5 sin un nuevo microtest explícito.
+
+#### Lluvia de Filos — F2 KEEP
+Cambios:
+- base % pen 10 -> 14
+- `direct_pct/0: 15 -> 10`
+- `direct_pct/1: 20 -> 15`
+- crit 5 -> 4
+- rupture T1/T2 pen 5 -> 4
+- eff precision 5 -> 4
+- full pen 5 -> 10
+- `SHRED_DEF_INCREMENT: 1 -> 2`
+- `BASE_DAMAGE_FLAT_MODIFIER: 1 -> 2`
+
+No buffear sólo por media AOE menor: su valor relativo debe aparecer contra DEF real mediante penetración + shred.
+
+### Viento
+
+#### Lanza que Parte Nubes — F0 KEEP
+
+#### Paso de Nube Ligera — F1 PROVISIONAL / ÚNICO PENDIENTE
+F1 actual:
+- Qi 7 -> 6
+- EVA inicial 35 -> 36
+- `response_precision_by_count/1: 5 -> 6`
+
+El CROSS-ROOT V0.2 confirmó que sigue siendo el único rezagado transversal claro de DEFENSE_UTILITY.
+
+Estado:
+`DIRECTED_HORIZONTAL_LAB_REQUIRED`
+
+No aplicar buff automático.
+No usar Optuna/NSGA-II global.
+
+#### Tijera del Vendaval — F2 KEEP
+- crit pp +1
+- `DEBUFF_PRECISION_INCREMENT_2: 3 -> 2`
+- `BASE_DAMAGE_FLAT_MODIFIER: 1 -> 2`
+
+### Tierra
+
+- Golpe de Montaña — F0 KEEP
+- Piel de Cobre — F2 KEEP
+- Temblor de Montaña — F2 KEEP
+
+No reabrir por distancia paramétrica aislada mientras el cross-root siga sano.
+
+### Agua
+
+- Latigazo de Marea — F0 KEEP
+- Espejo de Luna — F1 KEEP; Qi 7 -> 6
+- Marea de las Ocho Orillas — F1 KEEP:
+  - direct T1/T2 crit pp 5 -> 6
+  - eff T1/T2 precision 5 -> 6
+  - `BASE_DAMAGE_FLAT_MODIFIER: 1 -> 2`
+
+## 4. CROSS_ROOT 15 — V0.2 R64 completado
+
+La validación se ejecutó dividida en cinco notebooks/raíces y luego se revisó de forma transversal.
+
+Integridad:
+- 5/5 PART completados;
+- 5/5 `NUMERIC_CONTROL_GATE = PASS`;
+- mismo `MASTER_SEED = 2026100301`;
+- mismo snapshot T0;
+- mismo catálogo V0.2;
+- sin Optuna/Sobol/NSGA-II en este gate.
+
+Compactación por rol, V0.1 -> V0.2:
+
+- UNITARGET spread: ~0.1200 -> **~0.0615**
+- DEFENSE spread: ~0.1412 -> **~0.0577**
+- AOE spread: ~0.0472 -> **~0.0214**
+
+### Unitarget V0.2 aproximado
+- Fuego / Palma F1: ~0.6244
+- Metal / Destello F1: ~0.5797
+- Agua / Latigazo F0: ~0.5735
+- Tierra / Golpe F0: ~0.5678
+- Viento / Lanza F0: ~0.5629
+
+Conclusión:
+Metal queda recuperado.
+Fuego sigue alto pero queda en WATCH, no en nerf automático.
+
+### Defensa V0.2 aproximada
+- Fuego / Cuerpo-Horno F1: ~0.5741
+- Agua / Espejo F1: ~0.5646
+- Tierra / Piel F2: ~0.5606
+- Metal / Armadura F5: ~0.5474
+- Viento / Paso F1: ~0.5165
+
+Paso F1:
+- `cross_gap ≈ -0.0354`
+- 0 ventajas materiales
+- ~303 desventajas materiales / 476 contextos
+- rezago presente en LI, LII, LIII y LIV
+
+Conclusión:
+**las otras 14 técnicas quedan congeladas provisionalmente; Paso es el único frente abierto.**
+
+### AOE V0.2 aproximado
+- Viento / Tijera F2: ~0.2519
+- Fuego / Círculo F0: ~0.2498
+- Tierra / Temblor F2: ~0.2329
+- Agua / Marea F1: ~0.2308
+- Metal / Lluvia F2: ~0.2306
+
+Conclusión:
+no reabrir AOE general.
+
+## 5. AOE single-target scalar
+
+Decisión humana congelada:
+
+`AOE_SINGLE_TARGET_SCALAR = 0.65`
+
+No reabrir salvo:
+- bug claro;
+- desequilibrio global severo posterior.
+
+Aplica a magnitud ofensiva AOE reutilizable al golpear un único objetivo.
+No se aplica a debuffs/control/duración.
+Las Ultis AOE no usan este castigo: conservan 100% de magnitud.
+
+## 6. Paso de Nube — Horizontal Lab V01
+
+Objetivo humano:
+**no elegir una variante simplemente más potente**, sino encontrar varias configuraciones horizontalmente válidas donde cada una tenga un nicho y ninguna haga obsoletas a las otras.
+
+Notebook corregido vigente:
+`KAGGLE_PASO_NUBE_HORIZONTAL_LAB_V01_FIX1.ipynb`
+
+SHA-256 notebook:
+`2ee7f59fba93762e88e39be6fcf31019fc55ed6b4a80fb7e8e4988c0b90c3bbf`
+
+Paquete:
+`PASO_NUBE_HORIZONTAL_LAB_V01_FIX1_PACKAGE.zip`
+
+SHA-256 paquete:
+`2a685d67776de03aa4040ed41564fa8b549e63af845c1fe6095885d494eeaabb`
+
+Configuración inicial:
+- `RUN_LAB = True`
+- `R64_REPLICATES = 64`
+- `WORKERS = 2`
+- `RUN_R256 = False`
+- `R256_VARIANTS = []`
+
+Variantes diseñadas:
+- F1_CONTROL
+- LIGEREZA
+- NUBE_PURA
+- CONTRAGOLPE
+- FLUJO_CONTINUO
+- NUBE_AFILADA
+- RESPUESTA_PRECISA
+- IMPULSO_NUBE
+- TRIPLE_EQUILIBRIO
+
+Principio:
+- no existe `automatic_winner`;
+- una variante que haga obsoletas a las otras debe rechazarse aunque tenga mejor utilidad media;
+- R256 sólo para 2–4 supervivientes nombrados explícitamente después del R64.
+
+El FIX1 corrige el error:
+`ModuleNotFoundError: campaign_analysis`
+causado por importar antes de montar `heavy_inputs`.
+
+Pendiente actual:
+**esperar resultado `PASO_NUBE_HORIZONTAL_LAB_V01_RESULTS.zip`.**
+
+## 7. Progresión AOE
+
+Decisión humana vigente:
+- LI/LII: sin AOE;
+- LIII permite percibir/encontrar Guardianes AOE;
+- `LIII_PRE_AOE`: antes de derrotar al guardián, sin AOE;
+- `LIII_POST_AOE`: después de obtener el manual, AOE disponible;
+- LIV no auto-desbloquea AOE: debe haberse adquirido legalmente.
+
+Guardianes AOE:
+- únicos;
+- T0-only;
+- 0 fases;
+- no respawn tras derrota;
+- manual garantizado;
+- huir/salir reinicia el encuentro;
+- sin atracción inter-room.
+
+## 8. Ultimates — decisión humana más reciente, AUTORIDAD
+
+**Este bloque supersede cualquier nota anterior que colocara la Ulti principal en LianQi III.**
+
+Regla vigente:
+
+### Ulti de la rama principal
+Se desbloquea en **LianQi IV** sólo si el jugador ha alcanzado la **maestría completa de toda su rama**.
+
+La condición es conocimiento/maestría alcanzada, **NO mantener puntos actualmente asignados en todas las especializaciones**.
+
+Ejemplo humano explícito:
+un build `2 / 2 / 2` no debe perder acceso a su Ulti por no tener puntos permanentes en una tercera rama concreta si ya alcanzó la maestría requerida.
+
+### Ulti del injerto
+Requiere simultáneamente:
+- poseer el injerto;
+- llegar a LianQi IV;
+- alcanzar la maestría completa de toda la rama de ese injerto.
+
+Misma regla:
+la maestría aprendida habilita la Ulti; la distribución actual de puntos no debe encerrar al jugador en un build obligatorio.
+
+Consecuencia de balance:
+- Guardianes AOE de LianQi III deben evaluarse como `LIII_PRE_AOE` **sin Ulti**, salvo nueva decisión humana explícita;
+- el power envelope de Ultis entra desde LianQi IV;
+- conservar métricas `MAX_LEGAL_1_ACTION_BURST`, `MAX_LEGAL_2_ACTION_BURST`, `MAX_LEGAL_3_ACTION_BURST` cuando corresponda a LIV.
+
+## 9. Orden de continuidad actualizado
+
+1. Ejecutar `PASO_NUBE_HORIZONTAL_LAB_V01_FIX1` R64.
+2. Auditar horizontalidad, no “ganador”.
+3. Si quedan 2–4 opciones sanas, activar R256 sólo para esas IDs.
+4. Elegir humanamente la identidad final de Paso.
+5. Revalidar sólo lo necesario contra peers defensivos V0.2.
+6. Congelar las 15 técnicas como autoridad provisional de simulación.
+7. Construir player power envelope LI -> LIV respetando:
+   - LI/LII sin AOE;
+   - LIII PRE/POST AOE;
+   - Ultis desde LIV según maestría.
+8. T0 -> T4 monstruos.
+9. Guardianes AOE.
+10. Ultis / burst LIV.
+11. Bosses / Grulla.
+
+## 10. Guardias reforzadas
+
+- No tocar `main`.
+- No merge.
+- No push/commit fuera de la rama autorizada.
+- Decisiones humanas prevalecen.
+- No inventar CANON.
+- No volver a optimización global de técnicas por una anomalía local.
+- Las otras 14 técnicas quedan congeladas mientras se resuelve Paso.
+- No confundir “mejor score” con “mejor diseño”: horizontalidad y nicho importan.
+- No hacer que una especialización sea estrictamente superior a otra.
+- No introducir nuevas mecánicas de Paso fuera de las ya expresables/autorizadas sin decisión humana.
+- AI decide; motor resuelve.
+- `freeAiText=false`.
+- Sin nuevo reloj/timers.
+- A07 no se reabre salvo bug.
+- Runtime final sigue siendo HTML único/autocontenido.
+
+## 11. Punto exacto para retomar si se corta la conversación
+
+Leer primero este bloque 2026-10-05.
+
+Estado resumido:
+- 14/15 técnicas V0.2 congeladas provisionalmente;
+- Paso de Nube es el único ajuste abierto;
+- CROSS_ROOT V0.2 R64 ya completado y mejoró fuertemente los tres roles;
+- horizontal lab FIX1 preparado y pendiente de resultado;
+- AOE scalar 0.65 congelado;
+- Ultis se desbloquean en LIV por maestría, no por distribución actual de puntos;
+- no tocar main / no merge.
+
+Próximo artefacto esperado:
+`PASO_NUBE_HORIZONTAL_LAB_V01_RESULTS.zip`.
