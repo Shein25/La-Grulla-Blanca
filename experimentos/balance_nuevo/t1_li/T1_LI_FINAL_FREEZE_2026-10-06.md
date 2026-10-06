@@ -54,8 +54,8 @@ Todos los guardrails focales pasaron:
 | Monstruo | Habilidad T1 | Mecánica congelada | Candidate ID |
 |---|---|---|---|
 | Rata Qi | Reflejo de Madriguera | EVADE_NEXT +70, 1 carga, CD6 | `48a4e5535db32cc5` |
-| Serpiente Qi | Muda del Cauce | EVADE_NEXT +90, 1 carga, CD4 | `05e2b8e0ec8b6e3d` |
-| Avispa Jade | Quiebro de Jade | EVADE_NEXT +80, 1 carga, CD4 | `3380c207d615ff7f` |
+| Serpiente Qi | Muda del Cauce | EVADE_NEXT +90, 1 carga, CD4 | `7a2540f89ce8ce77` |
+| Avispa Jade | Quiebro de Jade | EVADE_NEXT +80, 1 carga, CD4 | `bfe391a7792f7ea2` |
 | Mono Píldoras | Salto del Ladrón | EVADE_NEXT +75, 2 cargas, CD6 | `e51305999ebd3045` |
 | Lobo Espiritual | Paso de la Cola Vigilante | DEFENSE_UP +10, CD3 | `7edde7aeb0a9e7c1` |
 
