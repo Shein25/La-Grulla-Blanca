@@ -102,3 +102,22 @@ Google Colab únicamente para V01:
 - prohibidas rutas /kaggle/....
 
 No main. No merge. No runtime canónico. Definitivas prohibidas.
+
+
+## Paquete Colab preparado
+
+Artefacto:
+`COLAB_LI_MONSTER_T2_RECOGNITION_MICROSCREEN_V01.zip`
+
+- ZIP SHA-256: `c0a0bb566f71ba8cfd5cde169f88ac9531cf49c830ba8207371928d25858df5d`
+- Notebook SHA-256: `b4b5e518ba3120499a7e1910a2ee948b18f30e7fff9e736568aac6aff2cee7e5`
+- Runner SHA-256: `35517815d6ff9e2fa70b5424ba72e4ffc535d78fd4867bf59bd44b5a6e85df30`
+- Notebook válido: nbformat 4.
+- 0 rutas Kaggle en el notebook.
+- backend: Google Colab;
+- workers: detección automática de todos los CPU lógicos disponibles;
+- checkpoints parciales + completos por especie;
+- barra de progreso con CPU/RAM/peleas por segundo;
+- matriz representada: 36.800 combates.
+
+El paquete es un micro-screen diagnóstico y no ratifica T2 automáticamente.
