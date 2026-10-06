@@ -1,0 +1,54 @@
+{
+  "status": "HANDOFF_BACKUP_COMPLETE",
+  "date": "2026-10-06",
+  "repo": "Shein25/La-Grulla-Blanca",
+  "balance_branch": "experiment/li-monster-t0-final-t1-lab-v0.1",
+  "adaptive_branch": "experiment/monster-adaptive-survival-lab-v0.1",
+  "adaptive_head": "ff72a5f4827a8c63e7516ff92a673b2ffff83e04",
+  "overreach_policy": "ALLOWED_NATURAL_LIMIT_BY_COMBAT_AND_DECAY",
+  "local_full_backup": {
+    "filename": "BACKUP_LI_T0_T1_HANDOFF_2026-10-06.zip",
+    "bytes": 15737543,
+    "sha256": "9b149bb337363bfc3275453ecfbee682052fbba8266ccc7c44c146ffd67b3275"
+  },
+  "artifacts": [
+    {
+      "name": "LI_MONSTER_T0_EXHAUSTIVE_VALIDATION_V01_REVIEW.zip",
+      "sha256": "77337e8ee77dfcd53ca1e679998d158cf5d2f8de8b6f744fc5e4c426bb3bf542"
+    },
+    {
+      "name": "T0_LI_EXHAUSTIVE_FINAL_AUDIT_2026-10-06.md",
+      "sha256": "c9b2191f3ded03e5a76df14f066af665105f816ee9c6e19298734a1a18eb774b"
+    },
+    {
+      "name": "T0_LI_SELECTED_PATCH_READY_TO_FREEZE.json",
+      "sha256": "c0eeed4e70c98e52b1736946d68c3cdd4ddfedf888c769b63fd0076485adf2f8"
+    },
+    {
+      "name": "T0_LI_FINAL_FREEZE_REVIEW_PACKAGE.zip",
+      "sha256": "e3caff5371f10500996afd7d0eedbd20ba24c7ac28812a6752d98d586a87ea98"
+    },
+    {
+      "name": "KAGGLE_LI_MONSTER_T1_SURVIVAL_GENERAL_V02.zip",
+      "sha256": "08feef921d84b5c612dde8baf7110b831649971f352ba75a95d09197758ed93a"
+    },
+    {
+      "name": "KAGGLE_LI_MONSTER_T1_SURVIVAL_GENERAL_V02.ipynb",
+      "sha256": "2fedfe163fae1830e657b23701b3e4a7ff6f5961db54762f6239a58fd3a46bb4"
+    },
+    {
+      "name": "monster_t1_general_runner_v02.py",
+      "sha256": "46e81974468ba915b724962694a6760ab2ae617b1d8c0663e4a7a20f67aa0f48"
+    },
+    {
+      "name": "MANIFEST_LI_MONSTER_T1_SURVIVAL_GENERAL_V02.json",
+      "sha256": "0f7cfcb34ca7d109e18d0c42d502a215fdf6388b9bdf4b0235259371380ee967"
+    },
+    {
+      "name": "README_LI_MONSTER_T1_SURVIVAL_GENERAL_V02.md",
+      "sha256": "14c3876b4c38e46b9ef05b0609d7a2fcb2eadf988fa868bff75d96feafad2fec"
+    }
+  ],
+  "git_handoff": "backups/2026-10-06/HANDOFF_LI_T0_CLOSED_T1_V02_NATURAL_OVERREACH_2026-10-06.md",
+  "next_input": "LI_MONSTER_T1_SURVIVAL_GENERAL_V02_REVIEW.zip"
+}
