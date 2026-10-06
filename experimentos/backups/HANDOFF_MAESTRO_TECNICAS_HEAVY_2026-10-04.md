@@ -937,3 +937,30 @@ Los SQLite/checkpoints pesados se quedan en Kaggle.
 
 Próximo gate:
 `LI_5_ROOTS_COMPLETE -> CROSS_ROOT_LI_CONSOLIDATION`
+
+
+---
+
+# HOTFIX PLAYER POWER ENVELOPE LI V01 FIX1 — 2026-10-06
+
+Bug detectado al iniciar las instancias LI:
+`NameError: name 'false' is not defined`.
+
+Causa:
+el bootstrap incrustaba el objeto `EXPECTED` con sintaxis JSON dentro de una celda Python, por lo que los booleanos `false/true` no eran válidos.
+
+Corrección:
+`EXPECTED` se carga mediante `json.loads(...)`.
+
+Afectaba las 5 ramas y se corrigieron las cinco:
+- `KAGGLE_PLAYER_ENVELOPE_LI_FUEGO_V01_FIX1.ipynb`
+- `KAGGLE_PLAYER_ENVELOPE_LI_METAL_V01_FIX1.ipynb`
+- `KAGGLE_PLAYER_ENVELOPE_LI_AGUA_V01_FIX1.ipynb`
+- `KAGGLE_PLAYER_ENVELOPE_LI_TIERRA_V01_FIX1.ipynb`
+- `KAGGLE_PLAYER_ENVELOPE_LI_VIENTO_V01_FIX1.ipynb`
+
+La lógica, autoridades, seeds, checkpoint/resume, R12 y R128 no cambian.
+El fallo ocurre antes de arrancar la campaña, por lo que no hay resultados de combate que rescatar de una V01 afectada.
+
+Estado:
+`PLAYER_POWER_ENVELOPE_LI_V01_FIX1_READY`
