@@ -151,3 +151,21 @@ El micro-screen no elige automáticamente T3. Su función es eliminar familias q
 - o crean presión desproporcionada sin aportar comportamiento legible.
 
 Los finalistas pasan luego a focal/final gate.
+
+
+## Paquete Colab preparado
+
+Artefacto:
+`COLAB_LI_MONSTER_T3_SPECIES_COUNTER_MICROSCREEN_V01.zip`
+
+- ZIP SHA-256: `591fd0e19f158805fd9a25a1cf2ac1e5649046de29a92e695a1ca41a47ec1a05`
+- Notebook SHA-256: `1e8d45fca3aec4406d1526ae02fe536be9e7199550575d92e4e61d20b0e306de`
+- Runner SHA-256: `212e09c9129fe0a6f9d3f7132df6e24bc84bf1a36360aa4ba6809e524884d22d`
+- Combates previstos: **103.040**.
+- Backend: Google Colab.
+- Workers: detección automática de CPU lógicas.
+- UI: panel único actualizable; sin tqdm.
+- Checkpoints parciales + completos por especie.
+- 0 rutas `/kaggle/...`.
+- RNG del counter T3 separado del RNG canónico del combate para conservar CRN del flujo base tras cada counter.
+- No ratificación automática.
