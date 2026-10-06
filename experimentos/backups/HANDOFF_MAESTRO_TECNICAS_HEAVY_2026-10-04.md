@@ -964,3 +964,121 @@ El fallo ocurre antes de arrancar la campaña, por lo que no hay resultados de c
 
 Estado:
 `PLAYER_POWER_ENVELOPE_LI_V01_FIX1_READY`
+
+
+---
+
+# ASTRA MEGAAUDITORÍA / PLAYER POWER ENVELOPE LI FIX3 — 2026-10-06
+
+## Backup previo
+- Ruta: `experimentos/backups/HANDOFF_MAESTRO_TECNICAS_HEAVY_2026-10-06_PRE_ASTRA_FIX3.md`
+- Commit de backup: `76bc2b5117be3b48132bd59f16e0ff10eee54770`
+
+## Dictamen Astra sobre FIX2
+Resultado:
+`AUDIT_FAIL_BLOCKING`
+`NO_GO_FIX_REQUIRED`
+
+FIX2 queda RETIRADA y no debe ejecutarse.
+
+Bloqueantes B01–B11 aceptados:
+1. manifest JSON inválido;
+2. guard/monster resource_model incompatible + qi_max=null;
+3. orden de HP Tierra incorrecto respecto a G04;
+4. seeds con colisiones accidentales;
+5. resume inseguro con SQLite WAL;
+6. cache de firmas confiada sólo por cardinalidad;
+7. DB/batches sin bijección fuerte contra expected jobs;
+8. REVIEW manifest no idempotente;
+9. fingerprint/job identity incompletos;
+10. REVIEW insuficiente para consolidación cross-root;
+11. selección R128 dependiente del orden físico en empates.
+
+La auditoría NO invalida el balance numérico de las 15 técnicas.
+Confirmó el catálogo efectivo y Paso EVA40.
+No reabrir Paso ni las otras técnicas por estos hallazgos.
+
+## FIX3 — estado
+Estado:
+`FIX3_READY_FOR_ASTRA_RETEST`
+
+NO ejecutar todavía las cinco campañas completas hasta retest independiente.
+
+Paquete:
+- `KAGGLE_PLAYER_ENVELOPE_LI_5_ROOTS_V01_FIX3.zip`
+- SHA-256: `6a4171d653e5220c1ebaf9ee94171e2085b25d6cac7b9d8f11d278d3e13207ed`
+
+Runner:
+- `PLAYER_ENVELOPE_LI_FIX3_RUNNER.py`
+- SHA-256: `96ec35d3c25344f3a4f24abd20106e6e7d15e998549d1108e072040a35eb5f59`
+
+Notebooks:
+- FUEGO: `71434435b35f1c4e939b5a4f9c642370b8827d37181b24eb1452eca00baedc3c`
+- METAL: `9d19f2f67c44c3628fc4b0ae2d37715edf00f99d9b9a09b5a2786841112cbea9`
+- AGUA: `60cdce838e46dacc409e7a7fa11d94e615fe18a646b3af3361a4f88bc459d6eb`
+- TIERRA: `cba05cbe432845c1ba7ccaecf868e156ab5128a3a0b965f6914a3c4e1a2a2be6`
+- VIENTO: `ce238a366b12c48d91b09ba9f7bc4fc15372674a4b1944e9cd6b93f7b30cbd6a`
+
+Recipe hashes:
+- fuego: `c958447ba5189a3cfe0f13d6bf94dfeea39c6f712017477c698e1207defb8750`
+- metal: `da7dd7b4bd177a2e1e5995a25a0897d29a171ebfdf6661ee05f44dbf297d0f5a`
+- agua: `d7869a4c6a4a75bd6cc897d68ee54f2b2b7490a17fa99d88349f59931317096b`
+- tierra: `52f466b29e054326c2f33508855d29f179c96ead5717d4fb87f5ecb3b474738f`
+- viento: `cd6018261954812b8bb29e77874ef89e15e7824604ffd7610ed0acff7966a768`
+
+## FIX3 — correcciones estructurales
+- fuentes embebidas y autenticadas;
+- guard resource_model compatible;
+- constructor LI Tierra: porcentaje sobre HP estructural, flat equipo después, redondeo final;
+- hard gate AOE en LI;
+- seed por réplica SHA-256/63-bit con CRN cross-root explícito;
+- recipe hash versionado y job identity completa;
+- equipment signatures regeneradas y verificadas;
+- SQLite rollback journal DELETE + resume validado contra DB real;
+- expected job set y batch metadata/digest completos;
+- selección R128 determinista y con motivos;
+- REVIEW idempotente;
+- panel completo R12 exportado para cross-root;
+- postflight obligatorio;
+- ProcessPool smoke antes de screen largo.
+
+## Preflight local FIX3
+Verificado localmente:
+- 6144 loadouts -> 4864 firmas;
+- 5/5 monstruos LI READY;
+- resource_model=NONE -> Qi0 sin inventar valor;
+- Tierra naked HP33;
+- Tierra +3 flat equipment HP36;
+- equipo futuro rechazado;
+- AOE LI rechazado por kernel;
+- un job R12 real ejecutado;
+- 583680 seeds de réplica únicas dentro de una raíz;
+- selección R128 invariante al orden en test de empate;
+- filas DB adulteradas rechazadas;
+- rollback-journal snapshot conserva commits;
+- REVIEW manifest válido;
+- runner como script + ProcessPool `--preflight-only` PASS.
+
+## Estadística
+Mantener separación:
+- R12 = screen exhaustivo / localización;
+- R128 = follow-up dirigido independiente, NO muestra representativa.
+
+Carga sigue:
+- 48640 jobs screen/raíz;
+- 583680 peleas R12/raíz;
+- refine máximo 720 celdas × R128 = 92160;
+- máximo 675840 peleas/raíz.
+
+## Grulla
+No reabrir motor/STD V03.1.
+Boss-bench sigue como consumidor futuro.
+Marcar como STALE cualquier contrato viejo que habilite Ulti principal en LianQi III.
+Autoridad vigente: LianQi IV + maestría histórica completa.
+
+## Próximo gate
+1. Astra retest dirigido de FIX3 contra B01–B11.
+2. Si retorna `GO_EXECUTE_LI_FIX3`, ejecutar las cinco raíces.
+3. Si retorna NO_GO, corregir sólo bloqueantes reproducibles.
+4. No tocar balance de técnicas salvo anomalía material nueva.
+
