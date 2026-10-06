@@ -1430,3 +1430,90 @@ Next:
 5. Cross-root LI consolidation after all five roots.
 
 No gameplay rebalance in FIX5. No main. No merge.
+
+
+---
+
+# LI FIVE-ROOT CROSS-ROOT CONSOLIDATION — 2026-10-06
+
+Status:
+`LI_CROSS_ROOT_COMPLETE_T0_RECALIBRATION_REQUIRED`
+
+Evidence:
+- Fuego FIX3 sealed witness.
+- Metal/Agua/Tierra/Viento FIX5 POSTFLIGHT PASS.
+- 3,216,256 represented fights total.
+- 48,640 R12 cells/root.
+- Same 4,864 signatures, 5 native LI monsters, 2 policies.
+- CRN epoch preserved across all roots:
+  `13b6c488bfd3cf516b76cdea1ff22a38f981dbe5f565d6fa435378ee720050c8`
+
+R12 global signature-weighted win:
+- Fuego 98.0563%
+- Metal 98.2436%
+- Agua 96.3274%
+- Tierra 97.7001%
+- Viento 94.9822%
+
+R12 non-Lobo:
+- Fuego 99.7520%
+- Metal 99.7469%
+- Agua 99.2834%
+- Tierra 99.5743%
+- Viento 99.3862%
+
+R12 Lobo:
+- Metal 92.2303%
+- Fuego 91.2735%
+- Tierra 90.2035%
+- Agua 84.5035%
+- Viento 77.3660%
+
+EXPECTED_STAGE, five roots × two policies:
+- Rata Qi 100.00%
+- Serpiente Qi 100.00%
+- Avispa Jade 100.00%
+- Mono de las Pildoras 99.61%
+- Lobo Espiritual 89.69%
+
+NAKED:
+- Rata Qi 100.00%
+- Serpiente Qi 100.00%
+- Avispa Jade 99.77%
+- Mono de las Pildoras 92.89%
+- Lobo Espiritual 75.16%
+
+Conclusion:
+- Global LI T0 threat anomaly confirmed.
+- Not Fire-specific.
+- Four non-Lobo enemies are at ceiling and cannot discriminate roots/builds usefully.
+- Lobo is the only meaningful discriminator and should need less recalibration than the other four.
+
+Human provisional T0 anchor:
+~70% EXPECTED_STAGE win as a center, not a universal exact target.
+Possible lab target hierarchy:
+- Rata 80–90%
+- Serpiente 70–80%
+- Avispa 70–80%
+- Mono 65–75%
+- Lobo 55–70%
+
+Do not freeze those bands as monster stats.
+Do not change player/techniques/equipment/root bonuses yet.
+
+Next:
+`LI_MONSTER_T0_RECALIBRATION`
+before LII.
+
+Freeze:
+- 15 techniques / Paso EVA40
+- player LI stats
+- equipment LI
+- roots
+- policies
+- AOE/Ulti legality
+- T1–T4
+- unique/guardian/Grulla
+
+Detailed report:
+`experimentos/balance_nuevo/player_envelope_li_fix5/LI_CROSS_ROOT_CONSOLIDATION_2026-10-06.md`
