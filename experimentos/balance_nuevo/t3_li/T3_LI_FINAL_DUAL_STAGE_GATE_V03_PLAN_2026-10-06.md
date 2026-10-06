@@ -75,3 +75,25 @@ Estándar definitivo:
 - 0 rutas Kaggle.
 
 No ratificación automática.
+
+
+## Paquete Colab preparado
+
+Artefacto:
+`COLAB_LI_MONSTER_T3_FINAL_DUAL_STAGE_GATE_V03.zip`
+
+- ZIP SHA-256: `391701791a3dd8b66878062afceafef576fbb44e623bb9bf24e783dcf00ac9a9`
+- Notebook SHA-256: `6a8fc396d9b06d7c325d3e4790d96ec19592dccb89356baaeffff35c150365dd`
+- Runner SHA-256: `edb52e3f635dc54aca2a845072d7378224ce1bf60fb144aed099223a7568c1e1`
+- notebook válido `nbformat 4`;
+- 294.400 combates previstos;
+- 0 imports tqdm;
+- 0 rutas Kaggle;
+- panel único HTML coloreado:
+  - verde ejecución;
+  - ámbar checkpoint;
+  - rojo issues/error;
+- workers automáticos;
+- checkpoints por etapa/especie.
+
+No ratifica T3 automáticamente.
