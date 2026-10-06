@@ -56,8 +56,8 @@ export const NATIVE_STAGE_BY_MOB=Object.freeze({
   centinela_pluma:Object.freeze({stage:4,role:'BOSS',region:'alturas'})
 });
 
-// La etapa del jugador limita QUÉ puede aprender una población, pero no concede
-// estadísticas automáticamente. adaptiveXp/encuentros seguirá decidiendo SI lo aprende.
+// La etapa del jugador describe la BANDA ESPERADA de adaptación, no un permiso.
+// La presión válida puede superar esa banda; combate + decay son el límite natural.
 export const ADAPTIVE_BASE_ONLY=Object.freeze({
   tier:0,
   label:'BASE_NATURAL',
