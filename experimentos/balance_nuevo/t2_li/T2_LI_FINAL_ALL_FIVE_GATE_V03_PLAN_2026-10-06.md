@@ -60,3 +60,19 @@ Compact progress standard:
 - no Kaggle paths.
 
 No automatic ratification.
+
+
+## Paquete Colab preparado
+
+Artefacto:
+`COLAB_LI_MONSTER_T2_FINAL_ALL_FIVE_GATE_V03.zip`
+
+- ZIP SHA-256: `fc03802c1218fe45db7f1ca3b53bc036edd08fabaa8418ba8294672e75e7b9ca`
+- Notebook SHA-256: `e42077ed7ea74bcb3bb562b8834befb56c86205912a4c392c6cc82ad491fad7c`
+- Runner SHA-256: `39714d88f0c917614bf9dd2fea2c26a61b7a4e754e049675ae4ec2097f0cabe9`
+- 147.200 combates previstos.
+- nbformat 4 válido.
+- 0 rutas `/kaggle/`.
+- progreso compacto: ancho fijo 88 columnas, barra de 20 bloques y telemetría CPU/RAM/rate en línea separada cada ~20%.
+
+La UI compacta queda como estándar para futuros notebooks Colab salvo necesidad especial.
