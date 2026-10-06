@@ -1,6 +1,6 @@
 {
   "schema_version": "monster-individual-variance-v0.4",
-  "status": "HUMAN_RATIFIED_REBASED_T0_T1_COMPAT_PENDING",
+  "status": "HUMAN_RATIFIED_FOR_EXPERIMENTAL_RUNTIME_INTEGRATION",
   "semantics": {
     "canonical_t0": "T0_LI_EXHAUSTIVE_PASS_2026-10-06",
     "upper_envelope": "per-axis upper values come from measured experimental candidates; axes may use different source trials",
@@ -22,8 +22,15 @@
       "observed_mutant_incidence": 0.007556
     },
     "current_t1_compatibility_validation": {
-      "status": "PENDING",
-      "required_before_runtime_activation": true
+      "status": "PASS",
+      "validated_on": "2026-10-06",
+      "gate": "LI_MUTANT_T1_COMPAT_GATE_V04_LOCAL_EXACT",
+      "review_sha256": "c4e3c73f8ff907fa3b8e698bbc6ae991b9dfde1015a5eb2b439b154630b4bf34",
+      "spawn_samples_total": 1000000,
+      "represented_combat_fights": 102400,
+      "timeout_rate_max": 0,
+      "issues": [],
+      "difficulty_rule": "LOW_PLAYER_WIN_RATE_AGAINST_MUTANTS_IS_EXPECTED_AND_NONBLOCKING"
     }
   },
   "axis_distribution": "UNIFORM_0_1",
@@ -350,6 +357,7 @@
     "every_upper_stat_must_be_gte_t0": true,
     "t1_compatibility_gate_required_before_runtime": true,
     "no_player_winrate_floor_for_mutants": true,
-    "hard_fail_only_on_invalidity_identity_or_runtime_breakage": true
+    "hard_fail_only_on_invalidity_identity_or_runtime_breakage": true,
+    "t1_compatibility_gate_passed": true
   }
 }
