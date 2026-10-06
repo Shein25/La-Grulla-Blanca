@@ -1,0 +1,18 @@
+{
+  "status": "READY_TO_FREEZE_PENDING_HUMAN_APPLY",
+  "source_review_sha256": "77337e8ee77dfcd53ca1e679998d158cf5d2f8de8b6f744fc5e4c426bb3bf542",
+  "patches": {
+    "rata_qi": {"candidate_id":"59c6253e797f0c92","stats":{"hp":45,"precision":84,"defense":2,"basic_damage":"2d4+3"}},
+    "serpiente_qi": {"candidate_id":"9672faaa29074ab3","stats":{"hp":57,"precision":94,"evasion":11,"defense":0},"technique":{"cadence":2,"poison":{"damage":"1d2+2","ticks":3}}},
+    "avispa_jade": {"candidate_id":"320443d1333c58a3","stats":{"hp":42,"precision":102,"evasion":22,"defense":2},"technique":{"cadence":2,"poison":{"damage":"1d3+2","ticks":2}}},
+    "mono_pildoras": {"candidate_id":"36667a2ea37561ed","stats":{"hp":59,"precision":91,"evasion":28,"defense":2,"basic_damage":"1d2+3"},"technique":{"cadence":2,"direct_damage":"1d2+3","qi_drain":6}},
+    "lobo_espiritual": {"candidate_id":"3ac540847aca982a","stats":{"hp":53,"precision":100,"evasion":12,"defense":1,"basic_damage":"2d4+2"},"technique":{"cadence":4,"direct_damage":"2d6+1"}}
+  },
+  "adaptive_ceiling_authority": {"LianQi_I":"T1","LianQi_II":"T2","LianQi_III":"T2","LianQi_IV":"T4"},
+  "thresholds": {"T1":20,"T2":45,"T3":70,"T4":90},
+  "notes": [
+    "T3 must remain sustainable enough for a capable LianQi IV player to generate pressure toward T4.",
+    "If maxTierReached is T3, decay floor is T2; if maxTierReached is T4, decay floor is T3.",
+    "No universal T1-T4 stat scaling is authorized."
+  ]
+}
