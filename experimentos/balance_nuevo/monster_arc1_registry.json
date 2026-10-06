@@ -20,7 +20,14 @@
       "serpiente_qi",
       "mono_pildoras",
       "lobo_espiritual"
-    ]
+    ],
+    "li_t0_freeze": "T0_LI_EXHAUSTIVE_PASS_2026-10-06",
+    "adaptive_ceiling_authority": {
+      "LianQi_I": "T1",
+      "LianQi_II": "T2",
+      "LianQi_III": "T2",
+      "LianQi_IV": "T4"
+    }
   },
   "profiles": {
     "rata_qi": {
@@ -35,16 +42,16 @@
       "engine_contract": "NEW_COMBAT_STATS_V0_1",
       "stats_status": "READY",
       "stats": {
-        "hp": 21,
+        "hp": 45,
         "qi_max": null,
-        "precision": 80,
+        "precision": 84,
         "evasion": 0,
-        "defense": 0,
+        "defense": 2,
         "tenacity": 0,
         "control": 0,
         "crit_chance": 5,
         "crit_damage": 1.5,
-        "basic_damage": "2d4"
+        "basic_damage": "2d4+3"
       },
       "technique": null,
       "ai": {
@@ -52,8 +59,8 @@
         "social": "COLONIA"
       },
       "adaptive": {
-        "status": "ADAPTIVE_CHAIN_T0_T4_CLOSED",
-        "rule": "T0-T4 are human-ratified and frozen. T4 is Mordisco Frenético. No T5 exists in this contract."
+        "status": "READY_FOR_T1_RECALIBRATION",
+        "rule": "T0 frozen from exhaustive LI validation; T1 may now be calibrated. T2-T4 remain sequentially gated."
       },
       "resource_model": "NONE"
     },
@@ -69,9 +76,9 @@
       "engine_contract": "NEW_COMBAT_STATS_V0_1",
       "stats_status": "READY",
       "stats": {
-        "hp": 27,
-        "precision": 86,
-        "evasion": 5,
+        "hp": 57,
+        "precision": 94,
+        "evasion": 11,
         "defense": 0,
         "tenacity": 5,
         "basic_damage": "1d2+2",
@@ -100,7 +107,7 @@
       },
       "adaptive": {
         "status": "READY_FOR_T1_RECALIBRATION",
-        "rule": "T0 is READY. T1 may be recalibrated; T2-T4 remain blocked until sequential adaptive validation."
+        "rule": "T0 frozen from exhaustive LI validation; T1 may now be calibrated. T2-T4 remain sequentially gated."
       },
       "resource_model": "NONE"
     },
@@ -116,8 +123,8 @@
       "engine_contract": "NEW_COMBAT_STATS_V0_1",
       "stats_status": "READY",
       "stats": {
-        "hp": 41,
-        "precision": 97,
+        "hp": 53,
+        "precision": 100,
         "evasion": 12,
         "defense": 1,
         "tenacity": 20,
@@ -134,7 +141,7 @@
         ],
         "params_status": "READY",
         "params": {
-          "cadence": 5,
+          "cadence": 4,
           "direct_damage": "2d6+1"
         }
       },
@@ -144,7 +151,7 @@
       },
       "adaptive": {
         "status": "READY_FOR_T1_RECALIBRATION",
-        "rule": "T0 is READY. T1 may be recalibrated; T2-T4 remain blocked until sequential adaptive validation."
+        "rule": "T0 frozen from exhaustive LI validation; T1 may now be calibrated. T2-T4 remain sequentially gated."
       },
       "resource_model": "NONE"
     },
@@ -358,10 +365,10 @@
       "engine_contract": "NEW_COMBAT_STATS_V0_1",
       "stats_status": "READY",
       "stats": {
-        "hp": 17,
-        "precision": 90,
+        "hp": 42,
+        "precision": 102,
         "evasion": 22,
-        "defense": 0,
+        "defense": 2,
         "tenacity": 7,
         "basic_damage": "1d2+1",
         "qi_max": null,
@@ -389,7 +396,7 @@
       },
       "adaptive": {
         "status": "READY_FOR_T1_RECALIBRATION",
-        "rule": "T0 is READY. T1 may be recalibrated; T2-T4 remain blocked until sequential adaptive validation."
+        "rule": "T0 frozen from exhaustive LI validation; T1 may now be calibrated. T2-T4 remain sequentially gated."
       },
       "resource_model": "NONE"
     },
@@ -405,10 +412,10 @@
       "engine_contract": "NEW_COMBAT_STATS_V0_1",
       "stats_status": "READY",
       "stats": {
-        "hp": 34,
+        "hp": 59,
         "qi_max": null,
         "precision": 91,
-        "evasion": 24,
+        "evasion": 28,
         "defense": 2,
         "tenacity": 12,
         "control": 0,
@@ -426,7 +433,7 @@
         "params": {
           "cadence": 2,
           "direct_damage": "1d2+3",
-          "qi_drain": 5
+          "qi_drain": 6
         }
       },
       "ai": {
@@ -435,7 +442,7 @@
       },
       "adaptive": {
         "status": "READY_FOR_T1_RECALIBRATION",
-        "rule": "T0 is READY. T1 may be recalibrated; T2-T4 remain blocked until sequential adaptive validation."
+        "rule": "T0 frozen from exhaustive LI validation; T1 may now be calibrated. T2-T4 remain sequentially gated."
       },
       "resource_model": "NONE"
     },
