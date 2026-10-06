@@ -257,3 +257,46 @@ Autoridad histórica recuperada:
 - Serpiente/Avispa/Mono/Lobo no tienen T4 final recuperado: cualquier T4 para ellos será hipótesis LAB explícita, no autoridad histórica.
 
 T4 no puede reabrir T0–T3.
+
+
+---
+
+## T4 LI — cierre final 2026-10-06
+
+Estado: **T4_LI_FINAL_FREEZE_2026-10-06**.
+
+Contrato:
+`experimentos/balance_nuevo/t4_li/T4_LI_FINAL_CONTRACT_V1.json`
+
+Freeze:
+`experimentos/balance_nuevo/t4_li/T4_LI_FINAL_FREEZE_2026-10-06.md`
+
+Gate final:
+- `LI_MONSTER_T4_FINAL_DUAL_STAGE_GATE_V03`;
+- review SHA-256 `b5ca5163b3c099820c7d85b1ba039994956b4e30e5650aaf0d3e697a87b88eee`;
+- 294.400 combates;
+- LI_OVERREACH + LIV_STRUCTURAL;
+- manifest 7/7;
+- false T3 counter = 0;
+- Acechante precision drift = 0;
+- baseline T3 con T4 use = 0;
+- `issues=[]`.
+
+T4 congelado:
+- Rata: `Mordisco Frenético` = INSTANCE_BASIC ×1.0 + 2d4 canónico ×0.50, CD7.
+- Serpiente: BASIC + 1 tick inmediato de veneno de instancia si impacta, CD7.
+- Avispa: BASIC + 1 tick inmediato de veneno de instancia si impacta, CD7.
+- Mono: Manotazo de instancia + drain 6 si impacta, CD7.
+- Lobo: Emboscada de instancia reemplazando BASIC, CD7.
+
+Prioridad:
+`T1 survival → técnica canónica due → T4 lista → BASIC`.
+
+La cadena adaptativa LI queda cerrada:
+`T0 → T1 → T2 → T3 → T4`.
+
+Documento de cierre:
+`experimentos/balance_nuevo/LI_ADAPTIVE_CHAIN_T0_T4_FINAL_CLOSURE_2026-10-06.md`.
+
+No existe T5.
+No activar automáticamente en runtime productivo.
