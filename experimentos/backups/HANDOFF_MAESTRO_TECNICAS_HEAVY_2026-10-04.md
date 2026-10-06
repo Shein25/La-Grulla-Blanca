@@ -860,3 +860,80 @@ Arquitectura ratificada:
 
 Estado:
 `PLAYER_POWER_ENVELOPE_LI_PREPARATION`
+
+
+---
+
+# PLAYER POWER ENVELOPE — LI PARALLEL V01 PREPARADO — 2026-10-06
+
+Estado: `READY_TO_RUN_5_PARALLEL_ROOTS`
+
+## Técnicas
+Autoridad provisional:
+- catálogo exacto CROSS-ROOT V0.2 fixed-set;
+- parche humano adicional: `paso_nube.model_params.evasion_granted = 40`;
+- SHA-256 catálogo resultante: `912b7824eff9149909ca21b9ad6290c6c82b1e1ea31867da1185c32df383d187`.
+
+## Autoridades runtime
+- Combat commit: `64173e88a765228e48c54878c1362bca387bad51`
+- `etapa19b_combat_engine.py` blob: `e4650b615af2c63d91ea15347ac471432e7237da`
+- `monster_new_engine_guard.py` blob: `02dee3e83a6ef160632f3b5acbb4da41d84c5418`
+- Monster/equipment commit: `c7b87b84a80e0a42e20eec7574f860123685c782`
+- monster registry blob: `26979e85a3679f33c32404e601c3dfbc72d0ce44`
+- equipment catalog blob: `f3ba217b834eb0c2bb4156b12d4f7e8b9990263f`
+
+## Legalidad LI
+- 0 puntos de especialización.
+- AOE bloqueado.
+- Ultis bloqueadas.
+- T0-only en este frente.
+- 5 monstruos LI nativos.
+- 6.144 loadouts estructurales de equipo.
+- 4.864 firmas mecánicas deduplicadas.
+- políticas de motor usadas: `UNITARGET_FIRST`, `DEFENSE_OPEN`.
+- NO usar `AOE_FIRST` ni `ROTATION` en LI.
+
+## Carga por instancia
+- 48.640 celdas screen por raíz.
+- R12 screen = 583.680 combates por raíz.
+- refinamiento R128 dirigido a extremos, frontera, presión de Qi, supervivencia y loadouts de referencia.
+- cinco instancias en paralelo.
+
+## Checkpoint / resume
+- SQLite acumulativo por rama.
+- transacciones atómicas por batch.
+- hashes SHA-256 por batch.
+- seeds deterministas.
+- `PLAYER_ENVELOPE_CHECKPOINT.json`.
+- al reanudar, adjuntar la última Kaggle Save Version de ESA MISMA RAMA como Input.
+- jobs confirmados no se repiten.
+- fuentes descargadas sólo en primera ejecución; una Save Version posterior las reutiliza.
+
+## Notebooks
+- FUEGO: `KAGGLE_PLAYER_ENVELOPE_LI_FUEGO_V01.ipynb`
+  - SHA-256 `d0aefa08f647c559b4c248cf348cd7e0daf016eee2a20904b2c4fea774fd75f8`
+- METAL: `KAGGLE_PLAYER_ENVELOPE_LI_METAL_V01.ipynb`
+  - SHA-256 `607dae6d338c7b07d8f4a50ca71c4a2e8e40e015f28a45e37ce7db7df7b12dc4`
+- AGUA: `KAGGLE_PLAYER_ENVELOPE_LI_AGUA_V01.ipynb`
+  - SHA-256 `0bef2c52f78edba884f398c9b840ec01b7fc04f773a8c6d246f06db1b915f7ce`
+- TIERRA: `KAGGLE_PLAYER_ENVELOPE_LI_TIERRA_V01.ipynb`
+  - SHA-256 `8f0bff240f5482a5f8a8b1649798c5eff5fce8430308ff65badce8868896a4ce`
+- VIENTO: `KAGGLE_PLAYER_ENVELOPE_LI_VIENTO_V01.ipynb`
+  - SHA-256 `f786ebd38e6d42400b73720bc80922522b2a545589daab7a5a53937ba7fcacbb`
+
+Paquete conjunto:
+- `KAGGLE_PLAYER_ENVELOPE_LI_5_ROOTS_V01.zip`
+- SHA-256 `ccb36d4880337e462958d03b36c9aa37c0bff6d01a0ddac507fc47241a0824ce`
+
+## Entregables al terminar
+Pasar únicamente:
+- `PLAYER_ENVELOPE_LI_FUEGO_REVIEW.zip`
+- `PLAYER_ENVELOPE_LI_METAL_REVIEW.zip`
+- `PLAYER_ENVELOPE_LI_AGUA_REVIEW.zip`
+- `PLAYER_ENVELOPE_LI_TIERRA_REVIEW.zip`
+- `PLAYER_ENVELOPE_LI_VIENTO_REVIEW.zip`
+
+Los SQLite/checkpoints pesados se quedan en Kaggle.
+
+Próximo gate:
+`LI_5_ROOTS_COMPLETE -> CROSS_ROOT_LI_CONSOLIDATION`
