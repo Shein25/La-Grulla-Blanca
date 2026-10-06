@@ -1,0 +1,60 @@
+{
+  "schema_version": "li-t3-species-counter-v1.0",
+  "status": "HUMAN_RATIFIED_FROZEN",
+  "frozen_on": "2026-10-06",
+  "authority": {
+    "t0": "T0_LI_EXHAUSTIVE_PASS_2026-10-06",
+    "t1": "T1_LI_FINAL_FREEZE_2026-10-06",
+    "t2": "T2_LI_FINAL_FREEZE_2026-10-06",
+    "mutant_suffix": "MUTANT_SUFFIX_CONTRACT_V1",
+    "final_gate": "LI_MONSTER_T3_FINAL_DUAL_STAGE_GATE_V03",
+    "review_sha256": "ba9c8ef20c5155af0064f337b7eda7ff6cafcc79da8900e303a432849a0461d2",
+    "represented_combat_fights": 294400
+  },
+  "common_trigger": {
+    "t2_prediction_must_be_confirmed": true,
+    "t1_must_be_active": true,
+    "t1_must_be_causally_responsible": true,
+    "evasion_counter_rule": "same hit roll would connect against natural EVA and fail only after frozen T1 EVA bonus",
+    "defense_counter_rule": "same connected damage packet must have >0 damage prevented by frozen T1 DEF bonus",
+    "natural_miss_never_counts": true,
+    "hidden_root_build_forbidden": true,
+    "future_rng_forbidden": true
+  },
+  "species": {
+    "rata_qi": {
+      "counter": "R1_INSTANCE_BASIC",
+      "effect": "immediate normal direct-damage packet using current instance basic_damage",
+      "extra_limit": "NONE"
+    },
+    "serpiente_qi": {
+      "counter": "S1_INSTANCE_POISON_TICK",
+      "effect": "one immediate poison-damage tick using current instance poison damage; no new duration"
+    },
+    "avispa_jade": {
+      "counter": "A2_INSTANCE_POISON_TICK",
+      "effect": "one immediate poison-damage tick using current instance poison damage; no new duration"
+    },
+    "mono_pildoras": {
+      "counter": "M2_INSTANCE_MANOTAZO_PACKET",
+      "effect": "immediate normal direct-damage packet using current instance technique direct damage plus existing Qi drain 6; does not consume normal technique cadence"
+    },
+    "lobo_espiritual": {
+      "counter": "L2_INSTANCE_EMBOSCADA_DAMAGE",
+      "effect": "immediate normal direct-damage packet using current instance Emboscada direct damage; does not consume normal technique cadence"
+    }
+  },
+  "semantics": {
+    "no_universal_stat_scaling": true,
+    "no_new_clock_timer": true,
+    "no_t4_execution": true,
+    "adaptive_tier_applies_after_individual_variance_and_suffix": true,
+    "player_winrate_is_diagnostic_only": true
+  },
+  "guards": {
+    "false_counter_rate_must_be_zero": true,
+    "no_degenerate_loops": true,
+    "no_canonical_runtime_activation": true,
+    "no_t5": true
+  }
+}
