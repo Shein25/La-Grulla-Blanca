@@ -1258,3 +1258,92 @@ Keep resume as a separate smoke gate before relying on it for interrupted heavy 
 
 Status:
 `LI_FUEGO_FIX3_COMPLETE_AWAITING_OTHER_ROOTS`
+
+
+---
+
+# ASTRA FIX3 REAUDIT → FIX4 F3-R01 CHECKPOINT — 2026-10-06
+
+## Astra re-audit verdict
+Source artifact:
+`ASTRA_FIX3_REAUDIT_FUEGO_REVIEW_2026-10-06.zip`
+
+Verdict:
+`FIX3_AUDIT_FAIL_BLOCKING`
+
+Final gate:
+`NO_GO_FIX4_REQUIRED`
+
+Astra confirmed:
+- B01, B02, B03, B04, B06, B08, B09, B10, B11 = FIXED.
+- B05/B07 = PARTIAL because of one new ordering defect `F3-R01`.
+- Fuego FIX3 real is internally valid and MUST NOT be repeated solely because of F3-R01.
+- Fuego balance attribution remains `INSUFFICIENT_FOR_BALANCE_ATTRIBUTION`.
+
+## F3-R01
+FIX3 called generic DB validation with `refine_jobs=None` before rebuilding deterministic refine authority.
+Therefore a compatible DB already containing refine rows was rejected as:
+`REFINE_ROWS_BEFORE_SELECTION_AUTHORITY`.
+
+Consequences:
+- Save Version with refine>0 could be discarded and recomputed.
+- Existing working DB with refine>0 could abort on restart.
+
+## FIX4 local remediation
+Package:
+`KAGGLE_PLAYER_ENVELOPE_LI_5_ROOTS_V01_FIX4.zip`
+
+SHA-256:
+`2b71616d693c68830db67d1a575a9d0dc0de558b8f4ffafadf03ee102708d77f`
+
+Runner SHA-256:
+`5efa486a0435efd30f176d58daada12c02556af0f415832b732b40f873e31699`
+
+FIX4 common_recipe_hash:
+`43c03e56a4fcd942a6bc6cf3e12f01662828cb35ff33b86089fd26a706f2ad09`
+
+## Fuego FIX3 preservation / CRN epoch
+Fuego real remains sealed:
+- recipe `15586b2cfc1aafe2deb5c95988c2b55a5482758770d788a92aaa4c6fc36b9ebc`
+- common recipe `13b6c488bfd3cf516b76cdea1ff22a38f981dbe5f565d6fa435378ee720050c8`
+- REVIEW SHA-256 `b4f65c18f6d176d4163faa1d5b1c10dab9c9961910df821eab9d93c259a2c2f2`
+
+FIX4 does NOT fake the old recipe:
+- FIX4 runner/common/root recipe hashes change normally.
+- FIX4 adds explicit `crn_epoch_hash=13b6c488...`.
+- seed derivation uses that epoch.
+- FIX3 DBs are NOT accepted as writable FIX4 DBs.
+- Fuego is reused only as sealed external evidence.
+
+Local verification:
+- all 48,640 Fuego R12 seed digests FIX3 vs FIX4 CRN epoch: 48,640/48,640 identical;
+- selected logical Fuego combat replays FIX3 vs FIX4: identical result_json;
+- resume Input DB with refine>0: PASS;
+- existing working DB with refine>0: PASS;
+- corrupt/incomplete DB: fail-closed;
+- 6,144 raw -> 4,864 signatures unchanged;
+- all five FIX4 notebook bootstraps produce one shared FIX4 common recipe and distinct root recipes.
+
+Root recipe hashes FIX4:
+- Fuego `6f69116cef17d11b82c4818d288c02c4f99cc69e5f766325d3284bae89e437a9`
+- Metal `cd62ff69273c6f95310279e998b87d8920942607e5b8bba467552c141581eb03`
+- Agua `4de27562a55f51f7070b7dc70d40ec011a6c26bc7f08e71238c5c2cddeeab35b`
+- Tierra `1ac20429a5282eff9f196d7f64c367ff4eb82b71763702429621fadfccda08fd`
+- Viento `b1bfba16372080a1751f74598914dfa638ac812730b6b21af82f79dcc559bf8a`
+
+## Current gate
+`FIX4_PENDING_ASTRA_REAUDIT`
+
+Next:
+1. Astra reaudits F3-R01 + CRN compatibility only.
+2. If structural PASS: run minimal real Kaggle Save Version/resume smoke.
+3. If runtime smoke PASS: execute Metal, Agua, Tierra, Viento.
+4. Do not rerun Fuego.
+5. Cross-root consolidation only after all five roots are available.
+
+## Provisional T0 balance anchor discussed
+If all five LI roots reproduce the same low-threat pattern, use approximately 70% win for EXPECTED_STAGE vs normal T0 as a provisional center, not a universal exact target.
+Preserve internal threat hierarchy and evaluate HP/Qi remaining, rounds and monster mechanic relevance in addition to win rate.
+No T0 recalibration is authorized until cross-root evidence exists.
+
+No main. No merge. No gameplay rebalance in FIX4.
