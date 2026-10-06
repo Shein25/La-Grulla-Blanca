@@ -119,10 +119,11 @@ export function adaptiveCapabilityCeiling(mobId,playerStage){
     });
   }
   // Human authority 2026-10-06:
-  // T3/T4 are Arc 1 replayability tiers reserved for LianQi IV.
-  // Before LianQi IV the adaptive learning ceiling cannot exceed T2.
-  const maxDelta=playerStage<4?1:3;
-  const delta=Math.min(maxDelta,relation.delta);
+  // Player stage is guidance for expected capability, not a hard adaptive gate.
+  // If a player can keep generating valid pressure beyond the expected band,
+  // the population is allowed to keep adapting. Combat difficulty + decay are
+  // the natural limiter.
+  const delta=Math.min(3,relation.delta);
   return Object.freeze({
     ...relation,
     ...ADAPTIVE_CAPABILITY_BY_STAGE_DELTA[delta]
