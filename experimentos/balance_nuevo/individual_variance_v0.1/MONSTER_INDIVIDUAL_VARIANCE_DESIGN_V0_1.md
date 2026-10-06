@@ -26,6 +26,28 @@ La v0.3 fue validada antes del rebalance final de T0/T1 y contenía pisos antigu
 
 Esto conserva únicamente evidencia experimental ya existente.
 
+## Aclaración semántica ratificada — individuos normales
+
+El perfil T0 congelado **no representa un monstruo normal con estadísticas fijas**.
+
+Representa el piso natural y la referencia mínima de la especie. Cada spawn repetible se instancia con sus propias tiradas independientes `q_axis ∈ [0,1]` sobre todos los ejes variables disponibles.
+
+Por tanto:
+
+```text
+especie
+→ T0 floor
+→ tiradas q_axis individuales
+→ individuo normal concreto
+→ evaluación de conjunción excepcional
+→ posible Mutante / subtipo
+→ tier adaptativo T0/T1/...
+```
+
+Un Mutante no recibe un paquete arbitrario de estadísticas. Es el resultado emergente de una **conjunción excepcional de las mismas características aleatorias que ya diferencian a todos los individuos normales**.
+
+Los futuros sufijos especializados deben derivarse de esa configuración de `q_axis`; no deben sortearse independientemente ni reemplazar la variabilidad natural.
+
 ## Distribución
 
 Cada eje realmente variable recibe una tirada independiente `q_axis ∈ [0,1]` una vez al crear la instancia.
