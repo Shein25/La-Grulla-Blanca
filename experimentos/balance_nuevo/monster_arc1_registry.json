@@ -22,12 +22,14 @@
       "lobo_espiritual"
     ],
     "li_t0_freeze": "T0_LI_EXHAUSTIVE_PASS_2026-10-06",
-    "adaptive_ceiling_authority": {
-      "LianQi_I": "T1",
-      "LianQi_II": "T2",
-      "LianQi_III": "T2",
-      "LianQi_IV": "T4"
-    }
+    "adaptive_expected_bands": {
+      "note": "Guidance only; not hard gates. Valid pressure may push a population beyond the expected band.",
+      "LianQi_I": "T0-T1 expected",
+      "LianQi_II": "T1-T2 expected",
+      "LianQi_III": "T2 expected/advanced overreach possible",
+      "LianQi_IV": "T3-T4 intended replayability/endgame"
+    },
+    "adaptive_overreach_policy": "ALLOWED_NATURAL_LIMIT_BY_COMBAT_AND_DECAY"
   },
   "profiles": {
     "rata_qi": {
