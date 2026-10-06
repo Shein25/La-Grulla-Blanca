@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import {
+  ADAPTIVE_LEARNING_CEILING_STATUS,
   pressureTierFromPressure,
   pressureCapForAdaptiveCeiling,
   clampPressureToAdaptiveCeiling,
@@ -9,6 +10,10 @@ import {adaptiveCapabilityCeiling} from '../adaptive/stage-progression-v0.1.mjs'
 
 let pass=0,fail=0;
 const T=(name,fn)=>{try{fn();pass++;console.log('PASS',name)}catch(e){fail++;console.error('FAIL',name);console.error(e.stack||e)}};
+
+T('status declares natural overreach semantics',()=>{
+  assert.equal(ADAPTIVE_LEARNING_CEILING_STATUS,'EXPERIMENTAL_V03_NATURAL_OVERREACH');
+});
 
 T('pressure thresholds derive T0..T4 exactly',()=>{
   assert.equal(pressureTierFromPressure(0),0);
@@ -23,122 +28,76 @@ T('pressure thresholds derive T0..T4 exactly',()=>{
   assert.equal(pressureTierFromPressure(100),4);
 });
 
-T('pressure caps match the upper edge of each learnable tier',()=>{
+T('historical ceiling API no longer caps pressure',()=>{
   assert.deepEqual(
     [0,1,2,3,4].map(pressureCapForAdaptiveCeiling),
-    [19,44,69,89,100]
+    [100,100,100,100,100]
   );
+  assert.equal(clampPressureToAdaptiveCeiling({pressure:100,ceilingTier:1}),100);
 });
 
-T('T1 ceiling cannot preload T2-T4 pressure',()=>{
-  assert.equal(
-    clampPressureToAdaptiveCeiling({pressure:100,ceilingTier:1}),
-    44
-  );
+T('player can legitimately overreach expected T1 band into T4',()=>{
   const r=reconcileLearningWithCeiling({
     pressure:100,
     maxTierReached:0,
     ceilingTier:1
   });
-  assert.equal(r.pressure,44);
-  assert.equal(r.pressureTier,1);
-  assert.equal(r.maxTierReached,1);
-  assert.equal(r.effectiveAdaptiveTier,1);
-});
-
-T('raising the ceiling does not reveal a tier without new pressure',()=>{
-  const atT1=reconcileLearningWithCeiling({
-    pressure:100,
-    maxTierReached:0,
-    ceilingTier:1
-  });
-  const afterAdvance=reconcileLearningWithCeiling({
-    pressure:atT1.pressure,
-    maxTierReached:atT1.maxTierReached,
-    ceilingTier:2
-  });
-  assert.equal(afterAdvance.pressure,44);
-  assert.equal(afterAdvance.pressureTier,1);
-  assert.equal(afterAdvance.maxTierReached,1);
-  assert.equal(afterAdvance.effectiveAdaptiveTier,1);
-});
-
-T('new pressure after advancement can earn the newly available tier',()=>{
-  const r=reconcileLearningWithCeiling({
-    pressure:69,
-    maxTierReached:1,
-    ceilingTier:2
-  });
-  assert.equal(r.pressureTier,2);
-  assert.equal(r.maxTierReached,2);
-  assert.equal(r.effectiveAdaptiveTier,2);
+  assert.equal(r.pressure,100);
+  assert.equal(r.pressureWasCapped,false);
+  assert.equal(r.pressureTier,4);
+  assert.equal(r.maxTierReached,4);
+  assert.equal(r.effectiveAdaptiveTier,4);
+  assert.equal(r.expectedCapabilityTier,1);
+  assert.equal(r.overreachedExpectedBand,true);
 });
 
 T('historical floor remains irreversible after decay',()=>{
   const peak=reconcileLearningWithCeiling({
     pressure:89,
     maxTierReached:2,
-    ceilingTier:3
+    ceilingTier:2
   });
   assert.equal(peak.maxTierReached,3);
 
   const decayed=reconcileLearningWithCeiling({
     pressure:0,
     maxTierReached:peak.maxTierReached,
-    ceilingTier:3
+    ceilingTier:2
   });
   assert.equal(decayed.floorTier,2);
   assert.equal(decayed.earnedTier,2);
   assert.equal(decayed.effectiveAdaptiveTier,2);
 });
 
-T('T4 learning still decays only to consolidated T3',()=>{
+T('T4 still decays only to consolidated T3',()=>{
   const peak=reconcileLearningWithCeiling({
     pressure:100,
     maxTierReached:3,
-    ceilingTier:4
+    ceilingTier:1
   });
   assert.equal(peak.maxTierReached,4);
 
   const decayed=reconcileLearningWithCeiling({
     pressure:0,
     maxTierReached:peak.maxTierReached,
-    ceilingTier:4
+    ceilingTier:1
   });
   assert.equal(decayed.floorTier,3);
   assert.equal(decayed.effectiveAdaptiveTier,3);
 });
 
+T('stage capability remains guidance, not a limiter',()=>{
+  const expected=adaptiveCapabilityCeiling('rata_qi',1);
+  assert.equal(expected.tier,1);
 
-T('real stage capability ceiling and population ratchet work together',()=>{
-  const c1=adaptiveCapabilityCeiling('rata_qi',1);
-  assert.equal(c1.tier,1);
-
-  const farmedAtStage1=reconcileLearningWithCeiling({
-    pressure:100,
+  const forced=reconcileLearningWithCeiling({
+    pressure:70,
     maxTierReached:0,
-    ceilingTier:c1.tier
+    ceilingTier:expected.tier
   });
-  assert.equal(farmedAtStage1.pressure,44);
-  assert.equal(farmedAtStage1.maxTierReached,1);
-
-  const c2=adaptiveCapabilityCeiling('rata_qi',2);
-  assert.equal(c2.tier,2);
-
-  const immediatelyAfterAdvance=reconcileLearningWithCeiling({
-    pressure:farmedAtStage1.pressure,
-    maxTierReached:farmedAtStage1.maxTierReached,
-    ceilingTier:c2.tier
-  });
-  assert.equal(immediatelyAfterAdvance.effectiveAdaptiveTier,1);
-
-  const afterNewHunting=reconcileLearningWithCeiling({
-    pressure:69,
-    maxTierReached:immediatelyAfterAdvance.maxTierReached,
-    ceilingTier:c2.tier
-  });
-  assert.equal(afterNewHunting.effectiveAdaptiveTier,2);
-  assert.equal(afterNewHunting.maxTierReached,2);
+  assert.equal(forced.pressureTier,3);
+  assert.equal(forced.effectiveAdaptiveTier,3);
+  assert.equal(forced.overreachedExpectedBand,true);
 });
 
 console.log('');
