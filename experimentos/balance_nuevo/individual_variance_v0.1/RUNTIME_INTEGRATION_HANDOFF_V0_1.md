@@ -195,3 +195,21 @@ T2 queda cerrado para Rata, Serpiente, Avispa, Mono y Lobo. El siguiente frente 
 La Rata posee evidencia histórica de T3 `CONFIRMED_PATTERN_REFLEJO_MISS + INSTANCE_BASIC`, pero esa evidencia fue calibrada contra T1/T2 antiguos y sólo puede reutilizarse como ancla conceptual: debe revalidarse contra T1/T2 finales actuales.
 
 Para Serpiente/Avispa/Mono/Lobo no existe T3 numérico cerrado recuperado. Cualquier counter será hipótesis LAB derivada de identidad existente y deberá medirse antes de freeze.
+
+
+### Preferencia visual — barra con color
+
+Decisión humana registrada: 2026-10-06.
+
+El estándar `single-panel` de Colab se mantiene, pero la barra de progreso debe conservar color mediante HTML/CSS e `IPython.display(display_id=True)`:
+
+- una sola barra actualizable, sin duplicados/fantasmas;
+- track gris y progreso coloreado;
+- verde para ejecución normal;
+- amarillo/ámbar durante checkpoint o estado transitorio;
+- rojo únicamente ante error/issues;
+- porcentaje y n/total visibles;
+- CPU/RAM/peleas por segundo/ETA/checkpoint dentro del mismo panel;
+- evitar `tqdm.write()` y salidas repetitivas.
+
+La preferencia es visual; no cambia seeds, workers, checkpoints ni semántica experimental.
