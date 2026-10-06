@@ -717,3 +717,95 @@ Estado nuevo:
 ## Regla importante
 No bajar el gate sólo para hacer pasar una candidata.
 El objetivo sigue siendo corregir la técnica, no adaptar el criterio al resultado.
+
+
+---
+
+# ACTUALIZACIÓN PASO DE NUBE — FINAL CONFIRMATION V01 — 2026-10-05
+
+## Backup previo
+- Commit: `edbc22bc4046f952a141b2a39d755642998898c5`
+- Ruta: `experimentos/backups/HANDOFF_MAESTRO_TECNICAS_HEAVY_2026-10-05_PRE_FINAL_CONFIRM_RESULT.md`
+
+## Artefacto
+- `PASO_NUBE_FINAL_CONFIRMATION_V01_RESULTS.zip`
+- SHA-256: `29247e5fe30f71b091de1903b7fd3cbb25ce7c5cf5eca1670435f6bdfa28284a`
+- Tamaño: 569725 bytes
+- Manifest verificado completamente.
+- `NUMERIC_CONTROL_GATE = PASS`.
+
+## Resultado
+`FINAL_GATE.status = FAIL_REVIEW_REQUIRED`
+
+### F1_CONTROL
+- utility_mean: `0.516458`
+- cross_gap: `-0.035385`
+- regret: `0.052311`
+- polarization: `0.042843`
+- material disadvantages: `303/476`
+
+### INFERRED_FINAL probado
+Parámetros:
+- Qi 5
+- EVA inicial 37
+- EVA_each 7
+- response PREC 5
+- response CRIT 4
+- eff_flat -1
+- eff_mult 0.90
+
+Resultados:
+- utility_mean: `0.536088`
+- cross_gap: `-0.019990` → PASS transversal
+- material advantages: 7
+- material disadvantages: 207
+- regret: `0.091672` → FAIL
+- polarization: `0.109432` → FAIL
+- distance: `0.238095` → PASS
+- universal dominated sibling pairs: 0
+- hard dominance risk vs F1: TRUE
+
+Gaps por etapa:
+- LI: `-0.025733`
+- LII: `-0.027511`
+- LIII: `-0.020193`
+- LIV: `-0.018813`
+
+Interpretación:
+el candidato alcanzó la potencia transversal necesaria, pero el refuerzo de `eva_each` deformó la horizontalidad interna y elevó regret/polarización. No congelar.
+
+## Inferencia dirigida posterior
+Con los 10 diseños R64 ya medidos, el patrón apunta a que el refuerzo debe ir principalmente a la base común y no al escalado de una especialización.
+
+Candidato siguiente inferido, NO canon y pendiente de confirmación:
+- Qi 5
+- EVA inicial 38
+- EVA_each 5
+- response PREC 7
+- response CRIT 5
+- eff_flat -1
+- eff_mult 0.90
+
+Razonamiento:
+- conserva el escalado evasivo interno de F1;
+- usa un +1 adicional de EVA base respecto al techo histórico 37;
+- refuerza la respuesta precisa sin inflar crítico;
+- mantiene eficiencia sin cambios;
+- distancia normalizada estimada: 0.25.
+
+Predicción del modelo sobre los puntos medidos:
+- cross_gap ~`-0.0196`
+- regret ~`0.0471`
+- polarization ~`0.0465`
+- LI ~`-0.0326`
+- LII ~`-0.0377`
+- LIII ~`-0.0177`
+- LIV ~`-0.0176`
+
+IMPORTANTE:
+esto es una inferencia/extrapolación un paso fuera del techo histórico de EVA inicial (37→38), no evidencia simulada todavía.
+
+Estado:
+`PASO_NUBE_FINAL_CONFIRM_V01_FAIL_INTERNAL_HORIZONTALITY_NEXT_DIRECTED_CANDIDATE_PENDING`
+
+No ejecutar R256 del candidato fallido.
