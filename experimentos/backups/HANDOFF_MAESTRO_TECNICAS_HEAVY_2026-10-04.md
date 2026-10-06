@@ -1517,3 +1517,60 @@ Freeze:
 
 Detailed report:
 `experimentos/balance_nuevo/player_envelope_li_fix5/LI_CROSS_ROOT_CONSOLIDATION_2026-10-06.md`
+
+
+---
+
+# LI T0 GENERAL RECALIBRATION REVIEW — 2026-10-06
+
+Status:
+`T0_SEARCH_VALID_CANDIDATES_READY_FOR_GENERAL_EXHAUSTIVE_VALIDATION`
+
+User supplied:
+`LI_MONSTER_T0_RECALIBRATION_GENERAL_V01_REVIEW.zip`
+
+REVIEW SHA-256:
+`994bd4f919f0abb31663b2170a10f9cf0de14bb9c4c14fb265cb4b2b71544358`
+
+Integrity:
+- PACKAGE_MANIFEST 10/10 PASS.
+- runner SHA-256 `46e9db485be3df53419e79705d6cf326fdba6dec5d1e8f755a6bdd13915cf46a`.
+- technique catalog SHA-256 `912b7824eff9149909ca21b9ad6290c6c82b1e1ea31867da1185c32df383d187`.
+- CRN epoch `13b6c488bfd3cf516b76cdea1ff22a38f981dbe5f565d6fa435378ee720050c8`.
+- beam represented fights: 251,040.
+- confirm represented fights: 281,600.
+- total represented fights: 532,640.
+- candidate ID recomputation PASS; no duplicate candidate IDs.
+
+Auto-recommended T0 candidates (still provisional, NOT canon):
+- Rata `59c6253e797f0c92`: EXPECTED 83.98%; HP45, Precision84, DEF2, basic 2d4+3.
+- Serpiente `9672faaa29074ab3`: EXPECTED 75.55%; HP57, Precision94, EVA11; venom unchanged.
+- Avispa `320443d1333c58a3`: EXPECTED 75.00%; HP42, Precision102, DEF2, EVA22; poison unchanged.
+- Mono `428e99e3bb02685c`: EXPECTED 75.39%; HP59, EVA26, drain5.
+- Lobo `3ac540847aca982a`: EXPECTED 60.63%; HP53, Precision100, cadence4; no damage increase.
+
+Mono alternate to carry into final decision:
+`36667a2ea37561ed`
+- EXPECTED 71.17%;
+- NAKED 22.89%;
+- MANDATORY 67.27%;
+- HIGH 71.95%;
+- root spread 17.58 pp;
+- HP59, Precision91, DEF2, EVA28, Qi drain6, cadence2.
+Reason: better preserves desired threat hierarchy and reinforces drain identity.
+
+Important interpretation correction:
+`HIGH_ROLL_STRESS` is NOT an LI power ladder above EXPECTED. At LI its extras are primarily +1 Qi and +2 Control, with the ring meditation bonus out-of-combat pending. Future validation must not demand an artificial large HIGH>EXPECTED win-rate gap.
+
+Human authority update:
+The V01 exported row `T3 minimum player stage = LianQi III` is STALE.
+Current intended ceiling for LI-native populations:
+- player LI -> T1
+- player LII -> T2
+- player LIII -> T2
+- player LIV -> may learn T3/T4 through new valid pressure
+
+T3 and T4 are replayability/endgame content for players already at LianQi IV. LIV does not auto-grant those tiers; pressure/learning remains required. Numeric T3/T4 balance must later use LIV player profiles, not LI profiles.
+
+Next gate:
+ONE general exhaustive T0 validation over 4,864 gear signatures, internally using five roots x two policies and average cross-root as primary metric. Per-root breakdown remains diagnostic guard only. Do not canonize T0 yet. Do not touch player/techniques/equipment/T1-T4.
