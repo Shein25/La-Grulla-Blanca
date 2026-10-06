@@ -1082,3 +1082,86 @@ Autoridad vigente: LianQi IV + maestría histórica completa.
 3. Si retorna NO_GO, corregir sólo bloqueantes reproducibles.
 4. No tocar balance de técnicas salvo anomalía material nueva.
 
+
+
+---
+
+# ASTRA AUDIT + FIX3 REMEDIATION CHECKPOINT — 2026-10-06
+
+## Astra verdict on FIX2
+- Verdict: `AUDIT_FAIL_BLOCKING`
+- Final gate: `NO_GO_FIX_REQUIRED`
+- FIX2 MUST NOT be executed.
+- Astra verified that the effective 15-technique numeric catalogue is correct, including Paso de Nube Qi6 / EVA40 with internal F1 specialization parameters unchanged.
+- Grulla STANDARD V03.1 remains frozen external authority and was not reopened.
+
+## Blocking findings accepted
+B01–B11 are treated as real blockers:
+1. invalid SOURCE_MANIFEST JSON suffix;
+2. incompatible guard/engine composition for READY monsters with resource_model=NONE;
+3. Earth G04 HP ownership/order;
+4. accidental seed collisions;
+5. WAL/resume loss risk;
+6. cache trust by cardinality only;
+7. DB/checkpoint expected-set integrity gaps;
+8. non-idempotent REVIEW manifest;
+9. recipe/fingerprint incomplete;
+10. REVIEW insufficient for cross-root consolidation;
+11. R128 tie/order nondeterminism.
+
+## FIX3 local artifact
+Package:
+`KAGGLE_PLAYER_ENVELOPE_LI_5_ROOTS_V01_FIX3.zip`
+
+SHA-256:
+`0d3615fa8902b136fe15e03a5a0108e41b85c3d1f13aa38f648b2ed3efbaa94d`
+
+Runner SHA-256:
+`80abdd30445758a382d05e832c158649dfa5aed604cb5e3c0eb2d9d25e5b4e21`
+
+Technique catalogue SHA-256:
+`912b7824eff9149909ca21b9ad6290c6c82b1e1ea31867da1185c32df383d187`
+
+Notebook hashes are recorded under:
+`experimentos/balance_nuevo/player_envelope_li_fix3/PACKAGE_MANIFEST_PLAYER_ENVELOPE_LI_FIX3.json`
+
+## FIX3 remediation design
+- source engine/guard now targets the authorized c7b87... support-NONE composition;
+- campaign-local G04 patch: Earth +10% applies to structural stage HP, then flat equipment HP is added and final value is discretized;
+- SHA-256/128-bit per-replicate seed derivation;
+- explicit cross-root CRN groups;
+- SQLite journal_mode=DELETE instead of WAL;
+- DB campaign contract is resume authority;
+- resume candidate selected from validated DB progress, not checkpoint JSON progress_score;
+- gear signatures regenerated and representatives revalidated every run;
+- expected jobs <-> results <-> batch manifest bijection checks;
+- recipe hash includes runner, active sources, reps, max_rounds, seed scheme and campaign semantics;
+- R128 selection uses stable total ordering and a stored selection hash/reasons;
+- REVIEW is deterministic/idempotent and exports the full 48,640-cell R12 panel plus gear signatures/loadout mapping/provenance;
+- state remains `postflight_pending` until REVIEW ZIP validation passes; only then may it become `complete`.
+
+## Local validation completed
+PASS:
+- 25 authentic root×LI-monster smoke fights;
+- Earth G04 example = HP36 for uniforme_gris_aspirante + pantalon_viaje_gris;
+- 6144 raw loadouts -> 4864 mechanical signatures;
+- 583,680 unique R12 seeds within one root;
+- explicit cross-root CRN equality;
+- real ProcessPool smoke;
+- orphan DB row rejected;
+- journal mode DELETE;
+- tampered gear cache regenerated;
+- recipe mismatch rejected;
+- R128 selection invariant to row ordering;
+- two consecutive REVIEW generations byte-identical;
+- compact REVIEW contains common R12 panel + gear/provenance/postflight.
+
+## Remaining limitation before heavy compute
+Full Kaggle campaign has NOT been run.
+Real Kaggle Save Version resume has NOT yet been end-to-end smoke-tested.
+
+Recommended gate:
+`FIX3_REAUDIT_THEN_KAGGLE_SMOKE`
+
+Do not treat local validation as global balance evidence.
+No main. No merge.
