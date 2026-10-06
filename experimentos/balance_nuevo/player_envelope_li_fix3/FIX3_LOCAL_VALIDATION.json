@@ -1,0 +1,19 @@
+{
+  "status": "LOCAL_COMPONENT_VALIDATION_PASS",
+  "runner_sha256": "80abdd30445758a382d05e832c158649dfa5aed604cb5e3c0eb2d9d25e5b4e21",
+  "checks": {
+    "B02_B03_authentic_smoke": "PASS: 25 root×monster fights; Earth G04 hp=36",
+    "B06_gear_recompute": "PASS 6144->4864",
+    "B04_seeds": "PASS 583680 unique within root; cross-root CRN explicit",
+    "B11_selection": "PASS order-invariant",
+    "process_pool": "PASS 4 cells",
+    "B05_B07_db": "PASS journal DELETE + orphan rejected",
+    "B06_cache_tamper": "PASS regenerated",
+    "B08_B10_review": "PASS idempotent + common panel/provenance",
+    "B09_recipe": "PASS mismatch rejected"
+  },
+  "limitations": [
+    "Full Kaggle screen/refine not executed locally",
+    "Real Kaggle Save Version resume still requires smoke before long resumed campaign"
+  ]
+}
