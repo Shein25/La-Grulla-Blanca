@@ -207,3 +207,30 @@ Antes de activar esta v0.4:
 8. no escribir ni mutar el registro canónico.
 
 Hasta que pase ese gate, la configuración permanece `T1_COMPAT_PENDING`.
+
+
+---
+
+## Freeze Mutantes + sufijos — 2026-10-06
+
+Estado: **MUTANT_SUFFIX_SYSTEM_FROZEN_FOR_T2_LAB**.
+
+Autoridad nueva:
+- `suffix_lab_v0.1/MUTANT_SUFFIX_CONTRACT_V1.json`;
+- `suffix_lab_v0.1/MUTANT_SUFFIX_FINAL_FREEZE_2026-10-06.md`;
+- gate V03: 2.500.000 spawns naturales + 404.480 combates, 0 timeouts/NaN/Inf.
+
+CENTER congelado:
+- Acorazado A15;
+- Fugaz F25;
+- Acechante C20;
+- Indómito I25;
+- Voraz V2.
+
+Taxonomía:
+- Excepcional = exactamente 2 q_axis variables >=0.95;
+- Ascendido = 3+ q_axis variables >=0.95;
+- herencia = habilidades CENTER de los grupos realmente representados por esos ejes extremos;
+- sin RNG adicional de sufijo.
+
+Esta capa queda autorizada como entrada de los laboratorios T2. No implica activación del runtime canónico.
