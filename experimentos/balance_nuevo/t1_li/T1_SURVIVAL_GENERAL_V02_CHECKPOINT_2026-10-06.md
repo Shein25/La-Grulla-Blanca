@@ -41,3 +41,19 @@ SHA-256: `08feef921d84b5c612dde8baf7110b831649971f352ba75a95d09197758ed93a`
 Runner SHA-256: `46e81974468ba915b724962694a6760ab2ae617b1d8c0663e4a7a20f67aa0f48`
 
 La V01 queda obsoleta porque contenía la interpretación anterior de ceiling duro.
+
+
+## Cierre de semántica de pressure — 2026-10-06
+
+El hard cap quedó eliminado también en código, no sólo en documentación.
+
+Autoridad adaptativa:
+- rama: `experiment/monster-adaptive-survival-lab-v0.1`
+- HEAD: `ff72a5f4827a8c63e7516ff92a673b2ffff83e04`
+- status: `EXPERIMENTAL_V03_NATURAL_OVERREACH`
+- `clampPressureToAdaptiveCeiling()` ya no recorta pressure.
+- `effectiveAdaptiveTier` usa el tier realmente ganado.
+- el ceiling histórico queda como banda esperada/telemetría, no como gate.
+- tests dirigidos: 7/7 PASS.
+
+El artefacto T1 V02 sigue siendo válido porque no importa ni ejecuta el módulo de learning ceiling; sólo calibra la acción T1 sobre T0 congelado.
