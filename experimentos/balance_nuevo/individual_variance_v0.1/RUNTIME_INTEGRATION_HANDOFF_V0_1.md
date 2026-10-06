@@ -69,3 +69,24 @@ No activar automáticamente en runtime canónico tras el test: requiere cierre h
 - 0 timeouts / 0 NaN-Inf / 0 issues.
 - review SHA-256: `c4e3c73f8ff907fa3b8e698bbc6ae991b9dfde1015a5eb2b439b154630b4bf34`.
 - dificultad extrema de Mutantes permanece válida y no bloqueante.
+
+
+---
+
+## Regla operativa fija — artefactos pesados / Colab
+
+Decisión humana registrada: 2026-10-06.
+
+Para cualquier experimento, benchmark, gate, notebook o paquete de resultados preparado por el asistente:
+
+- si el artefacto final que debe recibir/ejecutar el usuario pesa **más de 1 MB**, no entregarlo como archivo de importación directa;
+- preparar en su lugar una variante **Google Colab-ready**;
+- preferir un `.ipynb` autocontenido o un ZIP mínimo que contenga únicamente el notebook y, sólo si es imprescindible, assets pequeños;
+- el notebook debe reconstruir/generar dentro de Colab los archivos auxiliares grandes cuando sea razonable, en vez de incrustarlos en el paquete de entrada;
+- antes de entregar cualquier `.ipynb`, validar que sea **JSON de notebook real (`nbformat 4`)**, que todas sus celdas sean válidas y que pueda parsearse correctamente;
+- si el notebook se entrega dentro de ZIP para evitar transformaciones del navegador/importador, indicar claramente qué `.ipynb` debe extraerse y subirse a Colab;
+- conservar seeds, parámetros, CRN, perfiles y guards del experimento original salvo decisión humana explícita;
+- esta regla aplica a los frentes de balance/monstruos/técnicas/Ultis y futuros laboratorios pesados;
+- no implica tocar `main`, merge ni runtime canónico.
+
+Motivo: el flujo del usuario presenta un límite práctico de **1 MB para importación** en algunas interfaces. Colab queda como vía por defecto para artefactos que superen ese límite.
