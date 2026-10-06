@@ -102,3 +102,32 @@ Decisión humana registrada: 2026-10-06.
 - Prohibido asumir que Colab resolverá mounts o paths de Kaggle.
 - Si se mantiene una misma lógica para ambos backends, separar explícitamente los launchers/configuración de paths por backend.
 - Validar antes de entregar: grep/check automático de rutas incompatibles con el backend objetivo.
+
+
+---
+
+## Cierre Mutantes/sufijos y apertura T2
+
+Decisión humana: 2026-10-06.
+
+La variabilidad individual + Mutantes + sufijos queda **congelada para laboratorios T2**.
+
+Contrato:
+`suffix_lab_v0.1/MUTANT_SUFFIX_CONTRACT_V1.json`
+
+Reglas:
+- cada spawn repetible es un individuo distinto;
+- T0 es piso natural, no ficha normal fija;
+- q_axis se tiran una sola vez por instancia;
+- Mutante y subtipo emergen de esa misma conjunción;
+- CENTER: A15/F25/C20/I25/V2;
+- Excepcional = 2 ejes q>=0.95;
+- Ascendido = 3+ ejes q>=0.95;
+- Excepcional/Ascendido heredan CENTER de sus grupos extremos.
+
+El siguiente frente permitido es **T2**. Debe usar individuos aleatorios y esta taxonomía desde el primer micro-screen.
+
+Nota de autoridad T2:
+- la arquitectura poblacional vigente define T2 = RECONOCIMIENTO / memoria persistente / anticipación elegible;
+- el contrato histórico de Rata R2_SHORT conserva identidad útil, pero sus referencias T1 +40/CD5 son obsoletas frente al T1 final +70/CD6;
+- por tanto T2 debe revalidarse sobre `T1_LI_FINAL_FREEZE_2026-10-06`, sin transplantar numeración vieja.
