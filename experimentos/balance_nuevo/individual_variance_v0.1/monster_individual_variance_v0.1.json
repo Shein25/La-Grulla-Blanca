@@ -1,8 +1,8 @@
 {
-  "schema_version": "monster-individual-variance-v0.3",
-  "status": "HUMAN_RATIFIED_FOR_EXPERIMENTAL_RUNTIME_INTEGRATION",
+  "schema_version": "monster-individual-variance-v0.4",
+  "status": "HUMAN_RATIFIED_REBASED_T0_T1_COMPAT_PENDING",
   "semantics": {
-    "canonical_t0": "natural_floor",
+    "canonical_t0": "T0_LI_EXHAUSTIVE_PASS_2026-10-06",
     "upper_envelope": "per-axis upper values come from measured experimental candidates; axes may use different source trials",
     "roll_once_per_instance": true,
     "below_t0_variance": false,
@@ -11,11 +11,19 @@
     "adaptive_tiers_separate": true,
     "distribution_status": "HUMAN_RATIFIED",
     "distribution_ratified_on": "2026-10-01",
-    "heavy_validation": {
+    "t1_authority": "T1_LI_FINAL_FREEZE_2026-10-06",
+    "rebased_on": "2026-10-06",
+    "upper_envelope_rebase_policy": "Frozen T0 becomes the floor. Historical upper values are retained only where they remain >= frozen T0; otherwise that axis collapses to the T0 floor until new evidence exists. Offensive ladder entries below frozen T0 are removed.",
+    "mutant_balance_principle": "Mutants are rare exceptional individuals. Player win rate has no minimum floor; a large drop is expected and is not itself a balance failure.",
+    "historical_heavy_validation_v0_3": {
       "results_sha256": "5e077b9513aedc36502a214b37c7f8e8a3f5ce2ed7577e5bc8811c35039f8aae",
       "natural_fights": 250000,
       "conditional_mutant_fights": 50000,
       "observed_mutant_incidence": 0.007556
+    },
+    "current_t1_compatibility_validation": {
+      "status": "PENDING",
+      "required_before_runtime_activation": true
     }
   },
   "axis_distribution": "UNIFORM_0_1",
@@ -62,11 +70,11 @@
   "species": {
     "rata_qi": {
       "base": {
-        "source_trial": 4254,
-        "hp": 21,
-        "defense": 0,
+        "source_freeze": "T0_LI_EXHAUSTIVE_PASS_2026-10-06",
+        "hp": 45,
+        "defense": 2,
         "evasion": 0,
-        "precision": 80,
+        "precision": 84,
         "tenacity": 0
       },
       "upper_envelope": {
@@ -76,8 +84,8 @@
           251,
           245
         ],
-        "hp": 22,
-        "defense": 1,
+        "hp": 45,
+        "defense": 2,
         "evasion": 19,
         "precision": 104,
         "tenacity": 1
@@ -85,34 +93,28 @@
       "attacks": {
         "basic_damage": {
           "ladder": [
-            "2d4",
-            "2d4+1",
-            "2d3+3",
-            "2d4+2"
+            "2d4+3"
           ],
           "sources": [
-            4254,
-            251,
-            192,
-            240
+            "T0_LI_EXHAUSTIVE_PASS_2026-10-06"
           ]
         }
       },
       "technique_variance": null,
-      "source_note": "Upper axes use only reproducible measured Rata finalists from RATA_T0_LAB_VALIDATION_2026-10-01.md; no provisional trial identifiers."
+      "source_note": "Rebased on frozen T0. Historical HP/DEF ceilings and all historical basic-damage ladder entries were below the new T0 and therefore collapse to the T0 floor. EVA/PREC/TEN retain measured upper evidence."
     },
     "avispa_jade": {
       "base": {
-        "source_trial": 872,
-        "hp": 17,
-        "defense": 0,
+        "source_freeze": "T0_LI_EXHAUSTIVE_PASS_2026-10-06",
+        "hp": 42,
+        "defense": 2,
         "evasion": 22,
-        "precision": 90,
+        "precision": 102,
         "tenacity": 7
       },
       "upper_envelope": {
         "source_trial": 1251,
-        "hp": 20,
+        "hp": 42,
         "defense": 2,
         "evasion": 55,
         "precision": 103,
@@ -127,7 +129,7 @@
             "1d3+4"
           ],
           "sources": [
-            872,
+            "T0_LI_EXHAUSTIVE_PASS_2026-10-06",
             1119,
             1468,
             1251
@@ -139,7 +141,7 @@
             "2d2+1"
           ],
           "sources": [
-            872,
+            "T0_LI_EXHAUSTIVE_PASS_2026-10-06",
             1417
           ]
         },
@@ -149,7 +151,7 @@
             4
           ],
           "sources": [
-            872,
+            "T0_LI_EXHAUSTIVE_PASS_2026-10-06",
             1417
           ]
         }
@@ -160,20 +162,21 @@
           "POISON_DOT"
         ],
         "cadence": 2
-      }
+      },
+      "source_note": "HP/DEF collapsed to frozen T0 because historical ceilings no longer exceed the canonical floor. EVA/PREC/TEN and offensive ladders retain measured values that are not below T0."
     },
     "serpiente_qi": {
       "base": {
-        "source_trial": 1484,
-        "hp": 27,
+        "source_freeze": "T0_LI_EXHAUSTIVE_PASS_2026-10-06",
+        "hp": 57,
         "defense": 0,
-        "evasion": 5,
-        "precision": 86,
+        "evasion": 11,
+        "precision": 94,
         "tenacity": 5
       },
       "upper_envelope": {
         "source_trial": 1453,
-        "hp": 29,
+        "hp": 57,
         "defense": 3,
         "evasion": 30,
         "precision": 106,
@@ -185,7 +188,7 @@
             "1d2+2"
           ],
           "sources": [
-            1484
+            "T0_LI_EXHAUSTIVE_PASS_2026-10-06"
           ]
         },
         "poison_damage": {
@@ -196,7 +199,7 @@
             "2d3+2"
           ],
           "sources": [
-            1484,
+            "T0_LI_EXHAUSTIVE_PASS_2026-10-06",
             1453,
             1013,
             1412
@@ -208,7 +211,7 @@
             4
           ],
           "sources": [
-            1484,
+            "T0_LI_EXHAUSTIVE_PASS_2026-10-06",
             1453
           ]
         }
@@ -219,23 +222,24 @@
           "POISON_DOT"
         ],
         "cadence": 2
-      }
+      },
+      "source_note": "HP and basic damage collapse to the frozen T0 floor; DEF/EVA/PREC/TEN plus poison damage/ticks retain measured upper evidence."
     },
     "lobo_espiritual": {
       "base": {
-        "source_trial": 1425,
-        "hp": 41,
+        "source_freeze": "T0_LI_EXHAUSTIVE_PASS_2026-10-06",
+        "hp": 53,
         "defense": 1,
         "evasion": 12,
-        "precision": 97,
+        "precision": 100,
         "tenacity": 20
       },
       "upper_envelope": {
-        "source_trial": "1463_survival; precision held at T0 floor 97",
+        "source_trial": "1463_survival; precision rebased to frozen T0 floor",
         "hp": 57,
         "defense": 5,
         "evasion": 12,
-        "precision": 97,
+        "precision": 100,
         "tenacity": 20
       },
       "attacks": {
@@ -247,7 +251,7 @@
             "1d2+6"
           ],
           "sources": [
-            1425,
+            "T0_LI_EXHAUSTIVE_PASS_2026-10-06",
             1429,
             1194,
             1463
@@ -259,7 +263,7 @@
             "1d4+6"
           ],
           "sources": [
-            1425,
+            "T0_LI_EXHAUSTIVE_PASS_2026-10-06",
             1429
           ]
         }
@@ -269,22 +273,23 @@
         "mechanics": [
           "DIRECT_DAMAGE"
         ],
-        "cadence": 5
-      }
+        "cadence": 4
+      },
+      "source_note": "PREC historical ceiling was below frozen T0 and collapses to 100. HP/DEF and offensive ladders retain measured upper evidence. Cadence is synchronized to frozen T0=4."
     },
     "mono_pildoras": {
       "base": {
-        "source_grid": 43,
-        "hp": 34,
+        "source_freeze": "T0_LI_EXHAUSTIVE_PASS_2026-10-06",
+        "hp": 59,
         "defense": 2,
-        "evasion": 24,
+        "evasion": 28,
         "precision": 91,
         "tenacity": 12
       },
       "upper_envelope": {
         "source_survival_grid": 48,
         "source_precision_trial": 1179,
-        "hp": 34,
+        "hp": 59,
         "defense": 3,
         "evasion": 44,
         "precision": 111,
@@ -299,7 +304,7 @@
             "2d3+3"
           ],
           "sources": [
-            "grid43",
+            "T0_LI_EXHAUSTIVE_PASS_2026-10-06",
             1211,
             1179,
             1274
@@ -311,7 +316,7 @@
             "2d3+5"
           ],
           "sources": [
-            "grid43",
+            "T0_LI_EXHAUSTIVE_PASS_2026-10-06",
             1274
           ]
         }
@@ -323,9 +328,9 @@
           "QI_DRAIN"
         ],
         "cadence": 2,
-        "qi_drain": 5
+        "qi_drain": 6
       },
-      "source_note": "T0 floor is ratified grid 43. Survival ceiling comes from grid 48; offensive axes use measured overnight candidates. Cross-axis combinations remain LAB-only until variance validation."
+      "source_note": "HP/TEN collapse to frozen T0; DEF/EVA/PREC and measured offensive ladders remain variable. QI_DRAIN is synchronized to frozen T0=6."
     }
   },
   "guards": {
@@ -342,6 +347,9 @@
     "runtime_adapter_must_not_mutate_canonical": true,
     "profession_xp_must_not_receive_mutant_multiplier": true,
     "loot_probability_must_not_be_scaled_by_adapter": true,
-    "every_upper_stat_must_be_gte_t0": true
+    "every_upper_stat_must_be_gte_t0": true,
+    "t1_compatibility_gate_required_before_runtime": true,
+    "no_player_winrate_floor_for_mutants": true,
+    "hard_fail_only_on_invalidity_identity_or_runtime_breakage": true
   }
 }
