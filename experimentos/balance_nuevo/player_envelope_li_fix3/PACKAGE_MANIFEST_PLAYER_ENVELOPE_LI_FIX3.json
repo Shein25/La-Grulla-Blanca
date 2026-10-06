@@ -1,0 +1,11 @@
+[
+  {"name":"README_PLAYER_ENVELOPE_LI_FIX3.md","bytes":1033,"sha256":"cf1aa68df1430bf84a94937d43faa02f57097e8c02e00c5d9b441cfeb1162d92"},
+  {"name":"FIX3_LOCAL_VALIDATION.json","bytes":818,"sha256":"d0d4b65f696d558de5a43d12b95f5ede430f5d1e88c8e29b7f891aed993a8ebb"},
+  {"name":"li_power_runner_fix3.py","bytes":47075,"sha256":"80abdd30445758a382d05e832c158649dfa5aed604cb5e3c0eb2d9d25e5b4e21"},
+  {"name":"techniques_arc1_catalog.json","bytes":30786,"sha256":"912b7824eff9149909ca21b9ad6290c6c82b1e1ea31867da1185c32df383d187"},
+  {"name":"KAGGLE_PLAYER_ENVELOPE_LI_FUEGO_V01_FIX3.ipynb","bytes":34503,"sha256":"bcefe69d410c3f79e1445a4415b5953f69f907ecace4c89a2c068b8dcc29c2f4"},
+  {"name":"KAGGLE_PLAYER_ENVELOPE_LI_METAL_V01_FIX3.ipynb","bytes":34503,"sha256":"7a148726acf9ecdda0aeb5bcf3070079953af688627953fef5e7d6a85696612f"},
+  {"name":"KAGGLE_PLAYER_ENVELOPE_LI_AGUA_V01_FIX3.ipynb","bytes":34498,"sha256":"1cf1ced7995d01c01e36aa471e36a25b9d0304f089c796b2fbe194f566d43f7e"},
+  {"name":"KAGGLE_PLAYER_ENVELOPE_LI_TIERRA_V01_FIX3.ipynb","bytes":34508,"sha256":"425709200462c4ed38ca0b63ed5ac13e31a05d38b6f1374cd7ec96e2fa6ff7a5"},
+  {"name":"KAGGLE_PLAYER_ENVELOPE_LI_VIENTO_V01_FIX3.ipynb","bytes":34508,"sha256":"fe60748114febd29cc8f752a1f79f119c1c12c57b1e47237deaa28bb724df812"}
+]
