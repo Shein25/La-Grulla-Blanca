@@ -2,7 +2,7 @@
 
 Fecha: 2026-10-06
 
-Estado: **T0/T1 REBASED — COMPATIBILITY GATE PENDING**
+Estado: **HUMAN_RATIFIED_FOR_EXPERIMENTAL_RUNTIME_INTEGRATION — T1 COMPAT PASSED**
 
 ## Autoridades
 
@@ -47,7 +47,7 @@ El adapter continúa:
 - sin conceder T1–T4;
 - persistiendo la tirada por instancia.
 
-La config v0.4 permanece deliberadamente con status `HUMAN_RATIFIED_REBASED_T0_T1_COMPAT_PENDING`. El runtime adapter productivo no debe aceptar ese status hasta que el gate Normal/Mutante con T1 pase.
+La config v0.4 volvió a status `HUMAN_RATIFIED_FOR_EXPERIMENTAL_RUNTIME_INTEGRATION` después de pasar el gate Normal/Mutante con T1. Esto habilita integración experimental, no activación automática del runtime canónico.
 
 ## Próximo gate
 
@@ -61,3 +61,11 @@ Debe comprobar:
 7. no hard-floor de win rate Mutante.
 
 No activar automáticamente en runtime canónico tras el test: requiere cierre humano.
+
+## Gate de compatibilidad T1 — PASS 2026-10-06
+
+- 1.000.000 spawns.
+- 102.400 combates T1.
+- 0 timeouts / 0 NaN-Inf / 0 issues.
+- review SHA-256: `c4e3c73f8ff907fa3b8e698bbc6ae991b9dfde1015a5eb2b439b154630b4bf34`.
+- dificultad extrema de Mutantes permanece válida y no bloqueante.
