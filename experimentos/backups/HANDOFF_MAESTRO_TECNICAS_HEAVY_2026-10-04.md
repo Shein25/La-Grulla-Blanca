@@ -809,3 +809,54 @@ Estado:
 `PASO_NUBE_FINAL_CONFIRM_V01_FAIL_INTERNAL_HORIZONTALITY_NEXT_DIRECTED_CANDIDATE_PENDING`
 
 No ejecutar R256 del candidato fallido.
+
+
+---
+
+# DECISIÓN HUMANA — PASO CERRADO PROVISIONALMENTE / INICIO PLAYER POWER ENVELOPE — 2026-10-06
+
+## Backup previo
+- `experimentos/backups/HANDOFF_MAESTRO_TECNICAS_HEAVY_2026-10-06_PRE_PLAYER_ENVELOPE.md`
+- commit: `08eea5fb2d2cf3a7f3493f8095007a173ee2f0d2`
+
+## Paso de Nube Ligera — autoridad provisional de simulación
+
+Por decisión humana se acepta la inferencia sin una nueva campaña dedicada.
+
+Parámetros:
+- Qi: **6**
+- EVA base / `evasion_granted`: **40**
+- `evasion_each`: **5**
+- `response_precision_by_count/1`: **6**
+- `response_full_crit_pp`: **5**
+- `eff/t1_flat_cost`: **-1**
+- `eff/later_mult`: **0.90**
+
+Regla:
+- NO potenciar especializaciones internas.
+- El refuerzo pertenece a la base común de Paso.
+- Estado: `PROVISIONAL_ACCEPTED_FOR_PLAYER_ENVELOPE`.
+- No declarar CANON global todavía; podrá reabrirse sólo si el Player Power Envelope detecta una anomalía material atribuible a Paso.
+
+## Las 15 técnicas ordinarias quedan congeladas como autoridad provisional de simulación
+
+- Fuego: F1 / F1 / F0
+- Metal: F1 / F5 / F2
+- Viento: F0 / Paso base EVA40 con internals F1 / F2
+- Tierra: F0 / F2 / F2
+- Agua: F0 / F1 / F1
+
+## Siguiente frente
+`PLAYER_POWER_ENVELOPE_LI`
+
+Arquitectura ratificada:
+- 5 instancias Kaggle paralelas: FUEGO, METAL, AGUA, TIERRA, VIENTO.
+- checkpoint/resume por instancia;
+- persistencia pesada queda en Kaggle;
+- Save Version puede reutilizarse como input sin descargar checkpoints;
+- outputs REVIEW compactos para auditoría;
+- consolidación LI sólo después de cerrar las cinco ramas;
+- después: LII, LIII_PRE_AOE, LIII_POST_AOE, LIV.
+
+Estado:
+`PLAYER_POWER_ENVELOPE_LI_PREPARATION`
