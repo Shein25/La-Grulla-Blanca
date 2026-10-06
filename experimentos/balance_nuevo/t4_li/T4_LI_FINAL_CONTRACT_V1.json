@@ -1,0 +1,106 @@
+{
+  "schema_version": "li-t4-mature-adaptation-v1.0",
+  "status": "HUMAN_RATIFIED_FROZEN",
+  "frozen_on": "2026-10-06",
+  "authority": {
+    "t0": "T0_LI_EXHAUSTIVE_PASS_2026-10-06",
+    "t1": "T1_LI_FINAL_FREEZE_2026-10-06",
+    "t2": "T2_LI_FINAL_FREEZE_2026-10-06",
+    "t3": "T3_LI_FINAL_FREEZE_2026-10-06",
+    "mutant_suffix": "MUTANT_SUFFIX_CONTRACT_V1",
+    "final_gate": "LI_MONSTER_T4_FINAL_DUAL_STAGE_GATE_V03",
+    "review_sha256": "b5ca5163b3c099820c7d85b1ba039994956b4e30e5650aaf0d3e697a87b88eee",
+    "represented_combat_fights": 294400
+  },
+  "tier": {
+    "name": "T4",
+    "semantic": "ADAPTACION_MADURA",
+    "second_species_response": true,
+    "highest_tier": true,
+    "t5_exists": false
+  },
+  "common_activation": {
+    "rule": "REPLACE_BASIC_WHEN_READY",
+    "cooldown_rounds": 7,
+    "priority": [
+      "T1_SURVIVAL",
+      "CANONICAL_TECHNIQUE_DUE",
+      "T4_IF_READY",
+      "BASIC"
+    ],
+    "only_replaces_real_basic": true,
+    "decay_below_t4_disables": true,
+    "survival_displacement_forbidden": true,
+    "due_technique_displacement_forbidden": true
+  },
+  "species": {
+    "rata_qi": {
+      "name": "Mordisco Frenetico",
+      "arm": "R4A_HISTORIC_CANONICAL_HALF_CD7",
+      "identity": "PHYSICAL_INSTINCTIVE_MULTI_HIT",
+      "opening": {
+        "source": "INSTANCE_BASIC",
+        "scalar": 1,
+        "precision": "INDEPENDENT_ROLL",
+        "critical": "NORMAL_INDEPENDENT_CRIT"
+      },
+      "followup": {
+        "source": "CANONICAL_T0_BASIC_2D4",
+        "scalar": 0.5,
+        "precision": "INDEPENDENT_ROLL",
+        "critical": "NORMAL_INDEPENDENT_CRIT"
+      },
+      "packet_pipeline": "NORMAL_DIRECT_DAMAGE_PER_PACKET"
+    },
+    "serpiente_qi": {
+      "arm": "S4A_BASIC_POISON_ON_OPEN_HIT_CD7",
+      "identity": "SUSTAINED_POISON_PRESSURE",
+      "opening": "INSTANCE_BASIC",
+      "followup_on_opening_hit": "ONE_IMMEDIATE_INSTANCE_POISON_TICK",
+      "adds_poison_duration": false
+    },
+    "avispa_jade": {
+      "arm": "A4A_BASIC_POISON_ON_OPEN_HIT_CD7",
+      "identity": "MOBILITY_STING_POISON",
+      "opening": "INSTANCE_BASIC",
+      "followup_on_opening_hit": "ONE_IMMEDIATE_INSTANCE_POISON_TICK",
+      "adds_poison_duration": false
+    },
+    "mono_pildoras": {
+      "arm": "M4B_MANOTAZO_REPLACE_CD7",
+      "identity": "DANTIAN_QI_PRESSURE",
+      "packet": "INSTANCE_MANOTAZO_DIRECT_DAMAGE",
+      "qi_drain_on_hit": 6,
+      "consumes_canonical_technique_cadence": false
+    },
+    "lobo_espiritual": {
+      "arm": "L4A_EMBOSCADA_REPLACE_CD7",
+      "identity": "APEX_EMBOSCADA_PRESSURE",
+      "packet": "INSTANCE_EMBOSCADA_DIRECT_DAMAGE",
+      "consumes_canonical_technique_cadence": false
+    }
+  },
+  "frozen_interactions": {
+    "t3_must_remain_causal": true,
+    "acechante_precision_bonus": "+20 PREC to next monster attack only",
+    "individual_variance_before_adaptation": true,
+    "mutant_does_not_grant_tier": true,
+    "no_universal_stat_scaling": true
+  },
+  "forbidden": [
+    "Definitivas",
+    "root/build inspection",
+    "future RNG inspection",
+    "universal tier stat scaling",
+    "new persistent timers",
+    "T5"
+  ],
+  "guards": {
+    "no_runtime_canonical_activation": true,
+    "no_t5": true,
+    "no_win_rate_target": true,
+    "t3_false_counter_rate_must_be_zero": true,
+    "acechante_precision_drift_must_be_zero": true,
+    "no_degenerate_loops": true
+  }
+}
