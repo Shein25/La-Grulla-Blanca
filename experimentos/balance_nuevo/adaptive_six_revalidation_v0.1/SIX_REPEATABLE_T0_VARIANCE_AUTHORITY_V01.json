@@ -1,6 +1,6 @@
 {
   "schema_version": "six-repeatable-t0-variance-authority-v0.1",
-  "status": "LII_T1_REACTIVE_HUMAN_RATIFIED_2026_10_07",
+  "status": "LII_T2_RECOGNITION_HUMAN_RATIFIED_2026_10_07",
   "created_on": "2026-10-06",
   "source": {
     "t0_and_historical_adaptive_branch": "experiment/variance-six-repeatables-v0.1",
@@ -9,7 +9,7 @@
     "historical_variance_config": "experimentos/balance_nuevo/individual_variance_v0.1/monster_individual_variance_v0.1.json",
     "variance_closure_head": "17c16f66dc929a91d3ebab5e5c4bb9ac17b92e5e",
     "variance_heavy_fights": 420000,
-    "note": "LII Sapo/Escarabajo T0 floors remain frozen. Reactive T1 was human-ratified on 2026-10-07 after V03 paired validation. Ordinary T0 variance remains collapsed to floor through T2 validation. LIII/LIV remain historical inputs pending stage-by-stage revalidation."
+    "note": "LII Sapo/Escarabajo T0 floors and reactive T1 remain frozen. T2 recognition was human-ratified on 2026-10-07 after the 61,440-fight paired gate; ordinary T0 variance remains collapsed to floor through this T2 freeze. LIII/LIV remain historical inputs pending stage-by-stage revalidation."
   },
   "mutant": {
     "distribution": "UNIFORM_0_1",
@@ -166,7 +166,7 @@
           },
           "source_note": "CLEAN-only per-axis envelope. Burn 1d2+2 x3 remains fixed at ratified T0 because no stronger CLEAN same-cadence burn axis was measured."
         },
-        "source_note": "Human froze the LII T0 floor and reactive T1. Ordinary T0 variance remains collapsed to the accepted floor through T2 recognition validation; stronger historical envelopes remain evidence for later exceptional/mutant review."
+        "source_note": "Human froze the LII T0 floor and reactive T1. Ordinary T0 variance remains collapsed to the accepted floor through the human-ratified T2 recognition freeze; stronger historical envelopes remain evidence for later exceptional/mutant review."
       },
       "historical_adaptive_anchor": {
         "status": "STALE_NUMERIC_AUTHORITY_ANCHOR_ONLY",
@@ -265,6 +265,47 @@
           "root_spread_policy_averaged_t0": 0.130859375,
           "root_spread_policy_averaged_t1": 0.12890625
         }
+      },
+      "t2": {
+        "status": "READY_HUMAN_RATIFIED_RECOGNITION_FREEZE_2026_10_07",
+        "canonical_candidate_id": "T2_R2_SHORT_THREAT_40_15_PRESERVE_DUE",
+        "evidence_candidate_id": "T2_R2_SHORT_THREAT_40_15_PRESERVE_DUE_REACTIVE",
+        "source_results_sha256": "aec7c2c40dd8c29b2d22d3ae70c62e2966ae067803bd673bcb841036b0227fd0",
+        "represented_combat_fights": 61440,
+        "recognition": {
+          "identity": "RECOGNITION",
+          "memory_window": 2,
+          "repeated_same_category_required": 2,
+          "count_results": [
+            "EFECTIVA"
+          ],
+          "observable_categories": [
+            "PLAYER_BASIC",
+            "PLAYER_UNITARGET_TECHNIQUE",
+            "PLAYER_AOE_TECHNIQUE",
+            "PLAYER_DEFENSIVE_TECHNIQUE"
+          ],
+          "hidden_root_or_build_inspection": false,
+          "future_rng_inspection": false
+        },
+        "anticipation": {
+          "hp_ratio_lte": 0.4,
+          "received_hit_ratio_gte": 0.15,
+          "natural_t1_priority": true
+        },
+        "semantics": {
+          "consumes_monster_turn": false,
+          "t1_magnitude_cooldown_unchanged": true,
+          "preserve_due_canonical_technique": true
+        },
+        "paired_evidence": {
+          "mean_delta_player_win_rate_pp": -1.9140625,
+          "global_gate_delta_player_win_rate_pp": -2.213541666666667,
+          "contexts_t2_more_than_2pp_easier": 0,
+          "hrs_drop_over_8pp_contexts": 0,
+          "canonical_due_missed_with_t2_activation": 0
+        },
+        "next_state": "READY_FOR_T3_RECALIBRATION"
       }
     },
     "escarabajo_hierro": {
@@ -394,7 +435,7 @@
           },
           "source_note": "CLEAN-only envelope combines broad T0 and focused micro-lab evidence; cross-axis/T4 interaction validated in 420k heavy run."
         },
-        "source_note": "Human froze the LII T0 floor and reactive T1. Ordinary T0 variance remains collapsed to the accepted floor through T2 recognition validation; stronger historical envelopes remain evidence for later exceptional/mutant review."
+        "source_note": "Human froze the LII T0 floor and reactive T1. Ordinary T0 variance remains collapsed to the accepted floor through the human-ratified T2 recognition freeze; stronger historical envelopes remain evidence for later exceptional/mutant review."
       },
       "historical_adaptive_anchor": {
         "status": "STALE_NUMERIC_AUTHORITY_ANCHOR_ONLY",
@@ -492,6 +533,47 @@
           "root_spread_policy_averaged_t0": 0.134765625,
           "root_spread_policy_averaged_t1": 0.181640625
         }
+      },
+      "t2": {
+        "status": "READY_HUMAN_RATIFIED_RECOGNITION_FREEZE_2026_10_07",
+        "canonical_candidate_id": "T2_R2_SHORT_THREAT_40_15_PRESERVE_DUE",
+        "evidence_candidate_id": "T2_R2_SHORT_THREAT_40_15_PRESERVE_DUE_REACTIVE",
+        "source_results_sha256": "aec7c2c40dd8c29b2d22d3ae70c62e2966ae067803bd673bcb841036b0227fd0",
+        "represented_combat_fights": 61440,
+        "recognition": {
+          "identity": "RECOGNITION",
+          "memory_window": 2,
+          "repeated_same_category_required": 2,
+          "count_results": [
+            "EFECTIVA"
+          ],
+          "observable_categories": [
+            "PLAYER_BASIC",
+            "PLAYER_UNITARGET_TECHNIQUE",
+            "PLAYER_AOE_TECHNIQUE",
+            "PLAYER_DEFENSIVE_TECHNIQUE"
+          ],
+          "hidden_root_or_build_inspection": false,
+          "future_rng_inspection": false
+        },
+        "anticipation": {
+          "hp_ratio_lte": 0.4,
+          "received_hit_ratio_gte": 0.15,
+          "natural_t1_priority": true
+        },
+        "semantics": {
+          "consumes_monster_turn": false,
+          "t1_magnitude_cooldown_unchanged": true,
+          "preserve_due_canonical_technique": true
+        },
+        "paired_evidence": {
+          "mean_delta_player_win_rate_pp": -2.5130208333333335,
+          "global_gate_delta_player_win_rate_pp": -2.213541666666667,
+          "contexts_t2_more_than_2pp_easier": 0,
+          "hrs_drop_over_8pp_contexts": 0,
+          "canonical_due_missed_with_t2_activation": 0
+        },
+        "next_state": "READY_FOR_T3_RECALIBRATION"
       }
     },
     "pez_lunar": {
