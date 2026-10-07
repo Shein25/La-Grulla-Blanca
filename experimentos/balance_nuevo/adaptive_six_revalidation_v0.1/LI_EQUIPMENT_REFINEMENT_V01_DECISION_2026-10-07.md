@@ -2,7 +2,7 @@
 
 Fecha: 2026-10-07
 Rama: `experiment/monster-adaptive-six-revalidation-v0.1`
-Estado: CANDIDATE FOR MICROGATE / NO PRODUCTIVE FREEZE
+Estado: HUMAN APPROVED FOR MICROGATE / NO PRODUCTIVE FREEZE
 
 ## Diagnóstico desde V04B
 
@@ -85,3 +85,21 @@ Si pasa:
 - congelar equipo LI;
 - ejecutar Concordance NO_TRAP sobre el equipo definitivo;
 - cerrar LianQi I.
+
+
+## Human decision — 2026-10-07
+
+El usuario aprueba explícitamente el candidate pack de equipo LI para validación.
+
+Aprobado para microgate:
+- `baston_fresno_practica`: TEN +1 / PREC +1
+- `bandana_lino_simple`: EVA +1 / TEN +1
+- `pulsera_fibra_trenzada`: QI +1 / CONTROL +1
+- `colgante_fragmento_jade`: QI +1 / CONTROL +3
+- resto del equipo LI: sin cambios
+
+Regla de integración:
+- esta aprobación autoriza **testeo**;
+- NO autoriza todavía freeze productivo;
+- NO modificar el catálogo/runtime productivo hasta que el microgate de equipo pase;
+- si el microgate pasa, se podrá congelar el equipo LI y recién después ejecutar el gate final de Concordancias `NO_TRAP`.
