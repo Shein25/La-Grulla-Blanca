@@ -106,3 +106,84 @@ Durante checkpoint:
 `1/6 Attribution [CP ]  62.9% |███████████████·········| 483,168/768,000  07:16<04:17  1.11k fight/s`
 
 Sólo cambia el color y el badge; nada debe desplazarse.
+
+
+## Estándar visual definitivo — barra elegante y estable
+
+La barra de progreso de los próximos notebooks debe tratarse como componente de UI, no como salida de consola.
+
+### Composición
+
+Una sola fila persistente:
+
+`FASE | BADGE | BARRA | % | COMPLETADO/TOTAL | ETA | VELOCIDAD`
+
+Ejemplo:
+
+`1/6 Attribution  [RUN]  ████████████············  62.9%  483,168/768,000  ETA 04:17  1.11k/s`
+
+### Estética
+
+- ancho total compacto y estable;
+- barra central de aproximadamente 260–300 px;
+- bordes redondeados;
+- fondo oscuro/discreto compatible con tema claro y oscuro;
+- tipografía monoespaciada para números y métricas;
+- separación uniforme entre columnas;
+- badge pequeño con ancho fijo;
+- sin texto que cambie el ancho del layout;
+- porcentaje con una decimal;
+- números con separadores de miles;
+- ETA legible;
+- velocidad abreviada cuando corresponda.
+
+### Estados
+
+- RUN: azul suave;
+- CP: amarillo/dorado;
+- DONE: verde;
+- ERR: rojo.
+
+El cambio de estado debe modificar sólo:
+- color de barra;
+- color/badge de estado.
+
+NO debe modificar:
+- posición;
+- alto;
+- ancho;
+- número de líneas;
+- geometría del contenedor.
+
+### Implementación preferida
+
+Preferir:
+- `ipywidgets.IntProgress`;
+- `HBox`;
+- `HTML/Label` con anchos fijos;
+- un único widget mostrado una sola vez por fase.
+
+Evitar:
+- `tqdm.notebook` si produce wrapping;
+- múltiples `display()`;
+- reemplazo completo de HTML en cada tick;
+- `display_id` que deje frames fantasma;
+- outputs ANSI que creen líneas nuevas.
+
+### QA visual obligatorio
+
+Antes de entrega ejecutar una demo corta que atraviese:
+
+`RUN -> CP -> RUN -> DONE`
+
+y confirmar:
+- sin duplicados;
+- sin salto vertical;
+- sin cambio de ancho;
+- sin wrap;
+- amarillo visible en CP;
+- verde visible en DONE;
+- progreso numérico correcto;
+- checkpoint real sigue funcionando.
+
+Si no pasa esta demo, `PRE_DELIVERY_QA` no puede ser PASS.
