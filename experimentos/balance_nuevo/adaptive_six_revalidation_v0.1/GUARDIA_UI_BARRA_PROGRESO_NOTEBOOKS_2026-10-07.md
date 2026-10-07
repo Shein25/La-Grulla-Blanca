@@ -47,3 +47,33 @@ Antes de entregar:
 - no sacrificar rendimiento por la UI.
 
 No main. No merge. No cambio de balance.
+
+
+## Ajuste posterior — evitar widget tqdm.notebook deformado
+
+Tras observar V04A.1 en Colab, queda prohibido considerar aceptable una barra que:
+- se divida en varias líneas;
+- muestre la barra gráfica separada del texto;
+- genere mini-barras residuales;
+- haga wrap de fase, contador o ETA;
+- cambie de altura durante la ejecución.
+
+Para los próximos notebooks:
+
+- preferir una barra propia de una sola línea y ancho fijo;
+- no depender de `tqdm.notebook` si su renderizado altera el layout;
+- usar actualización in-place estable;
+- mantener aproximadamente 24–30 bloques;
+- mostrar en una única línea:
+  `fase | porcentaje | barra | completado/total | elapsed<ETA | velocidad`;
+- amarillo sólo durante lectura/escritura de checkpoint;
+- azul/estado normal durante cálculo;
+- verde al finalizar;
+- rojo ante error;
+- comprobar visualmente en Colab que no haya wrapping antes de entregar.
+
+Ejemplo deseado:
+
+`1/2 Fine concordances  42% |██████████··············| 225,792/537,600  03:41<05:06  1.02k fight/s`
+
+El QA de entrega debe considerar FAIL una barra funcional pero visualmente rota o multilinea.
