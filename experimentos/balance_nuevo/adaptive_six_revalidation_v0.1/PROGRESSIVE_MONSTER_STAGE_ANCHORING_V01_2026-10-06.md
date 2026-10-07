@@ -126,3 +126,53 @@ No saltar etapas.
 - No unique.
 - No main.
 - No merge.
+
+
+## Regla de continuidad de equipo entre etapas
+
+Decisión humana:
+
+> El equipo mínimo efectivo de una etapa nueva es el equipo máximo alcanzable de la etapa anterior.
+
+Por lo tanto, para benchmarks de progresión no se usa `MANDATORY_ENTRY` del catálogo como piso si éste es inferior al techo real previo.
+
+Cadena metodológica:
+
+```text
+MAX_GEAR(LI)   → FLOOR_GEAR(LII)
+MAX_GEAR(LII)  → FLOOR_GEAR(LIII)
+MAX_GEAR(LIII) → FLOOR_GEAR(LIV)
+```
+
+### Catálogo actual
+
+El catálogo de simulación contiene perfiles:
+- `MANDATORY_ENTRY`
+- `EXPECTED_STAGE`
+- `HIGH_ROLL_STRESS`
+
+Estos perfiles siguen siendo útiles para simulación, pero **no definen por sí mismos la continuidad progresiva entre etapas**.
+
+Para este frente:
+
+- `HIGH_ROLL_STRESS(LI)` se usa como **carry-over floor de LII**;
+- `HIGH_ROLL_STRESS(LII)` se usa como **carry-over floor de LIII**;
+- `HIGH_ROLL_STRESS(LIII)` se usa como **carry-over floor de LIV**.
+
+No se modifica todavía el catálogo productivo; la regla se aplica en los runners de laboratorio.
+
+### Benchmark de etapa
+
+Cada nueva etapa se evalúa al menos en tres contextos de equipo:
+
+1. **CARRY_OVER_FLOOR** — máximo de la etapa anterior;
+2. **EXPECTED_STAGE** — equipo esperado de la etapa actual;
+3. **HIGH_ROLL_STRESS** — techo/stress de la etapa actual.
+
+Esto permite separar:
+
+- si el monstruo nuevo realmente supera el techo de amenaza anterior;
+- cómo se comporta con equipamiento normal de su propia etapa;
+- si se mantiene mecánicamente sano frente al techo de equipo de su etapa.
+
+La comparación del monstruo ancla anterior y los monstruos nuevos debe usar exactamente el mismo loadout dentro de cada contexto.
