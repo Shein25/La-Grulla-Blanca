@@ -1,8 +1,22 @@
 {
   "schema": "ULTIMATE_REPERTOIRE_CONTRACT_V01",
   "status": "HUMAN_DECISION_FROZEN_FOR_FUTURE_TESTS",
-  "date": "2026-10-05",
-  "scope": "player ultimate repertoire, unlock eligibility and per-combat use budget",
+  "date": "2026-10-07",
+  "scope": "branch mastery, affinity, player ultimate repertoire, unlock eligibility and per-combat use budget",
+  "branch_progression": {
+    "any_learned_branch_can_reach_maximum_mastery": true,
+    "graft_required_for_full_branch_depth": false,
+    "primary_affinity_required_for_full_branch_depth": false,
+    "non_affine_branch_can_be_learned_to_maximum": true,
+    "non_affine_branch_remains_subject_to_authoritative_penalties": true,
+    "penalties_define_balance_not_progression_ceiling": true,
+    "build_point_allocation_is_independent_from_branch_mastery": true
+  },
+  "affinity_model": {
+    "primary_element": "NATIVE_AFFINITY",
+    "grafted_element": "SECONDARY_AFFINITY",
+    "other_mastered_elements": "NON_AFFINE_WITH_AUTHORITY_DEFINED_PENALTIES"
+  },
   "rules": {
     "max_equipped_ultimates": 2,
     "slots": [
@@ -17,6 +31,7 @@
         "max_equipped": 1
       }
     ],
+    "non_affine_mastered_branch_grants_ultimate": false,
     "shared_ultimate_use_budget_per_combat": 1,
     "successful_activation_consumes_shared_budget": true,
     "after_budget_consumed": "ALL_OTHER_EQUIPPED_ULTIMATES_LOCKED_FOR_REMAINDER_OF_COMBAT",
@@ -26,6 +41,7 @@
   "unlock_eligibility": {
     "mastery_definition": {
       "canonical_state": "BRANCH_LEARNED_TO_MAXIMUM",
+      "independent_from_affinity": true,
       "independent_from_specialization_point_allocation": true,
       "requires_points_in_every_specialization": false,
       "point_distribution_is_build_choice_not_unlock_gate": true,
@@ -45,23 +61,27 @@
       "specialization_point_distribution_irrelevant": true
     }
   },
-  "stage_envelope": {
-    "before_primary_branch_learned_to_maximum": "NO_PRIMARY_ULTIMATE",
-    "lianqi_iii_with_primary_branch_learned_to_maximum": "PRIMARY_ULTIMATE_ELIGIBLE",
-    "lianqi_iii_with_graft": "GRAFTED_ULTIMATE_NOT_YET_ELIGIBLE_BY_STAGE",
-    "lianqi_iv_with_graft_and_grafted_branch_learned_to_maximum": "GRAFTED_ULTIMATE_ELIGIBLE"
+  "explicit_negative_cases": {
+    "mastered_non_affine_branch_without_graft": "NO_ULTIMATE_FROM_THAT_BRANCH",
+    "mastered_non_affine_branch_depth": "FULL_MASTERY_ALLOWED_WITH_NON_AFFINITY_PENALTIES"
   },
   "not_yet_authorized": {
+    "non_affine_penalty_values_and_exact_mechanics": "AUTHORITY_REQUIRED",
     "rejected_or_not_activated_attempt_consumes_shared_budget": "AUTHORITY_REQUIRED",
-    "same_primary_and_grafted_element_is_legal": "AUTHORITY_REQUIRED",
-    "concrete_ultimate_acquisition_or_selection_after_mastery": "AUTHORITY_REQUIRED"
+    "concrete_ultimate_acquisition_or_selection_after_mastery": "AUTHORITY_REQUIRED",
+    "graft_replacement_or_change_rules": "AUTHORITY_REQUIRED"
   },
   "future_balance_implication": {
-    "test_unit": "TWO_ULTIMATE_REPERTOIRE_WITH_ONE_SHARED_USE_WHEN_BOTH_ARE_ACTUALLY_UNLOCKED",
+    "test_unit": "BUILD_WITH_MULTI_BRANCH_MASTERY_PLUS_TWO_AFFINITIES_MAX_AND_ONE_SHARED_ULTIMATE_USE",
     "must_compare_choice_not_sequence": true,
-    "must_respect_stage_and_branch_learning_eligibility": true,
+    "must_test_fully_mastered_non_affine_branches": true,
+    "must_apply_authoritative_non_affinity_penalties": true,
+    "must_not_gate_branch_depth_by_graft": true,
     "must_not_gate_ultimate_by_specialization_point_distribution": true,
     "must_measure": [
+      "BRANCH_MASTERY_STATE",
+      "AFFINITY_CLASS",
+      "NON_AFFINITY_PENALTY_EFFECT",
       "ULTIMATE_UNLOCK_ELIGIBILITY",
       "ULTIMATE_CHOICE_SHARE",
       "ULTIMATE_OPPORTUNITY_REGRET",
