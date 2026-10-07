@@ -1,7 +1,9 @@
 # Six Repeatables — T1 Survival Revalidation Micro-screen V01
 
 Fecha: 2026-10-06
-Estado: READY_FOR_COLAB / LAB ONLY
+Estado: **BLOCKED_BY_STAGE_PROGRESSION_RECALIBRATION**
+
+> No ejecutar este T1 todavía. Antes debe cerrarse el anclaje progresivo T0 entre etapas.
 
 ## Rama
 
@@ -201,3 +203,24 @@ Objetivo:
 - seleccionar una magnitud finalista por especie;
 - detectar si alguna identidad T1 histórica ya no funciona bajo las semánticas actuales;
 - abrir después un focal de cooldown sólo donde sea necesario.
+
+
+## Cambio de metodología — autoridad humana 2026-10-06
+
+Antes de continuar T1 se debe validar la progresión de etapa.
+
+Nueva regla:
+
+```text
+monstruo más fuerte T0 de etapa N
+→ referencia inferior para T0 de etapa N+1
+→ calibrar monstruos N+1 preservando identidad
+→ recién después abrir T1→T4 de N+1
+```
+
+Para LianQi II, el ancla es **Lobo Espiritual T0 final de LianQi I**.
+
+No se exige que cada monstruo N+1 supere todos sus stats individualmente.
+Se exige que su **amenaza de encuentro**, medida contra el mismo jugador/equipo de la nueva etapa, no produzca una regresión de dificultad injustificada salvo decisión humana explícita por identidad/rol.
+
+El T1 micro-screen V01 preparado previamente queda bloqueado hasta terminar esta recalibración T0 progresiva.
