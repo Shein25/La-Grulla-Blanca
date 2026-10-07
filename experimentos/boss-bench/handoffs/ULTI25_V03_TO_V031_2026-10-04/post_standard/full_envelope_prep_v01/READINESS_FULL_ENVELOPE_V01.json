@@ -9,11 +9,15 @@
     "runner_sha256": "97184d1cd72eda278434de5b8bc59763776e7288d2afad10ab1204d609a1d7e3"
   },
   "ready": [
+    "any_learned_branch_can_reach_maximum_mastery_without_graft",
+    "graft_is_second_affinity_not_branch_depth_gate",
+    "non_affine_mastered_branches_are_balanced_by_penalties_not_progression_ceiling",
     "ultimate_repertoire_contract_frozen",
     "primary_ultimate_unlock_gate_lianqi_iii_plus_primary_branch_learned_to_maximum_frozen",
     "grafted_ultimate_unlock_gate_lianqi_iv_plus_existing_graft_plus_grafted_branch_learned_to_maximum_frozen",
+    "mastered_non_affine_branch_does_not_grant_extra_ultimate",
     "ultimate_unlock_is_independent_from_specialization_point_distribution",
-    "build_2_2_2_remains_ultimate_eligible_when_branch_is_learned_to_maximum",
+    "build_2_2_2_remains_valid_under_mastery_rules",
     "shared_one_use_budget_frozen_for_successful_activation",
     "five_notebook_execution_architecture_defined",
     "checkpoint_resume_requirements_defined",
@@ -24,16 +28,19 @@
   "blocking_authorities": [
     "FINAL_OR_AUTHORIZED_15_TECHNIQUE_CATALOG_AND_SHA256",
     "TECHNIQUE_RUNTIME_OR_RUNNER_AUTHORITY",
-    "PLAYER_LOADOUT_STAGE_BRANCH_LEARNING_AND_BUILD_AUTHORITY_FOR_FULL_ENVELOPE",
+    "PLAYER_LOADOUT_STAGE_BRANCH_LEARNING_AFFINITY_AND_BUILD_AUTHORITY_FOR_FULL_ENVELOPE",
+    "NON_AFFINE_BRANCH_PENALTY_VALUES_AND_MECHANICS",
     "REJECTED_OR_NOT_ACTIVATED_ULTI_SHARED_BUDGET_RULE",
-    "PRIMARY_EQUALS_GRAFTED_ELEMENT_LEGALITY_IF_APPLICABLE",
     "CONCRETE_ULTIMATE_ACQUISITION_OR_SELECTION_AFTER_MASTERY"
   ],
   "must_not_do": [
     "DO_NOT_MODIFY_VALIDATED_V031_EVIDENCE",
     "DO_NOT_INVENT_MISSING_TECHNIQUE_VALUES",
+    "DO_NOT_LIMIT_NON_GRAFTED_BRANCH_MASTERY_DEPTH",
+    "DO_NOT_CONFUSE_NON_AFFINITY_PENALTY_WITH_PROGRESSION_LOCK",
     "DO_NOT_GRANT_PRIMARY_ULTIMATE_FROM_STAGE_ALONE",
     "DO_NOT_GRANT_GRAFTED_ULTIMATE_FROM_GRAFT_OR_STAGE_ALONE",
+    "DO_NOT_GRANT_ULTIMATE_FROM_NON_AFFINE_MASTERED_BRANCH",
     "DO_NOT_GATE_ULTIMATE_BY_SPECIALIZATION_POINT_DISTRIBUTION",
     "DO_NOT_ALLOW_TWO_SUCCESSFUL_ULTIMATE_ACTIVATIONS_IN_ONE_COMBAT",
     "DO_NOT_AUTO_NERF_OR_BUFF",
