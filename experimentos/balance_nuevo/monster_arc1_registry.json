@@ -33,7 +33,8 @@
     },
     "adaptive_overreach_policy": "ALLOWED_NATURAL_LIMIT_BY_COMBAT_AND_DECAY",
     "lii_t0_freeze": "T0_LII_HUMAN_RATIFIED_2026-10-07",
-    "lii_t1_freeze": "T1_LII_REACTIVE_HUMAN_RATIFIED_2026-10-07"
+    "lii_t1_freeze": "T1_LII_REACTIVE_HUMAN_RATIFIED_2026-10-07",
+    "lii_t2_freeze": "T2_LII_RECOGNITION_HUMAN_RATIFIED_2026-10-07"
   },
   "profiles": {
     "rata_qi": {
@@ -496,8 +497,8 @@
         "social": "TERRITORIAL"
       },
       "adaptive": {
-        "status": "READY_FOR_T2_RECALIBRATION",
-        "rule": "T0 LII frozen. T1 human-ratified as reactive MITIGATE_NEXT 60% / CD3; trigger HP<=30% OR received hit>=20% maxHP; activation does not consume monster turn. T2 may now be validated; T3-T4 remain sequentially gated."
+        "status": "READY_FOR_T3_RECALIBRATION",
+        "rule": "T0 LII frozen. T1 human-ratified as reactive MITIGATE_NEXT 60% / CD3 with natural trigger HP<=30% OR received hit>=20% maxHP. T2 human-ratified as recognition memory2/repeat2, EFECTIVA-only, anticipation HP<=40% OR received hit>=15% maxHP, natural T1 priority, no monster-turn cost, and canonical due preserved. T3 may now be recalibrated; T4 remains sequentially gated."
       },
       "resource_model": "NONE"
     },
@@ -582,8 +583,8 @@
         "social": "COLONIA"
       },
       "adaptive": {
-        "status": "READY_FOR_T2_RECALIBRATION",
-        "rule": "T0 LII frozen. T1 human-ratified as reactive DEFENSE_UP +4 / CD3; trigger HP<=30% OR received hit>=20% maxHP; activation does not consume monster turn. T2 may now be validated; T3-T4 remain sequentially gated."
+        "status": "READY_FOR_T3_RECALIBRATION",
+        "rule": "T0 LII frozen. T1 human-ratified as reactive DEFENSE_UP +4 / CD3 with natural trigger HP<=30% OR received hit>=20% maxHP. T2 human-ratified as recognition memory2/repeat2, EFECTIVA-only, anticipation HP<=40% OR received hit>=15% maxHP, natural T1 priority, no monster-turn cost, and canonical due preserved. T3 may now be recalibrated; T4 remains sequentially gated."
       },
       "resource_model": "NONE"
     },
