@@ -346,9 +346,10 @@
       "slot": "ARMA",
       "grade": "MUNDANO_TRABAJADO",
       "accessibility": "INSTITUCIONAL",
-      "power_budget": 0.5,
+      "power_budget": 0.58,
       "stats": {
-        "tenacity": 2
+        "tenacity": 1,
+        "precision": 1
       },
       "source_type": "CONTRIBUTION_REDEMPTION",
       "source_npc": "Wei Jian",
@@ -361,11 +362,12 @@
       "unique": false,
       "build_tags": [
         "TENACITY",
+        "PRECISION",
         "BALANCED"
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": "",
+      "notes": "LI balance freeze 2026-10-07: TEN+1/PREC+1.",
       "description": "Un bastón de fresno claro, liso salvo por las hendiduras de las manos. Flexiona lo suficiente para perdonar un error, pero no tanto como para ocultarlo."
     },
     {
@@ -409,9 +411,10 @@
       "slot": "TOCADO",
       "grade": "MUNDANO_TRABAJADO",
       "accessibility": "INSTITUCIONAL",
-      "power_budget": 0.5,
+      "power_budget": 0.58,
       "stats": {
-        "tenacity": 2
+        "evasion": 1,
+        "tenacity": 1
       },
       "source_type": "WORKSHOP_SERVICE_CONTRIBUTION",
       "source_npc": "Ning Cai",
@@ -423,12 +426,12 @@
       "materials": [],
       "unique": false,
       "build_tags": [
-        "TENACITY",
-        "ANTI_CONTROL"
+        "EVASION",
+        "TENACITY"
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": "",
+      "notes": "LI balance freeze 2026-10-07: EVA+1/TEN+1; remains in LianQi I.",
       "description": "Lino grueso doblado dos veces y cosido con hilo pardo. Mantiene el sudor fuera de los ojos y da una extraña sensación de orden cuando la respiración se acelera."
     },
     {
@@ -551,9 +554,10 @@
       "slot": "AMULETO",
       "grade": "MUNDANO_TRABAJADO",
       "accessibility": "UNICO",
-      "power_budget": 0.5,
+      "power_budget": 1.08,
       "stats": {
-        "control": 2
+        "qi_max": 1,
+        "control": 3
       },
       "source_type": "EXPLORATION_UNIQUE",
       "source_npc": null,
@@ -565,11 +569,12 @@
       "materials": [],
       "unique": true,
       "build_tags": [
+        "QI",
         "CONTROL"
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": "Hallazgo menor; no es reliquia-llave.",
+      "notes": "Hallazgo menor; no es reliquia-llave. LI balance freeze 2026-10-07: QI+1/CONTROL+3.",
       "description": "Un fragmento irregular de jade pálido atravesado por una cuerda. No es valioso como joya, pero al sostenerlo entre dos dedos el qi parece ordenar su curso por un instante."
     },
     {
@@ -582,7 +587,7 @@
       "power_budget": 0.58,
       "stats": {
         "qi_max": 1,
-        "tenacity": 1
+        "control": 1
       },
       "source_type": "WORKSHOP_SERVICE_CONTRIBUTION",
       "source_npc": "Ning Cai",
@@ -595,11 +600,11 @@
       "unique": false,
       "build_tags": [
         "QI",
-        "TENACITY"
+        "CONTROL"
       ],
       "effect": null,
       "availability": "OPTIONAL",
-      "notes": "",
+      "notes": "LI balance freeze 2026-10-07: QI+1/CONTROL+1.",
       "description": "Fibras vegetales trenzadas alrededor de un hilo rojizo. La pulsera es casi demasiado ligera para notarla, salvo cuando el pulso espiritual se acelera."
     },
     {
@@ -2464,5 +2469,18 @@
       "HIGH_ROLL_STRESS"
     ],
     "rule": "Do not canonize stage II-IV gear budgets from LianQi I benchmarks only."
+  },
+  "li_balance_freeze": {
+    "status": "FROZEN_2026-10-07",
+    "authority_review": "experimentos/balance_nuevo/adaptive_six_revalidation_v0.1/LI_EQUIPMENT_REFINEMENT_V01_MICROGATE_REVIEW_2026-10-07.md",
+    "review_commit": "0bc215cda525195f59a0d3fa9b00e9175a0fb804",
+    "scope": "LI_NUMERIC_COMBAT_STATS_ONLY",
+    "acquisition_economy": "UNCHANGED_DEFERRED",
+    "changes": [
+      "baston_fresno_practica",
+      "bandana_lino_simple",
+      "pulsera_fibra_trenzada",
+      "colgante_fragmento_jade"
+    ]
   }
 }
