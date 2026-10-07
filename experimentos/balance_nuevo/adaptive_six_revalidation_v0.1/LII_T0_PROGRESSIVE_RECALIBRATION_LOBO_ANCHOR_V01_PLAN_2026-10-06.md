@@ -177,3 +177,23 @@ Eso NO ratifica automáticamente un ganador.
 
 El resultado seleccionará finalistas para un gate T0 LII posterior.
 No freeze automático.
+
+
+## Notebook FIX1
+
+El primer paquete omitió la dependencia local:
+
+`experimentos/balance_nuevo/monster_new_engine_guard.py`
+
+requerida por:
+
+`etapa19b_combat_engine.py`.
+
+Esto producía `ModuleNotFoundError: monster_new_engine_guard` antes de ejecutar el benchmark.
+
+FIX1:
+- incluye el guard fijado por blob SHA `0dd32a940ff1ba18501f957a95ae4b8cd115b4b9`;
+- compila guard + motor;
+- inserta `SOURCE_DIR` en `sys.path`;
+- ejecuta import preflight real de ambos módulos antes de multiprocessing;
+- no altera candidatos, matriz ni número de combates.
