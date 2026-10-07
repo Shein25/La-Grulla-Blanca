@@ -1,0 +1,62 @@
+{
+  "schema_version": "lii-t1-reactive-freeze-v1.0",
+  "status": "T1_LII_REACTIVE_HUMAN_RATIFIED",
+  "frozen_on": "2026-10-07",
+  "evidence": {
+    "review_sha256": "cbf0c0e4994ed9a6cbe7a58a84981e73ae4f578d0ff073e5afd998b6c45c4867",
+    "represented_combat_fights": 186880,
+    "result_document": "experimentos/balance_nuevo/adaptive_six_revalidation_v0.1/RESULT_LII_T1_REACTIVE_V03_FINAL_RECOMMENDATION_2026-10-07.md"
+  },
+  "t0_authority": "experimentos/balance_nuevo/t0_lii/T0_LII_FREEZE_MANIFEST_2026-10-07.json",
+  "semantics": {
+    "activation": "REACTIVE",
+    "consumes_monster_turn": false,
+    "natural_trigger": {
+      "hp_ratio_lte": 0.3,
+      "received_hit_ratio_gte": 0.2
+    },
+    "cooldown_lifecycle": "existing monster_survival_cd decremented by engine end_round(); no new timer"
+  },
+  "species": {
+    "sapo_ceniza": {
+      "candidate_id": "3f30ec963d6b5614",
+      "ability": {
+        "kind": "MITIGATE_NEXT",
+        "damage_reduction_pct": 60,
+        "cooldown_rounds": 3,
+        "consumption": "NEXT_CONNECTED_DIRECT_PACKET",
+        "persists_through_miss": true,
+        "affects_dot": false
+      },
+      "hrs": {
+        "t0_player_win_rate": 0.7328125,
+        "t1_player_win_rate": 0.630078125,
+        "delta_pp": -10.2734375
+      }
+    },
+    "escarabajo_hierro": {
+      "candidate_id": "37ac83cfdd4c6973",
+      "ability": {
+        "kind": "DEFENSE_UP",
+        "defense_bonus": 4,
+        "cooldown_rounds": 3,
+        "consumption": "NEXT_PLAYER_OFFENSIVE_ACTION",
+        "normal_penetration_defense_pipeline": true
+      },
+      "hrs": {
+        "t0_player_win_rate": 0.69140625,
+        "t1_player_win_rate": 0.59609375,
+        "delta_pp": -9.53125
+      }
+    }
+  },
+  "next_state": "READY_FOR_T2_RECOGNITION_VALIDATION",
+  "guards": {
+    "no_li_changes": true,
+    "no_t0_changes": true,
+    "no_t3_t4_until_t2_close": true,
+    "no_t5": true,
+    "no_main": true,
+    "no_merge": true
+  }
+}
