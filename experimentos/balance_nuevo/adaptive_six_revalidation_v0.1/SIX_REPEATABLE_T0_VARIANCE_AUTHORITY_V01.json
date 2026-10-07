@@ -63,7 +63,7 @@
         }
       },
       "variance": {
-        "status": "ORDINARY_VARIANCE_COLLAPSED_TO_FLOOR_FOR_T1_RECALIBRATION",
+        "status": "ORDINARY_VARIANCE_COLLAPSED_TO_FLOOR_THROUGH_T2_VALIDATION",
         "base": {
           "source_candidate": "SAPO_FLOOR_FIXED_V04_ACCEPTED_BY_HUMAN",
           "hp": 55,
@@ -166,7 +166,7 @@
           },
           "source_note": "CLEAN-only per-axis envelope. Burn 1d2+2 x3 remains fixed at ratified T0 because no stronger CLEAN same-cadence burn axis was measured."
         },
-        "source_note": "Human accepted the current floor and chose not to spend more time chasing an exact 70% target. Ordinary LII T0 variance is collapsed to the accepted floor for T1 recalibration; stronger historical envelopes remain evidence for later exceptional/mutant review."
+        "source_note": "Human froze the LII T0 floor and reactive T1. Ordinary T0 variance remains collapsed to the accepted floor through T2 recognition validation; stronger historical envelopes remain evidence for later exceptional/mutant review."
       },
       "historical_adaptive_anchor": {
         "status": "STALE_NUMERIC_AUTHORITY_ANCHOR_ONLY",
@@ -297,7 +297,7 @@
         }
       },
       "variance": {
-        "status": "ORDINARY_VARIANCE_COLLAPSED_TO_FLOOR_FOR_T1_RECALIBRATION",
+        "status": "ORDINARY_VARIANCE_COLLAPSED_TO_FLOOR_THROUGH_T2_VALIDATION",
         "base": {
           "source_candidate": "E0_FLOOR_FIXED_V04_ACCEPTED_BY_HUMAN",
           "hp": 75,
@@ -394,7 +394,7 @@
           },
           "source_note": "CLEAN-only envelope combines broad T0 and focused micro-lab evidence; cross-axis/T4 interaction validated in 420k heavy run."
         },
-        "source_note": "Human accepted the current floor and chose not to spend more time chasing an exact 70% target. Ordinary LII T0 variance is collapsed to the accepted floor for T1 recalibration; stronger historical envelopes remain evidence for later exceptional/mutant review."
+        "source_note": "Human froze the LII T0 floor and reactive T1. Ordinary T0 variance remains collapsed to the accepted floor through T2 recognition validation; stronger historical envelopes remain evidence for later exceptional/mutant review."
       },
       "historical_adaptive_anchor": {
         "status": "STALE_NUMERIC_AUTHORITY_ANCHOR_ONLY",
