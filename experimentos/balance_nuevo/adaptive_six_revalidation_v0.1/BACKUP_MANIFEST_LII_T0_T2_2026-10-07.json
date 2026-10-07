@@ -1,0 +1,93 @@
+{
+  "schema_version": "lii-handoff-backup-v1.0",
+  "date": "2026-10-07",
+  "repository": "Shein25/La-Grulla-Blanca",
+  "branch": "experiment/monster-adaptive-six-revalidation-v0.1",
+  "functional_head_before_handoff_docs": "460c9d089e6d499fead76ad9b989412e8feb33b0",
+  "handoff_commit": "14c0a4179a07484f7dfd57a00b3ab835f529ee87",
+  "continuation_prompt_commit": "08e87a70ca616364cb2a4b3dcf5bcf6360e87440",
+  "state": {
+    "t0_lii": "FROZEN",
+    "t1_lii": "FROZEN_REACTIVE",
+    "t2_lii": "GATE_READY_RESULT_PENDING",
+    "t3_t4": "BLOCKED"
+  },
+  "authority_paths": [
+    "experimentos/balance_nuevo/t0_lii/T0_LII_FREEZE_MANIFEST_2026-10-07.json",
+    "experimentos/balance_nuevo/t1_lii/T1_LII_REACTIVE_FREEZE_2026-10-07.json",
+    "experimentos/balance_nuevo/adaptive_six_revalidation_v0.1/SIX_REPEATABLE_T0_VARIANCE_AUTHORITY_V01.json",
+    "experimentos/balance_nuevo/monster_arc1_registry.json",
+    "experimentos/balance_nuevo/adaptive_six_revalidation_v0.1/LII_T2_RECOGNITION_GATE_V01_PLAN_2026-10-07.md",
+    "experimentos/balance_nuevo/adaptive_six_revalidation_v0.1/HANDOFF_LII_T0_T1_TO_T2_2026-10-07.md",
+    "experimentos/balance_nuevo/adaptive_six_revalidation_v0.1/PROMPT_CONTINUAR_LII_T2_2026-10-07.md"
+  ],
+  "primary_artifacts": [
+    {
+      "name": "LII_T0_PROGRESSIVE_RECALIBRATION_LOBO_ANCHOR_V01_REVIEW.zip",
+      "sha256": "7bedd18b472950c7ae27a82441d70cd923d0062b77b7ea9cefc6fd3e56611552",
+      "status": "evidence"
+    },
+    {
+      "name": "LII_T0_PROGRESSIVE_GATE_V02_REAL_VARIANCE_REVIEW.zip",
+      "sha256": "4daa877fc6fea7456c2f83b1279237c3f0a83d6ba354e78dabb824d87d54e621",
+      "status": "evidence"
+    },
+    {
+      "name": "LII_T0_EXHAUSTIVE_V03_STATS_TECHNIQUES_REVIEW.zip",
+      "sha256": "3957483dda15ca0a2a4044313123290e2de7240a903112b1b3ece9580d18801c",
+      "status": "T0 evidence"
+    },
+    {
+      "name": "LII_T0_MICRO_GATE_V04_TARGET70_REVIEW.zip",
+      "sha256": "a720381c52a4b32ec083f422543f3c18db6bdb425f34ed8b83c5aa60a22677d9",
+      "status": "T0 freeze evidence"
+    },
+    {
+      "name": "LII_T1_SURVIVAL_RECALIBRATION_V01_REVIEW.zip",
+      "sha256": "ad9002592df7dc58367eb9025a3a4070f01b342f2688ae758962c6fb0bc4f49a",
+      "status": "historical-invalid-for-freeze"
+    },
+    {
+      "name": "LII_T1_SURVIVAL_RECALIBRATION_V02_FOUR_POLICY_REVIEW.zip",
+      "sha256": "47430ab7afb03a153b615fd3422185e12f0a91da6b9582bd1cf6178b173ed6db",
+      "status": "historical-old-action-cost"
+    },
+    {
+      "name": "LII_T1_REACTIVE_SURVIVAL_V03_REVIEW.zip",
+      "sha256": "cbf0c0e4994ed9a6cbe7a58a84981e73ae4f578d0ff073e5afd998b6c45c4867",
+      "status": "T1 freeze evidence"
+    },
+    {
+      "name": "COLAB_LII_T2_RECOGNITION_GATE_V01.zip",
+      "sha256": "0a982fbf34a6235849729069e86a127aa27b6004a38f12c3a8574b7de2e3586d",
+      "status": "NEXT_GATE_READY"
+    }
+  ],
+  "t2_artifact_details": {
+    "notebook_sha256": "7237acb37be3a80be628c567311301d2bcbe62c54c3791f307877d784441dc02",
+    "runner_sha256": "6dc81b2a1c1ff4dfc0eba4029f8136e0999a96b9bb5e91d302fd0685c1949457",
+    "expected_result_name": "LII_T2_RECOGNITION_GATE_V01_REVIEW.zip",
+    "expected_fights": 61440
+  },
+  "obsolete_but_backed_up": [
+    "COLAB_LII_T0_PROGRESSIVE_RECALIBRATION_LOBO_ANCHOR_V01.zip",
+    "COLAB_LII_T0_PROGRESSIVE_RECALIBRATION_LOBO_ANCHOR_V01_FIX1.zip",
+    "COLAB_LII_T0_PROGRESSIVE_RECALIBRATION_LOBO_ANCHOR_V01_FIX2.zip",
+    "COLAB_LII_T0_PROGRESSIVE_GATE_V02_REAL_VARIANCE.zip",
+    "COLAB_LII_T0_PROGRESSIVE_GATE_V02_REAL_VARIANCE_FIX1.zip",
+    "COLAB_LII_T0_EXHAUSTIVE_V03_STATS_TECHNIQUES.zip",
+    "COLAB_LII_T0_MICRO_GATE_V04_TARGET70.zip",
+    "COLAB_LII_T0_SAPO_V05_ONE_AXIS_TARGET70.zip",
+    "COLAB_LII_T1_SURVIVAL_RECALIBRATION_V01.zip",
+    "COLAB_LII_T1_SURVIVAL_RECALIBRATION_V02_FOUR_POLICY.zip",
+    "COLAB_LII_T1_REACTIVE_SURVIVAL_V03.zip"
+  ],
+  "guards": {
+    "no_main": true,
+    "no_merge": true,
+    "no_t5": true,
+    "no_li_changes": true,
+    "no_t0_t1_reopen_without_bug": true,
+    "no_t3_t4_before_t2_close": true
+  }
+}
