@@ -1,0 +1,124 @@
+{
+  "schema_version": "lii-t2-recognition-freeze-v1.0",
+  "status": "T2_LII_RECOGNITION_HUMAN_RATIFIED",
+  "frozen_on": "2026-10-07",
+  "human_decision": "Approve T2 as tested; preserve current recognition and anticipation semantics without retuning.",
+  "authority": {
+    "t0": "experimentos/balance_nuevo/t0_lii/T0_LII_FREEZE_MANIFEST_2026-10-07.json",
+    "t1": "experimentos/balance_nuevo/t1_lii/T1_LII_REACTIVE_FREEZE_2026-10-07.json",
+    "plan": "experimentos/balance_nuevo/adaptive_six_revalidation_v0.1/LII_T2_RECOGNITION_GATE_V01_PLAN_2026-10-07.md"
+  },
+  "evidence": {
+    "input_gate_sha256": "0a982fbf34a6235849729069e86a127aa27b6004a38f12c3a8574b7de2e3586d",
+    "notebook_sha256": "7237acb37be3a80be628c567311301d2bcbe62c54c3791f307877d784441dc02",
+    "runner_sha256": "6dc81b2a1c1ff4dfc0eba4029f8136e0999a96b9bb5e91d302fd0685c1949457",
+    "review_filename": "LII_T2_RECOGNITION_GATE_V01_REVIEW.zip",
+    "review_sha256": "aec7c2c40dd8c29b2d22d3ae70c62e2966ae067803bd673bcb841036b0227fd0",
+    "represented_combat_fights": 61440,
+    "contexts": 240,
+    "paired_base_contexts": 120,
+    "fights_per_context": 256,
+    "timeouts": 0,
+    "nan_inf": 0,
+    "issues": [],
+    "diagnostics": []
+  },
+  "candidate": {
+    "canonical_id": "T2_R2_SHORT_THREAT_40_15_PRESERVE_DUE",
+    "evidence_alias": "T2_R2_SHORT_THREAT_40_15_PRESERVE_DUE_REACTIVE",
+    "identity": "RECOGNITION",
+    "memory_window": 2,
+    "repeated_same_category_required": 2,
+    "count_results": [
+      "EFECTIVA"
+    ],
+    "observable_categories": [
+      "PLAYER_BASIC",
+      "PLAYER_UNITARGET_TECHNIQUE",
+      "PLAYER_AOE_TECHNIQUE",
+      "PLAYER_DEFENSIVE_TECHNIQUE"
+    ],
+    "hidden_root_or_build_inspection": false,
+    "future_rng_inspection": false,
+    "anticipation": {
+      "hp_ratio_lte": 0.4,
+      "received_hit_ratio_gte": 0.15
+    },
+    "priority": [
+      "NATURAL_T1_HP_30_OR_HIT_20",
+      "T2_ANTICIPATION_HP_40_OR_HIT_15"
+    ],
+    "consumes_monster_turn": false,
+    "changes_t1_magnitude_or_cooldown": false,
+    "preserve_due_canonical_technique": true
+  },
+  "frozen_t1": {
+    "sapo_ceniza": {
+      "kind": "MITIGATE_NEXT",
+      "magnitude_pct": 60,
+      "cooldown_rounds": 3,
+      "activation": "REACTIVE",
+      "consumes_monster_turn": false
+    },
+    "escarabajo_hierro": {
+      "kind": "DEFENSE_UP",
+      "defense_bonus": 4,
+      "cooldown_rounds": 3,
+      "activation": "REACTIVE",
+      "consumes_monster_turn": false
+    }
+  },
+  "audit_summary": {
+    "overall_t1_player_win_rate": 0.5359049479166667,
+    "overall_t2_player_win_rate": 0.51376953125,
+    "overall_delta_player_win_rate_pp": -2.213541666666667,
+    "sapo_delta_pp": -1.9140625,
+    "escarabajo_delta_pp": -2.5130208333333335,
+    "contexts_t2_more_than_2pp_easier": 0,
+    "max_t2_easier_delta_pp": 0.390625,
+    "hrs_drop_over_8pp_contexts": 0,
+    "worst_hrs_delta_pp": -7.421875,
+    "t2_anticipatory_activations_total": 18006,
+    "due_with_t2_activation_total": 5580,
+    "canonical_due_missed_with_t2_activation": 0,
+    "recognition_nonzero_in_all_t2_contexts": true,
+    "anticipation_nonzero_in_all_t2_contexts": true
+  },
+  "watchpoints": [
+    {
+      "monster": "sapo_ceniza",
+      "gear": "CARRY_OVER_FLOOR",
+      "root": "viento",
+      "policy": "DEFENSE_OPEN",
+      "delta_player_win_rate_pp": -10.15625
+    },
+    {
+      "monster": "sapo_ceniza",
+      "gear": "CARRY_OVER_FLOOR",
+      "root": "agua",
+      "policy": "UNITARGET_FIRST",
+      "delta_player_win_rate_pp": -8.59375
+    },
+    {
+      "monster": "sapo_ceniza",
+      "gear": "CARRY_OVER_FLOOR",
+      "root": "viento",
+      "policy": "UNITARGET_FIRST",
+      "delta_player_win_rate_pp": -8.59375
+    }
+  ],
+  "next_state": {
+    "sapo_ceniza": "READY_FOR_T3_RECALIBRATION",
+    "escarabajo_hierro": "READY_FOR_T3_RECALIBRATION",
+    "t4": "BLOCKED_UNTIL_T3_CLOSE"
+  },
+  "guards": {
+    "no_li_changes": true,
+    "no_t0_changes": true,
+    "no_t1_changes": true,
+    "no_t4_before_t3_close": true,
+    "no_t5": true,
+    "no_main": true,
+    "no_merge": true
+  }
+}
