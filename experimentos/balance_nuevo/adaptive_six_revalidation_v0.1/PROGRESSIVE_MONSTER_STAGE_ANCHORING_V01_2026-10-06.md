@@ -176,3 +176,80 @@ Esto permite separar:
 - si se mantiene mecánicamente sano frente al techo de equipo de su etapa.
 
 La comparación del monstruo ancla anterior y los monstruos nuevos debe usar exactamente el mismo loadout dentro de cada contexto.
+
+
+## Regla de incremento basal por nueva zona
+
+Decisión humana:
+
+> Un monstruo repetible T0 de una nueva etapa/zona debe sentirse naturalmente superior al techo representativo de la etapa anterior incluso antes de recibir adaptación.
+
+### Vida
+
+Como regla por defecto:
+
+- el **HP base** del monstruo normal de la etapa nueva debe quedar ligeramente por encima del HP base del ancla de la etapa anterior;
+- su envelope de variación debe extender ese margen hacia arriba;
+- no usar un porcentaje universal fijo;
+- una excepción tipo glass-cannon requiere decisión humana explícita.
+
+Esto evita que un monstruo de una zona nueva tenga menos vida basal que el monstruo fuerte de la zona anterior sin una razón de diseño.
+
+### Resto de estadísticas
+
+Las estadísticas no se copian con un multiplicador universal.
+
+Cada especie recibe intervalos mejores en los ejes compatibles con su identidad:
+
+- tanque: HP / DEF / TEN;
+- evasivo: EVA / PREC;
+- agresor: PREC / daño;
+- presión sostenida: daño/técnica/DOT;
+- drenador: presión directa + Qi drain ya existente.
+
+No se exige que cada nuevo monstruo supere al ancla anterior en **todos** los stats simultáneamente.
+
+Sí se exige que:
+
+1. sus rangos de variación de etapa sean superiores o más especializados de forma coherente;
+2. el individuo normal de la nueva zona no parezca una regresión accidental;
+3. los high-roll de la nueva etapa representen un techo claramente superior;
+4. la mejora exista en T0 antes de añadir T1→T4.
+
+### Caso inmediato LI → LII
+
+Ancla LI: Lobo Espiritual.
+
+Lobo:
+- HP base 53;
+- envelope HP hasta 57.
+
+Sapo Ceniza actual:
+- HP base 49;
+- envelope HP hasta 52.
+
+Conclusión:
+**Sapo debe reabrirse en HP antes de validar T1**, porque su intervalo completo queda por debajo del rango del Lobo.
+
+Escarabajo de Hierro actual:
+- HP base 75;
+- envelope HP hasta 82.
+
+Conclusión:
+su progresión de vida ya es claramente superior; debe comprobarse el resto del presupuesto de amenaza y su identidad de tanque.
+
+### Orden de ajuste
+
+Para cada transición:
+
+```text
+1. ancla T0 de etapa anterior
+2. carry-over gear floor
+3. ajustar HP base de nueva zona
+4. ajustar envelopes relevantes por identidad
+5. benchmark T0 pareado
+6. freeze humano T0 de la nueva etapa
+7. recién entonces T1→T4
+```
+
+No usar adaptación para compensar un T0 de etapa que quedó demasiado débil.
