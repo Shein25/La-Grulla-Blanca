@@ -1,6 +1,6 @@
 {
   "schema_version": "six-repeatable-t0-variance-authority-v0.1",
-  "status": "PARTIALLY_REBASED_BY_LII_PROGRESSIVE_FREEZE_2026_10_07",
+  "status": "LII_T1_REACTIVE_HUMAN_RATIFIED_2026_10_07",
   "created_on": "2026-10-06",
   "source": {
     "t0_and_historical_adaptive_branch": "experiment/variance-six-repeatables-v0.1",
@@ -9,7 +9,7 @@
     "historical_variance_config": "experimentos/balance_nuevo/individual_variance_v0.1/monster_individual_variance_v0.1.json",
     "variance_closure_head": "17c16f66dc929a91d3ebab5e5c4bb9ac17b92e5e",
     "variance_heavy_fights": 420000,
-    "note": "LII Sapo/Escarabajo T0 floors were reopened by human stage-progression directive and refrozen on 2026-10-07. Historical LII upper envelopes/ladders remain evidence only; ordinary variance is temporarily collapsed to the frozen floor for T1 recalibration. LIII/LIV values remain historical inputs pending stage-by-stage revalidation."
+    "note": "LII Sapo/Escarabajo T0 floors remain frozen. Reactive T1 was human-ratified on 2026-10-07 after V03 paired validation. Ordinary T0 variance remains collapsed to floor through T2 validation. LIII/LIV remain historical inputs pending stage-by-stage revalidation."
   },
   "mutant": {
     "distribution": "UNIFORM_0_1",
@@ -239,6 +239,32 @@
             "no_t5": true
           }
         }
+      },
+      "t1": {
+        "status": "READY_HUMAN_RATIFIED_REACTIVE_FREEZE_2026_10_07",
+        "source_candidate": "3f30ec963d6b5614",
+        "source_results_sha256": "cbf0c0e4994ed9a6cbe7a58a84981e73ae4f578d0ff073e5afd998b6c45c4867",
+        "ability": {
+          "kind": "MITIGATE_NEXT",
+          "damage_reduction_pct": 60,
+          "cooldown_rounds": 3,
+          "activation": "REACTIVE",
+          "consumes_monster_turn": false,
+          "consumption": "NEXT_CONNECTED_DIRECT_PACKET",
+          "persists_through_miss": true,
+          "affects_dot": false
+        },
+        "signals": {
+          "self_low_hp_ratio": 0.3,
+          "heavy_hit_ratio": 0.2
+        },
+        "hrs_evidence": {
+          "t0_player_win_rate": 0.7328125,
+          "t1_player_win_rate": 0.630078125,
+          "delta_pp": -10.2734375,
+          "root_spread_policy_averaged_t0": 0.130859375,
+          "root_spread_policy_averaged_t1": 0.12890625
+        }
       }
     },
     "escarabajo_hierro": {
@@ -440,6 +466,31 @@
             "no_new_mechanic_family": true,
             "no_t5": true
           }
+        }
+      },
+      "t1": {
+        "status": "READY_HUMAN_RATIFIED_REACTIVE_FREEZE_2026_10_07",
+        "source_candidate": "37ac83cfdd4c6973",
+        "source_results_sha256": "cbf0c0e4994ed9a6cbe7a58a84981e73ae4f578d0ff073e5afd998b6c45c4867",
+        "ability": {
+          "kind": "DEFENSE_UP",
+          "defense_bonus": 4,
+          "cooldown_rounds": 3,
+          "activation": "REACTIVE",
+          "consumes_monster_turn": false,
+          "consumption": "NEXT_PLAYER_OFFENSIVE_ACTION",
+          "normal_penetration_defense_pipeline": true
+        },
+        "signals": {
+          "self_low_hp_ratio": 0.3,
+          "heavy_hit_ratio": 0.2
+        },
+        "hrs_evidence": {
+          "t0_player_win_rate": 0.69140625,
+          "t1_player_win_rate": 0.59609375,
+          "delta_pp": -9.53125,
+          "root_spread_policy_averaged_t0": 0.134765625,
+          "root_spread_policy_averaged_t1": 0.181640625
         }
       }
     },
