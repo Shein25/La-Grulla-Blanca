@@ -19,7 +19,9 @@
       "avispa_jade",
       "serpiente_qi",
       "mono_pildoras",
-      "lobo_espiritual"
+      "lobo_espiritual",
+      "sapo_ceniza",
+      "escarabajo_hierro"
     ],
     "li_t0_freeze": "T0_LI_EXHAUSTIVE_PASS_2026-10-06",
     "adaptive_expected_bands": {
@@ -29,7 +31,9 @@
       "LianQi_III": "T2 expected/advanced overreach possible",
       "LianQi_IV": "T3-T4 intended replayability/endgame"
     },
-    "adaptive_overreach_policy": "ALLOWED_NATURAL_LIMIT_BY_COMBAT_AND_DECAY"
+    "adaptive_overreach_policy": "ALLOWED_NATURAL_LIMIT_BY_COMBAT_AND_DECAY",
+    "lii_t0_freeze": "T0_LII_HUMAN_RATIFIED_2026-10-07",
+    "lii_t1_freeze": "T1_LII_REACTIVE_HUMAN_RATIFIED_2026-10-07"
   },
   "profiles": {
     "rata_qi": {
@@ -492,8 +496,8 @@
         "social": "TERRITORIAL"
       },
       "adaptive": {
-        "status": "READY_FOR_T1_RECALIBRATION",
-        "rule": "T0 LianQi II frozen by human decision after progressive V01-V04 validation; T1 may now be recalibrated. T2-T4 remain sequentially gated."
+        "status": "READY_FOR_T2_RECALIBRATION",
+        "rule": "T0 LII frozen. T1 human-ratified as reactive MITIGATE_NEXT 60% / CD3; trigger HP<=30% OR received hit>=20% maxHP; activation does not consume monster turn. T2 may now be validated; T3-T4 remain sequentially gated."
       },
       "resource_model": "NONE"
     },
@@ -578,8 +582,8 @@
         "social": "COLONIA"
       },
       "adaptive": {
-        "status": "READY_FOR_T1_RECALIBRATION",
-        "rule": "T0 LianQi II frozen by human decision after progressive V01-V04 validation; T1 may now be recalibrated. T2-T4 remain sequentially gated."
+        "status": "READY_FOR_T2_RECALIBRATION",
+        "rule": "T0 LII frozen. T1 human-ratified as reactive DEFENSE_UP +4 / CD3; trigger HP<=30% OR received hit>=20% maxHP; activation does not consume monster turn. T2 may now be validated; T3-T4 remain sequentially gated."
       },
       "resource_model": "NONE"
     },
