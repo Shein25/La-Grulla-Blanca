@@ -1,12 +1,42 @@
 # DECISIÓN HUMANA — REPERTORIO, DESBLOQUEO Y PRESUPUESTO DE ULTIS
 
-Fecha: 2026-10-05
+Fecha: 2026-10-07
 Proyecto: La Grulla Blanca
 Repositorio: `Shein25/La-Grulla-Blanca`
 Rama: `experiment/grulla-ulti25-v031-handoff-2026-10-04`
-HEAD previo al primer registro: `ed7e98c5c7310e73cf374f1219a9d51c57e08969`
 
-## Decisión estructural de repertorio
+## Decisión estructural de ramas, afinidad y builds
+
+La **profundidad de una rama elemental NO depende del injerto**.
+
+Un jugador puede aprender y profundizar cualquiera de las cinco ramas elementales hasta su estado de **APRENDIDA_AL_MAXIMO**, aunque esa rama no sea ni su elemento principal ni su elemento injertado.
+
+Por tanto:
+
+- principal, injertada y no afines pueden profundizarse hasta el final;
+- el injerto no desbloquea la profundidad de la rama;
+- la distribución de puntos/build define cómo explota el jugador las ramas aprendidas;
+- las ramas no afines se balancean mediante las penalizaciones propias del sistema;
+- no se fijan aquí magnitudes nuevas de penalización: deben venir de la autoridad de técnicas/balance;
+- una rama no afín aprendida al máximo sigue siendo una rama completamente aprendida, aunque conserve las penalizaciones correspondientes a no tener afinidad.
+
+La distinción correcta es:
+
+- **aprendizaje/maestría de rama** = cuánto conoce y ha desarrollado el jugador esa rama;
+- **afinidad** = relación elemental privilegiada del personaje;
+- **build** = distribución actual de puntos y elecciones;
+- **injerto** = segunda afinidad elemental, no permiso para profundizar.
+
+## Afinidades
+
+El jugador tiene:
+
+1. un **elemento principal**;
+2. opcionalmente, un **elemento injertado** cuando el sistema de injerto lo habilita.
+
+Las demás ramas pueden ser aprendidas y dominadas, pero siguen siendo **no afines** mientras no exista una autoridad que diga lo contrario.
+
+## Decisión estructural de repertorio de Ultis
 
 El jugador no dispone de las 25 Ultis ni de las 5 Ultis de una raíz simultáneamente durante un combate.
 
@@ -15,34 +45,35 @@ Su repertorio activo admite como máximo **2 Ultis**:
 1. una Ulti correspondiente al **elemento principal**;
 2. una Ulti correspondiente al **elemento injertado**.
 
-Ambas comparten un único presupuesto de uso: **máximo 1 activación válida de Ulti por combate en total**.
+Una rama no afín, aunque esté aprendida al máximo, **NO concede una tercera Ulti**.
+
+Ambas Ultis disponibles comparten un único presupuesto de uso: **máximo 1 activación válida de Ulti por combate en total**.
 
 Una vez consumido ese presupuesto, la otra Ulti equipada queda bloqueada durante el resto del combate. Las dos Ultis deben tratarse como **alternativas tácticas**, no como una cadena/combo de dos Ultis.
 
-## Decisión estructural de desbloqueo
+## Regla de maestría / aprendizaje máximo
 
-Las Ultis **NO se desbloquean automáticamente por alcanzar una etapa de LianQi**. La etapa es sólo un requisito mínimo. El gate real es que la **rama elemental correspondiente haya sido aprendida al máximo**.
-
-### Regla de maestría / aprendizaje máximo
-
-`RAMA_APRENDIDA_AL_MAXIMO` es un estado de progresión/conocimiento de la rama y **NO depende de cómo el jugador distribuya sus puntos entre las especializaciones**.
+`RAMA_APRENDIDA_AL_MAXIMO` es un estado de progresión/conocimiento de la rama y **NO depende de cómo el jugador distribuya sus puntos entre las especializaciones ni de poseer afinidad con esa rama**.
 
 Por tanto:
 
 - no se exige tener puntos en todas las especializaciones;
 - no se exige una distribución concreta;
-- una build `2/2/2` conserva acceso a la Ulti;
+- una build `2/2/2` conserva acceso a las capacidades que correspondan a una rama ya dominada;
 - también son válidas otras distribuciones permitidas por el sistema aunque alguna especialización tenga 0 puntos;
-- cambiar el reparto de puntos no debe bloquear una Ulti ya habilitada mientras la rama continúe aprendida al máximo.
+- cambiar el reparto de puntos no elimina el estado histórico de rama aprendida al máximo;
+- una rama no principal/no injertada también puede alcanzar `RAMA_APRENDIDA_AL_MAXIMO`.
 
-La distribución de puntos define el **build**. El aprendizaje máximo de la rama define la **elegibilidad de la Ulti**. Son conceptos independientes.
+La distribución de puntos define el **build**. El aprendizaje máximo define la **maestría**. La afinidad define qué bonificaciones/penalizaciones y qué acceso a Ultis corresponden. Son conceptos independientes.
+
+## Desbloqueo de Ultis
 
 ### Ulti del elemento principal
 
 Requisitos acumulativos:
 
 - haber alcanzado como mínimo **LianQi III**;
-- tener la rama del elemento principal en estado **aprendida al máximo**.
+- tener la rama del elemento principal en estado **APRENDIDA_AL_MAXIMO**.
 
 Cuando se cumplen ambos requisitos, se habilita la Ulti del elemento principal, independientemente del reparto de puntos entre especializaciones.
 
@@ -52,54 +83,45 @@ Requisitos acumulativos:
 
 - poseer efectivamente el **injerto elemental**;
 - haber alcanzado como mínimo **LianQi IV**;
-- tener la rama del elemento injertado en estado **aprendida al máximo**.
+- tener la rama del elemento injertado en estado **APRENDIDA_AL_MAXIMO**.
 
 Cuando se cumplen los tres requisitos, se habilita la Ulti del elemento injertado, independientemente del reparto de puntos entre especializaciones.
 
-### Consecuencia de progresión
+Una rama no afín aprendida al máximo no satisface este segundo gate si no es la rama efectivamente injertada.
 
-- Antes de tener la rama principal aprendida al máximo en LianQi III: 0 Ultis disponibles.
+## Consecuencia de progresión
+
+- Cualquier rama aprendida puede profundizarse hasta el final, tenga o no afinidad.
+- Las builds pueden invertir en ramas no afines y serán balanceadas por las penalizaciones correspondientes.
 - LianQi III + rama principal aprendida al máximo: hasta 1 Ulti disponible, la principal.
+- Tener otras ramas aprendidas al máximo no concede Ultis adicionales.
 - Tener injerto en LianQi III NO concede automáticamente la Ulti injertada.
 - LianQi IV + injerto + rama injertada aprendida al máximo: puede habilitarse la segunda Ulti.
 - Incluso con 2 Ultis disponibles, el presupuesto global sigue siendo 1 activación válida por combate.
 
 ## Implicación de balance
 
-Los benchmarks por etapa deben respetar disponibilidad real. No se debe probar un monstruo/jefe de LianQi III suponiendo automáticamente 2 Ultis ni una Ulti principal si el perfil no tiene su rama principal aprendida al máximo.
+Los benchmarks deben probar:
 
-Los benchmarks **NO deben utilizar la distribución de puntos como gate de Ulti**. Distintas builds de una misma rama deben poder compararse conservando la misma Ulti cuando cumplen el mismo estado de aprendizaje máximo.
+- ramas afines y no afines a igual profundidad de aprendizaje;
+- múltiples distribuciones de build;
+- las penalizaciones reales de uso de ramas no afines;
+- especialización extrema y builds híbridas;
+- casos donde una rama no afín está aprendida al máximo pero no es elegible para Ulti;
+- principal e injerto como únicas fuentes posibles de las dos Ultis del repertorio.
 
-El balance futuro debe evaluar la decisión entre las dos Ultis disponibles en un mismo estado de combate sólo para perfiles que realmente hayan desbloqueado ambas.
-
-Ejemplo conceptual:
-- repertorio = Ulti del elemento principal + Ulti del elemento injertado;
-- política = elegir una de las dos o no gastar la Ulti todavía;
-- una activación válida consume el presupuesto global;
-- la otra queda indisponible hasta el siguiente combate.
-
-## Métricas obligatorias futuras
-
-- `ULTIMATE_CHOICE_SHARE`
-- `ULTIMATE_OPPORTUNITY_REGRET`
-- `ULTIMATE_UNUSED_RATE`
-- `PRIMARY_ULTIMATE_USE_RATE`
-- `GRAFTED_ULTIMATE_USE_RATE`
-- `ULTIMATE_UNLOCK_ELIGIBILITY`
-- fase/ventana de activación
-- interacción con Pacto F3
-- supervivencia y estado final del jefe después de la elección
-
-Debe detectarse especialmente si una Ulti domina a la otra en casi todos los contextos del repertorio, aunque ambas parezcan razonables en pruebas aisladas.
+No se debe confundir una penalización de afinidad con una prohibición de progresión.
 
 ## No inventar todavía
 
 Quedan pendientes de autoridad explícita:
-- si un intento rechazado/no activado consume o no el presupuesto global;
-- si elemento principal e injertado pueden ser el mismo elemento;
-- reglas de adquisición/selección de la Ulti concreta dentro de cada elemento una vez cumplido el gate de aprendizaje máximo.
 
-Hasta que esas reglas se definan, los runners futuros deben abortar las suites que dependan de ellas o marcarlas `AUTHORITY_REQUIRED`; no deben asumir una respuesta.
+- valores y naturaleza exacta de las penalizaciones de ramas no afines;
+- si un intento de Ulti rechazado/no activado consume o no el presupuesto global;
+- reglas de adquisición/selección de la Ulti concreta dentro de cada elemento una vez cumplido su gate;
+- cualquier regla de cambio/reemplazo de injerto.
+
+Hasta que esas reglas se definan, los runners futuros deben usar la autoridad disponible o marcar `AUTHORITY_REQUIRED`; no deben inventar valores.
 
 ## Guardias
 
