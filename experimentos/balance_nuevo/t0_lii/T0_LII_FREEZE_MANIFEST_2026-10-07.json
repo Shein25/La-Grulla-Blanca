@@ -1,0 +1,94 @@
+{
+  "status": "T0_LII_FROZEN",
+  "date": "2026-10-07",
+  "human_decision": "Accept current Sapo and Escarabajo T0 floors; ~70% HRS target was approximate and no further micro-tuning is required.",
+  "evidence": {
+    "v03_review_sha256": "3957483dda15ca0a2a4044313123290e2de7240a903112b1b3ece9580d18801c",
+    "v04_review_sha256": "a720381c52a4b32ec083f422543f3c18db6bdb425f34ed8b83c5aa60a22677d9",
+    "v04_represented_fights": 176640
+  },
+  "registry_freeze_commit": "80a3a77cc84178cd5cbde887df71f4c38f72664a",
+  "variance_authority_commit": "0eb1cdb2e7bcaf6b70826f344370ad48421bbbb1",
+  "progression_anchor": {
+    "previous_stage": "LianQi_I",
+    "species": "lobo_espiritual",
+    "rule": "LII T0 must represent a real encounter progression over the strongest frozen LI T0 anchor."
+  },
+  "profiles": {
+    "sapo_ceniza": {
+      "native_stage": "LianQi_II",
+      "stats": {
+        "hp": 55,
+        "qi_max": null,
+        "precision": 98,
+        "evasion": 11,
+        "defense": 0,
+        "tenacity": 6,
+        "control": 0,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": "1d2+5"
+      },
+      "technique": {
+        "name": "Nube de Hollín",
+        "mechanics": [
+          "DIRECT_DAMAGE",
+          "BURN_DOT"
+        ],
+        "params": {
+          "cadence": 3,
+          "direct_damage": "1d2+4",
+          "burn": {
+            "damage": "1d2+2",
+            "ticks": 3
+          }
+        }
+      },
+      "v04_hrs_player_win_rate_floor": 0.733398,
+      "note": "Human accepted this floor without further tuning; 70% was approximate."
+    },
+    "escarabajo_hierro": {
+      "native_stage": "LianQi_II",
+      "stats": {
+        "hp": 75,
+        "qi_max": null,
+        "precision": 90,
+        "evasion": 14,
+        "defense": 2,
+        "tenacity": 24,
+        "control": 0,
+        "crit_chance": 5,
+        "crit_damage": 1.5,
+        "basic_damage": "1d2+3"
+      },
+      "technique": {
+        "name": "Carga de Caparazón",
+        "mechanics": [
+          "DIRECT_DAMAGE"
+        ],
+        "params": {
+          "cadence": 3,
+          "direct_damage": "1d2+8"
+        }
+      },
+      "v04_hrs_player_win_rate_floor": 0.699805,
+      "note": "Floor already centered near the approximate 70% HRS reference."
+    }
+  },
+  "ordinary_variance": {
+    "status": "COLLAPSED_TO_FLOOR_FOR_T1_RECALIBRATION",
+    "rationale": "Do not spend more runs chasing an exact HRS percentage. Stronger historical envelopes remain evidence for later exceptional/mutant review."
+  },
+  "adaptive_next_state": {
+    "sapo_ceniza": "READY_FOR_T1_RECALIBRATION",
+    "escarabajo_hierro": "READY_FOR_T1_RECALIBRATION",
+    "t2_t4": "SEQUENTIALLY_BLOCKED_UNTIL_T1_CLOSE"
+  },
+  "guards": {
+    "no_main": true,
+    "no_merge": true,
+    "no_t5": true,
+    "unique_species_excluded": true,
+    "no_canonical_change_outside_experimental_branch": true
+  }
+}
