@@ -1,6 +1,6 @@
 {
   "schema_version": "six-repeatable-t0-variance-authority-v0.1",
-  "status": "HUMAN_RATIFIED_INPUT_REUSED_FOR_ADAPTIVE_REVALIDATION",
+  "status": "PARTIALLY_REBASED_BY_LII_PROGRESSIVE_FREEZE_2026_10_07",
   "created_on": "2026-10-06",
   "source": {
     "t0_and_historical_adaptive_branch": "experiment/variance-six-repeatables-v0.1",
@@ -9,7 +9,7 @@
     "historical_variance_config": "experimentos/balance_nuevo/individual_variance_v0.1/monster_individual_variance_v0.1.json",
     "variance_closure_head": "17c16f66dc929a91d3ebab5e5c4bb9ac17b92e5e",
     "variance_heavy_fights": 420000,
-    "note": "T0 and variance are preserved. Historical T1-T4 are anchors only and must be revalidated under the 2026-10-06 final adaptive semantics."
+    "note": "LII Sapo/Escarabajo T0 floors were reopened by human stage-progression directive and refrozen on 2026-10-07. Historical LII upper envelopes/ladders remain evidence only; ordinary variance is temporarily collapsed to the frozen floor for T1 recalibration. LIII/LIV values remain historical inputs pending stage-by-stage revalidation."
   },
   "mutant": {
     "distribution": "UNIFORM_0_1",
@@ -31,16 +31,16 @@
     "sapo_ceniza": {
       "native_stage": "LianQi_II",
       "t0": {
-        "status": "READY_HUMAN_RATIFIED",
-        "source_candidate": "sapo_ceniza-b01-cf7f63c920",
-        "source_results_sha256": "7851366c9b61f899b913a7e7e6a6f1f7bad96fe23f10a14af7dffb81015527a4",
+        "status": "READY_HUMAN_RATIFIED_PROGRESSIVE_FREEZE_2026_10_07",
+        "source_candidate": "SAPO_FLOOR_FIXED_V04_ACCEPTED_BY_HUMAN",
+        "source_results_sha256": null,
         "stats": {
-          "hp": 49,
+          "hp": 55,
           "qi_max": null,
-          "precision": 97,
+          "precision": 98,
           "evasion": 11,
           "defense": 0,
-          "tenacity": 5,
+          "tenacity": 6,
           "control": 0,
           "crit_chance": 5,
           "crit_damage": 1.5,
@@ -63,53 +63,37 @@
         }
       },
       "variance": {
+        "status": "ORDINARY_VARIANCE_COLLAPSED_TO_FLOOR_FOR_T1_RECALIBRATION",
         "base": {
-          "source_candidate": "sapo_ceniza-b01-cf7f63c920",
-          "hp": 49,
+          "source_candidate": "SAPO_FLOOR_FIXED_V04_ACCEPTED_BY_HUMAN",
+          "hp": 55,
           "defense": 0,
           "evasion": 11,
-          "precision": 97,
-          "tenacity": 5
+          "precision": 98,
+          "tenacity": 6
         },
         "upper_envelope": {
-          "source_axes": {
-            "hp": "sapo_ceniza-b10-f851070241",
-            "defense": "sapo_ceniza-b03-0151582d7e",
-            "evasion": "sapo_ceniza-b07-4e68c838f4",
-            "precision": "sapo_ceniza-b10-f851070241",
-            "tenacity": "sapo_ceniza-b07-4e68c838f4"
-          },
-          "hp": 52,
-          "defense": 3,
-          "evasion": 33,
-          "precision": 100,
-          "tenacity": 19
+          "hp": 55,
+          "defense": 0,
+          "evasion": 11,
+          "precision": 98,
+          "tenacity": 6
         },
         "attacks": {
           "basic_damage": {
             "ladder": [
-              "1d2+5",
-              "1d3+5",
-              "1d3+6",
-              "1d2+7"
+              "1d2+5"
             ],
             "sources": [
-              "sapo_ceniza-b00-878c225026",
-              "sapo_ceniza-b10-f851070241",
-              "sapo_ceniza-b04-29a65445b7",
-              "sapo_ceniza-b02-55ce04b200"
+              "LII_PROGRESSIVE_FREEZE_2026_10_07"
             ]
           },
           "technique_direct_damage": {
             "ladder": [
-              "1d2+4",
-              "1d2+5",
-              "1d2+8"
+              "1d2+4"
             ],
             "sources": [
-              "sapo_ceniza-b01-cf7f63c920",
-              "sapo_ceniza-b00-878c225026",
-              "sapo_ceniza-b09-7dc3aa8399"
+              "LII_PROGRESSIVE_FREEZE_2026_10_07"
             ]
           }
         },
@@ -121,7 +105,68 @@
           ],
           "cadence": 3
         },
-        "source_note": "CLEAN-only per-axis envelope. Burn 1d2+2 x3 remains fixed at ratified T0 because no stronger CLEAN same-cadence burn axis was measured."
+        "historical_upper_evidence": {
+          "base": {
+            "source_candidate": "sapo_ceniza-b01-cf7f63c920",
+            "hp": 49,
+            "defense": 0,
+            "evasion": 11,
+            "precision": 97,
+            "tenacity": 5
+          },
+          "upper_envelope": {
+            "source_axes": {
+              "hp": "sapo_ceniza-b10-f851070241",
+              "defense": "sapo_ceniza-b03-0151582d7e",
+              "evasion": "sapo_ceniza-b07-4e68c838f4",
+              "precision": "sapo_ceniza-b10-f851070241",
+              "tenacity": "sapo_ceniza-b07-4e68c838f4"
+            },
+            "hp": 52,
+            "defense": 3,
+            "evasion": 33,
+            "precision": 100,
+            "tenacity": 19
+          },
+          "attacks": {
+            "basic_damage": {
+              "ladder": [
+                "1d2+5",
+                "1d3+5",
+                "1d3+6",
+                "1d2+7"
+              ],
+              "sources": [
+                "sapo_ceniza-b00-878c225026",
+                "sapo_ceniza-b10-f851070241",
+                "sapo_ceniza-b04-29a65445b7",
+                "sapo_ceniza-b02-55ce04b200"
+              ]
+            },
+            "technique_direct_damage": {
+              "ladder": [
+                "1d2+4",
+                "1d2+5",
+                "1d2+8"
+              ],
+              "sources": [
+                "sapo_ceniza-b01-cf7f63c920",
+                "sapo_ceniza-b00-878c225026",
+                "sapo_ceniza-b09-7dc3aa8399"
+              ]
+            }
+          },
+          "fixed_technique": {
+            "name": "Nube de Hollín",
+            "mechanics": [
+              "DIRECT_DAMAGE",
+              "BURN_DOT"
+            ],
+            "cadence": 3
+          },
+          "source_note": "CLEAN-only per-axis envelope. Burn 1d2+2 x3 remains fixed at ratified T0 because no stronger CLEAN same-cadence burn axis was measured."
+        },
+        "source_note": "Human accepted the current floor and chose not to spend more time chasing an exact 70% target. Ordinary LII T0 variance is collapsed to the accepted floor for T1 recalibration; stronger historical envelopes remain evidence for later exceptional/mutant review."
       },
       "historical_adaptive_anchor": {
         "status": "STALE_NUMERIC_AUTHORITY_ANCHOR_ONLY",
@@ -199,9 +244,9 @@
     "escarabajo_hierro": {
       "native_stage": "LianQi_II",
       "t0": {
-        "status": "READY_HUMAN_RATIFIED",
-        "source_candidate": "escarabajo_hierro-m14-6996f62d4a",
-        "source_results_sha256": "d5cc200a85c41014db8fea00fcc442996865718b89a9a4d2090c12fff81fd923",
+        "status": "READY_HUMAN_RATIFIED_PROGRESSIVE_FREEZE_2026_10_07",
+        "source_candidate": "E0_FLOOR_FIXED_V04_ACCEPTED_BY_HUMAN",
+        "source_results_sha256": null,
         "stats": {
           "hp": 75,
           "qi_max": null,
@@ -226,8 +271,9 @@
         }
       },
       "variance": {
+        "status": "ORDINARY_VARIANCE_COLLAPSED_TO_FLOOR_FOR_T1_RECALIBRATION",
         "base": {
-          "source_candidate": "escarabajo_hierro-m14-6996f62d4a",
+          "source_candidate": "E0_FLOOR_FIXED_V04_ACCEPTED_BY_HUMAN",
           "hp": 75,
           "defense": 2,
           "evasion": 14,
@@ -235,40 +281,27 @@
           "tenacity": 24
         },
         "upper_envelope": {
-          "source_axes": {
-            "hp": "escarabajo_hierro-b04-d2b395945f",
-            "defense": "escarabajo_hierro-b04-d2b395945f",
-            "evasion": "escarabajo_hierro-b03-28afd52077",
-            "precision": "escarabajo_hierro-b05-4dea609a12",
-            "tenacity": "escarabajo_hierro-b03-28afd52077"
-          },
-          "hp": 82,
-          "defense": 5,
-          "evasion": 22,
-          "precision": 98,
-          "tenacity": 34
+          "hp": 75,
+          "defense": 2,
+          "evasion": 14,
+          "precision": 90,
+          "tenacity": 24
         },
         "attacks": {
           "basic_damage": {
             "ladder": [
-              "1d2+3",
-              "1d2+4",
-              "1d2+6"
+              "1d2+3"
             ],
             "sources": [
-              "escarabajo_hierro-m10-50f2acebee",
-              "escarabajo_hierro-b03-28afd52077",
-              "escarabajo_hierro-b04-d2b395945f"
+              "LII_PROGRESSIVE_FREEZE_2026_10_07"
             ]
           },
           "technique_direct_damage": {
             "ladder": [
-              "1d2+8",
-              "1d4+9"
+              "1d2+8"
             ],
             "sources": [
-              "escarabajo_hierro-m10-50f2acebee",
-              "escarabajo_hierro-b04-d2b395945f"
+              "LII_PROGRESSIVE_FREEZE_2026_10_07"
             ]
           }
         },
@@ -279,7 +312,63 @@
           ],
           "cadence": 3
         },
-        "source_note": "CLEAN-only envelope combines broad T0 and focused micro-lab evidence; cross-axis/T4 interaction validated in 420k heavy run."
+        "historical_upper_evidence": {
+          "base": {
+            "source_candidate": "escarabajo_hierro-m14-6996f62d4a",
+            "hp": 75,
+            "defense": 2,
+            "evasion": 14,
+            "precision": 90,
+            "tenacity": 24
+          },
+          "upper_envelope": {
+            "source_axes": {
+              "hp": "escarabajo_hierro-b04-d2b395945f",
+              "defense": "escarabajo_hierro-b04-d2b395945f",
+              "evasion": "escarabajo_hierro-b03-28afd52077",
+              "precision": "escarabajo_hierro-b05-4dea609a12",
+              "tenacity": "escarabajo_hierro-b03-28afd52077"
+            },
+            "hp": 82,
+            "defense": 5,
+            "evasion": 22,
+            "precision": 98,
+            "tenacity": 34
+          },
+          "attacks": {
+            "basic_damage": {
+              "ladder": [
+                "1d2+3",
+                "1d2+4",
+                "1d2+6"
+              ],
+              "sources": [
+                "escarabajo_hierro-m10-50f2acebee",
+                "escarabajo_hierro-b03-28afd52077",
+                "escarabajo_hierro-b04-d2b395945f"
+              ]
+            },
+            "technique_direct_damage": {
+              "ladder": [
+                "1d2+8",
+                "1d4+9"
+              ],
+              "sources": [
+                "escarabajo_hierro-m10-50f2acebee",
+                "escarabajo_hierro-b04-d2b395945f"
+              ]
+            }
+          },
+          "fixed_technique": {
+            "name": "Carga de Caparazón",
+            "mechanics": [
+              "DIRECT_DAMAGE"
+            ],
+            "cadence": 3
+          },
+          "source_note": "CLEAN-only envelope combines broad T0 and focused micro-lab evidence; cross-axis/T4 interaction validated in 420k heavy run."
+        },
+        "source_note": "Human accepted the current floor and chose not to spend more time chasing an exact 70% target. Ordinary LII T0 variance is collapsed to the accepted floor for T1 recalibration; stronger historical envelopes remain evidence for later exceptional/mutant review."
       },
       "historical_adaptive_anchor": {
         "status": "STALE_NUMERIC_AUTHORITY_ANCHOR_ONLY",
