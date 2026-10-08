@@ -1,0 +1,10 @@
+# PROMPT PARA INICIAR EL PRÓXIMO CHAT — monstruos LianQi II
+Estamos retomando **La Grulla Blanca**. Leer primero el handoff de la rama `handoff/lii-monsters-close-2026-10-08` en `experimentos/balance_nuevo/handoffs/CIERRE_LII_MONSTRUOS_2026-10-08/HANDOFF_LII_MONSTRUOS_2026-10-08.md`, más el ZIP backup adjunto al chat. Reutilizar fuentes nativas por SHA, no inventar simulaciones ni repetir campañas cerradas.
+
+**Decisión no negociable:** trabajar exclusivamente con `sapo_ceniza`, `escarabajo_hierro`, `eco_caido`. Sapo de Ceniza y Escarabajo de Hierro tienen autoridades de T0/T1/T2 previas. `eco_caido` es élite con `stats_status=PENDING_INTEGRAL_REBALANCE`: el único que necesita candidatos nuevos T0; nunca marcar READY sin ratificación.
+
+Excluir `sapo_caldera` (manual AOE Fuego Círculo de las Cien Ascuas) y `rey_escarabajo` (AOE Metal Lluvia de Filos); son **guardianes únicos de LianQi III**, sin T1–T4 ni Mutantes, a pesar de `native_stage=LianQi_II` en el registro antiguo. Los CSV históricos de esos dos quedan en cuarentena y **ningún valor S*/R*** se puede tomar como balance aprobado. Revisar la autoridad `HANDOFF_LA_GRULLA_TECNICAS_HEAVY_2026-10-04.md`.
+
+Próximo objetivo: auditar Eco E8 y alternativas contra motor nativo con 5 raíces, técnica principal + defensa LII disponible, equipo de adquisición legal, Qi, alquimia y Concordancias. Medir tasas/turnos/supervivencia, daños y diferencias por raíz; primero comprobar reglas de adquisición y el criterio de dificultad de élite. NO confundir victoria con autorización de balance. T1/T2 requieren paridad con IA congelada. No tocar main, no merge, no tocar juego productivo, quests, mapas, jefes ni valores canónicos. Crear candidatos sólo en memoria/branch experimental. Informar resultados y pedir decisión únicamente si es esencial.
+
+Material local en el backup: `GRULLA_CONCORDANCIAS_MOTOR_REAL_TESTEADO_V03.zip`, `GRULLA_BALANCE_MONSTRUOS_LI_LII_V01.zip`, `GRULLA_LII_PENDIENTES_T0_V01/` y `MANIFEST_SHA256.json`. El cierre contiene las pruebas anteriores; no prometer que fueron ratificadas.
