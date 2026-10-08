@@ -1,0 +1,32 @@
+{
+  "status": "PASS_LOCAL_STRUCTURE_AND_CHECKPOINT_QA__COLAB_RUNTIME_PENDING",
+  "source_commit": "9a6baa41bd6fc505a755a474cd4f64a2522ba0b9",
+  "notebook_sha256": "78aff2ba6671c7984a9c11d4b112ef7a7e5da4c4f52eabce7bec7e9c73c6a3ba",
+  "runner_hashes": {
+    "LAB_RUNNER.py": "fc14ff185419d694160121ad9684539bfd324ea171fda8fe8ef8261566510fa9",
+    "LII_TRAMO_I_QI_BREAKPOINT_AND_POLICY_DIAG_V03_RUNNER.py": "bfcac6ba62b29798ad333bcf9f44534f0d45b5f2948ace6a4f6e356b7b885105",
+    "LII_V04_EXHAUSTIVE_BALANCE_GATE_RUNNER.py": "bafc8a14904d2c61276e2feafe7e3e08476db22fdc80f3b2b227aa487384eee0",
+    "LII_V05_VARIANCE_STRESS_CROSSCHECK_RUNNER.py": "bc2446c315210c5eaba5106b5a9000fd28a54bf36626a3757873c602c49dee56"
+  },
+  "planned_fights": 212992,
+  "li_spawns": 100000,
+  "limits": [
+    "LII variants historical only, not canonical mutants",
+    "No mutant suffix battle effects in V05A",
+    "No LII multiroot/concordance execution",
+    "Full engine/source preflight must run in Colab"
+  ],
+  "checks": {
+    "notebook_schema": "PASS",
+    "all_code_cells_compile": "PASS",
+    "four_runners_compile": "PASS",
+    "correct_fight_grid": "PASS",
+    "source_hash_pinning": "STATIC_ONLY_PENDING_COLAB",
+    "checkpoint_resumption": "PASS_LOCAL_SYNTHETIC",
+    "runtime_event_parity": "PENDING_COLAB",
+    "checkpoint_corruption_rejection": "PASS_LOCAL_SYNTHETIC",
+    "frozen_floor_cannot_be_decreased": "PASS_LOCAL_SYNTHETIC",
+    "mock_historical_sensitivity": "PASS_LOCAL_SYNTHETIC"
+  },
+  "limitations_verified": "Source engine and official LI mutant sampling cannot execute locally: GitHub resolution blocked in container. This is not a Colab runtime test."
+}
