@@ -1,0 +1,124 @@
+{
+  "schema": "GRULLA_LII_NORMALS_AND_WIND_HUMAN_RATIFIED_2026_10_09_V1",
+  "date": "2026-10-09",
+  "status": "HUMAN_RATIFIED_NUMERIC_DESIGN_CLOSED_PRESERVE_FOR_ELITE_WORK",
+  "authority": "User explicitly confirmed 'entonces esta bien cerremos el balance avancemos con el elite, registra eso en el git para que no se te vuelva a pasar' after V36 wind balance",
+  "scope": [
+    "six normal LianQi II monster numerical adjustments V35",
+    "Wind LianQi II T1 node-specific skill changes V36",
+    "existing LII best heavy armor stats remain unchanged"
+  ],
+  "monster_final_targets": [
+    {
+      "id": "jabali_pizarra",
+      "path": "technique.params.direct_damage",
+      "from": "1d3+6",
+      "to": "1d3+8"
+    },
+    {
+      "id": "buho_niebla_gris",
+      "path": "technique.params.direct_damage",
+      "from": "1d2+7",
+      "to": "1d2+8"
+    },
+    {
+      "id": "zorro_bancales",
+      "path": "stats.evasion",
+      "from": 19,
+      "to": 21
+    },
+    {
+      "id": "cangrejo_cauce",
+      "path": "technique.params.direct_damage",
+      "from": "1d2+7",
+      "to": "1d2+8"
+    },
+    {
+      "id": "murcielago_resonante",
+      "path": "technique.params.direct_damage",
+      "from": "1d2+5",
+      "to": "1d2+6"
+    },
+    {
+      "id": "arana_veta_sombria",
+      "path": "stats.hp",
+      "from": 71,
+      "to": 75
+    }
+  ],
+  "wind_final_targets": [
+    {
+      "skill": "lanza_nubes",
+      "node": "lanza_t1_direct",
+      "scope": "LianQi II, only selected T1 Direct node",
+      "field": "direct_pct",
+      "expected_v17": 30,
+      "old_lab_v35_ignored_overlay": 20,
+      "note": "Verify expected V17 compiler application in production; V35 omission was in LAB, no productive bug confirmed"
+    },
+    {
+      "skill": "lanza_nubes",
+      "node": "lanza_t1_prec",
+      "scope": "LianQi II, only selected T1 Precision node",
+      "field": "compiled.damage_dice",
+      "from": "2d4+3",
+      "to": "2d4+4"
+    },
+    {
+      "skill": "paso_nube",
+      "node": "paso_t1_eva",
+      "scope": "LianQi II, only selected T1 Evasion node",
+      "field": "compiled.defensive.evasion",
+      "from": 40,
+      "to": 45,
+      "base_without_node": 35,
+      "qi_cost_unchanged": true,
+      "duration_unchanged": true
+    }
+  ],
+  "equipment_nonnegotiable": {
+    "item": "sobretunica_patrulla",
+    "defense": 2,
+    "hp_max": 2,
+    "status": "PRESERVE_UNCHANGED",
+    "rule": "Better stage rewards must feel worthwhile; do not nerf equipment solely to lower win rate"
+  },
+  "explicitly_excluded": [
+    "V19 old cangrejo DEFENSE_UP +3 to +2",
+    "V19 old jabali MITIGATE_NEXT 40 to 35",
+    "V34 strong monster proposals",
+    "V20/V23/V31 reducing patrol armor DEF2 to DEF1",
+    "V36 broad +1 base damage for all Wind builds",
+    "V36 response crit extra",
+    "New elite stats ungrounded in source"
+  ],
+  "approved_numeric_only": true,
+  "code_html_not_modified": true,
+  "need_productive_engine_parity_before_runtime_integration": true,
+  "other_open_fronts_not_automatically_closed": [
+    "Elite Eco del Caído",
+    "other root skills/Concordance incomplete V25/V26",
+    "productive A08 affliction bridge"
+  ],
+  "next_focus": {
+    "elite": "eco_caido",
+    "stage": "LianQi_II",
+    "historic_candidate": "E8",
+    "historic_status": "PROVISIONAL_NOT_RATIFIED",
+    "require": "recover exact E8 numeric descriptor (not approximate) and authentic access/specific player skill proof before new simulations; do not repeat historic T0 campaigns"
+  },
+  "provenance": [
+    "experimentos/balance_nuevo/pre_a08_cierre_normales_v35/FINAL_NUMERIC_TARGETS_SIX_NORMALS_V35.json",
+    "experimentos/balance_nuevo/pre_a08_habilidades_viento_v36/CANDIDATE_WIND_T1_V36.json",
+    "experimentos/balance_nuevo/pre_a08_elite_v36/PREFLIGHT_ECO_CAIDO_V36_2026-10-09.md"
+  ],
+  "guards": {
+    "main": false,
+    "merge": false,
+    "html": false,
+    "rooms_exits": false,
+    "commerce_or_prices": false,
+    "a07": false,
+    "canonical_monster_catalog_write": false
+  }
+}
