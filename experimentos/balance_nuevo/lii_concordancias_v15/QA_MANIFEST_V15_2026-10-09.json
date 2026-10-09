@@ -1,0 +1,146 @@
+{
+  "schema_version": "la-grulla-blanca-lii-v15-qa-v1",
+  "date": "2026-10-09",
+  "status": "PASS_LAB_ONLY_NOT_CANON",
+  "repo": "Shein25/La-Grulla-Blanca",
+  "branch": "experiment/lii-tramo1-multirraiz-v08-2026-10-08",
+  "scope": {
+    "player_stage": "LianQi_II",
+    "legal_tramo1_points": 2,
+    "roots": 5,
+    "monoroot_builds_per_root": 16,
+    "normal_monsters": 6,
+    "tiers": [
+      "T1",
+      "T2"
+    ],
+    "gears": [
+      "POST_M03",
+      "EXPECTED_STAGE"
+    ],
+    "policies": [
+      "EARLY",
+      "DELAYED_TRIGGER"
+    ],
+    "elemental_multiplier": 1,
+    "early_li_preserved": true,
+    "elite": false,
+    "T3_T4": false,
+    "aoe": false
+  },
+  "arms": [
+    "ORIGINAL_OFF",
+    "ORIGINAL_ON",
+    "V07_OFF",
+    "V07_ON"
+  ],
+  "campaigns": {
+    "discovery": {
+      "fights": 86016,
+      "four_arm_contexts": 21504,
+      "seeds": [
+        19000,
+        19001
+      ],
+      "numeric_BASE_relations": 14,
+      "unchanged_build_contexts_exact": 18816,
+      "affected_build_contexts": 2688,
+      "timeouts": 0,
+      "due_missed": 0,
+      "off_resolutions": 0,
+      "on_resolutions": 34508,
+      "source_sha256": "487f6255279452fe91f262a5234cadd509355e7047c7188036e1aa53ebe90b2b"
+    },
+    "independent_heldout": {
+      "fights": 86016,
+      "four_arm_contexts": 21504,
+      "seeds": [
+        20000,
+        20015
+      ],
+      "numeric_BASE_relations_of_three_roots": 7,
+      "selected_builds_per_root": 4,
+      "timeouts": 0,
+      "due_missed": 0,
+      "off_resolutions": 0,
+      "on_resolutions": 32178,
+      "source_sha256": "fb249fe3389ddb1c9bbbf3bcc13e04a948fae7514bdff8c90cc462c63ae9a79b"
+    }
+  },
+  "totals": {
+    "fights": 172032,
+    "four_arm_contexts": 43008,
+    "clean_reproduced_rows_exact": 48384
+  },
+  "holdout_T2_POST_M03_affected_nodes": {
+    "fuego": {
+      "n": 2304,
+      "original_ON_pct": 91.7969,
+      "candidate_ON_pct": 81.467,
+      "change_pp": -10.3299,
+      "seed_block_ci95_pp": [
+        -12.106,
+        -8.553
+      ]
+    },
+    "metal": {
+      "n": 1536,
+      "original_ON_pct": 77.3438,
+      "candidate_ON_pct": 80.8594,
+      "change_pp": 3.5156,
+      "seed_block_ci95_pp": [
+        2.252,
+        4.779
+      ],
+      "interaction_pp": -1.6276
+    },
+    "viento": {
+      "n": 1536,
+      "original_ON_pct": 78.125,
+      "candidate_ON_pct": 81.9661,
+      "change_pp": 3.8411,
+      "seed_block_ci95_pp": [
+        2.564,
+        5.118
+      ],
+      "interaction_pp": -3.0599
+    }
+  },
+  "contract_audit": {
+    "directed_base_foreign_pairs_compiled": 20,
+    "legal_build_conditional_combinations": 320,
+    "priority_states": {
+      "BASE_ONLY": 240,
+      "CLEAR_CONDITIONAL_HIGHER_PRIORITY": 16,
+      "CONDITIONAL_EXPOSED_BUT_NOT_PROVEN_SELECTED": 60,
+      "REQUIRES_RUNTIME_PRIORITY_DECISION": 4
+    },
+    "water_mirror_base_integer_qi": 5,
+    "water_mirror_efficiency_integer_qi": 5,
+    "foreign_acquisition_verified": false,
+    "foreign_cost_runtime_parity_verified": false,
+    "source_sha256": "8d227a5e4f382aed29ca8ddf7d2fdfc56c1f61fcc9d1ed36c350f7cb55286164"
+  },
+  "archive": {
+    "filename": "GRULLA_LII_V15_CROSS_TRAMO1_CONCORDANCIAS_2026-10-09.zip",
+    "sha256": "a1635eb522537fc91c5173d06c5e9bd5c39e84ebba5a41bd17ad52df29812008",
+    "files": 34,
+    "crc_sha256_verified": true,
+    "code_and_sources_included": true,
+    "uploaded_to_git": false
+  },
+  "limiting_factors": [
+    "Four LII defensive relations lack human-ratified scales",
+    "Two structural manifestations not executed in this V15 fight matrix",
+    "No operational Tramo-I conditional Concordance effects in this V15 engine",
+    "Four Agua->Viento Paso RESPONSE priority cases unresolved",
+    "Foreign technique acquisition and cost parity vs HTML unverified",
+    "No latest HTML event-level parity"
+  ],
+  "decision": "CANDIDATE_ONLY_NO_FREEZE",
+  "no_main": true,
+  "no_merge": true,
+  "no_runtime_change": true,
+  "no_monster_stat_change": true,
+  "no_equipment_change": true
+}
