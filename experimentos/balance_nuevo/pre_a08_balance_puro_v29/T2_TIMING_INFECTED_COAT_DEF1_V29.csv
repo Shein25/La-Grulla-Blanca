@@ -1,0 +1,4 @@
+source,mode,paired_second_contexts,first_infected_context_clusters,before_cure_plus_hp_pct,after_cure_plus_hp_pct,delta_pp,cluster_bootstrap_ci95_low_pp,cluster_bootstrap_ci95_high_pp
+avispa_jade,VER74_BASIC_DIRECT_DIAGNOSTIC,156,26,21.795,19.231,2.564,0.641,5.128
+serpiente_qi,VER74_BASIC_DIRECT_DIAGNOSTIC,474,79,15.190,11.814,3.376,1.899,5.063
+sapo_ceniza,STRICT_HP_DAMAGE,480,80,12.292,7.083,5.208,3.125,7.500
