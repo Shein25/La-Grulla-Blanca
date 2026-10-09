@@ -1,0 +1,66 @@
+{
+  "schema": "grulla-pre-a08-poison-qi-recovery-v30",
+  "date": "2026-10-09",
+  "state": "USER_APPROVED_PRINCIPLE__LAB_TESTED__NO_RUNTIME_WRITE",
+  "approved_principle": "Veneno activo reduce 10% la recuperación de Qi fuera de combate para diferenciarse de quemadura.",
+  "proposed_operational_details": {
+    "sources": [
+      "MEDITAR",
+      "MEDITAR_PROFUNDO",
+      "DORMIR",
+      "CONSUMIBLE_QI",
+      "CONSUMIBLE_HIBRIDO_QI"
+    ],
+    "excluded": [
+      "DEVOLUCION_QI_EN_COMBATE",
+      "BOTIN_COMBATE",
+      "RECOMPENSA_MISION",
+      "AUMENTO_QI_MAX",
+      "DESCANSAR_SOLO_HP"
+    ],
+    "rounding": "ROUND_HALF_UP_ONCE",
+    "before_cap_to_qi_max": true,
+    "snapshot_poison_on_action_start": true,
+    "other_recovery_modifiers_before_poison": true
+  },
+  "affliction_trigger": {
+    "status": "veneno",
+    "active_duration_positive": true,
+    "all_families_and_grades": true,
+    "stacking": false,
+    "burn_only_penalty": false,
+    "cured_before_action_penalty": false,
+    "expires_during_action_still_applies": true
+  },
+  "effect": {
+    "factor": 0.9,
+    "formula": "min(qi_max - qi_current, ROUND_HALF_UP(base_recovery * 0.90))",
+    "alter_current_qi_directly": false,
+    "alter_qi_max": false,
+    "add_passive_regeneration": false,
+    "alter_dot_damage": false
+  },
+  "notes": [
+    "The human selected the 10% out-of-combat Qi recovery mechanic; technical scope/rounding here are test-driven integration proposals.",
+    "5 raw Qi may still round to 5; do not invent a hidden fractional ledger.",
+    "Do not subtract poison penalty from Qi rewards, kill gains or combat technique refunds.",
+    "Medicine remains governed by current family/grade cure contract."
+  ],
+  "integration": {
+    "html": "UNCHANGED",
+    "canonical_stats": "UNCHANGED",
+    "repo_branch": "experiment/lii-tramo1-multirraiz-v08-2026-10-08",
+    "owner_after_balance": "Astra",
+    "historical_symbols_for_locator_only": [
+      "cmd_meditar",
+      "cmd_dormir",
+      "beber",
+      "player.aflicciones",
+      "tratarAfliccion"
+    ],
+    "no_main": true,
+    "no_merge": true,
+    "no_rooms_exits": true,
+    "no_commerce": true
+  }
+}
