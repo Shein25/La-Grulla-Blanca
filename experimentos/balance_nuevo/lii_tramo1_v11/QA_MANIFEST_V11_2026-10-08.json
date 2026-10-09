@@ -1,0 +1,77 @@
+{
+  "schema_version": "lii_v11_experimental_review",
+  "date": "2026-10-08",
+  "status": "PASS_PARTIAL_NOT_CANON",
+  "branch": "experiment/lii-tramo1-multirraiz-v08-2026-10-08",
+  "scope": {
+    "stage": "LianQi_II",
+    "tiers": [
+      "T1",
+      "T2"
+    ],
+    "species_count": 6,
+    "roots": 5,
+    "gears": [
+      "POST_M03",
+      "EXPECTED_STAGE"
+    ],
+    "builds_per_root_fought": 4,
+    "borrowed_numeric_authority": "LI V04B relation-specific; not LII-authorized",
+    "structural_manifestations_runtime_executed": false,
+    "conditional_t1_hooks_executed": false,
+    "foreign_acquisition_confirmed": false
+  },
+  "combat": {
+    "fights": 43008,
+    "pairs": 21504,
+    "reps": 16,
+    "positive_on_resolutions": 17164,
+    "none_pairs": 1536,
+    "none_leak": 0,
+    "timeouts": 0,
+    "missed_due": 0
+  },
+  "coverage": {
+    "defensive_base_cells": 80,
+    "available_numeric_shadow": 52,
+    "missing_numeric": 16,
+    "structural_deferred": 8,
+    "none": 4,
+    "missing_relations": [
+      "METAL_TO_FUEGO",
+      "AGUA_TO_METAL",
+      "AGUA_TO_VIENTO",
+      "TIERRA_TO_VIENTO"
+    ],
+    "structural_relations": [
+      "TIERRA_TO_METAL",
+      "TIERRA_TO_AGUA"
+    ],
+    "structural_descriptor_checks_passed": 8
+  },
+  "tramo1": {
+    "builds_compiled": 80,
+    "incoming_echo_combinations": 320,
+    "exposed_conditional_hook_combinations": 80,
+    "conditional_hook_effects_not_executed": true,
+    "water_qi_cost_base_rounded": 5,
+    "water_qi_cost_efficiency_rounded": 5,
+    "wind_qi_cost_base_rounded": 7,
+    "wind_qi_cost_efficiency_rounded": 6
+  },
+  "reproduction": {
+    "zip_sha256": "3e107ad8d0a0b035664dcbcef59eac218050dabfb4573c55eae1e3a2e173bce3",
+    "zip_entry_count": 30,
+    "cold_matched_rows": 5376
+  },
+  "guards": {
+    "no_main": true,
+    "no_merge": true,
+    "no_html_write": true,
+    "no_monster_stat_change": true,
+    "no_t3_t4": true,
+    "no_elite": true,
+    "no_auto_freeze": true
+  },
+  "decision": "DEFER: authentic LII defensive and conditional resolver, numeric authority, acquisition parity"
+}
