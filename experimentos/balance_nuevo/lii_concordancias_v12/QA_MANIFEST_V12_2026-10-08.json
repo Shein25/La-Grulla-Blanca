@@ -1,0 +1,89 @@
+{
+  "schema": "grulla-lii-v12-general-gate-v1",
+  "date": "2026-10-08",
+  "status": "PASS_PARTIAL_LAB_NOT_CANON",
+  "branch": "experiment/lii-tramo1-multirraiz-v08-2026-10-08",
+  "scope": {
+    "roots": 5,
+    "legal_builds_per_root": 16,
+    "species_normal": 6,
+    "tiers": [
+      "T0",
+      "T1",
+      "T2"
+    ],
+    "gears": [
+      "POST_M03",
+      "EXPECTED_STAGE"
+    ],
+    "policies": [
+      "EARLY",
+      "DELAYED_TRIGGER"
+    ],
+    "elite": false,
+    "t3_t4": false,
+    "html_modified": false,
+    "main_modified": false
+  },
+  "scalar": {
+    "fights": 516096,
+    "paired_contexts": 129024,
+    "reps": 8,
+    "arms": [
+      "OFF",
+      "FRACTION_25",
+      "FRACTION_50",
+      "FRACTION_100"
+    ],
+    "included_numeric_relations": 13,
+    "included_none_controls": 1,
+    "not_calibrated_relations": 4,
+    "not_physical_structural_in_arm_A": 2,
+    "negative_control_contexts": 9216,
+    "negative_leak": 0,
+    "resolutions_on_per_arm": 104160,
+    "timeouts": 0,
+    "missed_due": 0,
+    "runner_sha256": "92bac2e345e49bd7b741c8e8df455b8cca33c6f0549f717b582cc72328a2eabc"
+  },
+  "structural": {
+    "fights": 36864,
+    "paired_contexts": 18432,
+    "reps": 8,
+    "manifestations": [
+      "PLACA_FUNDACIONAL",
+      "EMBALSE"
+    ],
+    "plate_first_preserves": 8290,
+    "plate_reinforced_hits": 8145,
+    "embalse_stored": 2207.267775,
+    "embalse_released": 1849.520625,
+    "concordance_on_resolutions": 15921,
+    "off_resolutions": 0,
+    "timeouts": 0,
+    "missed_due": 0,
+    "runner_sha256": "7f0e9b8704f91602ed81f24d385583dd1175b0637086477c712af90201766915",
+    "li_v04b_shadow": true,
+    "html_event_parity": false
+  },
+  "aggregate": {
+    "fights": 552960,
+    "paired_contexts": 147456
+  },
+  "repro": {
+    "cold_scalar_rows_exact": 64512,
+    "cold_structural_rows_exact": 4608,
+    "archive": "GRULLA_LII_V12_BATERIA_GENERAL_CONCORDANCIAS_2026-10-08.zip",
+    "archive_sha256": "6e6af6b37d0395f5ef45f80440e512590777545af169b77fd9b1114024eaab74",
+    "archive_entries": 32,
+    "crc_and_member_sha256_pass": true
+  },
+  "blockers": [
+    "four_receiver_numeric_scales",
+    "Tramo_I_hook_priority_and_effects",
+    "runtime_plaque_embalse_parity",
+    "foreign_technique_access_cost",
+    "latest_HTML_parity"
+  ],
+  "decision": "NO_FREEZE_V07_OR_MONSTERS; MICROCANDIDATES_NOT_CANON"
+}
