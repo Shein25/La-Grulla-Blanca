@@ -1,0 +1,128 @@
+{
+  "schema": "grulla-pre-a08-v29-pure-balance-lab",
+  "status": "LAB_PASS_NOT_CANON_NOT_RUNTIME",
+  "date": "2026-10-09",
+  "branch": "experiment/lii-tramo1-multirraiz-v08-2026-10-08",
+  "cohorts": {
+    "discovery": {
+      "seed_start": 103100,
+      "reps": 2,
+      "first": 960,
+      "second": 78624,
+      "new_total": 79584,
+      "scenarios": 80640
+    },
+    "holdout": {
+      "seed_start": 103500,
+      "reps": 2,
+      "first": 960,
+      "second": 79380,
+      "new_total": 80340,
+      "scenarios": 80640
+    }
+  },
+  "total": {
+    "first_unique": 1920,
+    "second_executions": 158004,
+    "new_combat_executions": 159924,
+    "comparison_scenarios": 161280,
+    "cold_reproduced_rows": 40320,
+    "cold_columns_excluding_cohort": 44,
+    "timeouts": 0,
+    "monster_due_missed": 0
+  },
+  "source_modes": [
+    "STRICT_HP_DAMAGE",
+    "VER74_BASIC_DIRECT_DIAGNOSTIC_NOT_RATIFIED"
+  ],
+  "source_first_wins_and_active": {
+    "serpiente_qi": {
+      "strict_wins": 320,
+      "strict_active": 0,
+      "ver74_wins": 319,
+      "ver74_active_when_won": 162,
+      "expired_on_one_walk": 63,
+      "persisted_on_one_walk": 99
+    },
+    "avispa_jade": {
+      "strict_wins": 320,
+      "strict_active": 0,
+      "ver74_wins": 320,
+      "ver74_active_when_won": 62,
+      "expired_on_one_walk": 62,
+      "persisted_on_one_walk": 0
+    },
+    "sapo_ceniza": {
+      "strict_wins": 301,
+      "strict_active_when_won": 142,
+      "ver74_wins": 301,
+      "ver74_active_when_won": 142,
+      "expired_on_one_walk": 43,
+      "persisted_on_one_walk": 99
+    }
+  },
+  "t2_coat_def1_infected_only": {
+    "avispa": {
+      "context_n": 156,
+      "pre_plus_hp_win_pct": 21.795,
+      "post_plus_hp_win_pct": 19.231,
+      "delta_pp": 2.564,
+      "first_context_clusters": 26,
+      "cluster_ci_95_pp": [
+        0.641,
+        5.128
+      ]
+    },
+    "serpiente": {
+      "context_n": 474,
+      "pre_plus_hp_win_pct": 15.19,
+      "post_plus_hp_win_pct": 11.814,
+      "delta_pp": 3.376,
+      "first_context_clusters": 79,
+      "cluster_ci_95_pp": [
+        1.899,
+        5.063
+      ]
+    },
+    "sapo": {
+      "context_n": 480,
+      "pre_plus_hp_win_pct": 12.292,
+      "post_plus_hp_win_pct": 7.083,
+      "delta_pp": 5.208,
+      "first_context_clusters": 80,
+      "cluster_ci_95_pp": [
+        3.125,
+        7.5
+      ]
+    }
+  },
+  "controls": {
+    "wrong_remedy_same_as_untreated": true,
+    "no_infection_cure_noeffect": true,
+    "paired_seeds": true,
+    "source_damage_passthrough_diagnostic_not_ratified": true,
+    "fractional_HP_floor_no_unintended_healing": true,
+    "mechanistic_checks": 8,
+    "portable_crc": "PASS",
+    "portable_sha_manifest": "PASS",
+    "portable_mechanistic": "PASS",
+    "portable_cold_exact": "PASS"
+  },
+  "zip": {
+    "name": "GRULLA_PRE_A08_V29_BALANCE_PURO_GOLPE_Y_TRATAMIENTOS_2026-10-09.zip",
+    "sha256": "f5e6f20e82bcb467fe3b9495d451b9c99fb79de0a6f758bbf56e978949cfcde6",
+    "entries": 64,
+    "bytes": 2148186
+  },
+  "limits": {
+    "natural_persistence_in_production": false,
+    "prices_and_economy": false,
+    "candidate_coat_def1_applied": false,
+    "monster_registry_changed": false,
+    "main_changed": false,
+    "merge": false,
+    "html_changed": false,
+    "rooms_exits_changed": false,
+    "affliction_source_semantics_ratified": false
+  }
+}
