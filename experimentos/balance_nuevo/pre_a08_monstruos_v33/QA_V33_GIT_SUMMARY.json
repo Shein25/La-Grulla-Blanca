@@ -1,0 +1,82 @@
+{
+  "schema": "GRULLA_V33_STAGE_AWARE_MONSTER_BALANCE_QA",
+  "status": "PASS_LAB_PENDING_APPROVAL",
+  "date": "2026-10-09",
+  "cohorts": {
+    "v33_exploration": {
+      "discovery": 69120,
+      "holdout": 69120,
+      "total": 138240
+    },
+    "v33b_focal": {
+      "discovery": 23040,
+      "holdout": 23040,
+      "total": 46080
+    },
+    "v33c_final": {
+      "discovery": 46080,
+      "holdout": 46080,
+      "total": 92160,
+      "paired_contexts": 46080,
+      "source_seeds": [
+        110100,
+        110101,
+        110500,
+        110501
+      ],
+      "cold_exact_rows": 23040,
+      "cold_exact_columns": 32
+    }
+  },
+  "all_new_fights": 276480,
+  "pilot_excluded": 960,
+  "cold_counts_as_new": false,
+  "final_design": {
+    "monsters": 6,
+    "roots": 5,
+    "tiers": [
+      "T0",
+      "T1",
+      "T2"
+    ],
+    "builds_per_root": 16,
+    "policies": 2,
+    "gear": 4,
+    "arms": 2
+  },
+  "final_timeouts": 0,
+  "final_due_missed": 0,
+  "original_armor_def2_hp2_preserved": true,
+  "monster_t1_ability_freeze_preserved": true,
+  "paired_seeds": true,
+  "final_t2_win_pct_original_vs_candidates": {
+    "M03_UNIFORM": [
+      70.7812,
+      63.0729
+    ],
+    "M04_PATROL_DEF2": [
+      89.6094,
+      85.0521
+    ],
+    "M05_COMMON_PATROL": [
+      96.5104,
+      94.4531
+    ],
+    "M05_COMMON_SAUCES": [
+      88.099,
+      83.3594
+    ]
+  },
+  "zip": {
+    "name": "GRULLA_PRE_A08_V33_MONSTER_BALANCE_FINALISTS_2026-10-09.zip",
+    "sha256": "97abd380cc48388431ed4887e1da63c3bd7027f349171f17d8c113109be23800",
+    "bytes": 5755945,
+    "entries": 84,
+    "crc_pass": true,
+    "sha256_manifest_pass": true,
+    "portable_cold_exact": 23040,
+    "portable_dependency_source": "extracted separate folder",
+    "runner_sha256": "255976016e61a10ad4199f064278ef20c4f9050a2612af73cb3f6145e9873935"
+  },
+  "not_integrated": true
+}
