@@ -1,0 +1,48 @@
+{
+  "schema": "grulla_lii_t1_v09_qa",
+  "date": "2026-10-08",
+  "status": "LAB_PASS_NOT_CANON",
+  "branch": "experiment/lii-tramo1-multirraiz-v08-2026-10-08",
+  "counts": {
+    "screen": 491520,
+    "first_offensive_fix": 122880,
+    "independent_water_focal": 73728,
+    "total": 688128
+  },
+  "paired_contexts": {
+    "screen": 61440,
+    "first_offensive_fix": 30720,
+    "independent_water_focal": 18432,
+    "total": 110592
+  },
+  "observed": {
+    "timeouts": 0,
+    "canonical_due_missed": 0,
+    "unmodified_water_earth_invariant": true,
+    "monoroot_foreign_label_invariant": true,
+    "cold_reproduction_matched": 4608
+  },
+  "scope": {
+    "stage": "LianQi_II",
+    "tramo_points": 2,
+    "builds_per_root": 16,
+    "tiers": [
+      "T1",
+      "T2"
+    ],
+    "concordance_active": false,
+    "foreign_acquisition_authorized": false,
+    "foreign_cost_parity_authorized": false,
+    "t3_t4": false,
+    "elite": false,
+    "main_modified": false,
+    "runtime_modified": false
+  },
+  "sha256": {
+    "zip": "2b2d3bcc7738721bed60e53a6335b2a171ff78a6e13bcda5945d22397c95c37e",
+    "screen_runner": "86564d95e5030a0683bcea8f946d1b6419766bf9bcc1209650963cf0789368a6",
+    "open_fix_runner": "2f9964b41dc4a4828c5f9ec3988d623c3da7ea3eca1408fc643920ff27ecc403",
+    "water_focal_runner": "853296a70d85360cce41fa4f5edd9fdabe51cc7696a8b8e9d749fb042b91f01e"
+  },
+  "next_state": "AWAIT_AUTHENTIC_LII_CONCORDANCE_RESOLVER_AND_FOREIGN_ACQUISITION_COST_PARITY"
+}
