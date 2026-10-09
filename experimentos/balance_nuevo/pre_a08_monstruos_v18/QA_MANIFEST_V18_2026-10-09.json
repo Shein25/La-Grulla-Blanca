@@ -1,0 +1,147 @@
+{
+  "schema": "GRULLA_PRE_A08_MONSTERS_V18_QA",
+  "date": "2026-10-09",
+  "status": "PASS_DIAGNOSTIC_AND_FOUR_MICRO_CANDIDATES_NOT_CANON",
+  "source_skill_profile": "V17 stage LII; Concordance OFF; not HTML runtime",
+  "screens": {
+    "discovery_fights": 69120,
+    "holdout_fights": 69120,
+    "total_fights": 138240,
+    "tier_paired_contexts": 46080,
+    "seeds": [
+      [
+        71000,
+        71003
+      ],
+      [
+        72000,
+        72003
+      ]
+    ],
+    "species": 6,
+    "roots": 5,
+    "builds_per_root": 16,
+    "tiers": [
+      "T0",
+      "T1",
+      "T2"
+    ],
+    "gear": [
+      "PRE_M03",
+      "POST_M03",
+      "CARRY_OVER_LI_HIGH",
+      "EXPECTED_STAGE"
+    ],
+    "policies": [
+      "OFFENSE_ONLY",
+      "DEFENSE_REFRESH",
+      "QI_RESERVE_BASIC"
+    ],
+    "timeouts": 0,
+    "canonical_due_missed": 0,
+    "t0_adaptation": 0,
+    "t1_anticipation": 0,
+    "t2_anticipations_total": 35406
+  },
+  "micros": {
+    "discovery_fights": 30720,
+    "holdout_fights": 30720,
+    "total_fights": 61440,
+    "paired_contexts": 30720,
+    "seeds": [
+      [
+        73000,
+        73003
+      ],
+      [
+        74000,
+        74003
+      ]
+    ],
+    "tiers": [
+      "T1",
+      "T2"
+    ],
+    "gear": [
+      "PRE_M03",
+      "POST_M03",
+      "EXPECTED_STAGE"
+    ],
+    "policies": [
+      "OFFENSE_ONLY",
+      "DEFENSE_REFRESH"
+    ],
+    "timeouts": 0,
+    "canonical_due_missed": 0,
+    "in_memory_source_restored": true,
+    "hypotheses": {
+      "cangrejo_cauce": {
+        "field": "T1.DEFENSE_UP.defense_bonus",
+        "from": 3,
+        "to": 2,
+        "early_T2_delta_player_win_pp": 6.71875
+      },
+      "jabali_pizarra": {
+        "field": "T1.MITIGATE_NEXT.damage_reduction_pct",
+        "from": 40,
+        "to": 35,
+        "early_T2_delta_player_win_pp": 3.28125
+      },
+      "zorro_bancales": {
+        "field": "T1.MITIGATE_NEXT.damage_reduction_pct",
+        "from": 25,
+        "to": 30,
+        "early_T2_delta_player_win_pp": -2.890625
+      },
+      "arana_veta_sombria": {
+        "field": "T1.MITIGATE_NEXT.damage_reduction_pct",
+        "from": 35,
+        "to": 30,
+        "early_T2_delta_player_win_pp": 1.25
+      }
+    }
+  },
+  "total_new_fights": 199680,
+  "cold_reproduction": {
+    "exact_fights": 24960,
+    "screen": 17280,
+    "micro": 7680,
+    "exact_columns": [
+      31,
+      27
+    ],
+    "status": "PASS"
+  },
+  "archive": {
+    "name": "GRULLA_MONSTRUOS_LII_V18_DIAGNOSTICO_Y_MICRO_2026-10-09.zip",
+    "sha256": "a4796df19ebfa81c9ee36a993cdd86190a7b2f96dd456351cf0a6a4cf849e539",
+    "members": 48,
+    "crc_and_member_sha256": "PASS",
+    "includes_sources_for_cold_execution": true
+  },
+  "sources_sha256": {
+    "run_screen_v18": "0bfdea70e641859d95f699ed36b3b5386fdf877d77bcdd53f93b75c7532f8eea",
+    "run_micro_v18": "78fc9980910b0c0ae027066cf4b0ad9341d15f6c9561c47d9c66dcff82c3ae1b",
+    "analyze_v18": "9494b73471da198b7e31d7f0eae6cbbfb8db769c15e4be104099605384b742e8",
+    "report": "59d67dd96341cc737c559e4860883aada98aeae7139118614d96deabc3958f81",
+    "readme": "db8cec560df98c7294a1c78ea82783e6823fece4de8ccd3a3a0a91018873c83c"
+  },
+  "limitations": [
+    "Concordances OFF and candidate V17 conditional/structural rules not in live fight runner",
+    "No antitoxins/potions",
+    "No official source cost for foreign skills",
+    "CARRY_OVER_LI_HIGH is stress gear not proven available",
+    "EXPECTED_STAGE is candidate gear not proven accessible",
+    "No mutants, elite, AoE, T3/T4",
+    "No HTML parity"
+  ],
+  "decision": "Keep all official monster stats unchanged. Candidate first: cangrejo T1 DEFENSE_UP 3→2; candidate second: jabali T1 MITIGATE_NEXT 40%→35%; optional zorro 25%→30%; arana conserve and test poison/alchemy; buho/murcielago preserve; require human signoff before freeze",
+  "guards": {
+    "no_main": true,
+    "no_merge": true,
+    "no_runtime_changes": true,
+    "no_monster_registry_changes": true,
+    "no_equipment_changes": true,
+    "no_t3_t4": true
+  }
+}
