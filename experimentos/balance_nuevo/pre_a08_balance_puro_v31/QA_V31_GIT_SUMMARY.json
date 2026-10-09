@@ -1,0 +1,105 @@
+{
+  "schema": "PRE_A08_V31_DEFENSE_MONSTERS_QI_RESOURCE",
+  "status": "LAB_PASS_NOT_CANON",
+  "date": "2026-10-09",
+  "branch": "experiment/lii-tramo1-multirraiz-v08-2026-10-08",
+  "experimental_new_fights": 49152,
+  "discovery_fights": 24576,
+  "holdout_fights": 24576,
+  "paired_contexts_eight_arms": 6144,
+  "cold_rows_exact": 6144,
+  "cold_cols_compared": 32,
+  "cold_count_as_new_fights": false,
+  "timeouts": 0,
+  "due_missed": 0,
+  "monsters": [
+    "cangrejo_cauce",
+    "jabali_pizarra"
+  ],
+  "monster_proposals_not_approved": {
+    "cangrejo_cauce": {
+      "field": "defense_bonus",
+      "before": 3,
+      "after": 2
+    },
+    "jabali_pizarra": {
+      "field": "damage_reduction_pct",
+      "before": 40,
+      "after": 35
+    }
+  },
+  "roots": [
+    "agua",
+    "metal"
+  ],
+  "concordance_source": "tierra",
+  "structural": [
+    "EMBALSE",
+    "PLACA_FUNDACIONAL"
+  ],
+  "t1_t2": [
+    "T1",
+    "T2"
+  ],
+  "builds_per_root": 16,
+  "policies": [
+    "EARLY",
+    "DELAYED_TRIGGER"
+  ],
+  "armor": [
+    "M03",
+    "COAT_DEF1_CANDIDATE",
+    "COAT_DEF2_CURRENT"
+  ],
+  "resource_arms": {
+    "control": 27,
+    "diagnostic_poison_minus10": 25,
+    "starting_qi": 7,
+    "gross_recovery_fixture": 20
+  },
+  "actual_poison_DOT_simulated": false,
+  "actual_medicine_recovery_approved": false,
+  "original_monster_abilities_restored": true,
+  "original_coat_defense_restored": true,
+  "paired_seed_for_all_eight_factor_arms": true,
+  "t2_baseline_original_monsters_struct_OFF_QI27_win_pct": {
+    "M03": 32.2265625,
+    "COAT_DEF1": 37.109375,
+    "COAT_DEF2": 84.375
+  },
+  "t2_metal_coat_def1_original_QI27_struct_OFF_pct": 36.71875,
+  "t2_metal_coat_def1_original_QI27_struct_ON_pct": 43.1640625,
+  "t2_agua_coat_def1_original_QI27_struct_OFF_pct": 37.5,
+  "t2_agua_coat_def1_original_QI27_struct_ON_pct": 37.5,
+  "t2_nerf_effect_coat_def1_all_struct_QI_arms_pct": {
+    "cangrejo": {
+      "original": 29.58984375,
+      "candidate": 34.27734375
+    },
+    "jabali": {
+      "original": 44.921875,
+      "candidate": 49.12109375
+    }
+  },
+  "zip": {
+    "filename": "GRULLA_PRE_A08_V31_BALANCE_CRUCE_DEFENSA_MONSTRUOS_Y_QI_2026-10-09.zip",
+    "sha256": "1724472e0de19ab5f23d62c6ed5a56797d02fa19db01b691800d6c54f5906b59",
+    "entries": 114,
+    "crc_pass": true,
+    "sha_manifest_pass": true,
+    "independent_unzip_cold_exact": true,
+    "independent_unzip_analysis_pass": true
+  },
+  "source_sha256": {
+    "runner": "4a5c71a6c9404c89aa5ee60e29f5f243639c701baeb1cda5067a7856ef531727",
+    "analysis": "309b05ab142f55171eeaae3c7efcad18478d751f9d2f23c8f21f4b8a1dde5541"
+  },
+  "guards": {
+    "no_main": true,
+    "no_merge": true,
+    "no_canonical_runtime_changes": true,
+    "no_economy_or_prices": true,
+    "no_a07": true,
+    "no_html": true
+  }
+}
