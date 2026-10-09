@@ -1,0 +1,59 @@
+{
+  "schema": "GRULLA_PRE_A08_V28_AFFLICTION_NATIVE_SOURCE_LAB",
+  "status": "PASS_LAB_NOT_CANON_NOT_RUNTIME",
+  "date": "2026-10-09",
+  "branch": "experiment/lii-tramo1-multirraiz-v08-2026-10-08",
+  "discovery_new_fight_executions": 85320,
+  "holdout_new_fight_executions": 85200,
+  "new_total": 170520,
+  "first_unique": 2880,
+  "second_effective": 167640,
+  "comparative_scenarios": 172800,
+  "cold_reexecuted_rows": 43200,
+  "cold_columns_excluding_cohort": 42,
+  "cold_exact": true,
+  "monster_sources": [
+    "serpiente_qi",
+    "avispa_jade",
+    "sapo_ceniza"
+  ],
+  "tier_for_first": "T0",
+  "second_tiers": [
+    "T1",
+    "T2"
+  ],
+  "second_species": 6,
+  "roots": 5,
+  "builds_per_root": 4,
+  "policies": 2,
+  "gears": [
+    "M03",
+    "COAT_DEF1_CANDIDATE"
+  ],
+  "source_rule_arms": [
+    "STRICT_HP_DAMAGE",
+    "CONNECTED_ONLY_DIAGNOSTIC",
+    "VER74_BASIC_DIRECT_DIAGNOSTIC"
+  ],
+  "preparation_arms": 5,
+  "sources_from_actual_monster_lab_actions": true,
+  "production_runtime_verified": false,
+  "ver74_direct_fallback_human_ratified": false,
+  "zero_timeouts": true,
+  "zero_due_missed": true,
+  "wrong_med_no_change": true,
+  "dot_def_bypass_absorption_applies": true,
+  "all_gear_and_monster_overrides_restored": true,
+  "zip_sha256": "5cf0b3bedc8e28b3f2bb5a7e91adbdc6fc2027fd6fb9dccf87fd0f40bee244c3",
+  "zip_entries": 80,
+  "crc": "PASS",
+  "manifest": "PASS",
+  "portable_mechanistic": "PASS",
+  "portable_cold": "PASS",
+  "no_main": true,
+  "no_merge": true,
+  "no_html": true,
+  "no_rooms_exits": true,
+  "no_commerce": true,
+  "no_canonical_stat_changes": true
+}
