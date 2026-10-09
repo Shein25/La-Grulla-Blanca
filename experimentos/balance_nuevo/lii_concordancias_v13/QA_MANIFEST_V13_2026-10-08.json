@@ -1,0 +1,98 @@
+{
+  "schema": "grulla-lii-v13-2026-10-08",
+  "status": "PASS_EXPERIMENTAL_REPRODUCED__NOT_CANON",
+  "scope": {
+    "player_stage": "LianQi_II",
+    "tramo_points": 2,
+    "tiers": [
+      "T1",
+      "T2"
+    ],
+    "normal_monsters": 6,
+    "roots_receiving": [
+      "tierra",
+      "metal",
+      "viento",
+      "agua"
+    ],
+    "builds_per_root": 16,
+    "gear": [
+      "POST_M03",
+      "EXPECTED_STAGE"
+    ],
+    "policies": [
+      "EARLY",
+      "DELAYED_TRIGGER"
+    ],
+    "seed_range": [
+      9000,
+      9007
+    ],
+    "scales_as_fractions_of_li_v04b_candidate": [
+      0,
+      0.125,
+      0.25,
+      0.5,
+      1
+    ]
+  },
+  "runs": {
+    "scalar_fights": 92160,
+    "scalar_paired_contexts": 18432,
+    "structural_fights": 61440,
+    "structural_paired_contexts": 12288,
+    "total_fights": 153600,
+    "total_paired_contexts": 30720,
+    "compiled_build_gear_rows": 160,
+    "water_one_action_paired_activations": 768
+  },
+  "integrity": {
+    "timeouts": 0,
+    "missed_due": 0,
+    "scalar_off_resolutions": 0,
+    "scalar_on_resolutions_per_nonzero_fraction": 15902,
+    "structural_off_effects": 0,
+    "plate_preserves_per_nonzero_arm": 5530,
+    "plate_reinforced_hits_per_nonzero_arm": 5452,
+    "embalse_stored_at_full_fraction": 1516.42155,
+    "embalse_released_at_full_fraction": 1256.5581,
+    "water_defense_efficiency_qi_base_and_node": 5,
+    "water_activation_differences": 0,
+    "uncalibrated_lII_relations": [
+      "METAL_TO_FUEGO",
+      "AGUA_TO_METAL",
+      "AGUA_TO_VIENTO",
+      "TIERRA_TO_VIENTO"
+    ]
+  },
+  "cold_reproduction": {
+    "exact_scalar_rows": 11520,
+    "exact_structural_rows": 7680,
+    "qa_compiler_exact": true,
+    "qa_activation_exact": true,
+    "crc_and_sha256_38_entries": "PASS"
+  },
+  "archive": {
+    "file_name": "GRULLA_LII_V13_MICROBALANCE_CONCORDANCIAS_2026-10-08.zip",
+    "sha256": "c30a090249e4fd2f6ee6253027271af65a6fab9169032cd8c8acbf9497b87129",
+    "entries": 38
+  },
+  "guards": {
+    "no_main": true,
+    "no_merge": true,
+    "no_runtime_modification": true,
+    "no_monster_adjustment": true,
+    "no_equipment_adjustment": true,
+    "no_li_techniques_changed": true,
+    "no_elite": true,
+    "no_T3_T4": true,
+    "no_aoe": true,
+    "no_auto_freeze": true
+  },
+  "pending": [
+    "Authorize LII relation-specific defensive numeric candidates, including four without LI V04B values",
+    "Validate actual Tramo I conditional Concordance hooks and PRE_COST/Qi rounding",
+    "Event parity with latest official HTML; legal foreign technique learning and costs",
+    "Re-test V07 only with completed authorized LII Concordances and LI regression"
+  ]
+}
