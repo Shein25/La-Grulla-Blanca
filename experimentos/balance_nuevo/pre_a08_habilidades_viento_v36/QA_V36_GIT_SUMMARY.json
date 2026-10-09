@@ -1,0 +1,124 @@
+{
+  "schema": "PRE_A08_V36_WIND_SKILLS_LAB_QA",
+  "status": "PASS_INDEPENDENT_EXTRACTED_ZIP__CANDIDATE_ONLY",
+  "date": "2026-10-09",
+  "batches": {
+    "V36A": {
+      "discovery": 18432,
+      "holdout": 18432,
+      "new_executions": 36864,
+      "cold_exact_rows": 9216,
+      "cold_metric_columns": "all except cohort",
+      "seeds": [
+        113100,
+        113101,
+        113500,
+        113501
+      ]
+    },
+    "V36B": {
+      "discovery": 18432,
+      "holdout": 18432,
+      "new_executions": 36864,
+      "cold_exact_rows": 9216,
+      "cold_metric_columns": "all except cohort",
+      "seeds": [
+        114100,
+        114101,
+        114500,
+        114501
+      ]
+    },
+    "V36C": {
+      "discovery": 9216,
+      "holdout": 9216,
+      "new_executions": 18432,
+      "cold_exact_rows": 4608,
+      "cold_metric_columns": "all except cohort",
+      "seeds": [
+        114100,
+        114101,
+        114500,
+        114501
+      ],
+      "exact_repeat_against_V36B_arms": 12288,
+      "unique_V36C_candidate_contexts": 6144
+    }
+  },
+  "total_executions_excluding_cold": 92160,
+  "unique_new_scenarios": 79872,
+  "deliberate_duplicate_crossarm_executions": 12288,
+  "cold_exact_reproductions_not_added": 23040,
+  "paired_seeds": true,
+  "miss_due": 0,
+  "timeouts": 0,
+  "no_change_in_unselected_nodes": true,
+  "untouched_armor": {
+    "defense": 2,
+    "hp_max": 2
+  },
+  "unchanged_monsters": 6,
+  "wind_stage": "LianQi_II",
+  "wind_tier_adaptations": [
+    "T1",
+    "T2"
+  ],
+  "wind_builds": 16,
+  "policies": [
+    "EARLY",
+    "DELAYED_TRIGGER"
+  ],
+  "equipments": [
+    "M03_UNIFORM",
+    "M04_PATROL_DEF2",
+    "M05_COMMON_PATROL",
+    "M05_COMMON_SAUCES"
+  ],
+  "monsters_source": "six V33 moderate monsters finalized at V35",
+  "t2_n_per_kit_arm": 768,
+  "t2_control_pct": {
+    "M03_UNIFORM": 52.8645833333,
+    "M04_PATROL_DEF2": 80.859375,
+    "M05_COMMON_PATROL": 94.0104166667,
+    "M05_COMMON_SAUCES": 78.3854166667
+  },
+  "t2_minimal_wind_candidate_pct": {
+    "M03_UNIFORM": 56.640625,
+    "M04_PATROL_DEF2": 82.9427083333,
+    "M05_COMMON_PATROL": 95.4427083333,
+    "M05_COMMON_SAUCES": 80.3385416667
+  },
+  "t2_minimal_minus_control_pp": {
+    "M03_UNIFORM": 3.7760416667,
+    "M04_PATROL_DEF2": 2.0833333333,
+    "M05_COMMON_PATROL": 1.4322916667,
+    "M05_COMMON_SAUCES": 1.953125
+  },
+  "t1_M03_control_and_candidate_win_pct": [
+    55.859375,
+    59.8958333333
+  ],
+  "t2_uniform_win_paired_flips_minimal": {
+    "positive": 34,
+    "negative": 5
+  },
+  "fullwind_basedamage_plus1_sensitivity_from_different_seed_cohort_pct": [
+    55.3385417,
+    66.40625
+  ],
+  "limitations": [
+    "numeric human ratification still needed",
+    "2 PT / own root and hypothetical foreign BASE only",
+    "elite/boss/aoe not tested",
+    "product HTML parity not tested"
+  ],
+  "zip": {
+    "file": "GRULLA_PRE_A08_V36_AJUSTE_HABILIDADES_VIENTO_2026-10-09.zip",
+    "sha256": "71389d6803c7081cc61568cd2804089cca1ed0dd9811819a854b2d70699c9bb9",
+    "entries": 104,
+    "zip_crc_and_sha_manifest": "PASS",
+    "fresh_unzip_reproduce_all_three_cold": "PASS",
+    "cold_plain_csv_bytes_exact": true,
+    "zip_gzip_sha_note": "gzip archive binary timestamps can differ on rerun although decompressed CSV is exact"
+  }
+}
