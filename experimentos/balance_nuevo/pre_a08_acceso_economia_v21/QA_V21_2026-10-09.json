@@ -1,0 +1,77 @@
+{
+  "schema": "GRULLA_V21_PRE_A08_GIT_EVIDENCE",
+  "status": "PASS_LOCAL_FOCAL_EXPERIMENTAL_NOT_CANON",
+  "date": "2026-10-09",
+  "reviewed_initial_head": "770d0c2845ae86c102d01142eef8d7ead2316a03",
+  "branch": "experiment/lii-tramo1-multirraiz-v08-2026-10-08",
+  "catalog_sha256": "83754d92456564ed29bf0501c9b4bf2d21497100275c7b768bba77138de47190",
+  "catalog": {
+    "total": 68,
+    "LII": 21,
+    "M04": 8,
+    "M05": 9,
+    "M06": 4,
+    "optional_21": true,
+    "price_stones": 14,
+    "legacy_contribution": 10,
+    "contribution_and_stones": 3,
+    "contribution_only_without_stones": 7,
+    "material_recipe": 1
+  },
+  "ver74": {
+    "html_blob_sha": "d34f7ea3f9de9344130aa072fac34d14a7a474d6",
+    "quests_empty": true,
+    "catalogo_empty": true,
+    "comprar_placeholder": true,
+    "canjear_placeholder": true,
+    "lii_item_id_runtime_count": 0,
+    "verified_runtime_acquisition": 0,
+    "scope": "Version 74 committed to examined branch only; no claim on external ver76"
+  },
+  "human_authority": {
+    "contribution_spendable": false,
+    "no_new_npcs_quests_shops_gates": true,
+    "no_html_modification": true,
+    "no_main_no_merge": true
+  },
+  "focal": {
+    "valid_total": 28160,
+    "discovery": 14080,
+    "holdout": 14080,
+    "exact_cold_reproduced_all_columns": 7040,
+    "zero_timeouts": true,
+    "zero_due_missed": true,
+    "paired_seeds": true,
+    "roots": 5,
+    "builds_per_root": 16,
+    "tiers": [
+      "T0",
+      "T1",
+      "T2"
+    ],
+    "policies": [
+      "EARLY",
+      "DELAYED_TRIGGER"
+    ],
+    "kits": [
+      "PROLOGUE_DESIGN",
+      "M03_ISSUED_DESIGN"
+    ],
+    "monster_arms": "ORIGINAL all; candidate Cangrejo/Jabalí in T1/T2 only",
+    "V17": "one representative scalar BASE per root, not structural/conditional",
+    "antidote_and_affliction_simulated": false,
+    "qi_spent_final_simulated": true
+  },
+  "raw_files_sha256": {
+    "RAW_V21_DISCOVERY.csv.gz": "a5cacc5797d222caacccffae53456db09a7af5bc99edeb2f467d72e5538a394d",
+    "RAW_V21_HOLDOUT.csv.gz": "9765a42a987c3d76aff3be83b396fb14659d7a2858a9e324f5e1de8a7efa465a"
+  },
+  "portable_zip": {
+    "filename": "GRULLA_PRE_A08_V21_ACCESO_ECONOMIA_Y_FOCAL_2026-10-09.zip",
+    "bytes": 510008,
+    "sha256": "d9f5b7e952c4c617c82b7fca9746a2e1aef15b8f6b0b42e9a54a936a4dd1e01a",
+    "raw_binaries_not_uploaded_to_git": true
+  },
+  "runner_sha256": "e12213adef6ae700c09896340cbaf6e12f48ba6d7f00bff22e263e4830945d5d",
+  "backup_sha256": "96a0bbe760d62590217f104d5400e1963ac57ea0da440d84f41b71378c09f30d"
+}
