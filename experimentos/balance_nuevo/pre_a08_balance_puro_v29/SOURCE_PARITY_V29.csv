@@ -1,0 +1,7 @@
+source,mode,first_fights,first_wins,infections_active_on_first_win,expired_on_one_walk,persist_after_one_walk
+serpiente_qi,STRICT_HP_DAMAGE,320,320,0,0,0
+serpiente_qi,VER74_BASIC_DIRECT_DIAGNOSTIC,320,319,162,63,99
+avispa_jade,STRICT_HP_DAMAGE,320,320,0,0,0
+avispa_jade,VER74_BASIC_DIRECT_DIAGNOSTIC,320,320,62,62,0
+sapo_ceniza,STRICT_HP_DAMAGE,320,301,142,43,99
+sapo_ceniza,VER74_BASIC_DIRECT_DIAGNOSTIC,320,301,142,43,99
