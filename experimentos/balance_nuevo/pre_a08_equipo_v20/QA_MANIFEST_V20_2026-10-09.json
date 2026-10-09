@@ -1,0 +1,159 @@
+{
+  "schema": "GRULLA_PRE_A08_GEAR_V20_QA",
+  "date": "2026-10-09",
+  "status": "PASS_LOCAL_MULTICOHORT_NOT_CANON",
+  "branch": "experiment/lii-tramo1-multirraiz-v08-2026-10-08",
+  "source": {
+    "catalog_schema": "arc1-equipment-v0.2",
+    "catalog_sha256": "83754d92456564ed29bf0501c9b4bf2d21497100275c7b768bba77138de47190",
+    "catalog_items_total": 68,
+    "stages": {
+      "LianQi_I": 14,
+      "LianQi_II": 21,
+      "LianQi_III": 19,
+      "LianQi_IV": 14
+    },
+    "lII_optional_item_count": 21,
+    "lII_contribution_priced": 10,
+    "total_contribution_priced": 42,
+    "contribution_spend_compatible_with_latest_human_decision": false
+  },
+  "experiment": {
+    "gear_screen_fights": 161280,
+    "armor_breakpoint_fights": 61440,
+    "monster_candidate_cross_fights": 30720,
+    "full_expected_armor_cross_fights": 30720,
+    "total_fights": 284160,
+    "extra_smoke_not_counted": 40320,
+    "screen_paired_contexts": 11520,
+    "armor_four_arm_paired_contexts": 15360,
+    "monster_two_arm_paired_contexts": 15360,
+    "expected_two_arm_paired_contexts": 15360,
+    "normal_monsters": 6,
+    "roots": 5,
+    "builds_per_root": 16,
+    "gear_kits": 14,
+    "tiers_screen": [
+      "T0",
+      "T1",
+      "T2"
+    ],
+    "tiers_focal": [
+      "T1",
+      "T2"
+    ],
+    "policies": [
+      "EARLY",
+      "DELAYED_TRIGGER"
+    ],
+    "seeds_by_campaign": [
+      [
+        91000,
+        91001
+      ],
+      [
+        92000,
+        92001
+      ],
+      [
+        93000,
+        93003
+      ],
+      [
+        94000,
+        94003
+      ],
+      [
+        95000,
+        95003
+      ],
+      [
+        96000,
+        96003
+      ],
+      [
+        97000,
+        97003
+      ],
+      [
+        98000,
+        98003
+      ]
+    ],
+    "concordance": "V17 scalar BASE ON one eligible directed relationship per receiver root, no structural/conditional",
+    "same_rng_seed_within_context": true,
+    "timeouts": 0,
+    "missed_due_monster": 0,
+    "all_mutations_restored": true
+  },
+  "t2_results": {
+    "gear_screen": {
+      "M03_ISSUED": 69.973958,
+      "M04_HEAD_BAND": 72.96875,
+      "M05_SANDALS": 75.052083,
+      "M04_WEAPON": 79.192708,
+      "M04_COAT": 89.869792,
+      "EXPECTED_STAGE": 96.848958
+    },
+    "armor_breakpoint": {
+      "M03_ISSUED": 69.466146,
+      "COAT_DEF_0": 50.429688,
+      "COAT_DEF_1": 72.382812,
+      "COAT_DEF_2": 90.533854
+    },
+    "expected_with_other_six_pieces_identical": {
+      "EXPECTED_DEF_1": 88.372396,
+      "EXPECTED_DEF_2": 96.315104
+    },
+    "monster_cross_with_coat_def1": {
+      "cangrejo_original": 66.25,
+      "cangrejo_v19_candidate": 72.109375,
+      "jabali_original": 74.6875,
+      "jabali_v19_candidate": 77.421875
+    }
+  },
+  "code_sha256": {
+    "run_v20": "baaebbc6ec680b7b3d5111ae39019e536a4cf79c8694e28d795ffb50311676f3",
+    "run_v20_defense": "44387da35686f649d52281de519033c9c01f305c5d92dca2a22b6fdc24b4cdc2",
+    "run_v20_cross": "505045e9dab7ffdc3e3510325d7a25ca0e3fe8c2ce81cbef19bfd0ad65c4af28",
+    "run_v20_expected": "96805a3629df71654ecf78f27062e4d4f6009f64efb73a4f40efa09b5f976e23"
+  },
+  "cold_reproduction": {
+    "status": "PASS",
+    "rows_compared_exactly": 55680,
+    "gear_screen": 40320,
+    "armor_breakpoint": 7680,
+    "monster_cross": 3840,
+    "expected_cross": 3840,
+    "archive_entries": 76,
+    "crc_pass": true,
+    "manifest_member_sha256_pass": true
+  },
+  "artifact": {
+    "zip": "GRULLA_EQUIPO_LII_V20_BALANCE_MARGINAL_2026-10-09.zip",
+    "sha256": "1d4834dd3d12b2ed34798975d59a25b2233277bc7ae5594f9e3665863c321851",
+    "uploaded_to_git": false,
+    "contains_source": true,
+    "contains_raw": true
+  },
+  "proposed_patch_only": {
+    "item": "sobretunica_patrulla",
+    "field": "stats.defense",
+    "old": 2,
+    "proposed": 1,
+    "unchanged": {
+      "stats.hp_max": 2
+    },
+    "status": "AWAIT_USER_APPROVAL"
+  },
+  "limitations": [
+    "21 LII optional acquisition entries not verified in runtime",
+    "Contribución no gastable user decision vs 10 LII legacy contribution-priced items",
+    "Assumed learned foreign unitarget for Echo",
+    "Only 5 eligible BASE scalar relationship representatives used, rather than full 20",
+    "Conditional/structural Concordancias, venom antidotes, commerce and HTML parity omitted",
+    "All monster T1 candidates isolated separately; no final canonical monster freeze",
+    "No changes to main or runtime"
+  ],
+  "decision": "RECOMMEND reducing patrol coat DEF2 to DEF1 before final monster/equipment freeze, preserve LI and other gear, next close LII acquisition and economy"
+}
