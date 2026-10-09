@@ -1,0 +1,53 @@
+{
+  "schema": "GRULLA_PRE_A08_V38_WIND_LANZA_QI5_CANDIDATE",
+  "date": "2026-10-09",
+  "status": "LAB_PASS_PENDING_HUMAN_APPROVAL_NOT_CANON_NOT_RUNTIME",
+  "scope": "LianQi_II ONLY, offensive wind unitarget Lanza que Parte Nubes; keep LianQi I unchanged",
+  "skill_id": "lanza_nubes",
+  "candidate": {
+    "base_qi_current": 6,
+    "base_qi_proposed": 5,
+    "T1_eff_current_effective_qi": 5,
+    "T1_eff_proposed_effective_qi": 4,
+    "other_nodes_unchanged": true
+  },
+  "existing_ratified_V36_preserved": {
+    "lanza_t1_direct_pct": 30,
+    "lanza_t1_precision_dice": "2d4+4",
+    "paso_t1_eva": 45
+  },
+  "monsters_V35_closed_unchanged": true,
+  "armor": {
+    "item": "sobretunica_patrulla",
+    "defense": 2,
+    "hp_max": 2,
+    "unchanged": true
+  },
+  "bleed": {
+    "tested": "flat 1 for 1/2/3 ticks on hit; efficacy too strong if universal",
+    "approval": false,
+    "engine_persistence_and_spirit_semantics_unresolved": true,
+    "production_added": false
+  },
+  "evidence": {
+    "fights_executed_non_cold": 113920,
+    "unique_new_fights_excluding_exact_repeat": 107776,
+    "exact_repeat_A_B": 6144,
+    "cold_exact_total_rows": 20096,
+    "normal_T2_uniform_v36_win_pct": 58.854167,
+    "normal_T2_uniform_qi5_win_pct": 63.671875,
+    "normal_T2_uniform_bleed1x2_win_pct": 72.265625,
+    "offense_only_T2_uniform_v36_win_pct": 47.743056,
+    "offense_only_T2_uniform_qi5_win_pct": 55.034722,
+    "offense_only_T2_uniform_bleed1x2_win_pct": 65.798611,
+    "E8_t0_offense_prologue_v36_pct": 68.536932,
+    "E8_t0_offense_prologue_qi5_pct": 71.803977,
+    "E8_t0_control_assumption_unverified": 0
+  },
+  "limited": "T1/T2 natural six normal creatures and diagnostic E8 T0 only; no productive A08 parity",
+  "package_zip_sha256": "d441fea5db0d19851f9f343166554b57246b68523d7a1a5948f6ad65c759611f",
+  "no_main": true,
+  "no_merge": true,
+  "no_html": true,
+  "no_prices_or_commerce": true
+}
