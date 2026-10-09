@@ -1,0 +1,40 @@
+{
+  "schema": "pre-a08-lii-microbalance-v23",
+  "status": "RECOMMENDED_NOT_RATIFIED_NO_CANON_WRITE",
+  "authority": {
+    "commerce_branch": "experiment/monster-loot-equipment-economy-v0.1",
+    "commerce_file": "experimentos/balance_nuevo/loot_equipment_v0.1/ARC1_COMMERCE_AUTHORITY_V0_4.json",
+    "commerce_blob": "656641519b93633474bcbe976a2c2aaacb9b5e7f",
+    "skills": "V17 LAB, representative scalar only",
+    "monsters": "V19 ORIGINAL"
+  },
+  "patch": {
+    "item_id": "sobretunica_patrulla",
+    "field": "stats.defense",
+    "old_value": 2,
+    "candidate_value": 1,
+    "preserve": {
+      "hp_max": 2,
+      "stone_price": 12,
+      "contribution_required": 3,
+      "source_mission": "M04"
+    }
+  },
+  "evidence": {
+    "new_fights": 138240,
+    "cold_exact_rows": 34560,
+    "original_t2_win_pct": 89.609,
+    "candidate_t2_win_pct": 71.589,
+    "disposition": "human_ratification_pending"
+  },
+  "deferred_monster_candidates": [
+    "cangrejo DEFENSE_UP 3->2",
+    "jabali MITIGATE_NEXT 40->35"
+  ],
+  "guards": {
+    "no_main": true,
+    "no_merge": true,
+    "no_runtime_changes": true,
+    "no_commerce_redesign": true
+  }
+}
