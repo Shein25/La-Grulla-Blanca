@@ -1,0 +1,10 @@
+source,mode,first_fights,first_wins,special_hits,special_hp_hit,applications,active_after_first_win
+avispa_jade,CONNECTED_ONLY,320,315,843,0,843,153
+avispa_jade,STRICT_HP_DAMAGE,320,320,793,0,0,0
+avispa_jade,VER74_BASIC_DIRECT,320,319,857,252,252,52
+sapo_ceniza,CONNECTED_ONLY,320,288,430,276,428,167
+sapo_ceniza,STRICT_HP_DAMAGE,320,297,432,278,276,132
+sapo_ceniza,VER74_BASIC_DIRECT,320,297,432,278,276,132
+serpiente_qi,CONNECTED_ONLY,320,319,749,0,749,247
+serpiente_qi,STRICT_HP_DAMAGE,320,320,683,0,0,0
+serpiente_qi,VER74_BASIC_DIRECT,320,319,724,390,390,157
