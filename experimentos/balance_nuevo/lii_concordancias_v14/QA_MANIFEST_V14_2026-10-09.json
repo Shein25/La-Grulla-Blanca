@@ -1,0 +1,138 @@
+{
+  "schema": "grulla-lii-v14-review-v1",
+  "date": "2026-10-09",
+  "status": "PASS_EXPERIMENTAL_SCREEN_NOT_CANON",
+  "git_branch": "experiment/lii-tramo1-multirraiz-v08-2026-10-08",
+  "scope": {
+    "stage": "LianQi_II",
+    "tech_points": 2,
+    "roots": 5,
+    "legal_monoroot_builds_per_root": 16,
+    "monster_species_count": 6,
+    "adaptive_tiers": [
+      "T1",
+      "T2"
+    ],
+    "gear": [
+      "POST_M03",
+      "EXPECTED_STAGE"
+    ],
+    "policies": [
+      "EARLY",
+      "DELAYED_TRIGGER"
+    ],
+    "elemental_multiplier": 1,
+    "monster_stats_changed": false,
+    "html_changed": false,
+    "main_changed": false,
+    "merged": false,
+    "elite_included": false,
+    "t3_t4_included": false,
+    "concordance_t1_conditionals_in_fights": false,
+    "foreign_technique_acquisition_validated": false
+  },
+  "numeric_battery": {
+    "relations": [
+      "METAL_TO_FUEGO",
+      "AGUA_TO_METAL",
+      "AGUA_TO_VIENTO",
+      "TIERRA_TO_VIENTO"
+    ],
+    "hypothetical_relative_scales": [
+      0,
+      0.025,
+      0.05,
+      0.1,
+      0.2
+    ],
+    "cohorts": [
+      {
+        "type": "DISCOVERY",
+        "seed_low": 14000,
+        "seed_high": 14003,
+        "fights": 61440,
+        "contexts": 12288,
+        "oncandidate_resolutions_each": 10620,
+        "timeouts": 0,
+        "due_missed": 0
+      },
+      {
+        "type": "HELDOUT",
+        "seed_low": 15000,
+        "seed_high": 15003,
+        "fights": 61440,
+        "contexts": 12288,
+        "oncandidate_resolutions_each": 10411,
+        "timeouts": 0,
+        "due_missed": 0
+      }
+    ],
+    "total_fights": 122880,
+    "complete_five_arm_contexts": 24576,
+    "seed_intersection": 0,
+    "off_resolutions": 0,
+    "scale_authority": "HYPOTHESES_NOT_APPROVED_LII"
+  },
+  "t2_early_postm03_gain_pp": {
+    "METAL_TO_FUEGO": {
+      "at_10": 0.39,
+      "at_20_discovery": 0.39,
+      "at_20_heldout": 0.39
+    },
+    "AGUA_TO_METAL": {
+      "at_10": 0.26,
+      "at_20_discovery": 5.34,
+      "at_20_heldout": 5.34
+    },
+    "AGUA_TO_VIENTO": {
+      "at_10": 0,
+      "at_20_discovery": 3.39,
+      "at_20_heldout": 3.65
+    },
+    "TIERRA_TO_VIENTO": {
+      "at_10": 0,
+      "at_20_discovery": 4.3,
+      "at_20_heldout": 5.86
+    }
+  },
+  "conditional_preflight": {
+    "legal_builds": 80,
+    "directed_contexts": 320,
+    "status_counts": {
+      "BASE_ONLY": 240,
+      "CLEAR_CONDITIONAL_HIGHER_PRIORITY": 16,
+      "CONDITIONAL_EXPOSED_BUT_NOT_PROVEN_SELECTED": 60,
+      "REQUIRES_RUNTIME_PRIORITY_DECISION": 4
+    },
+    "priority_conflict": "Water->Wind Paso de Nube RESPONSE: global-priority vs BASE mini-mapping ambiguity",
+    "tramo1_runtime_conditional_effects_executed": false
+  },
+  "water_qi": {
+    "base_raw": 5.25,
+    "efficiency_raw": 4.5,
+    "base_rounded": 5,
+    "efficiency_rounded": 5,
+    "pre_cost_microdiscount_result": "If hypothetical receiver-local percentage is applied before HALF_UP then small positive discounts may change Efficiency to 4; requires runtime priority, scale_target, and discount ordering validation, not canon"
+  },
+  "reproduction": {
+    "clean_zip_exact_matched_rows": 30720,
+    "conditional_320_repassed": true,
+    "crc_zip_members_pass": true,
+    "zip_sha256": "d4605afff0f06ef7fe0b0a2f6ba4b790bf6eb288dc83d0ef806f21ec2ead48ec",
+    "zip_entries": 62,
+    "zip_name": "GRULLA_LII_V14_RELACIONES_PENDIENTES_2026-10-09.zip"
+  },
+  "code_sha256": {
+    "discovery": "2a46ef307069896d2b3df825076f07416303a7dd2e256a2cf724747f27ac3a2d",
+    "heldout": "75ccf8663585715d9a98668f0ddb225d3afceea6b84881124814eba83da16c1e",
+    "conditional": "dc6fb5ad0350209dfbe7d6f920e1bf9be9b90018729ef52ab59a809c14da1879"
+  },
+  "blocking": [
+    "Four LII defensive relation scales still lack human-approved numeric authority",
+    "Water->Wind Paso hook priority discrepancy",
+    "Tramo I conditional effects and PRE_COST not executed",
+    "Real foreign-technique acquisition/costs not established",
+    "Latest HTML runtime event parity not tested"
+  ],
+  "decision": "DO_NOT_FREEZE; V15 requires mechanistic authority and parity before valid joint balance"
+}
