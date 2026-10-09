@@ -1,0 +1,67 @@
+{
+  "schema": "grulla-pre-a08-v27-persistent-gauntlet",
+  "status": "PASS_LAB_NOT_RUNTIME",
+  "first_battles_executed": 1280,
+  "second_battles_executed": 212856,
+  "total_fight_executions": 214136,
+  "discovery_scenarios": 107520,
+  "holdout_scenarios": 107520,
+  "scenario_rows": 215040,
+  "cold_exact_rows": 53760,
+  "cold_columns_excluding_cohort": 37,
+  "cold_verified_in_separate_unzip": true,
+  "original_monsters": 6,
+  "tiers": [
+    "T1",
+    "T2"
+  ],
+  "roots": 5,
+  "builds_per_root": 16,
+  "policies": [
+    "EARLY",
+    "DELAYED_TRIGGER"
+  ],
+  "gears": [
+    "M03",
+    "COAT_DEF1"
+  ],
+  "afflictions": [
+    "JADE_I",
+    "CENIZA_I"
+  ],
+  "arms": [
+    "UNTREATED",
+    "CURE_BEFORE_WALK",
+    "CURE_AFTER_WALK",
+    "INCOMPATIBLE_MED",
+    "HP_POTION_ONLY",
+    "CURE_PLUS_HP_POTION",
+    "CURE_IN_COMBAT"
+  ],
+  "first_monster": "rata_qi",
+  "first_monster_tier": "T0",
+  "poison_burn_exposure": "CONTROLLED_SCRIPTED_POST_FIRST_WIN_NOT_NATIVE",
+  "v74_reference_blob": "d34f7ea3f9de9344130aa072fac34d14a7a474d6",
+  "ratified_hp_contract_blob": "1bf62d905bc2eb1399c3fafb5da9c8d0069932f1",
+  "hp_formula": "LII Stable 3d4+9",
+  "zero_timeouts": true,
+  "zero_due_missed": true,
+  "paired_seeds": true,
+  "incompatible_remedy_negative_control": "EXACT_MATCH_UNTREATED",
+  "native_monster_persistence_bridge_tested": false,
+  "production_runtime_parity": false,
+  "coat_def1_approved": false,
+  "currency_or_commerce_tested": false,
+  "portable_zip": "GRULLA_PRE_A08_V27_BALANCE_PURO_AFLICCIONES_SECUENCIALES_2026-10-09.zip",
+  "zip_sha256": "b319dbc0f066fdc799a0af36685f8650559ff1409721bc2603c017115afa4d16",
+  "zip_files": 56,
+  "zip_crc_and_manifest": "PASS",
+  "portable_contract_checks": "PASS",
+  "portable_reexecution_cold": "PASS",
+  "script_sha256": "deb19a0c43444cd8d17ed007aeb5a1a19c01538cc8a1b72325b5c272c8dd2722",
+  "analysis_sha256": "103c74551205591671efe90afdca54c900b6d89c0c7e7ce113699c3bcf31914a",
+  "no_main": true,
+  "no_merge": true,
+  "no_html": true,
+  "no_rooms_exits": true
+}
