@@ -1,0 +1,267 @@
+{
+  "schema": "grulla-pre-a08-v20-conversation-backup-manifest",
+  "date": "2026-10-09",
+  "repo": "Shein25/La-Grulla-Blanca",
+  "branch": "experiment/lii-tramo1-multirraiz-v08-2026-10-08",
+  "scope": "all 33 zip archives present in current working container, nested portable backup; not Git repo clone",
+  "full_backup": {
+    "name": "GRULLA_BACKUP_TOTAL_LABORATORIOS_PRE_A08_CORTE_V20_2026-10-09.zip",
+    "bytes": 90339364,
+    "sha256": "96a0bbe760d62590217f104d5400e1963ac57ea0da440d84f41b71378c09f30d",
+    "container_generated": true,
+    "git_binary_uploaded": false,
+    "crc": "PASS"
+  },
+  "essential_backup": {
+    "name": "GRULLA_HANDOFF_ESENCIAL_V17_V20_2026-10-09.zip",
+    "bytes": 17338862,
+    "sha256": "0a7e53e8a74d37d3daa155c832876938fa4eab281965df1231a9d851b602abce",
+    "contains": [
+      "V17",
+      "V18",
+      "V19",
+      "V20"
+    ],
+    "container_generated": true,
+    "git_binary_uploaded": false,
+    "crc": "PASS"
+  },
+  "archive_count": 33,
+  "all_crc_pass": true,
+  "archives": [
+    {
+      "filename": "FAUNA_LII_EXHAUSTIVA_2_WORKERS_V02.zip",
+      "sha256": "493d77c98b2ed2aa04ece5e0350236403c521e79d64bcda0544f12913e3af06e",
+      "bytes": 97837,
+      "entries": 25,
+      "crc": "PASS"
+    },
+    {
+      "filename": "FAUNA_LII_EXHAUSTIVA_KAGGLE_V01.zip",
+      "sha256": "7130adc5110d6202ee30f5a03a65b8e518d5f166af330a73595bf251934a6472",
+      "bytes": 95818,
+      "entries": 25,
+      "crc": "PASS"
+    },
+    {
+      "filename": "FAUNA_LII_PAREADA_2_WORKERS_V03.zip",
+      "sha256": "b1d51c9b75e15f87833640b2d15dddb57eb776434850a01d07b6fb29f1bd08b7",
+      "bytes": 88510,
+      "entries": 20,
+      "crc": "PASS"
+    },
+    {
+      "filename": "FAUNA_LII_T0_T2_LAB_Y_ECONOMIA_2026-10-08.zip",
+      "sha256": "7cc85acca849a524601305353660f4a63b11962987a5fdeaec45e763f203c731",
+      "bytes": 634993,
+      "entries": 18,
+      "crc": "PASS"
+    },
+    {
+      "filename": "FAUNA_RESULTADO_SCREEN_SHARD_01.zip",
+      "sha256": "034305d71905334ca886e78d661bd6b0ec1b214eaa17eac732c0a4928c655418",
+      "bytes": 1516956,
+      "entries": 23,
+      "crc": "PASS"
+    },
+    {
+      "filename": "FAUNA_V03_AUTO_LOOP_TEST.zip",
+      "sha256": "e2ab806cdd92dac1f18be47f1482d5c230d0a6a60c6c141712ca237aa1907c8b",
+      "bytes": 37650,
+      "entries": 4,
+      "crc": "PASS"
+    },
+    {
+      "filename": "FAUNA_V03_SCREEN_SHARD_01.zip",
+      "sha256": "2c086abebecb16a69cc857f35caf29404ed35062cafd11a5bff1537bb3ab06b1",
+      "bytes": 1643451,
+      "entries": 51,
+      "crc": "PASS"
+    },
+    {
+      "filename": "FAUNA_V03_SCREEN_SHARDS_02_A_05_COMPLETO.zip",
+      "sha256": "7096d843cebae4c58f9b8df25aea3a90fece6836d34af8ade6f5023fa6cbbc75",
+      "bytes": 6648895,
+      "entries": 5,
+      "crc": "PASS"
+    },
+    {
+      "filename": "FAUNA_V03_SHARD01_AUDITORIA_CORREGIDA_2026-10-08.zip",
+      "sha256": "a1f16cf2035d75887ee25f61d168597e79166bef54fd297eae89f72d343adbbd",
+      "bytes": 25499,
+      "entries": 9,
+      "crc": "PASS"
+    },
+    {
+      "filename": "GRULLA_ECO_CAIDO_T0_V02_AUDITORIA_2026-10-08.zip",
+      "sha256": "0ef0b4c44ab4a9106d0ce9377a129376ceea8b8c8490cbc183ec12ab09d458a8",
+      "bytes": 303223,
+      "entries": 6,
+      "crc": "PASS"
+    },
+    {
+      "filename": "GRULLA_ELEMENTAL_LI_LII_4_MODELOS_2026-10-08.zip",
+      "sha256": "7e4f0cbab4e6728f57ef0461d7b0345d45d682c111e3840a671dc9b888e59212",
+      "bytes": 1494828,
+      "entries": 21,
+      "crc": "PASS"
+    },
+    {
+      "filename": "GRULLA_EQUIPO_LII_V20_BALANCE_MARGINAL_2026-10-09.zip",
+      "sha256": "1d4834dd3d12b2ed34798975d59a25b2233277bc7ae5594f9e3665863c321851",
+      "bytes": 4568967,
+      "entries": 76,
+      "crc": "PASS"
+    },
+    {
+      "filename": "GRULLA_FAUNA_LII_ELEMENTAL_CAUSAL_V01_2026-10-08.zip",
+      "sha256": "6d0963aaf9fae28f99c1aac274f3d923a5d76d95bcd879ed93a08859e946f22b",
+      "bytes": 5397636,
+      "entries": 23,
+      "crc": "PASS"
+    },
+    {
+      "filename": "GRULLA_FAUNA_LII_V03_AUDITORIA_GLOBAL_2026-10-08.zip",
+      "sha256": "06ed7dbca91d5047821478fc5fb1d405b6fb1d02cd9a3f00b1b31908eee280d9",
+      "bytes": 21441,
+      "entries": 15,
+      "crc": "PASS"
+    },
+    {
+      "filename": "GRULLA_HABILIDADES_LII_CIERRE_LAB_PRE_A08_V17_2026-10-09.zip",
+      "sha256": "cce56a16a042d80300b46653bfbcdd3b9c5804a54ae61a7546b63d10855937ef",
+      "bytes": 7168520,
+      "entries": 46,
+      "crc": "PASS"
+    },
+    {
+      "filename": "GRULLA_LII_BALANCE_TRAMO_I_V07_2026-10-08.zip",
+      "sha256": "a7cbadf0be7fee809a1ced1cfd720d145684649f3885d7e12d7f525626492950",
+      "bytes": 5232183,
+      "entries": 39,
+      "crc": "PASS"
+    },
+    {
+      "filename": "GRULLA_LII_BATERIA_ADAPTACION_TACTICA_T1_T2_2026-10-08.zip",
+      "sha256": "4f476cb683b1d763982c7da3791fe2c4dc4d7cad33749ca973d8d6fb6620d75d",
+      "bytes": 757725,
+      "entries": 24,
+      "crc": "PASS"
+    },
+    {
+      "filename": "GRULLA_LII_BATERIA_FINAL_MONSTRUOS_V05_2026-10-08.zip",
+      "sha256": "bf2384f29e583114b467a3b9415c022b5d852eefe247d36a001faa18b2376ac1",
+      "bytes": 4989964,
+      "entries": 37,
+      "crc": "PASS"
+    },
+    {
+      "filename": "GRULLA_LII_DESVENTAJA_RAICES_BATERIA_V06_2026-10-08.zip",
+      "sha256": "755d341a3483f278234631818529a226dbcad56e30eef915a27e4ba6b1519eb7",
+      "bytes": 1970092,
+      "entries": 28,
+      "crc": "PASS"
+    },
+    {
+      "filename": "GRULLA_LII_FAUNA_NEUTRAL_V04_QA_Y_ECO_PREFLIGHT_2026-10-08.zip",
+      "sha256": "8c37513174db52bfa1663d99fdaab18f53c292f9fe80668d7596e740e5f7854d",
+      "bytes": 2053179,
+      "entries": 27,
+      "crc": "PASS"
+    },
+    {
+      "filename": "GRULLA_LII_NEUTRAL_FOCAL_M04_V01_2026-10-08.zip",
+      "sha256": "68582c2986a8c738a73e8ed8e302c72b199ad8a58936a2054e6dd23d2a76e11c",
+      "bytes": 12594233,
+      "entries": 21,
+      "crc": "PASS"
+    },
+    {
+      "filename": "GRULLA_LII_T2_SENALES_OBSERVABLES_V02_2026-10-08.zip",
+      "sha256": "42b3f8fb7a08cd5e7aa73586305df0834945b5b968bf480a215f6860385b3251",
+      "bytes": 1844387,
+      "entries": 20,
+      "crc": "PASS"
+    },
+    {
+      "filename": "GRULLA_LII_V08_MULTIRRAIZ_CONCORDANCIAS_PREFLIGHT_2026-10-08.zip",
+      "sha256": "1325a023b08a42d6eef92f29d7cbf5586e58618bf32c319a5693c6bcf55ee094",
+      "bytes": 695206,
+      "entries": 23,
+      "crc": "PASS"
+    },
+    {
+      "filename": "GRULLA_LII_V09_POLITICAS_MULTIRRAIZ_AGUA_2026-10-08.zip",
+      "sha256": "2b2d3bcc7738721bed60e53a6335b2a171ff78a6e13bcda5945d22397c95c37e",
+      "bytes": 6863100,
+      "entries": 36,
+      "crc": "PASS"
+    },
+    {
+      "filename": "GRULLA_LII_V10_CONCORDANCIAS_BASE_Y_REGRESION_2026-10-08.zip",
+      "sha256": "8b19f98361787aab68b0137fb7a6a272c57d4963e8adab68d66a7f9f9a8d6483",
+      "bytes": 866891,
+      "entries": 27,
+      "crc": "PASS"
+    },
+    {
+      "filename": "GRULLA_LII_V11_CONCORDANCIAS_DEFENSIVAS_TRAMO1_2026-10-08.zip",
+      "sha256": "3e107ad8d0a0b035664dcbcef59eac218050dabfb4573c55eae1e3a2e173bce3",
+      "bytes": 738756,
+      "entries": 30,
+      "crc": "PASS"
+    },
+    {
+      "filename": "GRULLA_LII_V12_BATERIA_GENERAL_CONCORDANCIAS_2026-10-08.zip",
+      "sha256": "6e6af6b37d0395f5ef45f80440e512590777545af169b77fd9b1114024eaab74",
+      "bytes": 6956956,
+      "entries": 32,
+      "crc": "PASS"
+    },
+    {
+      "filename": "GRULLA_LII_V13_MICROBALANCE_CONCORDANCIAS_2026-10-08.zip",
+      "sha256": "c30a090249e4fd2f6ee6253027271af65a6fab9169032cd8c8acbf9497b87129",
+      "bytes": 1747039,
+      "entries": 38,
+      "crc": "PASS"
+    },
+    {
+      "filename": "GRULLA_LII_V14_RELACIONES_PENDIENTES_2026-10-09.zip",
+      "sha256": "d4605afff0f06ef7fe0b0a2f6ba4b790bf6eb288dc83d0ef806f21ec2ead48ec",
+      "bytes": 3193306,
+      "entries": 62,
+      "crc": "PASS"
+    },
+    {
+      "filename": "GRULLA_LII_V15_CROSS_TRAMO1_CONCORDANCIAS_2026-10-09.zip",
+      "sha256": "a1635eb522537fc91c5173d06c5e9bd5c39e84ebba5a41bd17ad52df29812008",
+      "bytes": 2483718,
+      "entries": 34,
+      "crc": "PASS"
+    },
+    {
+      "filename": "GRULLA_LII_V16_PRECIERRE_ESTRUCTURAS_Y_PARIDAD_2026-10-09.zip",
+      "sha256": "1907dde5c6a1478899d11c8af75cd637a33c7fa68c5a28ce1355162bbdc93838",
+      "bytes": 2000636,
+      "entries": 46,
+      "crc": "PASS"
+    },
+    {
+      "filename": "GRULLA_MONSTRUOS_LII_V18_DIAGNOSTICO_Y_MICRO_2026-10-09.zip",
+      "sha256": "a4796df19ebfa81c9ee36a993cdd86190a7b2f96dd456351cf0a6a4cf849e539",
+      "bytes": 3437213,
+      "entries": 48,
+      "crc": "PASS"
+    },
+    {
+      "filename": "GRULLA_MONSTRUOS_LII_V19_CONCORDANCIAS_Y_EQUIPO_2026-10-09.zip",
+      "sha256": "4919a8c494e5a25db747a12c8ab6154ab9ea610ff0ded9f41bf674204c42f6db",
+      "bytes": 2077914,
+      "entries": 49,
+      "crc": "PASS"
+    }
+  ],
+  "v20_valid_fights": 284160,
+  "v20_cold_reproduced_exact_rows": 55680,
+  "git_backup_scope": "Git includes handoff, audit index, manifest of 33 raw ZIP fingerprints, QA and candidate patches; raw ZIP payloads are provided as downloadable artifacts separately."
+}
