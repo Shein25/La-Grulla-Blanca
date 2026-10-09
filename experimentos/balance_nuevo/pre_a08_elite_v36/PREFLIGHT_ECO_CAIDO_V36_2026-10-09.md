@@ -1,3 +1,5 @@
+> **ACTUALIZACIÓN VERIFICADA V37 (2026-10-09):** el preflight V36 quedó parcialmente superado. Se recuperaron las seis estadísticas numéricas del E8 histórico desde la rama `handoff/lii-monsters-close-2026-10-08` (HP 84, PREC 96, EVA 18, DEF 1, TEN 18, básico `1d2+4`). El archivo original `balance_t0_pendientes.py::config()['eco_caido']['E8']` y el dato de **Control** siguen sin recuperarse, por lo que el descriptor E8 íntegro **NO** es reproducible con exactitud. V37 ejecutó 5.120 duelos T0 diagnósticos (`Control=0` expresamente hipotético), sin ratificar E8 ni alterar el registro. **Fuente actualizada:** [V37](../pre_a08_elite_v37/DICTAMEN_ELITE_E8_V37_2026-10-09.md). Este aviso prevalece sobre las frases posteriores que afirman que no se dispone de ninguna estadística E8.
+
 # V36 — Apertura de balance élite: Eco del Caído (LianQi II)
 **2026-10-09. Estado:** PREFLIGHT PASS / datos históricos T0 revalidados / ELITE NUEVO NO SIMULADO / SIN FREEZE NI RUNTIME. Los seis monstruos normales LII quedaron cerrados en V35 y no se reabren.
 
