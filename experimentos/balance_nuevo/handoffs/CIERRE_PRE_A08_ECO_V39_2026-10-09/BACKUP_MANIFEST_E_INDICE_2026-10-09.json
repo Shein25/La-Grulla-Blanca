@@ -1,0 +1,150 @@
+{
+  "schema": "GRULLA_V39_BACKUP_INDEX_FOR_GIT_AND_LOCAL_DOWNLOAD",
+  "date": "2026-10-09",
+  "repo": "Shein25/La-Grulla-Blanca",
+  "branch": "experiment/lii-tramo1-multirraiz-v08-2026-10-08",
+  "backup_branch": "backup/pre-a08-eco-v39-2026-10-09",
+  "binary_source_packages": 19,
+  "original_source_zip_bytes": 133701102,
+  "zip_crc_check": "ALL_19_PASS",
+  "zip_manifest": "LOCAL_BACKUP_MANIFEST_PRESENT",
+  "archives": [
+    {
+      "label": "V20_MAESTRO",
+      "name": "GRULLA_BACKUP_TOTAL_LABORATORIOS_PRE_A08_CORTE_V20_2026-10-09(1).zip",
+      "sha256": "96a0bbe760d62590217f104d5400e1963ac57ea0da440d84f41b71378c09f30d",
+      "bytes": 90339364
+    },
+    {
+      "label": "V21",
+      "name": "GRULLA_PRE_A08_V21_ACCESO_ECONOMIA_Y_FOCAL_2026-10-09.zip",
+      "sha256": "d9f5b7e952c4c617c82b7fca9746a2e1aef15b8f6b0b42e9a54a936a4dd1e01a",
+      "bytes": 510008
+    },
+    {
+      "label": "V23",
+      "name": "GRULLA_PRE_A08_V23_BALANCE_EQUIPO_Y_ECONOMIA_RATIFICADA_2026-10-09.zip",
+      "sha256": "1ee935e77c3461391739d94fdff6aee0ace80f5ef30031abcadc5cc09ab1789d",
+      "bytes": 1919162
+    },
+    {
+      "label": "V24",
+      "name": "GRULLA_PRE_A08_V24_BALANCE_PURO_ESTRUCTURALES_2026-10-09.zip",
+      "sha256": "713387505118fa269ce94e39fce204fd03485ab96dc28ca2f9e3ec7f8f82ec0d",
+      "bytes": 634610
+    },
+    {
+      "label": "V25",
+      "name": "GRULLA_PRE_A08_V25_BALANCE_PURO_EMBALSE_SENSIBILIDAD_2026-10-09.zip",
+      "sha256": "6be1c3a41fce22230f60dd6d0d2eb21c4d6f2ab5c293a30bed3443a6fd3ed2e8",
+      "bytes": 1853816
+    },
+    {
+      "label": "V26",
+      "name": "GRULLA_PRE_A08_V26_BALANCE_PURO_CONDICIONALES_2026-10-09.zip",
+      "sha256": "08ba8fd2bfa09576c096401606e5570186389ab6087b56a0608d47be3e123d38",
+      "bytes": 2608461
+    },
+    {
+      "label": "V27",
+      "name": "GRULLA_PRE_A08_V27_BALANCE_PURO_AFLICCIONES_SECUENCIALES_2026-10-09.zip",
+      "sha256": "b319dbc0f066fdc799a0af36685f8650559ff1409721bc2603c017115afa4d16",
+      "bytes": 4505152
+    },
+    {
+      "label": "V28",
+      "name": "GRULLA_PRE_A08_V28_BALANCE_PURO_PUENTE_AFLICCIONES_NATIVAS_2026-10-09.zip",
+      "sha256": "5cf0b3bedc8e28b3f2bb5a7e91adbdc6fc2027fd6fb9dccf87fd0f40bee244c3",
+      "bytes": 6623830
+    },
+    {
+      "label": "V29",
+      "name": "GRULLA_PRE_A08_V29_BALANCE_PURO_GOLPE_Y_TRATAMIENTOS_2026-10-09.zip",
+      "sha256": "f5e6f20e82bcb467fe3b9495d451b9c99fb79de0a6f758bbf56e978949cfcde6",
+      "bytes": 2148186
+    },
+    {
+      "label": "V30",
+      "name": "GRULLA_PRE_A08_V30_VENENO_RECUPERACION_QI_10PORCIENTO_2026-10-09.zip",
+      "sha256": "cdcc3af2845265d18f56a098e22dc1a365f98481db269a0312f9803097826dc8",
+      "bytes": 2457921
+    },
+    {
+      "label": "V31",
+      "name": "GRULLA_PRE_A08_V31_BALANCE_CRUCE_DEFENSA_MONSTRUOS_Y_QI_2026-10-09.zip",
+      "sha256": "1724472e0de19ab5f23d62c6ed5a56797d02fa19db01b691800d6c54f5906b59",
+      "bytes": 2998980
+    },
+    {
+      "label": "V32",
+      "name": "GRULLA_PRE_A08_V32_EXPECTATIVA_Y_PROGRESION_EQUIPAMIENTO_2026-10-09.zip",
+      "sha256": "329d95bea1925565e6c2b441e008249071788b08333c2af84ccded50ce59d603",
+      "bytes": 1349511
+    },
+    {
+      "label": "V33",
+      "name": "GRULLA_PRE_A08_V33_MONSTER_BALANCE_FINALISTS_2026-10-09.zip",
+      "sha256": "97abd380cc48388431ed4887e1da63c3bd7027f349171f17d8c113109be23800",
+      "bytes": 5755945
+    },
+    {
+      "label": "V34",
+      "name": "GRULLA_PRE_A08_V34_VALIDACION_MONSTRUOS_Y_PROGRESION_2026-10-09.zip",
+      "sha256": "c49ea86b9eb819348f547c53f3deaa50c60a8d5f9a31313bcef5a2f13488b558",
+      "bytes": 2727974
+    },
+    {
+      "label": "V35",
+      "name": "GRULLA_PRE_A08_V35_CIERRE_NORMALES_Y_PREFLIGHT_ELITE_2026-10-09.zip",
+      "sha256": "bb944e145d39a23ef9d106b39bcca33fafd13c31abf32ef28814ec0199fe2a7a",
+      "bytes": 1332757
+    },
+    {
+      "label": "V36",
+      "name": "GRULLA_PRE_A08_V36_AJUSTE_HABILIDADES_VIENTO_2026-10-09.zip",
+      "sha256": "71389d6803c7081cc61568cd2804089cca1ed0dd9811819a854b2d70699c9bb9",
+      "bytes": 2558231
+    },
+    {
+      "label": "V37",
+      "name": "GRULLA_PRE_A08_V37_ELITE_ECO_E8_DIAGNOSTICO_2026-10-09.zip",
+      "sha256": "93171fde83ad9e4263f239d7f8791f09802d793ae6093fd1b8565bb3df8fda2e",
+      "bytes": 99952
+    },
+    {
+      "label": "V38",
+      "name": "GRULLA_PRE_A08_V38_REBALANCE_LANZA_VIENTO_2026-10-09.zip",
+      "sha256": "d441fea5db0d19851f9f343166554b57246b68523d7a1a5948f6ad65c759611f",
+      "bytes": 2744549
+    },
+    {
+      "label": "V39",
+      "name": "GRULLA_PRE_A08_V39_ECO_ETAPA_Y_GATES_T0_2026-10-09.zip",
+      "sha256": "eb9c8fd127df1120decf5584dfbd1d26d78ad47c47fbe91f40495d428d244bbd",
+      "bytes": 532693
+    }
+  ],
+  "outer_backups": {
+    "full": {
+      "filename": "GRULLA_BACKUP_COMPLETO_PRE_A08_V39_2026-10-09.zip",
+      "bytes": 133729018,
+      "sha256": "8b0d428185be91342e266051bf1243f0b909905a4976cbacd3e2e2af322301e6",
+      "source_archives": 19,
+      "crc": "PASS"
+    },
+    "quick": {
+      "filename": "GRULLA_HANDOFF_OPERATIVO_ELITE_ECO_V39_2026-10-09.zip",
+      "bytes": 7292618,
+      "sha256": "b8a69e0febf5086b68087b3ef4749157569644fa9e391741ef3cfad7dc4171c8",
+      "source_archives": 5,
+      "crc": "PASS"
+    }
+  },
+  "binary_storage": "User-downloadable sandbox attachments; NOT pushed as binary blobs to Git. Git snapshot branch preserves repository/documentation; this manifest preserves bytes/sha of every binary.",
+  "limitations": [
+    "Stand-alone V22 ZIP was not in working directory",
+    "Archived pre-V20 master supplied by user remains byte-identical in full backup"
+  ],
+  "reference_handoff": "experimentos/balance_nuevo/handoffs/CIERRE_PRE_A08_ECO_V39_2026-10-09/HANDOFF_CONTINUAR_ELITE_ECO_V39_2026-10-09.md",
+  "reference_prompt": "experimentos/balance_nuevo/handoffs/CIERRE_PRE_A08_ECO_V39_2026-10-09/PROMPT_NUEVO_CHAT_ECO_V39_2026-10-09.md"
+}
