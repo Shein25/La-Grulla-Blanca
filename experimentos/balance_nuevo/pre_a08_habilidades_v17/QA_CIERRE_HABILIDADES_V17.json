@@ -1,0 +1,51 @@
+{
+  "schema": "PRE_A08_LII_SKILLS_V17_QA",
+  "status": "PASS_LAB_PROFILE_REPRODUCED_NOT_CANON",
+  "combat": {
+    "technique_fights": 184320,
+    "technique_paired_contexts": 92160,
+    "unselected_exact_contexts": 73728,
+    "technique_seeds": [
+      39000,
+      39015
+    ],
+    "defensive_base_concordance_discovery_fights": 82944,
+    "defensive_base_concordance_heldout_fights": 165888,
+    "concordance_total_fights": 248832,
+    "concordance_paired_contexts": 124416,
+    "negative_exact_pairs": 6912,
+    "negative_leaks": 0,
+    "all_timeouts": 0,
+    "all_monster_due_missed": 0
+  },
+  "hook_decisions": {
+    "legal_monoroot_builds": 80,
+    "directed_contexts": 320,
+    "base_only": 240,
+    "conditional_wins": 24,
+    "base_wins_despite_exposure": 56,
+    "unresolved_mapping_after_design": 0,
+    "conditional_runtime_proven": false
+  },
+  "cold_reproduction": {
+    "status": "PASS",
+    "exact_technique_rows": 11520,
+    "exact_concordance_rows": 41472,
+    "total_exact_rows": 52992
+  },
+  "artifact": {
+    "name": "GRULLA_HABILIDADES_LII_CIERRE_LAB_PRE_A08_V17_2026-10-09.zip",
+    "sha256": "cce56a16a042d80300b46653bfbcdd3b9c5804a54ae61a7546b63d10855937ef",
+    "entries": 46,
+    "crc_sha256_all_entries_verified": true
+  },
+  "safety": {
+    "li_stays_base": true,
+    "no_monsters_changed": true,
+    "no_equipment_changed": true,
+    "no_html_changed": true,
+    "no_main": true,
+    "no_merge": true
+  },
+  "concordance_scope": "BASE numeric shadow, structures from V13/V16, conditional mechanics design only"
+}
