@@ -1,0 +1,39 @@
+{
+  "decision_id": "GRULLA_EQUIPMENT_EXPECTATIONS_HUMAN_GUARD_V32",
+  "date": "2026-10-09",
+  "status": "RATIFIED_PRINCIPLE__V32_NUMERIC_NERF_SUSPENDED",
+  "item_id": "sobretunica_patrulla",
+  "stage": "LianQi_II",
+  "slot": "VESTIDURA",
+  "expected_role": "strongest heavy defense garment available in LianQi II",
+  "current_stats": {
+    "defense": 2,
+    "hp_max": 2
+  },
+  "proposed_legacy_patch": {
+    "defense": 1,
+    "hp_max": 2
+  },
+  "legacy_patch_status": "SUSPENDED__DO_NOT_APPLY_TO_ASTRA_OR_HTML",
+  "decision_basis": [
+    "ratified player reward expectations",
+    "uniform LI defense=1, heavy LII defense=2, next heavy LIII defense=3",
+    "DEF1 removed heavy-vs-light differentiation",
+    "V32 matched trials with original monsters",
+    "preserve V20-V31 data as experimental history"
+  ],
+  "other_item": {
+    "item_id": "tunica_ruta_sauces",
+    "stage": "LianQi_II",
+    "stats": {
+      "defense": 1,
+      "evasion": 3,
+      "hp_max": 1
+    },
+    "risk": "more evades but lower win rate than patrol against all six tested T2 normals; test distinct niche before buffing or nerfing either"
+  },
+  "apply_to_canon": false,
+  "any_numeric_stat_change_authorized": false,
+  "commerce_and_prices_out_of_scope": true,
+  "required_followup": "diagnose light evasion identity against grounded LII danger sets, while preserving LIII scaling"
+}
