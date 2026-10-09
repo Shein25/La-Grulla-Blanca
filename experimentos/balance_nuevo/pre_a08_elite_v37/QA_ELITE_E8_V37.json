@@ -1,0 +1,113 @@
+{
+  "schema": "GRULLA_PRE_A08_V37_ECO_CAIDO_E8_DIAGNOSTIC",
+  "date": "2026-10-09",
+  "status": "DIAGNOSTIC_PASS_NOT_FULL_E8_PARITY_NOT_RATIFIED",
+  "branch": "experiment/lii-tramo1-multirraiz-v08-2026-10-08",
+  "primary_original_handoff": {
+    "ref": "handoff/lii-monsters-close-2026-10-08",
+    "path": "experimentos/balance_nuevo/handoffs/CIERRE_LII_MONSTRUOS_2026-10-08/HANDOFF_LII_MONSTRUOS_2026-10-08.md",
+    "git_blob": "a0ecb21dafe126d05d897349ee1889198b8c088b"
+  },
+  "six_verified_fields": {
+    "hp": 84,
+    "precision": 96,
+    "evasion": 18,
+    "defense": 1,
+    "tenacity": 18,
+    "basic_damage": "1d2+4"
+  },
+  "existing_original_profile": {
+    "stats_status": "PENDING_INTEGRAL_REBALANCE",
+    "adaptive_status": "BLOCKED_UNTIL_T0_READY",
+    "technique": null,
+    "resource_model": "NONE",
+    "crit_chance": 5,
+    "crit_damage": 1.5
+  },
+  "diagnostic_extra_assumption": {
+    "control": 0,
+    "ratified": false
+  },
+  "new_fights": {
+    "discovery": 2560,
+    "holdout": 2560,
+    "total": 5120,
+    "cold_reproduced_not_new": 640,
+    "cold_columns_except_cohort": 17,
+    "timeouts": 0
+  },
+  "design": {
+    "roots": [
+      "fuego",
+      "tierra",
+      "agua",
+      "metal",
+      "viento"
+    ],
+    "gear": [
+      "PROLOGUE_GUARANTEED",
+      "POST_M03_GUARANTEED"
+    ],
+    "policies": [
+      "UNITARGET_FIRST",
+      "DEFENSE_OPEN"
+    ],
+    "seeds_discovery": [
+      11370100,
+      11370227
+    ],
+    "seeds_holdout": [
+      11450100,
+      11450227
+    ],
+    "actor_tier": "T0",
+    "actor_stage": "LianQi_II",
+    "defense_skill_acquired": false,
+    "wind_V36_overlay_applied": false,
+    "real_cruce_vetas_access_proven": false
+  },
+  "win_pct_root": {
+    "fuego": {
+      "offense": 77.34375,
+      "defense": 81.640625
+    },
+    "tierra": {
+      "offense": 67.1875,
+      "defense": 82.8125
+    },
+    "agua": {
+      "offense": 50.78125,
+      "defense": 71.875
+    },
+    "metal": {
+      "offense": 57.03125,
+      "defense": 69.53125
+    },
+    "viento": {
+      "offense": 51.953125,
+      "defense": 53.90625
+    }
+  },
+  "overall_win_pct": {
+    "offense": 60.859375,
+    "defense": 71.953125
+  },
+  "original_registry_and_gear_not_modified": true,
+  "archive": {
+    "name": "GRULLA_PRE_A08_V37_ELITE_ECO_E8_DIAGNOSTICO_2026-10-09.zip",
+    "sha256": "93171fde83ad9e4263f239d7f8791f09802d793ae6093fd1b8565bb3df8fda2e",
+    "entries": 21,
+    "integrity": "CRC_AND_PER_FILE_SHA256_PASS",
+    "cold_portable_independent": "640x17 exact byte-level"
+  },
+  "next_steps": [
+    "recover full historical E8 config Control",
+    "confirm chronological availability and skill acquisition",
+    "exercise ratified Wind V36 skills in T0 lab",
+    "human gate E8 T0 before T1/T2"
+  ],
+  "historical_V02_battles_reused_only": 34560,
+  "no_new_monsters": true,
+  "previous_six_normals_and_wind_closed": true,
+  "canon_or_html_unchanged": true
+}
