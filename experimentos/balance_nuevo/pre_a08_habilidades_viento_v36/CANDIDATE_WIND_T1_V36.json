@@ -1,0 +1,79 @@
+{
+  "schema": "PRE_A08_V36_WIND_SKILLS_MINIMAL_CANDIDATE",
+  "status": "LAB_PASS_PROPOSAL__HUMAN_RATIFICATION_REQUIRED__NOT_RUNTIME",
+  "date": "2026-10-09",
+  "scope": {
+    "root": "viento",
+    "stage": "LianQi_II",
+    "max_points": 2,
+    "roots_untouched": [
+      "fuego",
+      "agua",
+      "metal",
+      "tierra"
+    ],
+    "other_tier_nodes_untouched": true,
+    "aoe_unchanged": true
+  },
+  "previous_v17_intended_not_installed_v35": {
+    "technique_id": "lanza_nubes",
+    "node_id": "lanza_t1_direct",
+    "field": "direct_pct",
+    "legacy_v35_compiled": 20,
+    "prior_V17_candidate": 30,
+    "action": "ensure V17 compiler semantics in isolated lab; runtime code not audited for this discrepancy"
+  },
+  "candidate_new_changes": [
+    {
+      "technique_id": "lanza_nubes",
+      "node_id": "lanza_t1_prec",
+      "node_family": "PRECISION",
+      "activation": "node explicitly selected at T1 LianQi II",
+      "field": "compiled.damage_dice",
+      "previous": "2d4+3",
+      "candidate": "2d4+4",
+      "note": "Only this node; Lanza base remains unchanged on other builds; nominal damage 8→9 for this compiled instance"
+    },
+    {
+      "technique_id": "paso_nube",
+      "node_id": "paso_t1_eva",
+      "node_family": "EVASION",
+      "activation": "node explicitly selected at T1 LianQi II",
+      "field": "compiled.defensive.evasion",
+      "previous": 40,
+      "candidate": 45,
+      "base_without_node": 35,
+      "qi_cost_unchanged": true,
+      "duration_unchanged": true
+    }
+  ],
+  "not_proposed": [
+    "wind base damage +1 all builds",
+    "paso_t1_resp +15pp next-response crit",
+    "paso_t1_resp -1 Qi",
+    "lanza_t1_prec +5pp crit"
+  ],
+  "fixed_controls": {
+    "six_LII_normals": "V33 moderate numeric targets CLOSED under V35",
+    "armor": {
+      "item_id": "sobretunica_patrulla",
+      "defense": 2,
+      "hp_max": 2
+    },
+    "no_monster_new_adjustment": true,
+    "no_main": true,
+    "no_html": true,
+    "no_merge": true,
+    "no_rooms_exits": true,
+    "no_economy": true
+  },
+  "limitations": {
+    "elite_Eco_Caido_not_tested": true,
+    "T3_T4_not_tested": true,
+    "conditional_concordances_not_tested": true,
+    "AOE_not_tested": true,
+    "foreign_technique_learnability_not_verified": true,
+    "production_parity_not_verified": true
+  },
+  "recommended_next": "After ratification integrate only exact selected-node changes, verify V17 parity then regression in productive engine; proceed Eco del Caido elite preflight separately."
+}
