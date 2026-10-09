@@ -1,0 +1,126 @@
+{
+  "schema": "grulla-pre-a08-v32-equipment-progression-expectations",
+  "status": "LAB_PASS_NOT_CANON",
+  "date": "2026-10-09",
+  "authoritative_human_rule": "experimentos/balance_nuevo/handoffs/PRINCIPIO_RATIFICADO_EXPECTATIVA_PROGRESION_EQUIPO_2026-10-09.md",
+  "branch": "experiment/lii-tramo1-multirraiz-v08-2026-10-08",
+  "source_catalog": "equipment_arc1_catalog.json",
+  "equipment_catalog_sha256": "83754d92456564ed29bf0501c9b4bf2d21497100275c7b768bba77138de47190",
+  "test_input": {
+    "roots": [
+      "fuego",
+      "tierra",
+      "agua",
+      "metal",
+      "viento"
+    ],
+    "monsters": [
+      "jabali_pizarra",
+      "buho_niebla_gris",
+      "zorro_bancales",
+      "cangrejo_cauce",
+      "murcielago_resonante",
+      "arana_veta_sombria"
+    ],
+    "tiers": [
+      "T1",
+      "T2"
+    ],
+    "builds_per_root": 16,
+    "policies": [
+      "EARLY",
+      "DELAYED_TRIGGER"
+    ],
+    "gears": [
+      "M03_UNIFORM",
+      "M04_PATROL_DEF2",
+      "M05_SAUCES_LIGHT",
+      "M04_PATROL_DEF1_DIAG",
+      "M05_COMMON_UNIFORM",
+      "M05_COMMON_PATROL_DEF2",
+      "M05_COMMON_SAUCES",
+      "M05_COMMON_PATROL_DEF1_DIAG"
+    ],
+    "foreign_concordance": "ONE V17 SCALAR BASE RELATION PER ROOT; NOT STRUCTURAL/CONDITIONAL",
+    "monsters_original_not_nerfed": true,
+    "source_missions_access_not_runtime_proven": true
+  },
+  "runs": {
+    "discovery": {
+      "new_battles": 30720,
+      "paired_contexts": 3840,
+      "seeds": [
+        107100,
+        107101
+      ]
+    },
+    "holdout": {
+      "new_battles": 30720,
+      "paired_contexts": 3840,
+      "seeds": [
+        107500,
+        107501
+      ]
+    },
+    "all_new_battles": 61440,
+    "paired_contexts_total": 7680,
+    "cold_reexecution_rows_exact": 15360,
+    "cold_columns_exact_except_cohort": 30,
+    "cold_independent_zip": true,
+    "all_timeouts": 0,
+    "all_due_missed": 0,
+    "all_gear_restored": true,
+    "all_monster_abilities_restored": true,
+    "paired_seeds": true
+  },
+  "results_t2_each_arm_3840": {
+    "M03_UNIFORM": 69.8177083333,
+    "M04_PATROL_DEF2": 89.53125,
+    "M05_SAUCES_LIGHT": 73.7760416667,
+    "M04_PATROL_DEF1_DIAG": 72.7083333333,
+    "M05_COMMON_UNIFORM": 86.8229166667,
+    "M05_COMMON_PATROL_DEF2": 96.5885416667,
+    "M05_COMMON_SAUCES": 88.59375,
+    "M05_COMMON_PATROL_DEF1_DIAG": 88.6197916667
+  },
+  "role_t2_common_m05": {
+    "heavy_evades_per_100_rounds": 14.652615,
+    "light_evades_per_100_rounds": 17.412791,
+    "heavy_minus_light_win_pp": 7.9947916667,
+    "heavy_win_pct_better_in_all_six_original_monsters": true,
+    "light_win_pct_better_in_any_root": false
+  },
+  "decision": {
+    "coat_def2_hp2_remains_original": true,
+    "coat_def1_nerf_suspended": true,
+    "no_runtime_patch": true,
+    "light_specialization_worth_follow_up": true,
+    "no_numeric_light_buff_approved": true
+  },
+  "artifact": {
+    "name": "GRULLA_PRE_A08_V32_EXPECTATIVA_Y_PROGRESION_EQUIPAMIENTO_2026-10-09.zip",
+    "sha256": "329d95bea1925565e6c2b441e008249071788b08333c2af84ccded50ce59d603",
+    "entries": 58,
+    "crc": "PASS",
+    "manifest_sha256": "PASS",
+    "cold_in_fresh_folder": "PASS",
+    "runner_sha256": "7362baa8e09903dbe49b12f31d686edd88f475dddb15cd573fc50907189f4152",
+    "analysis_sha256": "be972f5038f896d7b35b8b8a89ead5efce2ad7c09e30cf18470570ddf120e2a6"
+  },
+  "limitations": {
+    "no_full_20_concordances": true,
+    "no_persistent_afflictions": true,
+    "no_high_tier_monsters_or_bosses": true,
+    "no_runtime_parity": true,
+    "no_actual_acquisition_proof": true,
+    "economy_pricing_untouched": true
+  },
+  "guards": {
+    "main_untouched": true,
+    "no_merge": true,
+    "no_html": true,
+    "no_rooms_exits": true,
+    "no_canon_equipment_change": true,
+    "no_a07": true
+  }
+}
