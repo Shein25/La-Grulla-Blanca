@@ -1,0 +1,107 @@
+{
+  "schema_version": "lii-tramo1-v10-partial-qa-v1",
+  "date": "2026-10-08",
+  "state": "PASS_BASE_OFFENSIVE_LAB_ONLY__NO_CANON_FREEZE",
+  "branch": "experiment/lii-tramo1-multirraiz-v08-2026-10-08",
+  "fights": {
+    "lii_concordance_on_off": 69120,
+    "lii_paired_contexts": 34560,
+    "lii_repetitions_per_context": 6,
+    "li_concordance_regression": 6400,
+    "li_original_vs_v07_pairs": 3200,
+    "cold_reproduction_lii": 11520,
+    "cold_reproduction_li": 1600
+  },
+  "concordances": {
+    "enabled_numeric_source": "LI V04B reviewed relation-specific candidate scales — experimental transfer, not LII authority",
+    "receiving_hooks_scope": "BASE unitarget offensive only, foreign source -> primary root receiver",
+    "on_resolutions": 37764,
+    "off_resolutions": 0,
+    "none_paired_controls": 6912,
+    "none_controls_exactly_equal": true,
+    "none_affected_metrics": [
+      "win",
+      "rounds",
+      "hp_final_pct",
+      "qi_final",
+      "qi_spent",
+      "foreign_uses",
+      "echo_generations"
+    ],
+    "magma_created_on": 1448,
+    "magma_detonated_on": 641
+  },
+  "lii_guardrails": {
+    "tier": [
+      "T1",
+      "T2"
+    ],
+    "gears": [
+      "POST_M03",
+      "EXPECTED_STAGE"
+    ],
+    "root_count": 5,
+    "species_count": 6,
+    "builds": [
+      "BASE_0",
+      "OFF_0_DEF_1",
+      "OFF_1_DEF_0"
+    ],
+    "timeouts": 0,
+    "missed_due": 0,
+    "no_elite": true,
+    "no_t3_t4": true,
+    "no_monster_stat_change": true,
+    "no_html_change": true,
+    "no_main": true,
+    "no_merge": true
+  },
+  "li_regression": {
+    "stage": "LianQi_I",
+    "technique_points": 0,
+    "defensives": 0,
+    "aoe": 0,
+    "original_vs_v07_differences": 0,
+    "metrics_compared": [
+      "win",
+      "rounds",
+      "hp_final_pct",
+      "qi_final",
+      "qi_spent",
+      "resolutions",
+      "negative_opportunities",
+      "magma_created",
+      "magma_detonations"
+    ],
+    "runner_parity_to_canonical_html": false
+  },
+  "early_T2_v07": {
+    "OFF": 63.08,
+    "ON": 63.77,
+    "unit": "player_win_rate_percent",
+    "population": "All 5 roots, 6 species, 3 preselected builds, 2 policies, 4 foreign roots, 6 reps"
+  },
+  "blockers": [
+    "Real authoritative 20-relation LII resolver with defensive receivers",
+    "Tramo I conditional hook priority and structural state mechanics",
+    "Legally learned foreign techniques at actual mission/stage",
+    "Foreign Qi cost/affinity/risk and incompatibility contract parity",
+    "Exact event parity with latest HTML candidate",
+    "Mutant and broader build/full-equipment matrix after resolver is integrated"
+  ],
+  "source_discrepancy": {
+    "html_examined": "grulla-blanca_ver76_A07_9_G03_B1_B4_CANDIDATE.html",
+    "html_age": "Older candidate; still has elemental bonus 20% and seven old Concordance sequences",
+    "approved_design": "Elemental damage neutral x1 and 20 directed Concordance relationships",
+    "finding": "Cannot certify current official mechanics from the older HTML candidate"
+  },
+  "artifacts": {
+    "zip": "GRULLA_LII_V10_CONCORDANCIAS_BASE_Y_REGRESION_2026-10-08.zip",
+    "zip_sha256": "8b19f98361787aab68b0137fb7a6a272c57d4963e8adab68d66a7f9f9a8d6483",
+    "zip_entries": 27,
+    "zip_integrity": "CRC and all entry SHA256 PASS",
+    "cold_repro_status": "PASS",
+    "report": "experimentos/balance_nuevo/lii_tramo1_v10/DICTAMEN_V10_2026-10-08.md"
+  },
+  "decision": "DO_NOT_FREEZE_V07_OR_SIX_SPECIES; preserve LI; next authorize actual LII Concordance mechanics and acquisition constraints, then reconsider technique rebalance"
+}
