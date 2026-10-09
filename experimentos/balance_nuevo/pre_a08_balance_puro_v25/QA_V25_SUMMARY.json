@@ -1,0 +1,55 @@
+{
+  "schema": "GRULLA_PRE_A08_V25_BALANCE_ONLY",
+  "status": "LAB_PASS_DIAGNOSTIC_WITH_CONDITIONAL_GAPS",
+  "date": "2026-10-09",
+  "discovery": 23040,
+  "holdout": 23040,
+  "new_battles": 46080,
+  "cold_reproduced_exact": 5760,
+  "paired_contexts": 9216,
+  "monsters": 6,
+  "root": "agua",
+  "foreign": "tierra",
+  "tiers": [
+    "T1",
+    "T2"
+  ],
+  "policies": [
+    "EARLY",
+    "DELAYED_TRIGGER"
+  ],
+  "builds": 16,
+  "gear": [
+    "M03",
+    "COAT_DEF1",
+    "COAT_DEF2"
+  ],
+  "arms": [
+    "OFF",
+    "V17_015",
+    "DIAG_030",
+    "DIAG_060",
+    "DIAG_100"
+  ],
+  "diagnostic_scale_arms_not_candidates": true,
+  "no_timeout": true,
+  "no_due_missed": true,
+  "paired_seeds": true,
+  "monster_original_restored": true,
+  "win_changed_by_any_arm": 0,
+  "hp_changed_V17": 21,
+  "absorption_metric_changed_V17": 24,
+  "embalse_V17_released": 1786.16015,
+  "embalse_V17_absorbed_delta": 4.548,
+  "scripted_sequences": 12000,
+  "scripted_trajectories_not_battles": 36000,
+  "conditional_missing_physical_handlers": 6,
+  "conditional_battles_executed": false,
+  "affliction_persistence_executed": false,
+  "economy_executed": false,
+  "coat_def1_candidate_not_approved": true,
+  "runtime_modifications": false,
+  "zip_sha256": "6be1c3a41fce22230f60dd6d0d2eb21c4d6f2ab5c293a30bed3443a6fd3ed2e8",
+  "zip_crc_and_manifest": "PASS",
+  "portable_reproduction": "PASS"
+}
