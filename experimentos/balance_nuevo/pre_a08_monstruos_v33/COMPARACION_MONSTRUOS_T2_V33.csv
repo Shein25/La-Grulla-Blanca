@@ -1,0 +1,7 @@
+monster,role,parameter,original,candidate,M03_T2_orig_pct,M03_T2_candidate_pct,M04_DEF2_T2_orig_pct,M04_DEF2_T2_candidate_pct
+jabali_pizarra,BRUISER,technique.params.direct_damage,1d3+6,1d3+8,76.09,64.84,92.97,87.19
+buho_niebla_gris,PRECISION,technique.params.direct_damage,1d2+7,1d2+8,66.72,60.16,83.59,78.91
+zorro_bancales,SKIRMISHER,stats.evasion,19,21,76.25,72.03,93.75,92.03
+cangrejo_cauce,GUARDIAN,technique.params.direct_damage,1d2+7,1d2+8,64.84,55.00,95.16,91.25
+murcielago_resonante,DISRUPTOR,technique.params.direct_damage,1d2+5,1d2+6,73.75,67.81,91.72,87.66
+arana_veta_sombria,AFFLICTOR,stats.hp,71,75,67.03,58.59,80.47,73.28
