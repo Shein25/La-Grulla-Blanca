@@ -74,6 +74,17 @@
       "base_without_node": 35,
       "qi_cost_unchanged": true,
       "duration_unchanged": true
+    },
+    {
+      "skill": "lanza_nubes",
+      "node": "BASE",
+      "stage": "LianQi_II_ONLY",
+      "field": "base_qi_cost",
+      "from": 6,
+      "to": 5,
+      "qi_if_efficiency_t1": 4,
+      "li_remains_6": true,
+      "ratification": "2026-10-09_V38"
     }
   ],
   "equipment_nonnegotiable": {
@@ -120,5 +131,8 @@
     "commerce_or_prices": false,
     "a07": false,
     "canonical_monster_catalog_write": false
-  }
+  },
+  "amendments": [
+    "experimentos/balance_nuevo/handoffs/CIERRE_RATIFICADO_VIENTO_Y_NORMALES_2026-10-09/RATIFICACION_LANZA_QI5_V38_2026-10-09.json"
+  ]
 }
