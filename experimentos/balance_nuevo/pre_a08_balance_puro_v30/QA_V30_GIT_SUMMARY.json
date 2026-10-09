@@ -1,0 +1,88 @@
+{
+  "schema": "PRE_A08_V30_QI_RECOVERY_POISON_BALANCE",
+  "status": "PASS_LAB_HUMAN_SELECTED_MECHANIC_NOT_RUNTIME",
+  "user_selected_percent": 10,
+  "scopes": "Only out-of-combat Qi restoration; burn is unaffected; excludes kill/quest gains and in-combat refunds",
+  "rounding_choice_for_lab": "ROUND_HALF_UP once before qi_max clamp",
+  "active_poison_at_start_required": true,
+  "stacking": false,
+  "quality_of_life": "Antidote cures poisoning before a recovery action so no debuff; expirations within the action still penalize that action",
+  "tests": {
+    "python": {
+      "checks": 26,
+      "random_probes": 15000,
+      "result": "PASS"
+    },
+    "javascript": {
+      "random_probes": 15000,
+      "discrete_values": 501,
+      "code_blob": "1b2a26ec240f33b8501fce42e4d73256114479ea",
+      "test_blob": "777f773637ac7625e4d8a0845a3346f1b5cf63ec",
+      "result": "PASS"
+    },
+    "discovery": {
+      "new_fights": 5880,
+      "raw_rows": 5760,
+      "seed_range": [
+        105100,
+        105101
+      ]
+    },
+    "holdout": {
+      "new_fights": 5904,
+      "raw_rows": 5760,
+      "seed_range": [
+        105500,
+        105501
+      ]
+    },
+    "all_new_fights": 11784,
+    "paired_contexts": 5760,
+    "compared_arm_rows": 11520,
+    "cold_reexecution": {
+      "rows": 2880,
+      "columns_excluding_cohort": 37,
+      "identical": true,
+      "count_as_new_fights": false
+    },
+    "paired_active_poison": 1392,
+    "paired_burn_only": 972,
+    "average_actual_qi_loss_while_poisoned": 1.9655172413793103,
+    "changed_winners": 18,
+    "changed_winners_positive_to_player": 8,
+    "changed_winners_negative_to_player": 10,
+    "player_win_rate_poison_no_penalty": 0.125,
+    "player_win_rate_poison_minus10": 0.1235632183908046,
+    "changed_winners_without_active_poison": 0,
+    "burn_control_exact_match": true,
+    "timeouts": 0,
+    "due_missed": 0
+  },
+  "limitations": [
+    "Fixture raw restoration of 20 Qi is diagnostic, not an approved medicine value",
+    "V29 Serpent/Wasp basic-damage fallback remains a nonratified monster-translation hypothesis",
+    "This does not establish A08 runtime parity",
+    "The implementation mapping is test-level; no changes to HTML, main or commercial code"
+  ],
+  "package": {
+    "name": "GRULLA_PRE_A08_V30_VENENO_RECUPERACION_QI_10PORCIENTO_2026-10-09.zip",
+    "entries": 91,
+    "bytes": 2457921,
+    "sha256": "cdcc3af2845265d18f56a098e22dc1a365f98481db269a0312f9803097826dc8",
+    "crc": "PASS",
+    "sha_manifest": "PASS",
+    "portable_python_tests": "PASS",
+    "portable_js_tests": "PASS",
+    "portable_cold_reexecution": "PASS",
+    "portable_analysis": "PASS"
+  },
+  "guards": {
+    "no_main": true,
+    "no_merge": true,
+    "no_html": true,
+    "no_rooms_exits": true,
+    "no_economy_or_prices": true,
+    "no_monster_changes": true,
+    "no_A07": true
+  }
+}
