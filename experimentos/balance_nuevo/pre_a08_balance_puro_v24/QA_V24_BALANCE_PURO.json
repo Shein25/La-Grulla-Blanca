@@ -1,0 +1,91 @@
+{
+  "schema": "grulla-pre-a08-v24-structural-only",
+  "status": "LAB_PASS_NOT_CANON",
+  "balance_scope_only": true,
+  "prices_used": false,
+  "commerce_changed": false,
+  "discovery": 18432,
+  "holdout": 18432,
+  "new_fights": 36864,
+  "cold_exact_rows": 4608,
+  "monsters": 6,
+  "roots": [
+    "agua",
+    "metal"
+  ],
+  "relations": [
+    "TIERRA_TO_AGUA",
+    "TIERRA_TO_METAL"
+  ],
+  "tiers": [
+    "T1",
+    "T2"
+  ],
+  "builds_per_root": 16,
+  "policies": [
+    "EARLY",
+    "DELAYED_TRIGGER"
+  ],
+  "gear_arms": [
+    "M03",
+    "COAT_DEF2",
+    "COAT_DEF1"
+  ],
+  "concordance_arms": [
+    "OFF",
+    "ON"
+  ],
+  "timeouts": 0,
+  "due_missed": 0,
+  "off_resolutions": 0,
+  "on_resolutions": 15802,
+  "embalse_released_total": 1819.927,
+  "foundational_first_preserves": 8284,
+  "foundational_second_reinforced": 8218,
+  "t2_win_pct": {
+    "agua": {
+      "M03": {
+        "off": 65.365,
+        "on": 65.365
+      },
+      "coat_def1": {
+        "off": 68.424,
+        "on": 68.424
+      },
+      "coat_def2": {
+        "off": 86.914,
+        "on": 86.914
+      }
+    },
+    "metal": {
+      "M03": {
+        "off": 66.732,
+        "on": 71.419
+      },
+      "coat_def1": {
+        "off": 70.378,
+        "on": 75
+      },
+      "coat_def2": {
+        "off": 92.904,
+        "on": 93.49
+      }
+    }
+  },
+  "coat_candidate": {
+    "item": "sobretunica_patrulla",
+    "defense_original": 2,
+    "defense_candidate": 1,
+    "hp_max_preserved": 2,
+    "approved": false,
+    "applied": false
+  },
+  "other_candidates_approved": false,
+  "conditional_v17_physically_tested": false,
+  "affliction_persistence_tested": false,
+  "runtime_parity_claim": false,
+  "zip_sha256": "713387505118fa269ce94e39fce204fd03485ab96dc28ca2f9e3ec7f8f82ec0d",
+  "zip_files": 68,
+  "zip_crc_manifest": "PASS",
+  "portable_cold": "PASS"
+}
