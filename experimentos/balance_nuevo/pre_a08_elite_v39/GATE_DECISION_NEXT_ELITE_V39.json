@@ -1,0 +1,46 @@
+{
+  "schema": "GRULLA_V39_ECO_NEXT_GATE_PENDING_HUMAN_DIFFICULTY_SCOPE",
+  "date": "2026-10-09",
+  "status": "ELITE_T0_NOT_RATIFIED__ACCESS_TIMING_REQUIRES_DECISION",
+  "fixed_human_decisions": [
+    "LII Lanza Qi5, Efficiency T1 Qi4; LI Qi6",
+    "V36 wind skills",
+    "six LII normal monsters V35",
+    "Patrol armor DEF2 HP2 and reward progression value"
+  ],
+  "elite": "eco_caido",
+  "elite_stage": "LianQi_II",
+  "historical_E8_primary_stats": {
+    "hp": 84,
+    "precision": 96,
+    "evasion": 18,
+    "defense": 1,
+    "tenacity": 18,
+    "basic_damage": "1d2+4"
+  },
+  "source_access_behavior": {
+    "map_room": "cruce_vetas",
+    "hidden": true,
+    "preLII_traversal_without_gate": true,
+    "verified_in": "ver74 HTML only",
+    "edge": "terraza_cantera --sur--> cruce_vetas"
+  },
+  "design_choice_for_user_not_automatically_applied": [
+    "Allow early secret high-risk fight intentionally (LI ~9.69% win, no gate)",
+    "Require existing progression/recognition to INITIATE the elite encounter while preserving map exploration and ROOMS.exits"
+  ],
+  "open_stat_and_mechanic_questions": [
+    "Verify original E8 control value before production, although 20 T0 sensitivity pairs are identical",
+    "Decide elite-specific combat behavior that remains challenging after optional LII defensive acquisition",
+    "Confirm actual quest/skill/gear chronology; no invented missions or gates",
+    "Ratify Eco T0 before opening adaptive T1-T2 or editing any catalog"
+  ],
+  "blocked_actions": [
+    "Do not apply nerf to LII best armor",
+    "Do not change 6 closed normal monster profiles",
+    "Do not implement or invent new rooms/exits/NPCs",
+    "Do not set E8 READY productively",
+    "Do not invent bleed or unapproved afflictions"
+  ],
+  "next_scope": "Elite-specific T0 balance and legitimate access only"
+}
