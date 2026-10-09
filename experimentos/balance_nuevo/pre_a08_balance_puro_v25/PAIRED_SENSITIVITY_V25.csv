@@ -1,0 +1,5 @@
+arm,paired_contexts,win_changed,hp_final_changed,round_changed,qi_changed,absorption_metric_changed,absorption_metric_delta_total,released_total,stored_total
+V17_015,9216,0,21,0,0,24,4.548,1786.16015,2057.0433
+DIAG_030,9216,0,21,0,0,24,6.38,3330.1226,3833.3514
+DIAG_060,9216,0,21,0,0,24,6.848,5798.7324,6735.9392
+DIAG_100,9216,0,21,0,0,24,6.848,7752.992,9251.097
