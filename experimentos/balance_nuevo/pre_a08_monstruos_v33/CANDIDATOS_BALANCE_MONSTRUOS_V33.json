@@ -1,0 +1,92 @@
+{
+  "schema": "GRULLA_PRE_A08_MONSTERS_V33_CANDIDATE_6",
+  "status": "PROPOSED_LAB_NOT_CANON_HUMAN_RATIFICATION_REQUIRED",
+  "created_on": "2026-10-09",
+  "target_branch": "experiment/lii-tramo1-multirraiz-v08-2026-10-08",
+  "input": "original 6 natural normal LianQi II monster registry plus original T1 survival ability",
+  "no_monster_ability_replacement": true,
+  "stage_reward_guard": "sobretunica_patrulla retains defense=2 hp_max=2, no nerf",
+  "changes": [
+    {
+      "id": "jabali_pizarra",
+      "name": "Jabalí de Pizarra",
+      "role": "BRUISER",
+      "path": "technique.params.direct_damage",
+      "original": "1d3+6",
+      "candidate": "1d3+8",
+      "stage": "LianQi_II"
+    },
+    {
+      "id": "buho_niebla_gris",
+      "name": "Búho de la Niebla Gris",
+      "role": "PRECISION",
+      "path": "technique.params.direct_damage",
+      "original": "1d2+7",
+      "candidate": "1d2+8",
+      "stage": "LianQi_II"
+    },
+    {
+      "id": "zorro_bancales",
+      "name": "Zorro de los Bancales",
+      "role": "SKIRMISHER",
+      "path": "stats.evasion",
+      "original": 19,
+      "candidate": 21,
+      "stage": "LianQi_II"
+    },
+    {
+      "id": "cangrejo_cauce",
+      "name": "Cangrejo del Cauce Pétreo",
+      "role": "GUARDIAN",
+      "path": "technique.params.direct_damage",
+      "original": "1d2+7",
+      "candidate": "1d2+8",
+      "stage": "LianQi_II"
+    },
+    {
+      "id": "murcielago_resonante",
+      "name": "Murciélago Resonante",
+      "role": "DISRUPTOR",
+      "path": "technique.params.direct_damage",
+      "original": "1d2+5",
+      "candidate": "1d2+6",
+      "stage": "LianQi_II",
+      "note": "qi_drain=6 unchanged; Qi drain-only sensitivity V33 showed negligible win change"
+    },
+    {
+      "id": "arana_veta_sombria",
+      "name": "Araña de la Veta Sombría",
+      "role": "AFFLICTOR",
+      "path": "stats.hp",
+      "original": 71,
+      "candidate": 75,
+      "stage": "LianQi_II",
+      "note": "poison damage, ticks and cadence unchanged; persistent-affliction bridge not production tested"
+    }
+  ],
+  "provenance": {
+    "exploratory": 138240,
+    "focal": 46080,
+    "final": 92160,
+    "new_total": 276480,
+    "final_paired_contexts": 46080,
+    "final_cold_reproduced_rows": 23040,
+    "final_cold_exact_cols": 32
+  },
+  "limitations": [
+    "Only six normal monsters LIΙ vs representative scalar V17 base per root",
+    "Not complete affliction persistence or mixed AOE",
+    "Some monsters may be naturally easy under upgraded equipment; this is not a reason to nerf equipment",
+    "All monster proposals are not live without user approval"
+  ],
+  "guards": {
+    "main": false,
+    "merge": false,
+    "html": false,
+    "rooms_exits": false,
+    "a07": false,
+    "commerce": false,
+    "prices": false,
+    "equipment_changes": false
+  }
+}
