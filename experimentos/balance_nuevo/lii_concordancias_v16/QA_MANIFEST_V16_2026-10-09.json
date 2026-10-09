@@ -1,0 +1,150 @@
+{
+  "schema": "grulla-lii-v16-structural-preclose-v1",
+  "date": "2026-10-09",
+  "status": "LAB_STRUCTURAL_CROSS_PASS_FINAL_FREEZE_BLOCKED",
+  "repository": "Shein25/La-Grulla-Blanca",
+  "branch": "experiment/lii-tramo1-multirraiz-v08-2026-10-08",
+  "source_reference": "LI V04B structural engine adapted to LII; V15 V07 node patch",
+  "scope": {
+    "stage": "LianQi_II",
+    "technique_points": 2,
+    "roots": [
+      "metal",
+      "agua"
+    ],
+    "foreign_echo": "tierra",
+    "normal_species": 6,
+    "tiers": [
+      "T0",
+      "T1",
+      "T2"
+    ],
+    "gears": [
+      "POST_M03",
+      "EXPECTED_STAGE"
+    ],
+    "policies": [
+      "EARLY",
+      "DELAYED_TRIGGER"
+    ],
+    "builds_per_root": 16,
+    "arms": [
+      "ORIGINAL_OFF",
+      "ORIGINAL_ON",
+      "V07_OFF",
+      "V07_ON"
+    ],
+    "original_html_event_parity": false,
+    "conditional_tramo1_concordance_executed": false,
+    "legal_foreign_learning_verified": false,
+    "missing_numeric_relations_executed": false
+  },
+  "cohorts": [
+    {
+      "name": "DISCOVERY",
+      "seed_start": 27100,
+      "seed_end": 27103,
+      "fights": 36864,
+      "four_arm_contexts": 9216,
+      "unselected_exact_contexts": 8064,
+      "selected_contexts": 1152,
+      "off_resolutions": 0,
+      "on_resolutions": 15990,
+      "plate_preserved_on": 8214,
+      "plate_reinforced_hits_on": 8100,
+      "embalse_stored_on": 2280.21405,
+      "embalse_released_on": 1887.63165,
+      "timeouts": 0,
+      "missed_due": 0
+    },
+    {
+      "name": "HELDOUT",
+      "seed_start": 28100,
+      "seed_end": 28103,
+      "fights": 36864,
+      "four_arm_contexts": 9216,
+      "unselected_exact_contexts": 8064,
+      "selected_contexts": 1152,
+      "off_resolutions": 0,
+      "on_resolutions": 16038,
+      "plate_preserved_on": 8352,
+      "plate_reinforced_hits_on": 8185,
+      "embalse_stored_on": 2267.39235,
+      "embalse_released_on": 1869.68295,
+      "timeouts": 0,
+      "missed_due": 0
+    }
+  ],
+  "totals": {
+    "fights": 73728,
+    "four_arm_contexts": 18432,
+    "unselected_exact_contexts": 16128,
+    "selected_contexts": 2304,
+    "on_resolutions": 32028,
+    "off_resolutions": 0,
+    "plate_preserved_on": 16566,
+    "plate_reinforced_hits_on": 16285,
+    "embalse_stored_on": 4547.6064,
+    "embalse_released_on": 3757.3146,
+    "timeouts": 0,
+    "missed_due": 0
+  },
+  "focal_t2_early_metal_exec_node": {
+    "context_count": 384,
+    "original_off_win_pct": 74.21875,
+    "original_on_win_pct": 82.8125,
+    "v07_off_win_pct": 77.86458,
+    "v07_on_win_pct": 84.89583,
+    "v07_on_minus_original_on_pp": 2.08333,
+    "plate_orig_minus_off_pp": 8.59375,
+    "plate_v07_minus_off_pp": 7.03125,
+    "interaction_pp": -1.5625
+  },
+  "contract_preflight": {
+    "builds": 80,
+    "directed_contexts": 320,
+    "base_only": 240,
+    "conditional_clear_priority": 16,
+    "conditional_exposed_not_operationally_proven": 60,
+    "priority_conflict": 4,
+    "conflict": "Agua->Viento Paso de Nube",
+    "four_missing_lII_numeric_relations": [
+      "METAL_TO_FUEGO",
+      "AGUA_TO_METAL",
+      "AGUA_TO_VIENTO",
+      "TIERRA_TO_VIENTO"
+    ],
+    "current_html_candidate_legacy_sequences": 7,
+    "approved_global_relation_count": 20,
+    "html_candidate_sha256": "aac1a8727b7e39c8cb7b3cf323fb4ca5a3dd75ad92afa26f76cc443a2e823fbe",
+    "current_html_candidate_is_authority": false,
+    "final_engine_parity_gate": "BLOCKED"
+  },
+  "repro": {
+    "archive": "GRULLA_LII_V16_PRECIERRE_ESTRUCTURAS_Y_PARIDAD_2026-10-09.zip",
+    "sha256": "1907dde5c6a1478899d11c8af75cd637a33c7fa68c5a28ce1355162bbdc93838",
+    "file_count": 46,
+    "crc_sha256_members_pass": true,
+    "cold_seed": 27100,
+    "cold_rows_exact_match": 9216,
+    "source_runner_sha256": "69cdeb1034d8c9993573eeedb5f64d68b812ee8f509ae254c878e2cd2b0ccb3c"
+  },
+  "guards": {
+    "no_main": true,
+    "no_merge": true,
+    "no_html_changes": true,
+    "no_monster_stats_change": true,
+    "no_gear_change": true,
+    "no_li_change": true,
+    "no_t3_t4": true,
+    "no_elite": true,
+    "no_automatic_freeze": true
+  },
+  "next_authority": [
+    "Resolve four conditional hook priorities",
+    "Choose four missing defensive Concordance scales in LII and structural magnitudes",
+    "Provide authoritative latest HTML or integrated runtime for event-level parity",
+    "Validate foreign skills acquisition and actual Qi cost",
+    "Only then complete V16 full five-root integrated gate and review V07"
+  ]
+}
