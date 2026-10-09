@@ -1,0 +1,89 @@
+{
+  "schema": "grulla-lii-tramo1-v08-review-v1",
+  "date": "2026-10-08",
+  "status": "LAB_PASS_PARTIAL_SCOPE_NOT_CANON",
+  "git_branch": "experiment/lii-tramo1-multirraiz-v08-2026-10-08",
+  "stages": [
+    "LianQi_II"
+  ],
+  "player_points": 2,
+  "tiers": [
+    "T1",
+    "T2"
+  ],
+  "monsters": [
+    "jabali_pizarra",
+    "buho_niebla_gris",
+    "zorro_bancales",
+    "cangrejo_cauce",
+    "murcielago_resonante",
+    "arana_veta_sombria"
+  ],
+  "principal_roots": [
+    "fuego",
+    "tierra",
+    "agua",
+    "metal",
+    "viento"
+  ],
+  "foreign_roots_per_principal": 4,
+  "build_space": "fixed preselected two-point monoroot build, plus one BASE foreign unitarget presumed learned",
+  "access_arms": [
+    "MONOROOT",
+    "FOREIGN_LEARNED"
+  ],
+  "compare_arms": [
+    "ORIGINAL",
+    "V07_CANDIDATE"
+  ],
+  "gear_arms": [
+    "POST_M03",
+    "EXPECTED_STAGE"
+  ],
+  "policies": [
+    "OFFENSE_ONLY",
+    "DEFENSE_REFRESH"
+  ],
+  "counts": {
+    "fights": 61440,
+    "paired_contexts": 15360,
+    "repetitions": 16,
+    "reproduction_smoke_fights": 7680,
+    "timeouts": 0,
+    "canonical_due_missed": 0
+  },
+  "invariants": {
+    "seed_pairing": true,
+    "unaffected_water_earth_exact": true,
+    "monoroot_foreign_label_invariant": true
+  },
+  "concordance_audit": {
+    "kind": "manual_contract_mapping_BASE_ONLY",
+    "cells": 40,
+    "compatible": 35,
+    "none": 5,
+    "unique_directed_relations": 20,
+    "all_none_no_fallback": true
+  },
+  "blocked": [
+    "CANONICAL_CONCORDANCE_ON_OFF_NUMERIC_GATE",
+    "TRAMO_I_CONDITIONAL_HOOKS",
+    "ACQUISITION_FILTER_FOR_FOREIGN_TECHNIQUES",
+    "EVENT_PARITY_WITH_VER76_HTML",
+    "LI_FROZEN_REGRESSION"
+  ],
+  "guardrails": {
+    "no_main": true,
+    "no_merge": true,
+    "no_runtime_change": true,
+    "no_monster_change": true,
+    "no_technique_canonical_change": true,
+    "no_elite": true,
+    "no_T3_T4": true
+  },
+  "source_checksums": {
+    "runner_sha256": "4cbaad414f85c4789da80eeaf3536bc92b2c06cd46aab27e8bad82fbb6b30759",
+    "raw_sha256": "144d6373a2d54a7fa15bc1974b3599a481e874355514277bb304845253d1c2af",
+    "base_hook_gate_sha256": "17a7f81d26c49f6ecd72c4bdcc2aef908f2c413836a3657a4f6b94dee14d6709"
+  }
+}
