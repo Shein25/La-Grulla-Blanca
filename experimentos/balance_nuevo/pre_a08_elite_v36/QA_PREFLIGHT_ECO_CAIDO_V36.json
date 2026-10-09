@@ -1,0 +1,37 @@
+{
+  "schema": "PRE_A08_V36_ECO_CAIDO_T0_HISTORIC_EVIDENCE_PREFLIGHT",
+  "date": "2026-10-09",
+  "state": "PASS_REAUDIT_HISTORICAL_ONLY_ELITE_NUMERIC_DESCRIPTOR_MISSING",
+  "elite_id": "eco_caido",
+  "native_stage": "LianQi_II",
+  "role": "ELITE",
+  "unique": true,
+  "current_registry_stats_status": "PENDING_INTEGRAL_REBALANCE",
+  "current_registry_tier_status": "BLOCKED_UNTIL_T0_READY",
+  "historical_source_commit": "9a6baa41bd6fc505a755a474cd4f64a2522ba0b9",
+  "historical_total_T0_battles": 34560,
+  "historical_E8_subset": 5760,
+  "v36_new_elite_battles": 0,
+  "historical_RUN_sha256": "0cfc2c7c5c97f4ff73748eb4d888b016f895a06d195140d565fc2aba197da290",
+  "historical_SUMMARY_sha256": "a203932f3ac81a7e8036bd6b36026f24b2a15e36099c07ca18af7603f0521c86",
+  "history_reaudit": "PASS",
+  "history_timeouts": 0,
+  "history_duplicate_fights": 0,
+  "e8_win_rate_prologue_pct": {
+    "offense_only": 63.020833,
+    "defense_hypothesis": 70.9375
+  },
+  "e8_wind_prologue_pct": {
+    "offense_only": 56.25,
+    "defense_hypothesis": 58.333333
+  },
+  "historical_E8_status": "PROVISIONAL_NOT_RATIFIED",
+  "missing_source": "balance_t0_pendientes.py::config()['eco_caido']['E8']",
+  "archived_runner_selfcontained": false,
+  "next_stage": "recover exact numeric E8 descriptor, lock chronology and real skills; focused T0 then T1/T2 only after T0 READY",
+  "other_elite_LIII": "sombra_ahogada",
+  "no_prices_or_economy": true,
+  "no_main_or_merge": true,
+  "no_html_or_canon": true,
+  "portable_v35_zip_sha256": "bb944e145d39a23ef9d106b39bcca33fafd13c31abf32ef28814ec0199fe2a7a"
+}
