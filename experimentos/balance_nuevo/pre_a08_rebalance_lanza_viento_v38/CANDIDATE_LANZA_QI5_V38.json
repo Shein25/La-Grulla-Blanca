@@ -1,7 +1,7 @@
 {
   "schema": "GRULLA_PRE_A08_V38_WIND_LANZA_QI5_CANDIDATE",
   "date": "2026-10-09",
-  "status": "LAB_PASS_PENDING_HUMAN_APPROVAL_NOT_CANON_NOT_RUNTIME",
+  "status": "HUMAN_RATIFIED_NUMERIC_DESIGN__PENDING_RUNTIME_INTEGRATION",
   "scope": "LianQi_II ONLY, offensive wind unitarget Lanza que Parte Nubes; keep LianQi I unchanged",
   "skill_id": "lanza_nubes",
   "candidate": {
@@ -49,5 +49,8 @@
   "no_main": true,
   "no_merge": true,
   "no_html": true,
-  "no_prices_or_commerce": true
+  "no_prices_or_commerce": true,
+  "lab_original_status": "LAB_PASS_PENDING_HUMAN_APPROVAL_NOT_CANON_NOT_RUNTIME",
+  "ratified_on": "2026-10-09",
+  "ratification_source": "experimentos/balance_nuevo/handoffs/CIERRE_RATIFICADO_VIENTO_Y_NORMALES_2026-10-09/RATIFICACION_LANZA_QI5_V38_2026-10-09.json"
 }
