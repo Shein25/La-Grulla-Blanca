@@ -1,0 +1,140 @@
+{
+  "schema": "PRE_A08_V34_MONSTER_STAGE_CROSSVALIDATION",
+  "date": "2026-10-09",
+  "status": "PASS_LAB__MODERATE_V33_SUPPORTED__STRONG_DISCARDED__CANON_UNCHANGED",
+  "source_proposal": "experimentos/balance_nuevo/pre_a08_monstruos_v33/CANDIDATOS_BALANCE_MONSTRUOS_V33.json",
+  "principle": "experimentos/balance_nuevo/handoffs/PRINCIPIO_RATIFICADO_EXPECTATIVA_PROGRESION_EQUIPO_2026-10-09.md",
+  "input": {
+    "monsters": 6,
+    "roots": 5,
+    "builds_per_root": 16,
+    "tiers": [
+      "T0",
+      "T1",
+      "T2"
+    ],
+    "policies": [
+      "EARLY",
+      "DELAYED_TRIGGER"
+    ],
+    "gears": [
+      "M03_UNIFORM",
+      "M04_PATROL_DEF2",
+      "M05_COMMON_PATROL",
+      "M05_COMMON_SAUCES"
+    ],
+    "arms": [
+      "ORIGINAL",
+      "ROLE_MODERATE",
+      "ROLE_STRONG_DIAGNOSTIC"
+    ],
+    "rationale": "three arms share exact random seeds per context; compare original and V33 V34 without runtime modification"
+  },
+  "execution": {
+    "discovery": {
+      "seeds": [
+        111100,
+        111101
+      ],
+      "duels": 69120
+    },
+    "holdout": {
+      "seeds": [
+        111500,
+        111501
+      ],
+      "duels": 69120
+    },
+    "new_battles": 138240,
+    "paired_three_way_contexts": 46080,
+    "cold_reproduced_rows": 34560,
+    "cold_columns_exact_excluding_cohort": 32,
+    "cold_not_new": true,
+    "timeouts": 0,
+    "due_missed": 0,
+    "gear_unchanged": true,
+    "monster_source_profiles_restored": true,
+    "survival_T1_abilities_restored": true
+  },
+  "global_T2_win_pct": {
+    "M03_UNIFORM": {
+      "original": 67.734375,
+      "moderate": 60.3645833333,
+      "strong": 51.9270833333
+    },
+    "M04_PATROL_DEF2": {
+      "original": 88.8802083333,
+      "moderate": 82.9166666667,
+      "strong": 75.6770833333
+    },
+    "M05_COMMON_PATROL": {
+      "original": 96.4583333333,
+      "moderate": 94.296875,
+      "strong": 90
+    },
+    "M05_COMMON_SAUCES": {
+      "original": 87.6822916667,
+      "moderate": 83.1770833333,
+      "strong": 75.78125
+    }
+  },
+  "stage_reward_T2_moderate_paired": {
+    "contexts": 3840,
+    "patrol_only_win_vs_uniform": 893,
+    "uniform_only_win_vs_patrol": 27,
+    "advanced_patrol_only_win_vs_uniform": 1317,
+    "uniform_only_win_vs_advanced_patrol": 14
+  },
+  "weakest_T0_uniform_moderate": {
+    "monster": "arana_veta_sombria",
+    "player_win_pct": 63.75
+  },
+  "root_watch": {
+    "root": "viento",
+    "tier": "T2",
+    "gear": "M03_UNIFORM",
+    "original_player_win_pct": 55.859375,
+    "moderate_player_win_pct": 48.9583333333,
+    "patrol_moderate_player_win_pct": 77.2135416667,
+    "advanced_patrol_moderate_player_win_pct": 91.40625
+  },
+  "limitations": [
+    "sample uses 1 representative BASE SCALAR concordance per root",
+    "No physical structural/conditional concordance complete set",
+    "No persistent status sequence, AOE, elites, T3/T4, bosses or actual acquisition verified",
+    "Strong arms are diagnostic, not design candidates"
+  ],
+  "reproducibility": {
+    "zip": "GRULLA_PRE_A08_V34_VALIDACION_MONSTRUOS_Y_PROGRESION_2026-10-09.zip",
+    "sha256": "c49ea86b9eb819348f547c53f3deaa50c60a8d5f9a31313bcef5a2f13488b558",
+    "zip_bytes": 2727974,
+    "zip_entries": 56,
+    "crc_pass": true,
+    "manifest_sha256_pass": true,
+    "clean_unzip_smoke_pass": true,
+    "clean_unzip_cold_34560_exact": true,
+    "clean_unzip_analysis_pass": true,
+    "runner_sha256": "36e6461eb8b100815a3395d9e951f0d46fda9eb0b5b675ad9491484ff2d48b39",
+    "analysis_sha256": "9de2b556aa09cc82b9c10437432319147aba332420eed3f685e9757c67b2018d",
+    "raw_gzip_sha256": {
+      "discovery": "a42479ebc110c2d24026ff5c64e058d3aab413e2ce4cc40a5ccf963f452a90ba",
+      "holdout": "2b1997e8394d8c62140e2cd733bc01cbdb4ab550ffe44ae5bcfa883d09324384",
+      "cold": "1edfa72e94a1a76e0fe217357af426804c4ed54f3ef2997e2f2d8f0970bb2be0"
+    }
+  },
+  "guards": {
+    "no_main": true,
+    "no_merge": true,
+    "no_canon_monster_change": true,
+    "no_equipment_change": true,
+    "patrol_original_stats": {
+      "defense": 2,
+      "hp_max": 2
+    },
+    "no_html": true,
+    "no_rooms_exits": true,
+    "no_commerce": true,
+    "no_prices": true,
+    "no_A07": true
+  }
+}
