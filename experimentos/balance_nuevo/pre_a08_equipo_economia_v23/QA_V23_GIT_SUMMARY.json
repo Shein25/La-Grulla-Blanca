@@ -1,0 +1,29 @@
+{
+  "schema": "v23-git-summary",
+  "status": "PASS_LAB_NOT_CANON",
+  "discovery": 69120,
+  "holdout": 69120,
+  "total": 138240,
+  "cold_exact": 34560,
+  "tiers": [
+    "T1",
+    "T2"
+  ],
+  "species": 6,
+  "roots": 5,
+  "builds_per_root": 16,
+  "policies": [
+    "EARLY",
+    "DELAYED_TRIGGER"
+  ],
+  "kits": 15,
+  "arms": 18,
+  "timeouts": 0,
+  "due_missed": 0,
+  "paired_seeds": true,
+  "source_runtime": "V20/V21 LAB bridge",
+  "actual_item_acquisition_verified": false,
+  "afflictions_simulated": false,
+  "conditional_concordances_simulated": false,
+  "zip_sha256": "1ee935e77c3461391739d94fdff6aee0ace80f5ef30031abcadc5cc09ab1789d"
+}
