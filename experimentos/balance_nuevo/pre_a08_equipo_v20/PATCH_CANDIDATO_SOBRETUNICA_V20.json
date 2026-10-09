@@ -1,0 +1,28 @@
+{
+  "schema": "GRULLA_PRE_A08_GEAR_V20_CANDIDATE",
+  "status": "PROPOSED_NOT_CANON",
+  "catalog_id": "equipment_arc1_catalog.json",
+  "item_id": "sobretunica_patrulla",
+  "min_stage": "LianQi_II",
+  "slot": "VESTIDURA",
+  "old_stats": {
+    "defense": 2,
+    "hp_max": 2
+  },
+  "candidate_stats": {
+    "defense": 1,
+    "hp_max": 2
+  },
+  "no_other_stat_changes": true,
+  "keep_existing_semantic_source_for_audit_only": true,
+  "availability_status": "OPTIONAL_SOURCE_NOT_RUNTIME_VERIFIED",
+  "source_mission": "M04",
+  "permission": "PATRULLA_TERRITORIAL",
+  "price_contribution_legacy": 3,
+  "legacy_contribution_as_currency": "REJECTED_BY_HUMAN_POLICY",
+  "price_stones_current": null,
+  "new_price": "UNDECIDED",
+  "recommended_economic_policy": "Do not spend Contribución; verify permission and stone/material/reward alternative, no invented access",
+  "needs_human_ratification": true,
+  "test_artifact_sha256": "1d4834dd3d12b2ed34798975d59a25b2233277bc7ae5594f9e3665863c321851"
+}
