@@ -1,0 +1,7 @@
+relation,eligible_pairs_t2,win_base_pct,win_conditional_pct,delta_pp,ratified_numeric
+AGUA_TO_FUEGO,768,75.91,75.91,0.00,false
+AGUA_TO_VIENTO,768,61.85,55.47,-6.38,false
+METAL_TO_AGUA,768,64.45,69.79,5.34,false
+VIENTO_TO_AGUA,768,64.06,70.83,6.77,false
+METAL_TO_FUEGO,768,74.09,73.44,-0.65,false
+TIERRA_TO_FUEGO,768,73.83,73.44,-0.39,false
