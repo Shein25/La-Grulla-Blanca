@@ -1,3 +1,5 @@
+> **DIFERIDO — NO ENVIAR TODAVÍA A ASTRA.** Corrección humana 2026-10-09: el balance de **técnicas/Concordancias, seis monstruos normales LII y equipo/economía** debe cerrarse ANTES de solicitar la integración A08. El objetivo de este handoff pasa a ser la **paridad del HTML después de entregar el paquete congelado**. Este documento no es una dependencia para continuar el laboratorio. Autoridad de secuencia: [PLAN PRE-A08](../PRE_A08_PLAN_CIERRE_BALANCE_2026-10-09.md). No se invalidan las pruebas V16.
+
 # Handoff V16 para Astra — desbloquear cierre LianQi II
 **Estado:** solicitud de evidencia; no autorización de implementación canónica. Fecha: 2026-10-09.
 **Repo:** https://github.com/Shein25/La-Grulla-Blanca
