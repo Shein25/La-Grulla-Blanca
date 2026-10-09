@@ -1,0 +1,86 @@
+{
+  "schema": "GRULLA_PRE_A08_MONSTERS_V19_GIT_QA",
+  "date": "2026-10-09",
+  "state": "PASS_FOCAL_LAB_NOT_CANON",
+  "branch": "experiment/lii-tramo1-multirraiz-v08-2026-10-08",
+  "scope": {
+    "normal_monsters": [
+      "cangrejo_cauce",
+      "jabali_pizarra"
+    ],
+    "skills": "V17 LianQi II 2 PT",
+    "concordance_numeric": "V17 defensive BASE 17 scalar and 1 NONE",
+    "concordance_structural": [
+      "TIERRA_TO_METAL",
+      "TIERRA_TO_AGUA"
+    ],
+    "conditional_tramo1_executed": false,
+    "foreign_learning_verified": false,
+    "actual_gear_acquisition_verified": false,
+    "tiers": [
+      "T1",
+      "T2"
+    ],
+    "gears": [
+      "PRE_M03",
+      "POST_M03",
+      "EXPECTED_STAGE"
+    ],
+    "policies": [
+      "EARLY",
+      "DELAYED_TRIGGER"
+    ]
+  },
+  "samples": {
+    "numeric_discovery_fights": 55296,
+    "numeric_heldout_fights": 55296,
+    "structural_discovery_fights": 6144,
+    "structural_heldout_fights": 6144,
+    "total_fights": 122880,
+    "four_arm_contexts": 30720,
+    "none_exact_contexts": 1536,
+    "numeric_on_resolutions": 48832,
+    "structural_on_resolutions": 5748,
+    "off_resolutions": 0,
+    "timeouts": 0,
+    "due_missed": 0,
+    "cold_rows_verified_exact": 30720
+  },
+  "v19_t2_postm03_on": {
+    "cangrejo_cauce": {
+      "original_pct": 62.153,
+      "candidate_pct": 68.837,
+      "delta_pp": 6.684,
+      "defense_bonus_old": 3,
+      "candidate_to": 2
+    },
+    "jabali_pizarra": {
+      "original_pct": 71.528,
+      "candidate_pct": 74.74,
+      "delta_pp": 3.212,
+      "mitigate_next_old_percent": 40,
+      "candidate_to_percent": 35
+    }
+  },
+  "sources_sha256": {
+    "runner_numeric": "bddcd8ba9f2f33b88e8d3f627c838e2156240ab9d2667ff7fdcb3c8c473e25be",
+    "runner_structural": "7ab71867f521d5a3d17711f28ef07f01e46e3ace7a9762ca833398f3c5fd5ea4",
+    "analysis": "caed2f927b930c7c08fd0c4a56941cbbc9ab646ff3592e83c961f128b377bcf5",
+    "zip": "4919a8c494e5a25db747a12c8ab6154ab9ea610ff0ded9f41bf674204c42f6db"
+  },
+  "zip": {
+    "name": "GRULLA_MONSTRUOS_LII_V19_CONCORDANCIAS_Y_EQUIPO_2026-10-09.zip",
+    "entries": 49,
+    "crc": true,
+    "member_sha256": true
+  },
+  "guards": {
+    "no_main": true,
+    "no_merge": true,
+    "no_html_changed": true,
+    "no_equipment_changed": true,
+    "no_monster_registry_changed": true,
+    "no_auto_freeze": true
+  },
+  "decision": "Carry both tested T1 reaction changes as candidate baseline to equipment/economy stage, not canonical."
+}
