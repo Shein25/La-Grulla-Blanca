@@ -1,0 +1,54 @@
+{
+  "schema": "GRULLA_LII_WIND_LANZA_QI5_HUMAN_RATIFICATION_V38",
+  "date": "2026-10-09",
+  "status": "HUMAN_RATIFIED_NUMERIC_DESIGN__PENDING_RUNTIME_INTEGRATION",
+  "authority": "The user responded 'bien rectifiuemoslo y avancemos con el elite' to the explicit recommendation: ratify LII Lanza Qi cost 6→5, EFF T1 5→4, keep rest of V36; in context 'rectifiuemoslo' taken as 'ratifiquémoslo'.",
+  "replaces_candidate_status": "V38 proposal ratified; prior proposal remains preserved as historical input",
+  "skill_id": "lanza_nubes",
+  "name": "Lanza que Parte Nubes",
+  "root": "viento",
+  "stage": "LianQi_II",
+  "base_qi_cost": {
+    "before": 6,
+    "after": 5
+  },
+  "t1_efficiency": {
+    "node": "lanza_t1_eff",
+    "extra_discount": -1,
+    "effective_qi_cost": {
+      "before": 5,
+      "after": 4
+    }
+  },
+  "root_lianqi_i_cost_unchanged": 6,
+  "other_nodes_unmodified": true,
+  "prev_ratified_v36": {
+    "lanza_t1_direct_percent": 30,
+    "lanza_t1_prec_damage_dice": "2d4+4",
+    "paso_t1_eva": 45
+  },
+  "not_approved": [
+    "bleed/sangrado",
+    "global wind damage +1",
+    "any change to monster normals or equipment"
+  ],
+  "six_lianqi_ii_normals": "RATIFIED_CLOSED",
+  "elite_next": {
+    "id": "eco_caido",
+    "E8": "historical candidate not ratified",
+    "no_premature_T1_T2": true
+  },
+  "integration_policy": "numeric authority only; ensure no double-application of T1 efficiency discount, verify Qi costs in production compiler; do not touch HTML in this lab",
+  "guarantees": {
+    "main_unchanged": true,
+    "no_merge": true,
+    "no_rooms_exits": true,
+    "no_a07": true,
+    "no_commerce": true,
+    "no_prices": true,
+    "armor_patrol": {
+      "defense": 2,
+      "hp_max": 2
+    }
+  }
+}
