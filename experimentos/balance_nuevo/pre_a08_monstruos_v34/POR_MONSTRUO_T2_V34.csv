@@ -1,0 +1,7 @@
+monster,source_field,original,V33_moderate,V34_strong_diagnostic,T2_uniform_orig_pct,T2_uniform_moderate_pct,T2_uniform_strong_pct,T2_patrol_orig_pct,T2_patrol_moderate_pct,T2_patrol_strong_pct
+arana_veta_sombria,stats.hp,71,75,79,61.09375,52.50000,42.03125,79.68750,70.46875,61.40625
+buho_niebla_gris,technique.params.direct_damage,1d2+7,1d2+8,1d2+10,67.96875,63.12500,50.93750,85.62500,80.46875,70.62500
+cangrejo_cauce,technique.params.direct_damage,1d2+7,1d2+8,1d2+9,60.93750,52.18750,46.09375,95.62500,89.68750,82.18750
+jabali_pizarra,technique.params.direct_damage,1d3+6,1d3+8,1d3+10,70.78125,59.84375,48.28125,90.00000,81.40625,72.65625
+murcielago_resonante,technique.params.direct_damage,1d2+5,1d2+6,1d2+7,71.09375,63.12500,57.50000,89.84375,84.68750,79.53125
+zorro_bancales,stats.evasion,19,21,23,74.53125,71.40625,66.71875,92.50000,90.78125,87.65625
