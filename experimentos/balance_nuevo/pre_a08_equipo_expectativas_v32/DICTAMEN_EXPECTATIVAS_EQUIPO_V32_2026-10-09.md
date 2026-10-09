@@ -1,6 +1,6 @@
 # PRE-A08 V32 — Balance según etapa y expectativas del equipamiento
 **Fecha 2026-10-09 · LAB PASS, NO CANON, NO RUNTIME, SIN ECONOMÍA.**
-Autoridad humana: [Principio ratificado](../../handoffs/PRINCIPIO_RATIFICADO_EXPECTATIVA_PROGRESION_EQUIPO_2026-10-09.md) (ruta en Git: `experimentos/balance_nuevo/handoffs/PRINCIPIO_RATIFICADO_EXPECTATIVA_PROGRESION_EQUIPO_2026-10-09.md`). *Nota: el enlace relativo aquí es secundario; la ruta explícita es la referencia.*
+Autoridad humana: [Principio ratificado](../handoffs/PRINCIPIO_RATIFICADO_EXPECTATIVA_PROGRESION_EQUIPO_2026-10-09.md) (ruta en Git: `experimentos/balance_nuevo/handoffs/PRINCIPIO_RATIFICADO_EXPECTATIVA_PROGRESION_EQUIPO_2026-10-09.md`). *Nota: el enlace relativo aquí es secundario; la ruta explícita es la referencia.*
 
 ## Contrato de progresión verificado
 - **Uniforme gris de aspirante**, LI, P: `DEF+1, HP+1`.
