@@ -1,0 +1,88 @@
+{
+  "schema": "GRULLA_PRE_A08_V35_WIND_FINAL_MONSTER_NUMERIC_CLOSE",
+  "date": "2026-10-09",
+  "status": "HUMAN_DIRECTED_NUMERIC_DESIGN_CLOSED__LAB_PASS__NOT_APPLIED_RUNTIME",
+  "repo_branch": "experiment/lii-tramo1-multirraiz-v08-2026-10-08",
+  "discovery_new_fights": 24576,
+  "holdout_new_fights": 24576,
+  "total_new_fights": 49152,
+  "paired_contexts": 24576,
+  "cold_exact_rows_not_new": 6144,
+  "cold_columns_exact_ex_cohort": 32,
+  "tiers": [
+    "T1",
+    "T2"
+  ],
+  "root": "viento",
+  "builds_per_root": 16,
+  "policies": [
+    "EARLY",
+    "DELAYED_TRIGGER"
+  ],
+  "gears": [
+    "M03_UNIFORM",
+    "M04_PATROL_DEF2",
+    "M05_COMMON_PATROL",
+    "M05_COMMON_SAUCES"
+  ],
+  "monsters": 6,
+  "arms": [
+    "ORIGINAL",
+    "ROLE_MODERATE"
+  ],
+  "timeouts": 0,
+  "monster_due_missed": 0,
+  "original_monsters_restored": true,
+  "original_coat_defense": 2,
+  "original_coat_hp": 2,
+  "matched_random_seeds": true,
+  "t2_n_per_gear_arm": 3072,
+  "t2_viento_player_win_pct": {
+    "M03_UNIFORM": {
+      "original": 58.658854,
+      "moderate": 51.204427,
+      "discovery_moderate": 51.497396,
+      "holdout_moderate": 50.911458,
+      "cluster_ci95_moderate": [
+        49.446615,
+        52.96224
+      ]
+    },
+    "M04_PATROL_DEF2": {
+      "original": 85.026042,
+      "moderate": 78.776042
+    },
+    "M05_COMMON_PATROL": {
+      "original": 94.921875,
+      "moderate": 91.731771
+    },
+    "M05_COMMON_SAUCES": {
+      "original": 82.845052,
+      "moderate": 77.18099
+    }
+  },
+  "t1_viento_uniform_moderate_pct": 55.273438,
+  "numeric_changes_final_status": "CLOSED_FOR_SIX_LII_NORMALS_NOT_INSTALLED",
+  "v19_old_nerfs_excluded": true,
+  "tooling_scope_limited_to_one_BASE_scalar_concordance": true,
+  "elite_next": "eco_caido: pending T0 source numerical descriptor",
+  "elite_historical_audit_fights_not_new": 34560,
+  "package": {
+    "file": "GRULLA_PRE_A08_V35_CIERRE_NORMALES_Y_PREFLIGHT_ELITE_2026-10-09.zip",
+    "sha256": "bb944e145d39a23ef9d106b39bcca33fafd13c31abf32ef28814ec0199fe2a7a",
+    "entries": 63,
+    "crc": "PASS",
+    "sha_manifest": "PASS",
+    "independent_cold_run": "PASS",
+    "independent_analysis": "PASS",
+    "independent_old_elite_audit": "PASS"
+  },
+  "guardrails": {
+    "no_main": true,
+    "no_merge": true,
+    "no_html": true,
+    "no_rooms_exits": true,
+    "no_monster_canon_patch": true,
+    "no_economy": true
+  }
+}
