@@ -1,0 +1,58 @@
+{
+  "schema": "GRULLA_PRE_A08_LII_SIX_NORMALS_V35_FINAL_NUMERIC_DESIGN",
+  "date": "2026-10-09",
+  "status": "NUMERIC_DESIGN_CLOSED_PER_USER__PENDING_INTEGRATION_RUNTIME_PARITY",
+  "authority": "User direction after Wind audit; V33 candidates supported by V34 + V35",
+  "changes": [
+    {
+      "monster": "jabali_pizarra",
+      "field": "technique.params.direct_damage",
+      "from": "1d3+6",
+      "to": "1d3+8"
+    },
+    {
+      "monster": "buho_niebla_gris",
+      "field": "technique.params.direct_damage",
+      "from": "1d2+7",
+      "to": "1d2+8"
+    },
+    {
+      "monster": "zorro_bancales",
+      "field": "stats.evasion",
+      "from": 19,
+      "to": 21
+    },
+    {
+      "monster": "cangrejo_cauce",
+      "field": "technique.params.direct_damage",
+      "from": "1d2+7",
+      "to": "1d2+8"
+    },
+    {
+      "monster": "murcielago_resonante",
+      "field": "technique.params.direct_damage",
+      "from": "1d2+5",
+      "to": "1d2+6"
+    },
+    {
+      "monster": "arana_veta_sombria",
+      "field": "stats.hp",
+      "from": 71,
+      "to": 75
+    }
+  ],
+  "obsolete_excluded": [
+    "V19 cangrejo DEFENSE_UP +3 to +2",
+    "V19 jabali MITIGATE_NEXT 40 to 35",
+    "V34 ROLE_STRONG all monsters"
+  ],
+  "armor_original": {
+    "item_id": "sobretunica_patrulla",
+    "defense": 2,
+    "hp_max": 2
+  },
+  "scope": "Only six LII normal monster numeric knobs, NOT elites/bosses/adaptation/runtime",
+  "no_runtime_write": true,
+  "no_a07": true,
+  "no_prices": true
+}
