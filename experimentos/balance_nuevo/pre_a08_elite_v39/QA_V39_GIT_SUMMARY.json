@@ -1,0 +1,100 @@
+{
+  "schema": "GRULLA_V39_ELITE_E8_EARLY_ACCESS_AND_STAGE_GEAR_GATE",
+  "date": "2026-10-09",
+  "status": "PASS_LAB_E8_T0_PENDING_HUMAN_RATIFICATION",
+  "branch": "experiment/lii-tramo1-multirraiz-v08-2026-10-08",
+  "ratified_wind_V38": {
+    "li_cost": 6,
+    "lii_cost": 5,
+    "lii_T1_eff_cost": 4
+  },
+  "recovered_E8": {
+    "hp": 84,
+    "precision": 96,
+    "evasion": 18,
+    "defense": 1,
+    "tenacity": 18,
+    "basic_damage": "1d2+4",
+    "control": "NOT_AUTHORIZED—diagnostic 0",
+    "technique": null,
+    "original_profile_status": "PENDING_INTEGRAL_REBALANCE"
+  },
+  "access_ver74": {
+    "blob_sha": "d34f7ea3f9de9344130aa072fac34d14a7a474d6",
+    "rooms": 329,
+    "gates": 11,
+    "reachable_from_patioroots_without_gates": true,
+    "moves": 20,
+    "last_edge": "terraza_cantera--sur-->cruce_vetas",
+    "hidden_exit_only": true,
+    "production_ver76_verified": false
+  },
+  "fights": {
+    "discovery": 9120,
+    "holdout": 9120,
+    "new_total": 18240,
+    "LI_total": 2880,
+    "LII_total": 15360,
+    "extra_control_sensitivity_checks": 40,
+    "control0_vs_60_exact_pairs": 20,
+    "cold_repeat_exact_rows": 2160,
+    "cold_columns_except_cohort": 19,
+    "cold_not_added_to_new_total": true,
+    "timeouts": 0
+  },
+  "LI_prologue_win_pct": {
+    "E8": 9.6875,
+    "Escarabajo_READY": 9.47917,
+    "Sapo_READY": 42.70833
+  },
+  "LI_E8_root_win_pct": {
+    "fuego": 29.1667,
+    "agua": 6.7708,
+    "tierra": 6.25,
+    "viento": 4.1667,
+    "metal": 2.0833
+  },
+  "LII_E8_win_pct": {
+    "P_offense": 69.4271,
+    "M03_offense": 70.5208,
+    "M03_hypothetical_defense": 81.4063,
+    "M04_patrol_offense": 96.6667,
+    "M04_patrol_hypothetical_defense": 98.8021,
+    "M05_sauces_offense": 77.1354,
+    "M05_sauces_hypothetical_defense": 84.0104
+  },
+  "paired_gear_effects_vs_P_pct_points": {
+    "M03": 1.6667,
+    "M04_PATROL": 23.4375,
+    "M05_SAUCES": 6.276
+  },
+  "limitations": [
+    "E8 control unresolved, but no effect in small T0 no-special sensitivity fixture",
+    "T1-T4 not authorized for E8",
+    "defensive skill acquisition not demonstrated",
+    "optional outfits acquisition not demonstrated",
+    "hidden room access audited against ver74 historical, not ver76 production",
+    "no complete Concordance/afliction integration"
+  ],
+  "artifact": {
+    "name": "GRULLA_PRE_A08_V39_ECO_ETAPA_Y_GATES_T0_2026-10-09.zip",
+    "sha256": "eb9c8fd127df1120decf5584dfbd1d26d78ad47c47fbe91f40495d428d244bbd",
+    "bytes": 532693,
+    "entries": 26,
+    "crc": "PASS",
+    "manifest": "PASS",
+    "independent_unpack_checks": "PASS",
+    "independent_cold_exact": "PASS",
+    "runner_sha256": "cbb0fd3f40ba5b93d4e41997c6b8acb502590ba506c349f949a5e5fdc94963dd",
+    "analysis_sha256": "9828f745c3302fba3facb5441ed97889cd6935ee80780fa0b09448a158b5abd9"
+  },
+  "guards": {
+    "main_unchanged": true,
+    "no_merge": true,
+    "no_html": true,
+    "no_rooms_exits": true,
+    "no_economy": true,
+    "no_gear_nerf": true,
+    "no_monster_normals_reopen": true
+  }
+}
