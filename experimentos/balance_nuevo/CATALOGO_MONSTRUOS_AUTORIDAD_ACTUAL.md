@@ -1,5 +1,7 @@
 # AUTORIDAD ACTUAL — catálogo de monstruos de La Grulla Blanca
 
+> **ENMIENDA URGENTE — 2026-10-10:** El índice V2 reúne **25 identidades verificadas, PERO NO es el total canónico definitivo**. Por confirmación humana, existen además **nuevos monstruos repetibles creados para LianQi III** que NO fueron incorporados aún porque faltan por recuperar sus IDs/nombres desde la fuente de creación. El total correcto queda **PENDIENTE**. Tanto «18 monstruos en total» como «25 monstruos en total» son afirmaciones inválidas. Las nuevas especies de LianQi II Y III forman parte del canon por decisión humana; la falta de identificación en el índice es una tarea de recuperación, no una exclusión.
+
 **Decisión humana expresa:** 2026-10-10. **Estado:** CANÓNICO EN DISEÑO / REGISTRO MAESTRO DE IDENTIDADES.
 **Fuente preferente para cualquier inventario:** [`CATALOGO_CANONICO_MONSTRUOS_ARCO1_V2.json`](CATALOGO_CANONICO_MONSTRUOS_ARCO1_V2.json).
 
@@ -9,7 +11,7 @@ La afirmación **«La Grulla Blanca tiene 18 monstruos en total» queda DEPRECAD
 
 El antiguo `monster_arc1_registry.json` con `rules.profile_count=18` es un **snapshot histórico parcial**, válido ÚNICAMENTE como fuente de sus perfiles numéricos/identidades originales y las decisiones T0 antiguas. **NO ES EL CATÁLOGO COMPLETO VIGENTE.** No editar sus valores aprobados solo para corregir el total; deben preservarse hashes e historia del balance.
 
-Se reconoce canónicamente la incorporación de **seis monstruos repetibles nuevos** creados y aprobados para LianQi II en V35 y **un guardián nuevo** de LianQi III con identidad humana aprobada. El catálogo actual verificable tiene **25 IDs distintos**: 18 + 6 + 1. Los futuros monstruos que se creen, ratifiquen y documenten deben agregarse a ese índice y elevar la cuenta; **25 tampoco es un máximo fijo de diseño**.
+Se reconoce canónicamente la incorporación de **seis monstruos repetibles nuevos** creados y aprobados para LianQi II en V35 y **un guardián nuevo** de LianQi III con identidad humana aprobada. hay **25 IDs verificados hasta ahora (total incompleto)**: 18 + 6 + 1. Los futuros monstruos que se creen, ratifiquen y documenten deben agregarse a ese índice y elevar la cuenta; **25 tampoco es un máximo fijo de diseño**.
 
 ## Seis perfiles LianQi II incluidos como canon
 
