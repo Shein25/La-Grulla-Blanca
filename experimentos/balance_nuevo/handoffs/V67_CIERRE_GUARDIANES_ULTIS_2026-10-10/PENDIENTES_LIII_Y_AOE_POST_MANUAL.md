@@ -1,8 +1,9 @@
 # LianQi III — monstruos pendientes y pruebas POST_AOE
 
-> **ENMIENDA URGENTE — 2026-10-10:** El índice V2 reúne **25 identidades verificadas, PERO NO es el total canónico definitivo**. Por confirmación humana, existen además **nuevos monstruos repetibles creados para LianQi III** que NO fueron incorporados aún porque faltan por recuperar sus IDs/nombres desde la fuente de creación. El total correcto queda **PENDIENTE**. Tanto «18 monstruos en total» como «25 monstruos en total» son afirmaciones inválidas. Las nuevas especies de LianQi II Y III forman parte del canon por decisión humana; la falta de identificación en el índice es una tarea de recuperación, no una exclusión.
+> **AUTORIDAD CANÓNICA NUEVA V3 (2026-10-10):** el inventario **vigente verificado es 31 identidades**: 18 perfiles históricos + seis repetibles nuevos LII (V35) + seis repetibles nuevos LIII (V45/V46) + `custodio_eco_petreo` único. La cifra **18 como total** y el índice incompleto V2 de **25** quedan **DEPRECADOS**. Fuente obligatoria: `experimentos/balance_nuevo/CATALOGO_CANONICO_MONSTRUOS_ARCO1_V3.json` y `experimentos/balance_nuevo/CATALOGO_MONSTRUOS_AUTORIDAD_ACTUAL.md`. Nuevas seis LIII: `garza_bruma_roca`, `cangrejo_laja_humeda`, `sanguijuela_remanso_turbio`, `salamandra_filtracion_tibia`, `rana_cascajo_barranco`, `carpa_lamina_reflejo`. Canon de diseño V46; T0 numérico y T1–T4 siguen propuestos.
 
-> **AUTORIDAD CANÓNICA DE MONSTRUOS (2026-10-10):** el inventario histórico de **18** se encuentra **DEPRECADO COMO TOTAL**. Usar siempre `experimentos/balance_nuevo/CATALOGO_CANONICO_MONSTRUOS_ARCO1_V2.json` y `experimentos/balance_nuevo/CATALOGO_MONSTRUOS_AUTORIDAD_ACTUAL.md` (25 identidades verificadas = 18 históricas + seis repetibles LII V35 + Custodio LIII). Las menciones a «registro de 18 perfiles» solo identifican la fuente numérica histórica, nunca el catálogo total válido. No reabrir T0 por esta incorporación.
+
+
 
 **Fecha:** 2026-10-10. **Estado:** AUDITORÍA DE ALCANCE Y PLAN, sin nuevas cifras de monstruo, sin simulaciones AOE cerradas.
 **Autoridad de registro consultada:** `experimentos/balance_nuevo/monster_arc1_registry.json` en commit `45c3a9c240ea74208a0d8fd4d5be187bc817df35` (snapshot histórico T0). `native_stage` es etiqueta de perfil **NO prueba de acceso geográfico/legal al encuentro**.
@@ -39,6 +40,24 @@
 **Inventario corregido, excluidos los cinco guardianes:** 3 perfiles nativos LIII (Pez, Anguila y Sombra; 2 repetibles + 1 única) **más 6 repetibles recientes de LII a auditar como encuentros potencialmente accesibles desde LIII**. En total son **9 perfiles distintos para preflight POST_AOE**, pero la legalidad de los seis encuentros de arrastre sigue **POR VERIFICAR**. Otros repetibles LII/LI previos también requieren barrido de acceso si sus zonas permanecen abiertas: no declarar esta lista exhaustiva de TODO Arco 1.
 
 No repetir balance ya cerrado de LII ni actualizar T0 o HTML al agregar cobertura de pruebas.
+
+
+## 1 ter. SEIS NUEVOS REPETIBLES PROPIOS DE LIII — V45/V46 RECUPERADOS Y CANÓNICOS
+
+Los siguientes seis **sí fueron creados y aprobados específicamente para LianQi III**, según documentación original V45/V46 ahora preservada en esta rama. La identidad y diseño son canónicos, mientras que **sus T0 numéricos V45 y T1–T4 V46 siguen como propuestas hasta ratificación específica**. El registro antiguo de 18 no los contenía:
+
+| ID | Especie | Mecánica para ensayar con AOE |
+|---|---|---|
+| `garza_bruma_roca` | Garza de Bruma de Roca | EVA/Precisión, tirada independiente por blanco |
+| `cangrejo_laja_humeda` | Cangrejo de Laja Húmeda | DEF alta/Tenacidad y penetración AOE |
+| `sanguijuela_remanso_turbio` | Sanguijuela de Remanso Turbio | Veneno y eventos DOT independientes |
+| `salamandra_filtracion_tibia` | Salamandra de Filtración Tibia | Quemadura, Absorción y DOT por entidad |
+| `rana_cascajo_barranco` | Rana de Cascajo del Barranco | Daño directo sostenido |
+| `carpa_lamina_reflejo` | Carpa de Lámina Reflejada | Drenaje de Qi y pago único AOE |
+
+Fuente sellada en Git de V45 y V46: `FUENTE_IMPORTADA_V45_NUEVA_FAUNA_LIII_2026-10-09.md`, `FUENTE_IMPORTADA_V46_CADENA_ADAPTATIVA_LIII_2026-10-09.md`. Para estas especies, **12 salas son planes de colocación**, no apariciones productivas. NO declarar ninguna prueba multiblanco ejecutada con estos perfiles.
+
+**Cobertura primaria actualizada:** 8 repetibles nativos LIII (Pez + Anguila + 6 nuevos), Sombra única LIII, y 6 repetibles LII nuevos cuya disponibilidad en etapa superior debe verificarse = **15 identidades prioritarias POST_AOE**, sin contar otros repetibles anteriores ni cinco guardianes. Esto es una lista de focos, no autorización de spawns. El índice maestro V3 contiene 31 identidades globales.
 
 ## 2. Contrato AOE obligatorio
 
@@ -81,10 +100,10 @@ F. Sin manual, comando AOE rechazado **sin consumir Qi ni acción** salvo que el
 G. AOE + Ulti principal con máximo una Ulti por pelea (la AOE es técnica normal, no debe gastar el cupo de Ulti).
 
 ## 4. Orden de ejecución recomendado — SIN inventar resultados
-1. Auditar código exacto de cinco AOE, spawn/ROOM presentes y llegada legal a `pez_lunar`, `anguila_estelar`, `sombra_ahogada`.
+1. Auditar código exacto de cinco AOE, spawn/ROOM existentes y llegada legal a ocho repetibles LIII (Pez, Anguila, seis V45), Sombra única, además de los seis LII de V35 si corresponde.
 2. Certificar eventos y pruebas unitarias 1/2/3 objetivos; comparar el resolver unitarget con AOE.
 3. Recién entonces simular POST_AOE por monstruo/raíz/build/equipo/política con seeds pareadas y desgloses de daño/IA.
 4. Ampliar el cruce también a los seis repetibles nuevos ratificados LII si sus encuentros se comprueban accesibles en LIII. Proponer ajustes **solo** cuando un fallo/imbalance esté demostrado; conservar T0–T4 congelados y élite T0 si funcionan.
 5. Preparar integración Astra A08 sin tocar `main` o HTML durante investigación.
 
-**Estado corregido:** 3 perfiles nativos LIII + 6 repetibles nuevos LII documentados para el preflight de accesibilidad en LIII (9 referencias prioritarias, NO inventario universal de todas las zonas). **Cero ajustes numéricos nuevos y cero combates POST_AOE multiblanco ejecutados.** No confundir plan con prueba completada.
+**Estado actualizado:** 31 identidades globales en V3; para la campaña POST_AOE hay 15 perfiles prioritarios (9 nativos LIII y seis LII de V35 bajo verificación de acceso). **Ningún resultado multiblanco real se ha ejecutado ni ratificado.**
