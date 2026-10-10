@@ -1,0 +1,11 @@
+# PROMPT — NUEVO CHAT — P3/P4 QIAO NEW (corte 2026-10-10)
+
+Continuá **exactamente** el desarrollo experimental de La Grulla Blanca a partir de la entrega de materiales NEW a Qiao Ren. Repositorio `Shein25/La-Grulla-Blanca`, rama de respaldo `handoff/p3-p4-qiao-new-2026-10-10`. Leé obligatoriamente `experimentos/handoffs/P3_P4_QIAO_2026-10-10/HANDOFF_P3_P4_QIAO_2026-10-10.md` ANTES de trabajar.
+
+**Candidata de autoridad binaria:** `CANDIDATE(4).html`, SHA-256 `9f0bbde077e39edffda1ab75c70f0de85a40df7a51bba4e92fccc5d63b469f43`. El ZIP adjunto de backup completo contiene también `ASTRA_QIAO_NEW_MATERIAL_DELIVERY_REVIEW_2026-10-09.zip` de 44 MB y las demos V08 y V06. Si un archivo de GitHub tiene líneas normalizadas y difiere su hash, priorizar el archivo exacto del ZIP. No sustituir por ver74 u otra candidata.
+
+**Hechos:** última candidata aporta transacción privada de entrega a Qiao de 3 Cámara de jade (avispa_jade) y 3 Membrana férrea (escarabajo_hierro), previa extracción real, `ENTREGAR QIAO REN`, confirmación MC, guards anti-replay/cancelación. M03 y Lianqi I se preservan. Astra reporta 50 PASS/5 BLOCKED en cinco raíces. Independiente confirmado: recorrido completo Fuego con entrega única y sin ascenso; **falta auditoría independiente integral de las otras raíces**.
+
+**Trabajo inmediato:** validar en la candidata byte-correcta los adversariales y el circuito de Qiao en las cinco raíces, cerrar dictamen honesto y definir siguiente etapa SAVE/LOAD NEW autoritativa. NO activar P3 (40 victorias, 3 especies, 10 extracciones difíciles, exploración 75% sin denominador ratificado, 6 entregas 3+3), píldora, ritual V08, ascenso II o defensivas P4 antes de sus gates. Mantener `main` intocable, sin merge ni promoción, no tocar `ROOMS.exits`, preservar M02, M03, inventario ordinario, A07 y respawn NEW. Compartir pruebas y hashes, distinguir fuentes de Astra vs verificación independiente.
+
+**Referencia visual:** V08 solo permite clic en el NÚCLEO al finalizar las brechas; V06 defensivas todavía demo.
