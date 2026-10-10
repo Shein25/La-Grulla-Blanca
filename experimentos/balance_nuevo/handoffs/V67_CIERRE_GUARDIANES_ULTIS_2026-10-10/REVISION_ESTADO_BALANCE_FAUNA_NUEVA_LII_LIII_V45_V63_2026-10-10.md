@@ -1,5 +1,7 @@
 # Auditoría del estado de balance de fauna nueva LianQi II y III — 2026-10-10
 
+> **ENMIENDA DE AUTORIDAD V68:** la revisión original omitía una divergencia entre ramas. El commit histórico `45c3a9c240ea74208a0d8fd4d5be187bc817df35` (2/10) ya ratificó como `READY` y T0 cerrado a `sombra_ahogada` y `eco_caido`, y como T0–T4 cerrados a `pez_lunar` y `anguila_estelar`. Sin embargo, la rama PRE-A08/V67 contiene el blob `c0d2131f2cc8dbbb96babf9711c197e54fe97591`, que sigue marcándolos `PENDING`. V39 (9/10) trabaja un nuevo Eco E8 expresamente NO ratificado. **No sobrescribir datos congelados en 45c3 ni promover automáticamente el resultado más nuevo hasta reconciliar autoridades.** Detalle: `DICTAMEN_V68_CIERRE_SELECCION_LIII_Y_ELITES_2026-10-10.md`. Los seis nuevos V45 sí eran ausentes del catálogo anterior y ya tienen un baseline de diseño seleccionado en `SELECCION_T0_SEIS_REPETIBLES_LIII_V67_2026-10-10.json`; no implica READY.
+
 **Autoridad:** informativa; NO es ratificación de parámetros ni modificación productiva.
 **Índice de identidades canónico:** `experimentos/balance_nuevo/CATALOGO_CANONICO_MONSTRUOS_ARCO1_V3.json` — **31 identidades** (18 antiguas + 6 nuevas LII + 6 nuevas LIII + Custodio de Tierra).
 **Fuente histórica de resultados LIII:** documentos reales V45, V46, V47, V48, V63 preservados/recuperados para la revisión. Fuentes originales V45 y V46 están guardadas dentro de este mismo handoff. NO elevar T0 experimental a READY.
