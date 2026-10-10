@@ -1,0 +1,132 @@
+{
+  "schema": "grulla-v67-human-approved-ultis-v1",
+  "date": "2026-10-10",
+  "authority": "HUMAN_APPROVED_BALANCE_VALUES",
+  "scope": "LianQi_III_MAIN_ROOT_ULTIMATE_EXPERIMENTAL_BALANCE",
+  "implementation_status": "APPROVED_SPEC_NOT_RUNTIME_PATCH",
+  "source": {
+    "base_git_commit": "9264381e60843d4e77604f27a75f93e00c24a4cf",
+    "v66_original_sha256": "e8402ca195ba9f2d4fe97ae4a71351d25f691c7601a81c49693cdf77198d3a39",
+    "v031_original_sha256": "8c18d8f3aaecfe887e76fd7d410ca803bb7c499f0584b00c318bf75122337f0e",
+    "v67_balance_lab_zip_sha256": "d4214f3bdf668699d4d89e463a57709e8ea5eb3f50ad19fcca96c16ed6695465",
+    "report": "GRULLA_V67_BALANCE_ULTIS_METAL_VIENTO_2026-10-10.zip / INFORME_BALANCE_V67_METAL_VIENTO.md"
+  },
+  "shared_rules": {
+    "main_root_only_at_lianqi_iii": true,
+    "root_full_mastery_required": true,
+    "grafted_ultimate_at_lianqi_iii": false,
+    "maximum_successful_ultimate_uses_per_fight": 1,
+    "ultimate_qi_cost": 16,
+    "normal_techniques_unmodified": true
+  },
+  "approved_ultimates": {
+    "METAL_SENTENCIA_FILO_CELESTIAL": {
+      "candidate_id": "METAL_CANDIDATE_SOFT_M02",
+      "name": "Sentencia del Filo Celestial",
+      "root": "metal",
+      "direct_hit_damage_scale": 0.5,
+      "extra_penetration_percentage_points": 45,
+      "precision_bonus": 30,
+      "bleed": {
+        "requires_hp_damage": true,
+        "stacks": 1,
+        "power_per_stack": 1,
+        "voluntary_action_activations_per_stack": 2,
+        "ignores_defense": true,
+        "absorption_applies": true
+      },
+      "punto_de_ruptura": {
+        "retained": true,
+        "requires_two_effective_bleed_activations": true,
+        "requires_linked_metal_attack": true,
+        "damage_scale": 0.5,
+        "original_formula": "14–20 + 4 * remaining_bleed_stacks",
+        "no_critical": true,
+        "no_new_evasion_roll": true
+      },
+      "qi_cost": 16,
+      "unchanged_other_semantics": true
+    },
+    "WIND_VENDAVAL_MIL_HERIDAS": {
+      "candidate_id": "VIENTO_CANDIDATE_SOFT_W01",
+      "name": "Vendaval de las Mil Heridas",
+      "root": "viento",
+      "direct_hit_damage_scale": 0.45,
+      "cuts_per_action": 2,
+      "original_cut_damage_ranges": [
+        [
+          18,
+          26
+        ],
+        [
+          22,
+          32
+        ]
+      ],
+      "original_cut_precision_and_critical_rules_retained": true,
+      "bleed": {
+        "requires_hp_damage_per_cut": true,
+        "stacks_per_successful_cut": 1,
+        "max_stacks_from_this_ultimate": 2,
+        "power_per_stack": 2,
+        "voluntary_action_activations_per_stack": 2,
+        "one_cut_only_bonus_to_first_bleed_activation": 2,
+        "ignores_defense": true,
+        "absorption_applies": true
+      },
+      "qi_cost": 16,
+      "unchanged_other_semantics": true
+    }
+  },
+  "benchmarks": {
+    "source": "V67 E1 physical lab candidate / NOT certified production runtime",
+    "main_root_boss_player_winrate": {
+      "metal_king_beetle": {
+        "no_ulti": 0.6347,
+        "original_ulti": 1,
+        "approved_adjusted_ulti": 0.7889
+      },
+      "wind_mantis": {
+        "no_ulti": 0.5681,
+        "original_ulti": 1,
+        "approved_adjusted_ulti": 0.7708
+      }
+    },
+    "per_boss_root_stratum_n": 720,
+    "guardian_fight_under_3_lab_rounds_adjusted_observed": 0,
+    "guardian_kill3_semantics": "LAB_ROUNDS_NOT_CERTIFIED_PLAYER_ACTIONS",
+    "anatomical_bleed_immunity": "EXPERIMENTAL_UNRATIFIED"
+  },
+  "guardians": {
+    "human_design_balance_decision": "CLOSED_FOR_THIS_LIII_LAB_NO_MORE_GLOBAL_HP_DEF_REBALANCE",
+    "five_ids": [
+      "sapo_caldera",
+      "rey_escarabajo",
+      "guardian_coral",
+      "mantis_nube",
+      "custodio_eco_petreo"
+    ],
+    "historic_four_t0": "FROZEN_UNCHANGED",
+    "custodio_numeric_t0": "NOT_RATIFIED",
+    "custodio_runtime_spawn": "NOT_IMPLEMENTED",
+    "v65_kit_candidate": "LAB_REFERENCE_NOT_AUTOMATIC_PRODUCTION_PATCH"
+  },
+  "pending": [
+    "V03.1_TO_E1_FULL_EVENT_EQUIVALENCE",
+    "ULTIMATE_UNLOCK_ID_SELECTION_AND_FULL_MASTERY_GATE_IN_RUNTIME",
+    "ANATOMICAL_BLEED_IMMUNITY_RATIFICATION",
+    "CUSTODIO_NUMERIC_T0_AND_SPAWN",
+    "AOE_POST_MANUAL_TESTS_AGAINST_LIII_ENEMIES",
+    "HTML_RUNTIME_INTEGRATION_BY_ASTRA"
+  ],
+  "prohibitions": [
+    "NO_MAIN",
+    "NO_MERGE",
+    "NO_PRODUCTION_HTML",
+    "NO_ROOMS_EXITS",
+    "NO_UNAUTHORIZED_T0_MODIFICATION",
+    "NO_UNAUTHORIZED_SPAWN",
+    "NO_AUTO_AOE_UNLOCK",
+    "NO_NEW_NPCS_OR_ITEMS"
+  ]
+}
