@@ -1,5 +1,7 @@
 # LianQi III — monstruos pendientes y pruebas POST_AOE
 
+> **AUTORIDAD CANÓNICA DE MONSTRUOS (2026-10-10):** el inventario histórico de **18** se encuentra **DEPRECADO COMO TOTAL**. Usar siempre `experimentos/balance_nuevo/CATALOGO_CANONICO_MONSTRUOS_ARCO1_V2.json` y `experimentos/balance_nuevo/CATALOGO_MONSTRUOS_AUTORIDAD_ACTUAL.md` (25 identidades verificadas = 18 históricas + seis repetibles LII V35 + Custodio LIII). Las menciones a «registro de 18 perfiles» solo identifican la fuente numérica histórica, nunca el catálogo total válido. No reabrir T0 por esta incorporación.
+
 **Fecha:** 2026-10-10. **Estado:** AUDITORÍA DE ALCANCE Y PLAN, sin nuevas cifras de monstruo, sin simulaciones AOE cerradas.
 **Autoridad de registro consultada:** `experimentos/balance_nuevo/monster_arc1_registry.json` en commit `45c3a9c240ea74208a0d8fd4d5be187bc817df35` (snapshot histórico T0). `native_stage` es etiqueta de perfil **NO prueba de acceso geográfico/legal al encuentro**.
 
