@@ -1,11 +1,10 @@
 {
   "schema": "la-grulla-blanca-monstruos-canon-arco1-v2",
   "authority_date": "2026-10-10",
-  "authority": "DECISION_HUMANA_EXPLICITA",
-  "status": "CANONICAL_DESIGN_MASTER_INDEX_ON_V67_BRANCH",
+  "authority": "HUMAN_RATIFIED_ALL_NEW_LII_AND_LIII_SPECIES_INCLUDED_IN_CANON_INVENTORY__LIII_ENUMERATION_MISSING",
+  "status": "PARTIAL_CANONICAL_IDENTITIES_CONFIRMED_PENDING_NEW_LIII_REPEATABLES",
   "supersedes": "LEGACY_FIXED_COUNT_18",
   "summary": {
-    "total_canonical_identities": 25,
     "legacy_historical_profiles": 18,
     "added_new_repeatables_lianqi_ii": 6,
     "added_new_guardian_lianqi_iii": 1,
@@ -15,7 +14,10 @@
       "LianQi_III": 5,
       "LianQi_IV": 4
     },
-    "notes": "25 identities in currently verified sources; not proof of runtime integration or all possible future species."
+    "notes": "This index lists 25 IDENTITIES VERIFIED SO FAR only. The user explicitly confirms new LianQi III repeatable species were created; they are missing from this file and therefore the total number is unknown. NEVER advertise 25 as complete Arco 1 canon.",
+    "verified_entities_currently_indexed": 25,
+    "total_canonical_identities_status": "NOT_YET_KNOWN_PENDING_NEW_LIII_REPEATABLES",
+    "pending_new_lianqi_iii_repeatables": "PENDING_DISCOVERY_AND_ENUMERATION_NOT_ZERO"
   },
   "precedence_rules": {
     "canonical_inventory_source": "experimentos/balance_nuevo/CATALOGO_CANONICO_MONSTRUOS_ARCO1_V2.json",
@@ -24,7 +26,9 @@
     "new_lii_monsters": "CANONICAL_ENTITIES_AND_APPROVED_NUMERIC_DESIGN",
     "new_liii_guardian": "CANONICAL_IDENTITY_ONLY_T0_AND_SPAWN_PENDING",
     "unverified_additional_species": "NOT_AUTO_INVENTED",
-    "historic_encounter_stage_tags": "NATIVE_STAGE_NOT_LEGAL_ENCOUNTER_STAGE"
+    "historic_encounter_stage_tags": "NATIVE_STAGE_NOT_LEGAL_ENCOUNTER_STAGE",
+    "new_liii_repeatables": "HUMAN_CONFIRMED_CANON_PENDING_EXACT_NAMES_IDS_AND_METADATA__RECONCILE_BEFORE_COMPLETE_TOTAL",
+    "total_monsters": "UNRESOLVED__AT_LEAST_25_VERIFIED__DO_NOT_USE_18_OR_25_AS_GLOBAL_TOTAL"
   },
   "sources": {
     "legacy_18": {
@@ -636,5 +640,13 @@
       "runtime_integration_status": "NO_RUNTIME_SPAWN_OR_MANUAL",
       "notes": "Identity and name are approved; do not invent T0, stats, spawn or manual delivery."
     }
-  ]
+  ],
+  "missing_known_group": {
+    "stage": "LianQi_III",
+    "role": "REPEATABLE_MONSTERS",
+    "human_approved_inclusion": true,
+    "exact_id_list": "NOT_RECOVERED_FROM_CHECKED_GIT_SOURCES",
+    "status": "SOURCE_RECONCILIATION_REQUIRED",
+    "do_not_invent_names_or_counts": true
+  }
 }
