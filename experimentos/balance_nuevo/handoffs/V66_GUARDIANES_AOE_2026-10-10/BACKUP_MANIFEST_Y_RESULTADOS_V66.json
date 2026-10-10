@@ -1,0 +1,105 @@
+{
+  "schema": "GRULLA_V66_HANDOFF_SNAPSHOT_V1",
+  "status": "VERIFIED_SOURCE_ARCHIVE_LOCAL; GIT_DOCUMENTARY_BACKUP",
+  "archive": {
+    "filename": "GRULLA_V66_GUARDIANES_AOE_DESGLOSE_5_RAICES_2026-10-10.zip",
+    "sha256": "e8402ca195ba9f2d4fe97ae4a71351d25f691c7601a81c49693cdf77198d3a39",
+    "included_as_binary_in_git": false,
+    "contains_runner": true,
+    "contains_individual_battles": true,
+    "integrity_check": "ZIP CRC PASSED"
+  },
+  "previous_V65": {
+    "filename": "GRULLA_V65_DISENO_BALANCE_CINCO_GUARDIANES_AOE_2026-10-10.zip",
+    "sha256": "e741c308917f2127ec10f62d4d75f54266957b2f3ecc1171b2ee7aed47fa70d2"
+  },
+  "provenance": {
+    "design_decision_commit": "0f59db18357abadc168cd117d14aa0010e8453e2",
+    "four_ratified_unique_T0_commit": "45c3a9c240ea74208a0d8fd4d5be187bc817df35",
+    "base_branch": "experiment/lii-tramo1-multirraiz-v08-2026-10-08"
+  },
+  "rules": {
+    "player_stage": "LianQi_III",
+    "player_state": "PRE_AOE",
+    "points": 4,
+    "guardians_unique": true,
+    "one_ulti_per_combat": true,
+    "ulti_main_LIII_max_mastery": true,
+    "ulti_graft_requires_LIV": true,
+    "ulti_physical_runner_connected": false,
+    "companions_invented": false,
+    "boss_phases_required": false,
+    "aoe_scalar_single": 0.65,
+    "aoe_scalar_multitarget": 1
+  },
+  "combats": {
+    "paired_main": 36000,
+    "controls": 18000,
+    "candidates": 18000,
+    "sensitivity": 27000,
+    "total": 63000,
+    "timeout": 0,
+    "reported_candidate_kills_in_3_actions": 0,
+    "per_candidate_root_boss_cell": 720
+  },
+  "root_order": [
+    "fuego",
+    "metal",
+    "agua",
+    "tierra",
+    "viento"
+  ],
+  "candidate_win_pct": {
+    "sapo_caldera": [
+      50.28,
+      42.64,
+      30,
+      29.03,
+      52.64
+    ],
+    "rey_escarabajo": [
+      83.19,
+      63.47,
+      52.78,
+      52.5,
+      65.42
+    ],
+    "guardian_coral": [
+      46.67,
+      39.86,
+      19.72,
+      24.03,
+      41.81
+    ],
+    "mantis_nube": [
+      59.17,
+      48.19,
+      37.22,
+      33.61,
+      56.81
+    ],
+    "custodio_eco_petreo": [
+      55.56,
+      41.81,
+      24.86,
+      31.11,
+      45.69
+    ]
+  },
+  "global_win_pct": {
+    "sapo_caldera": 40.92,
+    "rey_escarabajo": 63.47,
+    "guardian_coral": 34.42,
+    "mantis_nube": 47,
+    "custodio_eco_petreo": 39.81
+  },
+  "status_by_guardian": {
+    "sapo_caldera": "V65_CANDIDATE_PRESERVE_T0",
+    "rey_escarabajo": "V65_CANDIDATE_PRESERVE_T0",
+    "guardian_coral": "NEEDS_FOCAL_TUNING_FOR_WATER",
+    "mantis_nube": "V65_CANDIDATE_PRESERVE_T0",
+    "custodio_eco_petreo": "CANDIDATE_NO_RATIFIED_T0_NO_SPAWN"
+  },
+  "with_ulti": "BLOCKED_UNTIL_REAL_PHYSICAL_V03_1_BRIDGE",
+  "next": "V67 Ultis physical bridge, paired NO_ULTI vs MAIN_ROOT_ULTI_READY, subgroup calibration Coral/Agua and Custodio/Tierra without globally nerfing defenses"
+}
