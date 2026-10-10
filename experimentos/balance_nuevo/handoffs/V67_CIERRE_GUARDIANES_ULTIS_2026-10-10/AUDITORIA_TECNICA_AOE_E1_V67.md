@@ -1,8 +1,9 @@
 # Auditoría inicial de integración AOE × monstruos LianQi III
 
-> **ENMIENDA URGENTE — 2026-10-10:** El índice V2 reúne **25 identidades verificadas, PERO NO es el total canónico definitivo**. Por confirmación humana, existen además **nuevos monstruos repetibles creados para LianQi III** que NO fueron incorporados aún porque faltan por recuperar sus IDs/nombres desde la fuente de creación. El total correcto queda **PENDIENTE**. Tanto «18 monstruos en total» como «25 monstruos en total» son afirmaciones inválidas. Las nuevas especies de LianQi II Y III forman parte del canon por decisión humana; la falta de identificación en el índice es una tarea de recuperación, no una exclusión.
+> **AUTORIDAD CANÓNICA NUEVA V3 (2026-10-10):** el inventario **vigente verificado es 31 identidades**: 18 perfiles históricos + seis repetibles nuevos LII (V35) + seis repetibles nuevos LIII (V45/V46) + `custodio_eco_petreo` único. La cifra **18 como total** y el índice incompleto V2 de **25** quedan **DEPRECADOS**. Fuente obligatoria: `experimentos/balance_nuevo/CATALOGO_CANONICO_MONSTRUOS_ARCO1_V3.json` y `experimentos/balance_nuevo/CATALOGO_MONSTRUOS_AUTORIDAD_ACTUAL.md`. Nuevas seis LIII: `garza_bruma_roca`, `cangrejo_laja_humeda`, `sanguijuela_remanso_turbio`, `salamandra_filtracion_tibia`, `rana_cascajo_barranco`, `carpa_lamina_reflejo`. Canon de diseño V46; T0 numérico y T1–T4 siguen propuestos.
 
-> **AUTORIDAD CANÓNICA DE MONSTRUOS (2026-10-10):** el inventario histórico de **18** se encuentra **DEPRECADO COMO TOTAL**. Usar siempre `experimentos/balance_nuevo/CATALOGO_CANONICO_MONSTRUOS_ARCO1_V2.json` y `experimentos/balance_nuevo/CATALOGO_MONSTRUOS_AUTORIDAD_ACTUAL.md` (25 identidades verificadas = 18 históricas + seis repetibles LII V35 + Custodio LIII). Las menciones a «registro de 18 perfiles» solo identifican la fuente numérica histórica, nunca el catálogo total válido. No reabrir T0 por esta incorporación.
+
+
 
 **Fecha:** 2026-10-10. **Estado:** PRECHECK_DE_FUENTES, **NO** simulación AOE multiblanco ni balance validado.
 
@@ -35,3 +36,6 @@ Se inspeccionó el ZIP V66 sellado, específicamente `V66/sources/physical_sourc
 
 ## 4. Corrección de alcance de monstruos nuevos (2026-10-10)
 El apartado 2 enumera correctamente tres perfiles **nativos LIII del registro histórico**, pero era incorrecto utilizarlo como inventario general de enemigos POST_AOE. Los **seis repetibles nuevos de LII ratificados en V35** no aparecen en el registro de 18 perfiles: `jabali_pizarra`, `buho_niebla_gris`, `zorro_bancales`, `cangrejo_cauce`, `murcielago_resonante`, `arana_veta_sombria`. Se agregan al preflight de enfrentamientos del jugador LIII **sujeto a verificar spawn y acceso a las salas existentes**, sin declararlos nativos LIII, sin inventar combates y sin reabrir los seis balances LII. Fuente: `experimentos/balance_nuevo/handoffs/CIERRE_RATIFICADO_VIENTO_Y_NORMALES_2026-10-09/DECISION_HUMANA_CIERRE_LII_NORMAL_Y_VIENTO_2026-10-09.json`. Ver corrección detallada en `PENDIENTES_LIII_Y_AOE_POST_MANUAL.md`.
+
+## Corrección definitiva del inventario LIII (2026-10-10)
+Después del inventario inicial se recuperaron fuentes completas `V45` y `V46`, ahora guardadas en Git. Contienen seis repetibles nuevos LIII aprobados en diseño: `garza_bruma_roca`, `cangrejo_laja_humeda`, `sanguijuela_remanso_turbio`, `salamandra_filtracion_tibia`, `rana_cascajo_barranco`, `carpa_lamina_reflejo`. No fueron parte de la batería V66/V67; futuros tests POST_AOE deberán cubrirlos. El inventario V3 de **31 identidades** prevalece sobre cualquier conteo histórico 18 o índice V2 de 25. No inferir validación T0, T1–T4, spawn ni combate multiblanco.
