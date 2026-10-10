@@ -1,5 +1,7 @@
 # Auditoría inicial de integración AOE × monstruos LianQi III
 
+> **AUTORIDAD CANÓNICA DE MONSTRUOS (2026-10-10):** el inventario histórico de **18** se encuentra **DEPRECADO COMO TOTAL**. Usar siempre `experimentos/balance_nuevo/CATALOGO_CANONICO_MONSTRUOS_ARCO1_V2.json` y `experimentos/balance_nuevo/CATALOGO_MONSTRUOS_AUTORIDAD_ACTUAL.md` (25 identidades verificadas = 18 históricas + seis repetibles LII V35 + Custodio LIII). Las menciones a «registro de 18 perfiles» solo identifican la fuente numérica histórica, nunca el catálogo total válido. No reabrir T0 por esta incorporación.
+
 **Fecha:** 2026-10-10. **Estado:** PRECHECK_DE_FUENTES, **NO** simulación AOE multiblanco ni balance validado.
 
 ## 1. Hallazgo limitante demostrado en las fuentes V66
