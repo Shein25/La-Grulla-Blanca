@@ -1,0 +1,268 @@
+{
+  "schema": "GRULLA_LIII_SIX_REPEATABLES_V67_SELECTED_NUMERIC_BASELINES",
+  "date": "2026-10-10",
+  "authority": "USER_REQUEST_TO_CLOSE_EXISTING_LIII_BALANCE_WITH_V45_V48_V63_EVIDENCE",
+  "selection_status": "T0_DESIGN_BASELINE_SELECTED_PENDING_EVENT_PARITY_AND_FORMAL_ADAPTIVE_RATIFICATION",
+  "is_prod_ready": false,
+  "canonical_identity_v3": "experimentos/balance_nuevo/CATALOGO_CANONICO_MONSTRUOS_ARCO1_V3.json",
+  "source_primary": "experimentos/balance_nuevo/handoffs/V67_CIERRE_GUARDIANES_ULTIS_2026-10-10/FUENTE_IMPORTADA_V45_NUEVA_FAUNA_LIII_2026-10-09.md",
+  "source_additional": "experimentos/balance_nuevo/handoffs/V67_CIERRE_GUARDIANES_ULTIS_2026-10-10/FUENTE_IMPORTADA_V46_CADENA_ADAPTATIVA_LIII_2026-10-09.md",
+  "validation": [
+    "V45_T0_219240_PHYSICAL_1v1_QA_PASS",
+    "V47_48000_T0_TO_T4_EXPERIMENTAL",
+    "V48_R64_2054400_MIXED_LII_LIII_EXPERIMENTAL",
+    "V63_129024_EIGHT_LIII_MONSTER_CANDIDATE_PASS"
+  ],
+  "limits": [
+    "NO_NEW_SIM_FOR_V45_SIX_REQUIRED_UNLESS_CAUSAL_BUG",
+    "DO_NOT_OVERRIDE_OLD_RATIFIED_PE Z_ANGUILA",
+    "T1_T4_NOT_READY",
+    "MUTANT_ENVELOPE_NOT_READY",
+    "AOE_2PLUS_NOT_TESTED",
+    "NO_RATIFIED_CONTROL_SOURCE_FOR_V45_BEYOND_ASSUMED_ZERO"
+  ],
+  "profiles": [
+    {
+      "id": "garza_bruma_roca",
+      "name": "Garza de Bruma de Roca",
+      "stage": "LianQi_III",
+      "role": "NORMAL",
+      "unique": false,
+      "resource_model": "NONE",
+      "stats": {
+        "hp": 75,
+        "precision": 109,
+        "evasion": 31,
+        "defense": 0,
+        "tenacity": 14,
+        "basic_damage": "1d2+6",
+        "qi_max": null,
+        "control": {
+          "value": 0,
+          "previous_status": "V45_HYPOTHESIS",
+          "selection_status": "NUMERIC_DESIGN_ASSUMPTION_SELECTED_PENDING_GAME_SOURCE_PARITY"
+        },
+        "crit_chance": 5,
+        "crit_damage": 1.5
+      },
+      "technique": {
+        "name": "Pico de Niebla Cortante",
+        "mechanics": [
+          "DIRECT_DAMAGE"
+        ],
+        "direct_damage": "1d3+8",
+        "cadence": 3
+      },
+      "approved_as_design_identity": true,
+      "source_v45_t0_status": "CANDIDATE_TESTED_V45",
+      "selection": "CURRENT_DESIGN_BASELINE_SELECTED_2026_10_10",
+      "ready_in_production": false,
+      "adaptive_t1_t4": "NOT_RATIFIED_BY_THIS_SELECTION",
+      "spawn_status": "PREVIEW_ONLY"
+    },
+    {
+      "id": "cangrejo_laja_humeda",
+      "name": "Cangrejo de Laja Húmeda",
+      "stage": "LianQi_III",
+      "role": "NORMAL",
+      "unique": false,
+      "resource_model": "NONE",
+      "stats": {
+        "hp": 90,
+        "precision": 98,
+        "evasion": 9,
+        "defense": 3,
+        "tenacity": 28,
+        "basic_damage": "1d2+6",
+        "qi_max": null,
+        "control": {
+          "value": 0,
+          "previous_status": "V45_HYPOTHESIS",
+          "selection_status": "NUMERIC_DESIGN_ASSUMPTION_SELECTED_PENDING_GAME_SOURCE_PARITY"
+        },
+        "crit_chance": 5,
+        "crit_damage": 1.5
+      },
+      "technique": {
+        "name": "Tenaza de Pizarra",
+        "mechanics": [
+          "DIRECT_DAMAGE"
+        ],
+        "direct_damage": "1d3+8",
+        "cadence": 4
+      },
+      "approved_as_design_identity": true,
+      "source_v45_t0_status": "CANDIDATE_TESTED_V45",
+      "selection": "CURRENT_DESIGN_BASELINE_SELECTED_2026_10_10",
+      "ready_in_production": false,
+      "adaptive_t1_t4": "NOT_RATIFIED_BY_THIS_SELECTION",
+      "spawn_status": "PREVIEW_ONLY"
+    },
+    {
+      "id": "sanguijuela_remanso_turbio",
+      "name": "Sanguijuela de Remanso Turbio",
+      "stage": "LianQi_III",
+      "role": "NORMAL",
+      "unique": false,
+      "resource_model": "NONE",
+      "stats": {
+        "hp": 78,
+        "precision": 103,
+        "evasion": 16,
+        "defense": 1,
+        "tenacity": 16,
+        "basic_damage": "1d2+6",
+        "qi_max": null,
+        "control": {
+          "value": 0,
+          "previous_status": "V45_HYPOTHESIS",
+          "selection_status": "NUMERIC_DESIGN_ASSUMPTION_SELECTED_PENDING_GAME_SOURCE_PARITY"
+        },
+        "crit_chance": 5,
+        "crit_damage": 1.5
+      },
+      "technique": {
+        "name": "Mordida de Limo Frío",
+        "mechanics": [
+          "DIRECT_DAMAGE",
+          "POISON_DOT"
+        ],
+        "direct_damage": "1d2+7",
+        "cadence": 3,
+        "dot": {
+          "family": "POISON_DOT",
+          "damage": "1d2+2",
+          "ticks": 2
+        }
+      },
+      "approved_as_design_identity": true,
+      "source_v45_t0_status": "CANDIDATE_TESTED_V45",
+      "selection": "CURRENT_DESIGN_BASELINE_SELECTED_2026_10_10",
+      "ready_in_production": false,
+      "adaptive_t1_t4": "NOT_RATIFIED_BY_THIS_SELECTION",
+      "spawn_status": "PREVIEW_ONLY"
+    },
+    {
+      "id": "salamandra_filtracion_tibia",
+      "name": "Salamandra de Filtración Tibia",
+      "stage": "LianQi_III",
+      "role": "NORMAL",
+      "unique": false,
+      "resource_model": "NONE",
+      "stats": {
+        "hp": 79,
+        "precision": 103,
+        "evasion": 16,
+        "defense": 2,
+        "tenacity": 22,
+        "basic_damage": "1d2+6",
+        "qi_max": null,
+        "control": {
+          "value": 0,
+          "previous_status": "V45_HYPOTHESIS",
+          "selection_status": "NUMERIC_DESIGN_ASSUMPTION_SELECTED_PENDING_GAME_SOURCE_PARITY"
+        },
+        "crit_chance": 5,
+        "crit_damage": 1.5
+      },
+      "technique": {
+        "name": "Salpicadura Irritante",
+        "mechanics": [
+          "DIRECT_DAMAGE",
+          "BURN_DOT"
+        ],
+        "direct_damage": "1d2+7",
+        "cadence": 4,
+        "dot": {
+          "family": "BURN_DOT",
+          "damage": "1d2+1",
+          "ticks": 2
+        }
+      },
+      "approved_as_design_identity": true,
+      "source_v45_t0_status": "CANDIDATE_TESTED_V45",
+      "selection": "CURRENT_DESIGN_BASELINE_SELECTED_2026_10_10",
+      "ready_in_production": false,
+      "adaptive_t1_t4": "NOT_RATIFIED_BY_THIS_SELECTION",
+      "spawn_status": "PREVIEW_ONLY"
+    },
+    {
+      "id": "rana_cascajo_barranco",
+      "name": "Rana de Cascajo del Barranco",
+      "stage": "LianQi_III",
+      "role": "NORMAL",
+      "unique": false,
+      "resource_model": "NONE",
+      "stats": {
+        "hp": 84,
+        "precision": 100,
+        "evasion": 17,
+        "defense": 2,
+        "tenacity": 23,
+        "basic_damage": "1d2+6",
+        "qi_max": null,
+        "control": {
+          "value": 0,
+          "previous_status": "V45_HYPOTHESIS",
+          "selection_status": "NUMERIC_DESIGN_ASSUMPTION_SELECTED_PENDING_GAME_SOURCE_PARITY"
+        },
+        "crit_chance": 5,
+        "crit_damage": 1.5
+      },
+      "technique": {
+        "name": "Salto de Cascajo",
+        "mechanics": [
+          "DIRECT_DAMAGE"
+        ],
+        "direct_damage": "1d3+8",
+        "cadence": 3
+      },
+      "approved_as_design_identity": true,
+      "source_v45_t0_status": "CANDIDATE_TESTED_V45",
+      "selection": "CURRENT_DESIGN_BASELINE_SELECTED_2026_10_10",
+      "ready_in_production": false,
+      "adaptive_t1_t4": "NOT_RATIFIED_BY_THIS_SELECTION",
+      "spawn_status": "PREVIEW_ONLY"
+    },
+    {
+      "id": "carpa_lamina_reflejo",
+      "name": "Carpa de Lámina Reflejada",
+      "stage": "LianQi_III",
+      "role": "NORMAL",
+      "unique": false,
+      "resource_model": "NONE",
+      "stats": {
+        "hp": 78,
+        "precision": 104,
+        "evasion": 26,
+        "defense": 1,
+        "tenacity": 13,
+        "basic_damage": "1d2+6",
+        "qi_max": null,
+        "control": {
+          "value": 0,
+          "previous_status": "V45_HYPOTHESIS",
+          "selection_status": "NUMERIC_DESIGN_ASSUMPTION_SELECTED_PENDING_GAME_SOURCE_PARITY"
+        },
+        "crit_chance": 5,
+        "crit_damage": 1.5
+      },
+      "technique": {
+        "name": "Succión de Corriente",
+        "mechanics": [
+          "DIRECT_DAMAGE",
+          "QI_DRAIN"
+        ],
+        "direct_damage": "1d3+7",
+        "cadence": 3,
+        "qi_drain_on_hit": 3
+      },
+      "approved_as_design_identity": true,
+      "source_v45_t0_status": "CANDIDATE_TESTED_V45",
+      "selection": "CURRENT_DESIGN_BASELINE_SELECTED_2026_10_10",
+      "ready_in_production": false,
+      "adaptive_t1_t4": "NOT_RATIFIED_BY_THIS_SELECTION",
+      "spawn_status": "PREVIEW_ONLY"
+    }
+  ]
+}
