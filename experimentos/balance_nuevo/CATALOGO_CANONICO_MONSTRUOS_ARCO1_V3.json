@@ -660,9 +660,9 @@
       "element": null,
       "region_historical": "aguas_barrancos",
       "numeric_source": {
-        "status": "V45_PROPOSAL_NOT_NUMERIC_FREEZE",
-        "stats_status": "PENDING_INTEGRAL_REBALANCE",
-        "technique_params_status": "PENDING_INTEGRAL_REBALANCE",
+        "status": "V67_NUMERIC_T0_BASELINE_SELECTED_BUT_NOT_FINAL_SCHEMA_READY",
+        "stats_status": "PENDING_RUNTIME_PARITY_AND_CONTROL_0_SOURCE",
+        "technique_params_status": "PENDING_RUNTIME_PARITY_AND_FINAL_GATE",
         "crit_chance_proposed": 5,
         "crit_damage_proposed": 1.5,
         "qi_max": null,
@@ -682,9 +682,10 @@
           ],
           "direct_damage": "1d3+8",
           "cadence": 3
-        }
+        },
+        "selection_ref": "experimentos/balance_nuevo/handoffs/V67_CIERRE_GUARDIANES_ULTIS_2026-10-10/SELECCION_T0_SEIS_REPETIBLES_LIII_V67_2026-10-10.json"
       },
-      "adaptive_source_status": "V46_T1_T4_ONLY_DESIGN_PROPOSAL_NOT_FROZEN",
+      "adaptive_source_status": "V46_V47_EXPERIMENTAL_NO_SEQUENTIAL_RATIFICATION",
       "t1_hypothesis": "EVADE_NEXT +8; proposed",
       "proposed_rooms_only": [
         "aguas_cauce_alto",
@@ -711,9 +712,9 @@
       "element": null,
       "region_historical": "aguas_barrancos",
       "numeric_source": {
-        "status": "V45_PROPOSAL_NOT_NUMERIC_FREEZE",
-        "stats_status": "PENDING_INTEGRAL_REBALANCE",
-        "technique_params_status": "PENDING_INTEGRAL_REBALANCE",
+        "status": "V67_NUMERIC_T0_BASELINE_SELECTED_BUT_NOT_FINAL_SCHEMA_READY",
+        "stats_status": "PENDING_RUNTIME_PARITY_AND_CONTROL_0_SOURCE",
+        "technique_params_status": "PENDING_RUNTIME_PARITY_AND_FINAL_GATE",
         "crit_chance_proposed": 5,
         "crit_damage_proposed": 1.5,
         "qi_max": null,
@@ -733,9 +734,10 @@
           ],
           "direct_damage": "1d3+8",
           "cadence": 4
-        }
+        },
+        "selection_ref": "experimentos/balance_nuevo/handoffs/V67_CIERRE_GUARDIANES_ULTIS_2026-10-10/SELECCION_T0_SEIS_REPETIBLES_LIII_V67_2026-10-10.json"
       },
-      "adaptive_source_status": "V46_T1_T4_ONLY_DESIGN_PROPOSAL_NOT_FROZEN",
+      "adaptive_source_status": "V46_V47_EXPERIMENTAL_NO_SEQUENTIAL_RATIFICATION",
       "t1_hypothesis": "DEFENSE_UP +2; proposed",
       "proposed_rooms_only": [
         "aguas_garganta_norte",
@@ -762,9 +764,9 @@
       "element": null,
       "region_historical": "aguas_barrancos",
       "numeric_source": {
-        "status": "V45_PROPOSAL_NOT_NUMERIC_FREEZE",
-        "stats_status": "PENDING_INTEGRAL_REBALANCE",
-        "technique_params_status": "PENDING_INTEGRAL_REBALANCE",
+        "status": "V67_NUMERIC_T0_BASELINE_SELECTED_BUT_NOT_FINAL_SCHEMA_READY",
+        "stats_status": "PENDING_RUNTIME_PARITY_AND_CONTROL_0_SOURCE",
+        "technique_params_status": "PENDING_RUNTIME_PARITY_AND_FINAL_GATE",
         "crit_chance_proposed": 5,
         "crit_damage_proposed": 1.5,
         "qi_max": null,
@@ -790,9 +792,10 @@
             "damage": "1d2+2",
             "ticks": 2
           }
-        }
+        },
+        "selection_ref": "experimentos/balance_nuevo/handoffs/V67_CIERRE_GUARDIANES_ULTIS_2026-10-10/SELECCION_T0_SEIS_REPETIBLES_LIII_V67_2026-10-10.json"
       },
-      "adaptive_source_status": "V46_T1_T4_ONLY_DESIGN_PROPOSAL_NOT_FROZEN",
+      "adaptive_source_status": "V46_V47_EXPERIMENTAL_NO_SEQUENTIAL_RATIFICATION",
       "t1_hypothesis": "MITIGATE_NEXT 35%; proposed",
       "proposed_rooms_only": [
         "aguas_poza_profunda",
@@ -819,9 +822,9 @@
       "element": null,
       "region_historical": "aguas_barrancos",
       "numeric_source": {
-        "status": "V45_PROPOSAL_NOT_NUMERIC_FREEZE",
-        "stats_status": "PENDING_INTEGRAL_REBALANCE",
-        "technique_params_status": "PENDING_INTEGRAL_REBALANCE",
+        "status": "V67_NUMERIC_T0_BASELINE_SELECTED_BUT_NOT_FINAL_SCHEMA_READY",
+        "stats_status": "PENDING_RUNTIME_PARITY_AND_CONTROL_0_SOURCE",
+        "technique_params_status": "PENDING_RUNTIME_PARITY_AND_FINAL_GATE",
         "crit_chance_proposed": 5,
         "crit_damage_proposed": 1.5,
         "qi_max": null,
@@ -847,9 +850,10 @@
             "damage": "1d2+1",
             "ticks": 2
           }
-        }
+        },
+        "selection_ref": "experimentos/balance_nuevo/handoffs/V67_CIERRE_GUARDIANES_ULTIS_2026-10-10/SELECCION_T0_SEIS_REPETIBLES_LIII_V67_2026-10-10.json"
       },
-      "adaptive_source_status": "V46_T1_T4_ONLY_DESIGN_PROPOSAL_NOT_FROZEN",
+      "adaptive_source_status": "V46_V47_EXPERIMENTAL_NO_SEQUENTIAL_RATIFICATION",
       "t1_hypothesis": "MITIGATE_NEXT 35%; proposed",
       "proposed_rooms_only": [
         "aguas_filtraciones_cantera",
@@ -876,9 +880,9 @@
       "element": null,
       "region_historical": "aguas_barrancos",
       "numeric_source": {
-        "status": "V45_PROPOSAL_NOT_NUMERIC_FREEZE",
-        "stats_status": "PENDING_INTEGRAL_REBALANCE",
-        "technique_params_status": "PENDING_INTEGRAL_REBALANCE",
+        "status": "V67_NUMERIC_T0_BASELINE_SELECTED_BUT_NOT_FINAL_SCHEMA_READY",
+        "stats_status": "PENDING_RUNTIME_PARITY_AND_CONTROL_0_SOURCE",
+        "technique_params_status": "PENDING_RUNTIME_PARITY_AND_FINAL_GATE",
         "crit_chance_proposed": 5,
         "crit_damage_proposed": 1.5,
         "qi_max": null,
@@ -898,9 +902,10 @@
           ],
           "direct_damage": "1d3+8",
           "cadence": 3
-        }
+        },
+        "selection_ref": "experimentos/balance_nuevo/handoffs/V67_CIERRE_GUARDIANES_ULTIS_2026-10-10/SELECCION_T0_SEIS_REPETIBLES_LIII_V67_2026-10-10.json"
       },
-      "adaptive_source_status": "V46_T1_T4_ONLY_DESIGN_PROPOSAL_NOT_FROZEN",
+      "adaptive_source_status": "V46_V47_EXPERIMENTAL_NO_SEQUENTIAL_RATIFICATION",
       "t1_hypothesis": "DEFENSE_UP +2; proposed",
       "proposed_rooms_only": [
         "aguas_garganta_sur",
@@ -927,9 +932,9 @@
       "element": null,
       "region_historical": "aguas_barrancos",
       "numeric_source": {
-        "status": "V45_PROPOSAL_NOT_NUMERIC_FREEZE",
-        "stats_status": "PENDING_INTEGRAL_REBALANCE",
-        "technique_params_status": "PENDING_INTEGRAL_REBALANCE",
+        "status": "V67_NUMERIC_T0_BASELINE_SELECTED_BUT_NOT_FINAL_SCHEMA_READY",
+        "stats_status": "PENDING_RUNTIME_PARITY_AND_CONTROL_0_SOURCE",
+        "technique_params_status": "PENDING_RUNTIME_PARITY_AND_FINAL_GATE",
         "crit_chance_proposed": 5,
         "crit_damage_proposed": 1.5,
         "qi_max": null,
@@ -951,9 +956,10 @@
           "direct_damage": "1d3+7",
           "cadence": 3,
           "qi_drain_on_hit": 3
-        }
+        },
+        "selection_ref": "experimentos/balance_nuevo/handoffs/V67_CIERRE_GUARDIANES_ULTIS_2026-10-10/SELECCION_T0_SEIS_REPETIBLES_LIII_V67_2026-10-10.json"
       },
-      "adaptive_source_status": "V46_T1_T4_ONLY_DESIGN_PROPOSAL_NOT_FROZEN",
+      "adaptive_source_status": "V46_V47_EXPERIMENTAL_NO_SEQUENTIAL_RATIFICATION",
       "t1_hypothesis": "EVADE_NEXT +8; proposed",
       "proposed_rooms_only": [
         "aguas_manantial_entrada",
