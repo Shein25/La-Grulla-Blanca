@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-10",
+  "repo": "Shein25/La-Grulla-Blanca",
+  "backup_branch": "handoff/shen-m03-p1-v06-2026-10-10",
+  "base_branch": "implement/3c6-prologo-m01-m07",
+  "base_commit": "748bd4480e37fd2523fa833081b20522b9724dab",
+  "astra_local_branch_declared": "integrate/astra-arc1-ai-v0.1",
+  "astra_local_head_declared": "d535f4f52cb36231d6ad95e6ab0e1d8ef6932b23",
+  "astra_local_head_not_confirmed_remote": true,
+  "git_sources_line_endings": "normalized CRLF/mixed CR->LF by file retrieval; original files retained in local ZIP",
+  "files": {
+    "grulla-blanca_ver76_A07_9_G03_M03_P1_CANDIDATE.html": {
+      "git_blob": "79b9913f9a4666432f0659fd7a6f7948e41f889d",
+      "original_sha256": "f199fb5c798da17b17dbc2a0be7d0ec0d979db4e2b7898128e16ebad1a978731",
+      "status": "P1 experimental approved, not integrated"
+    },
+    "grulla-blanca_ver76_A07_9_G03_B1_B5_CANDIDATE.html": {
+      "git_blob": "130285fc6a3f419231df51d49fa8615342e07cc0",
+      "original_sha256": "3a734ea5b2d1908d71f3a78d9b10aeb729f6263dbe5f4a72d3863682aac8e3c0",
+      "status": "B1-B5 experimental approved"
+    },
+    "GRULLA_UI_DEFENSIVAS_LIANQI_II_V06_TERMINAL_UNICA.html": {
+      "git_blob": "59143880807ad07e6dcd5285553f86d6e39932dc",
+      "original_sha256": "d6725a805ff812837a26a5ed06e1ba42d5e4665df61d01f5e6927bbebc5c1fe0",
+      "status": "visual demo only"
+    }
+  },
+  "original_review_archives": [
+    {
+      "file": "ASTRA_M03_P1_FOUNDATION_PRACTICE_REVIEW_2026-10-09.zip",
+      "sha256": "a309654d575b3402b3ab265ca3e7bbc728f199985807680b28cfae13865397d6"
+    },
+    {
+      "file": "ASTRA_B1_B5_M03_POSTLUDE_REVIEW_2026-10-09.zip",
+      "sha256": "bd7bc4e899e80762464fdf7aa5e719fc299275630dcf120bb241ce1261c98de4"
+    }
+  ],
+  "scope": "handoff snapshots only; no main changes, merge, product promotion"
+}

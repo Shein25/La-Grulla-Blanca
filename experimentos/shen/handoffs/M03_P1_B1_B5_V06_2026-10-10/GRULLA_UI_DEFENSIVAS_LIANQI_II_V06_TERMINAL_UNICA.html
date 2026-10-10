@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Grulla Blanca — V06 Enseñanza defensiva, diálogo por comando</title>
+<style>
+/* El contexto de fondo replica deliberadamente el lenguaje visual de ver74/ver76.
+   El primer plano es una experiencia totalmente nueva y autónoma. */
+:root{--tinta:#090b0a;--panel:#101310;--panel-alto:#151915;--papel:#ded8ca;--texto-sala:#c8c2b5;--tenue:#827f73;--jade:#8fc6a3;--jade-claro:#b2d7bd;--cinabrio:#d36b58;--oro:#d5ad63;--agua:#82b7c8;--borde:#293029;--branch:#ee9c65;--shade:rgba(255,121,49,.2);--glow:rgba(255,123,54,.5);--ring:rgba(255,161,95,.52);--ink:#140b08}
+*{box-sizing:border-box}html,body{min-height:100%;margin:0}
+body{background:var(--tinta);color:var(--papel);font-family:Georgia,'Palatino Linotype',serif;font-size:16px;line-height:1.55}
+button{font:inherit;cursor:pointer}button:focus-visible{outline:2px solid #f9e0a8;outline-offset:3px}
+body[data-element="fire"]{--branch:#ff9a62;--shade:rgba(245,94,48,.21);--glow:rgba(255,108,46,.57);--ring:rgba(255,154,98,.54);--ink:#1a0c09}
+body[data-element="metal"]{--branch:#dbe7f2;--shade:rgba(151,181,215,.18);--glow:rgba(191,219,255,.48);--ring:rgba(198,217,245,.6);--ink:#0c1420}
+body[data-element="water"]{--branch:#89d5f5;--shade:rgba(60,146,224,.22);--glow:rgba(77,188,255,.5);--ring:rgba(127,206,248,.58);--ink:#091724}
+body[data-element="earth"]{--branch:#edbd7e;--shade:rgba(194,130,58,.2);--glow:rgba(251,181,88,.48);--ring:rgba(237,189,126,.57);--ink:#171109}
+body[data-element="wind"]{--branch:#a3efcf;--shade:rgba(65,188,148,.21);--glow:rgba(104,247,196,.42);--ring:rgba(163,239,207,.57);--ink:#071912}
+/* Backdrop: disposición y paleta muy cercana a la candidata original */
+.game{min-height:100vh;display:flex;flex-direction:column}
+.game-header{display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:8px 18px;border-bottom:1px solid var(--borde);background:var(--panel)}
+.game-brand{font-family:ui-monospace,Consolas,monospace;color:var(--jade);letter-spacing:.25em;font-size:13px}
+.game-meta{font-family:ui-monospace,Consolas,monospace;color:var(--tenue);font-size:12px}
+.game-actions{margin-left:auto;display:flex;gap:6px}
+.game-actions button,.chip{background:#111511;border:1px solid #3a4037;color:var(--oro);font-family:ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.09em;padding:4px 9px;border-radius:2px}
+.game-zona{flex:1;display:flex;min-height:0}.game-terminal{flex:1;background:#0b0d0c;padding:22px;overflow:auto}.game-content{max-width:790px;margin:auto}
+.terminal-eyebrow{font-size:11px;letter-spacing:.2em;color:var(--tenue);font-family:ui-monospace,Consolas,monospace}
+.game-room{color:var(--jade-claro);font-weight:bold;margin:22px 0 8px;border:1px solid #29382e;border-left:4px solid var(--jade);background:var(--panel-alto);padding:6px 10px 5px}
+.room-copy{color:var(--texto-sala);line-height:1.72;margin:7px 4px;text-align:justify}
+.room-detail{color:#a9a497;font-style:italic;margin:8px 4px}
+.room-meta{font-family:ui-monospace,Consolas,monospace;color:#ccc3b1;font-size:12px;border-left:2px solid #426b78;padding-left:9px;margin:5px 4px}
+.game-choice{color:#d5edf6;background:#101619;border-left:3px solid #426b78;margin:8px 0 8px 12px;padding:8px 10px;font:12px/1.6 ui-monospace,Consolas,monospace}
+.game-map{width:285px;background:var(--panel);border-left:1px solid var(--borde);padding:12px 10px;flex:none;color:var(--tenue);font:11px/1.7 ui-monospace,Consolas,monospace}
+.game-map .map-title{letter-spacing:.22em;text-align:center;margin:15px 0;color:var(--jade)}
+.game-map svg{width:100%;height:245px}
+.game-map .panel-title{color:var(--jade);letter-spacing:.15em;border-top:1px solid var(--borde);padding-top:8px}
+/* Barra inferior original ver74/ver76: un solo formulario, sin réplica en el terminal. */
+#form{display:flex;align-items:center;gap:10px;padding:10px 18px;margin:0;border-top:1px solid var(--borde);background:var(--panel);flex:none;min-height:46px}
+#form .simbolo{color:var(--oro);font-family:ui-monospace,Consolas,monospace}
+#entrada{flex:1;min-width:0;background:transparent;border:none;outline:none;color:var(--papel);font:17px ui-monospace,Consolas,monospace}
+#entrada::placeholder{color:#62665e}
+/* V04: primer plano, estética xianxia cinematográfica */
+.ov{position:fixed;inset:0;z-index:999;display:none;align-items:center;justify-content:center;padding:22px;background:rgba(3,5,6,.76);backdrop-filter:blur(3px)}
+.ov.open{display:flex}
+.ritual{position:relative;width:min(1250px,100%);height:min(835px,calc(100vh - 44px));min-height:540px;overflow:hidden;background:linear-gradient(152deg,#10151a 0%,var(--ink) 48%,#090e12 100%);border:1px solid var(--ring);box-shadow:0 25px 80px rgba(0,0,0,.73),0 0 70px var(--shade),inset 0 0 0 1px rgba(250,244,222,.06);display:grid;grid-template-rows:86px minmax(0,1fr) 78px;isolation:isolate}
+.ritual::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 48% 45%,var(--shade),transparent 54%),repeating-linear-gradient(0deg,transparent 0,transparent 55px,rgba(255,255,255,.013) 56px),linear-gradient(135deg,rgba(255,255,255,.045),transparent 25%,transparent 76%,rgba(255,255,255,.025));pointer-events:none}
+.ritual::after{content:"";position:absolute;inset:5px;border:1px solid rgba(241,229,196,.07);pointer-events:none}
+.r-top{display:flex;align-items:center;padding:14px 24px 13px;gap:20px;border-bottom:1px solid rgba(255,255,255,.11);background:linear-gradient(90deg,rgba(0,0,0,.23),rgba(255,255,255,.02),rgba(0,0,0,.17))}
+.r-top-seal{height:54px;width:54px;border:1px solid var(--ring);display:grid;place-items:center;color:var(--branch);font:32px Georgia,serif;background:radial-gradient(circle,var(--shade),transparent);box-shadow:inset 0 0 25px var(--shade)}
+.r-eyebrow,.micro{font:10px/1.4 ui-monospace,Consolas,monospace;letter-spacing:.24em;color:var(--branch);text-transform:uppercase}
+.r-title{font:600 clamp(18px,2vw,28px)/1.13 Georgia,serif;letter-spacing:.09em;color:#f4ebdc;margin-top:5px}
+.r-top-right{margin-left:auto;text-align:right;min-width:160px}
+.top-state{font:11px ui-monospace,Consolas,monospace;color:#a5adaf;margin-top:7px}
+.icon-btn{border:1px solid rgba(255,255,255,.19);background:rgba(255,255,255,.03);color:#ddd8cb;padding:9px 12px;font:11px ui-monospace,Consolas,monospace;letter-spacing:.12em}
+.icon-btn:hover{border-color:var(--ring);color:var(--branch)}
+.r-columns{display:grid;grid-template-columns:244px minmax(0,1fr) 326px;min-height:0}
+.r-side{border-right:1px solid rgba(255,255,255,.11);padding:21px 16px 20px 21px;display:flex;flex-direction:column;gap:14px;min-height:0;overflow-y:auto;background:rgba(0,0,0,.13)}
+.side-heading{color:#c9c0ae;font:11px ui-monospace,Consolas,monospace;letter-spacing:.18em;text-transform:uppercase}
+.branch-list{display:grid;gap:7px}
+.branch-choice{display:grid;grid-template-columns:39px minmax(0,1fr) 12px;gap:8px;align-items:center;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.11);padding:7px 8px;color:#d8d5cf;text-align:left;min-width:0;transition:background .2s,border-color .2s;cursor:pointer}
+.branch-choice:hover{background:rgba(255,255,255,.075);border-color:var(--ring)}
+.branch-choice.active{border-color:var(--ring);background:var(--shade);box-shadow:inset 2px 0 0 var(--branch)}
+.branch-choice.learned{opacity:.67}
+.bc-glyph{display:grid;place-items:center;border:1px solid currentColor;height:37px;width:37px;font:24px Georgia;color:var(--symbol-color)}
+.bc-name{font:13px/1.32 Georgia,serif;color:#ede2ce;white-space:normal}
+.bc-element{display:block;font:9px/1.25 ui-monospace,Consolas,monospace;letter-spacing:.15em;color:#b9b6aa;margin-bottom:3px}
+.bc-check{color:#b4d3a6;font-size:14px}
+.side-foot{margin-top:auto;border-top:1px solid rgba(255,255,255,.12);padding-top:13px}
+.side-progress-label{display:flex;justify-content:space-between;color:#afa89c;font:10px ui-monospace,Consolas,monospace;letter-spacing:.13em}
+.side-track{height:4px;background:#252b30;overflow:hidden;margin:9px 0 12px}.side-fill{height:100%;background:linear-gradient(90deg,var(--branch),#f8e2af);transition:width .4s}
+.side-note{color:#989f9f;font:12px/1.65 Georgia,serif;margin-top:8px}
+/* Dynamic stage */
+.r-scene{min-width:0;position:relative;overflow:hidden;display:flex;flex-direction:column;background:radial-gradient(ellipse at center,var(--shade),transparent 60%),linear-gradient(180deg,#0b1116 0%,var(--ink) 54%,#070c10 100%)}
+.scene-horizon{position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 99px,rgba(255,255,255,.018) 100px),repeating-linear-gradient(0deg,transparent 0 99px,rgba(255,255,255,.013) 100px);mask-image:linear-gradient(to bottom,transparent 0%,black 30%,black 70%,transparent 100%);pointer-events:none}
+.scene-top{position:relative;z-index:3;padding:17px 24px 0;display:flex;gap:8px;justify-content:space-between;align-items:start}
+.scene-label{font:11px ui-monospace,Consolas,monospace;letter-spacing:.17em;color:var(--branch)}
+.scene-state{border:1px solid rgba(255,255,255,.14);padding:5px 9px;font:10px ui-monospace,Consolas,monospace;letter-spacing:.16em;color:#c4c5bf}
+.arena{flex:1;min-height:250px;position:relative;display:grid;place-items:center;overflow:hidden;isolation:isolate}
+#fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:3}
+.arena::before{content:"";position:absolute;width:min(80%,440px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,var(--shade),transparent 70%);filter:blur(13px);animation:breath 4.1s ease-in-out infinite}
+@keyframes breath{0%,100%{transform:scale(.93);opacity:.7}50%{transform:scale(1.13);opacity:1}}
+.array{position:relative;z-index:2;width:min(98%,480px);height:min(100%,440px);min-height:295px;display:grid;place-items:center}
+.orbit,.orbit2,.orbit3{position:absolute;border-radius:50%;border:1px solid var(--ring);box-shadow:0 0 14px var(--shade),inset 0 0 10px var(--shade)}
+.orbit{width:78%;aspect-ratio:1;border-style:dashed;animation:turn 40s linear infinite}
+.orbit2{width:63%;aspect-ratio:1;opacity:.5;border-style:dotted;animation:turn 24s linear infinite reverse}
+.orbit3{width:49%;aspect-ratio:1;opacity:.42}
+@keyframes turn{to{transform:rotate(360deg)}}
+.scene-symbol{position:relative;z-index:3;width:100%;height:100%;display:grid;place-items:center}
+.scene-symbol svg{width:95%;height:95%;overflow:visible;filter:drop-shadow(0 0 28px var(--shade))}
+.scene-symbol svg *{vector-effect:non-scaling-stroke}
+.scene-glyph{position:absolute;font:600 clamp(52px,6vw,96px)/1 Georgia,serif;color:var(--branch);text-shadow:0 0 35px var(--glow),0 0 8px var(--glow);z-index:5;pointer-events:none;opacity:.92;transform:translateY(14px)}
+.scene-bottom{position:relative;z-index:3;text-align:center;padding:0 14px 15px}
+.scene-element{font:10px ui-monospace,Consolas,monospace;color:var(--branch);letter-spacing:.34em;text-transform:uppercase}
+.scene-name{font:500 clamp(22px,2.3vw,32px)/1.13 Georgia,serif;color:#f1e6d5;letter-spacing:.05em;margin-top:6px;text-shadow:0 2px 15px #000}
+.scene-sub{font:13px/1.5 Georgia,serif;color:#aaa99f;margin-top:6px;min-height:20px}
+/* Specific elemental scene effects */
+.flame{transform-origin:50% 75%;animation:flameDance 2.4s ease-in-out infinite alternate;filter:drop-shadow(0 0 14px #f89532)}
+.flame.f2{animation-delay:-.8s;animation-duration:1.75s}.flame.f3{animation-delay:-1.4s;animation-duration:2.8s}
+@keyframes flameDance{0%{transform:translateY(5px) scaleX(.91)}50%{transform:translateY(-10px) scaleX(1.09)}100%{transform:translateY(3px) scaleX(.96)}}
+.metal-facet{transform-origin:center;animation:facetPulse 5s ease-in-out infinite}.metal-facet.f2{animation-delay:-1.2s}.metal-facet.f3{animation-delay:-2.6s}
+@keyframes facetPulse{0%,100%{opacity:.64;transform:translateY(0)}50%{opacity:1;transform:translateY(-5px)}}
+.metal-sweep{animation:sweep 3.8s ease-in-out infinite}
+@keyframes sweep{0%{opacity:0;transform:translateX(-90px) rotate(11deg)}45%{opacity:.75}70%,100%{opacity:0;transform:translateX(160px) rotate(11deg)}}
+.water-wave{transform-origin:center;animation:waterFlow 3.7s ease-in-out infinite alternate}.water-wave.w2{animation-delay:-1.5s;animation-duration:4.6s}
+@keyframes waterFlow{from{transform:translateX(-20px) translateY(5px)}to{transform:translateX(22px) translateY(-5px)}}
+.water-ripple{transform-origin:center;animation:ripple 3.5s ease-out infinite}
+@keyframes ripple{0%{transform:scale(.78);opacity:.8}100%{transform:scale(1.2);opacity:.12}}
+.earth-shard{transform-origin:center;animation:stoneRise 5.2s ease-in-out infinite alternate}.earth-shard.s2{animation-delay:-1.8s}.earth-shard.s3{animation-delay:-3.3s}
+@keyframes stoneRise{from{transform:translateY(8px);opacity:.65}to{transform:translateY(-8px);opacity:1}}
+.wind-line{stroke-dasharray:18 18;animation:flowDash 3s linear infinite}
+.wind-line.w2{animation-duration:4s;animation-direction:reverse}.wind-line.w3{animation-duration:2.7s}
+@keyframes flowDash{to{stroke-dashoffset:-144}}
+.wind-leaf{transform-origin:center;animation:leafFloat 4s ease-in-out infinite}.wind-leaf.l2{animation-delay:-1.7s}.wind-leaf.l3{animation-delay:-2.4s}
+@keyframes leafFloat{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(12px,-17px) rotate(12deg)}}
+.impact-burst{animation:impactBurst .8s ease-out}
+@keyframes impactBurst{0%{filter:brightness(2) drop-shadow(0 0 60px var(--glow));transform:scale(1.1)}100%{filter:none;transform:scale(1)}}
+/* Narrative panel */
+.r-story{border-left:1px solid rgba(255,255,255,.12);padding:19px 19px 18px;min-height:0;display:flex;flex-direction:column;background:linear-gradient(145deg,rgba(255,255,255,.026),rgba(0,0,0,.09))}
+.story-breadcrumb{font:11px ui-monospace,Consolas,monospace;letter-spacing:.19em;text-transform:uppercase;color:var(--branch)}
+.story-title{font:500 27px/1.14 Georgia,serif;color:#f3e9db;margin:12px 0}
+.story-copy{color:#c9c2b8;font-size:14px;line-height:1.74;max-height:170px;overflow:auto}
+.story-rule{height:1px;background:linear-gradient(90deg,var(--branch),transparent);margin:16px 0 15px;opacity:.54}
+.story-mentor{color:#dfca9f;background:rgba(0,0,0,.19);padding:13px;border-left:2px solid var(--branch);font-size:14px;line-height:1.65;font-style:italic}
+.story-action{display:grid;gap:10px;margin-top:15px;min-height:0;overflow:auto;padding-right:3px}
+.training-response{display:none;padding:11px 12px;border:1px solid rgba(255,255,255,.18);font:12px/1.55 ui-monospace,Consolas,monospace;color:#e6ded1}
+.training-response.show{display:block}
+.training-response.error{border-color:#d1837d;background:rgba(207,85,72,.09)}
+.training-response.success{border-color:#9bcda5;background:rgba(84,169,102,.1)}
+.quest-option{border:1px solid rgba(255,255,255,.18);padding:13px 12px;background:rgba(255,255,255,.025);color:#e5ded0;text-align:left;line-height:1.55;font-size:13px;transition:.2s}
+.quest-option:hover{border-color:var(--branch);background:var(--shade)}
+.quest-option b{display:block;font:10px ui-monospace,Consolas,monospace;letter-spacing:.18em;color:var(--branch);margin-bottom:4px}
+.btn-large{padding:13px 15px;border:1px solid var(--ring);color:var(--branch);background:var(--shade);font:11px ui-monospace,Consolas,monospace;letter-spacing:.15em;font-weight:700;text-transform:uppercase}
+.btn-large:hover{background:var(--glow);color:#fff}
+.btn-large:disabled{opacity:.45;cursor:not-allowed}
+.hold-track{height:7px;background:#1e2930;border:1px solid rgba(255,255,255,.16);overflow:hidden}.hold-fill{width:0;height:100%;background:linear-gradient(90deg,var(--branch),#fff3bb);box-shadow:0 0 10px var(--glow)}
+.hold-desc{font:11px/1.6 ui-monospace,Consolas,monospace;color:#abb5b0;text-align:center}
+.earned{border:1px solid var(--ring);padding:15px 13px;background:linear-gradient(160deg,var(--shade),rgba(255,255,255,.015))}
+.earned-kicker{font:10px ui-monospace,Consolas,monospace;color:var(--branch);letter-spacing:.2em}
+.earned-name{font:25px/1.17 Georgia,serif;color:#f6ead8;margin:11px 0}
+.earned-copy{color:#cfc7b6;font:13px/1.7 Georgia,serif}
+.story-status{margin-top:auto;padding-top:14px;color:#9da9ad;font:11px/1.55 ui-monospace,Consolas,monospace}
+/* bottom */
+.r-bottom{border-top:1px solid rgba(255,255,255,.11);padding:10px 22px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;background:rgba(0,0,0,.27)}
+.progress-list{display:flex;gap:8px;align-items:center;min-width:0}.progress-step{height:6px;flex:1;background:rgba(255,255,255,.11);position:relative;overflow:hidden;min-width:16px}.progress-step.done{background:var(--branch);box-shadow:0 0 9px var(--shade)}.progress-step.current{border:1px solid var(--branch);background:linear-gradient(90deg,var(--branch) 30%,var(--shade) 30%)}
+.progress-caption{color:#a6aaa6;font:10px ui-monospace,Consolas,monospace;letter-spacing:.12em;margin-top:7px}
+.bottom-actions{display:flex;gap:8px;align-items:center}
+.bottom-actions .icon-btn{min-width:100px}.bottom-actions .primary{color:var(--branch);border-color:var(--ring);background:var(--shade)}
+.mobile-note{display:none}
+@media(max-width:1040px){.r-columns{grid-template-columns:190px minmax(0,1fr) 280px}.r-side{padding:12px}.r-story{padding:14px}.scene-name{font-size:22px}.story-title{font-size:23px}.bc-name{font-size:12px}}
+@media(max-width:820px){.ov{padding:8px}.ritual{height:calc(100dvh - 16px);grid-template-rows:70px minmax(0,1fr) 65px}.r-columns{grid-template-columns:1fr;grid-template-rows:auto minmax(300px,1fr) auto;overflow-y:auto}.r-side{overflow:visible;border-right:0;border-bottom:1px solid rgba(255,255,255,.12)}.branch-list{grid-template-columns:repeat(5,1fr);gap:3px}.branch-choice{grid-template-columns:1fr;padding:5px;gap:2px;min-width:0}.bc-glyph{margin:auto;height:30px;width:30px;font-size:18px}.bc-element{font-size:8px;text-align:center}.bc-name{display:none}.bc-check{display:none}.side-foot{display:none}.r-scene{min-height:330px}.arena{min-height:260px}.array{width:min(95%,340px);min-height:290px}.r-story{border-left:0;border-top:1px solid rgba(255,255,255,.11);overflow:visible}.story-action{overflow:visible}.scene-bottom{padding-bottom:8px}.r-top{padding:7px 12px}.r-top-seal{height:40px;width:40px;font-size:23px}.r-title{font-size:20px}.r-top-right{display:none}.r-bottom{padding:8px 12px}.mobile-note{display:block;color:#b7aea1;font:10px ui-monospace,Consolas,monospace}}
+@media(max-width:420px){.game-map{display:none}.ritual{grid-template-rows:72px minmax(0,1fr) 67px}.scene-name{font-size:19px}.story-title{font-size:21px}.bottom-actions .icon-btn{min-width:auto;padding:7px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+.game-dialogue-box{margin-top:10px;padding:10px 12px;border:1px solid #3b433d;background:rgba(255,255,255,.03);color:#d7d0c3;line-height:1.65}
+.game-dialogue-box .speaker{color:#d5ad63;font-weight:700}
+.game-choices{display:grid;gap:6px;margin-top:10px}
+button.game-choice{display:block;width:100%;text-align:left;cursor:pointer;background:#111512;color:#d7d0c3;border:1px solid #364039;padding:8px 10px;font:inherit;transition:.15s ease}
+button.game-choice:hover{border-color:#d5ad63;color:#f2eadc;background:rgba(213,173,99,.08)}
+button.game-choice.active-choice{border-color:#d5ad63;background:rgba(213,173,99,.08)}
+#npcThread[hidden],#npcChoices[hidden]{display:none!important}
+.command-echo{margin-top:10px;font:12px/1.6 ui-monospace,Consolas,monospace;color:#bcb6a9}
+.command-echo.system{color:#9bad9c}
+.game-tag{display:inline-block;margin-left:8px;padding:1px 6px;border:1px solid #4a5a4e;color:#9fb29b;font-family:monospace;font-size:10px;letter-spacing:.08em}
+
+</style>
+</head>
+<body data-element="fire">
+<div class="game" aria-hidden="false">
+ <div class="game-header"><div class="game-brand">LA GRULLA BLANCA</div><div class="game-meta">— MUD xianxia · Sala de Formas</div><div class="game-actions"><button>AYUDA</button><button>GUARDAR</button><button>ESTADO</button></div></div>
+ <div class="game-zona"><main class="game-terminal"><div class="game-content">
+ <div class="terminal-eyebrow">SECTA EXTERIOR · Lianqi II · demostración visual</div>
+ <div class="game-room">Sala de Formas</div><div class="room-copy">Los pilares de madera oscurecida sostienen estandartes que apenas se mueven bajo la brisa. El suelo conserva las marcas circulares de incontables ejercicios marciales. Shen Baojun observa sin prisa cómo los discípulos corrigen su postura y buscan el equilibrio entre respiración e intención.</div>
+ <div class="room-detail">Shen Baojun observa el entrenamiento con calma. Si deseas hablar con él, puedes hacerlo mediante la barra de comandos inferior.</div>
+ <div class="room-meta">Personas: Shen Baojun, discípulos de la secta</div><div class="room-meta">Salidas: patio marcial · corredor de la secta</div>
+ <!-- El NPC no habla ni muestra opciones antes de recibir el comando HABLAR. -->
+ <div class="game-dialogue-box" id="npcThread" hidden aria-live="polite"></div>
+ <div class="game-choices" id="npcChoices" hidden></div>
+ </div></main><aside class="game-map"><div class="map-title">MAPA DE LA SECTA</div>
+ <svg viewBox="0 0 240 220" aria-hidden="true"><g fill="none" stroke="#334337" stroke-width="2"><path d="M120 19 L120 62 L66 62 L66 110 L120 110 L120 174 M120 110 L184 110 L184 154"/><rect x="97" y="82" width="46" height="56" stroke="#7d9e84"/></g><g fill="#1b2820" stroke="#587b62"><rect x="98" y="8" width="44" height="21"/><rect x="40" y="101" width="52" height="25"/><rect x="162" y="100" width="56" height="24"/><rect x="94" y="174" width="52" height="22"/></g><circle cx="120" cy="110" r="7" fill="#d5ad63"/><g font-family="monospace" font-size="9" fill="#95a99b" text-anchor="middle"><text x="120" y="22">PORTÓN</text><text x="66" y="117">PATIO</text><text x="190" y="116">SALAS</text><text x="120" y="189">PASO</text></g></svg>
+ <div class="panel-title">CULTIVADOR</div><div>Reino: Lianqi II</div><div>Raíz principal: variable</div><div>HP: ██░░░ · Qi: ███░░</div><div class="panel-title">ACTIVIDADES</div><div>• Practicar técnicas</div><div>• Hablar con el maestro</div></aside></div>
+ <form id="form" autocomplete="off">
+  <span class="simbolo" aria-hidden="true">›</span>
+  <input id="entrada" type="text" spellcheck="false" autofocus aria-label="Comando del juego" placeholder="escribe un comando… (AYUDA)">
+</form>
+</div>
+<div class="ov" id="overlay" aria-hidden="true">
+ <section class="ritual" role="dialog" aria-modal="true" aria-label="Interfaz experimental de entrenamiento defensivo">
+  <header class="r-top"><div class="r-top-seal">護</div><div><div class="r-eyebrow">SALA DE FORMAS · INSTRUCCIÓN DEFENSIVA</div><div class="r-title">El arte de resistir</div></div><div class="r-top-right"><div class="micro">LIANQI II / V06</div><div class="top-state">DEMO VISUAL · SIN COMMIT REAL</div></div><button id="closeBtn" class="icon-btn" aria-label="Cerrar entrenamiento">✕ CERRAR</button></header>
+  <div class="r-columns">
+   <nav class="r-side" aria-label="Elegir defensa"><div class="side-heading">Cinco senderos de defensa</div><div class="branch-list" id="branchList"></div><div class="side-foot"><div class="side-progress-label"><span>DOMINIO DE FUNDAMENTOS</span><span id="knownCount">0 / 5</span></div><div class="side-track"><div class="side-fill" id="knownFill" style="width:0%"></div></div><div class="side-note">Puedes comenzar por cualquier rama al alcanzar Lianqi II. Cada aprendizaje exige su propia práctica.</div></div></nav>
+   <div class="r-scene"><div class="scene-horizon"></div><div class="scene-top"><div class="scene-label">✧ <span id="sceneStage">OBSERVAR · 01 / 05</span></div><div class="scene-state" id="sceneState">FORMA NO APRENDIDA</div></div><div class="arena" id="arena"><canvas id="fx" aria-hidden="true"></canvas><div class="array"><div class="orbit"></div><div class="orbit2"></div><div class="orbit3"></div><div class="scene-symbol" id="sceneVisual"></div><div class="scene-glyph" id="sceneGlyph"></div></div></div><div class="scene-bottom"><div class="scene-element" id="sceneElement"></div><div class="scene-name" id="sceneName"></div><div class="scene-sub" id="sceneSub"></div></div></div>
+   <article class="r-story"><div class="story-breadcrumb" id="storyStep">PERCEPCIÓN · 01</div><h2 class="story-title" id="storyTitle">La primera postura</h2><div class="story-copy" id="storyCopy"></div><div class="story-rule"></div><div class="story-mentor" id="mentorQuote"></div><div class="story-action" id="storyActions"></div><div class="training-response" id="response" aria-live="polite"></div><div class="story-status" id="storyStatus"></div></article>
+  </div>
+  <footer class="r-bottom"><div><div class="progress-list" id="progressSteps"></div><div class="progress-caption" id="progressCaption">Preparación — Ejercicio — Corrección — Comprensión — Ritual</div></div><div class="bottom-actions"><button class="icon-btn" id="resetBtn">REINICIAR</button><button class="icon-btn primary" id="backBtn">VOLVER</button></div></footer>
+ </section>
+</div>
+<script>
+const CATALOG = [
+  { id:'cuerpo_horno', element:'Fuego', accent:'fire', glyph:'炉', name:'Respiración del Cuerpo-Horno',
+    summary:'Una defensa de calor interior: no niega el impacto por pura dureza, sino que regula la presión y convierte el desorden en contención estable.',
+    focus:'Regular respiración, tensión y calor interno antes de absorber o estabilizar un impacto.',
+    spirit:'La defensa de Fuego condensa, sostiene y distribuye el empuje sin que la postura se fracture.',
+    observation:'La técnica se siente como una disciplina de respiración y contención. Debe parecer un entrenamiento duro, no sólo un panel informativo.',
+    hooks:['Conectar al estado legítimo de Lianqi II.','Reemplazar esta demo por el snapshot real de Learning.','Abrir el ritual sólo tras el commit productivo LEARNED.'],
+    phases:[
+      {name:'Respiración', copy:'El cuerpo se vacía de impulso sobrante para retener sólo el calor necesario.'},
+      {name:'Encendido', copy:'La energía se concentra hacia el tronco y se vuelve una reserva contenida.'},
+      {name:'Contención', copy:'La postura deja de reaccionar con rigidez y comienza a absorber con orden.'},
+      {name:'Templado', copy:'El calor interno estabiliza la defensa sin dispersarse hacia el exterior.'},
+      {name:'Asentamiento', copy:'La técnica se fija como una pauta respiratoria y física repetible.'}
+    ],
+    ceremony:[
+      {tag:'Apertura', title:'Introducción del horno interno', text:'Shen te exige silenciar la prisa. Antes de absorber un impacto, tu cuerpo debe aprender a ordenar el aliento y a conservar una llama estable.', tip:'No conviertas la defensa en tensión ciega. Primero gobierna el centro.'},
+      {tag:'Fundamento', title:'Condensar sin endurecerse', text:'La defensa nace en el eje. El calor interior no se derrama hacia los hombros: permanece, se densifica y prepara al cuerpo para contener.', tip:'El Cuerpo-Horno no resiste por rigidez, sino por temperatura interior bien dirigida.'},
+      {tag:'Consagración', title:'El patrón queda fijado', text:'La respiración, el torso y la recepción del impacto empiezan a obedecer un mismo principio. La técnica deja de ser idea y comienza a volverse hábito.', tip:'En la integración final, la técnica ya habrá sido registrada antes de esta escena.'}
+    ],
+    questions:[
+      { kicker:'Evidencia 1 · Regulación previa', scene:'Shen corrige tu postura: estás intentando endurecer el torso antes de regular la respiración.',
+        options:[
+          {id:'a', title:'Ordenar el aliento antes de cerrar la postura', text:'Primero aquieto la respiración y luego condenso el centro.'},
+          {id:'b', title:'Cerrar el cuerpo con fuerza inmediata', text:'Endurezco el torso enseguida para aguantar el impacto cuanto antes.'}
+        ], answer:'a', ok:'«Así se enciende la defensa. El calor no sirve si nace del desorden.»', bad:'«Te estás tensando demasiado pronto. Sin regulación, sólo fabricas rigidez.»' },
+      { kicker:'Evidencia 2 · Contención del impacto', scene:'En la repetición guiada, el empuje te hace subir los hombros y perder estabilidad.',
+        options:[
+          {id:'a', title:'Bajar el exceso de tensión y redistribuir', text:'Dejo que el centro reciba primero y reparto la carga sin romper la respiración.'},
+          {id:'b', title:'Responder con más fuerza hacia delante', text:'Empujo con el pecho para apagar el impacto de una vez.'}
+        ], answer:'a', ok:'«Ahora sí. La defensa se conserva porque el golpe encuentra un cuerpo ordenado.»', bad:'«Si devuelves fuerza sin orden, conviertes una defensa en una colisión torpe.»' }
+    ]
+  },
+  { id:'armadura_plata', element:'Metal', accent:'metal', glyph:'甲', name:'Armadura de Plata',
+    summary:'La defensa de Metal organiza la cobertura y la estructura: el cuerpo aprende a volverse superficie útil, no sólo dureza sin criterio.',
+    focus:'Construir cobertura precisa, alineación y economía de movimiento.',
+    spirit:'Metal protege delimitando: cierra donde importa y mantiene una estructura nítida bajo presión.',
+    observation:'La puesta en escena debería transmitir disciplina marcial, cierre de ángulos y sensación de placa o contención estructurada.',
+    hooks:['Mantener orden libre entre defensivas.','No conceder mejoras automáticas.','La UI debe resaltar una defensa metódica y exacta.'],
+    phases:[
+      {name:'Estructura', copy:'La defensa comienza al reconocer qué debe cubrirse y qué no.'},
+      {name:'Cobertura', copy:'Los ángulos se vuelven compactos y precisos.'},
+      {name:'Cierre', copy:'La forma deja de abrir huecos por exceso de recorrido.'},
+      {name:'Templado', copy:'La estructura aguanta la presión sin expandirse.'},
+      {name:'Placa viva', copy:'La cobertura ya puede sostenerse como patrón consciente.'}
+    ],
+    ceremony:[
+      {tag:'Apertura', title:'Levantar la estructura', text:'Shen marca con dureza cada hueco innecesario. No quiere una defensa “grande”, sino una cubierta exacta.', tip:'Metal no protege por ansiedad; protege por forma correcta.'},
+      {tag:'Fundamento', title:'Cerrar el vacío justo', text:'Cada corrección reduce recorrido sobrante. La postura se vuelve una placa viva, compacta y templada.', tip:'La precisión le quita espacio al daño antes que la fuerza bruta.'},
+      {tag:'Consagración', title:'La armadura toma su sitio', text:'La técnica deja de parecer un gesto aislado y adopta consistencia. Tu cuerpo ya entiende qué cerrar, cuánto y por qué.', tip:'El ritual visual celebra una comprensión que ya fue confirmada.'}
+    ],
+    questions:[
+      { kicker:'Evidencia 1 · Cobertura útil', scene:'La demostración deja un hueco pequeño, pero tu reacción intenta cubrir demasiado espacio.',
+        options:[
+          {id:'a', title:'Cerrar el hueco exacto', text:'Ajusto la cobertura al ángulo que realmente quedó abierto.'},
+          {id:'b', title:'Expandir la defensa para cubrir todo', text:'Amplío la estructura aunque el gesto se vuelva lento y desordenado.'}
+        ], answer:'a', ok:'«Bien. Una cobertura precisa vale más que una placa torpe.»', bad:'«Quisiste abarcar demasiado y terminaste debilitando la forma.»' },
+      { kicker:'Evidencia 2 · Economía del cierre', scene:'En el segundo ensayo alcanzas la posición correcta, pero tus brazos siguen moviéndose más de lo necesario.',
+        options:[
+          {id:'a', title:'Recortar el recorrido', text:'Mantengo el cierre y elimino el movimiento sobrante.'},
+          {id:'b', title:'Aumentar la velocidad del mismo recorrido', text:'Repito igual, pero más rápido.'}
+        ], answer:'a', ok:'«Exacto. La placa se fortalece cuando suprimes lo que sobra.»', bad:'«La prisa no corrige una forma demasiado grande.»' }
+    ]
+  },
+  { id:'espejo_luna', element:'Agua', accent:'water', glyph:'月', name:'Espejo de Luna',
+    summary:'La defensa de Agua no bloquea de frente todo el peso; recibe, acompaña y desvía. Convierte la recepción en continuidad en lugar de choque.',
+    focus:'Recibir sin quebrar el flujo, redirigiendo la fuerza antes de que se acumule.',
+    spirit:'Agua protege transformando el trayecto del impacto en lugar de oponérsele de plano.',
+    observation:'Visualmente conviene que la transición se sienta fluida: menos tensión “dura”, más lectura, deriva y retorno al centro.',
+    hooks:['Pensada para convivir con evasión o mitigación futura.','No inventar todavía números definitivos.','Mantener la ceremonia posterior a LEARNED.'],
+    phases:[
+      {name:'Reflejo', copy:'Primero se comprende el movimiento recibido.'},
+      {name:'Contacto', copy:'La fuerza ajena toca la defensa sin encontrar un muro rígido.'},
+      {name:'Desvío', copy:'La trayectoria se reconduce sin cortar la continuidad.'},
+      {name:'Acompañamiento', copy:'La forma conserva equilibrio mientras guía la presión.'},
+      {name:'Reposo', copy:'La defensa termina sin quiebre ni acumulación brusca.'}
+    ],
+    ceremony:[
+      {tag:'Apertura', title:'Leer antes de responder', text:'Shen te obliga a observar el trayecto del empuje. El agua no se protege a base de chocar: primero entiende, luego acompaña.', tip:'La defensa comienza donde dejas de pelear contra cada onda.'},
+      {tag:'Fundamento', title:'Conducir la fuerza', text:'La recepción ya no es plana. El cuerpo la transforma en un flujo que se desvía sin romperse.', tip:'El espejo lunar no absorbe por pesadez, sino por continuidad.'},
+      {tag:'Consagración', title:'El reflejo queda asentado', text:'Tu postura aprende a terminar donde empezó: serena, equilibrada y sin violencia sobrante.', tip:'Este ritual visual se activa después del aprendizaje auténtico.'}
+    ],
+    questions:[
+      { kicker:'Evidencia 1 · Recibir sin chocar', scene:'Tu primera reacción frente al empuje es detenerlo de plano, con los codos rígidos.',
+        options:[
+          {id:'a', title:'Recibir y acompañar', text:'Acompaño el contacto y guío la presión en una curva breve.'},
+          {id:'b', title:'Oponer un muro directo', text:'Cierro todo el cuerpo para frenar el impacto de frente.'}
+        ], answer:'a', ok:'«Eso es. El agua no necesita negar cada golpe para protegerse.»', bad:'«Te endureciste demasiado. Así sólo cambias choque por fatiga.»' },
+      { kicker:'Evidencia 2 · Continuidad del desvío', scene:'La trayectoria ya empezó a desviarse, pero al final interrumpes el gesto y recuperas rigidez.',
+        options:[
+          {id:'a', title:'Conservar el enlace hasta el final', text:'Mantengo el desvío y regreso al centro sin cortar la continuidad.'},
+          {id:'b', title:'Recuperar fuerza al final', text:'Endurezco la salida para cerrar la defensa con más seguridad.'}
+        ], answer:'a', ok:'«Bien. La defensa concluye cuando la presión ya no encuentra dónde quedarse.»', bad:'«Ese cierre brusco rompe lo que ya habías conseguido conducir.»' }
+    ]
+  },
+  { id:'piel_cobre', element:'Tierra', accent:'earth', glyph:'銅', name:'Piel de Cobre',
+    summary:'La defensa de Tierra afirma apoyo, densidad y permanencia. No se basa en velocidad, sino en una estructura que soporta y permanece.',
+    focus:'Consolidar apoyo, densidad y coordinación corporal.',
+    spirit:'Tierra protege sosteniendo: volviéndose presencia estable sobre la cual el impacto pierde ventaja.',
+    observation:'La escena debería sentirse pesada, asentada y segura. Aunque exista una conexión futura con M03, esta demo sólo representa la enseñanza defensiva de Lianqi II.',
+    hooks:['No reabre el contrato M03.','Reutiliza la infraestructura de aprendizaje ya validada.','No concede mejoras automáticas.'],
+    phases:[
+      {name:'Apoyo', copy:'Todo empieza en la base que sostiene la forma.'},
+      {name:'Densificación', copy:'El cuerpo deja de dispersarse y comienza a compactarse.'},
+      {name:'Fijación', copy:'La postura se vuelve un punto difícil de desplazar.'},
+      {name:'Recepción', copy:'El impacto encuentra una presencia pesada y ordenada.'},
+      {name:'Asentamiento', copy:'La técnica permanece en el cuerpo como hábito sólido.'}
+    ],
+    ceremony:[
+      {tag:'Apertura', title:'Fundar el apoyo', text:'Shen no te deja pensar en dureza hasta corregir tus pies. La defensa de Tierra empieza abajo, donde el peso aprende a asentarse.', tip:'No construyas una muralla sobre un suelo incierto.'},
+      {tag:'Fundamento', title:'Densidad coordinada', text:'El cuerpo gana peso, pero no por rigidez. Cada parte se ordena alrededor de una base clara y firme.', tip:'La densidad útil nunca es inmovilidad ciega.'},
+      {tag:'Consagración', title:'La piel se vuelve soporte', text:'La técnica empieza a existir como presencia estable. El impacto ya no te encuentra disuelto, sino asentado.', tip:'La ceremonia visual sólo muestra una técnica ya aprendida.'}
+    ],
+    questions:[
+      { kicker:'Evidencia 1 · Afirmar la base', scene:'Quieres endurecer el torso, pero tus pies todavía no sostienen con firmeza el peso.',
+        options:[
+          {id:'a', title:'Afirmar primero el apoyo', text:'Consolido la base y después llevo la densidad al resto del cuerpo.'},
+          {id:'b', title:'Empezar por el torso', text:'Tenso arriba primero y confío en que los pies acompañen después.'}
+        ], answer:'a', ok:'«Correcto. No construyas una muralla sobre un suelo incierto.»', bad:'«La dureza de arriba no sirve si la base llega tarde.»' },
+      { kicker:'Evidencia 2 · Densidad coordinada', scene:'Tu segunda repetición ya tiene apoyo, pero estás apretando todo el cuerpo a la vez y pierdes coordinación.',
+        options:[
+          {id:'a', title:'Coordinar la densidad', text:'Llevo el peso de forma organizada, sin inmovilizar lo innecesario.'},
+          {id:'b', title:'Apretar más fuerte', text:'Incremento la tensión general para volverme más duro.'}
+        ], answer:'a', ok:'«Bien. La tierra se asienta; no se bloquea torpemente.»', bad:'«Estás confundiendo densidad con rigidez ciega.»' }
+    ]
+  },
+  { id:'paso_nube', element:'Viento', accent:'wind', glyph:'雲', name:'Paso de Nube Ligera',
+    summary:'La defensa de Viento protege evitando quedar donde el golpe esperaba encontrarte. Su centro está en el desplazamiento, el ajuste y el reposicionamiento.',
+    focus:'Anticipar dirección, transferir peso y salir del trayecto dañino con limpieza.',
+    spirit:'Viento se defiende rehaciendo la posición: altera distancia, ángulo y momento con precisión ligera.',
+    observation:'La puesta en escena debe sentirse móvil y aérea: más lectura y reposicionamiento que bloqueo frontal.',
+    hooks:['Ideal para una futura técnica con movilidad/evitación.','Puede compartir la infraestructura V13 sin assets externos.','Debe sentirse distinta de las defensas “pesadas”.'],
+    phases:[
+      {name:'Lectura', copy:'La defensa comienza identificando el trayecto del peligro.'},
+      {name:'Aligeramiento', copy:'El peso deja de clavarse donde ya no debe estar.'},
+      {name:'Desplazamiento', copy:'El cuerpo sale del eje de amenaza con decisión breve.'},
+      {name:'Reorientación', copy:'La nueva posición conserva equilibrio y propósito.'},
+      {name:'Asentamiento', copy:'La ligereza termina en control, no en fuga desordenada.'}
+    ],
+    ceremony:[
+      {tag:'Apertura', title:'Leer el trayecto', text:'Shen reprime tu instinto de correr sin pensar. El viento no se salva por apuro, sino por lectura y dirección.', tip:'Antes de moverte, decide a dónde debe ir el cuerpo.'},
+      {tag:'Fundamento', title:'Ligereza con eje', text:'El peso deja de anclarse donde llega el daño. La defensa ya no es aguantar: es aparecer en un lugar mejor.', tip:'Ligereza sin dirección es dispersión. Ligereza con eje es técnica.'},
+      {tag:'Consagración', title:'El paso queda escrito', text:'Tu cuerpo aprende a salir del trayecto y reaparecer con forma, no como una huida torpe.', tip:'La técnica ya fue aprendida cuando la ceremonia se abre.'}
+    ],
+    questions:[
+      { kicker:'Evidencia 1 · Elegir salida', scene:'La presión viene en línea recta y tu primera reacción sería saltar sin decidir hacia dónde.',
+        options:[
+          {id:'a', title:'Elegir el nuevo ángulo antes de moverme', text:'Primero decido la salida y luego transfiero el peso hacia ella.'},
+          {id:'b', title:'Moverme rápido y decidir sobre la marcha', text:'Salgo enseguida y corrijo la dirección mientras me desplazo.'}
+        ], answer:'a', ok:'«Eso es. La ligereza sirve cuando sabe hacia dónde va.»', bad:'«La velocidad sin dirección sólo reemplaza un peligro por otro.»' },
+      { kicker:'Evidencia 2 · Reaparecer con control', scene:'Te apartaste del trayecto, pero al terminar quedas abierto y sin equilibrio.',
+        options:[
+          {id:'a', title:'Cerrar el paso con una nueva base', text:'Termino el desplazamiento listo para continuar, no sólo para huir.'},
+          {id:'b', title:'Confiar en la distancia obtenida', text:'Si ya salí del golpe, dejo que el cuerpo se acomode como pueda.'}
+        ], answer:'a', ok:'«Bien. El paso no termina al salir: termina cuando vuelves a estar presente.»', bad:'«Esquivar no basta si reapareces sin forma.»' }
+    ]
+  }
+];
+
+const ELEMENT_HEX={fire:'#ff975f',metal:'#dbe7f2',water:'#89d5f5',earth:'#edbd7e',wind:'#a3efcf'};
+const ART={
+fire:`<svg viewBox="0 0 440 440" role="img" aria-label="Horno espiritual con llamas ascendentes">
+<defs><linearGradient id="f1" x1="0" y1="1" x2="0" y2="0"><stop stop-color="#8b220e"/><stop offset=".53" stop-color="#f46a2f"/><stop offset="1" stop-color="#ffec99"/></linearGradient><radialGradient id="fireGlow"><stop stop-color="#ffdc71" stop-opacity=".85"/><stop offset="1" stop-color="#ff9c36" stop-opacity="0"/></radialGradient></defs>
+<ellipse cx="220" cy="260" rx="138" ry="121" fill="url(#fireGlow)" opacity=".25"/><ellipse cx="220" cy="335" rx="137" ry="28" fill="#ff7a35" opacity=".15"/>
+<g fill="none" stroke="#ffac6a" stroke-width="2" opacity=".6"><path d="M98 274 L116 226 L102 180 L160 150 L220 115 L280 150 L338 180 L324 226 L342 274 L292 313 L220 344 L148 313Z"/><path d="M125 270 L139 214 L176 165 L220 147 L264 165 L301 214 L315 270 L266 306 L220 325 L174 306Z"/></g>
+<path class="flame" fill="url(#f1)" d="M188 313 C132 246 171 198 192 168 C186 222 230 196 228 123 C283 208 288 233 256 313 Z"/>
+<path class="flame f2" fill="#ffdb84" opacity=".81" d="M203 312 C181 275 208 253 214 220 C226 246 251 273 235 312 Z"/>
+<path class="flame f3" fill="#ec5728" opacity=".8" d="M153 310 C122 260 149 231 160 211 C170 260 194 280 188 315Z"/>
+<g fill="none" stroke="#ffd993" stroke-width="3" opacity=".65"><path d="M130 319 Q220 352 310 319"/><path d="M140 331 Q220 360 300 331"/></g>
+<g fill="#ffce7b"><circle cx="172" cy="117" r="3"/><circle cx="252" cy="93" r="3"/><circle cx="299" cy="147" r="3"/><circle cx="133" cy="163" r="3"/></g></svg>`,
+metal:`<svg viewBox="0 0 440 440" role="img" aria-label="Placas plateadas y escudo facetado">
+<defs><linearGradient id="m1" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#495d73"/><stop offset=".5" stop-color="#e8f5ff"/><stop offset="1" stop-color="#627995"/></linearGradient><linearGradient id="m2"><stop stop-color="#ecf7ff" stop-opacity=".4"/><stop offset="1" stop-color="#b0d3f0" stop-opacity=".06"/></linearGradient></defs>
+<g fill="none" stroke="#b1d4f7" stroke-width="2" opacity=".5"><path d="M220 65 L340 126 L340 277 L220 359 L100 277 L100 126Z"/><path d="M220 92 L315 144 L315 266 L220 332 L125 266 L125 144Z"/><path d="M220 112 L294 158 L294 258 L220 309 L146 258 L146 158Z"/></g>
+<g class="metal-facet"><path d="M220 118 L292 163 L286 269 L220 319 L154 269 L148 163 Z" fill="url(#m1)" fill-opacity=".33" stroke="#eaf3ff" stroke-width="3"/><path d="M220 118 L220 319 M148 163 L220 193 L292 163 M154 269 L220 236 L286 269" stroke="#d3e8fa" stroke-width="2" fill="none" opacity=".8"/></g>
+<path class="metal-facet f2" d="M138 176 L87 205 L105 272 L148 293" stroke="#d0e5fa" fill="none" stroke-width="6" opacity=".58"/>
+<path class="metal-facet f3" d="M302 176 L353 205 L335 272 L292 293" stroke="#d0e5fa" fill="none" stroke-width="6" opacity=".58"/>
+<path class="metal-sweep" fill="url(#m2)" d="M130 97 L165 97 L295 345 L260 345Z"/><g fill="#e8f5ff"><circle cx="220" cy="65" r="4"/><circle cx="340" cy="126" r="4"/><circle cx="100" cy="277" r="4"/></g></svg>`,
+water:`<svg viewBox="0 0 440 440" role="img" aria-label="Espejo de luna sobre ondas de agua">
+<defs><linearGradient id="w1" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d0f8ff"/><stop offset="1" stop-color="#236da3"/></linearGradient><radialGradient id="w2"><stop stop-color="#bdefff" stop-opacity=".35"/><stop offset="1" stop-color="#89d5f5" stop-opacity="0"/></radialGradient></defs>
+<circle cx="220" cy="196" r="124" fill="url(#w2)"/><circle cx="220" cy="196" r="92" fill="none" stroke="#a6e7fa" stroke-width="2" opacity=".65"/><circle cx="220" cy="196" r="72" fill="url(#w1)" opacity=".24"/><circle cx="220" cy="196" r="62" fill="#e8fdff" opacity=".22"/><path d="M237 122 A75 75 0 1 0 270 242 A80 80 0 1 1 237 122Z" fill="#d9f7ff" opacity=".46"/>
+<ellipse class="water-ripple" cx="220" cy="285" rx="115" ry="25" fill="none" stroke="#84d2f2" stroke-width="2"/><ellipse class="water-ripple" cx="220" cy="298" rx="145" ry="28" fill="none" stroke="#79bddf" opacity=".3" stroke-width="2"/>
+<path class="water-wave" d="M72 292 Q120 268 169 292 T266 292 T363 292" fill="none" stroke="#a5ecfc" stroke-width="5" opacity=".67"/>
+<path class="water-wave w2" d="M67 312 Q118 288 170 312 T274 312 T376 312" fill="none" stroke="#6ab5e9" stroke-width="4" opacity=".56"/>
+<path class="water-wave" d="M100 338 Q155 324 220 338 T340 338" fill="none" stroke="#d5f7ff" stroke-width="2" opacity=".43"/>
+<g fill="#a9ecfa" opacity=".75"><circle cx="140" cy="121" r="3"/><circle cx="305" cy="170" r="3"/><circle cx="321" cy="244" r="2"/></g></svg>`,
+earth:`<svg viewBox="0 0 440 440" role="img" aria-label="Montaña de roca protectora y fragmentos de piedra">
+<defs><linearGradient id="e1" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffdaa1"/><stop offset=".6" stop-color="#9f6337"/><stop offset="1" stop-color="#453b2d"/></linearGradient></defs>
+<g fill="none" stroke="#c59c62" opacity=".43" stroke-width="2"><path d="M220 80 L332 150 L348 267 L220 341 L92 267 L108 150Z"/><path d="M220 110 L304 166 L320 259 L220 316 L120 259 L136 166Z"/></g>
+<g class="earth-shard"><path d="M220 105 L306 167 L300 272 L220 330 L140 272 L134 167Z" fill="url(#e1)" fill-opacity=".36" stroke="#edbf84" stroke-width="3"/><path d="M220 105 L230 200 L198 263 L220 330 M134 167 L230 200 L306 167 M140 272 L198 263 L300 272" fill="none" stroke="#f5d79c" opacity=".45" stroke-width="2"/></g>
+<g class="earth-shard s2"><path d="M114 235 L87 260 L106 317 L148 326 L164 285" fill="#af754c" opacity=".48" stroke="#f1bd84" stroke-width="2"/></g>
+<g class="earth-shard s3"><path d="M323 228 L361 256 L350 313 L307 320 L291 279" fill="#af754c" opacity=".45" stroke="#f1bd84" stroke-width="2"/></g>
+<g fill="none" stroke="#daa86c" opacity=".58"><path d="M96 348 Q220 366 344 348"/><path d="M130 361 Q220 375 310 361"/></g></svg>`,
+wind:`<svg viewBox="0 0 440 440" role="img" aria-label="Corrientes de viento y nubes móviles">
+<defs><linearGradient id="wi1" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#6bceb3" stop-opacity=".1"/><stop offset=".5" stop-color="#c9fff0"/><stop offset="1" stop-color="#6bceb3" stop-opacity=".1"/></linearGradient></defs>
+<g fill="none" stroke="url(#wi1)" stroke-width="4" stroke-linecap="round">
+<path class="wind-line" d="M59 237 C96 134 225 93 301 154 C357 200 326 279 239 301 C144 325 126 239 186 202"/>
+<path class="wind-line w2" d="M69 300 C145 361 279 340 335 267 C401 176 313 103 238 127"/>
+<path class="wind-line w3" d="M102 174 C161 115 245 114 300 173 C350 233 285 287 235 263"/>
+</g><g fill="none" stroke="#b3eed7" opacity=".4" stroke-width="2"><path d="M94 240 Q174 173 253 242"/><path d="M159 321 Q247 365 316 296"/></g>
+<g class="wind-leaf" fill="#9feaca"><path d="M113 140 Q144 112 160 123 Q143 150 113 140"/></g><g class="wind-leaf l2" fill="#d4fff0"><path d="M321 187 Q352 165 366 182 Q348 204 321 187"/></g><g class="wind-leaf l3" fill="#82d1b4"><path d="M118 313 Q147 288 165 298 Q153 329 118 313"/></g>
+<circle cx="220" cy="220" r="78" stroke="#a2e4cf" opacity=".3" fill="none" stroke-width="2"/></svg>`
+};
+const state={selected:0,learned:new Set(),phase:'intro',answered:0,afterFocus:false,holdStarted:0,holdProgress:0,holding:false,animToken:0,mouseIn:false};
+const PHASES=['Observar','Respirar','Aplicar','Corregir','Consagrar'];
+const $=s=>document.querySelector(s);
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* El único punto de entrada para hablar es el comando inferior original. */
+const ROOM_DIALOGUE = {
+ root:{ text:'«Si vienes a mí, vienes a aprender con intención. Puedes preguntarme por las formas de la secta o pedirme instrucción defensiva.»', choices:[
+   {label:'[1] Preguntar por las formas de la secta', action:'formas'},
+   {label:'[2] Pedir una explicación general', action:'explicacion'},
+   {label:'[3] Consultar la enseñanza defensiva de Lianqi II', action:'defensivas'},
+   {label:'[4] Despedirse por ahora', action:'salir'}
+ ]},
+ formas:{ text:'«Las formas son recipientes. Una misma intención puede volverse fuego, metal, agua, tierra o viento, según cómo ordenes tu cuerpo y tu qi.»', choices:[
+   {label:'[1] Preguntar cuál es el propósito de las defensas', action:'explicacion'},
+   {label:'[2] Consultar la enseñanza defensiva de Lianqi II', action:'defensivas'},
+   {label:'[3] Volver a hablar con Shen', action:'hablar'},
+   {label:'[4] Despedirse por ahora', action:'salir'}
+ ]},
+ explicacion:{ text:'«Una defensa no es esconderse del golpe. Es darle a tu cuerpo una respuesta correcta cuando el impacto llega. Si estás listo, te mostraré las cinco bases.»', choices:[
+   {label:'[1] Consultar la enseñanza defensiva de Lianqi II', action:'defensivas'},
+   {label:'[2] Preguntar por las formas de la secta', action:'formas'},
+   {label:'[3] Volver a hablar con Shen', action:'hablar'},
+   {label:'[4] Despedirse por ahora', action:'salir'}
+ ]},
+ salir:{ text:'«Regresa cuando quieras. La práctica no huye de quien vuelve con disciplina.»', choices:[] }
+};
+let dialogueActive = false;
+function setRoomDialogue(key){
+ const data = ROOM_DIALOGUE[key] || ROOM_DIALOGUE.root;
+ const thread = $('#npcThread'), options = $('#npcChoices');
+ thread.innerHTML = `<span class="speaker">Shen Baojun:</span> ${data.text}`;
+ thread.hidden = false;
+ options.innerHTML = data.choices.map(c=>`<button type="button" class="game-choice" data-dialog="${c.action}">${c.label}</button>`).join('');
+ options.hidden = data.choices.length === 0;
+ options.querySelectorAll('[data-dialog]').forEach(btn=>btn.addEventListener('click',()=>handleRoomAction(btn.dataset.dialog)));
+ dialogueActive = key !== 'salir';
+ $('.game-terminal').scrollTop = $('.game-terminal').scrollHeight;
+}
+function handleRoomAction(action){
+ if(action === 'salir'){ setRoomDialogue('salir'); $('#entrada').focus(); return; }
+ if(!dialogueActive && action !== 'hablar'){
+   showSystem('Primero debes hablar con Shen Baojun.'); $('#entrada').focus(); return;
+ }
+ if(action === 'defensivas'){
+   if(available().length === 0){
+     showSystem('Shen ya te ha enseñado las cinco defensivas básicas.');
+   } else open();
+ } else if(action === 'hablar') setRoomDialogue('root');
+ else if(action === 'formas') setRoomDialogue('formas');
+ else if(action === 'explicacion') setRoomDialogue('explicacion');
+ $('#entrada').focus();
+}
+function normalizeCommand(text){
+ return String(text).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[¡!¿?.,;:]/g,'').trim().replace(/\s+/g,' ');
+}
+function showSystem(message){
+ const thread = $('#npcThread');
+ const line = document.createElement('div'); line.className='command-echo system'; line.textContent=message;
+ thread.hidden=false; thread.appendChild(line);
+ $('.game-terminal').scrollTop = $('.game-terminal').scrollHeight;
+}
+function sendCommand(raw){
+ const value = normalizeCommand(raw);
+ if(!value)return;
+ if(/^hablar(?: con)? shen(?: baojun)?$/.test(value)){
+   setRoomDialogue('root');return;
+ }
+ if(value==='ayuda'){
+   showSystem('Comandos de esta demo: HABLAR SHEN, MIRAR, AYUDA. Durante el diálogo, escribe un número o pulsa una opción.');return;
+ }
+ if(value==='mirar' || value==='examinar sala'){
+   showSystem('Estás en la Sala de Formas. Shen Baojun supervisa el entrenamiento de los discípulos.');return;
+ }
+ if(dialogueActive){
+   const options = Array.from($('#npcChoices').querySelectorAll('[data-dialog]'));
+   if(/^[1-9]$/.test(value)){
+     const match=options[Number(value)-1];
+     if(match){ handleRoomAction(match.dataset.dialog); return; }
+   }
+   if(value.includes('defensiv') || value.includes('entren')){handleRoomAction('defensivas');return;}
+   if(value.includes('forma')){handleRoomAction('formas');return;}
+   if(value==='salir'||value==='despedirse'){handleRoomAction('salir');return;}
+   if(value.includes('explic')){handleRoomAction('explicacion');return;}
+ }
+ showSystem(dialogueActive
+   ? 'Comando no reconocido en esta conversación. Elige una de las opciones por su número.'
+   : 'No estás conversando con nadie. Escribe HABLAR SHEN para dirigirte al maestro.');
+}
+$('#form').addEventListener('submit',event=>{
+ event.preventDefault();
+ const entry=$('#entrada');const cmd=entry.value;entry.value='';sendCommand(cmd);entry.focus();
+});
+let raf=0,particles=[];
+function available(){return CATALOG.filter(t=>!state.learned.has(t.id));}
+function current(){return CATALOG[state.selected];}
+function setElement(){document.body.dataset.element=current().accent;}
+function sel(index){
+ if(index<0||index>=CATALOG.length)return;
+ if(state.learned.has(CATALOG[index].id))return;
+ state.animToken++;state.selected=index;state.phase='intro';state.answered=0;state.afterFocus=false;state.holding=false;state.holdProgress=0;
+ setElement();render();
+}
+function setAction(content){$('#storyActions').innerHTML=content;$('#response').className='training-response';$('#response').textContent='';}
+function feedback(message,isCorrect){const el=$('#response');el.textContent=message;el.className='training-response show '+(isCorrect?'success':'error');}
+function scenePulse(){const el=$('#sceneVisual');el.classList.remove('impact-burst');void el.offsetWidth;el.classList.add('impact-burst');}
+function render(){
+ const t=current();setElement();
+ $('#branchList').innerHTML=CATALOG.map((c,i)=>{
+ let color=ELEMENT_HEX[c.accent];let checked=state.learned.has(c.id);
+ return `<button type="button" class="branch-choice ${i===state.selected?'active':''} ${checked?'learned':''}" style="--symbol-color:${color}" data-choice="${i}" ${checked?'disabled':''} aria-label="${c.name}${checked?', ya aprendida':''}"><span class="bc-glyph">${c.glyph}</span><span><span class="bc-element">${c.element.toUpperCase()}</span><span class="bc-name">${c.name}</span></span><span class="bc-check">${checked?'✓':'›'}</span></button>`
+ }).join('');
+ document.querySelectorAll('[data-choice]').forEach(el=>el.addEventListener('click',()=>sel(Number(el.dataset.choice))));
+ $('#knownCount').textContent=`${state.learned.size} / 5`;
+ $('#knownFill').style.width=`${(state.learned.size/5)*100}%`;
+ $('#sceneVisual').innerHTML=ART[t.accent];
+ $('#sceneGlyph').textContent=t.glyph;
+ $('#sceneName').textContent=t.name;
+ $('#sceneElement').textContent=`— ${t.element.toUpperCase()} · PRINCIPIO DEFENSIVO —`;
+ $('#sceneState').textContent=state.learned.has(t.id)?'APRENDIDA':'FORMA NO APRENDIDA';
+ updateStage();
+}
+function updateStage(){
+ const t=current(),phase=state.phase;
+ let index=phase==='intro'?0:phase==='focus'?1:phase==='question1'?2:phase==='question2'?3:4;
+ $('#sceneStage').textContent=`${PHASES[index].toUpperCase()} · ${String(index+1).padStart(2,'0')} / 05`;
+ $('#storyStep').textContent=`${PHASES[index].toUpperCase()} · ${String(index+1).padStart(2,'0')}`;
+ $('#progressSteps').innerHTML=PHASES.map((x,i)=>`<span class="progress-step ${i<index?'done':''} ${i===index?'current':''}" title="${x}"></span>`).join('');
+ $('#progressCaption').textContent=PHASES.join(' — ');
+ $('#sceneSub').textContent=[t.phases[0].copy,t.phases[1].copy,t.phases[2].copy,t.phases[3].copy,t.phases[4].copy][index];
+ $('#backBtn').textContent=index>=4?'VOLVER AL MAESTRO':'CANCELAR PRÁCTICA';
+ if(phase==='intro'){
+ $('#storyTitle').textContent='El principio de la forma';$('#storyCopy').textContent=t.summary;
+ $('#mentorQuote').textContent=`«${t.focus}»`;
+ setAction(`<button class="btn-large" id="beginBtn">ENTRAR EN LA PRÁCTICA <span aria-hidden="true">→</span></button>`);
+ $('#beginBtn').addEventListener('click',()=>{state.phase='focus';updateStage();});
+ $('#storyStatus').textContent='Shen no exige una raíz determinada. Todas las defensas están disponibles desde Lianqi II.';
+ }else if(phase==='focus'){
+ $('#storyTitle').textContent='Concentra tu energía';$('#storyCopy').textContent=`${t.phases[1].copy} Mantén el gesto de concentración para estabilizar la forma antes de responder a Shen.`;
+ $('#mentorQuote').textContent='«No quiero un movimiento vacío. Sostén la intención hasta que el cuerpo deje de temblar».';
+ setAction(`<div class="hold-desc">MANTÉN PRESIONADO EL BOTÓN O LA BARRA ESPACIADORA</div><button class="btn-large" id="holdBtn" aria-label="Mantener concentración">◈ MANTENER CONCENTRACIÓN</button><div class="hold-track"><div class="hold-fill" id="holdFill" style="width:0%"></div></div><div class="hold-desc">Concentración estable: <span id="holdPct">0%</span></div>`);
+ const btn=$('#holdBtn');btn.addEventListener('pointerdown',startHold);btn.addEventListener('pointerup',stopHold);btn.addEventListener('pointercancel',stopHold);btn.addEventListener('pointerleave',stopHold);
+ $('#storyStatus').textContent='Esta mecánica es una simulación de UI. Astra conectará después los ejercicios canónicos de Teaching.';
+ }else if(phase==='question1'||phase==='question2'){
+ const q=t.questions[phase==='question1'?0:1];
+ $('#storyTitle').textContent=q.kicker.split('·').pop().trim();$('#storyCopy').textContent=q.scene;
+ $('#mentorQuote').textContent=phase==='question1'?'«Muéstrame que observaste el principio antes de actuar».' : '«No basta repetir la postura. Corrige lo que hizo fallar a tu defensa».';
+ setAction(q.options.map((o,i)=>`<button class="quest-option" data-opt="${o.id}"><b>ELECCIÓN ${i+1}</b>${o.title}<span style="display:block;color:#acb0ad;margin-top:4px">${o.text}</span></button>`).join(''));
+ document.querySelectorAll('[data-opt]').forEach(el=>el.addEventListener('click',()=>answer(el.dataset.opt)));
+ $('#storyStatus').textContent='Dos ejercicios diferenciados. Una respuesta incorrecta permite corregir; no registra conocimiento.';
+ }else if(phase==='complete'){
+ $('#storyTitle').textContent='La forma despierta';$('#storyCopy').textContent='La práctica ha terminado. La defensa queda asentada en la simulación y la interfaz representa el ritual posterior al aprendizaje.';
+ $('#mentorQuote').textContent=`«${t.ceremony[2].text}»`;
+ setAction(`<div class="earned"><div class="earned-kicker">✧ COMPRENSIÓN CONSOLIDADA ✧</div><div class="earned-name">${t.name}</div><div class="earned-copy">LEARNED SIMULADO · La técnica ya desapareció de la oferta. En el juego verdadero, la animación debe ejecutarse únicamente después del commit auténtico de Player Learning.</div></div><button class="btn-large" id="againBtn">REGRESAR AL MAESTRO</button>`);
+ $('#againBtn').addEventListener('click',returnToMenu);
+ $('#sceneState').textContent='FORMA COMPRENDIDA';scenePulse();
+ $('#storyStatus').textContent='Esta demo no guarda la partida, no altera Qi, estadísticas o combate y no conecta con A07.';
+ }
+}
+function startHold(e){
+ if(state.phase!=='focus'||state.holding)return;
+ if(e && e.pointerId!=null){try{e.currentTarget.setPointerCapture(e.pointerId)}catch{}}
+ state.holding=true;state.holdStarted=performance.now();state.holdProgress=0;
+ if(e)e.preventDefault();
+}
+function stopHold(){if(!state.holding)return;state.holding=false;if(state.holdProgress<1){state.holdProgress=0;const f=$('#holdFill'),p=$('#holdPct');if(f)f.style.width='0%';if(p)p.textContent='0%';}}
+function tickHold(now){
+ if(state.holding&&state.phase==='focus'){
+ const duration=reduced?550:1600;state.holdProgress=Math.min(1,(now-state.holdStarted)/duration);
+ const bar=$('#holdFill'),pct=$('#holdPct');if(bar)bar.style.width=`${Math.round(state.holdProgress*100)}%`;if(pct)pct.textContent=`${Math.round(state.holdProgress*100)}%`;
+ if(state.holdProgress>=1){state.holding=false;state.phase='question1';scenePulse();updateStage();}
+ }
+ requestAnimationFrame(tickHold)
+}
+requestAnimationFrame(tickHold);
+function answer(id){
+ const t=current();const q=t.questions[state.phase==='question1'?0:1];if(!q)return;
+ const good=id===q.answer;
+ feedback(good?q.ok:q.bad,good);
+ if(!good){scenePulse();return;}
+ document.querySelectorAll('[data-opt]').forEach(el=>el.disabled=true);
+ const token=++state.animToken;
+ window.setTimeout(()=>{if(state.animToken!==token||!$('#overlay').classList.contains('open'))return;
+ if(state.phase==='question1'){state.phase='question2';scenePulse();updateStage()}
+ else { // Demo-only completion. No product Player Learning mutation.
+  state.learned.add(t.id);state.phase='complete';render();
+ }
+ },reduced?240:900);
+}
+function returnToMenu(){
+ const next=CATALOG.findIndex(t=>!state.learned.has(t.id));
+ if(next>=0){sel(next)}else{state.phase='allDone';$('#storyTitle').textContent='Las cinco defensas, comprendidas';$('#storyCopy').textContent='Terminó el repertorio básico. En el juego real deben permanecer los diálogos sociales del maestro; la enseñanza se retira.';$('#mentorQuote').textContent='«Una defensa no reemplaza a otra. Ahora conoces los cinco fundamentos; aún queda convertirlos en experiencia».';setAction(`<div class="earned"><div class="earned-kicker">CINCO FUNDAMENTOS · DEMO COMPLETA</div><div class="earned-name">Todos los elementos</div><div class="earned-copy">Las cinco defensivas han sido marcadas como aprendidas en la simulación. Ninguna modifica el motor de juego.</div></div><button class="btn-large" id="restartAll">REINICIAR LA DEMO</button>`);$('#restartAll').addEventListener('click',reset);$('#sceneState').textContent='5 / 5 CONOCIDAS';$('#sceneStage').textContent='REGISTRO COMPLETO';$('#storyStep').textContent='FINAL';$('#progressSteps').innerHTML=PHASES.map(x=>`<span class="progress-step done" title="${x}"></span>`).join('');renderBranchesOnly();}
+}
+function renderBranchesOnly(){const keep=state.phase;$('#branchList').innerHTML=CATALOG.map((c,i)=>`<button disabled class="branch-choice learned" style="--symbol-color:${ELEMENT_HEX[c.accent]}"><span class="bc-glyph">${c.glyph}</span><span><span class="bc-element">${c.element}</span><span class="bc-name">${c.name}</span></span><span class="bc-check">✓</span></button>`).join('');$('#knownCount').textContent='5 / 5';$('#knownFill').style.width='100%';}
+function reset(){state.learned.clear();sel(0)}
+function open(){document.querySelector('.game').setAttribute('aria-hidden','true');$('#overlay').classList.add('open');$('#overlay').setAttribute('aria-hidden','false');state.animToken++;render();}
+function close(){state.animToken++;state.holding=false;$('#overlay').classList.remove('open');$('#overlay').setAttribute('aria-hidden','true');document.querySelector('.game').setAttribute('aria-hidden','false');$('#entrada').focus();}
+$('#closeBtn').addEventListener('click',close);
+$('#backBtn').addEventListener('click',()=>{if(state.phase==='complete')returnToMenu();else{state.animToken++;state.phase='intro';render()}});
+$('#resetBtn').addEventListener('click',reset);
+document.addEventListener('keydown',e=>{
+ if(!$('#overlay').classList.contains('open'))return;
+ if(e.key==='Escape'){e.preventDefault();e.stopPropagation();close();return;}
+ if(e.code==='Space'&&state.phase==='focus'&&!e.repeat){e.preventDefault();startHold(null)}
+ if(e.code==='Space')e.preventDefault();
+ if(e.key==='Tab'){
+ const controls=Array.from($('#overlay').querySelectorAll('button:not(:disabled)')).filter(x=>x.getClientRects().length);
+ if(controls.length){const first=controls[0],last=controls[controls.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}
+ }
+},true);
+document.addEventListener('keyup',e=>{if($('#overlay').classList.contains('open')&&e.code==='Space')stopHold()},true);
+window.addEventListener('blur',stopHold);
+/* Particle field: native Canvas 2D, no assets/API/network. */
+const canvas=$('#fx'),ctx=canvas.getContext('2d',{alpha:true});let cw=0,ch=0,lastFrame=0;
+function resize(){const rect=canvas.getBoundingClientRect();const dpr=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(rect.width*dpr);canvas.height=Math.round(rect.height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);cw=rect.width;ch=rect.height;particles=Array.from({length:reduced?14:48},(_,i)=>({x:Math.random()*cw,y:Math.random()*ch,v:Math.random()*1.2+.2,a:.2+Math.random()*.7,s:Math.random()*2+0.5,ph:Math.random()*6.28}));}
+if(typeof ResizeObserver!=='undefined')new ResizeObserver(resize).observe(canvas);else window.addEventListener('resize',resize);
+function rgb(){const h=ELEMENT_HEX[current().accent];return [parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];}
+function animate(tm){if(!cw||!ch)resize();ctx.clearRect(0,0,cw,ch);const [r,g,b]=rgb();const dt=Math.min((tm-lastFrame)/16,2)||1;lastFrame=tm;
+ for(const p of particles){let dx=0,dy=0;switch(current().accent){case'fire':dy=-p.v*1.5;dx=Math.sin(tm/600+p.ph)*.7;break;case'metal':dy=Math.sin(tm/1000+p.ph)*.05;dx=Math.cos(tm/700+p.ph)*.15;break;case'water':dy=Math.sin(tm/1200+p.ph)*.1;dx=p.v*.8;break;case'earth':dy=-p.v*.25;dx=Math.sin(tm/900+p.ph)*.15;break;case'wind':dy=-p.v*.55;dx=p.v*1.5;break;}
+ if(!reduced){p.x+=dx*dt;p.y+=dy*dt;if(p.x>cw+8)p.x=-8;if(p.x< -8)p.x=cw+8;if(p.y>ch+8)p.y=-8;if(p.y< -8)p.y=ch+8;}
+ ctx.beginPath();ctx.fillStyle=`rgba(${r},${g},${b},${p.a*.75})`;ctx.shadowBlur=10;ctx.shadowColor=`rgba(${r},${g},${b},.45)`;ctx.arc(p.x,p.y,p.s,0,Math.PI*2);ctx.fill();}
+ ctx.shadowBlur=0;requestAnimationFrame(animate);
+}resize();requestAnimationFrame(animate);render();
+</script>
+</body>
+</html>
