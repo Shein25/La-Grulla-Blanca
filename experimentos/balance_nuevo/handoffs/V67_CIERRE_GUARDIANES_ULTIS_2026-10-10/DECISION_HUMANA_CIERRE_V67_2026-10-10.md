@@ -1,5 +1,7 @@
 # DECISIÓN HUMANA V67 — cierre de balance de guardianes y Ultis Metal/Viento
 
+> **AUTORIDAD CANÓNICA DE MONSTRUOS (2026-10-10):** el inventario histórico de **18** se encuentra **DEPRECADO COMO TOTAL**. Usar siempre `experimentos/balance_nuevo/CATALOGO_CANONICO_MONSTRUOS_ARCO1_V2.json` y `experimentos/balance_nuevo/CATALOGO_MONSTRUOS_AUTORIDAD_ACTUAL.md` (25 identidades verificadas = 18 históricas + seis repetibles LII V35 + Custodio LIII). Las menciones a «registro de 18 perfiles» solo identifican la fuente numérica histórica, nunca el catálogo total válido. No reabrir T0 por esta incorporación.
+
 **Fecha:** 2026-10-10. **Repo:** Shein25/La-Grulla-Blanca.
 **Rama experimental única:** `experiment/v67-cierre-guardianes-ultis-aoe-2026-10-10`, creada desde V66 HEAD `9264381e60843d4e77604f27a75f93e00c24a4cf`.
 **Autoridad:** el autor declara terminado el frente de **rebalanceo de los cinco guardianes AOE** para seguir con monstruos ordinarios de LianQi III, y **APRUEBA expresamente** las variantes moderadas `METAL_CANDIDATE_SOFT_M02` y `VIENTO_CANDIDATE_SOFT_W01` para el diseño de balance.
