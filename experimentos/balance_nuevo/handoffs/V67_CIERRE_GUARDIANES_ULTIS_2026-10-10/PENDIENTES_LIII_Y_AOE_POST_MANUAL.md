@@ -17,6 +17,25 @@
 - Otros monstruos de LII/I solo se ensayarán si el Atlas y las reglas de acceso existentes demuestran que hay enfrentamientos POST_AOE relevantes; no crear nuevos spawns o mezclas como si existieran en runtime.
 - El registro histórico no prueba que el T0 necesite **modificación numérica**: lo pendiente es **auditoría de interacción AOE y dificultad**. Reabrir freezes T0–T4 exige evidencia causal y decisión humana.
 
+## 1 bis. CORRECCIÓN DE ALCANCE — seis monstruos repetibles NUEVOS omitidos
+
+**Corrección del 2026-10-10, por advertencia expresa del usuario.** La tabla del §1 estaba incompleta como universo de pruebas POST_AOE: se consultó solo el registro histórico de **18 monstruos**, que NO incluye los seis perfiles normales nuevos del frente PRE-A08. Son **repetibles del ámbito de LianQi II**, con balance numérico **ratificado el 2026-10-09**: NO se deben reetiquetar falsamente como perfiles nativos de LianQi III. Sí deben formar parte del **inventario de enemigos existentes a contrastar** cuando el jugador alcance LianQi III y pueda volver a sus ubicaciones, condicionado a comprobación real de ROOM/spawn/acceso.
+
+| ID exacto nuevo | Nombre | Etapa de balance / estado | Interacción POST_AOE por revisar |
+|---|---|---|---|
+| `jabali_pizarra` | Jabalí de Pizarra | LII repetible, V35 ratificado | embestida y mitigación T1 ante AOE |
+| `buho_niebla_gris` | Búho de la Niebla Gris | LII repetible, V35 ratificado | precisión, evasión y lectura de ataque AOE |
+| `zorro_bancales` | Zorro de los Bancales | LII repetible, V35 ratificado | evasión 21, oportunidad de esquivar por objetivo |
+| `cangrejo_cauce` | Cangrejo del Cauce Pétreo | LII repetible, V35 ratificado | defensa y mitigación reactivas al daño AOE |
+| `murcielago_resonante` | Murciélago Resonante | LII repetible, V35 ratificado | drenaje Qi 6 versus coste único de una AOE |
+| `arana_veta_sombria` | Araña de la Veta Sombría | LII repetible, V35 ratificado | Veneno y DOT, no multiplicar eventos por objetivo |
+
+**Fuente humana y numérica:** `experimentos/balance_nuevo/handoffs/CIERRE_RATIFICADO_VIENTO_Y_NORMALES_2026-10-09/DECISION_HUMANA_CIERRE_LII_NORMAL_Y_VIENTO_2026-10-09.json` y `experimentos/balance_nuevo/pre_a08_cierre_normales_v35/FINAL_NUMERIC_TARGETS_SIX_NORMALS_V35.json`; rama `experiment/lii-tramo1-multirraiz-v08-2026-10-08`. Esos seis NO están añadidos al `monster_arc1_registry.json` de 18 perfiles, así que su ausencia allí **no los elimina del proyecto**.
+
+**Inventario corregido, excluidos los cinco guardianes:** 3 perfiles nativos LIII (Pez, Anguila y Sombra; 2 repetibles + 1 única) **más 6 repetibles recientes de LII a auditar como encuentros potencialmente accesibles desde LIII**. En total son **9 perfiles distintos para preflight POST_AOE**, pero la legalidad de los seis encuentros de arrastre sigue **POR VERIFICAR**. Otros repetibles LII/LI previos también requieren barrido de acceso si sus zonas permanecen abiertas: no declarar esta lista exhaustiva de TODO Arco 1.
+
+No repetir balance ya cerrado de LII ni actualizar T0 o HTML al agregar cobertura de pruebas.
+
 ## 2. Contrato AOE obligatorio
 
 Fuentes:
@@ -61,7 +80,7 @@ G. AOE + Ulti principal con máximo una Ulti por pelea (la AOE es técnica norma
 1. Auditar código exacto de cinco AOE, spawn/ROOM presentes y llegada legal a `pez_lunar`, `anguila_estelar`, `sombra_ahogada`.
 2. Certificar eventos y pruebas unitarias 1/2/3 objetivos; comparar el resolver unitarget con AOE.
 3. Recién entonces simular POST_AOE por monstruo/raíz/build/equipo/política con seeds pareadas y desgloses de daño/IA.
-4. Proponer ajustes **solo** cuando un fallo/imbalance esté demostrado; conservar T0–T4 congelados y élite T0 si funcionan.
+4. Ampliar el cruce también a los seis repetibles nuevos ratificados LII si sus encuentros se comprueban accesibles en LIII. Proponer ajustes **solo** cuando un fallo/imbalance esté demostrado; conservar T0–T4 congelados y élite T0 si funcionan.
 5. Preparar integración Astra A08 sin tocar `main` o HTML durante investigación.
 
-**Estado final de este documento:** TRES perfiles LIII identificados; **cero ajustes numéricos nuevos a esos tres**, **no se ha ejecutado todavía el benchmark POST_AOE**. No confundir plan con prueba completada.
+**Estado corregido:** 3 perfiles nativos LIII + 6 repetibles nuevos LII documentados para el preflight de accesibilidad en LIII (9 referencias prioritarias, NO inventario universal de todas las zonas). **Cero ajustes numéricos nuevos y cero combates POST_AOE multiblanco ejecutados.** No confundir plan con prueba completada.
