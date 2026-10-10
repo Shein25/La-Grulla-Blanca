@@ -1,0 +1,90 @@
+{
+  "schema": "GRULLA_V68_LIII_ELITES_QA",
+  "date": "2026-10-10",
+  "status": "LOCAL_PHYSICAL_LAB_NOT_PRODUCTION",
+  "archive": {
+    "name": "GRULLA_V68_LIII_SEIS_Y_ELITES_AUDITORIA_2026-10-10.zip",
+    "sha256": "dad706c9fc3e413c85883b28c608df325d4a11ac4c3c3971e8315a31ec132d78",
+    "bytes": 1731881,
+    "entries": 18,
+    "crc": "PASS",
+    "uploaded_to_git": false
+  },
+  "campaigns": {
+    "sombra_base": 17280,
+    "sombra_screen": 28800,
+    "sombra_v61c_screen": 37800,
+    "sombra_v61c_holdout": 38880,
+    "eco_e8_drain": 15360,
+    "total": 138120
+  },
+  "sombra_holdout": {
+    "n_per_arm": 12960,
+    "reps": 96,
+    "results": [
+      {
+        "variant": "M11_51hp",
+        "player_win_pct": 99.73,
+        "kill_3_n": 315
+      },
+      {
+        "variant": "HP90_DEF1_C3",
+        "player_win_pct": 75.54,
+        "kill_3_n": 0
+      },
+      {
+        "variant": "HP90_DEF2_C3",
+        "player_win_pct": 62.2,
+        "kill_3_n": 0
+      }
+    ],
+    "no_timeouts": true,
+    "selected_lab_candidate": "HP90_DEF1_C3",
+    "change_to_ratified_registry": false
+  },
+  "eco_screen": {
+    "n_per_arm": 3840,
+    "reps": 64,
+    "results": [
+      {
+        "arm": "E8_NO_SPECIAL",
+        "overall_win_pct": 99.38,
+        "defense_gear_win_pct": 99.95
+      },
+      {
+        "arm": "DRAIN4",
+        "overall_win_pct": 99.01,
+        "defense_gear_win_pct": 99.95
+      },
+      {
+        "arm": "DRAIN6",
+        "overall_win_pct": 98.83,
+        "defense_gear_win_pct": 99.95
+      },
+      {
+        "arm": "DRAIN8",
+        "overall_win_pct": 98.57,
+        "defense_gear_win_pct": 99.95
+      }
+    ],
+    "no_timeouts": true,
+    "decision": "QI_DRAIN_HYPOTHESIS_NOT_EFFECTIVE_NOT_CANON"
+  },
+  "lIII_six": "V45_T0_DESIGN_BASELINE_SELECTED_NOT_READY",
+  "conflict": "45c3a9_OLD_CLOSED_VS_V39_NEW_E8_PENDING_V67_REGISTRY_PENDING",
+  "prohibitions": [
+    "NO_MAIN",
+    "NO_MERGE",
+    "NO_HTML",
+    "NO_ROOMS_EXITS",
+    "NO_SPAWNS",
+    "NO_AUTOMATIC_T0_READY",
+    "NO_AOE_MULTITARGET_CLAIM"
+  ],
+  "outstanding": [
+    "HUMAN_ECO_ACCESS_DECISION",
+    "ECO_SIGNATURE_ABILITY",
+    "LIII_NUMERIC_EVENT_PARITY",
+    "LIII_T1_TO_T4_AND_MUTANTS"
+  ]
+}
