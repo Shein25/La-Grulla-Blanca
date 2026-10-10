@@ -1,0 +1,971 @@
+{
+  "schema": "la-grulla-blanca-monstruos-canon-arco1-v3",
+  "authority_date": "2026-10-10",
+  "authority": "HUMAN_RATIFIED_LII_AND_LIII_ADDITIONS_WITH_V45_V46_SOURCE_RECONCILIATION",
+  "status": "CANONICAL_DESIGN_MASTER_INDEX_VERIFIED_31_IDS__NUMERIC_GATES_INDIVIDUALLY_TRACKED",
+  "supersedes": "CATALOGO_CANONICO_MONSTRUOS_ARCO1_V2.json__PARTIAL_25; LEGACY_FIXED_COUNT_18",
+  "summary": {
+    "total_canonical_identities": 31,
+    "legacy_historical_profiles": 18,
+    "added_new_repeatables_lianqi_ii": 6,
+    "added_new_repeatables_lianqi_iii": 6,
+    "added_new_guardian_lianqi_iii": 1,
+    "identities_by_native_or_design_stage": {
+      "LianQi_I": 5,
+      "LianQi_II": 11,
+      "LianQi_III": 11,
+      "LianQi_IV": 4
+    },
+    "repeated_species_native_liii": 8,
+    "notes": "Verified documented canon Arco 1 as of 2026-10-10. 31 is the count of currently reconciled identities, not a permanently fixed limit and not proof of HTML integration or all actual spawns."
+  },
+  "precedence_rules": {
+    "canonical_inventory_source": "experimentos/balance_nuevo/CATALOGO_CANONICO_MONSTRUOS_ARCO1_V3.json",
+    "old_18_profile_count": "DEPRECATED_AS_GLOBAL_TOTAL",
+    "old_monster_arc1_registry": "HISTORICAL_NUMERIC_SOURCE_ONLY_NOT_FULL_ROSTER",
+    "new_lii_monsters": "CANONICAL_ENTITIES_AND_APPROVED_NUMERIC_DESIGN",
+    "new_liii_guardian": "CANONICAL_IDENTITY_ONLY_T0_AND_SPAWN_PENDING",
+    "unverified_additional_species": "NOT_AUTO_INVENTED",
+    "historic_encounter_stage_tags": "NATIVE_STAGE_NOT_LEGAL_ENCOUNTER_STAGE",
+    "new_liii_repeatables": "HUMAN_APPROVED_DESIGNS_V46; T0_V45_AND_T1_T4_V46_REMAIN_UNRATIFIED_NUMERICALLY",
+    "total_monsters": "31_VERIFIED_AS_OF_2026_10_10__CAN_GROW"
+  },
+  "sources": {
+    "legacy_18": {
+      "commit": "45c3a9c240ea74208a0d8fd4d5be187bc817df35",
+      "path": "experimentos/balance_nuevo/monster_arc1_registry.json",
+      "sha": "0261dd2b254ee0db0d28256b37e54fd7756790c7"
+    },
+    "six_new_lii": {
+      "ref": "experiment/lii-tramo1-multirraiz-v08-2026-10-08",
+      "candidates_path": "experimentos/balance_nuevo/pre_a08_monstruos_v33/CANDIDATOS_BALANCE_MONSTRUOS_V33.json",
+      "candidates_blob_sha": "9e698d1ba2750ef087631fe8957a5f1444e66251",
+      "decision_path": "experimentos/balance_nuevo/handoffs/CIERRE_RATIFICADO_VIENTO_Y_NORMALES_2026-10-09/DECISION_HUMANA_CIERRE_LII_NORMAL_Y_VIENTO_2026-10-09.json",
+      "decision_blob_sha": "d4416b603b6f5086c5c816fe678407de768075ea"
+    },
+    "earth_guardian": {
+      "path": "experimentos/balance_nuevo/adaptive_six_revalidation_v0.1/DECISION_HUMANA_GUARDIANES_AOE_IDENTIDADES_UBICACIONES_2026-10-07.md"
+    },
+    "six_new_liii": {
+      "design_authority": "DICTAMEN_V46_CADENA_ADAPTATIVA_MUTANTES.md confirms user approved six V45 identities and designs",
+      "v45_archived": "experimentos/balance_nuevo/handoffs/V67_CIERRE_GUARDIANES_ULTIS_2026-10-10/FUENTE_IMPORTADA_V45_NUEVA_FAUNA_LIII_2026-10-09.md",
+      "v46_archived": "experimentos/balance_nuevo/handoffs/V67_CIERRE_GUARDIANES_ULTIS_2026-10-10/FUENTE_IMPORTADA_V46_CADENA_ADAPTATIVA_LIII_2026-10-09.md",
+      "original_v45_file_title": "DICTAMEN_V45_NUEVA_FAUNA_LIII_2026-10-09.md",
+      "original_v46_file_title": "DICTAMEN_V46_CADENA_ADAPTATIVA_MUTANTES.md"
+    }
+  },
+  "constraints": [
+    "NO_MUTATION_OF_HISTORICAL_T0",
+    "NO_HTML_RUNTIME_INTEGRATION_BY_THIS_INDEX",
+    "NO_MAIN_OR_MERGE",
+    "NO_SPAWN_MANUAL_GATE_INFERENCE",
+    "NO_AUTO_ADAPTATION_FOR_UNIQUE_MONSTERS"
+  ],
+  "entities": [
+    {
+      "id": "rata_qi",
+      "name": "rata de qi",
+      "source_class": "LEGACY_18_AUTHORIZED_PROFILE",
+      "design_canon": true,
+      "native_stage_historical": "LianQi_I",
+      "role": "NORMAL",
+      "repeatable": true,
+      "unique": false,
+      "element": null,
+      "region_historical": "secta_exterior",
+      "numeric_source": {
+        "status": "READY",
+        "commit": "45c3a9c240ea74208a0d8fd4d5be187bc817df35",
+        "path": "experimentos/balance_nuevo/monster_arc1_registry.json",
+        "blob_sha": "0261dd2b254ee0db0d28256b37e54fd7756790c7"
+      },
+      "adaptive_source_status": "ADAPTIVE_CHAIN_T0_T4_CLOSED",
+      "legal_guardian_aoe_stage": null,
+      "runtime_integration_status": "NOT_VALIDATED_IN_THIS_CATALOG",
+      "notes": null
+    },
+    {
+      "id": "serpiente_qi",
+      "name": "serpiente de qi verdosa",
+      "source_class": "LEGACY_18_AUTHORIZED_PROFILE",
+      "design_canon": true,
+      "native_stage_historical": "LianQi_I",
+      "role": "NORMAL",
+      "repeatable": true,
+      "unique": false,
+      "element": "agua",
+      "region_historical": "bosques",
+      "numeric_source": {
+        "status": "READY",
+        "commit": "45c3a9c240ea74208a0d8fd4d5be187bc817df35",
+        "path": "experimentos/balance_nuevo/monster_arc1_registry.json",
+        "blob_sha": "0261dd2b254ee0db0d28256b37e54fd7756790c7"
+      },
+      "adaptive_source_status": "READY_FOR_T1_RECALIBRATION",
+      "legal_guardian_aoe_stage": null,
+      "runtime_integration_status": "NOT_VALIDATED_IN_THIS_CATALOG",
+      "notes": null
+    },
+    {
+      "id": "lobo_espiritual",
+      "name": "lobo espiritual de tres colas",
+      "source_class": "LEGACY_18_AUTHORIZED_PROFILE",
+      "design_canon": true,
+      "native_stage_historical": "LianQi_I",
+      "role": "APEX_BRIDGE",
+      "repeatable": true,
+      "unique": false,
+      "element": null,
+      "region_historical": "bosques",
+      "numeric_source": {
+        "status": "READY",
+        "commit": "45c3a9c240ea74208a0d8fd4d5be187bc817df35",
+        "path": "experimentos/balance_nuevo/monster_arc1_registry.json",
+        "blob_sha": "0261dd2b254ee0db0d28256b37e54fd7756790c7"
+      },
+      "adaptive_source_status": "READY_FOR_T1_RECALIBRATION",
+      "legal_guardian_aoe_stage": null,
+      "runtime_integration_status": "NOT_VALIDATED_IN_THIS_CATALOG",
+      "notes": null
+    },
+    {
+      "id": "eco_caido",
+      "name": "Eco del Caído",
+      "source_class": "LEGACY_18_AUTHORIZED_PROFILE",
+      "design_canon": true,
+      "native_stage_historical": "LianQi_II",
+      "role": "ELITE",
+      "repeatable": false,
+      "unique": true,
+      "element": null,
+      "region_historical": "cantera_vetas",
+      "numeric_source": {
+        "status": "READY",
+        "commit": "45c3a9c240ea74208a0d8fd4d5be187bc817df35",
+        "path": "experimentos/balance_nuevo/monster_arc1_registry.json",
+        "blob_sha": "0261dd2b254ee0db0d28256b37e54fd7756790c7"
+      },
+      "adaptive_source_status": "UNIQUE_T0_CLOSED_NO_T1_T4",
+      "legal_guardian_aoe_stage": null,
+      "runtime_integration_status": "NOT_VALIDATED_IN_THIS_CATALOG",
+      "notes": null
+    },
+    {
+      "id": "pez_lunar",
+      "name": "pez de luna sin ojos",
+      "source_class": "LEGACY_18_AUTHORIZED_PROFILE",
+      "design_canon": true,
+      "native_stage_historical": "LianQi_III",
+      "role": "NORMAL",
+      "repeatable": true,
+      "unique": false,
+      "element": "agua",
+      "region_historical": "aguas_barrancos",
+      "numeric_source": {
+        "status": "READY",
+        "commit": "45c3a9c240ea74208a0d8fd4d5be187bc817df35",
+        "path": "experimentos/balance_nuevo/monster_arc1_registry.json",
+        "blob_sha": "0261dd2b254ee0db0d28256b37e54fd7756790c7"
+      },
+      "adaptive_source_status": "ADAPTIVE_CHAIN_T0_T4_CLOSED",
+      "legal_guardian_aoe_stage": null,
+      "runtime_integration_status": "NOT_VALIDATED_IN_THIS_CATALOG",
+      "notes": null
+    },
+    {
+      "id": "sombra_ahogada",
+      "name": "sombra ahogada del estanque",
+      "source_class": "LEGACY_18_AUTHORIZED_PROFILE",
+      "design_canon": true,
+      "native_stage_historical": "LianQi_III",
+      "role": "ELITE",
+      "repeatable": false,
+      "unique": true,
+      "element": "agua",
+      "region_historical": "aguas_barrancos",
+      "numeric_source": {
+        "status": "READY",
+        "commit": "45c3a9c240ea74208a0d8fd4d5be187bc817df35",
+        "path": "experimentos/balance_nuevo/monster_arc1_registry.json",
+        "blob_sha": "0261dd2b254ee0db0d28256b37e54fd7756790c7"
+      },
+      "adaptive_source_status": "UNIQUE_T0_CLOSED_NO_T1_T4",
+      "legal_guardian_aoe_stage": null,
+      "runtime_integration_status": "NOT_VALIDATED_IN_THIS_CATALOG",
+      "notes": null
+    },
+    {
+      "id": "centinela_pluma",
+      "name": "centinela de plumas petrificadas",
+      "source_class": "LEGACY_18_AUTHORIZED_PROFILE",
+      "design_canon": true,
+      "native_stage_historical": "LianQi_IV",
+      "role": "BOSS",
+      "repeatable": false,
+      "unique": true,
+      "element": "metal",
+      "region_historical": "alturas",
+      "numeric_source": {
+        "status": "READY",
+        "commit": "45c3a9c240ea74208a0d8fd4d5be187bc817df35",
+        "path": "experimentos/balance_nuevo/monster_arc1_registry.json",
+        "blob_sha": "0261dd2b254ee0db0d28256b37e54fd7756790c7"
+      },
+      "adaptive_source_status": "UNIQUE_T0_CLOSED_NO_T1_T4",
+      "legal_guardian_aoe_stage": null,
+      "runtime_integration_status": "NOT_VALIDATED_IN_THIS_CATALOG",
+      "notes": null
+    },
+    {
+      "id": "devorador_niebla",
+      "name": "devorador de niebla",
+      "source_class": "LEGACY_18_AUTHORIZED_PROFILE",
+      "design_canon": true,
+      "native_stage_historical": "LianQi_IV",
+      "role": "NORMAL",
+      "repeatable": true,
+      "unique": false,
+      "element": "viento",
+      "region_historical": "alturas",
+      "numeric_source": {
+        "status": "READY",
+        "commit": "45c3a9c240ea74208a0d8fd4d5be187bc817df35",
+        "path": "experimentos/balance_nuevo/monster_arc1_registry.json",
+        "blob_sha": "0261dd2b254ee0db0d28256b37e54fd7756790c7"
+      },
+      "adaptive_source_status": "ADAPTIVE_CHAIN_T0_T4_CLOSED",
+      "legal_guardian_aoe_stage": null,
+      "runtime_integration_status": "NOT_VALIDATED_IN_THIS_CATALOG",
+      "notes": null
+    },
+    {
+      "id": "avispa_jade",
+      "name": "avispa de jade dentado",
+      "source_class": "LEGACY_18_AUTHORIZED_PROFILE",
+      "design_canon": true,
+      "native_stage_historical": "LianQi_I",
+      "role": "NORMAL",
+      "repeatable": true,
+      "unique": false,
+      "element": "viento",
+      "region_historical": "bosques",
+      "numeric_source": {
+        "status": "READY",
+        "commit": "45c3a9c240ea74208a0d8fd4d5be187bc817df35",
+        "path": "experimentos/balance_nuevo/monster_arc1_registry.json",
+        "blob_sha": "0261dd2b254ee0db0d28256b37e54fd7756790c7"
+      },
+      "adaptive_source_status": "READY_FOR_T1_RECALIBRATION",
+      "legal_guardian_aoe_stage": null,
+      "runtime_integration_status": "NOT_VALIDATED_IN_THIS_CATALOG",
+      "notes": null
+    },
+    {
+      "id": "mono_pildoras",
+      "name": "macaco ladrón de píldoras",
+      "source_class": "LEGACY_18_AUTHORIZED_PROFILE",
+      "design_canon": true,
+      "native_stage_historical": "LianQi_I",
+      "role": "SKIRMISHER",
+      "repeatable": true,
+      "unique": false,
+      "element": null,
+      "region_historical": "bosques",
+      "numeric_source": {
+        "status": "READY",
+        "commit": "45c3a9c240ea74208a0d8fd4d5be187bc817df35",
+        "path": "experimentos/balance_nuevo/monster_arc1_registry.json",
+        "blob_sha": "0261dd2b254ee0db0d28256b37e54fd7756790c7"
+      },
+      "adaptive_source_status": "READY_FOR_T1_RECALIBRATION",
+      "legal_guardian_aoe_stage": null,
+      "runtime_integration_status": "NOT_VALIDATED_IN_THIS_CATALOG",
+      "notes": null
+    },
+    {
+      "id": "sapo_ceniza",
+      "name": "sapo de ceniza caliente",
+      "source_class": "LEGACY_18_AUTHORIZED_PROFILE",
+      "design_canon": true,
+      "native_stage_historical": "LianQi_II",
+      "role": "NORMAL",
+      "repeatable": true,
+      "unique": false,
+      "element": "fuego",
+      "region_historical": "cantera_vetas",
+      "numeric_source": {
+        "status": "READY",
+        "commit": "45c3a9c240ea74208a0d8fd4d5be187bc817df35",
+        "path": "experimentos/balance_nuevo/monster_arc1_registry.json",
+        "blob_sha": "0261dd2b254ee0db0d28256b37e54fd7756790c7"
+      },
+      "adaptive_source_status": "ADAPTIVE_CHAIN_T0_T4_CLOSED",
+      "legal_guardian_aoe_stage": null,
+      "runtime_integration_status": "NOT_VALIDATED_IN_THIS_CATALOG",
+      "notes": null
+    },
+    {
+      "id": "sapo_caldera",
+      "name": "Sapo Caldera de Tres Gargantas",
+      "source_class": "LEGACY_18_AUTHORIZED_PROFILE",
+      "design_canon": true,
+      "native_stage_historical": "LianQi_II",
+      "role": "BOSS",
+      "repeatable": false,
+      "unique": true,
+      "element": "fuego",
+      "region_historical": "cantera_vetas",
+      "numeric_source": {
+        "status": "READY",
+        "commit": "45c3a9c240ea74208a0d8fd4d5be187bc817df35",
+        "path": "experimentos/balance_nuevo/monster_arc1_registry.json",
+        "blob_sha": "0261dd2b254ee0db0d28256b37e54fd7756790c7"
+      },
+      "adaptive_source_status": "UNIQUE_T0_CLOSED_NO_T1_T4",
+      "legal_guardian_aoe_stage": "LianQi_III",
+      "runtime_integration_status": "NOT_VALIDATED_IN_THIS_CATALOG",
+      "notes": "AOE guardian encounter legal in LIII regardless of historical native stage"
+    },
+    {
+      "id": "escarabajo_hierro",
+      "name": "escarabajo de hierro espiritual",
+      "source_class": "LEGACY_18_AUTHORIZED_PROFILE",
+      "design_canon": true,
+      "native_stage_historical": "LianQi_II",
+      "role": "TANK",
+      "repeatable": true,
+      "unique": false,
+      "element": "metal",
+      "region_historical": "cantera_vetas",
+      "numeric_source": {
+        "status": "READY",
+        "commit": "45c3a9c240ea74208a0d8fd4d5be187bc817df35",
+        "path": "experimentos/balance_nuevo/monster_arc1_registry.json",
+        "blob_sha": "0261dd2b254ee0db0d28256b37e54fd7756790c7"
+      },
+      "adaptive_source_status": "ADAPTIVE_CHAIN_T0_T4_CLOSED",
+      "legal_guardian_aoe_stage": null,
+      "runtime_integration_status": "NOT_VALIDATED_IN_THIS_CATALOG",
+      "notes": null
+    },
+    {
+      "id": "rey_escarabajo",
+      "name": "Rey Escarabajo de la Veta Negra",
+      "source_class": "LEGACY_18_AUTHORIZED_PROFILE",
+      "design_canon": true,
+      "native_stage_historical": "LianQi_II",
+      "role": "BOSS",
+      "repeatable": false,
+      "unique": true,
+      "element": "metal",
+      "region_historical": "cantera_vetas",
+      "numeric_source": {
+        "status": "READY",
+        "commit": "45c3a9c240ea74208a0d8fd4d5be187bc817df35",
+        "path": "experimentos/balance_nuevo/monster_arc1_registry.json",
+        "blob_sha": "0261dd2b254ee0db0d28256b37e54fd7756790c7"
+      },
+      "adaptive_source_status": "UNIQUE_T0_CLOSED_NO_T1_T4",
+      "legal_guardian_aoe_stage": "LianQi_III",
+      "runtime_integration_status": "NOT_VALIDATED_IN_THIS_CATALOG",
+      "notes": "AOE guardian encounter legal in LIII regardless of historical native stage"
+    },
+    {
+      "id": "anguila_estelar",
+      "name": "anguila de constelación rota",
+      "source_class": "LEGACY_18_AUTHORIZED_PROFILE",
+      "design_canon": true,
+      "native_stage_historical": "LianQi_III",
+      "role": "SKIRMISHER",
+      "repeatable": true,
+      "unique": false,
+      "element": "agua",
+      "region_historical": "aguas_barrancos",
+      "numeric_source": {
+        "status": "READY",
+        "commit": "45c3a9c240ea74208a0d8fd4d5be187bc817df35",
+        "path": "experimentos/balance_nuevo/monster_arc1_registry.json",
+        "blob_sha": "0261dd2b254ee0db0d28256b37e54fd7756790c7"
+      },
+      "adaptive_source_status": "ADAPTIVE_CHAIN_T0_T4_CLOSED",
+      "legal_guardian_aoe_stage": null,
+      "runtime_integration_status": "NOT_VALIDATED_IN_THIS_CATALOG",
+      "notes": null
+    },
+    {
+      "id": "guardian_coral",
+      "name": "guardián de coral memorioso",
+      "source_class": "LEGACY_18_AUTHORIZED_PROFILE",
+      "design_canon": true,
+      "native_stage_historical": "LianQi_III",
+      "role": "BOSS",
+      "repeatable": false,
+      "unique": true,
+      "element": "agua",
+      "region_historical": "aguas_barrancos",
+      "numeric_source": {
+        "status": "READY",
+        "commit": "45c3a9c240ea74208a0d8fd4d5be187bc817df35",
+        "path": "experimentos/balance_nuevo/monster_arc1_registry.json",
+        "blob_sha": "0261dd2b254ee0db0d28256b37e54fd7756790c7"
+      },
+      "adaptive_source_status": "UNIQUE_T0_CLOSED_NO_T1_T4",
+      "legal_guardian_aoe_stage": "LianQi_III",
+      "runtime_integration_status": "NOT_VALIDATED_IN_THIS_CATALOG",
+      "notes": "AOE guardian encounter legal in LIII regardless of historical native stage"
+    },
+    {
+      "id": "halcon_tormenta",
+      "name": "halcón de tormenta joven",
+      "source_class": "LEGACY_18_AUTHORIZED_PROFILE",
+      "design_canon": true,
+      "native_stage_historical": "LianQi_IV",
+      "role": "SKIRMISHER",
+      "repeatable": true,
+      "unique": false,
+      "element": "viento",
+      "region_historical": "alturas",
+      "numeric_source": {
+        "status": "READY",
+        "commit": "45c3a9c240ea74208a0d8fd4d5be187bc817df35",
+        "path": "experimentos/balance_nuevo/monster_arc1_registry.json",
+        "blob_sha": "0261dd2b254ee0db0d28256b37e54fd7756790c7"
+      },
+      "adaptive_source_status": "ADAPTIVE_CHAIN_T0_T4_CLOSED",
+      "legal_guardian_aoe_stage": null,
+      "runtime_integration_status": "NOT_VALIDATED_IN_THIS_CATALOG",
+      "notes": null
+    },
+    {
+      "id": "mantis_nube",
+      "name": "mantis de nube cortante",
+      "source_class": "LEGACY_18_AUTHORIZED_PROFILE",
+      "design_canon": true,
+      "native_stage_historical": "LianQi_IV",
+      "role": "BOSS",
+      "repeatable": false,
+      "unique": true,
+      "element": "viento",
+      "region_historical": "alturas",
+      "numeric_source": {
+        "status": "READY",
+        "commit": "45c3a9c240ea74208a0d8fd4d5be187bc817df35",
+        "path": "experimentos/balance_nuevo/monster_arc1_registry.json",
+        "blob_sha": "0261dd2b254ee0db0d28256b37e54fd7756790c7"
+      },
+      "adaptive_source_status": "UNIQUE_T0_CLOSED_NO_T1_T4",
+      "legal_guardian_aoe_stage": "LianQi_III",
+      "runtime_integration_status": "NOT_VALIDATED_IN_THIS_CATALOG",
+      "notes": "AOE guardian encounter legal in LIII regardless of historical native stage"
+    },
+    {
+      "id": "jabali_pizarra",
+      "name": "Jabalí de Pizarra",
+      "source_class": "NEW_LII_REPEATABLE_V35_HUMAN_RATIFIED",
+      "design_canon": true,
+      "native_stage_historical": "LianQi_II",
+      "role": "BRUISER",
+      "repeatable": true,
+      "unique": false,
+      "element": null,
+      "region_historical": null,
+      "numeric_source": {
+        "status": "NUMERIC_DESIGN_HUMAN_RATIFIED_NOT_RUNTIME_PATCH",
+        "source_ref": "experiment/lii-tramo1-multirraiz-v08-2026-10-08",
+        "authority_path": "experimentos/balance_nuevo/handoffs/CIERRE_RATIFICADO_VIENTO_Y_NORMALES_2026-10-09/DECISION_HUMANA_CIERRE_LII_NORMAL_Y_VIENTO_2026-10-09.json",
+        "source_blob_sha": "d4416b603b6f5086c5c816fe678407de768075ea",
+        "approved_change": {
+          "id": "jabali_pizarra",
+          "path": "technique.params.direct_damage",
+          "from": "1d3+6",
+          "to": "1d3+8"
+        }
+      },
+      "adaptive_source_status": "DO_NOT_INFER_T0_T4_FROM_LEGACY_REGISTRY",
+      "legal_guardian_aoe_stage": null,
+      "runtime_integration_status": "PENDING_RUNTIME_PARITY",
+      "notes": "Monster exists in approved new LII catalog; LIII encounter accessibility requires room/spawn verification."
+    },
+    {
+      "id": "buho_niebla_gris",
+      "name": "Búho de la Niebla Gris",
+      "source_class": "NEW_LII_REPEATABLE_V35_HUMAN_RATIFIED",
+      "design_canon": true,
+      "native_stage_historical": "LianQi_II",
+      "role": "PRECISION",
+      "repeatable": true,
+      "unique": false,
+      "element": null,
+      "region_historical": null,
+      "numeric_source": {
+        "status": "NUMERIC_DESIGN_HUMAN_RATIFIED_NOT_RUNTIME_PATCH",
+        "source_ref": "experiment/lii-tramo1-multirraiz-v08-2026-10-08",
+        "authority_path": "experimentos/balance_nuevo/handoffs/CIERRE_RATIFICADO_VIENTO_Y_NORMALES_2026-10-09/DECISION_HUMANA_CIERRE_LII_NORMAL_Y_VIENTO_2026-10-09.json",
+        "source_blob_sha": "d4416b603b6f5086c5c816fe678407de768075ea",
+        "approved_change": {
+          "id": "buho_niebla_gris",
+          "path": "technique.params.direct_damage",
+          "from": "1d2+7",
+          "to": "1d2+8"
+        }
+      },
+      "adaptive_source_status": "DO_NOT_INFER_T0_T4_FROM_LEGACY_REGISTRY",
+      "legal_guardian_aoe_stage": null,
+      "runtime_integration_status": "PENDING_RUNTIME_PARITY",
+      "notes": "Monster exists in approved new LII catalog; LIII encounter accessibility requires room/spawn verification."
+    },
+    {
+      "id": "zorro_bancales",
+      "name": "Zorro de los Bancales",
+      "source_class": "NEW_LII_REPEATABLE_V35_HUMAN_RATIFIED",
+      "design_canon": true,
+      "native_stage_historical": "LianQi_II",
+      "role": "SKIRMISHER",
+      "repeatable": true,
+      "unique": false,
+      "element": null,
+      "region_historical": null,
+      "numeric_source": {
+        "status": "NUMERIC_DESIGN_HUMAN_RATIFIED_NOT_RUNTIME_PATCH",
+        "source_ref": "experiment/lii-tramo1-multirraiz-v08-2026-10-08",
+        "authority_path": "experimentos/balance_nuevo/handoffs/CIERRE_RATIFICADO_VIENTO_Y_NORMALES_2026-10-09/DECISION_HUMANA_CIERRE_LII_NORMAL_Y_VIENTO_2026-10-09.json",
+        "source_blob_sha": "d4416b603b6f5086c5c816fe678407de768075ea",
+        "approved_change": {
+          "id": "zorro_bancales",
+          "path": "stats.evasion",
+          "from": 19,
+          "to": 21
+        }
+      },
+      "adaptive_source_status": "DO_NOT_INFER_T0_T4_FROM_LEGACY_REGISTRY",
+      "legal_guardian_aoe_stage": null,
+      "runtime_integration_status": "PENDING_RUNTIME_PARITY",
+      "notes": "Monster exists in approved new LII catalog; LIII encounter accessibility requires room/spawn verification."
+    },
+    {
+      "id": "cangrejo_cauce",
+      "name": "Cangrejo del Cauce Pétreo",
+      "source_class": "NEW_LII_REPEATABLE_V35_HUMAN_RATIFIED",
+      "design_canon": true,
+      "native_stage_historical": "LianQi_II",
+      "role": "GUARDIAN",
+      "repeatable": true,
+      "unique": false,
+      "element": null,
+      "region_historical": null,
+      "numeric_source": {
+        "status": "NUMERIC_DESIGN_HUMAN_RATIFIED_NOT_RUNTIME_PATCH",
+        "source_ref": "experiment/lii-tramo1-multirraiz-v08-2026-10-08",
+        "authority_path": "experimentos/balance_nuevo/handoffs/CIERRE_RATIFICADO_VIENTO_Y_NORMALES_2026-10-09/DECISION_HUMANA_CIERRE_LII_NORMAL_Y_VIENTO_2026-10-09.json",
+        "source_blob_sha": "d4416b603b6f5086c5c816fe678407de768075ea",
+        "approved_change": {
+          "id": "cangrejo_cauce",
+          "path": "technique.params.direct_damage",
+          "from": "1d2+7",
+          "to": "1d2+8"
+        }
+      },
+      "adaptive_source_status": "DO_NOT_INFER_T0_T4_FROM_LEGACY_REGISTRY",
+      "legal_guardian_aoe_stage": null,
+      "runtime_integration_status": "PENDING_RUNTIME_PARITY",
+      "notes": "Monster exists in approved new LII catalog; LIII encounter accessibility requires room/spawn verification."
+    },
+    {
+      "id": "murcielago_resonante",
+      "name": "Murciélago Resonante",
+      "source_class": "NEW_LII_REPEATABLE_V35_HUMAN_RATIFIED",
+      "design_canon": true,
+      "native_stage_historical": "LianQi_II",
+      "role": "DISRUPTOR",
+      "repeatable": true,
+      "unique": false,
+      "element": null,
+      "region_historical": null,
+      "numeric_source": {
+        "status": "NUMERIC_DESIGN_HUMAN_RATIFIED_NOT_RUNTIME_PATCH",
+        "source_ref": "experiment/lii-tramo1-multirraiz-v08-2026-10-08",
+        "authority_path": "experimentos/balance_nuevo/handoffs/CIERRE_RATIFICADO_VIENTO_Y_NORMALES_2026-10-09/DECISION_HUMANA_CIERRE_LII_NORMAL_Y_VIENTO_2026-10-09.json",
+        "source_blob_sha": "d4416b603b6f5086c5c816fe678407de768075ea",
+        "approved_change": {
+          "id": "murcielago_resonante",
+          "path": "technique.params.direct_damage",
+          "from": "1d2+5",
+          "to": "1d2+6"
+        }
+      },
+      "adaptive_source_status": "DO_NOT_INFER_T0_T4_FROM_LEGACY_REGISTRY",
+      "legal_guardian_aoe_stage": null,
+      "runtime_integration_status": "PENDING_RUNTIME_PARITY",
+      "notes": "Monster exists in approved new LII catalog; LIII encounter accessibility requires room/spawn verification."
+    },
+    {
+      "id": "arana_veta_sombria",
+      "name": "Araña de la Veta Sombría",
+      "source_class": "NEW_LII_REPEATABLE_V35_HUMAN_RATIFIED",
+      "design_canon": true,
+      "native_stage_historical": "LianQi_II",
+      "role": "AFFLICTOR",
+      "repeatable": true,
+      "unique": false,
+      "element": null,
+      "region_historical": null,
+      "numeric_source": {
+        "status": "NUMERIC_DESIGN_HUMAN_RATIFIED_NOT_RUNTIME_PATCH",
+        "source_ref": "experiment/lii-tramo1-multirraiz-v08-2026-10-08",
+        "authority_path": "experimentos/balance_nuevo/handoffs/CIERRE_RATIFICADO_VIENTO_Y_NORMALES_2026-10-09/DECISION_HUMANA_CIERRE_LII_NORMAL_Y_VIENTO_2026-10-09.json",
+        "source_blob_sha": "d4416b603b6f5086c5c816fe678407de768075ea",
+        "approved_change": {
+          "id": "arana_veta_sombria",
+          "path": "stats.hp",
+          "from": 71,
+          "to": 75
+        }
+      },
+      "adaptive_source_status": "DO_NOT_INFER_T0_T4_FROM_LEGACY_REGISTRY",
+      "legal_guardian_aoe_stage": null,
+      "runtime_integration_status": "PENDING_RUNTIME_PARITY",
+      "notes": "Monster exists in approved new LII catalog; LIII encounter accessibility requires room/spawn verification."
+    },
+    {
+      "id": "custodio_eco_petreo",
+      "name": "El Custodio del Eco Pétreo",
+      "source_class": "NEW_LIII_AOE_GUARDIAN_HUMAN_IDENTITY_RATIFIED",
+      "design_canon": true,
+      "native_stage_historical": null,
+      "design_encounter_stage": "LianQi_III",
+      "role": "BOSS",
+      "repeatable": false,
+      "unique": true,
+      "element": "tierra",
+      "region_historical": null,
+      "proposed_room": "bosque_rocas_blancas",
+      "numeric_source": {
+        "status": "T0_NOT_RATIFIED_NO_NUMERIC_STATS"
+      },
+      "adaptive_source_status": "UNIQUE_NO_PERSISTENT_T1_T4",
+      "legal_guardian_aoe_stage": "LianQi_III",
+      "runtime_integration_status": "NO_RUNTIME_SPAWN_OR_MANUAL",
+      "notes": "Identity and name are approved; do not invent T0, stats, spawn or manual delivery."
+    },
+    {
+      "id": "garza_bruma_roca",
+      "name": "Garza de Bruma de Roca",
+      "source_class": "NEW_LIII_REPEATABLE_V45_V46_HUMAN_RATIFIED_DESIGN",
+      "design_canon": true,
+      "design_approval": "V46_HUMAN_APPROVED_IDENTITIES_AND_DESIGNS",
+      "native_stage_historical": "LianQi_III",
+      "role": "NORMAL",
+      "repeatable": true,
+      "unique": false,
+      "element": null,
+      "region_historical": "aguas_barrancos",
+      "numeric_source": {
+        "status": "V45_PROPOSAL_NOT_NUMERIC_FREEZE",
+        "stats_status": "PENDING_INTEGRAL_REBALANCE",
+        "technique_params_status": "PENDING_INTEGRAL_REBALANCE",
+        "crit_chance_proposed": 5,
+        "crit_damage_proposed": 1.5,
+        "qi_max": null,
+        "control": "LAB_HYPOTHESIS_0_NOT_RATIFIED",
+        "stats_proposed": {
+          "hp": 75,
+          "precision": 109,
+          "evasion": 31,
+          "defense": 0,
+          "tenacity": 14,
+          "basic_damage": "1d2+6"
+        },
+        "technique_proposed": {
+          "name": "Pico de Niebla Cortante",
+          "mechanics": [
+            "DIRECT_DAMAGE"
+          ],
+          "direct_damage": "1d3+8",
+          "cadence": 3
+        }
+      },
+      "adaptive_source_status": "V46_T1_T4_ONLY_DESIGN_PROPOSAL_NOT_FROZEN",
+      "t1_hypothesis": "EVADE_NEXT +8; proposed",
+      "proposed_rooms_only": [
+        "aguas_cauce_alto",
+        "aguas_paso_piedras"
+      ],
+      "legal_guardian_aoe_stage": null,
+      "runtime_integration_status": "NOT_MATERIALIZED_STAGE_GATE_PENDING",
+      "source_documents": [
+        "experimentos/balance_nuevo/handoffs/V67_CIERRE_GUARDIANES_ULTIS_2026-10-10/FUENTE_IMPORTADA_V45_NUEVA_FAUNA_LIII_2026-10-09.md",
+        "experimentos/balance_nuevo/handoffs/V67_CIERRE_GUARDIANES_ULTIS_2026-10-10/FUENTE_IMPORTADA_V46_CADENA_ADAPTATIVA_LIII_2026-10-09.md"
+      ],
+      "notes": "Human approved creature identity/design in V46; V45 numeric values/rooms are candidate-only, and V46 T1-T4/mutant proposals are not production-ready."
+    },
+    {
+      "id": "cangrejo_laja_humeda",
+      "name": "Cangrejo de Laja Húmeda",
+      "source_class": "NEW_LIII_REPEATABLE_V45_V46_HUMAN_RATIFIED_DESIGN",
+      "design_canon": true,
+      "design_approval": "V46_HUMAN_APPROVED_IDENTITIES_AND_DESIGNS",
+      "native_stage_historical": "LianQi_III",
+      "role": "NORMAL",
+      "repeatable": true,
+      "unique": false,
+      "element": null,
+      "region_historical": "aguas_barrancos",
+      "numeric_source": {
+        "status": "V45_PROPOSAL_NOT_NUMERIC_FREEZE",
+        "stats_status": "PENDING_INTEGRAL_REBALANCE",
+        "technique_params_status": "PENDING_INTEGRAL_REBALANCE",
+        "crit_chance_proposed": 5,
+        "crit_damage_proposed": 1.5,
+        "qi_max": null,
+        "control": "LAB_HYPOTHESIS_0_NOT_RATIFIED",
+        "stats_proposed": {
+          "hp": 90,
+          "precision": 98,
+          "evasion": 9,
+          "defense": 3,
+          "tenacity": 28,
+          "basic_damage": "1d2+6"
+        },
+        "technique_proposed": {
+          "name": "Tenaza de Pizarra",
+          "mechanics": [
+            "DIRECT_DAMAGE"
+          ],
+          "direct_damage": "1d3+8",
+          "cadence": 4
+        }
+      },
+      "adaptive_source_status": "V46_T1_T4_ONLY_DESIGN_PROPOSAL_NOT_FROZEN",
+      "t1_hypothesis": "DEFENSE_UP +2; proposed",
+      "proposed_rooms_only": [
+        "aguas_garganta_norte",
+        "aguas_pasarela_roca"
+      ],
+      "legal_guardian_aoe_stage": null,
+      "runtime_integration_status": "NOT_MATERIALIZED_STAGE_GATE_PENDING",
+      "source_documents": [
+        "experimentos/balance_nuevo/handoffs/V67_CIERRE_GUARDIANES_ULTIS_2026-10-10/FUENTE_IMPORTADA_V45_NUEVA_FAUNA_LIII_2026-10-09.md",
+        "experimentos/balance_nuevo/handoffs/V67_CIERRE_GUARDIANES_ULTIS_2026-10-10/FUENTE_IMPORTADA_V46_CADENA_ADAPTATIVA_LIII_2026-10-09.md"
+      ],
+      "notes": "Human approved creature identity/design in V46; V45 numeric values/rooms are candidate-only, and V46 T1-T4/mutant proposals are not production-ready."
+    },
+    {
+      "id": "sanguijuela_remanso_turbio",
+      "name": "Sanguijuela de Remanso Turbio",
+      "source_class": "NEW_LIII_REPEATABLE_V45_V46_HUMAN_RATIFIED_DESIGN",
+      "design_canon": true,
+      "design_approval": "V46_HUMAN_APPROVED_IDENTITIES_AND_DESIGNS",
+      "native_stage_historical": "LianQi_III",
+      "role": "NORMAL",
+      "repeatable": true,
+      "unique": false,
+      "element": null,
+      "region_historical": "aguas_barrancos",
+      "numeric_source": {
+        "status": "V45_PROPOSAL_NOT_NUMERIC_FREEZE",
+        "stats_status": "PENDING_INTEGRAL_REBALANCE",
+        "technique_params_status": "PENDING_INTEGRAL_REBALANCE",
+        "crit_chance_proposed": 5,
+        "crit_damage_proposed": 1.5,
+        "qi_max": null,
+        "control": "LAB_HYPOTHESIS_0_NOT_RATIFIED",
+        "stats_proposed": {
+          "hp": 78,
+          "precision": 103,
+          "evasion": 16,
+          "defense": 1,
+          "tenacity": 16,
+          "basic_damage": "1d2+6"
+        },
+        "technique_proposed": {
+          "name": "Mordida de Limo Frío",
+          "mechanics": [
+            "DIRECT_DAMAGE",
+            "POISON_DOT"
+          ],
+          "direct_damage": "1d2+7",
+          "cadence": 3,
+          "dot": {
+            "family": "POISON_DOT",
+            "damage": "1d2+2",
+            "ticks": 2
+          }
+        }
+      },
+      "adaptive_source_status": "V46_T1_T4_ONLY_DESIGN_PROPOSAL_NOT_FROZEN",
+      "t1_hypothesis": "MITIGATE_NEXT 35%; proposed",
+      "proposed_rooms_only": [
+        "aguas_poza_profunda",
+        "aguas_cascada_velada"
+      ],
+      "legal_guardian_aoe_stage": null,
+      "runtime_integration_status": "NOT_MATERIALIZED_STAGE_GATE_PENDING",
+      "source_documents": [
+        "experimentos/balance_nuevo/handoffs/V67_CIERRE_GUARDIANES_ULTIS_2026-10-10/FUENTE_IMPORTADA_V45_NUEVA_FAUNA_LIII_2026-10-09.md",
+        "experimentos/balance_nuevo/handoffs/V67_CIERRE_GUARDIANES_ULTIS_2026-10-10/FUENTE_IMPORTADA_V46_CADENA_ADAPTATIVA_LIII_2026-10-09.md"
+      ],
+      "notes": "Human approved creature identity/design in V46; V45 numeric values/rooms are candidate-only, and V46 T1-T4/mutant proposals are not production-ready."
+    },
+    {
+      "id": "salamandra_filtracion_tibia",
+      "name": "Salamandra de Filtración Tibia",
+      "source_class": "NEW_LIII_REPEATABLE_V45_V46_HUMAN_RATIFIED_DESIGN",
+      "design_canon": true,
+      "design_approval": "V46_HUMAN_APPROVED_IDENTITIES_AND_DESIGNS",
+      "native_stage_historical": "LianQi_III",
+      "role": "NORMAL",
+      "repeatable": true,
+      "unique": false,
+      "element": null,
+      "region_historical": "aguas_barrancos",
+      "numeric_source": {
+        "status": "V45_PROPOSAL_NOT_NUMERIC_FREEZE",
+        "stats_status": "PENDING_INTEGRAL_REBALANCE",
+        "technique_params_status": "PENDING_INTEGRAL_REBALANCE",
+        "crit_chance_proposed": 5,
+        "crit_damage_proposed": 1.5,
+        "qi_max": null,
+        "control": "LAB_HYPOTHESIS_0_NOT_RATIFIED",
+        "stats_proposed": {
+          "hp": 79,
+          "precision": 103,
+          "evasion": 16,
+          "defense": 2,
+          "tenacity": 22,
+          "basic_damage": "1d2+6"
+        },
+        "technique_proposed": {
+          "name": "Salpicadura Irritante",
+          "mechanics": [
+            "DIRECT_DAMAGE",
+            "BURN_DOT"
+          ],
+          "direct_damage": "1d2+7",
+          "cadence": 4,
+          "dot": {
+            "family": "BURN_DOT",
+            "damage": "1d2+1",
+            "ticks": 2
+          }
+        }
+      },
+      "adaptive_source_status": "V46_T1_T4_ONLY_DESIGN_PROPOSAL_NOT_FROZEN",
+      "t1_hypothesis": "MITIGATE_NEXT 35%; proposed",
+      "proposed_rooms_only": [
+        "aguas_filtraciones_cantera",
+        "aguas_paso_alto"
+      ],
+      "legal_guardian_aoe_stage": null,
+      "runtime_integration_status": "NOT_MATERIALIZED_STAGE_GATE_PENDING",
+      "source_documents": [
+        "experimentos/balance_nuevo/handoffs/V67_CIERRE_GUARDIANES_ULTIS_2026-10-10/FUENTE_IMPORTADA_V45_NUEVA_FAUNA_LIII_2026-10-09.md",
+        "experimentos/balance_nuevo/handoffs/V67_CIERRE_GUARDIANES_ULTIS_2026-10-10/FUENTE_IMPORTADA_V46_CADENA_ADAPTATIVA_LIII_2026-10-09.md"
+      ],
+      "notes": "Human approved creature identity/design in V46; V45 numeric values/rooms are candidate-only, and V46 T1-T4/mutant proposals are not production-ready."
+    },
+    {
+      "id": "rana_cascajo_barranco",
+      "name": "Rana de Cascajo del Barranco",
+      "source_class": "NEW_LIII_REPEATABLE_V45_V46_HUMAN_RATIFIED_DESIGN",
+      "design_canon": true,
+      "design_approval": "V46_HUMAN_APPROVED_IDENTITIES_AND_DESIGNS",
+      "native_stage_historical": "LianQi_III",
+      "role": "NORMAL",
+      "repeatable": true,
+      "unique": false,
+      "element": null,
+      "region_historical": "aguas_barrancos",
+      "numeric_source": {
+        "status": "V45_PROPOSAL_NOT_NUMERIC_FREEZE",
+        "stats_status": "PENDING_INTEGRAL_REBALANCE",
+        "technique_params_status": "PENDING_INTEGRAL_REBALANCE",
+        "crit_chance_proposed": 5,
+        "crit_damage_proposed": 1.5,
+        "qi_max": null,
+        "control": "LAB_HYPOTHESIS_0_NOT_RATIFIED",
+        "stats_proposed": {
+          "hp": 84,
+          "precision": 100,
+          "evasion": 17,
+          "defense": 2,
+          "tenacity": 23,
+          "basic_damage": "1d2+6"
+        },
+        "technique_proposed": {
+          "name": "Salto de Cascajo",
+          "mechanics": [
+            "DIRECT_DAMAGE"
+          ],
+          "direct_damage": "1d3+8",
+          "cadence": 3
+        }
+      },
+      "adaptive_source_status": "V46_T1_T4_ONLY_DESIGN_PROPOSAL_NOT_FROZEN",
+      "t1_hypothesis": "DEFENSE_UP +2; proposed",
+      "proposed_rooms_only": [
+        "aguas_garganta_sur",
+        "aguas_desvio_sauces"
+      ],
+      "legal_guardian_aoe_stage": null,
+      "runtime_integration_status": "NOT_MATERIALIZED_STAGE_GATE_PENDING",
+      "source_documents": [
+        "experimentos/balance_nuevo/handoffs/V67_CIERRE_GUARDIANES_ULTIS_2026-10-10/FUENTE_IMPORTADA_V45_NUEVA_FAUNA_LIII_2026-10-09.md",
+        "experimentos/balance_nuevo/handoffs/V67_CIERRE_GUARDIANES_ULTIS_2026-10-10/FUENTE_IMPORTADA_V46_CADENA_ADAPTATIVA_LIII_2026-10-09.md"
+      ],
+      "notes": "Human approved creature identity/design in V46; V45 numeric values/rooms are candidate-only, and V46 T1-T4/mutant proposals are not production-ready."
+    },
+    {
+      "id": "carpa_lamina_reflejo",
+      "name": "Carpa de Lámina Reflejada",
+      "source_class": "NEW_LIII_REPEATABLE_V45_V46_HUMAN_RATIFIED_DESIGN",
+      "design_canon": true,
+      "design_approval": "V46_HUMAN_APPROVED_IDENTITIES_AND_DESIGNS",
+      "native_stage_historical": "LianQi_III",
+      "role": "NORMAL",
+      "repeatable": true,
+      "unique": false,
+      "element": null,
+      "region_historical": "aguas_barrancos",
+      "numeric_source": {
+        "status": "V45_PROPOSAL_NOT_NUMERIC_FREEZE",
+        "stats_status": "PENDING_INTEGRAL_REBALANCE",
+        "technique_params_status": "PENDING_INTEGRAL_REBALANCE",
+        "crit_chance_proposed": 5,
+        "crit_damage_proposed": 1.5,
+        "qi_max": null,
+        "control": "LAB_HYPOTHESIS_0_NOT_RATIFIED",
+        "stats_proposed": {
+          "hp": 78,
+          "precision": 104,
+          "evasion": 26,
+          "defense": 1,
+          "tenacity": 13,
+          "basic_damage": "1d2+6"
+        },
+        "technique_proposed": {
+          "name": "Succión de Corriente",
+          "mechanics": [
+            "DIRECT_DAMAGE",
+            "QI_DRAIN"
+          ],
+          "direct_damage": "1d3+7",
+          "cadence": 3,
+          "qi_drain_on_hit": 3
+        }
+      },
+      "adaptive_source_status": "V46_T1_T4_ONLY_DESIGN_PROPOSAL_NOT_FROZEN",
+      "t1_hypothesis": "EVADE_NEXT +8; proposed",
+      "proposed_rooms_only": [
+        "aguas_manantial_entrada",
+        "aguas_rama_clara"
+      ],
+      "legal_guardian_aoe_stage": null,
+      "runtime_integration_status": "NOT_MATERIALIZED_STAGE_GATE_PENDING",
+      "source_documents": [
+        "experimentos/balance_nuevo/handoffs/V67_CIERRE_GUARDIANES_ULTIS_2026-10-10/FUENTE_IMPORTADA_V45_NUEVA_FAUNA_LIII_2026-10-09.md",
+        "experimentos/balance_nuevo/handoffs/V67_CIERRE_GUARDIANES_ULTIS_2026-10-10/FUENTE_IMPORTADA_V46_CADENA_ADAPTATIVA_LIII_2026-10-09.md"
+      ],
+      "notes": "Human approved creature identity/design in V46; V45 numeric values/rooms are candidate-only, and V46 T1-T4/mutant proposals are not production-ready."
+    }
+  ]
+}
