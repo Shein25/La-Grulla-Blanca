@@ -1,0 +1,190 @@
+{
+  "schema": "GRULLA_V76_METAL_SENTENCIA_MIDDLE_GROUND_NUMERIC_CANDIDATE",
+  "date": "2026-10-10",
+  "source_user_intent": "User asked to seek a midpoint between pre-nerf Sentencia and V67 approved extreme nerf",
+  "status": "EXPERIMENTAL_LAB_PASS__NOT_HUMAN_APPROVED__NOT_HTML_READY",
+  "human_approved_v67_unmodified": true,
+  "stage": "LianQi_III",
+  "main_root": "metal",
+  "ultimate_id": "METAL_SENTENCIA_FILO_CELESTIAL",
+  "limit_one_ultimate_per_battle": true,
+  "mastery_gate_required": true,
+  "graft_not_eligible_at_lIII": true,
+  "approved_v67_reference": "experimentos/balance_nuevo/handoffs/V67_CIERRE_GUARDIANES_ULTIS_2026-10-10/BALANCE_ULTIS_METAL_VIENTO_APROBADO_V67.json",
+  "candidate_best": {
+    "candidate_id": "METAL_CANDIDATE_V76_MID_B",
+    "name": "Sentencia del Filo Celestial",
+    "direct_hit_damage_scale": 0.65,
+    "extra_penetration_percentage_points": 10,
+    "precision_bonus": 30,
+    "bleed": {
+      "requires_hp_damage": true,
+      "stacks": 1,
+      "power_per_stack": 2,
+      "voluntary_action_activations_per_stack": 2,
+      "ignore_flat_defense": true,
+      "respect_absorption": true
+    },
+    "punto_de_ruptura": {
+      "retained": true,
+      "requires_two_effective_bleed_activations": true,
+      "requires_linked_metal_attack": true,
+      "damage_scale": 0.65,
+      "original_formula": "14–20 + 4 * remaining_bleed_stacks",
+      "no_critical": true,
+      "no_new_evasion_roll": true
+    },
+    "qi_cost": 16,
+    "launch_at_combat_round": "PLAYER_CHOICE__R4_ONLY_EXPERIMENTAL_SENSITIVITY_NOT_FORCED_RULE"
+  },
+  "comparative_human_approved": {
+    "direct_hit_damage_scale": 0.5,
+    "extra_penetration_percentage_points": 45,
+    "precision_bonus": 30,
+    "bleed_stacks": 1,
+    "bleed_power": 1,
+    "bleed_ticks": 2,
+    "closure_damage_scale": 0.5,
+    "qi_cost": 16
+  },
+  "comparator_original_pre_nerf": {
+    "direct_hit_damage_scale": 1,
+    "extra_penetration_percentage_points": 90,
+    "bleed_stacks": 3,
+    "bleed_power": 4,
+    "bleed_ticks": 3,
+    "closure_damage_scale": 1
+  },
+  "test_design": {
+    "source_engine": "V73 ZIP: frozen V66 E1 + V03.1 + V67 physical event bridge",
+    "source_sombra": "V72 110HP, DEF1, 8 absorption, Velo CD4 poison 2 pulses",
+    "source_guardians": "V66/V67 accepted boss-kit LAB fixtures (not HTML)",
+    "roots": [
+      "metal"
+    ],
+    "lIII_pt": 4,
+    "builds": 3,
+    "gears": [
+      "ENTRY_LII_MAX_DEFENSE",
+      "ENTRY_LII_MAX_EVASION",
+      "LIII_EXPECTED_OPTIONAL"
+    ],
+    "optional_lIII_gear_auto_earned": false,
+    "policies": 3,
+    "cohorts": [
+      "H1",
+      "H2"
+    ],
+    "one_vs_one_pre_aoe": true,
+    "ultis_by_other_roots_not_tested": true
+  },
+  "player_win_pct_by_enemy": {
+    "sombra_ahogada": {
+      "v67_r2": 40.538,
+      "v67_r4": 43.432,
+      "mid_b_r1": 49.913,
+      "mid_b_r2": 50.159,
+      "mid_b_r4": 54.8322,
+      "n_per_variant": 6912
+    },
+    "rey_escarabajo": {
+      "v67_r2": 78.6748,
+      "v67_r4": 72.9167,
+      "mid_b_r2": 88.3391,
+      "mid_b_r4": 83.5648,
+      "n_per_variant": 3456
+    },
+    "sapo_caldera": {
+      "v67_r2": 61.3426,
+      "v67_r4": 54.2824,
+      "mid_b_r2": 76.0706,
+      "mid_b_r4": 69.3287,
+      "n_per_variant": 3456
+    },
+    "mantis_nube": {
+      "v67_r2": 68.9815,
+      "v67_r4": 69.3576,
+      "mid_b_r2": 79.3692,
+      "mid_b_r4": 77.8646,
+      "n_per_variant": 3456
+    },
+    "guardian_coral": {
+      "v67_r2": 34.5486,
+      "v67_r4": 33.7095,
+      "mid_b_r2": 40.3646,
+      "mid_b_r4": 39.6701,
+      "n_per_variant": 3456
+    },
+    "custodio_eco_petreo": {
+      "v67_r2": 35.1852,
+      "v67_r4": 34.5486,
+      "mid_b_r2": 41.2326,
+      "mid_b_r4": 40.4803,
+      "n_per_variant": 3456
+    }
+  },
+  "player_win_pct_sombra_mid_b_r4_by_gear": {
+    "ENTRY_LII_MAX_DEFENSE": 52.9514,
+    "ENTRY_LII_MAX_EVASION": 32.5521,
+    "LIII_EXPECTED_OPTIONAL": 78.9931
+  },
+  "sombra_mid_b_r4_n": 6912,
+  "sombra_mid_b_r4_wins": 3790,
+  "guardian_mid_b_r4_kills_until_round3": 0,
+  "alternative_conservative_A": {
+    "direct": 0.65,
+    "closure": 0.5,
+    "bleed_power": 2,
+    "bleed_stacks": 1,
+    "bleed_ticks": 2,
+    "pen_plus": 10,
+    "player_win_sombra_r4_pct": 51.432,
+    "player_win_rey_r4_pct": 79.456
+  },
+  "alternative_more_aggressive_C": {
+    "direct": 0.7,
+    "closure": 0.65,
+    "bleed_power": 2,
+    "bleed_stacks": 1,
+    "bleed_ticks": 2,
+    "pen_plus": 0,
+    "sombra_r2_pct": 51.606,
+    "rey_r2_pct": 89.4965,
+    "early_guardian_kill3_observed": 1,
+    "not_recommended": true
+  },
+  "qa": {
+    "status": "PASS",
+    "old_v73_v67_exact_replays": 6912,
+    "old_v73_v67_mismatches": 0,
+    "historical_v67_rey_720_result_reproduced_pct": 78.889,
+    "screened_sombra_holdout_duels": 34560,
+    "screened_guardian_holdout_duels": 69120,
+    "portable_extraction_and_replay_pass": true,
+    "stage_lIII_builds_4pt_legal": true,
+    "runtime_html_parity_certified": false
+  },
+  "portable": {
+    "filename": "GRULLA_V76_SENTENCIA_METAL_PUNTO_INTERMEDIO_2026-10-10.zip",
+    "sha256": "6d0891daf20dedda7ff2d387d748435b03d27baa79ef7b07c8a61706422ab15c",
+    "bytes": 2210439,
+    "entries": 31,
+    "crc": "PASS",
+    "manifest_sha256": "PASS",
+    "v73_embedded_source_sha256": "615db972e5006c571ec60c703025d8c06a24ec17b54c380d71d7be282c2964aa",
+    "attached_to_chat": true,
+    "not_git": true
+  },
+  "limitations": [
+    "CANDIDATE_NOT_HUMAN_RATIFIED",
+    "V03.1-E1 event adapter not production HTML",
+    "Coral and Custodio bleeding anatomy immunity is an unratified fixture",
+    "Custodio numerical T0 not runtime",
+    "The lab's R4 choice is not a recommended hardcoded auto-cast rule",
+    "One representative Metal Ulti, not all 25 Ultis",
+    "No AOE 2+ enemies or Concordances ON",
+    "Stage-III equipment optional, not automatically acquired",
+    "Some strong equipment/build crosses exceed 70% win rate",
+    "Do not change main, V67 approved numeric source, T0 or HTML on basis of this experiment"
+  ]
+}
