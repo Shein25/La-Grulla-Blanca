@@ -1,0 +1,74 @@
+{
+  "schema": "GRULLA_V78_PHYSICAL_AOE_CONCORDANCE_QA",
+  "date": "2026-10-11",
+  "result": "PASS_FOR_SCOPED_E1_EVENT_LAB__NOT_COMPLETE_RUNTIME",
+  "stage": "LianQi_III",
+  "suites": {
+    "cross_AOE_different_root": {
+      "cases": 23040,
+      "actions": 46080,
+      "directed_pairs": 20,
+      "base_hooks_supported": 14,
+      "base_none": 6,
+      "direct_damage_pairs": 5,
+      "area_efficiency_pairs": 1,
+      "hypothetical_relative_scales": [
+        0,
+        0.1,
+        0.2
+      ],
+      "scale_ratified": false
+    },
+    "AOE_to_other_root_defense": {
+      "cases": 5760,
+      "actions": 11520,
+      "defensive_activation_and_unique_qi_charge": "PASS"
+    },
+    "AOE_repeated_three_times": {
+      "cases": 2880,
+      "actions": 8640,
+      "concordance_same_root": "NONE",
+      "three_independent_qi_charges": true
+    }
+  },
+  "total_sequences": 31680,
+  "total_actions": 66240,
+  "qa": {
+    "single_target_native_E1_parity_cases": 600,
+    "differences": 0,
+    "insufficient_qi_cases": 15,
+    "insufficient_qi_rejections_passed": 15,
+    "falloff_3_to_1_cases": 15,
+    "falloff_passed": 15,
+    "portable_replay": "4/4 CSV bytewise exact",
+    "zip_crc": "PASS",
+    "zip_manifest_sha256": "PASS"
+  },
+  "artifact": {
+    "filename": "GRULLA_V78_AOE_CONCORDANCIAS_BATERIA_INICIAL_2026-10-11.zip",
+    "sha256": "92fd9f49c9dfeee08796ee4bf0154524b68be08cf28f45b79079e0cd3dff9476",
+    "size_bytes": 204980,
+    "zip_entries": 15,
+    "available_in_conversation": true,
+    "uploaded_to_github": false
+  },
+  "source": {
+    "e1_engine_sha256": "8a1f8194bc1e4eecb45eda5c39e3dd30f6dc677a85d7bcbab4b56161179f1323",
+    "method": "E1 REAL DIRECT/DOT HOOKS + SYNTHETIC TARGET_LOOP / NO MONSTER TURNS"
+  },
+  "authority_preserved": {
+    "metal_v76": true,
+    "sombra_v72_110hp": true,
+    "viento_v67": true,
+    "main_unchanged": true,
+    "html_unchanged": true,
+    "monster_t0_not_modified": true
+  },
+  "limitations": [
+    "No numerical Concordances globally ratified; +10% / +20% strictly hypothetical direct/area sensitivity.",
+    "Only synthetic co-located hostiles, no actual spawn or room.",
+    "No independent monster AI turns, DOT passage of time, actual winrates or live HTML.",
+    "Foreign AOE/defensive abilities only synthetic learned-fixture, not audited acquisition.",
+    "No genuine equipment/loadout 4PT builds or production parity."
+  ]
+}
