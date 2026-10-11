@@ -1,0 +1,124 @@
+{
+  "schema": "GRULLA_V77_AOE_CONCORDANCES_PRE_RUNTIME_QA",
+  "date": "2026-10-10",
+  "status": "PHYSICAL_E1_DAMAGE_AND_SCRIPTED_CONCORDANCE_HOOK_SELECTION_PASS__NOT_FULL_CONCORDANCE_BENCHMARK",
+  "authority": {
+    "metal_selected": "V76_B_65_DIRECT_65_RUPTURE_PEN_EXTRA_10_BLEED_1xPOWER2x2_QI16",
+    "sombra_closed": "V72_ELITE_LIII_HP110_DEF1_ESPEJO8_VELO_CD4_DOT2",
+    "guardians_unchanged": true,
+    "viento_ulti_v67_unchanged": true,
+    "main_unchanged": true,
+    "html_unchanged": true
+  },
+  "source": {
+    "e1_v66_sha256": "e8402ca195ba9f2d4fe97ae4a71351d25f691c7601a81c49693cdf77198d3a39",
+    "stage": "LianQi_III",
+    "damage_pipeline": "E1 resolve_player_direct actual original code",
+    "multi_target": "V77_SCRIPT_LOOP_SYNTHETIC_NOT_RUNTIME",
+    "concordance_contract": "docs/experimentos/CONTRATO_CONCORDANCIAS_GLOBALES_V0_1.md",
+    "hooks": "docs/experimentos/MAPEO_HOOKS_TECNICAS_ARCO1_2026-09-29.md",
+    "build_pts_spent": 0,
+    "stage_pts_available": 4,
+    "manual_foreign_aoe": "ASSUMED_IN_LAB_ONLY_NOT_PROVEN_ACQUIRED"
+  },
+  "tested": {
+    "aoe_to_other_aoe": {
+      "directed_root_pairs": 20,
+      "compatible_base_pairs": 14,
+      "base_none_pairs": 6,
+      "executions": 7680,
+      "successful_actions": 15360
+    },
+    "aoe_to_other_root_unitarget": {
+      "directed_root_pairs": 20,
+      "compatible_base_pairs": 16,
+      "base_none_pairs": 4,
+      "executions": 7680,
+      "successful_actions": 15360
+    },
+    "aoe_to_same_aoe": {
+      "self_pairs": 5,
+      "concordance_pairings": 0,
+      "executions": 1920,
+      "successful_actions": 3840
+    },
+    "aoe_to_same_root_unitarget": {
+      "self_pairs": 5,
+      "concordance_pairings": 0,
+      "executions": 1920,
+      "successful_actions": 3840
+    },
+    "target_counts": [
+      1,
+      2,
+      3
+    ],
+    "seed_reps_per_context": 128,
+    "total_sequences": 19200,
+    "total_successful_actions": 38400
+  },
+  "outcomes": {
+    "aoe_single_target_scalar": 0.65,
+    "aoe_two_or_more_scalar": 1,
+    "qi_spent_once_per_action": true,
+    "echo_replaced_by_valid_recipient": true,
+    "one_primary_hook_selection_per_action_not_target": true,
+    "concordance_numeric_modifiers_applied": false,
+    "concordance_damage_gain_or_winrate": "NOT_MEASURED",
+    "average_second_action_direct_hp_by_mode_targets": {
+      "AOE_CROSS": {
+        "1": 3.255,
+        "2": 10.795,
+        "3": 16.012
+      },
+      "UNITARGET_CROSS": {
+        "1": 8.016,
+        "2": 8.096,
+        "3": 8.089
+      },
+      "AOE_REPEAT": {
+        "1": 3.364,
+        "2": 10.869,
+        "3": 15.988
+      }
+    },
+    "per_action_aoe_base_qi_costs": {
+      "fuego": 9,
+      "metal": 9,
+      "agua": 8,
+      "tierra": 9,
+      "viento": 9
+    }
+  },
+  "qa": {
+    "e1_1target_exact_comparisons": 600,
+    "e1_1target_differences": 0,
+    "no_manual_rejected_with_no_cost_or_action": 15,
+    "no_qi_rejected_with_no_cost_or_action": 5,
+    "partial_kill_2_then_1_resnapshot_correct": 5,
+    "extra_conditional_tramo_i_ii_hook_cases_compiled": 6,
+    "unexpected_charges_or_actions": 0,
+    "timeout": 0,
+    "isolated_zip_replay": "PASS",
+    "source_code": "v77_concordance_aoe.py + v77_conditional_hooks.py in portable ZIP"
+  },
+  "artifact": {
+    "filename": "GRULLA_V77_AOE_CONCORDANCIAS_TRES_COMBINACIONES_2026-10-10.zip",
+    "sha256": "aad31df3f8d4cf96eb4d606a1018102f2b3f6461e005726f13fee4428be62059",
+    "bytes": 922790,
+    "files": 16,
+    "crc": "PASS",
+    "sha_manifest": "PASS",
+    "isolated_replay": "PASS",
+    "uploaded_to_git": false,
+    "available_in_conversation": true
+  },
+  "limits": [
+    "FIVE AOE RECEIVER HOOK PRIORITIES ARE SELECTION ELIGIBILITY NOT EXECUTED FULL CONCORDANCE DAMAGE",
+    "SAME_ROOT AOE-TO-AOE DOES NOT CONSTITUTE DIRECTED ELEMENTAL RELATION",
+    "FOREIGN AOE MANUALS NOT VERIFIED NARRATIVELY; SYNTHETIC PERMISSION ONLY",
+    "NO MONSTER TURNS, NO FULL 1VN WINRATE, NO DOT/DEBUFF TICK ADVANCEMENT, NO MULTIROOM SPAWN",
+    "NO 4PT FULL BUILDS OR EQUIPMENT, NO T1_T4, NO CONCORDANCE NUMERICAL MAGNITUDES",
+    "NO HTML INTEGRATION NOR SAVE LOAD AND NO MAIN OR MERGE"
+  ]
+}
