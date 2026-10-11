@@ -76,3 +76,11 @@ Por autorización humana se diseñaron tres habilidades propias del **élite ún
 **Autoridad machine-readable:** `experimentos/balance_nuevo/handoffs/V70_ECO_CIERRE_T0_51HP_LII_2026-10-10/V70_ECO_CIERRE_NUMERICO_CANDIDATO.json`. Informe y QA hermanos. Archivo portable ZIP del chat `GRULLA_V70_ECO_T0_51_CIERRE_BALANCE_LII_2026-10-10.zip`, SHA256 `861cb5a612c1b05f290c7f6a7d2a484e8c53a7d591955abba9ff8e32849e7542`.
 
 **No cerrar integración HTML:** la disponibilidad de sala secreta `cruce_vetas` para LI en ver76 no fue verificada; los telegráficos/Control/defensa/salvado y adquisición real de equipo tampoco. No inventar gates ni reescribir `ROOMS.exits`. **V69 debe usarse solo como evidencia histórica de laboratorio, jamás como la ficha final del Eco.**
+
+## 7. Autoridad humana V71 — Eco 84HP y Sombra LIII a revisión (2026-10-10)
+
+**Eco del Caído, élite único LII: el autor RATIFICÓ COMO NUEVO DISEÑO 84 HP**, sustituyendo el HP51 de la ficha histórica. Conservar esa ficha vieja como artefacto trazable, pero NO usar HP51 como diseño vigente de Eco; sus habilidades V69 están aceptadas conceptualmente y sus números requieren paridad. Fuente: `experimentos/balance_nuevo/handoffs/V71_ECO84_SOMBRA_URGENTE_2026-10-10/DECISION_HUMANA_ECO_HP84_Y_REAPERTURA_SOMBRA.md` y campo `current_design_t0_override` de `CATALOGO_CANONICO_MONSTRUOS_ARCO1_V3.json`.
+
+**Sombra Ahogada del Estanque, élite único LIII:** reapertura de T0 expresamente autorizada. **Candidato V71** HP90, DEF1, veneno M11 sin cambios; nueva defensa reactiva de una sola vez **Espejo del Remanso**, absorción 16 después de sufrir en un golpe >=16 HP reales. En holdout independiente de 51.840 combates físicos 1v1 LIII PRE_AOE, el jugador ganó 58,11% ante la candidata, frente al 99,68% del M11 histórico. **La candidata Sombra todavía requiere ratificación numérica final humana e integración al runtime; no escribir READY ni modificar fuente histórica de modo silencioso.** Fuente: `experimentos/balance_nuevo/handoffs/V71_ECO84_SOMBRA_URGENTE_2026-10-10/DICTAMEN_REBALANCE_SOMBRA_V71_2026-10-10.md`.
+
+**Conteo canónico sin cambios: 31 identidades.** Ambos siguen siendo monstruos únicos sin T1–T4 ni Mutantes. No se ha probado AOE multiblanco.
