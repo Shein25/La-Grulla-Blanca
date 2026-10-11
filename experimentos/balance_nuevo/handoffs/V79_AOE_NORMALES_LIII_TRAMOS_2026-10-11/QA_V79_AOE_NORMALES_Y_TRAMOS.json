@@ -1,0 +1,110 @@
+{
+  "schema": "GRULLA_V79_AOE_NORMALS_LIII_PHYSICAL_E1_QA",
+  "date": "2026-10-11",
+  "status": "E1_1v1_PARITY_PASS__MULTITARGET_SYNTHETIC__CONCORDANCE_ON_NOT_TESTED__NO_NUMERIC_RETUNE",
+  "runner": "v79_normals_combat.py",
+  "source": "V66 original + V45 selected normal numeric T0, only in-memory READY to instantiate",
+  "monster_ids": [
+    "garza_bruma_roca",
+    "cangrejo_laja_humeda",
+    "sanguijuela_remanso_turbio",
+    "salamandra_filtracion_tibia",
+    "rana_cascajo_barranco",
+    "carpa_lamina_reflejo"
+  ],
+  "stage": "LianQi_III",
+  "roots": [
+    "fuego",
+    "agua",
+    "metal",
+    "tierra",
+    "viento"
+  ],
+  "num_builds_per_root": 10,
+  "pt_budget": 4,
+  "gears": [
+    "ENTRY_LII_MAX_DEFENSE",
+    "LIII_EXPECTED_OPTIONAL"
+  ],
+  "manuals_assumed_lab": true,
+  "monster_tier": "T0_ONLY",
+  "suites": {
+    "complete_core": 259200,
+    "defensive": 69120,
+    "sequence_once_twice_thrice": 69120,
+    "total": 397440,
+    "one_normal_native_exact_regression_pairs": 1260,
+    "exact_regression_differences": 0,
+    "timeouts": 0
+  },
+  "selected_1v1_entry_gear": {
+    "unitarget_only_pct": 81.81,
+    "defense_then_unitarget_pct": 88.85,
+    "one_AOE_T1_0_then_unitarget_pct": 66.46,
+    "two_AOE_T1_0_then_unitarget_pct": 54.58,
+    "AOE_T2_01_repeated_pct": 11.04,
+    "AOE_T2_11_repeated_pct": 8.47,
+    "defense_then_AOE_T2_11_repeated_pct": 17.71
+  },
+  "synthetic_two_enemies": {
+    "total_core_fights": 86400,
+    "player_victories": 46,
+    "win_pct": 0.05324,
+    "enemy_same_stage_75_to_90_hp_each": true,
+    "enemy_each_takes_turn": true,
+    "encounter_exists_in_game": "NOT_ESTABLISHED"
+  },
+  "synthetic_three_enemies": {
+    "total_core_fights": 86400,
+    "player_victories": 0,
+    "win_pct": 0,
+    "encounter_exists_in_game": "NOT_ESTABLISHED"
+  },
+  "aoe_t2_direct_direct_mean_direct_damage_total_on_two_enemies_entry_gear": {
+    "fuego": 19.3,
+    "metal": 15.6,
+    "agua": 14.8,
+    "tierra": 14.9,
+    "viento": 14.9
+  },
+  "mechanical_invariants": {
+    "one_hostile_aoe_direct_scalar": 0.65,
+    "two_or_more_aoe_per_target_scalar": 1,
+    "qi_once_per_action": true,
+    "per_target_independent_rolls": true,
+    "monster_dot_poison_and_burn_applied": true,
+    "monster_qi_drain_applied": true,
+    "concordance_hook_selection_only_in_V77_V78": true,
+    "concordance_numeric_effects_V79": false,
+    "no_foreign_aoe": true,
+    "more_recent_v61c_native_ability_patch_applied": false,
+    "html_parity": false
+  },
+  "artifact": {
+    "filename": "GRULLA_V79_AOE_TRAMOS_SEIS_NORMALES_LIII_2026-10-11.zip",
+    "sha256": "1434d167fbc91d11c55fc2fcaf00cf0f0a5e3630221e32e9d23fe2a973caf88f",
+    "bytes": 4555033,
+    "zip_entries": 45,
+    "sha_manifests_verified": 44,
+    "crc": "PASS",
+    "isolated_replay_verify_v79": "PASS",
+    "attached_to_conversation": true,
+    "uploaded_to_github": false
+  },
+  "human_decision_required": [
+    "AUTHENTIC_1VN_ROOM_SPAWNS",
+    "FOREIGN_AOE_MANUAL_ACQUISITION",
+    "DIRECTED_CONCORDANCE_NUMERIC_OR_STRUCTURAL_AUTHORITY",
+    "HTML_NATIVE_1VN_PARITY",
+    "TRAMO_NODE_REBALANCE_ONLY_AFTER_CAUSAL_EVIDENCE"
+  ],
+  "restrictions": {
+    "main_unchanged": true,
+    "no_merge": true,
+    "no_html": true,
+    "no_monster_t0_changes": true,
+    "no_approved_ultimate_changes": true,
+    "sombra_hp_110_retained": true,
+    "metal_v76_b_retained": true
+  }
+}
