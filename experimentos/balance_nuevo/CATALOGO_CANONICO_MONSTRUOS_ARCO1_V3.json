@@ -162,7 +162,33 @@
         "lab_report": "experimentos/balance_nuevo/handoffs/V69_ECO_ELITE_NUEVAS_HABILIDADES_2026-10-10/DICTAMEN_BALANCE_ECO_V69_2026-10-10.md",
         "t0_authority_conflict": "HISTORICAL_HP51_READY_VS_PRE_A08_E8_HP84_PENDING__NO_REPLACEMENT",
         "unique_no_t1_t4_mutants": true,
-        "html_integration": false
+        "html_integration": false,
+        "current_version": "V70",
+        "status": "NUMERIC_LAB_CLOSED_NOT_RUNTIME_INTEGRATED",
+        "previous_V69_experiment": "SUPERSEDED_E8_HP84_FOR_NUMERIC_ECO_BALANCE",
+        "selected_t0": {
+          "authority_commit": "45c3a9c240ea74208a0d8fd4d5be187bc817df35",
+          "hp": 51,
+          "precision": 102,
+          "evasion": 24,
+          "defense": 1,
+          "tenacity": 24,
+          "basic_damage": "1d3+6",
+          "historical_closed_preserved": true
+        },
+        "selected_ability_design": [
+          "ECO_VETA_RESENTIDA",
+          "ECO_LAMENTO_DEL_CAIDO",
+          "ECO_REVERBERACION_AGRAVIO"
+        ],
+        "numeric_closure": "experimentos/balance_nuevo/handoffs/V70_ECO_CIERRE_T0_51HP_LII_2026-10-10/V70_ECO_CIERRE_NUMERICO_CANDIDATO.json",
+        "technical_report": "experimentos/balance_nuevo/handoffs/V70_ECO_CIERRE_T0_51HP_LII_2026-10-10/DICTAMEN_CIERRE_ECO_V70_2026-10-10.md",
+        "verified_qa": "experimentos/balance_nuevo/handoffs/V70_ECO_CIERRE_T0_51HP_LII_2026-10-10/QA_V70_CIERRE_ECO_2026-10-10.json",
+        "tested_player_stage": "LianQi_II",
+        "no_liii_equipment": true,
+        "selected_player_win_pct": 49.3937,
+        "capped_70_scope": "GLOBAL_AND_MARGINAL_ONLY",
+        "production_integration_status": "BLOCKED_REAL_TELEGRAPH_AND_LI_ACCESS_VER76"
       }
     },
     {
