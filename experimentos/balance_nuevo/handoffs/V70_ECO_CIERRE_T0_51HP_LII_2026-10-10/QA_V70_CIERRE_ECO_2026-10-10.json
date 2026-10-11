@@ -1,0 +1,84 @@
+{
+  "schema": "GRULLA_V70_ECO_NUMERIC_CLOSURE_INDEPENDENT_QA",
+  "status": "PASS_NUMERIC_LAB_NO_RUNTIME",
+  "historical_canon_T0_51_hp_unchanged": true,
+  "verified_gear_stages": "LianQi_I_or_LianQi_II_ONLY",
+  "new_liii_equipment_count": 0,
+  "aoe_count": 0,
+  "ultis_count": 0,
+  "skill_pts_per_root": 2,
+  "root_count": 5,
+  "legal_builds_per_root": 3,
+  "gear_cohort_count": 5,
+  "policies": 4,
+  "seed_reps_per_independent_holdout": 160,
+  "source_parity": {
+    "E1_exact_pairs": 1050,
+    "differences": 0
+  },
+  "portable_replay": {
+    "paired_cases": 600,
+    "differences": 0
+  },
+  "csv": {
+    "FROZEN_T0_NO_NEW_ABILITIES_HOLDOUT": {
+      "rows": 48000,
+      "sha256": "98db8459d4c5b87c010a1fe6aac9445fb6271f3313f06d395fbdfe2025078b51"
+    },
+    "V69_ORIGINAL_ON_51_HP_HOLDOUT": {
+      "rows": 48000,
+      "sha256": "1ea1bb4727e865bcda170f348fbd279c038f3b507c0d64b7c9b7ffcb9d7d6be0"
+    },
+    "V70_51HP_SHIELD12_HOLDOUT": {
+      "rows": 48000,
+      "sha256": "257bbee00e4b752d31d9a1951e1e48787e25ba21353560232905036b8df931c7"
+    },
+    "V70_51HP_SHIELD12_REPEAT_HOLDOUT": {
+      "rows": 48000,
+      "sha256": "28cbbb7f369351992b4f25fb687616e023d2f3c1ece53785e63b650dde90af20"
+    }
+  },
+  "selected_v70_n": 96000,
+  "total_cited_192k": 192000,
+  "zero_timeouts": true,
+  "no_multiple_shield_procs": true,
+  "no_more_than_two_echo_procs": true,
+  "no_lamento_dot_without_lamento": true,
+  "final_win_percent": {
+    "overall": 49.3937,
+    "roots": {
+      "fuego": 42.151,
+      "agua": 61.1979,
+      "tierra": 50.7656,
+      "metal": 47.3125,
+      "viento": 45.5417
+    },
+    "gears": {
+      "P_GUARANTEED": 28.8854,
+      "M03_GUARANTEED": 29.724,
+      "EXPECTED_OPTIONAL_M04_M05": 62.1354,
+      "LII_MAX_DEFENSE_OPTIONAL": 67.125,
+      "LII_MAX_EVASION_OPTIONAL": 59.099
+    },
+    "policies": {
+      "UNITARGET_FIRST": 36.0167,
+      "DEFENSE_OPEN": 41.25,
+      "READ_CUE_GUARD": 51.6458,
+      "READ_ALL_CUES": 68.6625
+    }
+  },
+  "scope_warning": "below_70_for_global_and_marginal_strata_not_all_crossed_subgroups",
+  "optional_gear_is_not_guaranteed": true,
+  "li_secret_access_in_ver76_not_verified": true,
+  "html_live_events_not_tested": true,
+  "package": {
+    "name": "GRULLA_V70_ECO_T0_51_CIERRE_BALANCE_LII_2026-10-10.zip",
+    "bytes": 1867541,
+    "sha256": "861cb5a612c1b05f290c7f6a7d2a484e8c53a7d591955abba9ff8e32849e7542",
+    "zip_entries": 44,
+    "files_hashed": 43,
+    "zip_crc": "PASS",
+    "available_in_chat": true,
+    "in_git": false
+  }
+}
