@@ -1,0 +1,138 @@
+{
+  "schema": "GRULLA_SOMBRA_AHOGADA_V72_LIII_HP_GT100_BALANCE_CANDIDATE",
+  "date": "2026-10-10",
+  "human_authority": "AUTHOR_REQUESTED_REBALANCE_SOMBRA_WITH_MORE_THAN_100HP",
+  "id": "sombra_ahogada",
+  "stage": "LianQi_III",
+  "role": "ELITE",
+  "unique": true,
+  "supersedes_candidate": "V71_SOMBRA_HP90_SHIELD16_CD3_DOT3",
+  "selection_state": "V72_SELECTED_NUMERIC_DESIGN_CANDIDATE_LAB_PASS__RUNTIME_NOT_READY",
+  "stats": {
+    "hp": 110,
+    "qi_max": null,
+    "precision": 106,
+    "evasion": 20,
+    "defense": 1,
+    "tenacity": 19,
+    "control": 0,
+    "crit_chance": 5,
+    "crit_damage": 1.5,
+    "basic_damage": "1d2+7"
+  },
+  "technique": {
+    "name": "Velo de Ahogo",
+    "mechanics": [
+      "POISON_DOT"
+    ],
+    "cadence": 4,
+    "poison": {
+      "damage": "1d2+2",
+      "ticks": 2
+    },
+    "change_rationale": "Reduced from cadence3 poison3ticks to offset higher HP; not an unchanged historical ability"
+  },
+  "unique_ability": {
+    "id": "SOMBRA_ESPEJO_REMANSO",
+    "name": "Espejo del Remanso",
+    "trigger": "After first resolved attack/action doing >=16 ACTUAL HP damage to living Sombra",
+    "absorption_points": 8,
+    "once_per_combat": true,
+    "non_retroactive": true,
+    "no_defense_buff": true,
+    "no_heal": true,
+    "dot_blocked_by_absorption": true
+  },
+  "no_t1_t4": true,
+  "mutant": false,
+  "html_integrated": false,
+  "validation": {
+    "real_physical_engine": "V66_E1_V61C_NATIVE_LIII_1V1_PRE_AOE",
+    "stage_pt": 4,
+    "roots": 5,
+    "builds_per_root": 3,
+    "gears": [
+      "ENTRY_LII_MAX_DEFENSE",
+      "ENTRY_LII_MAX_EVASION",
+      "LIII_EXPECTED_OPTIONAL"
+    ],
+    "lIII_gear_not_free": true,
+    "policies": [
+      "STRIKE",
+      "DEFENSE_OPEN",
+      "TELEGRAPH_RESPONSE"
+    ],
+    "ultis": false,
+    "aoe": false,
+    "concordances_on": false,
+    "first_screen_combats": 30240,
+    "second_screen_combats": 51840,
+    "completed_variant_holdouts": 146880,
+    "all_completed_new_fights": 228960,
+    "finalist_independent_cohorts": 2,
+    "finalist_fights_each": 17280,
+    "finalist_total_fights": 34560,
+    "wins": 17491,
+    "player_win_pct": 50.611,
+    "wilson_ci95_pct": [
+      50.083,
+      51.138
+    ],
+    "player_win_by_root_pct": {
+      "fuego": 62.645,
+      "agua": 50.579,
+      "viento": 56.207,
+      "tierra": 43.2,
+      "metal": 40.422
+    },
+    "player_win_by_gear_pct": {
+      "ENTRY_LII_MAX_DEFENSE": 48.672,
+      "ENTRY_LII_MAX_EVASION": 32.3,
+      "LIII_EXPECTED_OPTIONAL": 70.859
+    },
+    "player_win_by_policy_pct": {
+      "STRIKE": 47.457,
+      "DEFENSE_OPEN": 50.434,
+      "TELEGRAPH_RESPONSE": 53.941
+    },
+    "avg_rounds": 11.43,
+    "kills_by_round_three": 0,
+    "qa_inactive_wrapper_parity": 405,
+    "qa_differences": 0,
+    "timeouts": 0
+  },
+  "historical_source": {
+    "T0_commit": "45c3a9c240ea74208a0d8fd4d5be187bc817df35",
+    "T0_hp": 51,
+    "V71_candidate_hp": 90,
+    "historical_registry_untouched": true,
+    "physical_registry_sha256": "c9a0f517ec8cab3136a7b8d2b6cf3a44c9bb47603c1ec0455853f72e6f6118fd"
+  },
+  "artifacts": {
+    "portable_archive": "GRULLA_V72_SOMBRA_AHOGADA_LIII_HP110_REBALANCE_2026-10-10.zip",
+    "sha256": "b529570daf30df03f24a4952de56993cbc48fc8f4da7704d73730aaa9ffcc830",
+    "bytes": 2563414,
+    "zip_entries": 28,
+    "crc": "PASS",
+    "sha_manifest": "PASS",
+    "attached_in_chat": true,
+    "not_uploaded_to_github": true
+  },
+  "limits": [
+    "NO_RUNTIME_HTML_PARITY",
+    "NO_ULTIS_TEST",
+    "NO_AOE_2_PLUS",
+    "NO_CONCORDANCES_ON",
+    "NOT_HARD_70_PCT_CAP_PER_CROSS_STRATUM",
+    "FURTHER_HUMAN_NUMERIC_FREEZE_OR_PRODUCTIVE_MERGE_NOT_AUTOMATIC"
+  ],
+  "forbidden": [
+    "NO_MAIN",
+    "NO_MERGE",
+    "NO_HTML",
+    "NO_ROOMS_EXITS",
+    "NO_NPC_SPAWN_GATE_QUEST_CHANGES",
+    "NO_T0_HISTORICAL_FILE_OVERWRITE",
+    "NO_T1_T4_MUTANTS"
+  ]
+}
