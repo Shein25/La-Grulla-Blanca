@@ -1,0 +1,77 @@
+{
+  "schema": "GRULLA_V69_ECO_LAB_QA",
+  "date": "2026-10-10",
+  "status": "QA_PASS_EXPERIMENTAL_NOT_RUNTIME",
+  "physical_engine": "V66 E1 ETAPA19B plus local unique encounter hooks",
+  "baseline_stock_parity": {
+    "paired_trials": 1050,
+    "compared": [
+      "rounds",
+      "win",
+      "player_hp_pct",
+      "player_qi_end",
+      "monster_damage_direct",
+      "monster_damage_dot",
+      "player_direct_plus_dot"
+    ],
+    "differences": 0
+  },
+  "final_holdout": {
+    "arms": 5,
+    "combats_per_arm": 38400,
+    "total_new_combats": 192000,
+    "roots": 5,
+    "builds_per_root": 3,
+    "gears": 2,
+    "policies": 4,
+    "seeds_per_stratum": 320,
+    "timeouts": 0,
+    "raw_filename": "ECO_V69_HOLDOUT_RESULTS.csv"
+  },
+  "invariant_checks": {
+    "all_five_arms_present": "PASS",
+    "echo_max_marks_2": "PASS",
+    "shield_one_shot": "PASS",
+    "lamento_requires_hit_for_dot": "PASS",
+    "zero_timeouts": "PASS",
+    "independent_defense_cancel_has_cost": "CHECKED_BY_CODE_AND_EVENT_COUNTERS",
+    "marginal_70pct_goal": "PASS",
+    "strict_cross_strata_70pct_goal": "NOT_PASS_NOT_PROMISED",
+    "t0_unchanged": "PASS"
+  },
+  "results": {
+    "original_player_win_pct": 98.97,
+    "final_player_win_pct": 45.2708,
+    "by_root": {
+      "fuego": 62.8646,
+      "metal": 34.6875,
+      "agua": 55.4948,
+      "tierra": 35.599,
+      "viento": 37.7083
+    },
+    "by_policy": {
+      "UNITARGET_FIRST": 26.9062,
+      "DEFENSE_OPEN": 32.2083,
+      "READ_CUE_GUARD": 54.2396,
+      "READ_ALL_CUES": 67.7292
+    },
+    "by_gear": {
+      "ENTRY_LII_MAX_DEFENSE": 55.54,
+      "ENTRY_LII_MAX_EVASION": 35.01
+    },
+    "best_gear_plus_read_all_cues": 79.4583
+  },
+  "scope_qualification": "No random hard cap; rate <=70 in marginal groups only. >70 possible for optimized cross-strata. All figures from experimental 1v1, not HTML.",
+  "source_hashes": {
+    "eco_v69_engine_py": "b10ab18d04e1c5ae8ab1320da096f8edd99a1f736872d7379f84eafe0ec83807",
+    "eco_v69_main_holdout_py": "09f732a929ffb4948c06c9bbc0856195ad1b020fb51e3602b367168b9ec0e919"
+  },
+  "source_package": {
+    "name": "GRULLA_V69_ECO_DEL_CAIDO_HABILIDADES_BALANCE_2026-10-10.zip",
+    "sha256": "4e59f1cbb3fbcda45824a9b69c28a2bb168044a771e6c2be3afed975f63041f2",
+    "entries": 14,
+    "crc": "PASS",
+    "sha256_manifest": "PASS"
+  },
+  "known_limitation": "Legacy HP51 READY 2026-10-02 versus E8 HP84 pending 2026-10-09 unresolved; no runtime patch and no legal LI access decision"
+}
