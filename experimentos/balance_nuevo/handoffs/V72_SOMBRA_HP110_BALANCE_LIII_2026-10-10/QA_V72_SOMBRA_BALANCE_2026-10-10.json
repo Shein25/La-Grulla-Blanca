@@ -1,0 +1,87 @@
+{
+  "schema": "GRULLA_V72_SOMBRA_QA",
+  "date": "2026-10-10",
+  "status": "LAB_PASS_NOT_RUNTIME",
+  "monster_id": "sombra_ahogada",
+  "stage": "LianQi_III",
+  "unique": true,
+  "selected_t0_hp": 110,
+  "selected_defense": 1,
+  "selected_venom_ticks": 2,
+  "selected_venom_cadence": 4,
+  "selected_absorption": 8,
+  "espejo_trigger_actual_hp_damage": 16,
+  "batches": {
+    "screen_1": 30240,
+    "screen_2": 51840,
+    "all_completed_holdout_variants": 146880,
+    "all_completed_combat_executions": 228960,
+    "finalist_cohort_1": 17280,
+    "finalist_cohort_2": 17280,
+    "finalist_total": 34560
+  },
+  "final": {
+    "wins_player": 17491,
+    "win_pct_player": 50.611,
+    "wilson95_pct": [
+      50.083,
+      51.138
+    ],
+    "roots": {
+      "fuego": 62.645,
+      "agua": 50.579,
+      "viento": 56.207,
+      "tierra": 43.2,
+      "metal": 40.422
+    },
+    "gears": {
+      "ENTRY_LII_MAX_DEFENSE": 48.672,
+      "ENTRY_LII_MAX_EVASION": 32.3,
+      "LIII_EXPECTED_OPTIONAL": 70.859
+    },
+    "policies": {
+      "STRIKE": 47.457,
+      "DEFENSE_OPEN": 50.434,
+      "TELEGRAPH_RESPONSE": 53.941
+    },
+    "kills_by_round_3": 0,
+    "avg_rounds": 11.43,
+    "timeouts": 0
+  },
+  "qa": {
+    "inactive_wrapper_exact_pairs": 405,
+    "differences": 0,
+    "valid_stage_pt": 4,
+    "roots": 5,
+    "legal_builds_per_root": 3,
+    "gear_lIII_optional_not_free": true,
+    "ultis": false,
+    "aoe": false,
+    "mutants": false,
+    "persistent_t1_t4": false,
+    "concordances_on": false,
+    "original_registry_unchanged": true
+  },
+  "source_hashes": {
+    "original_monster_registry": "c9a0f517ec8cab3136a7b8d2b6cf3a44c9bb47603c1ec0455853f72e6f6118fd",
+    "original_v66_zip": "e8402ca195ba9f2d4fe97ae4a71351d25f691c7601a81c49693cdf77198d3a39"
+  },
+  "portable_archive": {
+    "name": "GRULLA_V72_SOMBRA_AHOGADA_LIII_HP110_REBALANCE_2026-10-10.zip",
+    "sha256": "b529570daf30df03f24a4952de56993cbc48fc8f4da7704d73730aaa9ffcc830",
+    "bytes": 2563414,
+    "files": 28,
+    "crc": "PASS",
+    "manifest_sha256": "PASS",
+    "in_conversation": true,
+    "uploaded_to_git": false
+  },
+  "restrictions": [
+    "do_not_apply_T0_READY_without_event_parity",
+    "no_MAIN_or_merge",
+    "no_HTML_modifications",
+    "no_rooms_or_spawns",
+    "no_ultis_or_AOE_claims",
+    "no_silent_alteration_of_historic_T0"
+  ]
+}
