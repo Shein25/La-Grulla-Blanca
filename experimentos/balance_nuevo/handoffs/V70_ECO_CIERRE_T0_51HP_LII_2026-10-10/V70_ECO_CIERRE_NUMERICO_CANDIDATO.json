@@ -1,0 +1,160 @@
+{
+  "schema": "LGB_ECO_ELITE_V70_FINAL_NUMERIC_LAB_CLOSURE",
+  "date": "2026-10-10",
+  "decision": "NUMERIC_LAB_BALANCE_CLOSED_DESIGN_SELECT_51HP__NOT_PRODUCTION_INSTALLED",
+  "historical_authority": {
+    "commit": "45c3a9c240ea74208a0d8fd4d5be187bc817df35",
+    "profile": "eco_caido",
+    "role": "ELITE",
+    "unique": true,
+    "stats_status": "READY_ON_HISTORICAL_SOURCE",
+    "adaptive": "UNIQUE_T0_CLOSED_NO_T1_T4",
+    "hp": 51,
+    "precision": 102,
+    "evasion": 24,
+    "defense": 1,
+    "tenacity": 24,
+    "control": 0,
+    "crit_chance": 5,
+    "crit_damage": 1.5,
+    "basic_damage": "1d3+6",
+    "change_to_frozen_t0": false
+  },
+  "supersedes_numeric_candidate": "V69_E8_HP84_WRONG_T0_FOR_THIS_CLOSURE",
+  "stage": "LianQi_II",
+  "skill_points": 2,
+  "no_aoe": true,
+  "no_ultimates": true,
+  "no_liii_equipment": true,
+  "abilities": [
+    {
+      "id": "ECO_VETA_RESENTIDA",
+      "name": "Veta Resentida",
+      "one_shot_absorption": 12,
+      "first_trigger_lte_hp_fraction": 0.6,
+      "requires_previous_player_hit_actual_hp_damage_gte": 10,
+      "no_healing": true,
+      "no_defense_buff": true
+    },
+    {
+      "id": "ECO_LAMENTO_DEL_CAIDO",
+      "name": "Lamento del Caído",
+      "telegraph_required": true,
+      "every_combat_rounds": 4,
+      "direct_dice": "1d2+3",
+      "dot_spiritual_dice": "1d2+3",
+      "dot_ticks": 2,
+      "source_nonstacking": true,
+      "dot_ignores_flat_defense": true,
+      "dot_respects_absorption": true,
+      "paid_guard_response": {
+        "dot_ticks": 1,
+        "dot_scalar": 0.5
+      },
+      "offensive_interrupt_if_actual_hp_damage_pct_at_least": 0.18,
+      "control_skip_cancels": true
+    },
+    {
+      "id": "ECO_REVERBERACION_AGRAVIO",
+      "name": "Reverberación del Agravio",
+      "telegraph_required": true,
+      "trigger_actual_hp_damage_fraction": 0.25,
+      "at_hp51_minimum_real_damage": 13,
+      "resolves_next_monster_voluntary_action": true,
+      "spiritual_damage_formula": "1d2+8 + floor(min(30, 5*max(0, direct_actual_HP_damage-7)))",
+      "ignores_flat_defense": true,
+      "respects_absorption": true,
+      "max_marks_per_fight": 2,
+      "cooldown_combat_rounds": 3,
+      "successful_paid_defensive_cancels": true,
+      "valid_control_action_skip_cancels": true,
+      "no_root_or_gear_specific_bonuses": true
+    }
+  ],
+  "trial_setup": {
+    "holdout_independent_batches": 2,
+    "selected_candidate_new_fights": 96000,
+    "baseline_historical_t0_new_fights": 48000,
+    "unmodified_V69_on_hp51_control_new_fights": 48000,
+    "total_selected_closure_new_fights": 192000,
+    "roots": 5,
+    "builds_per_root": 3,
+    "gear_cohorts": 5,
+    "policies": 4,
+    "replicates_per_batch": 160,
+    "separate_seed_prefixes": true,
+    "timeout_count": 0,
+    "original_E1_regressions_exact": 1050,
+    "portable_replay_checks_exact": 600
+  },
+  "player_win_final": {
+    "overall_pct": 49.3937,
+    "by_equipment_pct": {
+      "P_GUARANTEED": 28.8854,
+      "M03_GUARANTEED": 29.724,
+      "M04_M05_EXPECTED_OPTIONAL": 62.1354,
+      "LII_MAX_DEFENSE_OPTIONAL": 67.125,
+      "LII_MAX_EVASION_OPTIONAL": 59.099
+    },
+    "by_root_pct": {
+      "fuego": 42.151,
+      "agua": 61.1979,
+      "tierra": 50.7656,
+      "metal": 47.3125,
+      "viento": 45.5417
+    },
+    "by_policy_pct": {
+      "UNITARGET_FIRST": 36.0167,
+      "DEFENSE_OPEN": 41.25,
+      "READ_CUE_GUARD": 51.6458,
+      "READ_ALL_CUES": 68.6625
+    },
+    "read_all_cues_wilson95_pct": [
+      68.073,
+      69.246
+    ],
+    "under_70_scope": "PASS_FOR_OVERALL_AND_EACH_ROOT_GEAR_POLICY_MARGINAL_ONLY; CROSSED_SUBGROUPS_CAN_BE_ABOVE_70",
+    "cross_examples": {
+      "agua_x_lii_max_def_pct": 82.19,
+      "agua_x_lii_max_def_x_read_all_cues_pct": 95.94
+    },
+    "no_forced_win_cap": true
+  },
+  "gear_audit": {
+    "all_items_min_stage_at_most": "LianQi_II",
+    "guaranteed_catalog_design_sets": [
+      "P_GUARANTEED",
+      "M03_GUARANTEED_AFTER_M03"
+    ],
+    "optional_gear_sets": [
+      "M04_M05_EXPECTED_OPTIONAL",
+      "LII_MAX_DEFENSE_M04_M05_M06",
+      "LII_MAX_EVASION_M04_M05_M06"
+    ],
+    "real_Ver76_acquisition_verified": false
+  },
+  "integration_gates": [
+    "VERIFY_VER76_CRUCE_VETAS_LI_ACCESS_AND_ENCOUNTER_ACTIVATION",
+    "RUNTIME_REAL_TELEGRAPHS_AND_PAID_DEFENSES",
+    "NEW_EVENT_DOT_ABSORPTION_AND_CONTROL_PARITY",
+    "SAVE_LOAD_AND_ONCE_PER_SAVE_DEFEAT",
+    "ACTUAL_MISSION_EQUIPMENT_ACQUISITION",
+    "NO_T0_REGISTRY_REWRITE"
+  ],
+  "limits": [
+    "NUMERIC_DESIGN_FROZEN_AS_CANDIDATE_NOT_HTML",
+    "NO_MAIN_NO_MERGE_NO_ROOMS_EXITS",
+    "NO_NEW_SPAWNS_GATES_NPCS_QUESTS",
+    "NO_UNIQUE_T1_T4_MUTANTS"
+  ],
+  "portable_artifact": {
+    "filename": "GRULLA_V70_ECO_T0_51_CIERRE_BALANCE_LII_2026-10-10.zip",
+    "sha256": "861cb5a612c1b05f290c7f6a7d2a484e8c53a7d591955abba9ff8e32849e7542",
+    "bytes": 1867541,
+    "files": 44,
+    "manifest_sha256_verified": 43,
+    "crc": "PASS",
+    "available_as_conversation_attachment": true,
+    "git_binary_uploaded": false
+  }
+}
