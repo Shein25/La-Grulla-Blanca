@@ -1,0 +1,157 @@
+{
+  "schema": "GRULLA_ECO_V69_HUMAN_AUTHORIZED_NEW_ELITE_ABILITIES_EXPERIMENTAL",
+  "date": "2026-10-10",
+  "source": "V68_E8_NEW_LIANQI_II_LAB_ONLY__V66_ENGINE_PHYSICAL",
+  "monster_id": "eco_caido",
+  "name": "Eco del Caído",
+  "role": "ELITE",
+  "unique": true,
+  "approvals": {
+    "human": "User explicitly requested new abilities and a player win rate not above 70%",
+    "canonical_monster_identity": true,
+    "new_ability_design_authorized": true,
+    "numeric_source_status": "V69_EXPERIMENTAL_CANDIDATE_NOT_FINAL_T0_RUNTIME",
+    "runtime_status": "NOT_INSTALLED"
+  },
+  "base_t0": {
+    "status": "E8_V39_CANDIDATE_UNRATIFIED",
+    "hp": 84,
+    "qi_max": null,
+    "precision": 96,
+    "evasion": 18,
+    "defense": 1,
+    "tenacity": 18,
+    "control": "0 was experimental",
+    "crit_chance": 5,
+    "crit_damage": 1.5,
+    "basic_damage": "1d2+4",
+    "technique": "NO_PREEXISTING"
+  },
+  "abilities": [
+    {
+      "id": "ECO_VETA_RESENTIDA",
+      "name": "Veta Resentida",
+      "kind": "ONE_SHOT_ABSORPTION",
+      "trigger": "First time alive monster HP<=60% of HPmax after player action",
+      "absorption_points": 12,
+      "maximum_uses_per_fight": 1,
+      "no_defense_buff": true,
+      "no_heal": true
+    },
+    {
+      "id": "ECO_LAMENTO_DEL_CAIDO",
+      "name": "Lamento del Caído",
+      "kind": "TELEGRAPHED_DIRECT_WITH_SPIRITUAL_DOT",
+      "cadence_combat_rounds": 4,
+      "direct_damage_dice": "1d2+3",
+      "hit_required_for_dot": true,
+      "dot_dice": "1d2+3",
+      "dot_ticks": 2,
+      "dot_same_source_nonstacking": true,
+      "dot_ignores_defense": true,
+      "dot_respects_absorption": true,
+      "guard_counter": {
+        "requires_paid_defensive_technique": true,
+        "dot_ticks": 1,
+        "dot_damage_multiplier": 0.5
+      },
+      "interrupt_counter": {
+        "requires_actual_hp_damage_ratio_of_monster_max": 0.18,
+        "requires_same_cue_round": true
+      },
+      "stun_counter": "Valid skipped voluntary action suppresses due Lamento",
+      "source_timers": "No new wall clock; uses fight round_no"
+    },
+    {
+      "id": "ECO_REVERBERACION_AGRAVIO",
+      "name": "Reverberación del Agravio",
+      "kind": "TELEGRAPHED_SPIRITUAL_REFLECTION",
+      "trigger_actual_hp_damage_ratio_of_monster_max": 0.12,
+      "echo_due": "Next voluntary monster action",
+      "echo_damage_dice": "1d2+8",
+      "ignores_defense": true,
+      "respects_absorption": true,
+      "maximum_marks_per_fight": 2,
+      "cooldown_combat_rounds": 3,
+      "guard_counter": "Successfully paid defensive technique cancels echo",
+      "stun_counter": "Valid monster action skip cancels echo",
+      "root_neutral": true
+    }
+  ],
+  "sample_scope": {
+    "source": "ETAPA19B_V66_E1_UNIQUE_T0_1V1_LIANQI_II_PRE_AOE",
+    "roots": 5,
+    "builds_per_root": 3,
+    "gears": 2,
+    "policies": 4,
+    "independent_replicates_per_stratum": 320,
+    "combats_per_arm": 38400,
+    "arms": 5,
+    "total_new_combats": 192000,
+    "base_parity_regressions": 1050,
+    "timeouts": 0
+  },
+  "outcome": {
+    "player_win_pct_original_E8": 98.97,
+    "player_win_pct_ward_only": 95.81,
+    "player_win_pct_ward_and_lamento": 69.45,
+    "player_win_pct_ward_and_echo": 80,
+    "player_win_pct_final_3_abilities": 45.2708,
+    "root_win_pct": {
+      "fuego": 62.8646,
+      "metal": 34.6875,
+      "agua": 55.4948,
+      "tierra": 35.599,
+      "viento": 37.7083
+    },
+    "gear_win_pct": {
+      "ENTRY_LII_MAX_DEFENSE": 55.54,
+      "ENTRY_LII_MAX_EVASION": 35.01
+    },
+    "policy_win_pct": {
+      "UNITARGET_FIRST": 26.9062,
+      "DEFENSE_OPEN": 32.2083,
+      "READ_CUE_GUARD": 54.2396,
+      "READ_ALL_CUES": 67.7292
+    },
+    "scope_of_70_percent_limit": "AGGREGATE AND MARGINAL BY ROOT, GEAR, POLICY ONLY. NO ARTIFICIAL HARD CAP. SOME CROSS STRATA ARE HIGHER.",
+    "counterexample": {
+      "gear": "ENTRY_LII_MAX_DEFENSE",
+      "policy": "READ_ALL_CUES",
+      "player_win_pct": 79.4583
+    }
+  },
+  "authority_conflict": {
+    "old_closed_commit": "45c3a9c240ea74208a0d8fd4d5be187bc817df35",
+    "old_eco_hp": 51,
+    "old_status": "READY_UNIQUE_T0_CLOSED",
+    "later_pre_a08_v39_eco_hp_candidate": 84,
+    "later_status": "E8_PENDING",
+    "precedence": "BLOCKED_NO_HISTORIC_OVERWRITE_UNTIL_HUMAN_SOURCE_RECONCILIATION"
+  },
+  "forbidden": [
+    "MAIN",
+    "MERGE",
+    "PRODUCTION_HTML_CHANGE",
+    "T0_FROZEN_REGISTRY_OVERWRITE",
+    "NEW_SPAWN_OR_ROOM",
+    "NEW_GATES",
+    "NEW_QUESTS",
+    "NERF_EQUIPMENT",
+    "PERSISTENT_T1_T4_OR_MUTANTS_FOR_UNIQUE"
+  ],
+  "caveats": [
+    "Telegraph currently emulated by scripted lab policies, not yet connected to terminal/UI.",
+    "No legal stage LI hidden-access confirmation for ver76.",
+    "No per-stratum 70% hard ceiling or end-to-end runtime balance.",
+    "Qi/item acquisition, Concordances ON, SAVE/LOAD NEW need production parity."
+  ],
+  "portable_archive": {
+    "filename": "GRULLA_V69_ECO_DEL_CAIDO_HABILIDADES_BALANCE_2026-10-10.zip",
+    "sha256": "4e59f1cbb3fbcda45824a9b69c28a2bb168044a771e6c2be3afed975f63041f2",
+    "bytes": 2131643,
+    "crc": "PASS",
+    "manifest": "PASS",
+    "source_in_git": false
+  }
+}
