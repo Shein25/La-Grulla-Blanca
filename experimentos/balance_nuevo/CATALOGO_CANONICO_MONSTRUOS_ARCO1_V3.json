@@ -148,7 +148,7 @@
       "adaptive_source_status": "UNIQUE_T0_CLOSED_NO_T1_T4",
       "legal_guardian_aoe_stage": null,
       "runtime_integration_status": "NOT_VALIDATED_IN_THIS_CATALOG",
-      "notes": null,
+      "notes": "Superseding HUMAN design decision: Eco elite HP84 (old HP51 retained only as historical source); V69 elite abilities experimental and no HTML integration.",
       "new_unique_encounter_ability_work": {
         "authority_date": "2026-10-10",
         "human_authorized": "ADD_NEW_ELITE_ABILITIES_AND_TARGET_PLAYER_WR_NOT_ABOVE_70",
@@ -189,6 +189,18 @@
         "selected_player_win_pct": 49.3937,
         "capped_70_scope": "GLOBAL_AND_MARGINAL_ONLY",
         "production_integration_status": "BLOCKED_REAL_TELEGRAPH_AND_LI_ACCESS_VER76"
+      },
+      "current_design_t0_override": {
+        "approved_by": "HUMAN_2026_10_10",
+        "hp": 84,
+        "overrides_historical_hp": 51,
+        "old_source_still_immutable": true,
+        "scope": "DESIGN_CANON__HTML_NOT_MODIFIED",
+        "base_reference": "V39_E8_CANDIDATE",
+        "abilities_lab_ref": "experimentos/balance_nuevo/handoffs/V69_ECO_ELITE_NUEVAS_HABILIDADES_2026-10-10/ECO_DEL_CAIDO_HABILIDADES_V69_CANDIDATO.json",
+        "approval_record": "experimentos/balance_nuevo/handoffs/V71_ECO84_SOMBRA_URGENTE_2026-10-10/DECISION_HUMANA_ECO_HP84_Y_REAPERTURA_SOMBRA.md",
+        "numeric_skill_params_status": "V69_EXPERIMENTAL_PENDING_RUNTIME_PARITY",
+        "no_t1_t4": true
       }
     },
     {
@@ -233,7 +245,29 @@
       "adaptive_source_status": "UNIQUE_T0_CLOSED_NO_T1_T4",
       "legal_guardian_aoe_stage": null,
       "runtime_integration_status": "NOT_VALIDATED_IN_THIS_CATALOG",
-      "notes": null
+      "notes": null,
+      "t0_design_rebalance": {
+        "source_historical_hp": 51,
+        "human_reopened": "2026-10-10",
+        "status": "V71_NEW_T0_CANDIDATE_REQUIRES_HUMAN_NUMERIC_APPROVAL",
+        "hp": 90,
+        "defense": 1,
+        "stats_except_hp_identical_to_M11": true,
+        "poison_m11_unchanged": true,
+        "new_unique_reactive_mechanic": {
+          "id": "SOMBRA_ESPEJO_REMANSO",
+          "label": "Espejo del Remanso",
+          "trigger": "One actual player offensive action removing at least 16 HP from Sombra, after that damage resolves, while Sombra survives",
+          "absorption_reserve": 16,
+          "uses_per_combat": 1,
+          "not_retroactive": true,
+          "dot_respects_absorption": true,
+          "telegraph_needed_in_html": true
+        },
+        "lab_result_player_win_pct": 58.11,
+        "lab_note": "Holdout N12960 physical PRE_AOE 1v1; not runtime or guaranteed all cross strata.",
+        "source_lab": "experimentos/balance_nuevo/handoffs/V71_ECO84_SOMBRA_URGENTE_2026-10-10/DICTAMEN_REBALANCE_SOMBRA_V71_2026-10-10.md"
+      }
     },
     {
       "id": "centinela_pluma",
