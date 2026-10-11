@@ -1,0 +1,74 @@
+{
+  "schema": "GRULLA_V71_QA_SOMBRA_ECO84",
+  "date": "2026-10-10",
+  "canonical_roster_count": 31,
+  "eco_design_hp_authorized": 84,
+  "sombra_canonical_old_hp": 51,
+  "sombra_v71_rebalance_proposed_hp": 90,
+  "sombra_defense": 1,
+  "sombra_one_shot_absorb": 16,
+  "sombra_shield_triggers_on_actual_hp_damage_at_least": 16,
+  "shield_triggered_in_candidate_12960_fights": 8309,
+  "stage": "LianQi_III",
+  "legal_native_builds_checked": 15,
+  "legal_pt": 4,
+  "entry_gear": [
+    "ENTRY_LII_MAX_DEFENSE",
+    "ENTRY_LII_MAX_EVASION"
+  ],
+  "optional_gear": "LIII_EXPECTED_OPTIONAL",
+  "stageIII_gear_automatically_awarded": false,
+  "ultimates_used": false,
+  "aoe_used": false,
+  "screen_runs": {
+    "stats_hpf_def_cd_executions": 45360,
+    "reactive_variants_executions": 60480,
+    "overlap_between_screens": true
+  },
+  "holdout": {
+    "fights": 51840,
+    "arms": 4,
+    "n_per_arm": 12960,
+    "reps_per_cell": 96,
+    "timeouts": 0,
+    "candidate_kills_by_round3": 0,
+    "player_win_pct": {
+      "hp51_old": 99.68,
+      "hp90_plain": 75.11,
+      "hp90_shield16": 58.11,
+      "hp90_shield12": 63.06
+    },
+    "candidate_roots": {
+      "fuego": 69.52,
+      "metal": 49.58,
+      "agua": 57.79,
+      "tierra": 50.23,
+      "viento": 63.43
+    },
+    "candidate_gear": {
+      "ENTRY_LII_MAX_DEFENSE": 58.8,
+      "ENTRY_LII_MAX_EVASION": 44.91,
+      "LIII_EXPECTED_OPTIONAL": 70.62
+    }
+  },
+  "regression": {
+    "original_vs_wrapper_disabled_pairs": 405,
+    "differences": 0
+  },
+  "artifact": {
+    "name": "GRULLA_V71_ECO_HP84_Y_REBALANCE_SOMBRA_LIII_2026-10-10.zip",
+    "sha256": "6a628a12659f4c3bc124f02f70b1fd34a5cdccb577385c59e488b31f5605b1ba",
+    "bytes": 1984100,
+    "crc": "PASS",
+    "sha256_manifest": "PASS",
+    "attached_to_conversation_not_git": true
+  },
+  "guardrails": {
+    "main_unchanged": true,
+    "no_merge": true,
+    "html_unchanged": true,
+    "original_ratified_t0_not_overwritten": true,
+    "unique_monster_no_t1_t4": true
+  },
+  "status": "SOMBRA_REBALANCE_LAB_PASS_SELECTED_BUT_HUMAN_FINAL_NUMERIC_RATIFICATION_AND_HTML_PARITY_PENDING"
+}
