@@ -1,0 +1,140 @@
+{
+  "schema": "GRULLA_V73_SOMBRA_LIII_PRIMARY_ULTI_SENSITIVITY",
+  "date": "2026-10-10",
+  "status": "LAB_PHYSICAL_E1_V67_ADAPTER_EXPERIMENTAL__NOT_PRODUCTION_PARITY",
+  "monster": {
+    "id": "sombra_ahogada",
+    "hp": 110,
+    "defense": 1,
+    "velo_cadence": 4,
+    "poison": "1d2+2 x2",
+    "espejo_one_shot_absorption": 8,
+    "espejo_trigger_hp_damage": 16,
+    "parameters_changed": false
+  },
+  "stage": "LianQi_III",
+  "guardrails": {
+    "primary_ulti_only": true,
+    "one_ulti_activated_per_fight_max": true,
+    "mastery_assumed_as_explicit_fixture": true,
+    "graft_ulti_unavailable": true,
+    "builds_pt": 4,
+    "gears": [
+      "ENTRY_LII_MAX_DEFENSE",
+      "ENTRY_LII_MAX_EVASION",
+      "LIII_EXPECTED_OPTIONAL"
+    ],
+    "gear_lIII_is_not_automatically_granted": true,
+    "aoe_multitarget": false,
+    "concordances_on": false,
+    "html_modified": false,
+    "main_modified": false
+  },
+  "source_naming": {
+    "sombra": "GRULLA_V72_SOMBRA_AHOGADA_LIII_HP110_REBALANCE_2026-10-10.zip",
+    "ultis": "GRULLA_V67_BALANCE_ULTIS_METAL_VIENTO_2026-10-10.zip",
+    "v03": "V031_ORIGINAL_VERIFICADO.zip",
+    "bridge": "v67_balance_parameterized.py (V03/V05 translated to E1; candidate)"
+  },
+  "test": {
+    "n_total": 69120,
+    "n_no_ulti": 34560,
+    "n_ulti": 34560,
+    "n_each_root_arm": 6912,
+    "seed_cohorts": 2,
+    "baseline_parity_pairs": 810,
+    "baseline_parity_differences": 0,
+    "v72_exact_S2_rows": 17280,
+    "v72_exact_fields_match": [
+      "victory",
+      "rounds",
+      "hp_end",
+      "qi_end"
+    ],
+    "timeouts": 0
+  },
+  "global": {
+    "without_win_pct": 50.741,
+    "with_win_pct": 69.074,
+    "delta_pp": 18.333
+  },
+  "roots": [
+    {
+      "id": "fuego",
+      "ultimate": "FIRE_RENACER_SOL_CARMESI",
+      "base_pct": 62.529,
+      "ulti_pct": 66.782,
+      "delta_pp": 4.253,
+      "activation_pct": 22.758,
+      "note": "Conditional use only when player HP<=30%; using as soon as available produced ~46.77% wins and is worse than without Ulti."
+    },
+    {
+      "id": "agua",
+      "ultimate": "WATER_OCEANO_INVERTIDO",
+      "base_pct": 50.854,
+      "ulti_pct": 80.324,
+      "delta_pp": 29.47,
+      "note": "CONTROL_BASE=80 fixture from V67, NOT numerically ratified."
+    },
+    {
+      "id": "viento",
+      "ultimate": "WIND_VENDAVAL_MIL_HERIDAS",
+      "base_pct": 56.019,
+      "ulti_pct": 74.783,
+      "delta_pp": 18.764,
+      "note": "SOFT_W01, direct scale0.45, 1 bleed stack per cut, bleed power2; not original overpowered V03 values."
+    },
+    {
+      "id": "tierra",
+      "ultimate": "EARTH_SEPULCRO_DIEZ_MIL_MONTANAS",
+      "base_pct": 43.012,
+      "ulti_pct": 82.74,
+      "delta_pp": 39.728,
+      "note": "V67 adapter; high gain must be checked event-by-event before final balance."
+    },
+    {
+      "id": "metal",
+      "ultimate": "METAL_SENTENCIA_FILO_CELESTIAL",
+      "base_pct": 41.291,
+      "ulti_pct": 40.741,
+      "delta_pp": -0.55,
+      "note": "SOFT_M02 pen45, initial 0.5, one bleed stack power1 ticks2 and closure0.5. Do not force use; alternative 25 Ultis not tested."
+    }
+  ],
+  "equipment": [
+    {
+      "id": "ENTRY_LII_MAX_DEFENSE",
+      "base_pct": 49.132,
+      "ulti_pct": 67.283
+    },
+    {
+      "id": "ENTRY_LII_MAX_EVASION",
+      "base_pct": 32.899,
+      "ulti_pct": 54.08
+    },
+    {
+      "id": "LIII_EXPECTED_OPTIONAL",
+      "base_pct": 70.191,
+      "ulti_pct": 85.859
+    }
+  ],
+  "limitations": [
+    "Only one representative of 25 Ultis per main root was simulated, not all 25.",
+    "Sombra no rebalanced in this test; identical profile V72.",
+    "V67 event adapter not equivalent to all native V03 ultimates or production HTML.",
+    "Agua control magnitude unratified; do not nerf Sombra because of this alone.",
+    "Fuego cast timing conditional, only around 23% battles actually use Ulti.",
+    "No AOE, 2+ target, graft, LIVE HTML or SAVE/LOAD parity.",
+    "Cross-root/gear distributions are hypothetical equal-weight test populations, not gameplay encounter frequencies."
+  ],
+  "artifact": {
+    "name": "GRULLA_V73_SOMBRA_110HP_CON_ULTIS_2026-10-10.zip",
+    "sha256": "615db972e5006c571ec60c703025d8c06a24ec17b54c380d71d7be282c2964aa",
+    "bytes": 2135399,
+    "crc": "PASS",
+    "sha_manifest": "PASS",
+    "reproducible_sources": "V66 and V03.1 included",
+    "chat_attachment": true,
+    "uploaded_to_git": false
+  }
+}
