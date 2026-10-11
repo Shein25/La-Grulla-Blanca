@@ -1,0 +1,129 @@
+{
+  "schema": "GRULLA_V71_SOMBRA_URGENT_T0_DESIGN_CANDIDATE",
+  "date": "2026-10-10",
+  "human_reopened": true,
+  "human_numeric_approval_for_sombra": "PENDING_FINAL_RATIFICATION",
+  "monster_id": "sombra_ahogada",
+  "name": "Sombra Ahogada del Estanque",
+  "native_stage": "LianQi_III",
+  "unique": true,
+  "role": "ELITE",
+  "historical_t0": {
+    "hp": 51,
+    "precision": 106,
+    "evasion": 20,
+    "defense": 1,
+    "tenacity": 19,
+    "basic_damage": "1d2+7",
+    "poison": {
+      "dice": "1d2+2",
+      "ticks": 3,
+      "cadence": 3
+    },
+    "ratified_commit": "45c3a9c240ea74208a0d8fd4d5be187bc817df35"
+  },
+  "selected_candidate": {
+    "hp": 90,
+    "precision": 106,
+    "evasion": 20,
+    "defense": 1,
+    "tenacity": 19,
+    "control": 0,
+    "crit_chance": 5,
+    "crit_damage": 1.5,
+    "basic_damage": "1d2+7",
+    "poison": {
+      "dice": "1d2+2",
+      "ticks": 3,
+      "cadence": 3
+    },
+    "unique_encounter_ability": {
+      "id": "SOMBRA_ESPEJO_REMANSO",
+      "name": "Espejo del Remanso",
+      "trigger": "first effective player action inflicting >=16 actual Sombra HP damage, after damage resolution, only if monster survives",
+      "shield_absorption_points": 16,
+      "uses_per_combat": 1,
+      "not_retroactive": true,
+      "no_flat_defense_boost": true,
+      "no_heal": true,
+      "dot_absorption_applies": true,
+      "runtime_telegraph_required": true
+    }
+  },
+  "validation": {
+    "stage": "LianQi_III",
+    "player_builds_native_per_root": 3,
+    "skill_points_per_build": 4,
+    "roots": 5,
+    "gear": [
+      "ENTRY_LII_MAX_DEFENSE",
+      "ENTRY_LII_MAX_EVASION",
+      "LIII_EXPECTED_OPTIONAL"
+    ],
+    "optional_lIII_gear_is_not_autogranted": true,
+    "policies": [
+      "STRIKE",
+      "DEFENSE_OPEN",
+      "TELEGRAPH_RESPONSE"
+    ],
+    "ultis": false,
+    "aoe": false,
+    "concordances_on": false,
+    "adaptation_t1_t4": false,
+    "mutants": false,
+    "first_screen_executions": 45360,
+    "reactive_screen_executions": 60480,
+    "independent_holdout_executions": 51840,
+    "holdout_per_arm": 12960,
+    "holdout_reps_per_stratum": 96,
+    "baseline_e1_wrapper_parity_pairs": 405,
+    "parity_differences": 0,
+    "timeouts": 0,
+    "holdout_player_win_pct": {
+      "old_hp51": 99.68,
+      "hp90_def1_no_shield": 75.11,
+      "hp90_def1_shield16": 58.11,
+      "hp90_def1_shield12": 63.06
+    },
+    "candidate_player_win_by_root_pct": {
+      "fuego": 69.52,
+      "metal": 49.58,
+      "agua": 57.79,
+      "tierra": 50.23,
+      "viento": 63.43
+    },
+    "candidate_player_win_by_gear_pct": {
+      "ENTRY_LII_MAX_DEFENSE": 58.8,
+      "ENTRY_LII_MAX_EVASION": 44.91,
+      "LIII_EXPECTED_OPTIONAL": 70.62
+    },
+    "candidate_player_win_by_policy_pct": {
+      "STRIKE": 56.32,
+      "DEFENSE_OPEN": 55.67,
+      "TELEGRAPH_RESPONSE": 62.34
+    },
+    "shield_triggered_fights": 8309,
+    "candidate_early_three_round_kills": 0
+  },
+  "artifact": {
+    "file_name": "GRULLA_V71_ECO_HP84_Y_REBALANCE_SOMBRA_LIII_2026-10-10.zip",
+    "sha256": "6a628a12659f4c3bc124f02f70b1fd34a5cdccb577385c59e488b31f5605b1ba",
+    "bytes": 1984100,
+    "crc": "PASS",
+    "manifest": "PASS",
+    "raw_holdout_rows": 51840,
+    "available_as_conversation_attachment_not_in_repo": true
+  },
+  "status": {
+    "numeric_t0": "LAB_CANDIDATE_SELECTED__NOT_RUNTIME_READY",
+    "html_integrated": false,
+    "main_changed": false,
+    "special_event_runtime_wired": false,
+    "unique_spawn_persistence_certified": false
+  },
+  "notes": [
+    "Do not make any claims about 2+ target AoE, this is 1v1 PRE_AOE.",
+    "Old historic registry stays traceable; explicit human reopening authorizes new proposal but not automatic code patch.",
+    "A few root/gear intersections may win >70%; 58.11% is aggregate, not hardcap."
+  ]
+}
