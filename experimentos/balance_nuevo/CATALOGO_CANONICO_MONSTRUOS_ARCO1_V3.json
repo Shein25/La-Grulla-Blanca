@@ -245,8 +245,42 @@
       "adaptive_source_status": "UNIQUE_T0_CLOSED_NO_T1_T4",
       "legal_guardian_aoe_stage": null,
       "runtime_integration_status": "NOT_VALIDATED_IN_THIS_CATALOG",
-      "notes": null,
+      "notes": " V72: Sombra rebalanced design HP110 (human request >100), Velo cadence4 ticks2, Espejo absorb8; V71 history retained; no runtime change.",
       "t0_design_rebalance": {
+        "human_directive": "2026-10-10: REBALANCE_SOMBRA_LIII_TO_HP_GREATER_THAN_100",
+        "priority": "V72_SUPERSEDES_V71_CANDIDATE_ONLY",
+        "hp": 110,
+        "defense": 1,
+        "precision": 106,
+        "evasion": 20,
+        "tenacity": 19,
+        "basic_damage": "1d2+7",
+        "velo_de_ahogo": {
+          "cadence": 4,
+          "poison_damage": "1d2+2",
+          "poison_ticks": 2,
+          "reason": "Balance higher HP by weakening periodic venom, not an unchanged historical technique"
+        },
+        "unique_mechanic": {
+          "id": "SOMBRA_ESPEJO_REMANSO",
+          "trigger": "After first actual >=16 HP damage received in single player action while Sombra lives",
+          "absorption_points": 8,
+          "once_per_fight": true,
+          "not_retroactive": true
+        },
+        "status": "V72_LAB_SELECTED_110HP_GT100_HUMAN_REQUEST__NOT_RUNTIME_READY",
+        "validation": {
+          "n_final_duels": 34560,
+          "player_win_pct": 50.611,
+          "independent_cohorts": 2,
+          "parity_pairs": 405,
+          "parity_differences": 0
+        },
+        "source": "experimentos/balance_nuevo/handoffs/V72_SOMBRA_HP110_BALANCE_LIII_2026-10-10/SOMBRA_T0_V72_HP110_CANDIDATO.json",
+        "report": "experimentos/balance_nuevo/handoffs/V72_SOMBRA_HP110_BALANCE_LIII_2026-10-10/DICTAMEN_REBALANCE_SOMBRA_V72_2026-10-10.md",
+        "warning": "Original historical T0 not modified; V72 design selection is not runtime HTML parity. LIII optional set can exceed 70%."
+      },
+      "t0_design_rebalance_v71_history": {
         "source_historical_hp": 51,
         "human_reopened": "2026-10-10",
         "status": "V71_NEW_T0_CANDIDATE_REQUIRES_HUMAN_NUMERIC_APPROVAL",
