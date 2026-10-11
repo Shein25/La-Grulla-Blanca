@@ -62,3 +62,7 @@ Fuentes originales recuperadas y preservadas *sin alteración de su autoridad*:
 6. Extensiones futuras: añadir nueva criatura documentada al índice V3 sucesor/versionado y aumentar el total. No crear techos fijos.
 
 **Guardias:** No tocar `main`, no merge, no HTML, `ROOMS.exits`, T0 ratificados, economía, drops, spawns ni NPCs como efecto colateral de este cambio documental.
+
+## 6. Actualización del único Eco del Caído — V69 (10/10/2026)
+
+Por autorización humana se diseñaron tres habilidades propias del **élite único** `eco_caido`: **Veta Resentida**, **Lamento del Caído** y **Reverberación del Agravio**. La batería física V69 (192.000 combates con cinco brazos) produjo **45,27% de victoria del jugador** con todas las habilidades, y la regresión base pasó 1.050 parejas con cero diferencias. Están documentadas en `experimentos/balance_nuevo/handoffs/V69_ECO_ELITE_NUEVAS_HABILIDADES_2026-10-10/ECO_DEL_CAIDO_HABILIDADES_V69_CANDIDATO.json`. **Solo es diseño y valor candidato**, no habilidad ya integrada al HTML ni reemplazo del Eco T0. `45c3a9` documenta HP51 READY y PRE-A08/V39 documenta E8 HP84 PENDING: conflicto aún pendiente de conciliación, sin tocar ninguno. El límite de 70% se cumplió en los promedios globales y marginales; la política óptima con equipo LII máximo DEF alcanzó 79,46%. NO se debe anunciar un cap universal por build.
