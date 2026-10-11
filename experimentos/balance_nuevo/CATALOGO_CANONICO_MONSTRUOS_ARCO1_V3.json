@@ -268,7 +268,7 @@
           "once_per_fight": true,
           "not_retroactive": true
         },
-        "status": "V72_LAB_SELECTED_110HP_GT100_HUMAN_REQUEST__NOT_RUNTIME_READY",
+        "status": "V77_HUMAN_CLOSED_NUMERIC_DESIGN_LIII_HP110__NOT_RUNTIME_READY",
         "validation": {
           "n_final_duels": 34560,
           "player_win_pct": 50.611,
@@ -278,7 +278,15 @@
         },
         "source": "experimentos/balance_nuevo/handoffs/V72_SOMBRA_HP110_BALANCE_LIII_2026-10-10/SOMBRA_T0_V72_HP110_CANDIDATO.json",
         "report": "experimentos/balance_nuevo/handoffs/V72_SOMBRA_HP110_BALANCE_LIII_2026-10-10/DICTAMEN_REBALANCE_SOMBRA_V72_2026-10-10.md",
-        "warning": "Original historical T0 not modified; V72 design selection is not runtime HTML parity. LIII optional set can exceed 70%."
+        "warning": "Original historical T0 not modified; V72 design selection is not runtime HTML parity. LIII optional set can exceed 70%.",
+        "design_closed_by": "User 2026-10-10: 'cerramos el jefe este, pasamos a testear ... AOE usando concordancia'",
+        "closed_scope": "SOMBRA_ELITE_UNIQUE_1V1_NUMERIC_DESIGN_ONLY",
+        "open_checks": [
+          "V72_T0_RUNTIME_HTML_PARITY",
+          "V73_ULTIS_ADAPTER_EXPERIMENTAL",
+          "AOE_CONCORDANCE_NATIVE_MULTITARGET_UNIMPLEMENTED",
+          "REAL_MANUAL_AND_EQUIPMENT_ACQUISITION"
+        ]
       },
       "t0_design_rebalance_v71_history": {
         "source_historical_hp": 51,
